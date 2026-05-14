@@ -1,4 +1,5 @@
 import './globals.css'
+import { Analytics } from '@vercel/analytics/react'
 
 export const metadata = {
   title: 'Mictoo — Free Audio & Video Transcription Online',
@@ -70,6 +71,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
 
+        <Analytics />
         <footer className="border-t border-slate-100 py-8 mt-16">
           <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400">
             <p>© {new Date().getFullYear()} Mictoo. Free AI transcription tool.</p>
