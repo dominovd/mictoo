@@ -4,6 +4,13 @@ import UploadZone from '@/components/UploadZone'
 export const metadata = {
   alternates: {
     canonical: 'https://mictoo.com',
+    languages: {
+      'en': 'https://mictoo.com',
+      'fr': 'https://mictoo.com/fr',
+      'de': 'https://mictoo.com/de',
+      'es': 'https://mictoo.com/es',
+      'x-default': 'https://mictoo.com',
+    },
   },
 }
 
@@ -188,8 +195,8 @@ export default function Home() {
             },
             {
               icon: '🎯',
-              title: 'Powered by Whisper AI',
-              desc: "OpenAI's state-of-the-art speech recognition model — the same technology used by leading transcription services.",
+              title: 'High accuracy',
+              desc: 'State-of-the-art AI speech recognition — the same technology used by leading transcription services.',
             },
             {
               icon: '⚡',
@@ -224,18 +231,18 @@ export default function Home() {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             {[
-              { icon: '🎓', label: 'Students', desc: 'Transcribe lectures, interviews, and research recordings.' },
-              { icon: '🎙️', label: 'Podcasters', desc: 'Turn podcast episodes into blog posts, show notes, or subtitles.' },
-              { icon: '📰', label: 'Journalists', desc: 'Convert recorded interviews to text in seconds.' },
-              { icon: '🏢', label: 'Business teams', desc: 'Transcribe meetings, calls, and presentations.' },
-              { icon: '🌐', label: 'Content creators', desc: 'Create captions and transcripts for YouTube videos.' },
-              { icon: '⚖️', label: 'Legal & medical', desc: 'Quickly draft transcripts for notes and documentation.' },
-            ].map(({ icon, label, desc }) => (
-              <div key={label} className="bg-slate-50 rounded-2xl p-6">
+              { icon: '🎓', label: 'Students', desc: 'Transcribe lectures, interviews, and research recordings.', href: '/lecture-transcription' },
+              { icon: '🎙️', label: 'Podcasters', desc: 'Turn podcast episodes into blog posts, show notes, or subtitles.', href: '/podcast-transcription' },
+              { icon: '📰', label: 'Journalists', desc: 'Convert recorded interviews to text in seconds.', href: '/interview-transcription' },
+              { icon: '🏢', label: 'Business teams', desc: 'Transcribe meetings, calls, and presentations.', href: '/business-transcription' },
+              { icon: '🌐', label: 'Content creators', desc: 'Create captions and transcripts for YouTube videos.', href: '/free-srt-generator' },
+              { icon: '⚖️', label: 'Legal & medical', desc: 'Quickly draft transcripts for notes and documentation.', href: '/transcribe-audio-to-text' },
+            ].map(({ icon, label, desc, href }) => (
+              <a key={label} href={href} className="bg-slate-50 rounded-2xl p-6 hover:bg-brand-50 hover:shadow-sm transition-all block">
                 <div className="text-3xl mb-3">{icon}</div>
                 <h3 className="font-semibold text-slate-800 mb-2">{label}</h3>
                 <p className="text-sm text-slate-500">{desc}</p>
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -250,10 +257,19 @@ export default function Home() {
           Mictoo transcribes all common audio and video formats.
         </p>
         <div className="flex flex-wrap justify-center gap-3">
-          {['MP3', 'MP4', 'WAV', 'M4A', 'OGG', 'WEBM', 'FLAC', 'MPEG'].map(fmt => (
-            <span key={fmt} className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-mono font-semibold text-slate-700 shadow-sm">
+          {[
+            { fmt: 'MP3', href: '/transcribe-mp3-to-text' },
+            { fmt: 'MP4', href: '/transcribe-video-to-text' },
+            { fmt: 'WAV', href: '/wav-to-text' },
+            { fmt: 'M4A', href: '/m4a-to-text' },
+            { fmt: 'OGG', href: '/ogg-to-text' },
+            { fmt: 'WEBM', href: '/webm-to-text' },
+            { fmt: 'FLAC', href: '/flac-to-text' },
+            { fmt: 'MPEG', href: '/transcribe-audio-to-text' },
+          ].map(({ fmt, href }) => (
+            <a key={fmt} href={href} className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-mono font-semibold text-slate-700 shadow-sm hover:border-brand-400 hover:text-brand-600 transition-colors">
               .{fmt.toLowerCase()}
-            </span>
+            </a>
           ))}
         </div>
       </section>

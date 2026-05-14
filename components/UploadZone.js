@@ -27,6 +27,27 @@ const LANGUAGES = [
   { code: 'hi', label: '🇮🇳 Hindi' },
 ]
 
+// Group Whisper segments into paragraphs based on pauses between segments
+// If gap between consecutive segments > PAUSE_THRESHOLD seconds → new paragraph
+function toParagraphs(segments) {
+  if (!segments?.length) return ''
+  const PAUSE_THRESHOLD = 1.5 // seconds
+  let result = ''
+  for (let i = 0; i < segments.length; i++) {
+    const seg = segments[i]
+    const text = seg.text.trim()
+    if (!text) continue
+    if (i === 0) {
+      result += text
+    } else {
+      const prev = segments[i - 1]
+      const gap = seg.start - prev.end
+      result += gap > PAUSE_THRESHOLD ? '\n\n' + text : ' ' + text
+    }
+  }
+  return result
+}
+
 // Convert Whisper segments → SRT string
 function toSRT(segments) {
   if (!segments?.length) return ''
@@ -93,8 +114,10 @@ export default function UploadZone({ defaultLanguage = '' }) {
 
       const data = await res.json()
       setProgress(100)
-      setTranscript(data.text)
-      setSegments(data.segments ?? [])
+      const segs = data.segments ?? []
+      // Use paragraph-formatted text if segments are available, else raw text
+      setTranscript(segs.length > 0 ? toParagraphs(segs) : data.text)
+      setSegments(segs)
       setState('done')
     } catch (err) {
       clearInterval(ticker)

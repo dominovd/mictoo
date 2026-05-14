@@ -3,7 +3,16 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'Audio in Text umwandeln — Kostenlose Transkription | Mictoo',
   description: 'Audio und Video kostenlos in Text umwandeln. Keine Anmeldung erforderlich. Unterstützt MP3, MP4, WAV und mehr. Betrieben von AI.',
-  alternates: { canonical: 'https://mictoo.com/de' },
+  alternates: {
+    canonical: 'https://mictoo.com/de',
+    languages: {
+      'en': 'https://mictoo.com',
+      'fr': 'https://mictoo.com/fr',
+      'de': 'https://mictoo.com/de',
+      'es': 'https://mictoo.com/es',
+      'x-default': 'https://mictoo.com',
+    },
+  },
 }
 
 export default function GermanPage() {

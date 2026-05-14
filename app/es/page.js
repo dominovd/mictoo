@@ -3,7 +3,16 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'Transcribir Audio a Texto Gratis — Mictoo',
   description: 'Convierte audio y video a texto gratis. Sin registro. Soporta MP3, MP4, WAV y más de 50 idiomas. Basado en AI.',
-  alternates: { canonical: 'https://mictoo.com/es' },
+  alternates: {
+    canonical: 'https://mictoo.com/es',
+    languages: {
+      'en': 'https://mictoo.com',
+      'fr': 'https://mictoo.com/fr',
+      'de': 'https://mictoo.com/de',
+      'es': 'https://mictoo.com/es',
+      'x-default': 'https://mictoo.com',
+    },
+  },
 }
 
 export default function SpanishPage() {
