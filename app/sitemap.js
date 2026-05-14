@@ -130,6 +130,28 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.6,
     },
+    // Long-tail use cases (pack #4)
+    { url: 'https://mictoo.com/webinar-transcription',       lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: 'https://mictoo.com/dictation-to-text',            lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: 'https://mictoo.com/google-meet-transcription',    lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: 'https://mictoo.com/teams-meeting-transcription',  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: 'https://mictoo.com/sermon-transcription',         lastModified: new Date(), changeFrequency: 'monthly', priority: 0.75 },
+    // Localized use-case pages — FR
+    { url: 'https://mictoo.com/fr/podcast-transcription',  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.75 },
+    { url: 'https://mictoo.com/fr/lecture-transcription',  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7  },
+    { url: 'https://mictoo.com/fr/business-transcription', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7  },
+    // Localized use-case pages — DE
+    { url: 'https://mictoo.com/de/podcast-transcription',  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.75 },
+    { url: 'https://mictoo.com/de/lecture-transcription',  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7  },
+    { url: 'https://mictoo.com/de/business-transcription', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7  },
+    // Localized use-case pages — ES
+    { url: 'https://mictoo.com/es/podcast-transcription',  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.75 },
+    { url: 'https://mictoo.com/es/lecture-transcription',  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7  },
+    { url: 'https://mictoo.com/es/business-transcription', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7  },
+    // Localized use-case pages — RU
+    { url: 'https://mictoo.com/ru/podcast-transcription',  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.75 },
+    { url: 'https://mictoo.com/ru/lecture-transcription',  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7  },
+    { url: 'https://mictoo.com/ru/business-transcription', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7  },
     // Language pages
     {
       url: 'https://mictoo.com/fr',

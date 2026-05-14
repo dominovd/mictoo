@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'Lecture Transcription — Free Lecture Transcript Generator | Mictoo',
   description: 'Transcribe lectures to text for free. Upload your lecture recording and get an accurate transcript in seconds. Great for students and academics. No signup required.',
-  alternates: { canonical: 'https://mictoo.com/lecture-transcription' },
+  alternates: {
+    canonical: 'https://mictoo.com/lecture-transcription',
+    languages: {
+      'en': 'https://mictoo.com/lecture-transcription',
+      'fr': 'https://mictoo.com/fr/lecture-transcription',
+      'de': 'https://mictoo.com/de/lecture-transcription',
+      'es': 'https://mictoo.com/es/lecture-transcription',
+      'ru': 'https://mictoo.com/ru/lecture-transcription',
+      'x-default': 'https://mictoo.com/lecture-transcription',
+    },
+  },
 }
 
 export default function LectureTranscriptionPage() {

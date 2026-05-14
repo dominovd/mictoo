@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'Podcast Transcription — Free Podcast Transcript Generator | Mictoo',
   description: 'Transcribe podcast episodes to text for free. Upload your audio file and get a full podcast transcript instantly. Supports MP3, M4A, WAV. No signup required.',
-  alternates: { canonical: 'https://mictoo.com/podcast-transcription' },
+  alternates: {
+    canonical: 'https://mictoo.com/podcast-transcription',
+    languages: {
+      'en': 'https://mictoo.com/podcast-transcription',
+      'fr': 'https://mictoo.com/fr/podcast-transcription',
+      'de': 'https://mictoo.com/de/podcast-transcription',
+      'es': 'https://mictoo.com/es/podcast-transcription',
+      'ru': 'https://mictoo.com/ru/podcast-transcription',
+      'x-default': 'https://mictoo.com/podcast-transcription',
+    },
+  },
 }
 
 export default function PodcastTranscriptionPage() {

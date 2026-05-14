@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'Business Transcription — Free Meeting & Call Transcript Tool | Mictoo',
   description: 'Transcribe business meetings, sales calls, interviews, and conference recordings for free. Instant, accurate, no signup. Download as text or SRT.',
-  alternates: { canonical: 'https://mictoo.com/business-transcription' },
+  alternates: {
+    canonical: 'https://mictoo.com/business-transcription',
+    languages: {
+      'en': 'https://mictoo.com/business-transcription',
+      'fr': 'https://mictoo.com/fr/business-transcription',
+      'de': 'https://mictoo.com/de/business-transcription',
+      'es': 'https://mictoo.com/es/business-transcription',
+      'ru': 'https://mictoo.com/ru/business-transcription',
+      'x-default': 'https://mictoo.com/business-transcription',
+    },
+  },
 }
 
 const schema = {
