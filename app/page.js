@@ -9,6 +9,7 @@ export const metadata = {
       'fr': 'https://mictoo.com/fr',
       'de': 'https://mictoo.com/de',
       'es': 'https://mictoo.com/es',
+      'ru': 'https://mictoo.com/ru',
       'x-default': 'https://mictoo.com',
     },
   },

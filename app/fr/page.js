@@ -1,8 +1,8 @@
 import LandingLayout from '@/components/LandingLayout'
 
 export const metadata = {
-  title: 'Transcrire Audio en Texte Gratuitement — Mictoo',
-  description: 'Transcrivez vos fichiers audio et vidéo en texte gratuitement. Aucune inscription requise. Propulsé par AI. Supporte MP3, MP4, WAV et plus.',
+  title: 'Transcrire Audio et Vidéo en Texte Gratuitement — Mictoo',
+  description: "Transcrivez vos fichiers audio et vidéo en texte gratuitement. Sans inscription. Propulsé par IA. MP3, MP4, WAV et plus de 50 langues.",
   alternates: {
     canonical: 'https://mictoo.com/fr',
     languages: {
@@ -10,16 +10,31 @@ export const metadata = {
       'fr': 'https://mictoo.com/fr',
       'de': 'https://mictoo.com/de',
       'es': 'https://mictoo.com/es',
+      'ru': 'https://mictoo.com/ru',
       'x-default': 'https://mictoo.com',
     },
+  },
+  openGraph: {
+    title: 'Mictoo — Transcription Audio & Vidéo Gratuite',
+    description: "Téléchargez un fichier audio ou vidéo et obtenez la transcription en quelques secondes.",
+    url: 'https://mictoo.com/fr',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630, alt: 'Mictoo — Transcription Audio & Vidéo Gratuite' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mictoo — Transcription IA Gratuite',
+    description: "Téléchargez un fichier audio ou vidéo et obtenez la transcription en quelques secondes.",
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function FrenchPage() {
   return (
     <LandingLayout
-      badge="Gratuit · Sans inscription · IA"
-      h1={<>Transcrire Audio en Texte<br /><span className="text-brand-600">Gratuitement en Ligne</span></>}
+      badge="Gratuit · Sans inscription · 50+ langues"
+      h1={<>Transcrire Audio et Vidéo en Texte<br /><span className="text-brand-600">Gratuitement en Ligne</span></>}
       subtitle="Téléchargez n'importe quel fichier audio ou vidéo et obtenez une transcription précise en quelques secondes. Aucun compte requis."
       defaultLanguage="fr"
       features={[
@@ -42,11 +57,11 @@ export default function FrenchPage() {
       faq={[
         {
           q: 'Comment transcrire un fichier audio en texte gratuitement ?',
-          a: 'Téléchargez votre fichier audio ci-dessus. Mictoo le transcrit automatiquement grâce à l\'IA et affiche le texte en quelques secondes.',
+          a: "Téléchargez votre fichier audio ci-dessus. Mictoo le transcrit automatiquement grâce à l'IA et affiche le texte en quelques secondes.",
         },
         {
           q: 'Mictoo fonctionne-t-il bien pour le français ?',
-          a: 'Oui. AI est entraîné sur de nombreuses heures d\'audio en français et offre une excellente précision pour cette langue.',
+          a: "Oui. L'IA est entraînée sur de nombreuses heures d'audio en français et offre une excellente précision pour cette langue.",
         },
         {
           q: 'Mes fichiers sont-ils conservés ?',
@@ -57,6 +72,7 @@ export default function FrenchPage() {
         { href: '/', label: 'English' },
         { href: '/de', label: 'Deutsch' },
         { href: '/es', label: 'Español' },
+        { href: '/ru', label: 'Русский' },
       ]}
     />
   )

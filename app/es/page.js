@@ -1,8 +1,8 @@
 import LandingLayout from '@/components/LandingLayout'
 
 export const metadata = {
-  title: 'Transcribir Audio a Texto Gratis — Mictoo',
-  description: 'Convierte audio y video a texto gratis. Sin registro. Soporta MP3, MP4, WAV y más de 50 idiomas. Basado en AI.',
+  title: 'Transcribir Audio y Vídeo a Texto Gratis — Mictoo',
+  description: 'Convierte audio y vídeo a texto gratis. Sin registro. Soporta MP3, MP4, WAV y más de 50 idiomas. Basado en IA.',
   alternates: {
     canonical: 'https://mictoo.com/es',
     languages: {
@@ -10,17 +10,32 @@ export const metadata = {
       'fr': 'https://mictoo.com/fr',
       'de': 'https://mictoo.com/de',
       'es': 'https://mictoo.com/es',
+      'ru': 'https://mictoo.com/ru',
       'x-default': 'https://mictoo.com',
     },
+  },
+  openGraph: {
+    title: 'Mictoo — Transcripción de Audio y Vídeo Gratuita',
+    description: 'Sube un archivo de audio o vídeo y obtén la transcripción en segundos.',
+    url: 'https://mictoo.com/es',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630, alt: 'Mictoo — Transcripción de Audio y Vídeo Gratuita' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mictoo — Transcripción Gratuita con IA',
+    description: 'Sube un archivo de audio o vídeo y obtén la transcripción en segundos.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function SpanishPage() {
   return (
     <LandingLayout
-      badge="Gratis · Sin registro · IA"
-      h1={<>Transcribir Audio a Texto<br /><span className="text-brand-600">Gratis y Online</span></>}
-      subtitle="Sube cualquier archivo de audio o video y obtén una transcripción precisa en segundos. Sin cuenta, sin suscripción."
+      badge="Gratis · Sin registro · 50+ idiomas"
+      h1={<>Transcribir Audio y Vídeo a Texto<br /><span className="text-brand-600">Gratis y Online</span></>}
+      subtitle="Sube cualquier archivo de audio o vídeo y obtén una transcripción precisa en segundos. Sin cuenta, sin suscripción."
       defaultLanguage="es"
       features={[
         {
@@ -46,7 +61,7 @@ export default function SpanishPage() {
         },
         {
           q: '¿Funciona bien para el español?',
-          a: 'Sí. AI ha sido entrenado con miles de horas de audio en español y ofrece una alta precisión.',
+          a: 'Sí. La IA ha sido entrenada con miles de horas de audio en español y ofrece una alta precisión.',
         },
         {
           q: '¿Se guardan mis archivos?',
@@ -57,6 +72,7 @@ export default function SpanishPage() {
         { href: '/', label: 'English' },
         { href: '/fr', label: 'Français' },
         { href: '/de', label: 'Deutsch' },
+        { href: '/ru', label: 'Русский' },
       ]}
     />
   )

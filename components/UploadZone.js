@@ -1,6 +1,8 @@
 'use client'
 
 import { useState, useRef, useCallback } from 'react'
+import { usePathname } from 'next/navigation'
+import { detectLocaleFromPath, t, DICT } from '@/lib/i18n'
 
 const ACCEPTED_TYPES = ['audio/mpeg', 'audio/mp4', 'audio/wav', 'audio/m4a', 'audio/ogg',
   'audio/webm', 'video/mp4', 'video/webm', 'video/mpeg', 'audio/x-m4a',
@@ -8,24 +10,9 @@ const ACCEPTED_TYPES = ['audio/mpeg', 'audio/mp4', 'audio/wav', 'audio/m4a', 'au
 const MAX_SIZE_MB = 25
 const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024
 
-const LANGUAGES = [
-  { code: '', label: '🌐 Auto-detect' },
-  { code: 'en', label: '🇬🇧 English' },
-  { code: 'es', label: '🇪🇸 Spanish' },
-  { code: 'fr', label: '🇫🇷 French' },
-  { code: 'de', label: '🇩🇪 German' },
-  { code: 'pt', label: '🇧🇷 Portuguese' },
-  { code: 'ru', label: '🇷🇺 Russian' },
-  { code: 'it', label: '🇮🇹 Italian' },
-  { code: 'nl', label: '🇳🇱 Dutch' },
-  { code: 'pl', label: '🇵🇱 Polish' },
-  { code: 'tr', label: '🇹🇷 Turkish' },
-  { code: 'ja', label: '🇯🇵 Japanese' },
-  { code: 'ko', label: '🇰🇷 Korean' },
-  { code: 'zh', label: '🇨🇳 Chinese' },
-  { code: 'ar', label: '🇸🇦 Arabic' },
-  { code: 'hi', label: '🇮🇳 Hindi' },
-]
+// Whisper language codes shown in the picker.
+// Labels (with flag) come from the i18n dictionary per UI locale.
+const PICKER_LANG_CODES = ['en', 'es', 'fr', 'de', 'pt', 'ru', 'it', 'nl', 'pl', 'tr', 'ja', 'ko', 'zh', 'ar', 'hi']
 
 // Group Whisper segments into paragraphs based on pauses between segments
 // If gap between consecutive segments > PAUSE_THRESHOLD seconds → new paragraph
@@ -63,7 +50,13 @@ function toSRT(segments) {
     .join('\n\n') + '\n'
 }
 
-export default function UploadZone({ defaultLanguage = '' }) {
+export default function UploadZone({ defaultLanguage = '', locale: localeProp }) {
+  // UI locale: explicit prop (from /fr, /de, /es, /ru pages via LandingLayout)
+  // wins, otherwise infer from URL (covers EN homepage and all format/use-case
+  // pages, which currently share the EN dictionary).
+  const pathname = usePathname() || '/'
+  const locale = localeProp || detectLocaleFromPath(pathname)
+
   const [state, setState] = useState('idle') // idle | dragging | uploading | done | error
   const [progress, setProgress] = useState(0)
   const [file, setFile] = useState(null)
@@ -86,7 +79,7 @@ export default function UploadZone({ defaultLanguage = '' }) {
 
   const processFile = useCallback(async (f) => {
     if (f.size > MAX_SIZE_BYTES) {
-      setError(`File too large. Max size is ${MAX_SIZE_MB}MB.`)
+      setError(t(locale, 'status.fileTooLarge'))
       setState('error')
       return
     }
@@ -124,7 +117,7 @@ export default function UploadZone({ defaultLanguage = '' }) {
       setError(err.message)
       setState('error')
     }
-  }, [language])
+  }, [language, locale])
 
   const handleDrop = useCallback((e) => {
     e.preventDefault()
@@ -176,7 +169,7 @@ export default function UploadZone({ defaultLanguage = '' }) {
             <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2.5" strokeDasharray="32" strokeDashoffset="10"/>
           </svg>
         </div>
-        <p className="text-lg font-semibold text-slate-800 mb-1">Transcribing…</p>
+        <p className="text-lg font-semibold text-slate-800 mb-1">{t(locale, 'status.transcribing')}</p>
         <p className="text-sm text-slate-500 mb-6">{file?.name}</p>
         <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
           <div
@@ -204,15 +197,17 @@ export default function UploadZone({ defaultLanguage = '' }) {
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
         <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
           <div>
-            <h2 className="font-semibold text-slate-800">Transcript</h2>
-            <p className="text-xs text-slate-400 mt-0.5">{wordCount} words · {charCount} characters · {file?.name}</p>
+            <h2 className="font-semibold text-slate-800">{t(locale, 'result.title')}</h2>
+            <p className="text-xs text-slate-400 mt-0.5">
+              {t(locale, 'result.stats', { words: wordCount, chars: charCount, name: file?.name })}
+            </p>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
             <button onClick={copy} className="btn-ghost">
               {copied ? (
-                <><CheckIcon className="w-4 h-4 text-green-500" /> Copied!</>
+                <><CheckIcon className="w-4 h-4 text-green-500" /> {t(locale, 'result.copied')}</>
               ) : (
-                <><CopyIcon className="w-4 h-4" /> Copy</>
+                <><CopyIcon className="w-4 h-4" /> {t(locale, 'result.copy')}</>
               )}
             </button>
             <button onClick={downloadTxt} className="btn-ghost">
@@ -224,7 +219,7 @@ export default function UploadZone({ defaultLanguage = '' }) {
               </button>
             )}
             <button onClick={reset} className="btn-primary">
-              ↑ New file
+              {t(locale, 'result.newFile')}
             </button>
           </div>
         </div>
@@ -234,7 +229,7 @@ export default function UploadZone({ defaultLanguage = '' }) {
           onChange={e => setTranscript(e.target.value)}
         />
         <p className="text-xs text-slate-400 mt-2">
-          You can edit the transcript above.{hasSRT ? ' Download .srt for subtitles.' : ''}
+          {t(locale, 'result.editHint')}{hasSRT ? t(locale, 'result.srtHint') : ''}
         </p>
       </div>
     )
@@ -246,9 +241,9 @@ export default function UploadZone({ defaultLanguage = '' }) {
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-50 mb-5 text-3xl">
           ⚠️
         </div>
-        <p className="text-lg font-semibold text-slate-800 mb-1">Something went wrong</p>
+        <p className="text-lg font-semibold text-slate-800 mb-1">{t(locale, 'status.somethingWrong')}</p>
         <p className="text-sm text-slate-500 mb-6">{error}</p>
-        <button onClick={reset} className="btn-primary">Try again</button>
+        <button onClick={reset} className="btn-primary">{t(locale, 'status.tryAgain')}</button>
       </div>
     )
   }
@@ -258,15 +253,16 @@ export default function UploadZone({ defaultLanguage = '' }) {
     <div className="space-y-3">
       {/* Language selector */}
       <div className="flex items-center justify-end gap-2">
-        <label htmlFor="lang-select" className="text-xs text-slate-400 font-medium">Language:</label>
+        <label htmlFor="lang-select" className="text-xs text-slate-400 font-medium">{t(locale, 'picker.label')}:</label>
         <select
           id="lang-select"
           value={language}
           onChange={e => setLanguage(e.target.value)}
           className="text-xs border border-slate-200 rounded-lg px-2 py-1.5 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500 cursor-pointer"
         >
-          {LANGUAGES.map(l => (
-            <option key={l.code} value={l.code}>{l.label}</option>
+          <option value="">{t(locale, 'picker.auto')}</option>
+          {PICKER_LANG_CODES.map(code => (
+            <option key={code} value={code}>{DICT[locale]?.languages?.[code] ?? DICT.en.languages[code]}</option>
           ))}
         </select>
       </div>
@@ -295,11 +291,11 @@ export default function UploadZone({ defaultLanguage = '' }) {
           <UploadIcon className="w-8 h-8 text-brand-500" />
         </div>
         <p className="text-xl font-semibold text-slate-800 mb-2">
-          {state === 'dragging' ? 'Drop it!' : 'Drop your file here'}
+          {state === 'dragging' ? t(locale, 'dropzone.dragging') : t(locale, 'dropzone.primary')}
         </p>
-        <p className="text-slate-500 text-sm mb-4">or click to browse</p>
+        <p className="text-slate-500 text-sm mb-4">{t(locale, 'dropzone.secondary')}</p>
         <p className="text-xs text-slate-400">
-          MP3 · MP4 · WAV · M4A · OGG · WEBM · FLAC &nbsp;·&nbsp; Max {MAX_SIZE_MB}MB
+          MP3 · MP4 · WAV · M4A · OGG · WEBM · FLAC &nbsp;·&nbsp; {t(locale, 'dropzone.maxSize')}
         </p>
       </div>
     </div>

@@ -1,5 +1,7 @@
 import './globals.css'
 import { Analytics } from '@vercel/analytics/react'
+import SiteHeader from '@/components/SiteHeader'
+import SiteFooter from '@/components/SiteFooter'
 
 export const metadata = {
   title: 'Mictoo — Free Audio & Video Transcription Online',
@@ -39,6 +41,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID
 
+  // NOTE: <html lang="en"> is a safe default; localized locale pages override it
+  // visually for users via the LanguageSwitcher and via per-page metadata
+  // (canonical + hreflang). Setting lang dynamically would require turning the
+  // root layout into a client component or using a middleware-driven approach;
+  // both add complexity without measurable SEO benefit because Google relies on
+  // canonical + hreflang, not on <html lang>, to assign locale.
   return (
     <html lang="en">
       <head>
@@ -51,99 +59,10 @@ export default function RootLayout({ children }) {
         )}
       </head>
       <body className="min-h-screen flex flex-col">
-        <header className="bg-white border-b border-slate-100 sticky top-0 z-10">
-          <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
-            <a href="/" className="flex items-center gap-2 font-bold text-xl text-brand-600">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="24" height="24" rx="6" fill="#0284c7"/>
-                <path d="M8 8v8M12 6v12M16 10v4" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
-              mictoo
-            </a>
-            <nav className="flex items-center gap-1 text-sm text-slate-600">
-              <a href="/" className="btn-ghost">Transcribe</a>
-              <a href="/#how-it-works" className="btn-ghost">How it works</a>
-              <a href="/about" className="btn-ghost">About</a>
-              <a href="/contact" className="btn-ghost">Contact</a>
-            </nav>
-          </div>
-        </header>
-
-        <main className="flex-1">
-          {children}
-        </main>
-
+        <SiteHeader />
+        <main className="flex-1">{children}</main>
         <Analytics />
-        <footer className="border-t border-slate-100 py-12 mt-16">
-          <div className="max-w-5xl mx-auto px-4">
-            {/* Links grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-10">
-              <div>
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Use Cases</p>
-                <ul className="space-y-2">
-                  {[
-                    ['/interview-transcription', 'Interview Transcription'],
-                    ['/podcast-transcription', 'Podcast Transcription'],
-                    ['/lecture-transcription', 'Lecture Transcription'],
-                    ['/business-transcription', 'Business Transcription'],
-                  ].map(([href, label]) => (
-                    <li key={href}><a href={href} className="text-sm text-slate-400 hover:text-brand-600 transition-colors">{label}</a></li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Formats</p>
-                <ul className="space-y-2">
-                  {[
-                    ['/transcribe-audio-to-text', 'Audio to Text'],
-                    ['/transcribe-mp3-to-text', 'MP3 to Text'],
-                    ['/transcribe-video-to-text', 'Video to Text'],
-                    ['/wav-to-text', 'WAV to Text'],
-                    ['/m4a-to-text', 'M4A to Text'],
-                    ['/webm-to-text', 'WEBM to Text'],
-                  ].map(([href, label]) => (
-                    <li key={href}><a href={href} className="text-sm text-slate-400 hover:text-brand-600 transition-colors">{label}</a></li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Tools</p>
-                <ul className="space-y-2">
-                  {[
-                    ['/timestamped-transcription', 'Timestamped Transcript'],
-                    ['/free-srt-generator', 'SRT Generator'],
-                    ['/flac-to-text', 'FLAC to Text'],
-                    ['/ogg-to-text', 'OGG to Text'],
-                  ].map(([href, label]) => (
-                    <li key={href}><a href={href} className="text-sm text-slate-400 hover:text-brand-600 transition-colors">{label}</a></li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Languages</p>
-                <ul className="space-y-2">
-                  {[
-                    ['/fr', '🇫🇷 Français'],
-                    ['/de', '🇩🇪 Deutsch'],
-                    ['/es', '🇪🇸 Español'],
-                  ].map(([href, label]) => (
-                    <li key={href}><a href={href} className="text-sm text-slate-400 hover:text-brand-600 transition-colors">{label}</a></li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            {/* Bottom bar */}
-            <div className="border-t border-slate-100 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400">
-              <p>© {new Date().getFullYear()} Mictoo. Free AI transcription tool.</p>
-              <div className="flex gap-4">
-                <a href="/about" className="hover:text-slate-600 transition-colors">About</a>
-                <a href="/contact" className="hover:text-slate-600 transition-colors">Contact</a>
-                <a href="/privacy" className="hover:text-slate-600 transition-colors">Privacy</a>
-                <a href="/terms" className="hover:text-slate-600 transition-colors">Terms</a>
-              </div>
-            </div>
-          </div>
-        </footer>
+        <SiteFooter />
       </body>
     </html>
   )

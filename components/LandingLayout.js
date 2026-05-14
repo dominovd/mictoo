@@ -1,14 +1,20 @@
 import UploadZone from '@/components/UploadZone'
+import { t } from '@/lib/i18n'
 
 export default function LandingLayout({
   badge,
   h1,
   subtitle,
-  features,   // [{icon, title, desc}]
-  faq,        // [{q, a}]
+  features,     // [{icon, title, desc}]
+  faq,          // [{q, a}]
   relatedLinks, // [{href, label}]
   defaultLanguage = '',
 }) {
+  // Use the page's defaultLanguage (set by /fr, /de, /es, /ru pages) as the
+  // UI locale for shared section headings. EN landing pages pass '' and get
+  // the English defaults from the dictionary.
+  const locale = defaultLanguage || 'en'
+
   return (
     <>
       {/* Hero */}
@@ -28,7 +34,7 @@ export default function LandingLayout({
 
       {/* Upload tool */}
       <section className="max-w-2xl mx-auto px-4 -mt-6 pb-12 pt-10">
-        <UploadZone defaultLanguage={defaultLanguage} />
+        <UploadZone defaultLanguage={defaultLanguage} locale={locale} />
       </section>
 
       {/* Features */}
@@ -52,7 +58,7 @@ export default function LandingLayout({
       {faq?.length > 0 && (
         <section className="max-w-2xl mx-auto px-4 py-16">
           <h2 className="text-2xl font-bold text-slate-900 mb-10 text-center">
-            Frequently asked questions
+            {t(locale, 'landing.faqTitle')}
           </h2>
           <div className="space-y-6">
             {faq.map(({ q, a }) => (
@@ -69,7 +75,9 @@ export default function LandingLayout({
       {relatedLinks?.length > 0 && (
         <section className="border-t border-slate-100 py-10 px-4">
           <div className="max-w-2xl mx-auto">
-            <p className="text-sm text-slate-400 mb-4 text-center">More transcription tools</p>
+            <p className="text-sm text-slate-400 mb-4 text-center">
+              {t(locale, 'landing.moreTools')}
+            </p>
             <div className="flex flex-wrap justify-center gap-3">
               {relatedLinks.map(({ href, label }) => (
                 <a

@@ -2,7 +2,7 @@ import LandingLayout from '@/components/LandingLayout'
 
 export const metadata = {
   title: 'Audio in Text umwandeln — Kostenlose Transkription | Mictoo',
-  description: 'Audio und Video kostenlos in Text umwandeln. Keine Anmeldung erforderlich. Unterstützt MP3, MP4, WAV und mehr. Betrieben von AI.',
+  description: 'Audio und Video kostenlos in Text umwandeln. Keine Anmeldung erforderlich. Unterstützt MP3, MP4, WAV und mehr. Betrieben von KI.',
   alternates: {
     canonical: 'https://mictoo.com/de',
     languages: {
@@ -10,16 +10,31 @@ export const metadata = {
       'fr': 'https://mictoo.com/fr',
       'de': 'https://mictoo.com/de',
       'es': 'https://mictoo.com/es',
+      'ru': 'https://mictoo.com/ru',
       'x-default': 'https://mictoo.com',
     },
+  },
+  openGraph: {
+    title: 'Mictoo — Kostenlose Audio- & Video-Transkription',
+    description: 'Audio oder Video hochladen und in Sekunden ein Transkript erhalten.',
+    url: 'https://mictoo.com/de',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630, alt: 'Mictoo — Kostenlose Audio- & Video-Transkription' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mictoo — Kostenlose KI-Transkription',
+    description: 'Audio oder Video hochladen und in Sekunden ein Transkript erhalten.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function GermanPage() {
   return (
     <LandingLayout
-      badge="Kostenlos · Ohne Anmeldung · KI"
-      h1={<>Audio in Text umwandeln<br /><span className="text-brand-600">Kostenlos Online</span></>}
+      badge="Kostenlos · Ohne Anmeldung · 50+ Sprachen"
+      h1={<>Audio und Video<br /><span className="text-brand-600">kostenlos online in Text umwandeln</span></>}
       subtitle="Laden Sie eine beliebige Audio- oder Videodatei hoch und erhalten Sie in Sekunden eine genaue Transkription. Kein Konto erforderlich."
       defaultLanguage="de"
       features={[
@@ -46,7 +61,7 @@ export default function GermanPage() {
         },
         {
           q: 'Wie gut funktioniert die Transkription auf Deutsch?',
-          a: 'Sehr gut. AI wurde auf Stunden deutschsprachiger Audiodaten trainiert und liefert eine hohe Genauigkeit.',
+          a: 'Sehr gut. Die KI wurde auf Stunden deutschsprachiger Audiodaten trainiert und liefert eine hohe Genauigkeit.',
         },
         {
           q: 'Werden meine Dateien gespeichert?',
@@ -57,6 +72,7 @@ export default function GermanPage() {
         { href: '/', label: 'English' },
         { href: '/fr', label: 'Français' },
         { href: '/es', label: 'Español' },
+        { href: '/ru', label: 'Русский' },
       ]}
     />
   )
