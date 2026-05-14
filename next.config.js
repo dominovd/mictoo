@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Allow large file uploads (up to 25MB — Whisper API limit)
-  api: {
-    bodyParser: false,
-  },
+  // In App Router, FormData is handled natively — no bodyParser config needed
   experimental: {
     serverComponentsExternalPackages: ['openai'],
   },
