@@ -155,30 +155,30 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
-    // Info pages
-    {
-      url: 'https://mictoo.com/about',
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.5,
-    },
-    {
-      url: 'https://mictoo.com/contact',
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.4,
-    },
-    {
-      url: 'https://mictoo.com/privacy',
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: 'https://mictoo.com/terms',
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
+    // Info pages — EN
+    { url: 'https://mictoo.com/about',   lastModified: new Date(), changeFrequency: 'yearly', priority: 0.5 },
+    { url: 'https://mictoo.com/contact', lastModified: new Date(), changeFrequency: 'yearly', priority: 0.4 },
+    { url: 'https://mictoo.com/privacy', lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
+    { url: 'https://mictoo.com/terms',   lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
+    // Info pages — FR
+    { url: 'https://mictoo.com/fr/about',   lastModified: new Date(), changeFrequency: 'yearly', priority: 0.4 },
+    { url: 'https://mictoo.com/fr/contact', lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
+    { url: 'https://mictoo.com/fr/privacy', lastModified: new Date(), changeFrequency: 'yearly', priority: 0.2 },
+    { url: 'https://mictoo.com/fr/terms',   lastModified: new Date(), changeFrequency: 'yearly', priority: 0.2 },
+    // Info pages — DE
+    { url: 'https://mictoo.com/de/about',   lastModified: new Date(), changeFrequency: 'yearly', priority: 0.4 },
+    { url: 'https://mictoo.com/de/contact', lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
+    { url: 'https://mictoo.com/de/privacy', lastModified: new Date(), changeFrequency: 'yearly', priority: 0.2 },
+    { url: 'https://mictoo.com/de/terms',   lastModified: new Date(), changeFrequency: 'yearly', priority: 0.2 },
+    // Info pages — ES
+    { url: 'https://mictoo.com/es/about',   lastModified: new Date(), changeFrequency: 'yearly', priority: 0.4 },
+    { url: 'https://mictoo.com/es/contact', lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
+    { url: 'https://mictoo.com/es/privacy', lastModified: new Date(), changeFrequency: 'yearly', priority: 0.2 },
+    { url: 'https://mictoo.com/es/terms',   lastModified: new Date(), changeFrequency: 'yearly', priority: 0.2 },
+    // Info pages — RU
+    { url: 'https://mictoo.com/ru/about',   lastModified: new Date(), changeFrequency: 'yearly', priority: 0.4 },
+    { url: 'https://mictoo.com/ru/contact', lastModified: new Date(), changeFrequency: 'yearly', priority: 0.3 },
+    { url: 'https://mictoo.com/ru/privacy', lastModified: new Date(), changeFrequency: 'yearly', priority: 0.2 },
+    { url: 'https://mictoo.com/ru/terms',   lastModified: new Date(), changeFrequency: 'yearly', priority: 0.2 },
   ]
 }

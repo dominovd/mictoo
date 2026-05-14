@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { detectLocaleFromPath, t } from '@/lib/i18n'
+import { detectLocaleFromPath, localized, t } from '@/lib/i18n'
 
 // Footer content is rendered through the locale dictionary so that EN/FR/DE/ES/RU
 // users see fully translated column titles, link labels, and copyright.
@@ -56,10 +56,10 @@ export default function SiteFooter() {
         <div className="border-t border-slate-100 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400">
           <p>{t(locale, 'footer.copyright', { year })}</p>
           <div className="flex gap-4">
-            <a href="/about" className="hover:text-slate-600 transition-colors">{t(locale, 'footer.about')}</a>
-            <a href="/contact" className="hover:text-slate-600 transition-colors">{t(locale, 'footer.contact')}</a>
-            <a href="/privacy" className="hover:text-slate-600 transition-colors">{t(locale, 'footer.privacy')}</a>
-            <a href="/terms" className="hover:text-slate-600 transition-colors">{t(locale, 'footer.terms')}</a>
+            <a href={localized('/about', locale)} className="hover:text-slate-600 transition-colors">{t(locale, 'footer.about')}</a>
+            <a href={localized('/contact', locale)} className="hover:text-slate-600 transition-colors">{t(locale, 'footer.contact')}</a>
+            <a href={localized('/privacy', locale)} className="hover:text-slate-600 transition-colors">{t(locale, 'footer.privacy')}</a>
+            <a href={localized('/terms', locale)} className="hover:text-slate-600 transition-colors">{t(locale, 'footer.terms')}</a>
           </div>
         </div>
       </div>

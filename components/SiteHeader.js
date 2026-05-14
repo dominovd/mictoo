@@ -28,8 +28,8 @@ export default function SiteHeader() {
               all section/page navigation is reachable via scroll and the footer. */}
           <a href={localized('/', locale)} className="btn-ghost hidden md:inline-flex whitespace-nowrap">{t(locale, 'nav.transcribe')}</a>
           <a href={`${localized('/', locale)}#how-it-works`} className="btn-ghost hidden md:inline-flex whitespace-nowrap">{t(locale, 'nav.howItWorks')}</a>
-          <a href="/about" className="btn-ghost hidden md:inline-flex whitespace-nowrap">{t(locale, 'nav.about')}</a>
-          <a href="/contact" className="btn-ghost hidden md:inline-flex whitespace-nowrap">{t(locale, 'nav.contact')}</a>
+          <a href={localized('/about', locale)} className="btn-ghost hidden md:inline-flex whitespace-nowrap">{t(locale, 'nav.about')}</a>
+          <a href={localized('/contact', locale)} className="btn-ghost hidden md:inline-flex whitespace-nowrap">{t(locale, 'nav.contact')}</a>
           <LanguageSwitcher />
         </nav>
       </div>
