@@ -2,7 +2,7 @@ import LandingLayout from '@/components/LandingLayout'
 
 export const metadata = {
   title: 'Transcribir Audio a Texto Gratis — Mictoo',
-  description: 'Convierte audio y video a texto gratis. Sin registro. Soporta MP3, MP4, WAV y más de 50 idiomas. Basado en OpenAI Whisper.',
+  description: 'Convierte audio y video a texto gratis. Sin registro. Soporta MP3, MP4, WAV y más de 50 idiomas. Basado en AI.',
   alternates: { canonical: 'https://mictoo.com/es' },
 }
 
@@ -37,7 +37,7 @@ export default function SpanishPage() {
         },
         {
           q: '¿Funciona bien para el español?',
-          a: 'Sí. OpenAI Whisper ha sido entrenado con miles de horas de audio en español y ofrece una alta precisión.',
+          a: 'Sí. AI ha sido entrenado con miles de horas de audio en español y ofrece una alta precisión.',
         },
         {
           q: '¿Se guardan mis archivos?',

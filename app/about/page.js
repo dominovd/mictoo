@@ -1,6 +1,6 @@
 export const metadata = {
   title: 'About Mictoo — Free AI Transcription Tool',
-  description: 'Learn about Mictoo, a free audio and video transcription tool powered by OpenAI Whisper. No signup required.',
+  description: 'Learn about Mictoo, a free audio and video transcription tool powered by AI. No signup required.',
   alternates: { canonical: 'https://mictoo.com/about' },
 }
 
@@ -22,14 +22,10 @@ export default function AboutPage() {
 
         <h2 className="text-lg font-semibold text-slate-800 mt-8 mb-2">What powers Mictoo?</h2>
         <p>
-          Mictoo uses{' '}
-          <a href="https://openai.com/research/whisper" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">
-            OpenAI Whisper
-          </a>
-          , an open-source automatic speech recognition model trained on 680,000 hours of
-          multilingual audio. It is widely regarded as one of the most accurate free
-          transcription engines available, supporting over 50 languages with automatic
-          language detection.
+          Mictoo is powered by a state-of-the-art AI speech recognition model trained on
+          hundreds of thousands of hours of multilingual audio. It supports over 50 languages
+          with automatic language detection and is widely regarded as one of the most accurate
+          free transcription engines available.
         </p>
 
         <h2 className="text-lg font-semibold text-slate-800 mt-8 mb-2">Our principles</h2>

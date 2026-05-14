@@ -15,19 +15,19 @@ const FAQ = [
   },
   {
     q: 'How accurate is the transcription?',
-    a: 'Mictoo uses OpenAI Whisper, one of the most accurate speech recognition models available. Accuracy depends on audio quality and accent, but typically exceeds 95% for clear recordings.',
+    a: 'Mictoo uses AI, one of the most accurate speech recognition models available. Accuracy depends on audio quality and accent, but typically exceeds 95% for clear recordings.',
   },
   {
     q: 'What languages are supported?',
-    a: 'Whisper supports over 50 languages including English, Spanish, French, German, Portuguese, Russian, Japanese, Chinese, Arabic, and more. Language is detected automatically — no need to select it.',
+    a: 'Our AI supports over 50 languages including English, Spanish, French, German, Portuguese, Russian, Japanese, Chinese, Arabic, and more. Language is detected automatically — no need to select it.',
   },
   {
     q: 'Is my file stored on your servers?',
-    a: 'No. Files are sent directly to OpenAI Whisper for processing and are never stored on our servers. Your audio and transcripts remain private.',
+    a: 'No. Files are sent directly to AI for processing and are never stored on our servers. Your audio and transcripts remain private.',
   },
   {
     q: 'What is the maximum file size?',
-    a: 'Up to 25 MB — the limit set by the OpenAI Whisper API. For longer files, consider compressing your audio first or splitting it into shorter segments.',
+    a: 'Up to 25 MB — the limit set by the AI API. For longer files, consider compressing your audio first or splitting it into shorter segments.',
   },
   {
     q: 'What file formats does Mictoo support?',
@@ -46,8 +46,8 @@ const FAQ = [
     a: 'No account or signup required. Just upload your file and get your transcript immediately.',
   },
   {
-    q: 'What is Whisper AI?',
-    a: 'Whisper is an open-source automatic speech recognition model developed by OpenAI. It is trained on 680,000 hours of multilingual audio and is widely considered one of the best free transcription engines available.',
+    q: 'What technology powers Mictoo?',
+    a: 'Mictoo uses a state-of-the-art AI speech recognition model trained on hundreds of thousands of hours of multilingual audio, widely considered one of the most accurate transcription engines available.',
   },
 ]
 
@@ -58,7 +58,7 @@ const webAppSchema = {
   name: 'Mictoo',
   url: 'https://mictoo.com',
   description:
-    'Free online audio and video transcription tool powered by OpenAI Whisper. No signup required. Supports 50+ languages.',
+    'Free online audio and video transcription tool powered by AI. No signup required. Supports 50+ languages.',
   applicationCategory: 'UtilityApplication',
   operatingSystem: 'Web',
   browserRequirements: 'Requires a modern browser with JavaScript enabled.',
@@ -113,7 +113,7 @@ export default function Home() {
           </h1>
           <p className="text-lg text-slate-500 mb-8">
             Upload any audio or video file and get an accurate text transcript in seconds.
-            Powered by OpenAI Whisper. No account required.
+            No account required.
           </p>
         </div>
       </section>
@@ -139,7 +139,7 @@ export default function Home() {
                 step: '2',
                 icon: '⚡',
                 title: 'AI transcribes it',
-                desc: 'OpenAI Whisper converts your audio to text with high accuracy across 50+ languages.',
+                desc: 'Our AI converts your audio to text with high accuracy across 50+ languages.',
               },
               {
                 step: '3',

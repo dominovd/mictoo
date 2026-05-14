@@ -2,7 +2,7 @@ import LandingLayout from '@/components/LandingLayout'
 
 export const metadata = {
   title: 'Video to Text — Free Online Video Transcription | Mictoo',
-  description: 'Convert video to text online for free. Upload MP4, WEBM, or MOV and get an accurate transcript instantly. Powered by OpenAI Whisper. No account needed.',
+  description: 'Convert video to text online for free. Upload MP4, WEBM, or MOV and get an accurate transcript instantly. Powered by AI. No account needed.',
   alternates: { canonical: 'https://mictoo.com/transcribe-video-to-text' },
 }
 
@@ -45,7 +45,7 @@ export default function VideoToTextPage() {
         faq={[
           {
             q: 'How do I transcribe a video for free?',
-            a: 'Upload your video file using the tool above. Mictoo extracts the audio and transcribes it using OpenAI Whisper. The transcript appears within seconds.',
+            a: 'Upload your video file using the tool above. Mictoo extracts the audio and transcribes it using AI. The transcript appears within seconds.',
           },
           {
             q: 'Can I get subtitles from a video?',

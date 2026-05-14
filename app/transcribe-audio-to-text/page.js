@@ -2,7 +2,7 @@ import LandingLayout from '@/components/LandingLayout'
 
 export const metadata = {
   title: 'Audio to Text — Free Online Audio Transcription | Mictoo',
-  description: 'Transcribe audio to text online for free. Upload any audio file and get an accurate transcript instantly. Supports 50+ languages. Powered by OpenAI Whisper.',
+  description: 'Transcribe audio to text online for free. Upload any audio file and get an accurate transcript instantly. Supports 50+ languages. Powered by AI.',
   alternates: { canonical: 'https://mictoo.com/transcribe-audio-to-text' },
 }
 
@@ -34,7 +34,7 @@ export default function AudioToTextPage() {
           {
             icon: '🧠',
             title: 'AI-powered accuracy',
-            desc: 'OpenAI Whisper is trained on 680,000 hours of multilingual audio, delivering industry-leading accuracy.',
+            desc: 'Our AI is trained on hundreds of thousands of hours of multilingual audio, delivering industry-leading accuracy.',
           },
           {
             icon: '🔒',
@@ -45,11 +45,11 @@ export default function AudioToTextPage() {
         faq={[
           {
             q: 'What is the best free audio to text converter?',
-            a: 'Mictoo uses OpenAI Whisper, widely regarded as the most accurate free speech recognition model available. It supports 50+ languages and requires no account.',
+            a: 'Mictoo uses AI, widely regarded as the most accurate free speech recognition model available. It supports 50+ languages and requires no account.',
           },
           {
             q: 'How accurate is audio transcription?',
-            a: 'Whisper achieves 95%+ accuracy on clear recordings. Background noise or strong accents may reduce accuracy slightly.',
+            a: 'Our AI achieves 95%+ accuracy on clear recordings. Background noise or strong accents may reduce accuracy slightly.',
           },
           {
             q: 'What audio formats are supported?',

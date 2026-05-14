@@ -2,7 +2,7 @@ import LandingLayout from '@/components/LandingLayout'
 
 export const metadata = {
   title: 'MP3 to Text — Free Online MP3 Transcription | Mictoo',
-  description: 'Convert MP3 to text online for free. Upload your MP3 file and get an accurate transcript in seconds. Powered by OpenAI Whisper. No signup required.',
+  description: 'Convert MP3 to text online for free. Upload your MP3 file and get an accurate transcript in seconds. Powered by AI. No signup required.',
   alternates: { canonical: 'https://mictoo.com/transcribe-mp3-to-text' },
 }
 
@@ -11,7 +11,7 @@ const schema = {
   '@type': 'WebApplication',
   name: 'MP3 to Text — Mictoo',
   url: 'https://mictoo.com/transcribe-mp3-to-text',
-  description: 'Free online MP3 to text converter powered by OpenAI Whisper.',
+  description: 'Free online MP3 to text converter powered by AI.',
   applicationCategory: 'UtilityApplication',
   operatingSystem: 'Web',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -57,7 +57,7 @@ export default function MP3ToTextPage() {
           },
           {
             q: 'How accurate is MP3 transcription?',
-            a: 'Mictoo uses OpenAI Whisper, which typically achieves 95%+ accuracy on clear recordings. Quality may vary with heavy background noise or strong accents.',
+            a: 'Mictoo uses AI, which typically achieves 95%+ accuracy on clear recordings. Quality may vary with heavy background noise or strong accents.',
           },
           {
             q: 'Can I get subtitles from an MP3 file?',

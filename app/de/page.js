@@ -2,7 +2,7 @@ import LandingLayout from '@/components/LandingLayout'
 
 export const metadata = {
   title: 'Audio in Text umwandeln — Kostenlose Transkription | Mictoo',
-  description: 'Audio und Video kostenlos in Text umwandeln. Keine Anmeldung erforderlich. Unterstützt MP3, MP4, WAV und mehr. Betrieben von OpenAI Whisper.',
+  description: 'Audio und Video kostenlos in Text umwandeln. Keine Anmeldung erforderlich. Unterstützt MP3, MP4, WAV und mehr. Betrieben von AI.',
   alternates: { canonical: 'https://mictoo.com/de' },
 }
 
@@ -37,7 +37,7 @@ export default function GermanPage() {
         },
         {
           q: 'Wie gut funktioniert die Transkription auf Deutsch?',
-          a: 'Sehr gut. OpenAI Whisper wurde auf Stunden deutschsprachiger Audiodaten trainiert und liefert eine hohe Genauigkeit.',
+          a: 'Sehr gut. AI wurde auf Stunden deutschsprachiger Audiodaten trainiert und liefert eine hohe Genauigkeit.',
         },
         {
           q: 'Werden meine Dateien gespeichert?',

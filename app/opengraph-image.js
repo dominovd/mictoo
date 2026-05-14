@@ -68,7 +68,7 @@ export default function OGImage() {
 
         {/* Badges */}
         <div style={{ display: 'flex', gap: 16 }}>
-          {['No signup', '50+ languages', 'OpenAI Whisper'].map(label => (
+          {['No signup', '50+ languages', 'AI'].map(label => (
             <div
               key={label}
               style={{

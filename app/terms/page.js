@@ -22,7 +22,7 @@ export default function TermsPage() {
         <div>
           <h2 className="text-lg font-semibold text-slate-800 mb-2">2. Use of the service</h2>
           <p>
-            Mictoo provides a free audio and video transcription tool powered by OpenAI Whisper.
+            Mictoo provides a free audio and video transcription tool powered by AI.
             You may use the Service for personal and commercial purposes, provided that:
           </p>
           <ul className="list-disc pl-5 mt-2 space-y-1">

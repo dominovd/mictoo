@@ -15,7 +15,7 @@ export default function PrivacyPage() {
           <h2 className="text-lg font-semibold text-slate-800 mb-2">1. What we collect</h2>
           <p>
             Mictoo does not require you to create an account and does not collect any personal
-            information. When you upload a file, it is sent directly to the OpenAI Whisper API
+            information. When you upload a file, it is sent directly to the AI API
             for transcription. We do not store, log, or retain your audio or video files.
           </p>
         </div>
@@ -23,13 +23,9 @@ export default function PrivacyPage() {
         <div>
           <h2 className="text-lg font-semibold text-slate-800 mb-2">2. File processing</h2>
           <p>
-            Uploaded files are transmitted securely to OpenAI's servers for speech recognition.
-            Files are processed in real time and are not stored on our servers or on OpenAI's
-            servers beyond the duration of a single API request. Please review{' '}
-            <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">
-              OpenAI's Privacy Policy
-            </a>{' '}
-            for details on how they handle data.
+            Uploaded files are transmitted securely to our AI provider's servers for speech
+            recognition. Files are processed in real time and are not stored on our servers or
+            on our provider's servers beyond the duration of a single API request.
           </p>
         </div>
 

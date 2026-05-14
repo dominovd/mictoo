@@ -2,7 +2,7 @@ import LandingLayout from '@/components/LandingLayout'
 
 export const metadata = {
   title: 'Transcrire Audio en Texte Gratuitement — Mictoo',
-  description: 'Transcrivez vos fichiers audio et vidéo en texte gratuitement. Aucune inscription requise. Propulsé par OpenAI Whisper. Supporte MP3, MP4, WAV et plus.',
+  description: 'Transcrivez vos fichiers audio et vidéo en texte gratuitement. Aucune inscription requise. Propulsé par AI. Supporte MP3, MP4, WAV et plus.',
   alternates: { canonical: 'https://mictoo.com/fr' },
 }
 
@@ -37,7 +37,7 @@ export default function FrenchPage() {
         },
         {
           q: 'Mictoo fonctionne-t-il bien pour le français ?',
-          a: 'Oui. OpenAI Whisper est entraîné sur de nombreuses heures d\'audio en français et offre une excellente précision pour cette langue.',
+          a: 'Oui. AI est entraîné sur de nombreuses heures d\'audio en français et offre une excellente précision pour cette langue.',
         },
         {
           q: 'Mes fichiers sont-ils conservés ?',
