@@ -66,6 +66,7 @@ export async function POST(request) {
     // ── Parse form ──────────────────────────────────────────────────────────
     const formData = await request.formData()
     const file = formData.get('file')
+    const language = formData.get('language') || undefined // e.g. 'en', 'es'; undefined = auto-detect
 
     if (!file || typeof file === 'string') {
       return NextResponse.json({ error: 'No file provided.' }, { status: 400 })
@@ -90,10 +91,14 @@ export async function POST(request) {
     const transcription = await openai.audio.transcriptions.create({
       file: whisperFile,
       model: 'whisper-1',
-      response_format: 'text',
+      response_format: 'verbose_json',
+      ...(language ? { language } : {}),
     })
 
-    return NextResponse.json({ text: transcription })
+    return NextResponse.json({
+      text: transcription.text,
+      segments: transcription.segments ?? [],
+    })
   } catch (err) {
     console.error('[transcribe]', err)
 

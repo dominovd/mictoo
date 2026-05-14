@@ -26,11 +26,13 @@ export const metadata = {
     url: 'https://mictoo.com',
     siteName: 'Mictoo',
     type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Mictoo — Free AI Transcription',
     description: 'Upload audio or video and get a text transcript in seconds.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
