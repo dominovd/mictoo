@@ -124,6 +124,12 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: 'https://mictoo.com/how-to-compress-audio',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
     // Language pages
     {
       url: 'https://mictoo.com/fr',

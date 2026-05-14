@@ -79,7 +79,8 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
 
   const processFile = useCallback(async (f) => {
     if (f.size > MAX_SIZE_BYTES) {
-      setError(t(locale, 'status.fileTooLarge'))
+      const sizeStr = `${(f.size / (1024 * 1024)).toFixed(1)} MB`
+      setError(t(locale, 'status.fileTooLargeDetailed', { size: sizeStr }))
       setState('error')
       return
     }
@@ -242,7 +243,12 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
           ⚠️
         </div>
         <p className="text-lg font-semibold text-slate-800 mb-1">{t(locale, 'status.somethingWrong')}</p>
-        <p className="text-sm text-slate-500 mb-6">{error}</p>
+        <p className="text-sm text-slate-500 mb-3">{error}</p>
+        <p className="text-sm mb-6">
+          <a href="/how-to-compress-audio" className="text-brand-600 hover:underline">
+            {t(locale, 'status.howToCompress')}
+          </a>
+        </p>
         <button onClick={reset} className="btn-primary">{t(locale, 'status.tryAgain')}</button>
       </div>
     )
@@ -298,6 +304,14 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
           MP3 · MP4 · WAV · M4A · OGG · WEBM · FLAC &nbsp;·&nbsp; {t(locale, 'dropzone.maxSize')}
         </p>
       </div>
+
+      {/* Preventive hint about the 25 MB limit — visible from the start so users
+          with larger files know what to do before they even try uploading. */}
+      <p className="text-xs text-slate-400 text-center mt-1">
+        <a href="/how-to-compress-audio" className="hover:text-brand-600 hover:underline transition-colors">
+          {t(locale, 'dropzone.bigFileHint')}
+        </a>
+      </p>
     </div>
   )
 }
