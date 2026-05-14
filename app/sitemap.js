@@ -25,6 +25,25 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.9,
     },
+    // Keyword landing pages
+    {
+      url: 'https://mictoo.com/timestamped-transcription',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: 'https://mictoo.com/free-srt-generator',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: 'https://mictoo.com/business-transcription',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
     // Language pages
     {
       url: 'https://mictoo.com/fr',
