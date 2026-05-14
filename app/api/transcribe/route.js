@@ -22,8 +22,8 @@ async function getRatelimiter() {
       url: process.env.UPSTASH_REDIS_REST_URL,
       token: process.env.UPSTASH_REDIS_REST_TOKEN,
     }),
-    // 5 transcriptions per IP per hour
-    limiter: Ratelimit.slidingWindow(5, '1 h'),
+    // 10 transcriptions per IP per hour (slidingWindow blocks at limit, so ~10 pass through)
+    limiter: Ratelimit.slidingWindow(10, '1 h'),
     analytics: true,
   })
   return ratelimit
