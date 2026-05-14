@@ -1,8 +1,106 @@
 import UploadZone from '@/components/UploadZone'
 
+// ── Page-level metadata & canonical ─────────────────────────────────────────
+export const metadata = {
+  alternates: {
+    canonical: 'https://mictoo.com',
+  },
+}
+
+// ── FAQ data (shared between UI and JSON-LD) ─────────────────────────────────
+const FAQ = [
+  {
+    q: 'Is Mictoo really free?',
+    a: 'Yes. Mictoo is completely free for files up to 25 MB. No account, no credit card, no hidden fees.',
+  },
+  {
+    q: 'How accurate is the transcription?',
+    a: 'Mictoo uses OpenAI Whisper, one of the most accurate speech recognition models available. Accuracy depends on audio quality and accent, but typically exceeds 95% for clear recordings.',
+  },
+  {
+    q: 'What languages are supported?',
+    a: 'Whisper supports over 50 languages including English, Spanish, French, German, Portuguese, Russian, Japanese, Chinese, Arabic, and more. Language is detected automatically — no need to select it.',
+  },
+  {
+    q: 'Is my file stored on your servers?',
+    a: 'No. Files are sent directly to OpenAI Whisper for processing and are never stored on our servers. Your audio and transcripts remain private.',
+  },
+  {
+    q: 'What is the maximum file size?',
+    a: 'Up to 25 MB — the limit set by the OpenAI Whisper API. For longer files, consider compressing your audio first or splitting it into shorter segments.',
+  },
+  {
+    q: 'What file formats does Mictoo support?',
+    a: 'Mictoo supports MP3, MP4, WAV, M4A, OGG, WEBM, FLAC, and MPEG. Both audio and video files are accepted.',
+  },
+  {
+    q: 'How long does transcription take?',
+    a: 'Most files are transcribed in seconds. A 10-minute audio file typically takes 15–30 seconds depending on server load.',
+  },
+  {
+    q: 'Can I edit the transcript after it is generated?',
+    a: 'Yes. The transcript is fully editable in your browser before you copy or download it. No account is needed to save changes.',
+  },
+  {
+    q: 'Do I need to create an account?',
+    a: 'No account or signup required. Just upload your file and get your transcript immediately.',
+  },
+  {
+    q: 'What is Whisper AI?',
+    a: 'Whisper is an open-source automatic speech recognition model developed by OpenAI. It is trained on 680,000 hours of multilingual audio and is widely considered one of the best free transcription engines available.',
+  },
+]
+
+// ── JSON-LD schemas ──────────────────────────────────────────────────────────
+const webAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Mictoo',
+  url: 'https://mictoo.com',
+  description:
+    'Free online audio and video transcription tool powered by OpenAI Whisper. No signup required. Supports 50+ languages.',
+  applicationCategory: 'UtilityApplication',
+  operatingSystem: 'Web',
+  browserRequirements: 'Requires a modern browser with JavaScript enabled.',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  featureList: [
+    'Transcribe audio to text',
+    'Transcribe video to text',
+    'Supports 50+ languages',
+    'No account required',
+    'Free to use',
+    'Supports MP3, MP4, WAV, M4A, OGG, WEBM, FLAC',
+  ],
+}
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+}
+
+// ── Page component ───────────────────────────────────────────────────────────
 export default function Home() {
   return (
     <>
+      {/* JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* Hero */}
       <section className="bg-white border-b border-slate-100 py-16 px-4 text-center">
         <div className="max-w-2xl mx-auto">
@@ -35,7 +133,7 @@ export default function Home() {
                 step: '1',
                 icon: '📂',
                 title: 'Upload your file',
-                desc: 'Drag & drop or click to upload. Supports MP3, MP4, WAV, M4A, OGG, WEBM, FLAC. Up to 25MB.',
+                desc: 'Drag & drop or click to upload. Supports MP3, MP4, WAV, M4A, OGG, WEBM, FLAC. Up to 25 MB.',
               },
               {
                 step: '2',
@@ -63,7 +161,87 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SEO — formats supported */}
+      {/* Why Mictoo — SEO benefits section */}
+      <section className="max-w-4xl mx-auto px-4 py-16">
+        <h2 className="text-2xl font-bold text-slate-900 text-center mb-4">
+          Why use Mictoo?
+        </h2>
+        <p className="text-center text-slate-500 mb-10 max-w-xl mx-auto">
+          The fastest way to convert audio and video to text — without paying, signing up, or installing anything.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {[
+            {
+              icon: '🆓',
+              title: '100% free, forever',
+              desc: 'No subscription, no trial. Mictoo is free to use with no limits on the number of files.',
+            },
+            {
+              icon: '🔒',
+              title: 'Private by design',
+              desc: 'Your files are processed and immediately discarded. We never store your audio, video, or transcripts.',
+            },
+            {
+              icon: '🌍',
+              title: '50+ languages',
+              desc: 'Automatic language detection. Works for English, Spanish, French, German, Russian, Japanese, and many more.',
+            },
+            {
+              icon: '🎯',
+              title: 'Powered by Whisper AI',
+              desc: "OpenAI's state-of-the-art speech recognition model — the same technology used by leading transcription services.",
+            },
+            {
+              icon: '⚡',
+              title: 'Fast results',
+              desc: 'A 10-minute audio file is typically transcribed in under 30 seconds. No waiting in queues.',
+            },
+            {
+              icon: '✏️',
+              title: 'Editable output',
+              desc: 'Review and edit your transcript right in the browser, then copy to clipboard or download as a .txt file.',
+            },
+          ].map(({ icon, title, desc }) => (
+            <div key={title} className="flex gap-4 bg-white border border-slate-100 rounded-2xl p-5 shadow-sm">
+              <div className="text-2xl flex-shrink-0">{icon}</div>
+              <div>
+                <h3 className="font-semibold text-slate-800 mb-1">{title}</h3>
+                <p className="text-sm text-slate-500">{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Use cases */}
+      <section className="bg-white border-y border-slate-100 py-16 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-slate-900 text-center mb-4">
+            Who uses Mictoo?
+          </h2>
+          <p className="text-center text-slate-500 mb-10 max-w-xl mx-auto">
+            From students to professionals — anyone who needs fast, accurate speech-to-text.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+            {[
+              { icon: '🎓', label: 'Students', desc: 'Transcribe lectures, interviews, and research recordings.' },
+              { icon: '🎙️', label: 'Podcasters', desc: 'Turn podcast episodes into blog posts, show notes, or subtitles.' },
+              { icon: '📰', label: 'Journalists', desc: 'Convert recorded interviews to text in seconds.' },
+              { icon: '🏢', label: 'Business teams', desc: 'Transcribe meetings, calls, and presentations.' },
+              { icon: '🌐', label: 'Content creators', desc: 'Create captions and transcripts for YouTube videos.' },
+              { icon: '⚖️', label: 'Legal & medical', desc: 'Quickly draft transcripts for notes and documentation.' },
+            ].map(({ icon, label, desc }) => (
+              <div key={label} className="bg-slate-50 rounded-2xl p-6">
+                <div className="text-3xl mb-3">{icon}</div>
+                <h3 className="font-semibold text-slate-800 mb-2">{label}</h3>
+                <p className="text-sm text-slate-500">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Supported formats */}
       <section className="max-w-4xl mx-auto px-4 py-16">
         <h2 className="text-2xl font-bold text-slate-900 text-center mb-4">
           Supported file formats
@@ -80,38 +258,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ — rich SEO text */}
-      <section className="bg-white border-t border-slate-100 py-16 px-4">
+      {/* FAQ */}
+      <section id="faq" className="bg-white border-t border-slate-100 py-16 px-4">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-2xl font-bold text-slate-900 mb-10 text-center">
             Frequently asked questions
           </h2>
           <div className="space-y-6">
-            {[
-              {
-                q: 'Is Mictoo really free?',
-                a: 'Yes. Mictoo is completely free for files up to 25MB. No account, no credit card, no hidden fees.',
-              },
-              {
-                q: 'How accurate is the transcription?',
-                a: 'Mictoo uses OpenAI Whisper, one of the most accurate speech recognition models available. Accuracy depends on audio quality and accent, but typically exceeds 95% for clear recordings.',
-              },
-              {
-                q: 'What languages are supported?',
-                a: 'Whisper supports over 50 languages including English, Spanish, French, German, Portuguese, Russian, Japanese, Chinese, and more. Language is detected automatically.',
-              },
-              {
-                q: 'Is my file stored or kept on your servers?',
-                a: 'No. Files are processed and immediately discarded. We never store your audio or transcripts.',
-              },
-              {
-                q: 'What is the maximum file size?',
-                a: 'Up to 25MB — the limit set by the OpenAI Whisper API. For longer files, consider compressing your audio first or splitting it into parts.',
-              },
-            ].map(({ q, a }) => (
-              <div key={q}>
-                <h3 className="font-semibold text-slate-800 mb-1">{q}</h3>
-                <p className="text-sm text-slate-500">{a}</p>
+            {FAQ.map(({ q, a }) => (
+              <div key={q} className="border-b border-slate-100 pb-6 last:border-0 last:pb-0">
+                <h3 className="font-semibold text-slate-800 mb-2">{q}</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">{a}</p>
               </div>
             ))}
           </div>

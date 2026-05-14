@@ -160,25 +160,6 @@ export default function UploadZone() {
           <p className="text-xs text-slate-400 mt-2">You can edit the transcript directly above.</p>
         </div>
 
-        {/* Affiliate upsell */}
-        <div className="bg-brand-50 border border-brand-100 rounded-2xl p-5">
-          <p className="text-sm font-semibold text-brand-800 mb-1">Need more? Try a pro tool</p>
-          <p className="text-xs text-slate-500 mb-3">Speaker detection, timestamps, team sharing, and more.</p>
-          <div className="flex flex-wrap gap-2">
-            <a href="https://otter.ai" target="_blank" rel="noopener noreferrer sponsored"
-              className="text-xs px-3 py-1.5 bg-white border border-brand-200 text-brand-700 rounded-lg hover:bg-brand-100 transition-colors font-medium">
-              Otter.ai →
-            </a>
-            <a href="https://sonix.ai" target="_blank" rel="noopener noreferrer sponsored"
-              className="text-xs px-3 py-1.5 bg-white border border-brand-200 text-brand-700 rounded-lg hover:bg-brand-100 transition-colors font-medium">
-              Sonix →
-            </a>
-            <a href="https://www.happyscribe.com" target="_blank" rel="noopener noreferrer sponsored"
-              className="text-xs px-3 py-1.5 bg-white border border-brand-200 text-brand-700 rounded-lg hover:bg-brand-100 transition-colors font-medium">
-              HappyScribe →
-            </a>
-          </div>
-        </div>
       </div>
     )
   }

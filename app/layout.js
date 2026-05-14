@@ -13,6 +13,12 @@ export const metadata = {
     'speech to text',
   ],
   metadataBase: new URL('https://mictoo.com'),
+  alternates: {
+    canonical: 'https://mictoo.com',
+  },
+  verification: {
+    google: 'DZsZ0lg5tAyFAYi-4nZBiSRtjTVgtH6F4dtsBCXJSE4',
+  },
   openGraph: {
     title: 'Mictoo — Free Audio & Video Transcription',
     description: 'Transcribe audio and video to text instantly with AI. No signup required.',
@@ -53,7 +59,9 @@ export default function RootLayout({ children }) {
             </a>
             <nav className="flex items-center gap-1 text-sm text-slate-600">
               <a href="/" className="btn-ghost">Transcribe</a>
-              <a href="#how-it-works" className="btn-ghost">How it works</a>
+              <a href="/#how-it-works" className="btn-ghost">How it works</a>
+              <a href="/about" className="btn-ghost">About</a>
+              <a href="/contact" className="btn-ghost">Contact</a>
             </nav>
           </div>
         </header>
@@ -66,6 +74,8 @@ export default function RootLayout({ children }) {
           <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400">
             <p>© {new Date().getFullYear()} Mictoo. Free AI transcription tool.</p>
             <div className="flex gap-4">
+              <a href="/about" className="hover:text-slate-600 transition-colors">About</a>
+              <a href="/contact" className="hover:text-slate-600 transition-colors">Contact</a>
               <a href="/privacy" className="hover:text-slate-600 transition-colors">Privacy</a>
               <a href="/terms" className="hover:text-slate-600 transition-colors">Terms</a>
             </div>
