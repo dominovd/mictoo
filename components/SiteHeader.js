@@ -23,11 +23,13 @@ export default function SiteHeader() {
         </a>
 
         <nav className="flex items-center gap-1 text-sm text-slate-600">
-          <a href={localized('/', locale)} className="btn-ghost">{t(locale, 'nav.transcribe')}</a>
-          <a href={`${localized('/', locale)}#how-it-works`} className="btn-ghost">{t(locale, 'nav.howItWorks')}</a>
-          {/* About/Contact are EN-only for now — keep linking to canonical English pages */}
-          <a href="/about" className="btn-ghost hidden sm:inline-flex">{t(locale, 'nav.about')}</a>
-          <a href="/contact" className="btn-ghost hidden sm:inline-flex">{t(locale, 'nav.contact')}</a>
+          {/* All text nav links are hidden on mobile to prevent header overflow.
+              On mobile users keep the logo (= home link) and the language switcher;
+              all section/page navigation is reachable via scroll and the footer. */}
+          <a href={localized('/', locale)} className="btn-ghost hidden md:inline-flex whitespace-nowrap">{t(locale, 'nav.transcribe')}</a>
+          <a href={`${localized('/', locale)}#how-it-works`} className="btn-ghost hidden md:inline-flex whitespace-nowrap">{t(locale, 'nav.howItWorks')}</a>
+          <a href="/about" className="btn-ghost hidden md:inline-flex whitespace-nowrap">{t(locale, 'nav.about')}</a>
+          <a href="/contact" className="btn-ghost hidden md:inline-flex whitespace-nowrap">{t(locale, 'nav.contact')}</a>
           <LanguageSwitcher />
         </nav>
       </div>
