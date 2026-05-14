@@ -44,6 +44,56 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    // Format pages
+    {
+      url: 'https://mictoo.com/wav-to-text',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: 'https://mictoo.com/m4a-to-text',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: 'https://mictoo.com/flac-to-text',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: 'https://mictoo.com/ogg-to-text',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: 'https://mictoo.com/webm-to-text',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    // Use-case pages
+    {
+      url: 'https://mictoo.com/interview-transcription',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: 'https://mictoo.com/podcast-transcription',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: 'https://mictoo.com/lecture-transcription',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
     // Language pages
     {
       url: 'https://mictoo.com/fr',
