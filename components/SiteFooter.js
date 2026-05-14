@@ -14,6 +14,9 @@ export default function SiteFooter() {
     ['/podcast-transcription',   'Podcast Transcription'],
     ['/lecture-transcription',   'Lecture Transcription'],
     ['/business-transcription',  'Business Transcription'],
+    ['/meeting-transcription',   'Meeting Transcription'],
+    ['/zoom-transcription',      'Zoom Transcription'],
+    ['/voice-memo-to-text',      'Voice Memo to Text'],
   ]
   const formats = [
     ['/transcribe-audio-to-text', 'Audio to Text'],
@@ -22,10 +25,12 @@ export default function SiteFooter() {
     ['/wav-to-text',              'WAV to Text'],
     ['/m4a-to-text',              'M4A to Text'],
     ['/webm-to-text',             'WEBM to Text'],
+    ['/aac-to-text',              'AAC to Text'],
   ]
   const tools = [
     ['/timestamped-transcription', 'Timestamped Transcript'],
     ['/free-srt-generator',        'SRT Generator'],
+    ['/youtube-to-text',           'YouTube to Text'],
     ['/flac-to-text',              'FLAC to Text'],
     ['/ogg-to-text',               'OGG to Text'],
   ]
