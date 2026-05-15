@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'WEBM to Text — Free WEBM Transcription Online | Mictoo',
   description: 'Convert WEBM audio and video files to text for free online. Upload any WEBM recording and get an accurate transcript instantly. No signup required.',
-  alternates: { canonical: 'https://mictoo.com/webm-to-text' },
+  alternates: {
+    canonical: 'https://mictoo.com/webm-to-text',
+    languages: {
+      'en': 'https://mictoo.com/webm-to-text',
+      'fr': 'https://mictoo.com/fr/webm-to-text',
+      'de': 'https://mictoo.com/de/webm-to-text',
+      'es': 'https://mictoo.com/es/webm-to-text',
+      'ru': 'https://mictoo.com/ru/webm-to-text',
+      'x-default': 'https://mictoo.com/webm-to-text',
+    },
+  },
 }
 
 export default function WebmToTextPage() {

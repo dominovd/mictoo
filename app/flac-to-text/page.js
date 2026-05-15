@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'FLAC to Text — Free FLAC Audio Transcription Online | Mictoo',
   description: 'Convert FLAC audio files to text for free online. Upload any FLAC recording and get an accurate transcript in seconds. No signup required.',
-  alternates: { canonical: 'https://mictoo.com/flac-to-text' },
+  alternates: {
+    canonical: 'https://mictoo.com/flac-to-text',
+    languages: {
+      'en': 'https://mictoo.com/flac-to-text',
+      'fr': 'https://mictoo.com/fr/flac-to-text',
+      'de': 'https://mictoo.com/de/flac-to-text',
+      'es': 'https://mictoo.com/es/flac-to-text',
+      'ru': 'https://mictoo.com/ru/flac-to-text',
+      'x-default': 'https://mictoo.com/flac-to-text',
+    },
+  },
 }
 
 export default function FlacToTextPage() {

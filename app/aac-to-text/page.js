@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'AAC to Text — Free AAC Audio Transcription Online | Mictoo',
   description: 'Transcribe AAC audio files to text for free. Drag and drop your .aac, .m4a, or other AAC-encoded file and get an accurate transcript in seconds.',
-  alternates: { canonical: 'https://mictoo.com/aac-to-text' },
+  alternates: {
+    canonical: 'https://mictoo.com/aac-to-text',
+    languages: {
+      'en': 'https://mictoo.com/aac-to-text',
+      'fr': 'https://mictoo.com/fr/aac-to-text',
+      'de': 'https://mictoo.com/de/aac-to-text',
+      'es': 'https://mictoo.com/es/aac-to-text',
+      'ru': 'https://mictoo.com/ru/aac-to-text',
+      'x-default': 'https://mictoo.com/aac-to-text',
+    },
+  },
 }
 
 export default function AacToTextPage() {

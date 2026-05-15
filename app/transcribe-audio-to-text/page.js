@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'Audio to Text — Free Online Audio Transcription | Mictoo',
   description: 'Transcribe audio to text online for free. Upload any audio file and get an accurate transcript instantly. Supports 50+ languages. Powered by AI.',
-  alternates: { canonical: 'https://mictoo.com/transcribe-audio-to-text' },
+  alternates: {
+    canonical: 'https://mictoo.com/transcribe-audio-to-text',
+    languages: {
+      'en': 'https://mictoo.com/transcribe-audio-to-text',
+      'fr': 'https://mictoo.com/fr/transcribe-audio-to-text',
+      'de': 'https://mictoo.com/de/transcribe-audio-to-text',
+      'es': 'https://mictoo.com/es/transcribe-audio-to-text',
+      'ru': 'https://mictoo.com/ru/transcribe-audio-to-text',
+      'x-default': 'https://mictoo.com/transcribe-audio-to-text',
+    },
+  },
 }
 
 const schema = {

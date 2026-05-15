@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'M4A to Text — Free M4A Transcription Online | Mictoo',
   description: 'Convert M4A audio files to text for free. Upload any M4A file — iPhone voice memos, recordings, podcasts — and get a transcript instantly. No signup.',
-  alternates: { canonical: 'https://mictoo.com/m4a-to-text' },
+  alternates: {
+    canonical: 'https://mictoo.com/m4a-to-text',
+    languages: {
+      'en': 'https://mictoo.com/m4a-to-text',
+      'fr': 'https://mictoo.com/fr/m4a-to-text',
+      'de': 'https://mictoo.com/de/m4a-to-text',
+      'es': 'https://mictoo.com/es/m4a-to-text',
+      'ru': 'https://mictoo.com/ru/m4a-to-text',
+      'x-default': 'https://mictoo.com/m4a-to-text',
+    },
+  },
 }
 
 export default function M4AToTextPage() {

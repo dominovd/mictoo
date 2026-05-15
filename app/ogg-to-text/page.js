@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'OGG to Text — Free OGG Audio Transcription Online | Mictoo',
   description: 'Convert OGG audio files to text for free online. Upload any OGG Vorbis recording and get an accurate transcript instantly. No signup required.',
-  alternates: { canonical: 'https://mictoo.com/ogg-to-text' },
+  alternates: {
+    canonical: 'https://mictoo.com/ogg-to-text',
+    languages: {
+      'en': 'https://mictoo.com/ogg-to-text',
+      'fr': 'https://mictoo.com/fr/ogg-to-text',
+      'de': 'https://mictoo.com/de/ogg-to-text',
+      'es': 'https://mictoo.com/es/ogg-to-text',
+      'ru': 'https://mictoo.com/ru/ogg-to-text',
+      'x-default': 'https://mictoo.com/ogg-to-text',
+    },
+  },
 }
 
 export default function OggToTextPage() {

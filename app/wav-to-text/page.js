@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'WAV to Text — Free WAV File Transcription Online | Mictoo',
   description: 'Convert WAV files to text online for free. Upload any WAV audio file and get an accurate transcript in seconds. No signup required.',
-  alternates: { canonical: 'https://mictoo.com/wav-to-text' },
+  alternates: {
+    canonical: 'https://mictoo.com/wav-to-text',
+    languages: {
+      'en': 'https://mictoo.com/wav-to-text',
+      'fr': 'https://mictoo.com/fr/wav-to-text',
+      'de': 'https://mictoo.com/de/wav-to-text',
+      'es': 'https://mictoo.com/es/wav-to-text',
+      'ru': 'https://mictoo.com/ru/wav-to-text',
+      'x-default': 'https://mictoo.com/wav-to-text',
+    },
+  },
 }
 
 export default function WavToTextPage() {

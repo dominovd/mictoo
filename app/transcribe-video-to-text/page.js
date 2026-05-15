@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'Video to Text — Free Online Video Transcription | Mictoo',
   description: 'Convert video to text online for free. Upload MP4, WEBM, or MOV and get an accurate transcript instantly. Powered by AI. No account needed.',
-  alternates: { canonical: 'https://mictoo.com/transcribe-video-to-text' },
+  alternates: {
+    canonical: 'https://mictoo.com/transcribe-video-to-text',
+    languages: {
+      'en': 'https://mictoo.com/transcribe-video-to-text',
+      'fr': 'https://mictoo.com/fr/transcribe-video-to-text',
+      'de': 'https://mictoo.com/de/transcribe-video-to-text',
+      'es': 'https://mictoo.com/es/transcribe-video-to-text',
+      'ru': 'https://mictoo.com/ru/transcribe-video-to-text',
+      'x-default': 'https://mictoo.com/transcribe-video-to-text',
+    },
+  },
 }
 
 const schema = {

@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'MP3 to Text — Free Online MP3 Transcription | Mictoo',
   description: 'Convert MP3 to text online for free. Upload your MP3 file and get an accurate transcript in seconds. Powered by AI. No signup required.',
-  alternates: { canonical: 'https://mictoo.com/transcribe-mp3-to-text' },
+  alternates: {
+    canonical: 'https://mictoo.com/transcribe-mp3-to-text',
+    languages: {
+      'en': 'https://mictoo.com/transcribe-mp3-to-text',
+      'fr': 'https://mictoo.com/fr/transcribe-mp3-to-text',
+      'de': 'https://mictoo.com/de/transcribe-mp3-to-text',
+      'es': 'https://mictoo.com/es/transcribe-mp3-to-text',
+      'ru': 'https://mictoo.com/ru/transcribe-mp3-to-text',
+      'x-default': 'https://mictoo.com/transcribe-mp3-to-text',
+    },
+  },
 }
 
 const schema = {
