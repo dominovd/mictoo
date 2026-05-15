@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import { detectLocaleFromPath, localized, t } from '@/lib/i18n'
+import TranscriptionCounter from './TranscriptionCounter'
 
 // Footer content is rendered through the locale dictionary so that EN/FR/DE/ES/RU
 // users see fully translated column titles, link labels, and copyright.
@@ -54,7 +55,10 @@ export default function SiteFooter() {
           <FooterCol title={t(locale, 'footer.languages')} items={langs} />
         </div>
         <div className="border-t border-slate-100 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400">
-          <p>{t(locale, 'footer.copyright', { year })}</p>
+          <div className="flex flex-col items-center sm:items-start gap-1">
+            <p>{t(locale, 'footer.copyright', { year })}</p>
+            <TranscriptionCounter />
+          </div>
           <div className="flex gap-4">
             <a href={localized('/about', locale)} className="hover:text-slate-600 transition-colors">{t(locale, 'footer.about')}</a>
             <a href={localized('/contact', locale)} className="hover:text-slate-600 transition-colors">{t(locale, 'footer.contact')}</a>

@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback } from 'react'
 import { usePathname } from 'next/navigation'
 import { detectLocaleFromPath, t, DICT } from '@/lib/i18n'
+import SummaryCard from './SummaryCard'
 
 const ACCEPTED_TYPES = ['audio/mpeg', 'audio/mp4', 'audio/wav', 'audio/m4a', 'audio/ogg',
   'audio/webm', 'video/mp4', 'video/webm', 'video/mpeg', 'audio/x-m4a',
@@ -65,6 +66,13 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   const [language, setLanguage] = useState(defaultLanguage)
   const [error, setError] = useState('')
   const [copied, setCopied] = useState(false)
+
+  // Separate state for the AI summary so it can stream in independently of
+  // the transcript. status: idle | loading | done | error
+  const [summaryStatus, setSummaryStatus] = useState('idle')
+  const [summaryData, setSummaryData] = useState(null)
+  const [summaryError, setSummaryError] = useState('')
+
   const fileRef = useRef(null)
 
   const reset = () => {
@@ -75,7 +83,39 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     setSegments([])
     setError('')
     setCopied(false)
+    setSummaryStatus('idle')
+    setSummaryData(null)
+    setSummaryError('')
   }
+
+  // Kicks off the /api/summarize call. Pulled out so the Retry button in
+  // SummaryCard can re-trigger without re-running the whole transcription.
+  const generateSummary = useCallback(async (transcriptText) => {
+    if (!transcriptText || transcriptText.length < 30) return
+    setSummaryStatus('loading')
+    setSummaryError('')
+    try {
+      const res = await fetch('/api/summarize', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ transcript: transcriptText, locale }),
+      })
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data.error || 'Summary failed.')
+      }
+      const data = await res.json()
+      // If model returned nothing meaningful, treat as error so user can retry.
+      if (!data.summary && (!data.keyPoints || data.keyPoints.length === 0)) {
+        throw new Error('Empty summary returned.')
+      }
+      setSummaryData(data)
+      setSummaryStatus('done')
+    } catch (err) {
+      setSummaryError(err.message)
+      setSummaryStatus('error')
+    }
+  }, [locale])
 
   const processFile = useCallback(async (f) => {
     if (f.size > MAX_SIZE_BYTES) {
@@ -109,16 +149,21 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
       const data = await res.json()
       setProgress(100)
       const segs = data.segments ?? []
+      const finalText = segs.length > 0 ? toParagraphs(segs) : data.text
       // Use paragraph-formatted text if segments are available, else raw text
-      setTranscript(segs.length > 0 ? toParagraphs(segs) : data.text)
+      setTranscript(finalText)
       setSegments(segs)
       setState('done')
+
+      // Kick off the AI summary in parallel — doesn't block the transcript UI.
+      // Errors are caught inside generateSummary and surfaced via SummaryCard.
+      generateSummary(finalText)
     } catch (err) {
       clearInterval(ticker)
       setError(err.message)
       setState('error')
     }
-  }, [language, locale])
+  }, [language, locale, generateSummary])
 
   const handleDrop = useCallback((e) => {
     e.preventDefault()
@@ -224,6 +269,14 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
             </button>
           </div>
         </div>
+        <SummaryCard
+          locale={locale}
+          status={summaryStatus}
+          data={summaryData}
+          error={summaryError}
+          onRetry={() => generateSummary(transcript)}
+        />
+
         <textarea
           className="w-full h-64 text-sm text-slate-700 border border-slate-100 rounded-xl p-4 bg-slate-50 resize-y focus:outline-none focus:ring-2 focus:ring-brand-500"
           value={transcript}

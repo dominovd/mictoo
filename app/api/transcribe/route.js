@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import OpenAI from 'openai'
+import { bumpTranscriptionCount } from '@/lib/stats'
 
 export const runtime = 'nodejs'
 export const maxDuration = 60
@@ -95,6 +96,9 @@ export async function POST(request) {
         response_format: 'verbose_json',
         ...(language ? { language } : {}),
       })
+
+      // Fire-and-forget counter bump. Doesn't block response. Safe if Upstash absent.
+      bumpTranscriptionCount()
 
       return NextResponse.json({
         text: transcription.text,
