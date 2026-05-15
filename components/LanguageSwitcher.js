@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
-import { LOCALES, LOCALE_META, detectLocaleFromPath, stripLocale, t } from '@/lib/i18n'
+import { LOCALES, LOCALE_META, LOCALIZED_PATHS, detectLocaleFromPath, stripLocale, t } from '@/lib/i18n'
 
 export default function LanguageSwitcher() {
   const pathname = usePathname() || '/'
@@ -30,7 +30,12 @@ export default function LanguageSwitcher() {
   function hrefFor(targetLocale) {
     // EN lives at root, others under /{locale}
     if (targetLocale === 'en') return restOfPath
-    return `/${targetLocale}${restOfPath === '/' ? '' : restOfPath}`
+    // Only build /<locale>/<path> if that path actually has a localized
+    // version. Otherwise send the user to the locale's home page to avoid 404.
+    if (LOCALIZED_PATHS.has(restOfPath)) {
+      return `/${targetLocale}${restOfPath === '/' ? '' : restOfPath}`
+    }
+    return `/${targetLocale}`
   }
 
   const current = LOCALE_META[locale]

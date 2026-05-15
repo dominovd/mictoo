@@ -1,59 +1,72 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { detectLocaleFromPath, localized, t } from '@/lib/i18n'
+import { detectLocaleFromPath, localized, LOCALIZED_PATHS, t } from '@/lib/i18n'
 import TranscriptionCounter from './TranscriptionCounter'
 
 // Footer is intentionally generous — every page in the sitemap gets at least one
 // inbound link from the global footer so internal PageRank flows to all 70+ URLs.
 // On mobile this wraps to 2 cols; tablet 3; desktop 5.
+//
+// Link labels are localized via lib/i18n footer.links.*. Destinations route to
+// localized version of the page if one exists (LOCALIZED_PATHS), otherwise to
+// the English version — better to land on EN than to land on 404.
 export default function SiteFooter() {
   const pathname = usePathname() || '/'
   const locale = detectLocaleFromPath(pathname)
 
+  // Resolves the right href for a link, preferring localized destinations when
+  // they exist. Keeps the user inside their locale where possible.
+  const hrefFor = (path) => {
+    if (locale === 'en' || !LOCALIZED_PATHS.has(path)) return path
+    return localized(path, locale)
+  }
+
+  const linkLabel = (key) => t(locale, `footer.links.${key}`)
+
   const useCases = [
-    ['/interview-transcription',  'Interview Transcription'],
-    ['/podcast-transcription',    'Podcast Transcription'],
-    ['/lecture-transcription',    'Lecture Transcription'],
-    ['/business-transcription',   'Business Transcription'],
-    ['/meeting-transcription',    'Meeting Transcription'],
-    ['/zoom-transcription',       'Zoom Transcription'],
-    ['/google-meet-transcription','Google Meet Transcription'],
-    ['/teams-meeting-transcription', 'Teams Meeting Transcription'],
-    ['/voice-memo-to-text',       'Voice Memo to Text'],
-    ['/webinar-transcription',    'Webinar Transcription'],
-    ['/sermon-transcription',     'Sermon Transcription'],
-    ['/dictation-to-text',        'Dictation to Text'],
+    ['/interview-transcription',     linkLabel('interviewTranscription')],
+    ['/podcast-transcription',       linkLabel('podcastTranscription')],
+    ['/lecture-transcription',       linkLabel('lectureTranscription')],
+    ['/business-transcription',      linkLabel('businessTranscription')],
+    ['/meeting-transcription',       linkLabel('meetingTranscription')],
+    ['/zoom-transcription',          linkLabel('zoomTranscription')],
+    ['/google-meet-transcription',   linkLabel('googleMeetTranscription')],
+    ['/teams-meeting-transcription', linkLabel('teamsTranscription')],
+    ['/voice-memo-to-text',          linkLabel('voiceMemoToText')],
+    ['/webinar-transcription',       linkLabel('webinarTranscription')],
+    ['/sermon-transcription',        linkLabel('sermonTranscription')],
+    ['/dictation-to-text',           linkLabel('dictationToText')],
   ]
   const formats = [
-    ['/transcribe-audio-to-text', 'Audio to Text'],
-    ['/transcribe-mp3-to-text',   'MP3 to Text'],
-    ['/transcribe-video-to-text', 'Video to Text'],
-    ['/wav-to-text',              'WAV to Text'],
-    ['/m4a-to-text',              'M4A to Text'],
-    ['/webm-to-text',             'WEBM to Text'],
-    ['/flac-to-text',             'FLAC to Text'],
-    ['/ogg-to-text',              'OGG to Text'],
-    ['/aac-to-text',              'AAC to Text'],
+    ['/transcribe-audio-to-text', linkLabel('audioToText')],
+    ['/transcribe-mp3-to-text',   linkLabel('mp3ToText')],
+    ['/transcribe-video-to-text', linkLabel('videoToText')],
+    ['/wav-to-text',              linkLabel('wavToText')],
+    ['/m4a-to-text',              linkLabel('m4aToText')],
+    ['/webm-to-text',             linkLabel('webmToText')],
+    ['/flac-to-text',             linkLabel('flacToText')],
+    ['/ogg-to-text',              linkLabel('oggToText')],
+    ['/aac-to-text',              linkLabel('aacToText')],
   ]
   const tools = [
-    ['/free-srt-generator',        'SRT Generator'],
-    ['/timestamped-transcription', 'Timestamped Transcript'],
-    ['/youtube-to-text',           'YouTube to Text'],
-    ['/how-to-compress-audio',     'How to Compress Audio'],
+    ['/free-srt-generator',        linkLabel('srtGenerator')],
+    ['/timestamped-transcription', linkLabel('timestampedTranscript')],
+    ['/youtube-to-text',           linkLabel('youtubeToText')],
+    ['/how-to-compress-audio',     linkLabel('howToCompress')],
   ]
   const byLanguage = [
-    ['/french-speech-to-text',     'French Speech to Text'],
-    ['/spanish-audio-to-text',     'Spanish Audio to Text'],
-    ['/german-audio-transcription','German Audio Transcription'],
-    ['/multilingual-transcription','Multilingual Transcription'],
+    ['/french-speech-to-text',     linkLabel('frenchSpeechToText')],
+    ['/spanish-audio-to-text',     linkLabel('spanishAudioToText')],
+    ['/german-audio-transcription',linkLabel('germanAudioTranscription')],
+    ['/multilingual-transcription',linkLabel('multilingualTranscription')],
   ]
   const compareLinks = [
-    ['/descript-alternative',     'Descript Alternative'],
-    ['/fireflies-alternative',    'Fireflies Alternative'],
-    ['/turboscribe-alternative',  'TurboScribe Alternative'],
-    ['/otter-alternative',        'Otter Alternative'],
-    ['/notta-alternative',        'Notta Alternative'],
+    ['/descript-alternative',     linkLabel('descriptAlternative')],
+    ['/fireflies-alternative',    linkLabel('firefliesAlternative')],
+    ['/turboscribe-alternative',  linkLabel('turboscribeAlternative')],
+    ['/otter-alternative',        linkLabel('otterAlternative')],
+    ['/notta-alternative',        linkLabel('nottaAlternative')],
   ]
   const siteLocales = [
     ['/',   '🇬🇧 English'],
@@ -70,11 +83,11 @@ export default function SiteFooter() {
       <div className="max-w-6xl mx-auto px-4">
         {/* Main 5-column grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-10">
-          <FooterCol title={t(locale, 'footer.useCases')} items={useCases} />
-          <FooterCol title={t(locale, 'footer.formats')}  items={formats} />
-          <FooterCol title={t(locale, 'footer.tools')}    items={tools} />
-          <FooterCol title="By Language"                  items={byLanguage} />
-          <FooterCol title="Compare"                      items={compareLinks} />
+          <FooterCol title={t(locale, 'footer.useCases')}   items={useCases}     hrefFor={hrefFor} />
+          <FooterCol title={t(locale, 'footer.formats')}    items={formats}      hrefFor={hrefFor} />
+          <FooterCol title={t(locale, 'footer.tools')}      items={tools}        hrefFor={hrefFor} />
+          <FooterCol title={t(locale, 'footer.byLanguage')} items={byLanguage}   hrefFor={hrefFor} />
+          <FooterCol title={t(locale, 'footer.compare')}    items={compareLinks} hrefFor={hrefFor} />
         </div>
 
         {/* Site languages — separate row, smaller, since it's locale switcher not content */}
@@ -109,14 +122,16 @@ export default function SiteFooter() {
   )
 }
 
-function FooterCol({ title, items }) {
+function FooterCol({ title, items, hrefFor }) {
   return (
     <div>
       <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">{title}</p>
       <ul className="space-y-2">
-        {items.map(([href, label]) => (
-          <li key={href}>
-            <a href={href} className="text-sm text-slate-400 hover:text-brand-600 transition-colors">{label}</a>
+        {items.map(([path, label]) => (
+          <li key={path}>
+            <a href={hrefFor(path)} className="text-sm text-slate-400 hover:text-brand-600 transition-colors">
+              {label}
+            </a>
           </li>
         ))}
       </ul>
