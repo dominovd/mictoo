@@ -3,7 +3,17 @@ import ComparisonLayout from '@/components/ComparisonLayout'
 export const metadata = {
   title: 'Descript Alternative — Free Transcription Without Signup | Mictoo',
   description: 'Looking for a Descript alternative just for transcription? Mictoo gives you free, no-signup AI transcription powered by OpenAI Whisper. No editor, no subscription.',
-  alternates: { canonical: 'https://mictoo.com/descript-alternative' },
+  alternates: {
+    canonical: 'https://mictoo.com/descript-alternative',
+    languages: {
+      'en': 'https://mictoo.com/descript-alternative',
+      'fr': 'https://mictoo.com/fr/descript-alternative',
+      'de': 'https://mictoo.com/de/descript-alternative',
+      'es': 'https://mictoo.com/es/descript-alternative',
+      'ru': 'https://mictoo.com/ru/descript-alternative',
+      'x-default': 'https://mictoo.com/descript-alternative',
+    },
+  },
 }
 
 export default function DescriptAlternativePage() {

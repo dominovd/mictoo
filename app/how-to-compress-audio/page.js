@@ -1,7 +1,17 @@
 export const metadata = {
   title: 'How to Compress Audio for Transcription — Free Methods | Mictoo',
   description: 'Three free ways to shrink an audio or video file under 25 MB for transcription: extract audio, lower bitrate, or split the file. No software install needed.',
-  alternates: { canonical: 'https://mictoo.com/how-to-compress-audio' },
+  alternates: {
+    canonical: 'https://mictoo.com/how-to-compress-audio',
+    languages: {
+      'en': 'https://mictoo.com/how-to-compress-audio',
+      'fr': 'https://mictoo.com/fr/how-to-compress-audio',
+      'de': 'https://mictoo.com/de/how-to-compress-audio',
+      'es': 'https://mictoo.com/es/how-to-compress-audio',
+      'ru': 'https://mictoo.com/ru/how-to-compress-audio',
+      'x-default': 'https://mictoo.com/how-to-compress-audio',
+    },
+  },
 }
 
 export default function HowToCompressAudioPage() {

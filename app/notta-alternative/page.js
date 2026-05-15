@@ -3,7 +3,17 @@ import ComparisonLayout from '@/components/ComparisonLayout'
 export const metadata = {
   title: 'Notta Alternative — Free Transcription Without Monthly Limits | Mictoo',
   description: 'Notta caps free users at 120 minutes per month and limits each transcription to 3 minutes. Mictoo is free, no signup, no monthly minute quota — powered by OpenAI Whisper.',
-  alternates: { canonical: 'https://mictoo.com/notta-alternative' },
+  alternates: {
+    canonical: 'https://mictoo.com/notta-alternative',
+    languages: {
+      'en': 'https://mictoo.com/notta-alternative',
+      'fr': 'https://mictoo.com/fr/notta-alternative',
+      'de': 'https://mictoo.com/de/notta-alternative',
+      'es': 'https://mictoo.com/es/notta-alternative',
+      'ru': 'https://mictoo.com/ru/notta-alternative',
+      'x-default': 'https://mictoo.com/notta-alternative',
+    },
+  },
 }
 
 export default function NottaAlternativePage() {

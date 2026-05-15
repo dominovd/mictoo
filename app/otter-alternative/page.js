@@ -3,7 +3,17 @@ import ComparisonLayout from '@/components/ComparisonLayout'
 export const metadata = {
   title: 'Otter Alternative — Transcribe Recordings, Not Live Meetings | Mictoo',
   description: 'Otter is built for live meeting transcription with real-time captions. Mictoo transcribes recordings you already have — free, no signup, no bot. Powered by OpenAI Whisper.',
-  alternates: { canonical: 'https://mictoo.com/otter-alternative' },
+  alternates: {
+    canonical: 'https://mictoo.com/otter-alternative',
+    languages: {
+      'en': 'https://mictoo.com/otter-alternative',
+      'fr': 'https://mictoo.com/fr/otter-alternative',
+      'de': 'https://mictoo.com/de/otter-alternative',
+      'es': 'https://mictoo.com/es/otter-alternative',
+      'ru': 'https://mictoo.com/ru/otter-alternative',
+      'x-default': 'https://mictoo.com/otter-alternative',
+    },
+  },
 }
 
 export default function OtterAlternativePage() {

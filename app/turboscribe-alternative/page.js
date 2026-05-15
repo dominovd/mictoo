@@ -3,7 +3,17 @@ import ComparisonLayout from '@/components/ComparisonLayout'
 export const metadata = {
   title: 'TurboScribe Alternative — Free Whisper Transcription, No Signup | Mictoo',
   description: 'TurboScribe is a popular Whisper-based transcription tool but requires an account and limits free users to 30 minutes per day. Mictoo is fully no-signup with built-in AI summary.',
-  alternates: { canonical: 'https://mictoo.com/turboscribe-alternative' },
+  alternates: {
+    canonical: 'https://mictoo.com/turboscribe-alternative',
+    languages: {
+      'en': 'https://mictoo.com/turboscribe-alternative',
+      'fr': 'https://mictoo.com/fr/turboscribe-alternative',
+      'de': 'https://mictoo.com/de/turboscribe-alternative',
+      'es': 'https://mictoo.com/es/turboscribe-alternative',
+      'ru': 'https://mictoo.com/ru/turboscribe-alternative',
+      'x-default': 'https://mictoo.com/turboscribe-alternative',
+    },
+  },
 }
 
 export default function TurboScribeAlternativePage() {

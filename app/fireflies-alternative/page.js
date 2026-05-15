@@ -3,7 +3,17 @@ import ComparisonLayout from '@/components/ComparisonLayout'
 export const metadata = {
   title: 'Fireflies Alternative — Transcribe Meetings Without a Bot | Mictoo',
   description: "Fireflies auto-joins your meetings as a bot to record and transcribe. Mictoo transcribes recordings you already have — no bot, no signup, no OAuth. Free with OpenAI Whisper.",
-  alternates: { canonical: 'https://mictoo.com/fireflies-alternative' },
+  alternates: {
+    canonical: 'https://mictoo.com/fireflies-alternative',
+    languages: {
+      'en': 'https://mictoo.com/fireflies-alternative',
+      'fr': 'https://mictoo.com/fr/fireflies-alternative',
+      'de': 'https://mictoo.com/de/fireflies-alternative',
+      'es': 'https://mictoo.com/es/fireflies-alternative',
+      'ru': 'https://mictoo.com/ru/fireflies-alternative',
+      'x-default': 'https://mictoo.com/fireflies-alternative',
+    },
+  },
 }
 
 export default function FirefliesAlternativePage() {
