@@ -9,7 +9,67 @@ export const runtime = 'nodejs'
 // but staying lower keeps cold-start billing in check.
 export const maxDuration = 120
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+// ── Transcription providers ─────────────────────────────────────────────────
+// Primary: Groq (whisper-large-v3, ~$0.00185/min vs OpenAI's $0.006/min, and
+// free tier covers our current traffic). Schema-compatible with OpenAI Whisper:
+// same `verbose_json` response with `segments[]`, `language`, `text` — so the
+// rest of the pipeline (.srt / .txt+timestamps / paragraph splitting) keeps
+// working unchanged.
+//
+// Fallback: OpenAI Whisper-1, used when Groq returns 429/5xx/network errors.
+// Belt-and-braces — most of the time we never hit it. OpenAI key is also kept
+// because /api/summarize still uses gpt-4o-mini.
+const groq = process.env.GROQ_API_KEY
+  ? new OpenAI({
+      apiKey: process.env.GROQ_API_KEY,
+      baseURL: 'https://api.groq.com/openai/v1',
+    })
+  : null
+
+const openai = process.env.OPENAI_API_KEY
+  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+  : null
+
+async function transcribeAudio(file, language) {
+  const baseParams = {
+    file,
+    response_format: 'verbose_json',
+    ...(language ? { language } : {}),
+  }
+
+  // Try Groq first.
+  if (groq) {
+    try {
+      return await groq.audio.transcriptions.create({
+        ...baseParams,
+        model: 'whisper-large-v3',
+      })
+    } catch (err) {
+      // 400 = file/codec is bad — falling back to another Whisper won't help.
+      if (err?.status === 400) throw err
+      // Everything else (429 quota, 5xx, network): try OpenAI if configured.
+      if (!openai) throw err
+      console.warn(
+        '[transcribe] Groq failed, falling back to OpenAI',
+        err?.status,
+        err?.message
+      )
+      return await openai.audio.transcriptions.create({
+        ...baseParams,
+        model: 'whisper-1',
+      })
+    }
+  }
+
+  // No Groq configured — go straight to OpenAI.
+  if (!openai) {
+    throw new Error('No transcription provider configured (GROQ_API_KEY or OPENAI_API_KEY).')
+  }
+  return openai.audio.transcriptions.create({
+    ...baseParams,
+    model: 'whisper-1',
+  })
+}
 
 // ── Rate limiter (optional — only activates if Upstash env vars are set) ────
 let ratelimit = null
@@ -143,14 +203,9 @@ export async function POST(request) {
 
     const whisperFile = new File([buffer], fileName, { type: fileType })
 
-    // ── Whisper ─────────────────────────────────────────────────────────────
+    // ── Transcribe (Groq primary, OpenAI fallback) ──────────────────────────
     try {
-      const transcription = await openai.audio.transcriptions.create({
-        file: whisperFile,
-        model: 'whisper-1',
-        response_format: 'verbose_json',
-        ...(language ? { language } : {}),
-      })
+      const transcription = await transcribeAudio(whisperFile, language)
 
       // Fire-and-forget counter bump. Doesn't block response. Safe if Upstash absent.
       bumpTranscriptionCount()

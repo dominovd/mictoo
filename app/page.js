@@ -31,7 +31,7 @@ const FAQ = [
   },
   {
     q: 'Is my file stored on your servers?',
-    a: "No. Files are streamed directly to OpenAI's Whisper API for transcription and are not stored on Mictoo's servers. Per OpenAI's API data policy, your audio is not used for model training and is deleted from OpenAI's systems after at most 30 days of abuse-monitoring retention.",
+    a: "No. Files are streamed directly to Groq's Whisper API (US-hosted) for transcription, with OpenAI's Whisper API kept as an automatic fallback, and are not stored on Mictoo's servers. Neither provider uses API audio for model training; OpenAI retains data for at most 30 days of abuse monitoring before deletion.",
   },
   {
     q: 'What is the maximum file size?',
@@ -187,7 +187,7 @@ export default function Home() {
             {
               icon: '🔒',
               title: 'Private by design',
-              desc: "Files are streamed directly to OpenAI's Whisper API, processed, and discarded in seconds. We never log, retain, or train on your audio or transcripts.",
+              desc: 'Files are streamed directly to the Whisper API (Groq primary, OpenAI fallback), processed, and discarded in seconds. We never log, retain, or train on your audio or transcripts.',
             },
             {
               icon: '🌍',

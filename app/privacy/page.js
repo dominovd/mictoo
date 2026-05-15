@@ -26,11 +26,11 @@ export default function PrivacyPage() {
       sections={[
         {
           heading: '1. What we collect',
-          body: "Mictoo does not require an account and does not collect personal information. When you upload a file, your browser sends it directly to Vercel Blob, Vercel's US-hosted file storage. The file sits there briefly so our server can hand it off to OpenAI's Whisper API for transcription, and it is automatically deleted from Vercel Blob as soon as transcription finishes — typically within a minute. An hourly cleanup job sweeps any leftover uploads that for some reason weren't deleted right away. Mictoo keeps no permanent copy of your audio, video, or the transcript on its own servers.",
+          body: "Mictoo does not require an account and does not collect personal information. When you upload a file, your browser sends it directly to Vercel Blob, Vercel's US-hosted file storage. The file sits there briefly so our server can hand it off to Groq's Whisper API (US-hosted) for transcription, with OpenAI's Whisper API kept as an automatic fallback if Groq is briefly unavailable. The file is automatically deleted from Vercel Blob as soon as transcription finishes — typically within a minute. An hourly cleanup job sweeps any leftover uploads that for some reason weren't deleted right away. Mictoo keeps no permanent copy of your audio, video, or the transcript on its own servers.",
         },
         {
           heading: '2. File processing and our AI provider',
-          body: "Files are transmitted over HTTPS to OpenAI's Whisper API and processed in real time. Per OpenAI's API data policy, your audio is not used for model training, and OpenAI retains API data only for a maximum of 30 days of abuse monitoring before deleting it. Mictoo itself keeps no copy of the audio or the transcript once your browser session ends.",
+          body: "Files are transmitted over HTTPS to Groq's Whisper API and processed in real time on US-based infrastructure. Per Groq's data policy, your audio is not used for model training. In the rare case Groq is unavailable, the request transparently falls back to OpenAI's Whisper API; OpenAI similarly does not train on API data and retains it for a maximum of 30 days of abuse monitoring before deletion. Mictoo itself keeps no copy of the audio or the transcript once your browser session ends.",
         },
         {
           heading: '3. Analytics & advertising',
