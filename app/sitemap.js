@@ -136,6 +136,17 @@ export default function sitemap() {
     { url: 'https://mictoo.com/google-meet-transcription',    lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: 'https://mictoo.com/teams-meeting-transcription',  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: 'https://mictoo.com/sermon-transcription',         lastModified: new Date(), changeFrequency: 'monthly', priority: 0.75 },
+    // Competitor comparison pages (low KD, high CPC long-tail)
+    { url: 'https://mictoo.com/descript-alternative',         lastModified: new Date(), changeFrequency: 'monthly', priority: 0.75 },
+    { url: 'https://mictoo.com/fireflies-alternative',        lastModified: new Date(), changeFrequency: 'monthly', priority: 0.75 },
+    { url: 'https://mictoo.com/turboscribe-alternative',      lastModified: new Date(), changeFrequency: 'monthly', priority: 0.75 },
+    { url: 'https://mictoo.com/otter-alternative',            lastModified: new Date(), changeFrequency: 'monthly', priority: 0.75 },
+    { url: 'https://mictoo.com/notta-alternative',            lastModified: new Date(), changeFrequency: 'monthly', priority: 0.75 },
+    // Language-specific transcription landing pages (US audience, very low KD)
+    { url: 'https://mictoo.com/french-speech-to-text',        lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
+    { url: 'https://mictoo.com/spanish-audio-to-text',        lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
+    { url: 'https://mictoo.com/german-audio-transcription',   lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
+    { url: 'https://mictoo.com/multilingual-transcription',   lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     // Localized use-case pages — FR
     { url: 'https://mictoo.com/fr/podcast-transcription',  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.75 },
     { url: 'https://mictoo.com/fr/lecture-transcription',  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7  },
