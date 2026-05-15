@@ -27,8 +27,11 @@ async function getRatelimiter() {
       url: process.env.UPSTASH_REDIS_REST_URL,
       token: process.env.UPSTASH_REDIS_REST_TOKEN,
     }),
-    // 10 transcriptions per IP per hour (slidingWindow blocks at limit, so ~10 pass through)
-    limiter: Ratelimit.slidingWindow(10, '1 h'),
+    // 3 transcriptions per IP per hour. Tightened from 10 to align with the
+    // free-tier unit economics: at ~3.8 min avg per file and Groq pricing,
+    // 3 files = ~$0.02 of API cost per user/hour, which AdSense margin on
+    // surrounding SEO traffic can cover. Heavier use is the future paid tier.
+    limiter: Ratelimit.slidingWindow(3, '1 h'),
     analytics: true,
   })
   return ratelimit
@@ -72,7 +75,7 @@ export async function POST(request) {
         const resetIn = Math.ceil((reset - Date.now()) / 1000 / 60)
         return NextResponse.json(
           {
-            error: `Too many requests. You've used your 10 free transcriptions this hour. Try again in ~${resetIn} min.`,
+            error: `Too many requests. You've used your 3 free transcriptions this hour. Try again in ~${resetIn} min.`,
           },
           {
             status: 429,
