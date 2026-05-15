@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'Interview Transcription — Free Interview Transcript Generator | Mictoo',
   description: 'Transcribe interviews to text for free. Upload your interview recording and get an accurate transcript with timestamps. Includes interview transcript examples and templates.',
-  alternates: { canonical: 'https://mictoo.com/interview-transcription' },
+  alternates: {
+    canonical: 'https://mictoo.com/interview-transcription',
+    languages: {
+      'en': 'https://mictoo.com/interview-transcription',
+      'fr': 'https://mictoo.com/fr/interview-transcription',
+      'de': 'https://mictoo.com/de/interview-transcription',
+      'es': 'https://mictoo.com/es/interview-transcription',
+      'ru': 'https://mictoo.com/ru/interview-transcription',
+      'x-default': 'https://mictoo.com/interview-transcription',
+    },
+  },
 }
 
 const INTERVIEW_TRANSCRIPT_EXAMPLE = `Interviewer: Can you walk me through your research methodology?

@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'Meeting Transcription — Free AI Transcript for Calls & Meetings | Mictoo',
   description: 'Transcribe meetings, conference calls, and Zoom/Teams recordings to text for free. No signup. Upload MP3, MP4, M4A. Up to 25 MB.',
-  alternates: { canonical: 'https://mictoo.com/meeting-transcription' },
+  alternates: {
+    canonical: 'https://mictoo.com/meeting-transcription',
+    languages: {
+      'en': 'https://mictoo.com/meeting-transcription',
+      'fr': 'https://mictoo.com/fr/meeting-transcription',
+      'de': 'https://mictoo.com/de/meeting-transcription',
+      'es': 'https://mictoo.com/es/meeting-transcription',
+      'ru': 'https://mictoo.com/ru/meeting-transcription',
+      'x-default': 'https://mictoo.com/meeting-transcription',
+    },
+  },
 }
 
 export default function MeetingTranscriptionPage() {

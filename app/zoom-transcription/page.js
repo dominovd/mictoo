@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'Zoom Transcription — Transcribe Zoom Recordings Free | Mictoo',
   description: 'Transcribe Zoom meeting recordings to text for free. Works with MP4 and M4A from Zoom Cloud Recording or local recording. No signup required.',
-  alternates: { canonical: 'https://mictoo.com/zoom-transcription' },
+  alternates: {
+    canonical: 'https://mictoo.com/zoom-transcription',
+    languages: {
+      'en': 'https://mictoo.com/zoom-transcription',
+      'fr': 'https://mictoo.com/fr/zoom-transcription',
+      'de': 'https://mictoo.com/de/zoom-transcription',
+      'es': 'https://mictoo.com/es/zoom-transcription',
+      'ru': 'https://mictoo.com/ru/zoom-transcription',
+      'x-default': 'https://mictoo.com/zoom-transcription',
+    },
+  },
 }
 
 export default function ZoomTranscriptionPage() {
