@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'Teams Meeting Transcription — Transcribe Microsoft Teams Recordings | Mictoo',
   description: 'Transcribe Microsoft Teams meeting recordings to text for free. Works with MP4 from OneDrive or SharePoint. No signup required.',
-  alternates: { canonical: 'https://mictoo.com/teams-meeting-transcription' },
+  alternates: {
+    canonical: 'https://mictoo.com/teams-meeting-transcription',
+    languages: {
+      'en': 'https://mictoo.com/teams-meeting-transcription',
+      'fr': 'https://mictoo.com/fr/teams-meeting-transcription',
+      'de': 'https://mictoo.com/de/teams-meeting-transcription',
+      'es': 'https://mictoo.com/es/teams-meeting-transcription',
+      'ru': 'https://mictoo.com/ru/teams-meeting-transcription',
+      'x-default': 'https://mictoo.com/teams-meeting-transcription',
+    },
+  },
 }
 
 export default function TeamsMeetingTranscriptionPage() {

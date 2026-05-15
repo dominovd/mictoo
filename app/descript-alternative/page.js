@@ -16,7 +16,7 @@ export default function DescriptAlternativePage() {
       rows={[
         { label: 'Free tier',           mictoo: 'No monthly cap, 25 MB per file', them: '1 hour of transcription per month' },
         { label: 'Account required',    mictoo: 'No', them: 'Yes (email signup)' },
-        { label: 'Paid plans',           mictoo: 'Free forever',  them: '$12–24 / month' },
+        { label: 'Paid plans',           mictoo: 'Free',  them: '$12–24 / month' },
         { label: 'Audio/video editor',  mictoo: 'No',  them: 'Yes (full-featured)' },
         { label: 'Transcription model', mictoo: 'OpenAI Whisper', them: 'Proprietary + Whisper option' },
         { label: 'AI summary',           mictoo: 'Yes, free',     them: 'Yes (paid tier)' },

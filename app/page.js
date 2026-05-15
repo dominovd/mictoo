@@ -181,7 +181,7 @@ export default function Home() {
           {[
             {
               icon: '🆓',
-              title: '100% free, forever',
+              title: '100% free',
               desc: 'No subscription, no trial. Mictoo is free to use with no monthly cap and no minute counting.',
             },
             {

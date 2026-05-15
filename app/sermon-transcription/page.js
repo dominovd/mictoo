@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'Sermon Transcription — Free Transcript Generator for Sermons | Mictoo',
   description: 'Transcribe sermons and church audio to text for free. Perfect for blog posts, study notes, and accessibility. Supports MP3, MP4, M4A. No signup.',
-  alternates: { canonical: 'https://mictoo.com/sermon-transcription' },
+  alternates: {
+    canonical: 'https://mictoo.com/sermon-transcription',
+    languages: {
+      'en': 'https://mictoo.com/sermon-transcription',
+      'fr': 'https://mictoo.com/fr/sermon-transcription',
+      'de': 'https://mictoo.com/de/sermon-transcription',
+      'es': 'https://mictoo.com/es/sermon-transcription',
+      'ru': 'https://mictoo.com/ru/sermon-transcription',
+      'x-default': 'https://mictoo.com/sermon-transcription',
+    },
+  },
 }
 
 export default function SermonTranscriptionPage() {

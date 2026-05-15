@@ -16,7 +16,7 @@ export default function OtterAlternativePage() {
       rows={[
         { label: 'Free tier',            mictoo: 'No monthly cap, 25 MB per file', them: '300 minutes / month, 30 min per recording' },
         { label: 'Account required',     mictoo: 'No', them: 'Yes (email signup)' },
-        { label: 'Paid plans',            mictoo: 'Free forever',  them: '$8.33 – $30 / user / month' },
+        { label: 'Paid plans',            mictoo: 'Free',  them: '$8.33 – $30 / user / month' },
         { label: 'Live transcription',    mictoo: 'No',  them: 'Yes (real-time captions)' },
         { label: 'Recording upload',      mictoo: 'Yes (drop file)', them: 'Yes (paid tier import)' },
         { label: 'AI summary',            mictoo: 'Yes, free',     them: 'Yes (paid tier)' },

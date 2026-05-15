@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'Voice Memo to Text — Transcribe iPhone Voice Memos Free | Mictoo',
   description: 'Convert iPhone Voice Memos and Android voice recordings to text for free. Supports M4A and MP3. No signup, no app install. Accurate AI transcription.',
-  alternates: { canonical: 'https://mictoo.com/voice-memo-to-text' },
+  alternates: {
+    canonical: 'https://mictoo.com/voice-memo-to-text',
+    languages: {
+      'en': 'https://mictoo.com/voice-memo-to-text',
+      'fr': 'https://mictoo.com/fr/voice-memo-to-text',
+      'de': 'https://mictoo.com/de/voice-memo-to-text',
+      'es': 'https://mictoo.com/es/voice-memo-to-text',
+      'ru': 'https://mictoo.com/ru/voice-memo-to-text',
+      'x-default': 'https://mictoo.com/voice-memo-to-text',
+    },
+  },
 }
 
 export default function VoiceMemoPage() {

@@ -16,7 +16,7 @@ export default function FirefliesAlternativePage() {
       rows={[
         { label: 'Free tier',            mictoo: 'No monthly cap, 25 MB per file', them: '800 minutes / user / month' },
         { label: 'Account required',     mictoo: 'No', them: 'Yes (email + OAuth)' },
-        { label: 'Paid plans',            mictoo: 'Free forever',  them: '$10–19 / user / month' },
+        { label: 'Paid plans',            mictoo: 'Free',  them: '$10–19 / user / month' },
         { label: 'Recording method',     mictoo: 'Upload recording yourself', them: 'Bot joins live meeting' },
         { label: 'Live transcription',    mictoo: 'No',  them: 'Yes (during the call)' },
         { label: 'Calendar integration',  mictoo: 'No',  them: 'Google / Outlook / Zoom' },

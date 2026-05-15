@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'Dictation to Text — Free Voice Dictation Transcription | Mictoo',
   description: 'Convert dictated audio recordings to text for free. Perfect for writers, doctors, lawyers, and researchers. Supports MP3, M4A, WAV. No signup.',
-  alternates: { canonical: 'https://mictoo.com/dictation-to-text' },
+  alternates: {
+    canonical: 'https://mictoo.com/dictation-to-text',
+    languages: {
+      'en': 'https://mictoo.com/dictation-to-text',
+      'fr': 'https://mictoo.com/fr/dictation-to-text',
+      'de': 'https://mictoo.com/de/dictation-to-text',
+      'es': 'https://mictoo.com/es/dictation-to-text',
+      'ru': 'https://mictoo.com/ru/dictation-to-text',
+      'x-default': 'https://mictoo.com/dictation-to-text',
+    },
+  },
 }
 
 export default function DictationToTextPage() {

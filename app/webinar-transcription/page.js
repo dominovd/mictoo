@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'Webinar Transcription — Free Transcript for Webinar Recordings | Mictoo',
   description: 'Transcribe webinar recordings to text and SRT subtitles for free. Works with Zoom, Webex, GoToWebinar, and any MP4 or MP3 export. No signup.',
-  alternates: { canonical: 'https://mictoo.com/webinar-transcription' },
+  alternates: {
+    canonical: 'https://mictoo.com/webinar-transcription',
+    languages: {
+      'en': 'https://mictoo.com/webinar-transcription',
+      'fr': 'https://mictoo.com/fr/webinar-transcription',
+      'de': 'https://mictoo.com/de/webinar-transcription',
+      'es': 'https://mictoo.com/es/webinar-transcription',
+      'ru': 'https://mictoo.com/ru/webinar-transcription',
+      'x-default': 'https://mictoo.com/webinar-transcription',
+    },
+  },
 }
 
 export default function WebinarTranscriptionPage() {

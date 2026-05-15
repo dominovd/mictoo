@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'Google Meet Transcription — Transcribe Meet Recordings Free | Mictoo',
   description: 'Transcribe Google Meet recordings to text for free. Works with MP4 exports from Google Drive. No signup, no install.',
-  alternates: { canonical: 'https://mictoo.com/google-meet-transcription' },
+  alternates: {
+    canonical: 'https://mictoo.com/google-meet-transcription',
+    languages: {
+      'en': 'https://mictoo.com/google-meet-transcription',
+      'fr': 'https://mictoo.com/fr/google-meet-transcription',
+      'de': 'https://mictoo.com/de/google-meet-transcription',
+      'es': 'https://mictoo.com/es/google-meet-transcription',
+      'ru': 'https://mictoo.com/ru/google-meet-transcription',
+      'x-default': 'https://mictoo.com/google-meet-transcription',
+    },
+  },
 }
 
 export default function GoogleMeetTranscriptionPage() {

@@ -16,7 +16,7 @@ export default function TurboScribeAlternativePage() {
       rows={[
         { label: 'Free tier',            mictoo: 'No monthly cap, 25 MB per file', them: '3 files per day, 30 min each' },
         { label: 'Account required',     mictoo: 'No', them: 'Yes (email signup)' },
-        { label: 'Paid plans',            mictoo: 'Free forever',  them: '$20 / month unlimited' },
+        { label: 'Paid plans',            mictoo: 'Free',  them: '$20 / month unlimited' },
         { label: 'File size limit (free)', mictoo: '25 MB per file', them: '~150 MB / 30 min per file' },
         { label: 'File size limit (paid)', mictoo: 'Same as free',   them: '5 GB / 10 h per file' },
         { label: 'Batch upload',           mictoo: 'No', them: 'Yes (paid, up to 50 files)' },

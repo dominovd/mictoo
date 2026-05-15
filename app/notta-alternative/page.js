@@ -16,7 +16,7 @@ export default function NottaAlternativePage() {
       rows={[
         { label: 'Free tier',            mictoo: 'No monthly cap, 25 MB per file', them: '120 min/month, 3 min per file' },
         { label: 'Account required',     mictoo: 'No', them: 'Yes (email signup)' },
-        { label: 'Paid plans',            mictoo: 'Free forever',  them: '$9 – $25 / user / month' },
+        { label: 'Paid plans',            mictoo: 'Free',  them: '$9 – $25 / user / month' },
         { label: 'Per-file duration',     mictoo: '~25 min (file size cap)', them: '3 min (free) / 5 h (paid)' },
         { label: 'Live transcription',    mictoo: 'No',  them: 'Yes (Notta Bot in meetings)' },
         { label: 'AI summary',            mictoo: 'Yes, free',     them: 'Yes (paid)' },
