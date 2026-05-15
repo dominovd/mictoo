@@ -8,7 +8,13 @@ import SummaryCard from './SummaryCard'
 const ACCEPTED_TYPES = ['audio/mpeg', 'audio/mp4', 'audio/wav', 'audio/m4a', 'audio/ogg',
   'audio/webm', 'video/mp4', 'video/webm', 'video/mpeg', 'audio/x-m4a',
   'audio/flac', 'application/octet-stream']
-const MAX_SIZE_MB = 25
+// Vercel serverless function body limit is ~4.5MB. Larger uploads are rejected
+// at the edge with FUNCTION_PAYLOAD_TOO_LARGE before our route handler runs,
+// so the client has to guard against that — otherwise users get a raw 413
+// instead of our friendly "compress your audio" hint. OpenAI's own limit is
+// 25MB; we'll unlock that ceiling later by routing large files through
+// Vercel Blob client uploads (PR #4).
+const MAX_SIZE_MB = 4
 const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024
 
 // Whisper language codes shown in the picker.
@@ -49,6 +55,48 @@ function toSRT(segments) {
   return segments
     .map((seg, i) => `${i + 1}\n${fmt(seg.start)} --> ${fmt(seg.end)}\n${seg.text.trim()}`)
     .join('\n\n') + '\n'
+}
+
+// Plain text with [HH:MM:SS] timestamp prefix per paragraph.
+// Mirrors the paragraph-splitting logic from toParagraphs() — a new timestamp
+// is emitted whenever there's a gap longer than PAUSE_THRESHOLD between segments.
+function toTimestampedTxt(segments) {
+  if (!segments?.length) return ''
+  const PAUSE_THRESHOLD = 1.5
+  const fmtClock = (s) => {
+    const h = Math.floor(s / 3600)
+    const m = Math.floor((s % 3600) / 60)
+    const sec = Math.floor(s % 60)
+    return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}`
+  }
+
+  const paragraphs = []
+  let buffer = []
+  let paragraphStart = segments[0].start
+
+  for (let i = 0; i < segments.length; i++) {
+    const seg = segments[i]
+    const text = seg.text.trim()
+    if (!text) continue
+
+    if (i === 0) {
+      buffer.push(text)
+    } else {
+      const prev = segments[i - 1]
+      const gap = seg.start - prev.end
+      if (gap > PAUSE_THRESHOLD) {
+        paragraphs.push(`[${fmtClock(paragraphStart)}] ${buffer.join(' ')}`)
+        buffer = [text]
+        paragraphStart = seg.start
+      } else {
+        buffer.push(text)
+      }
+    }
+  }
+  if (buffer.length) {
+    paragraphs.push(`[${fmtClock(paragraphStart)}] ${buffer.join(' ')}`)
+  }
+  return paragraphs.join('\n\n') + '\n'
 }
 
 export default function UploadZone({ defaultLanguage = '', locale: localeProp }) {
@@ -217,6 +265,18 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     URL.revokeObjectURL(url)
   }
 
+  const downloadTimestampedTxt = () => {
+    const txt = toTimestampedTxt(segments)
+    if (!txt) return
+    const blob = new Blob([txt], { type: 'text/plain' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = (file?.name?.replace(/\.[^.]+$/, '') || 'transcript') + '-timestamped.txt'
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
   // ── STATES ──────────────────────────────────────────────────────────────────
 
   if (state === 'uploading') {
@@ -271,6 +331,16 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
             <button onClick={downloadTxt} className="btn-ghost">
               <DownloadIcon className="w-4 h-4" /> .txt
             </button>
+            {hasSRT && (
+              <button
+                onClick={downloadTimestampedTxt}
+                className="btn-ghost"
+                title={t(locale, 'result.timestampedHint')}
+                aria-label={t(locale, 'result.timestampedHint')}
+              >
+                <ClockIcon className="w-4 h-4" /> .txt
+              </button>
+            )}
             {hasSRT && (
               <button onClick={downloadSRT} className="btn-ghost">
                 <SubtitleIcon className="w-4 h-4" /> .srt
@@ -403,6 +473,15 @@ function DownloadIcon({ className }) {
   return (
     <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+    </svg>
+  )
+}
+
+function ClockIcon({ className }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+      <circle cx="12" cy="12" r="9" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 7v5l3 2" />
     </svg>
   )
 }

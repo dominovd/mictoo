@@ -275,6 +275,31 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Switching from another tool? — surfaces comparison pages to cold traffic */}
+      <section className="bg-white border-y border-slate-100 py-16 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-slate-900 text-center mb-4">
+            Switching from another tool?
+          </h2>
+          <p className="text-center text-slate-500 mb-10 max-w-xl mx-auto">
+            See how Mictoo compares to popular alternatives — features, pricing, signup, and trade-offs.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {[
+              ['Descript',    '/descript-alternative'],
+              ['Fireflies',   '/fireflies-alternative'],
+              ['TurboScribe', '/turboscribe-alternative'],
+              ['Otter',       '/otter-alternative'],
+              ['Notta',       '/notta-alternative'],
+            ].map(([name, href]) => (
+              <a key={href} href={href} className="px-5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 shadow-sm hover:border-brand-400 hover:text-brand-600 transition-colors">
+                vs {name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
       <section id="faq" className="bg-white border-t border-slate-100 py-16 px-4">
         <div className="max-w-2xl mx-auto">
