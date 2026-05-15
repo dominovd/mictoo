@@ -23,7 +23,7 @@ export default function DePrivacyPage() {
       sections={[
         {
           heading: '1. Was wir erfassen',
-          body: 'Mictoo erfordert kein Benutzerkonto und erfasst keine personenbezogenen Daten. Wenn Sie eine Datei hochladen, wird sie direkt an die Whisper-API von OpenAI zur Transkription übermittelt. Wir speichern, protokollieren oder bewahren Ihre Audio- oder Videodateien nicht auf den Servern von Mictoo auf.',
+          body: 'Mictoo erfordert kein Benutzerkonto und erfasst keine personenbezogenen Daten. Wenn Sie eine Datei hochladen, sendet Ihr Browser sie direkt an Vercel Blob, den in den USA gehosteten Dateispeicher von Vercel. Die Datei liegt dort nur kurz, damit unser Server sie an die Whisper-API von OpenAI zur Transkription weiterleiten kann, und wird unmittelbar nach Abschluss der Transkription automatisch aus Vercel Blob gelöscht — in der Regel innerhalb einer Minute. Ein stündlicher Bereinigungs-Job entfernt verbliebene Uploads, die aus irgendeinem Grund nicht sofort gelöscht wurden. Mictoo selbst speichert keine dauerhafte Kopie Ihrer Audio-, Video- oder Transkriptdateien auf eigenen Servern.',
         },
         {
           heading: '2. Dateiverarbeitung und unser KI-Anbieter',

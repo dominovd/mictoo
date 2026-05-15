@@ -26,7 +26,7 @@ export default function PrivacyPage() {
       sections={[
         {
           heading: '1. What we collect',
-          body: "Mictoo does not require an account and does not collect personal information. When you upload a file, it is streamed directly to OpenAI's Whisper API for transcription. We do not store, log, or retain your audio or video files on Mictoo's servers.",
+          body: "Mictoo does not require an account and does not collect personal information. When you upload a file, your browser sends it directly to Vercel Blob, Vercel's US-hosted file storage. The file sits there briefly so our server can hand it off to OpenAI's Whisper API for transcription, and it is automatically deleted from Vercel Blob as soon as transcription finishes — typically within a minute. An hourly cleanup job sweeps any leftover uploads that for some reason weren't deleted right away. Mictoo keeps no permanent copy of your audio, video, or the transcript on its own servers.",
         },
         {
           heading: '2. File processing and our AI provider',

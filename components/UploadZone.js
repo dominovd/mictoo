@@ -2,19 +2,18 @@
 
 import { useState, useRef, useCallback } from 'react'
 import { usePathname } from 'next/navigation'
+import { upload } from '@vercel/blob/client'
 import { detectLocaleFromPath, t, DICT } from '@/lib/i18n'
 import SummaryCard from './SummaryCard'
 
 const ACCEPTED_TYPES = ['audio/mpeg', 'audio/mp4', 'audio/wav', 'audio/m4a', 'audio/ogg',
   'audio/webm', 'video/mp4', 'video/webm', 'video/mpeg', 'audio/x-m4a',
   'audio/flac', 'application/octet-stream']
-// Vercel serverless function body limit is ~4.5MB. Larger uploads are rejected
-// at the edge with FUNCTION_PAYLOAD_TOO_LARGE before our route handler runs,
-// so the client has to guard against that — otherwise users get a raw 413
-// instead of our friendly "compress your audio" hint. OpenAI's own limit is
-// 25MB; we'll unlock that ceiling later by routing large files through
-// Vercel Blob client uploads (PR #4).
-const MAX_SIZE_MB = 4
+// 25 MB is the OpenAI Whisper hard cap and our real ceiling. We bypass
+// Vercel's 4.5 MB function body limit by uploading directly to Vercel Blob
+// from the browser (see processFile below), then passing the blob URL to
+// /api/transcribe. The function never has to ingest the file body itself.
+const MAX_SIZE_MB = 25
 const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024
 
 // Whisper language codes shown in the picker.
@@ -184,19 +183,48 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
 
     setFile(f)
     setState('uploading')
-    setProgress(10)
+    setProgress(2)
 
-    const ticker = setInterval(() => {
-      setProgress(p => Math.min(p + Math.random() * 8, 88))
-    }, 800)
+    let ticker = null
 
     try {
-      const form = new FormData()
-      form.append('file', f)
-      if (language) form.append('language', language)
+      // ── Step 1: direct upload to Vercel Blob ────────────────────────────
+      // The browser uploads straight to Blob storage; our serverless function
+      // is never in the path, so the 4.5 MB request-body limit is bypassed
+      // entirely. /api/upload-token issues a short-lived, scoped client token
+      // (audio/video MIME only, ≤25 MB, random suffix on the path).
+      const blob = await upload(f.name, f, {
+        access: 'public',
+        handleUploadUrl: '/api/upload-token',
+        contentType: f.type || 'audio/mpeg',
+        onUploadProgress: ({ percentage }) => {
+          // Reserve 0–50% of the progress bar for the upload phase. Whisper
+          // (the longer step) gets 50–100%, ticker-driven below.
+          setProgress(Math.max(2, Math.round(percentage * 0.5)))
+        },
+      })
 
-      const res = await fetch('/api/transcribe', { method: 'POST', body: form })
+      // ── Step 2: ask our route to transcribe the file at that URL ────────
+      // The route fetches the blob server-side, sends to Whisper, and
+      // del()s the blob in its finally block — we don't have to clean up.
+      setProgress(50)
+      ticker = setInterval(() => {
+        setProgress(p => Math.min(p + Math.random() * 4, 92))
+      }, 800)
+
+      const res = await fetch('/api/transcribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          blobUrl: blob.url,
+          language: language || undefined,
+          fileName: f.name,
+          fileType: f.type || 'audio/mpeg',
+          fileSize: f.size,
+        }),
+      })
       clearInterval(ticker)
+      ticker = null
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))
@@ -219,8 +247,8 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
       // language as the recording (a Ukrainian audio → Ukrainian summary).
       generateSummary(finalText, detectedLang)
     } catch (err) {
-      clearInterval(ticker)
-      setError(err.message)
+      if (ticker) clearInterval(ticker)
+      setError(err?.message || 'Transcription failed. Please try again.')
       setState('error')
     }
   }, [language, locale, generateSummary])

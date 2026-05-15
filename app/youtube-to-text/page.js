@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'YouTube to Text — Transcribe YouTube Videos Free | Mictoo',
   description: 'Transcribe YouTube videos to text and SRT subtitles for free. Download the audio first, then upload to Mictoo. Works with MP3, MP4, M4A. No signup.',
-  alternates: { canonical: 'https://mictoo.com/youtube-to-text' },
+  alternates: {
+    canonical: 'https://mictoo.com/youtube-to-text',
+    languages: {
+      'en': 'https://mictoo.com/youtube-to-text',
+      'fr': 'https://mictoo.com/fr/youtube-to-text',
+      'de': 'https://mictoo.com/de/youtube-to-text',
+      'es': 'https://mictoo.com/es/youtube-to-text',
+      'ru': 'https://mictoo.com/ru/youtube-to-text',
+      'x-default': 'https://mictoo.com/youtube-to-text',
+    },
+  },
 }
 
 export default function YouTubeToTextPage() {

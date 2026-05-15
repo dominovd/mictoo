@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'Free SRT Generator — Create SRT Subtitle Files Online | Mictoo',
   description: 'Generate SRT subtitle files from any audio or video for free. Upload your file, get a timestamped transcript, and download a ready-to-use .srt file. No signup.',
-  alternates: { canonical: 'https://mictoo.com/free-srt-generator' },
+  alternates: {
+    canonical: 'https://mictoo.com/free-srt-generator',
+    languages: {
+      'en': 'https://mictoo.com/free-srt-generator',
+      'fr': 'https://mictoo.com/fr/free-srt-generator',
+      'de': 'https://mictoo.com/de/free-srt-generator',
+      'es': 'https://mictoo.com/es/free-srt-generator',
+      'ru': 'https://mictoo.com/ru/free-srt-generator',
+      'x-default': 'https://mictoo.com/free-srt-generator',
+    },
+  },
 }
 
 const schema = {

@@ -1,9 +1,13 @@
 import { NextResponse } from 'next/server'
 import OpenAI from 'openai'
+import { del } from '@vercel/blob'
 import { bumpTranscriptionCount } from '@/lib/stats'
 
 export const runtime = 'nodejs'
-export const maxDuration = 60
+// 120s gives us headroom: ~10–20s to download a 25 MB blob from Vercel
+// storage + 30–90s for Whisper on a long file. Pro plan supports up to 300s,
+// but staying lower keeps cold-start billing in check.
+export const maxDuration = 120
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
 
@@ -38,9 +42,27 @@ function getIP(request) {
   )
 }
 
-export async function POST(request) {
+// Only accept blob URLs from our own Vercel Blob storage — prevents the
+// route from being abused as an SSRF/proxy to fetch arbitrary URLs.
+function isOurBlobUrl(url) {
   try {
-    // ── Rate limit check ────────────────────────────────────────────────────
+    const parsed = new URL(url)
+    return (
+      parsed.protocol === 'https:' &&
+      parsed.hostname.endsWith('.public.blob.vercel-storage.com')
+    )
+  } catch {
+    return false
+  }
+}
+
+const MAX_BYTES = 25 * 1024 * 1024 // OpenAI Whisper hard cap
+
+export async function POST(request) {
+  let blobUrl = null
+
+  try {
+    // ── Rate limit ──────────────────────────────────────────────────────────
     const limiter = await getRatelimiter()
     if (limiter) {
       const ip = getIP(request)
@@ -50,7 +72,7 @@ export async function POST(request) {
         const resetIn = Math.ceil((reset - Date.now()) / 1000 / 60)
         return NextResponse.json(
           {
-            error: `Too many requests. You've used your 5 free transcriptions this hour. Try again in ~${resetIn} min.`,
+            error: `Too many requests. You've used your 10 free transcriptions this hour. Try again in ~${resetIn} min.`,
           },
           {
             status: 429,
@@ -64,31 +86,61 @@ export async function POST(request) {
       }
     }
 
-    // ── Parse form ──────────────────────────────────────────────────────────
-    const formData = await request.formData()
-    const file = formData.get('file')
-    const language = formData.get('language') || undefined // e.g. 'en', 'es'; undefined = auto-detect
+    // ── Parse JSON body ─────────────────────────────────────────────────────
+    let body
+    try {
+      body = await request.json()
+    } catch {
+      return NextResponse.json({ error: 'Invalid JSON body.' }, { status: 400 })
+    }
 
-    if (!file || typeof file === 'string') {
+    blobUrl = body?.blobUrl
+    const language = body?.language || undefined // 'en'/'es'/...; undefined = auto-detect
+    const fileName = body?.fileName || 'audio.mp3'
+    const fileType = body?.fileType || 'audio/mpeg'
+    const fileSize = Number(body?.fileSize) || 0
+
+    if (!blobUrl || typeof blobUrl !== 'string') {
       return NextResponse.json({ error: 'No file provided.' }, { status: 400 })
     }
 
-    const MAX_BYTES = 25 * 1024 * 1024
-    if (file.size > MAX_BYTES) {
+    if (!isOurBlobUrl(blobUrl)) {
+      // Don't echo the URL back — keep error generic to avoid signaling
+      // what would be a valid host pattern to a fuzzer.
+      return NextResponse.json({ error: 'Invalid file reference.' }, { status: 400 })
+    }
+
+    if (fileSize > MAX_BYTES) {
       return NextResponse.json(
         { error: 'File too large. Maximum size is 25MB.' },
         { status: 413 }
       )
     }
 
-    // ── Whisper ─────────────────────────────────────────────────────────────
-    const arrayBuffer = await file.arrayBuffer()
+    // ── Fetch blob ──────────────────────────────────────────────────────────
+    const blobRes = await fetch(blobUrl)
+    if (!blobRes.ok) {
+      console.error('[transcribe] blob fetch failed', blobRes.status, blobUrl)
+      return NextResponse.json(
+        { error: 'Could not retrieve the uploaded file. Please try again.' },
+        { status: 500 }
+      )
+    }
+
+    const arrayBuffer = await blobRes.arrayBuffer()
+    if (arrayBuffer.byteLength > MAX_BYTES) {
+      // Defense in depth — Vercel Blob already enforces this at upload time,
+      // but a manual upload via a hand-issued token could in theory dodge it.
+      return NextResponse.json(
+        { error: 'File too large. Maximum size is 25MB.' },
+        { status: 413 }
+      )
+    }
     const buffer = Buffer.from(arrayBuffer)
 
-    const whisperFile = new File([buffer], file.name || 'audio.mp3', {
-      type: file.type || 'audio/mpeg',
-    })
+    const whisperFile = new File([buffer], fileName, { type: fileType })
 
+    // ── Whisper ─────────────────────────────────────────────────────────────
     try {
       const transcription = await openai.audio.transcriptions.create({
         file: whisperFile,
@@ -111,7 +163,7 @@ export async function POST(request) {
     } catch (err) {
       // Inner catch — file metadata is available for richer logs.
       // Helps us see which formats/codecs actually fail in production.
-      const fileMeta = { name: file.name, type: file.type, size: file.size }
+      const fileMeta = { name: fileName, type: fileType, size: fileSize }
       console.error('[transcribe]', { ...fileMeta, status: err?.status, message: err?.message })
 
       // OpenAI returns 400 for unsupported codecs, empty audio, broken containers,
@@ -145,6 +197,15 @@ export async function POST(request) {
       { error: err.message || 'Transcription failed. Please try again.' },
       { status: 500 }
     )
+  } finally {
+    // Clean up the uploaded blob in every case — success, OpenAI error,
+    // rate limit, even unexpected crashes — so we never leak storage.
+    // Best-effort: a failed delete just means the hourly cron will sweep it.
+    if (blobUrl) {
+      del(blobUrl).catch((err) => {
+        console.error('[transcribe] blob delete failed', err?.message)
+      })
+    }
   }
 }
 
@@ -155,7 +216,7 @@ export async function POST(request) {
 
 const methodNotAllowed = () =>
   NextResponse.json(
-    { error: 'Method not allowed. Use POST with a file in form-data.' },
+    { error: 'Method not allowed. Use POST with JSON { blobUrl, language }.' },
     { status: 405, headers: { Allow: 'POST' } }
   )
 

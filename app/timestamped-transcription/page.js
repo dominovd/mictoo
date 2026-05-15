@@ -3,7 +3,17 @@ import LandingLayout from '@/components/LandingLayout'
 export const metadata = {
   title: 'Timestamped Transcription — Free Time-Coded Transcript Generator | Mictoo',
   description: 'Generate timestamped transcripts and time-coded transcriptions for free. Upload audio or video and download an SRT file with exact timecodes. No signup.',
-  alternates: { canonical: 'https://mictoo.com/timestamped-transcription' },
+  alternates: {
+    canonical: 'https://mictoo.com/timestamped-transcription',
+    languages: {
+      'en': 'https://mictoo.com/timestamped-transcription',
+      'fr': 'https://mictoo.com/fr/timestamped-transcription',
+      'de': 'https://mictoo.com/de/timestamped-transcription',
+      'es': 'https://mictoo.com/es/timestamped-transcription',
+      'ru': 'https://mictoo.com/ru/timestamped-transcription',
+      'x-default': 'https://mictoo.com/timestamped-transcription',
+    },
+  },
 }
 
 const schema = {

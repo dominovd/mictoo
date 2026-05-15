@@ -23,7 +23,7 @@ export default function FrPrivacyPage() {
       sections={[
         {
           heading: '1. Ce que nous collectons',
-          body: "Mictoo ne demande aucun compte et ne collecte aucune information personnelle. Lorsque vous téléchargez un fichier, il est transmis directement à l'API Whisper d'OpenAI pour la transcription. Nous ne stockons, ne journalisons et ne conservons pas vos fichiers audio ou vidéo sur les serveurs de Mictoo.",
+          body: "Mictoo ne demande aucun compte et ne collecte aucune information personnelle. Lorsque vous téléchargez un fichier, votre navigateur l'envoie directement à Vercel Blob, le stockage de fichiers de Vercel hébergé aux États-Unis. Le fichier y reste brièvement, le temps que notre serveur le transmette à l'API Whisper d'OpenAI pour la transcription, puis il est automatiquement supprimé de Vercel Blob dès la fin de la transcription — généralement en moins d'une minute. Une tâche de nettoyage horaire balaye les uploads résiduels qui n'auraient pas été supprimés immédiatement. Mictoo ne conserve aucune copie permanente de votre audio, vidéo ou transcription sur ses propres serveurs.",
         },
         {
           heading: '2. Traitement des fichiers et notre fournisseur IA',

@@ -45,9 +45,15 @@ export default function OGImage() {
           </span>
         </div>
 
-        {/* Headline */}
+        {/* Headline — Satori needs explicit display:flex on any element with
+             more than one child, otherwise it logs a warning on every fetch.
+             We also can't use <br/> inside a flex container, so the line
+             break is achieved by stacking two spans in a column. */}
         <div
           style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
             fontSize: 64,
             fontWeight: 800,
             color: 'white',
@@ -56,8 +62,7 @@ export default function OGImage() {
             marginBottom: 24,
           }}
         >
-          Free AI Audio &amp; Video
-          <br />
+          <span>Free AI Audio &amp; Video</span>
           <span style={{ color: '#38bdf8' }}>Transcription</span>
         </div>
 
