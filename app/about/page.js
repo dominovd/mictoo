@@ -27,7 +27,7 @@ export default function AboutPage() {
         lead: "Mictoo is a free, no-signup audio and video transcription tool built for anyone who needs to convert speech to text quickly and accurately.",
         ourWhy: "We built Mictoo because great transcription shouldn't require a subscription, an account, or technical skills. Drop your file, get your text. That's it.",
         whatPowersHeading: 'What powers Mictoo?',
-        whatPowersBody: 'Mictoo is powered by a state-of-the-art AI speech recognition model trained on hundreds of thousands of hours of multilingual audio. It supports over 50 languages with automatic language detection and is widely regarded as one of the most accurate free transcription engines available.',
+        whatPowersBody: "Mictoo is powered by OpenAI's Whisper — the same speech recognition model used inside ChatGPT, trained on 680,000 hours of multilingual audio. It supports over 50 languages with automatic detection and is widely regarded as one of the most accurate open speech models available. Files are streamed directly to OpenAI's API and never stored on Mictoo's servers; per OpenAI's API data policy, your audio is not used for training and is deleted after at most 30 days of abuse monitoring.",
         principlesHeading: 'Our principles',
         principles: [
           { label: 'Free.', body: 'No hidden costs, no trial periods, no credit card required.' },

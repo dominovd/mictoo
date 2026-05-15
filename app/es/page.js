@@ -57,11 +57,11 @@ export default function SpanishPage() {
       faq={[
         {
           q: '¿Cómo transcribir audio a texto gratis?',
-          a: 'Sube tu archivo de audio arriba. Mictoo lo transcribe automáticamente con IA y muestra el texto en segundos.',
+          a: 'Sube tu archivo de audio arriba. Mictoo lo transcribe automáticamente con Whisper de OpenAI y muestra el texto en segundos.',
         },
         {
           q: '¿Funciona bien para el español?',
-          a: 'Sí. La IA ha sido entrenada con miles de horas de audio en español y ofrece una alta precisión.',
+          a: 'Sí. Whisper, el modelo de OpenAI sobre el que se basa Mictoo, ha sido entrenado con miles de horas de audio en español y ofrece una alta precisión.',
         },
         {
           q: '¿Se guardan mis archivos?',

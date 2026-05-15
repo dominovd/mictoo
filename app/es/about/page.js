@@ -24,7 +24,7 @@ export default function EsAboutPage() {
         lead: 'Mictoo es una herramienta gratuita de transcripción de audio y vídeo, sin registro, creada para quien necesita convertir voz a texto de forma rápida y precisa.',
         ourWhy: 'Creamos Mictoo porque una buena transcripción no debería requerir suscripción, cuenta ni conocimientos técnicos. Suelta tu archivo, obtén tu texto. Así de simple.',
         whatPowersHeading: '¿Qué impulsa Mictoo?',
-        whatPowersBody: 'Mictoo se basa en un modelo de reconocimiento de voz con IA de última generación entrenado con cientos de miles de horas de audio multilingüe. Soporta más de 50 idiomas con detección automática y es considerado uno de los motores de transcripción gratuitos más precisos.',
+        whatPowersBody: 'Mictoo se basa en Whisper de OpenAI — el mismo modelo de reconocimiento de voz que usa ChatGPT, entrenado con 680 000 horas de audio multilingüe. Soporta más de 50 idiomas con detección automática y se considera uno de los modelos de reconocimiento de voz más precisos disponibles. Tus archivos se transmiten directamente a la API de OpenAI y nunca se almacenan en los servidores de Mictoo; según la política de datos de la API de OpenAI, tu audio no se usa para entrenamiento y se elimina tras un máximo de 30 días de monitorización anti-abuso.',
         principlesHeading: 'Nuestros principios',
         principles: [
           { label: 'Gratis.', body: 'Sin costos ocultos, sin periodos de prueba, sin tarjeta de crédito.' },

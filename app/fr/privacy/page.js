@@ -23,11 +23,11 @@ export default function FrPrivacyPage() {
       sections={[
         {
           heading: '1. Ce que nous collectons',
-          body: "Mictoo ne vous demande pas de créer un compte et ne collecte aucune information personnelle. Lorsque vous téléchargez un fichier, il est envoyé directement à l'API IA pour transcription. Nous ne stockons, ne journalisons et ne conservons pas vos fichiers audio ou vidéo.",
+          body: "Mictoo ne demande aucun compte et ne collecte aucune information personnelle. Lorsque vous téléchargez un fichier, il est transmis directement à l'API Whisper d'OpenAI pour la transcription. Nous ne stockons, ne journalisons et ne conservons pas vos fichiers audio ou vidéo sur les serveurs de Mictoo.",
         },
         {
-          heading: '2. Traitement des fichiers',
-          body: "Les fichiers téléchargés sont transmis de manière sécurisée aux serveurs de notre fournisseur IA pour reconnaissance vocale. Les fichiers sont traités en temps réel et ne sont pas conservés sur nos serveurs ou ceux de notre fournisseur au-delà de la durée d'une seule requête API.",
+          heading: '2. Traitement des fichiers et notre fournisseur IA',
+          body: "Les fichiers sont transmis en HTTPS à l'API Whisper d'OpenAI et traités en temps réel. Selon la politique de données API d'OpenAI, votre audio n'est pas utilisé pour l'entraînement des modèles, et OpenAI conserve les données API pendant 30 jours maximum à des fins de surveillance anti-abus avant de les supprimer. Mictoo ne conserve aucune copie de l'audio ni de la transcription une fois votre session de navigation terminée.",
         },
         {
           heading: '3. Analytique et publicité',

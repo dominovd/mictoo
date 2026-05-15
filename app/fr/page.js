@@ -57,11 +57,11 @@ export default function FrenchPage() {
       faq={[
         {
           q: 'Comment transcrire un fichier audio en texte gratuitement ?',
-          a: "Téléchargez votre fichier audio ci-dessus. Mictoo le transcrit automatiquement grâce à l'IA et affiche le texte en quelques secondes.",
+          a: "Téléchargez votre fichier audio ci-dessus. Mictoo le transcrit automatiquement avec Whisper d'OpenAI et affiche le texte en quelques secondes.",
         },
         {
           q: 'Mictoo fonctionne-t-il bien pour le français ?',
-          a: "Oui. L'IA est entraînée sur de nombreuses heures d'audio en français et offre une excellente précision pour cette langue.",
+          a: "Oui. Whisper, le modèle d'OpenAI sur lequel Mictoo s'appuie, a été entraîné sur de nombreuses heures d'audio en français et offre une excellente précision pour cette langue.",
         },
         {
           q: 'Mes fichiers sont-ils conservés ?',

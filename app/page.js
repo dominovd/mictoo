@@ -23,15 +23,15 @@ const FAQ = [
   },
   {
     q: 'How accurate is the transcription?',
-    a: 'Mictoo uses AI, one of the most accurate speech recognition models available. Accuracy depends on audio quality and accent, but typically exceeds 95% for clear recordings.',
+    a: "Mictoo uses OpenAI's Whisper, one of the most accurate open speech recognition models available. Accuracy depends on audio quality and accent, but typically exceeds 95% for clear recordings.",
   },
   {
     q: 'What languages are supported?',
-    a: 'Our AI supports over 50 languages including English, Spanish, French, German, Portuguese, Russian, Japanese, Chinese, Arabic, and more. Language is detected automatically — no need to select it.',
+    a: "Whisper supports over 50 languages including English, Spanish, French, German, Portuguese, Russian, Ukrainian, Japanese, Chinese, Arabic, and more. Language is detected automatically — no need to select it.",
   },
   {
     q: 'Is my file stored on your servers?',
-    a: 'No. Files are sent directly to AI for processing and are never stored on our servers. Your audio and transcripts remain private.',
+    a: "No. Files are streamed directly to OpenAI's Whisper API for transcription and are not stored on Mictoo's servers. Per OpenAI's API data policy, your audio is not used for model training and is deleted from OpenAI's systems after at most 30 days of abuse-monitoring retention.",
   },
   {
     q: 'What is the maximum file size?',
@@ -55,7 +55,7 @@ const FAQ = [
   },
   {
     q: 'What technology powers Mictoo?',
-    a: 'Mictoo uses a state-of-the-art AI speech recognition model trained on hundreds of thousands of hours of multilingual audio, widely considered one of the most accurate transcription engines available.',
+    a: "Mictoo is built on OpenAI's Whisper API — the same speech recognition model that powers ChatGPT's voice features. Whisper was trained on 680,000 hours of multilingual audio and is widely considered one of the most accurate speech recognition models available.",
   },
 ]
 
@@ -66,7 +66,7 @@ const webAppSchema = {
   name: 'Mictoo',
   url: 'https://mictoo.com',
   description:
-    'Free online audio and video transcription tool powered by AI. No signup required. Supports 50+ languages.',
+    'Free online audio and video transcription tool powered by OpenAI Whisper. No signup required. Supports 50+ languages.',
   applicationCategory: 'UtilityApplication',
   operatingSystem: 'Web',
   browserRequirements: 'Requires a modern browser with JavaScript enabled.',
@@ -187,7 +187,7 @@ export default function Home() {
             {
               icon: '🔒',
               title: 'Private by design',
-              desc: 'Your files are processed and immediately discarded. We never store your audio, video, or transcripts.',
+              desc: "Files are streamed directly to OpenAI's Whisper API, processed, and discarded in seconds. We never log, retain, or train on your audio or transcripts.",
             },
             {
               icon: '🌍',
@@ -197,7 +197,7 @@ export default function Home() {
             {
               icon: '🎯',
               title: 'High accuracy',
-              desc: 'State-of-the-art AI speech recognition — the same technology used by leading transcription services.',
+              desc: "Powered by OpenAI's Whisper — the same speech recognition model used in ChatGPT and the leading transcription services.",
             },
             {
               icon: '⚡',

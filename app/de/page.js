@@ -57,11 +57,11 @@ export default function GermanPage() {
       faq={[
         {
           q: 'Wie kann ich Audio kostenlos in Text umwandeln?',
-          a: 'Laden Sie Ihre Audiodatei oben hoch. Mictoo transkribiert sie automatisch mit KI und zeigt den Text innerhalb von Sekunden an.',
+          a: 'Laden Sie Ihre Audiodatei oben hoch. Mictoo transkribiert sie automatisch mit Whisper von OpenAI und zeigt den Text innerhalb von Sekunden an.',
         },
         {
           q: 'Wie gut funktioniert die Transkription auf Deutsch?',
-          a: 'Sehr gut. Die KI wurde auf Stunden deutschsprachiger Audiodaten trainiert und liefert eine hohe Genauigkeit.',
+          a: 'Sehr gut. Whisper — das Modell von OpenAI, auf dem Mictoo aufbaut — wurde auf vielen Stunden deutschsprachiger Audiodaten trainiert und liefert eine hohe Genauigkeit.',
         },
         {
           q: 'Werden meine Dateien gespeichert?',

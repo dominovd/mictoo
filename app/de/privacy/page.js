@@ -23,11 +23,11 @@ export default function DePrivacyPage() {
       sections={[
         {
           heading: '1. Was wir erfassen',
-          body: 'Mictoo erfordert kein Benutzerkonto und erfasst keine personenbezogenen Daten. Wenn Sie eine Datei hochladen, wird sie direkt an die KI-API zur Transkription gesendet. Wir speichern, protokollieren oder bewahren Ihre Audio- oder Videodateien nicht auf.',
+          body: 'Mictoo erfordert kein Benutzerkonto und erfasst keine personenbezogenen Daten. Wenn Sie eine Datei hochladen, wird sie direkt an die Whisper-API von OpenAI zur Transkription übermittelt. Wir speichern, protokollieren oder bewahren Ihre Audio- oder Videodateien nicht auf den Servern von Mictoo auf.',
         },
         {
-          heading: '2. Dateiverarbeitung',
-          body: 'Hochgeladene Dateien werden sicher an die Server unseres KI-Anbieters zur Spracherkennung übertragen. Die Dateien werden in Echtzeit verarbeitet und nicht über die Dauer einer einzelnen API-Anfrage hinaus auf unseren Servern oder denen unseres Anbieters gespeichert.',
+          heading: '2. Dateiverarbeitung und unser KI-Anbieter',
+          body: 'Dateien werden über HTTPS an die Whisper-API von OpenAI übertragen und in Echtzeit verarbeitet. Gemäß OpenAIs API-Datenrichtlinie werden Ihre Audiodaten nicht für das Training der Modelle verwendet, und OpenAI speichert API-Daten höchstens 30 Tage zur Missbrauchsüberwachung, bevor sie gelöscht werden. Mictoo selbst behält nach Ende Ihrer Browser-Sitzung weder Audio noch Transkript.',
         },
         {
           heading: '3. Analyse und Werbung',
