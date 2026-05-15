@@ -14,7 +14,7 @@ export default function DescriptAlternativePage() {
       subtitle="Descript is a full audio and video editor with transcription built in. If you only need the transcription part, Mictoo is the free, no-signup option powered by OpenAI Whisper."
       competitorName="Descript"
       rows={[
-        { label: 'Free tier',           mictoo: 'Unlimited files, 25 MB each', them: '1 hour of transcription per month' },
+        { label: 'Free tier',           mictoo: 'No monthly cap, 25 MB per file', them: '1 hour of transcription per month' },
         { label: 'Account required',    mictoo: 'No', them: 'Yes (email signup)' },
         { label: 'Paid plans',           mictoo: 'Free forever',  them: '$12–24 / month' },
         { label: 'Audio/video editor',  mictoo: 'No',  them: 'Yes (full-featured)' },

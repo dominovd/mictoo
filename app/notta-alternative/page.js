@@ -14,7 +14,7 @@ export default function NottaAlternativePage() {
       subtitle="Notta is a popular all-in-one transcription tool, but the free tier caps you at 120 minutes per month and 3 minutes per file. Mictoo has no monthly quota and a single per-file limit — for free, no signup."
       competitorName="Notta"
       rows={[
-        { label: 'Free tier',            mictoo: 'Unlimited files, 25 MB each', them: '120 min/month, 3 min per file' },
+        { label: 'Free tier',            mictoo: 'No monthly cap, 25 MB per file', them: '120 min/month, 3 min per file' },
         { label: 'Account required',     mictoo: 'No', them: 'Yes (email signup)' },
         { label: 'Paid plans',            mictoo: 'Free forever',  them: '$9 – $25 / user / month' },
         { label: 'Per-file duration',     mictoo: '~25 min (file size cap)', them: '3 min (free) / 5 h (paid)' },
@@ -26,7 +26,7 @@ export default function NottaAlternativePage() {
       ]}
       whyMictoo={[
         { icon: '⏳', title: 'No 3-minute per-file limit', desc: 'Notta\'s 3-minute free limit per file is too short for a podcast, lecture, or interview. Mictoo handles full ~25-minute audio files for free.' },
-        { icon: '🆓', title: 'No monthly minute quota', desc: 'Notta tracks every minute against a 120-min/month free quota. Mictoo only caps individual file size — transcribe as many files as you want.' },
+        { icon: '🆓', title: 'No monthly minute quota', desc: 'Notta tracks every minute against a 120-min/month free quota. Mictoo only caps individual file size — drop one file or several, no minute counting.' },
         { icon: '✨', title: 'AI summary on the free tier', desc: 'Notta puts AI summaries on paid plans. Mictoo generates a summary with key points and action items free, every time.' },
       ]}
       whenToChoose={{

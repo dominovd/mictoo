@@ -15,7 +15,7 @@ export default function VoiceMemoPage() {
       features={[
         { icon: '📱', title: 'iPhone and Android', desc: 'iPhone Voice Memos export as .m4a — fully supported. Android voice recorders export as .m4a, .mp3, or .wav — all supported.' },
         { icon: '🧠', title: 'Great for notes and ideas', desc: 'Turn voice notes, brainstorming sessions, and reminders into searchable text you can paste into Notion, Obsidian, or your favourite editor.' },
-        { icon: '🆓', title: '100% free', desc: 'No subscription, no in-app purchase, no watermark. Transcribe as many voice memos as you want.' },
+        { icon: '🆓', title: '100% free', desc: 'No subscription, no in-app purchase, no watermark. No monthly cap — drop a memo whenever you need a transcript.' },
       ]}
       faq={[
         { q: 'How do I send my iPhone Voice Memo to a computer?', a: 'Open the Voice Memos app, tap the memo, tap "…", then "Share" → "Save to Files" or AirDrop to your Mac. Then drop the .m4a file into Mictoo on your computer.' },

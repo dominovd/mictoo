@@ -1,7 +1,7 @@
 import LandingLayout from '@/components/LandingLayout'
 
 export const metadata = {
-  title: 'Audio in Text umwandeln — Kostenlose Transkription | Mictoo',
+  title: 'KI Audio- & Video-Transkription — Kostenlos Online | Mictoo',
   description: 'Audio und Video kostenlos in Text umwandeln. Keine Anmeldung erforderlich. Unterstützt MP3, MP4, WAV und mehr. Betrieben von KI.',
   alternates: {
     canonical: 'https://mictoo.com/de',
@@ -15,7 +15,7 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'Mictoo — Kostenlose Audio- & Video-Transkription',
+    title: 'Mictoo — Kostenlose KI Audio- & Video-Transkription',
     description: 'Audio oder Video hochladen und in Sekunden ein Transkript erhalten.',
     url: 'https://mictoo.com/de',
     siteName: 'Mictoo',
@@ -33,9 +33,9 @@ export const metadata = {
 export default function GermanPage() {
   return (
     <LandingLayout
-      badge="Kostenlos · Ohne Anmeldung · 50+ Sprachen"
-      h1={<>Audio und Video<br /><span className="text-brand-600">kostenlos online in Text umwandeln</span></>}
-      subtitle="Laden Sie eine beliebige Audio- oder Videodatei hoch und erhalten Sie in Sekunden eine genaue Transkription. Kein Konto erforderlich."
+      badge="KI · Kostenlos · Ohne Anmeldung · 50+ Sprachen"
+      h1={<>Audio und Video<br /><span className="text-brand-600">mit KI in Text umwandeln, kostenlos</span></>}
+      subtitle="Laden Sie eine beliebige Audio- oder Videodatei hoch und erhalten Sie in Sekunden eine genaue KI-Transkription. Kein Konto erforderlich."
       defaultLanguage="de"
       features={[
         {

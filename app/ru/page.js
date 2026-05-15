@@ -1,7 +1,7 @@
 import LandingLayout from '@/components/LandingLayout'
 
 export const metadata = {
-  title: 'Транскрибация аудио и видео в текст онлайн, бесплатно — Mictoo',
+  title: 'AI транскрибация аудио и видео в текст онлайн, бесплатно — Mictoo',
   description: 'Превратите аудио или видео в текст за секунды. Без регистрации. На ИИ. Поддерживаются MP3, MP4, WAV и 50+ языков.',
   alternates: {
     canonical: 'https://mictoo.com/ru',
@@ -15,7 +15,7 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'Mictoo — Бесплатная транскрибация аудио и видео',
+    title: 'Mictoo — Бесплатная AI-транскрибация аудио и видео',
     description: 'Загрузите аудио или видео — получите расшифровку за несколько секунд.',
     url: 'https://mictoo.com/ru',
     siteName: 'Mictoo',
@@ -33,9 +33,9 @@ export const metadata = {
 export default function RussianPage() {
   return (
     <LandingLayout
-      badge="Бесплатно · Без регистрации · 50+ языков"
-      h1={<>Транскрибация аудио и видео<br /><span className="text-brand-600">в текст онлайн, бесплатно</span></>}
-      subtitle="Загрузите аудио- или видеофайл и получите точную текстовую расшифровку за несколько секунд. Регистрация не нужна."
+      badge="ИИ · Бесплатно · Без регистрации · 50+ языков"
+      h1={<>AI транскрибация аудио и видео<br /><span className="text-brand-600">в текст онлайн, бесплатно</span></>}
+      subtitle="Загрузите аудио- или видеофайл и получите точную ИИ-расшифровку за несколько секунд. Регистрация не нужна."
       defaultLanguage="ru"
       features={[
         {

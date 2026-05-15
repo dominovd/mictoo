@@ -14,7 +14,7 @@ export default function TurboScribeAlternativePage() {
       subtitle="TurboScribe and Mictoo both use OpenAI Whisper, so transcription quality is nearly identical. The main differences are signup, file limits, and built-in AI summary."
       competitorName="TurboScribe"
       rows={[
-        { label: 'Free tier',            mictoo: 'Unlimited files, 25 MB each', them: '3 files per day, 30 min each' },
+        { label: 'Free tier',            mictoo: 'No monthly cap, 25 MB per file', them: '3 files per day, 30 min each' },
         { label: 'Account required',     mictoo: 'No', them: 'Yes (email signup)' },
         { label: 'Paid plans',            mictoo: 'Free forever',  them: '$20 / month unlimited' },
         { label: 'File size limit (free)', mictoo: '25 MB per file', them: '~150 MB / 30 min per file' },

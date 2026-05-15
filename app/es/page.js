@@ -1,7 +1,7 @@
 import LandingLayout from '@/components/LandingLayout'
 
 export const metadata = {
-  title: 'Transcribir Audio y Vídeo a Texto Gratis — Mictoo',
+  title: 'Transcripción IA de Audio y Vídeo a Texto, Gratis — Mictoo',
   description: 'Convierte audio y vídeo a texto gratis. Sin registro. Soporta MP3, MP4, WAV y más de 50 idiomas. Basado en IA.',
   alternates: {
     canonical: 'https://mictoo.com/es',
@@ -15,7 +15,7 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'Mictoo — Transcripción de Audio y Vídeo Gratuita',
+    title: 'Mictoo — Transcripción IA de Audio y Vídeo Gratuita',
     description: 'Sube un archivo de audio o vídeo y obtén la transcripción en segundos.',
     url: 'https://mictoo.com/es',
     siteName: 'Mictoo',
@@ -33,9 +33,9 @@ export const metadata = {
 export default function SpanishPage() {
   return (
     <LandingLayout
-      badge="Gratis · Sin registro · 50+ idiomas"
-      h1={<>Transcribir Audio y Vídeo a Texto<br /><span className="text-brand-600">Gratis y Online</span></>}
-      subtitle="Sube cualquier archivo de audio o vídeo y obtén una transcripción precisa en segundos. Sin cuenta, sin suscripción."
+      badge="IA · Gratis · Sin registro · 50+ idiomas"
+      h1={<>Transcribir Audio y Vídeo a Texto<br /><span className="text-brand-600">con IA, Gratis y Online</span></>}
+      subtitle="Sube cualquier archivo de audio o vídeo y obtén una transcripción IA precisa en segundos. Sin cuenta, sin suscripción."
       defaultLanguage="es"
       features={[
         {

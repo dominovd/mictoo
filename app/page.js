@@ -113,14 +113,14 @@ export default function Home() {
       <section className="bg-white border-b border-slate-100 py-16 px-4 text-center">
         <div className="max-w-2xl mx-auto">
           <span className="inline-block bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">
-            Free · No signup · 50+ languages
+            AI · Free · No signup · 50+ languages
           </span>
           <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4 leading-tight">
             Transcribe Audio &amp; Video<br />
-            <span className="text-brand-600">to Text Online, Free</span>
+            <span className="text-brand-600">to Text with AI, Free</span>
           </h1>
           <p className="text-lg text-slate-500 mb-8">
-            Upload any audio or video file and get an accurate text transcript in seconds.
+            Upload any audio or video file and get an accurate AI-powered text transcript in seconds.
             No account required.
           </p>
         </div>
@@ -182,7 +182,7 @@ export default function Home() {
             {
               icon: '🆓',
               title: '100% free, forever',
-              desc: 'No subscription, no trial. Mictoo is free to use with no limits on the number of files.',
+              desc: 'No subscription, no trial. Mictoo is free to use with no monthly cap and no minute counting.',
             },
             {
               icon: '🔒',

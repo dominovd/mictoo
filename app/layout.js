@@ -4,7 +4,7 @@ import SiteHeader from '@/components/SiteHeader'
 import SiteFooter from '@/components/SiteFooter'
 
 export const metadata = {
-  title: 'Mictoo — Free Audio & Video Transcription Online',
+  title: 'Mictoo — Free AI Audio & Video Transcription Online',
   description:
     'Transcribe audio and video to text instantly with AI. No signup required. Supports MP3, MP4, WAV, M4A and 50+ languages. Free online transcription tool.',
   keywords: [
@@ -23,7 +23,7 @@ export const metadata = {
     google: 'DZsZ0lg5tAyFAYi-4nZBiSRtjTVgtH6F4dtsBCXJSE4',
   },
   openGraph: {
-    title: 'Mictoo — Free Audio & Video Transcription',
+    title: 'Mictoo — Free AI Audio & Video Transcription',
     description: 'Transcribe audio and video to text instantly with AI. No signup required.',
     url: 'https://mictoo.com',
     siteName: 'Mictoo',

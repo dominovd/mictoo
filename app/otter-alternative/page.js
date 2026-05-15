@@ -14,7 +14,7 @@ export default function OtterAlternativePage() {
       subtitle="Otter is famous for live meeting transcription — captions appear as people speak. Mictoo solves the other half of the problem: a recording you already have, transcribed to text in seconds. Free, no signup, OpenAI Whisper."
       competitorName="Otter"
       rows={[
-        { label: 'Free tier',            mictoo: 'Unlimited files, 25 MB each', them: '300 minutes / month, 30 min per recording' },
+        { label: 'Free tier',            mictoo: 'No monthly cap, 25 MB per file', them: '300 minutes / month, 30 min per recording' },
         { label: 'Account required',     mictoo: 'No', them: 'Yes (email signup)' },
         { label: 'Paid plans',            mictoo: 'Free forever',  them: '$8.33 – $30 / user / month' },
         { label: 'Live transcription',    mictoo: 'No',  them: 'Yes (real-time captions)' },

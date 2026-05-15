@@ -36,7 +36,7 @@ export default function WavToTextPage() {
         },
         {
           q: 'Is WAV to text conversion free?',
-          a: 'Yes, completely free. No account required. Upload and transcribe as many WAV files as you need.',
+          a: 'Yes, completely free. No account required. Upload your WAV files — no monthly minute quota, no signup.',
         },
         {
           q: 'What is the maximum WAV file size?',

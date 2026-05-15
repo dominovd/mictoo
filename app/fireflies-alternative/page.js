@@ -14,7 +14,7 @@ export default function FirefliesAlternativePage() {
       subtitle="Fireflies joins your meetings as an AI bot to record and transcribe in real time. Mictoo works the opposite way — drop the recording you already have and get a transcript. No bot, no calendar integration, no signup."
       competitorName="Fireflies"
       rows={[
-        { label: 'Free tier',            mictoo: 'Unlimited files, 25 MB each', them: '800 minutes / user / month' },
+        { label: 'Free tier',            mictoo: 'No monthly cap, 25 MB per file', them: '800 minutes / user / month' },
         { label: 'Account required',     mictoo: 'No', them: 'Yes (email + OAuth)' },
         { label: 'Paid plans',            mictoo: 'Free forever',  them: '$10–19 / user / month' },
         { label: 'Recording method',     mictoo: 'Upload recording yourself', them: 'Bot joins live meeting' },
