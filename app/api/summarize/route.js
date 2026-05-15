@@ -6,25 +6,58 @@ export const maxDuration = 30
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
 
-// Friendly language names for the system prompt (so the model writes
-// output in the user's UI language, not necessarily the spoken language).
+// Map both ISO codes (from user picker) and Whisper's full-name responses
+// to display names. Whisper returns lowercase full names like "ukrainian",
+// "english", "portuguese"; the user picker uses ISO codes like "en", "uk".
+// We accept either form and normalize to the English display name.
 const LANG_NAMES = {
-  en: 'English',
-  fr: 'French',
-  de: 'German',
-  es: 'Spanish',
-  ru: 'Russian',
+  en: 'English',           english: 'English',
+  fr: 'French',            french: 'French',
+  de: 'German',            german: 'German',
+  es: 'Spanish',           spanish: 'Spanish',
+  ru: 'Russian',           russian: 'Russian',
+  uk: 'Ukrainian',         ukrainian: 'Ukrainian',
+  pt: 'Portuguese',        portuguese: 'Portuguese',
+  it: 'Italian',           italian: 'Italian',
+  nl: 'Dutch',             dutch: 'Dutch',
+  pl: 'Polish',            polish: 'Polish',
+  tr: 'Turkish',           turkish: 'Turkish',
+  ja: 'Japanese',          japanese: 'Japanese',
+  ko: 'Korean',            korean: 'Korean',
+  zh: 'Chinese',           chinese: 'Chinese',
+  ar: 'Arabic',            arabic: 'Arabic',
+  hi: 'Hindi',             hindi: 'Hindi',
+  cs: 'Czech',             czech: 'Czech',
+  sv: 'Swedish',           swedish: 'Swedish',
+  fi: 'Finnish',           finnish: 'Finnish',
+  no: 'Norwegian',         norwegian: 'Norwegian',
+  da: 'Danish',            danish: 'Danish',
+  he: 'Hebrew',            hebrew: 'Hebrew',
+  id: 'Indonesian',        indonesian: 'Indonesian',
+  th: 'Thai',              thai: 'Thai',
+  vi: 'Vietnamese',        vietnamese: 'Vietnamese',
+  el: 'Greek',             greek: 'Greek',
+  hu: 'Hungarian',         hungarian: 'Hungarian',
+  ro: 'Romanian',          romanian: 'Romanian',
+  ms: 'Malay',             malay: 'Malay',
+}
+
+function resolveLanguageName(value) {
+  if (!value || typeof value !== 'string') return null
+  const key = value.toLowerCase().trim()
+  if (LANG_NAMES[key]) return LANG_NAMES[key]
+  // Unknown — fall back to capitalized form so the model still has a hint.
+  return key.charAt(0).toUpperCase() + key.slice(1)
 }
 
 // Hard cap on the transcript we send to the model. gpt-4o-mini takes 128k
 // context, but charging stays cheap and replies stay focused if we trim.
 const MAX_CHARS = 40000
 
-function buildPrompt(transcript, locale) {
-  const lang = LANG_NAMES[locale] || 'English'
+function buildPrompt(transcript, targetLanguageName) {
   return `You analyze transcripts of recorded audio and produce a brief, structured summary.
 
-Always write your output in ${lang}, regardless of the transcript's spoken language.
+Write your output in ${targetLanguageName}. Use natural, idiomatic ${targetLanguageName}.
 
 Output strictly valid JSON with these fields:
 - "summary": a 2-3 sentence overview. No introductory phrases like "This transcript is about". Just the substance.
@@ -53,14 +86,20 @@ export async function POST(request) {
       )
     }
 
-    const locale = typeof body.locale === 'string' && LANG_NAMES[body.locale] ? body.locale : 'en'
+    // Priority: explicit spokenLanguage (from Whisper or user picker) → UI locale → English.
+    // We prefer spoken language so a Ukrainian recording gets a Ukrainian summary
+    // even when the visitor is browsing the EN locale of the site.
+    const targetLanguageName =
+      resolveLanguageName(body.spokenLanguage) ||
+      resolveLanguageName(body.locale) ||
+      'English'
 
     const completion = await openai.chat.completions.create({
       model: 'gpt-4o-mini',
       response_format: { type: 'json_object' },
       messages: [
         { role: 'system', content: 'You are a precise summarizer that outputs only valid JSON.' },
-        { role: 'user', content: buildPrompt(transcript, locale) },
+        { role: 'user', content: buildPrompt(transcript, targetLanguageName) },
       ],
       temperature: 0.3,
     })

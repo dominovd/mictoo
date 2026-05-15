@@ -103,6 +103,10 @@ export async function POST(request) {
       return NextResponse.json({
         text: transcription.text,
         segments: transcription.segments ?? [],
+        // Spoken language as detected by Whisper (e.g. "ukrainian", "english").
+        // Used downstream by /api/summarize so the summary is written in the
+        // same language as the recording, not the UI locale.
+        language: transcription.language ?? null,
       })
     } catch (err) {
       // Inner catch — file metadata is available for richer logs.

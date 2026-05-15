@@ -73,6 +73,11 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   const [summaryData, setSummaryData] = useState(null)
   const [summaryError, setSummaryError] = useState('')
 
+  // Spoken language as detected by Whisper (e.g. "ukrainian", "english").
+  // Used by the summarize call so the AI summary matches the recording's
+  // language rather than the UI locale.
+  const [spokenLanguage, setSpokenLanguage] = useState(null)
+
   const fileRef = useRef(null)
 
   const reset = () => {
@@ -86,11 +91,15 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     setSummaryStatus('idle')
     setSummaryData(null)
     setSummaryError('')
+    setSpokenLanguage(null)
   }
 
   // Kicks off the /api/summarize call. Pulled out so the Retry button in
   // SummaryCard can re-trigger without re-running the whole transcription.
-  const generateSummary = useCallback(async (transcriptText) => {
+  // spokenLanguage comes from Whisper's detected language (e.g. "ukrainian"),
+  // so the summary is written in the recording's language by default rather
+  // than the UI locale — that's almost always what the user wants.
+  const generateSummary = useCallback(async (transcriptText, spokenLanguage) => {
     if (!transcriptText || transcriptText.length < 30) return
     setSummaryStatus('loading')
     setSummaryError('')
@@ -98,7 +107,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
       const res = await fetch('/api/summarize', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ transcript: transcriptText, locale }),
+        body: JSON.stringify({ transcript: transcriptText, spokenLanguage, locale }),
       })
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))
@@ -150,14 +159,17 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
       setProgress(100)
       const segs = data.segments ?? []
       const finalText = segs.length > 0 ? toParagraphs(segs) : data.text
+      const detectedLang = data.language || null
       // Use paragraph-formatted text if segments are available, else raw text
       setTranscript(finalText)
       setSegments(segs)
+      setSpokenLanguage(detectedLang)
       setState('done')
 
       // Kick off the AI summary in parallel — doesn't block the transcript UI.
-      // Errors are caught inside generateSummary and surfaced via SummaryCard.
-      generateSummary(finalText)
+      // Pass the detected spoken language so the summary is in the same
+      // language as the recording (a Ukrainian audio → Ukrainian summary).
+      generateSummary(finalText, detectedLang)
     } catch (err) {
       clearInterval(ticker)
       setError(err.message)
@@ -274,7 +286,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
           status={summaryStatus}
           data={summaryData}
           error={summaryError}
-          onRetry={() => generateSummary(transcript)}
+          onRetry={() => generateSummary(transcript, spokenLanguage)}
         />
 
         <textarea
