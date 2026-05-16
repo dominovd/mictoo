@@ -23,6 +23,9 @@ export const metadata = {
   verification: {
     google: 'DZsZ0lg5tAyFAYi-4nZBiSRtjTVgtH6F4dtsBCXJSE4',
   },
+  other: {
+    'google-adsense-account': 'ca-pub-8760387849932146',
+  },
   openGraph: {
     title: 'Mictoo — Free AI Audio & Video Transcription',
     description: 'Transcribe audio and video to text instantly with AI. No signup required.',
