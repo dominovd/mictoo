@@ -49,15 +49,27 @@ async function transcribeAudio(file, language) {
       if (err?.status === 400) throw err
       // Everything else (429 quota, 5xx, network): try OpenAI if configured.
       if (!openai) throw err
+      // Tagged "[transcribe] fallback:" so we can filter Vercel logs for it
+      // and see (a) how often Groq quota/5xx pushes us to OpenAI and
+      // (b) whether the recovery succeeded. Pair of warn/error lines per event.
       console.warn(
-        '[transcribe] Groq failed, falling back to OpenAI',
-        err?.status,
-        err?.message
+        `[transcribe] fallback: groq ${err?.status ?? 'error'} → openai`,
+        { code: err?.code, message: err?.message }
       )
-      return await openai.audio.transcriptions.create({
-        ...baseParams,
-        model: 'whisper-1',
-      })
+      try {
+        const result = await openai.audio.transcriptions.create({
+          ...baseParams,
+          model: 'whisper-1',
+        })
+        console.warn('[transcribe] fallback: openai succeeded')
+        return result
+      } catch (fallbackErr) {
+        console.error(
+          `[transcribe] fallback: openai also failed ${fallbackErr?.status ?? 'error'}`,
+          { code: fallbackErr?.code, message: fallbackErr?.message }
+        )
+        throw fallbackErr
+      }
     }
   }
 
