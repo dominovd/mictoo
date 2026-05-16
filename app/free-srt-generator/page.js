@@ -15,6 +15,7 @@ export const metadata = {
       'pt': 'https://mictoo.com/pt/free-srt-generator',
       'pl': 'https://mictoo.com/pl/free-srt-generator',
       'ja': 'https://mictoo.com/ja/free-srt-generator',
+      'ko': 'https://mictoo.com/ko/free-srt-generator',
       'x-default': 'https://mictoo.com/free-srt-generator',
     },
   },

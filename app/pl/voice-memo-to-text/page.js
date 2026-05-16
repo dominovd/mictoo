@@ -10,6 +10,7 @@ const LANGS = {
   'pt': 'https://mictoo.com/pt/voice-memo-to-text',
   'pl': 'https://mictoo.com/pl/voice-memo-to-text',
   'ja': 'https://mictoo.com/ja/voice-memo-to-text',
+  'ko': 'https://mictoo.com/ko/voice-memo-to-text',
   'x-default': 'https://mictoo.com/voice-memo-to-text',
 }
 

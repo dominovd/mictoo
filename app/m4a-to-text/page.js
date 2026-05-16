@@ -15,6 +15,7 @@ export const metadata = {
       'pt': 'https://mictoo.com/pt/m4a-to-text',
       'pl': 'https://mictoo.com/pl/m4a-to-text',
       'ja': 'https://mictoo.com/ja/m4a-to-text',
+      'ko': 'https://mictoo.com/ko/m4a-to-text',
       'x-default': 'https://mictoo.com/m4a-to-text',
     },
   },

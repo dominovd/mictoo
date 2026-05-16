@@ -15,6 +15,7 @@ export const metadata = {
       'pt': 'https://mictoo.com/pt/dictation-to-text',
       'pl': 'https://mictoo.com/pl/dictation-to-text',
       'ja': 'https://mictoo.com/ja/dictation-to-text',
+      'ko': 'https://mictoo.com/ko/dictation-to-text',
       'x-default': 'https://mictoo.com/dictation-to-text',
     },
   },

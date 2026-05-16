@@ -10,6 +10,7 @@ const LANGS = {
   'pt': 'https://mictoo.com/pt/flac-to-text',
   'pl': 'https://mictoo.com/pl/flac-to-text',
   'ja': 'https://mictoo.com/ja/flac-to-text',
+  'ko': 'https://mictoo.com/ko/flac-to-text',
   'x-default': 'https://mictoo.com/flac-to-text',
 }
 

@@ -8,6 +8,7 @@ const LANGS = {
   'pt': 'https://mictoo.com/pt/how-to-compress-audio',
   'pl': 'https://mictoo.com/pl/how-to-compress-audio',
   'ja': 'https://mictoo.com/ja/how-to-compress-audio',
+  'ko': 'https://mictoo.com/ko/how-to-compress-audio',
   'x-default': 'https://mictoo.com/how-to-compress-audio',
 }
 

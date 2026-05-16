@@ -10,6 +10,7 @@ const LANGS = {
   'pt': 'https://mictoo.com/pt/otter-alternative',
   'pl': 'https://mictoo.com/pl/otter-alternative',
   'ja': 'https://mictoo.com/ja/otter-alternative',
+  'ko': 'https://mictoo.com/ko/otter-alternative',
   'x-default': 'https://mictoo.com/otter-alternative',
 }
 

@@ -15,6 +15,7 @@ export const metadata = {
       'pt': 'https://mictoo.com/pt/wav-to-text',
       'pl': 'https://mictoo.com/pl/wav-to-text',
       'ja': 'https://mictoo.com/ja/wav-to-text',
+      'ko': 'https://mictoo.com/ko/wav-to-text',
       'x-default': 'https://mictoo.com/wav-to-text',
     },
   },

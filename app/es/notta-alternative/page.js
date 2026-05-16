@@ -10,6 +10,7 @@ const LANGS = {
   'pt': 'https://mictoo.com/pt/notta-alternative',
   'pl': 'https://mictoo.com/pl/notta-alternative',
   'ja': 'https://mictoo.com/ja/notta-alternative',
+  'ko': 'https://mictoo.com/ko/notta-alternative',
   'x-default': 'https://mictoo.com/notta-alternative',
 }
 

@@ -15,6 +15,7 @@ export const metadata = {
       'pt': 'https://mictoo.com/pt/google-meet-transcription',
       'pl': 'https://mictoo.com/pl/google-meet-transcription',
       'ja': 'https://mictoo.com/ja/google-meet-transcription',
+      'ko': 'https://mictoo.com/ko/google-meet-transcription',
       'x-default': 'https://mictoo.com/google-meet-transcription',
     },
   },

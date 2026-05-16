@@ -10,6 +10,7 @@ const LANGS = {
   'pt': 'https://mictoo.com/pt/aac-to-text',
   'pl': 'https://mictoo.com/pl/aac-to-text',
   'ja': 'https://mictoo.com/ja/aac-to-text',
+  'ko': 'https://mictoo.com/ko/aac-to-text',
   'x-default': 'https://mictoo.com/aac-to-text',
 }
 

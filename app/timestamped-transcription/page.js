@@ -15,6 +15,7 @@ export const metadata = {
       'pt': 'https://mictoo.com/pt/timestamped-transcription',
       'pl': 'https://mictoo.com/pl/timestamped-transcription',
       'ja': 'https://mictoo.com/ja/timestamped-transcription',
+      'ko': 'https://mictoo.com/ko/timestamped-transcription',
       'x-default': 'https://mictoo.com/timestamped-transcription',
     },
   },

@@ -15,6 +15,7 @@ export const metadata = {
       'pt': 'https://mictoo.com/pt/interview-transcription',
       'pl': 'https://mictoo.com/pl/interview-transcription',
       'ja': 'https://mictoo.com/ja/interview-transcription',
+      'ko': 'https://mictoo.com/ko/interview-transcription',
       'x-default': 'https://mictoo.com/interview-transcription',
     },
   },
