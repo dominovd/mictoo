@@ -9,6 +9,7 @@ const LANGS = {
   'it': 'https://mictoo.com/it/youtube-to-text',
   'pt': 'https://mictoo.com/pt/youtube-to-text',
   'pl': 'https://mictoo.com/pl/youtube-to-text',
+  'ja': 'https://mictoo.com/ja/youtube-to-text',
   'x-default': 'https://mictoo.com/youtube-to-text',
 }
 

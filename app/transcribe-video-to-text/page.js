@@ -14,6 +14,7 @@ export const metadata = {
       'it': 'https://mictoo.com/it/transcribe-video-to-text',
       'pt': 'https://mictoo.com/pt/transcribe-video-to-text',
       'pl': 'https://mictoo.com/pl/transcribe-video-to-text',
+      'ja': 'https://mictoo.com/ja/transcribe-video-to-text',
       'x-default': 'https://mictoo.com/transcribe-video-to-text',
     },
   },

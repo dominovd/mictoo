@@ -14,6 +14,7 @@ export const metadata = {
       'it': 'https://mictoo.com/it',
       'pt': 'https://mictoo.com/pt',
       'pl': 'https://mictoo.com/pl',
+      'ja': 'https://mictoo.com/ja',
       'x-default': 'https://mictoo.com',
     },
   },

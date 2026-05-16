@@ -9,6 +9,7 @@ const LOCALE_ALTERNATES = {
   'it': 'https://mictoo.com/it/privacy',
   'pt': 'https://mictoo.com/pt/privacy',
   'pl': 'https://mictoo.com/pl/privacy',
+  'ja': 'https://mictoo.com/ja/privacy',
   'x-default': 'https://mictoo.com/privacy',
 }
 

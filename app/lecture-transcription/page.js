@@ -14,6 +14,7 @@ export const metadata = {
       'it': 'https://mictoo.com/it/lecture-transcription',
       'pt': 'https://mictoo.com/pt/lecture-transcription',
       'pl': 'https://mictoo.com/pl/lecture-transcription',
+      'ja': 'https://mictoo.com/ja/lecture-transcription',
       'x-default': 'https://mictoo.com/lecture-transcription',
     },
   },

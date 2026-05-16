@@ -14,6 +14,7 @@ export const metadata = {
       'it': 'https://mictoo.com/it/webm-to-text',
       'pt': 'https://mictoo.com/pt/webm-to-text',
       'pl': 'https://mictoo.com/pl/webm-to-text',
+      'ja': 'https://mictoo.com/ja/webm-to-text',
       'x-default': 'https://mictoo.com/webm-to-text',
     },
   },

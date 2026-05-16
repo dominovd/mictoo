@@ -9,6 +9,7 @@ const LANGS = {
   'it': 'https://mictoo.com/it/zoom-transcription',
   'pt': 'https://mictoo.com/pt/zoom-transcription',
   'pl': 'https://mictoo.com/pl/zoom-transcription',
+  'ja': 'https://mictoo.com/ja/zoom-transcription',
   'x-default': 'https://mictoo.com/zoom-transcription',
 }
 

@@ -14,6 +14,7 @@ export const metadata = {
       'it': 'https://mictoo.com/it/transcribe-mp3-to-text',
       'pt': 'https://mictoo.com/pt/transcribe-mp3-to-text',
       'pl': 'https://mictoo.com/pl/transcribe-mp3-to-text',
+      'ja': 'https://mictoo.com/ja/transcribe-mp3-to-text',
       'x-default': 'https://mictoo.com/transcribe-mp3-to-text',
     },
   },

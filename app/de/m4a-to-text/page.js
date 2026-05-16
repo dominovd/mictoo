@@ -9,6 +9,7 @@ const LANGS = {
   'it': 'https://mictoo.com/it/m4a-to-text',
   'pt': 'https://mictoo.com/pt/m4a-to-text',
   'pl': 'https://mictoo.com/pl/m4a-to-text',
+  'ja': 'https://mictoo.com/ja/m4a-to-text',
   'x-default': 'https://mictoo.com/m4a-to-text',
 }
 

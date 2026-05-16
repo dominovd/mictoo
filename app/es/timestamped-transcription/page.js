@@ -9,6 +9,7 @@ const LANGS = {
   'it': 'https://mictoo.com/it/timestamped-transcription',
   'pt': 'https://mictoo.com/pt/timestamped-transcription',
   'pl': 'https://mictoo.com/pl/timestamped-transcription',
+  'ja': 'https://mictoo.com/ja/timestamped-transcription',
   'x-default': 'https://mictoo.com/timestamped-transcription',
 }
 
