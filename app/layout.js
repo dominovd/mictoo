@@ -2,6 +2,7 @@ import './globals.css'
 import { Analytics } from '@vercel/analytics/react'
 import SiteHeader from '@/components/SiteHeader'
 import SiteFooter from '@/components/SiteFooter'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 export const metadata = {
   title: 'Mictoo — Free AI Audio & Video Transcription Online',
@@ -62,6 +63,7 @@ export default function RootLayout({ children }) {
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <Analytics />
+        <GoogleAnalytics />
         <SiteFooter />
       </body>
     </html>
