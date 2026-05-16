@@ -7,6 +7,7 @@ const LANGS = {
   'es': 'https://mictoo.com/es/dictation-to-text',
   'ru': 'https://mictoo.com/ru/dictation-to-text',
   'it': 'https://mictoo.com/it/dictation-to-text',
+  'pt': 'https://mictoo.com/pt/dictation-to-text',
   'x-default': 'https://mictoo.com/dictation-to-text',
 }
 

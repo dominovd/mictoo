@@ -7,6 +7,7 @@ const LOCALE_ALTERNATES = {
   'es': 'https://mictoo.com/es/contact',
   'ru': 'https://mictoo.com/ru/contact',
   'it': 'https://mictoo.com/it/contact',
+  'pt': 'https://mictoo.com/pt/contact',
   'x-default': 'https://mictoo.com/contact',
 }
 

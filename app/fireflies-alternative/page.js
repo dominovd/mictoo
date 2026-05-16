@@ -12,6 +12,7 @@ export const metadata = {
       'es': 'https://mictoo.com/es/fireflies-alternative',
       'ru': 'https://mictoo.com/ru/fireflies-alternative',
       'it': 'https://mictoo.com/it/fireflies-alternative',
+      'pt': 'https://mictoo.com/pt/fireflies-alternative',
       'x-default': 'https://mictoo.com/fireflies-alternative',
     },
   },

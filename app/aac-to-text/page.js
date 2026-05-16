@@ -12,6 +12,7 @@ export const metadata = {
       'es': 'https://mictoo.com/es/aac-to-text',
       'ru': 'https://mictoo.com/ru/aac-to-text',
       'it': 'https://mictoo.com/it/aac-to-text',
+      'pt': 'https://mictoo.com/pt/aac-to-text',
       'x-default': 'https://mictoo.com/aac-to-text',
     },
   },

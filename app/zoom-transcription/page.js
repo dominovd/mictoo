@@ -12,6 +12,7 @@ export const metadata = {
       'es': 'https://mictoo.com/es/zoom-transcription',
       'ru': 'https://mictoo.com/ru/zoom-transcription',
       'it': 'https://mictoo.com/it/zoom-transcription',
+      'pt': 'https://mictoo.com/pt/zoom-transcription',
       'x-default': 'https://mictoo.com/zoom-transcription',
     },
   },

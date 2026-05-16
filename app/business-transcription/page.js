@@ -12,6 +12,7 @@ export const metadata = {
       'es': 'https://mictoo.com/es/business-transcription',
       'ru': 'https://mictoo.com/ru/business-transcription',
       'it': 'https://mictoo.com/it/business-transcription',
+      'pt': 'https://mictoo.com/pt/business-transcription',
       'x-default': 'https://mictoo.com/business-transcription',
     },
   },

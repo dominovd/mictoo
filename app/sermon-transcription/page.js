@@ -12,6 +12,7 @@ export const metadata = {
       'es': 'https://mictoo.com/es/sermon-transcription',
       'ru': 'https://mictoo.com/ru/sermon-transcription',
       'it': 'https://mictoo.com/it/sermon-transcription',
+      'pt': 'https://mictoo.com/pt/sermon-transcription',
       'x-default': 'https://mictoo.com/sermon-transcription',
     },
   },

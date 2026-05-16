@@ -7,6 +7,7 @@ const LANGS = {
   'es': 'https://mictoo.com/es/podcast-transcription',
   'ru': 'https://mictoo.com/ru/podcast-transcription',
   'it': 'https://mictoo.com/it/podcast-transcription',
+  'pt': 'https://mictoo.com/pt/podcast-transcription',
   'x-default': 'https://mictoo.com/podcast-transcription',
 }
 

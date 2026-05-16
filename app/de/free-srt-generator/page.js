@@ -7,6 +7,7 @@ const LANGS = {
   'es': 'https://mictoo.com/es/free-srt-generator',
   'ru': 'https://mictoo.com/ru/free-srt-generator',
   'it': 'https://mictoo.com/it/free-srt-generator',
+  'pt': 'https://mictoo.com/pt/free-srt-generator',
   'x-default': 'https://mictoo.com/free-srt-generator',
 }
 

@@ -7,6 +7,7 @@ const LANGS = {
   'es': 'https://mictoo.com/es/descript-alternative',
   'ru': 'https://mictoo.com/ru/descript-alternative',
   'it': 'https://mictoo.com/it/descript-alternative',
+  'pt': 'https://mictoo.com/pt/descript-alternative',
   'x-default': 'https://mictoo.com/descript-alternative',
 }
 

@@ -12,6 +12,7 @@ export const metadata = {
       'es': 'https://mictoo.com/es/meeting-transcription',
       'ru': 'https://mictoo.com/ru/meeting-transcription',
       'it': 'https://mictoo.com/it/meeting-transcription',
+      'pt': 'https://mictoo.com/pt/meeting-transcription',
       'x-default': 'https://mictoo.com/meeting-transcription',
     },
   },
