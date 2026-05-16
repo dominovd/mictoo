@@ -8,6 +8,7 @@ const LANGS = {
   'ru': 'https://mictoo.com/ru/transcribe-mp3-to-text',
   'it': 'https://mictoo.com/it/transcribe-mp3-to-text',
   'pt': 'https://mictoo.com/pt/transcribe-mp3-to-text',
+  'pl': 'https://mictoo.com/pl/transcribe-mp3-to-text',
   'x-default': 'https://mictoo.com/transcribe-mp3-to-text',
 }
 

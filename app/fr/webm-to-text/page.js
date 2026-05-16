@@ -8,6 +8,7 @@ const LANGS = {
   'ru': 'https://mictoo.com/ru/webm-to-text',
   'it': 'https://mictoo.com/it/webm-to-text',
   'pt': 'https://mictoo.com/pt/webm-to-text',
+  'pl': 'https://mictoo.com/pl/webm-to-text',
   'x-default': 'https://mictoo.com/webm-to-text',
 }
 

@@ -8,6 +8,7 @@ const LANGS = {
   'ru': 'https://mictoo.com/ru/google-meet-transcription',
   'it': 'https://mictoo.com/it/google-meet-transcription',
   'pt': 'https://mictoo.com/pt/google-meet-transcription',
+  'pl': 'https://mictoo.com/pl/google-meet-transcription',
   'x-default': 'https://mictoo.com/google-meet-transcription',
 }
 

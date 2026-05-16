@@ -13,6 +13,7 @@ export const metadata = {
       'ru': 'https://mictoo.com/ru/fireflies-alternative',
       'it': 'https://mictoo.com/it/fireflies-alternative',
       'pt': 'https://mictoo.com/pt/fireflies-alternative',
+      'pl': 'https://mictoo.com/pl/fireflies-alternative',
       'x-default': 'https://mictoo.com/fireflies-alternative',
     },
   },

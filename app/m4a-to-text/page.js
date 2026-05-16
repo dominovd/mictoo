@@ -13,6 +13,7 @@ export const metadata = {
       'ru': 'https://mictoo.com/ru/m4a-to-text',
       'it': 'https://mictoo.com/it/m4a-to-text',
       'pt': 'https://mictoo.com/pt/m4a-to-text',
+      'pl': 'https://mictoo.com/pl/m4a-to-text',
       'x-default': 'https://mictoo.com/m4a-to-text',
     },
   },

@@ -8,6 +8,7 @@ const LANGS = {
   'ru': 'https://mictoo.com/ru/ogg-to-text',
   'it': 'https://mictoo.com/it/ogg-to-text',
   'pt': 'https://mictoo.com/pt/ogg-to-text',
+  'pl': 'https://mictoo.com/pl/ogg-to-text',
   'x-default': 'https://mictoo.com/ogg-to-text',
 }
 

@@ -13,6 +13,7 @@ export const metadata = {
       'ru': 'https://mictoo.com/ru/timestamped-transcription',
       'it': 'https://mictoo.com/it/timestamped-transcription',
       'pt': 'https://mictoo.com/pt/timestamped-transcription',
+      'pl': 'https://mictoo.com/pl/timestamped-transcription',
       'x-default': 'https://mictoo.com/timestamped-transcription',
     },
   },

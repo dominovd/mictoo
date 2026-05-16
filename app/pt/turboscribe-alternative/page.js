@@ -8,6 +8,7 @@ const LANGS = {
   'ru': 'https://mictoo.com/ru/turboscribe-alternative',
   'it': 'https://mictoo.com/it/turboscribe-alternative',
   'pt': 'https://mictoo.com/pt/turboscribe-alternative',
+  'pl': 'https://mictoo.com/pl/turboscribe-alternative',
   'x-default': 'https://mictoo.com/turboscribe-alternative',
 }
 
