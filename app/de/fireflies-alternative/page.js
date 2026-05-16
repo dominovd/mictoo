@@ -6,6 +6,7 @@ const LANGS = {
   'de': 'https://mictoo.com/de/fireflies-alternative',
   'es': 'https://mictoo.com/es/fireflies-alternative',
   'ru': 'https://mictoo.com/ru/fireflies-alternative',
+  'it': 'https://mictoo.com/it/fireflies-alternative',
   'x-default': 'https://mictoo.com/fireflies-alternative',
 }
 

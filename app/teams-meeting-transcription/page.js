@@ -11,6 +11,7 @@ export const metadata = {
       'de': 'https://mictoo.com/de/teams-meeting-transcription',
       'es': 'https://mictoo.com/es/teams-meeting-transcription',
       'ru': 'https://mictoo.com/ru/teams-meeting-transcription',
+      'it': 'https://mictoo.com/it/teams-meeting-transcription',
       'x-default': 'https://mictoo.com/teams-meeting-transcription',
     },
   },

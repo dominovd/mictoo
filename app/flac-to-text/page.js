@@ -11,6 +11,7 @@ export const metadata = {
       'de': 'https://mictoo.com/de/flac-to-text',
       'es': 'https://mictoo.com/es/flac-to-text',
       'ru': 'https://mictoo.com/ru/flac-to-text',
+      'it': 'https://mictoo.com/it/flac-to-text',
       'x-default': 'https://mictoo.com/flac-to-text',
     },
   },

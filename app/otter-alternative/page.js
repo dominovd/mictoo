@@ -11,6 +11,7 @@ export const metadata = {
       'de': 'https://mictoo.com/de/otter-alternative',
       'es': 'https://mictoo.com/es/otter-alternative',
       'ru': 'https://mictoo.com/ru/otter-alternative',
+      'it': 'https://mictoo.com/it/otter-alternative',
       'x-default': 'https://mictoo.com/otter-alternative',
     },
   },

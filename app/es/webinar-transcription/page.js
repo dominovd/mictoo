@@ -6,6 +6,7 @@ const LANGS = {
   'de': 'https://mictoo.com/de/webinar-transcription',
   'es': 'https://mictoo.com/es/webinar-transcription',
   'ru': 'https://mictoo.com/ru/webinar-transcription',
+  'it': 'https://mictoo.com/it/webinar-transcription',
   'x-default': 'https://mictoo.com/webinar-transcription',
 }
 

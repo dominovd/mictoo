@@ -6,6 +6,7 @@ const LANGS = {
   'de': 'https://mictoo.com/de/sermon-transcription',
   'es': 'https://mictoo.com/es/sermon-transcription',
   'ru': 'https://mictoo.com/ru/sermon-transcription',
+  'it': 'https://mictoo.com/it/sermon-transcription',
   'x-default': 'https://mictoo.com/sermon-transcription',
 }
 

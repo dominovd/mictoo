@@ -6,6 +6,7 @@ const LOCALE_ALTERNATES = {
   'de': 'https://mictoo.com/de/terms',
   'es': 'https://mictoo.com/es/terms',
   'ru': 'https://mictoo.com/ru/terms',
+  'it': 'https://mictoo.com/it/terms',
   'x-default': 'https://mictoo.com/terms',
 }
 

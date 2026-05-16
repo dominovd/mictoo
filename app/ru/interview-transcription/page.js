@@ -6,6 +6,7 @@ const LANGS = {
   'de': 'https://mictoo.com/de/interview-transcription',
   'es': 'https://mictoo.com/es/interview-transcription',
   'ru': 'https://mictoo.com/ru/interview-transcription',
+  'it': 'https://mictoo.com/it/interview-transcription',
   'x-default': 'https://mictoo.com/interview-transcription',
 }
 

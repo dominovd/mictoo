@@ -11,6 +11,7 @@ export const metadata = {
       'de': 'https://mictoo.com/de/transcribe-audio-to-text',
       'es': 'https://mictoo.com/es/transcribe-audio-to-text',
       'ru': 'https://mictoo.com/ru/transcribe-audio-to-text',
+      'it': 'https://mictoo.com/it/transcribe-audio-to-text',
       'x-default': 'https://mictoo.com/transcribe-audio-to-text',
     },
   },

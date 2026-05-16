@@ -11,6 +11,7 @@ export const metadata = {
       'de': 'https://mictoo.com/de/podcast-transcription',
       'es': 'https://mictoo.com/es/podcast-transcription',
       'ru': 'https://mictoo.com/ru/podcast-transcription',
+      'it': 'https://mictoo.com/it/podcast-transcription',
       'x-default': 'https://mictoo.com/podcast-transcription',
     },
   },

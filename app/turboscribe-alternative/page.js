@@ -11,6 +11,7 @@ export const metadata = {
       'de': 'https://mictoo.com/de/turboscribe-alternative',
       'es': 'https://mictoo.com/es/turboscribe-alternative',
       'ru': 'https://mictoo.com/ru/turboscribe-alternative',
+      'it': 'https://mictoo.com/it/turboscribe-alternative',
       'x-default': 'https://mictoo.com/turboscribe-alternative',
     },
   },

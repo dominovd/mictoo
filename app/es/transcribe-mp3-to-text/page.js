@@ -6,6 +6,7 @@ const LANGS = {
   'de': 'https://mictoo.com/de/transcribe-mp3-to-text',
   'es': 'https://mictoo.com/es/transcribe-mp3-to-text',
   'ru': 'https://mictoo.com/ru/transcribe-mp3-to-text',
+  'it': 'https://mictoo.com/it/transcribe-mp3-to-text',
   'x-default': 'https://mictoo.com/transcribe-mp3-to-text',
 }
 

@@ -11,6 +11,7 @@ export const metadata = {
       'de': 'https://mictoo.com/de/wav-to-text',
       'es': 'https://mictoo.com/es/wav-to-text',
       'ru': 'https://mictoo.com/ru/wav-to-text',
+      'it': 'https://mictoo.com/it/wav-to-text',
       'x-default': 'https://mictoo.com/wav-to-text',
     },
   },

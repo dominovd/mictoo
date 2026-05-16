@@ -11,6 +11,7 @@ export const metadata = {
       'de': 'https://mictoo.com/de/notta-alternative',
       'es': 'https://mictoo.com/es/notta-alternative',
       'ru': 'https://mictoo.com/ru/notta-alternative',
+      'it': 'https://mictoo.com/it/notta-alternative',
       'x-default': 'https://mictoo.com/notta-alternative',
     },
   },

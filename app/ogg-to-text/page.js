@@ -11,6 +11,7 @@ export const metadata = {
       'de': 'https://mictoo.com/de/ogg-to-text',
       'es': 'https://mictoo.com/es/ogg-to-text',
       'ru': 'https://mictoo.com/ru/ogg-to-text',
+      'it': 'https://mictoo.com/it/ogg-to-text',
       'x-default': 'https://mictoo.com/ogg-to-text',
     },
   },

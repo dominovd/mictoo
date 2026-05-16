@@ -6,6 +6,7 @@ const LANGS = {
   'de': 'https://mictoo.com/de/voice-memo-to-text',
   'es': 'https://mictoo.com/es/voice-memo-to-text',
   'ru': 'https://mictoo.com/ru/voice-memo-to-text',
+  'it': 'https://mictoo.com/it/voice-memo-to-text',
   'x-default': 'https://mictoo.com/voice-memo-to-text',
 }
 
