@@ -493,8 +493,13 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   }
 
   // When a file completes (state='done'), check whether there are more in
-  // the batch and start the next one after a short pause that lets the user
-  // see this file's result first.
+  // the batch and start the next one after a pause. The 30-second wait is
+  // deliberately generous: it lets the user read the result AND gives Groq
+  // ~half a per-minute window to rotate slots before we ask for another
+  // sync transcription. That way batched uploads from authed users don't
+  // crowd anonymous users out of the sync path.
+  const BATCH_INTERVAL_MS = 30_000
+
   useEffect(() => {
     if (state !== 'done') return
     if (batchQueue.length === 0) return
@@ -520,7 +525,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
       setErrorOffersSignIn(false)
       // Kick off the next file.
       processFile(next)
-    }, 4000) // 4-second glance window
+    }, BATCH_INTERVAL_MS)
     return () => clearTimeout(timer)
   }, [state, batchQueue, processFile])
 
@@ -754,7 +759,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
             </p>
             {batchQueue.length > 0 && (
               <p className="text-xs text-brand-600 mt-1">
-                Next file starts in a few seconds — {batchQueue.length} more to go.
+                Next file starts in ~30 seconds — {batchQueue.length} more to go.
               </p>
             )}
           </div>
