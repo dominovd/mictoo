@@ -3,6 +3,7 @@ import OpenAI from 'openai'
 import { del } from '@vercel/blob'
 import { claimNextJob, setJobResult, setJobError, requeueJob } from '@/lib/queue'
 import { bumpTranscriptionCount } from '@/lib/stats'
+import { createServiceClient } from '@/lib/supabase/server'
 
 export const runtime = 'nodejs'
 // Same ceiling as /api/transcribe — a 25 MB file may take up to ~5 min on the
@@ -73,7 +74,7 @@ export async function GET(request) {
     return NextResponse.json({ status: 'idle' })
   }
 
-  const { jobId, blobUrl, language, fileName, fileType, fileSize, attemptCount } = job
+  const { jobId, blobUrl, language, fileName, fileType, fileSize, attemptCount, userId } = job
   let shouldDeleteBlob = true
 
   try {
@@ -170,6 +171,36 @@ export async function GET(request) {
       language: transcription.language ?? null,
     })
     bumpTranscriptionCount()
+
+    // Save to history for authenticated users. Worker uses the service-role
+    // Supabase client because there's no user-cookie context here (cron-only
+    // endpoint). We explicitly write user_id from the job so RLS would still
+    // protect it on subsequent reads via the anon key.
+    if (userId) {
+      const segs = transcription.segments ?? []
+      const durationSeconds = segs.length ? segs[segs.length - 1]?.end ?? null : null
+      try {
+        const supabase = createServiceClient()
+        const { error: dbErr } = await supabase
+          .from('transcripts')
+          .insert({
+            user_id: userId,
+            file_name: fileName,
+            file_size: fileSize,
+            file_type: fileType,
+            language: transcription.language ?? null,
+            text: transcription.text ?? '',
+            segments: segs,
+            duration_seconds: durationSeconds,
+            source: 'web',
+          })
+        if (dbErr) {
+          console.error('[transcribe-worker] save to history failed', dbErr.message)
+        }
+      } catch (err) {
+        console.error('[transcribe-worker] save to history threw', err?.message)
+      }
+    }
 
     return NextResponse.json({ status: 'completed', jobId })
   } catch (err) {

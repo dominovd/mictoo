@@ -373,6 +373,35 @@ export async function POST(request) {
       // Fire-and-forget counter bump. Doesn't block response. Safe if Upstash absent.
       bumpTranscriptionCount()
 
+      // Save to history for authenticated users (anonymous transcripts are
+      // never persisted — preserves the "files immediately discarded" promise).
+      // Fire-and-forget; a DB hiccup must NOT fail the user's transcription.
+      if (authUser) {
+        const segs = transcription.segments ?? []
+        const durationSeconds = segs.length ? segs[segs.length - 1]?.end ?? null : null
+        try {
+          const supabase = createSupabaseServerClient()
+          supabase
+            .from('transcripts')
+            .insert({
+              user_id: authUser.id,
+              file_name: fileName,
+              file_size: fileSize,
+              file_type: fileType,
+              language: transcription.language ?? null,
+              text: transcription.text ?? '',
+              segments: segs,
+              duration_seconds: durationSeconds,
+              source: 'web',
+            })
+            .then(({ error }) => {
+              if (error) console.error('[transcribe] save to history failed', error.message)
+            })
+        } catch (err) {
+          console.error('[transcribe] save to history threw', err?.message)
+        }
+      }
+
       return NextResponse.json({
         text: transcription.text,
         segments: transcription.segments ?? [],
@@ -403,6 +432,9 @@ export async function POST(request) {
             fileName,
             fileType,
             fileSize,
+            // Captured so the worker can save the finished transcript to
+            // this user's history (Phase B). Anonymous jobs leave it empty.
+            userId: authUser?.id || '',
           })
           shouldDeleteBlob = false // worker needs it later
           console.warn(`[transcribe] enqueued jobId=${jobId} (groq 429)`)

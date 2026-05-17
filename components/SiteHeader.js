@@ -87,26 +87,32 @@ function AuthMenu({ authLoaded, user, pathname }) {
     )
   }
 
-  // Authenticated — round avatar/initial that links to /account.
+  // Authenticated — "History" link + avatar/initial circle linking to /account.
+  // History is the more frequently-used destination for power users (re-export
+  // a past transcript), so we surface it as a sibling link rather than burying
+  // it inside /account.
   const meta = user.user_metadata || {}
   const avatarUrl = meta.avatar_url || meta.picture
   const initial = (meta.full_name || meta.name || user.email || '?').charAt(0).toUpperCase()
 
   return (
-    <a
-      href="/account"
-      title="Account"
-      aria-label="Account"
-      className="ml-1 inline-flex items-center justify-center w-8 h-8 rounded-full border border-slate-200 hover:border-brand-400 transition-colors overflow-hidden"
-    >
-      {avatarUrl ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={avatarUrl} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-      ) : (
-        <span className="text-xs font-semibold text-brand-600 bg-brand-50 w-full h-full inline-flex items-center justify-center">
-          {initial}
-        </span>
-      )}
-    </a>
+    <>
+      <a href="/history" className="btn-ghost whitespace-nowrap hidden sm:inline-flex">History</a>
+      <a
+        href="/account"
+        title="Account"
+        aria-label="Account"
+        className="ml-1 inline-flex items-center justify-center w-8 h-8 rounded-full border border-slate-200 hover:border-brand-400 transition-colors overflow-hidden"
+      >
+        {avatarUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={avatarUrl} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+        ) : (
+          <span className="text-xs font-semibold text-brand-600 bg-brand-50 w-full h-full inline-flex items-center justify-center">
+            {initial}
+          </span>
+        )}
+      </a>
+    </>
   )
 }

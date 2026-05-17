@@ -64,16 +64,14 @@ export default async function AccountPage() {
 
         <div className="border-t border-slate-100 pt-5 space-y-3 text-sm text-slate-600">
           <p>
-            <strong className="text-slate-700">History.</strong> Coming soon — your past
-            transcripts will appear here, kept for 7 days.
+            <strong className="text-slate-700">History.</strong> Past transcripts from the last 7 days are saved automatically.{' '}
+            <a href="/history" className="text-brand-600 hover:underline">View history →</a>
           </p>
           <p>
-            <strong className="text-slate-700">Email notifications.</strong> Coming soon —
-            opt in to get an email when a queued transcript is ready.
+            <strong className="text-slate-700">Export formats.</strong> Word (DOCX), PDF, VTT subtitles, and JSON are available on the result page — and from any past transcript in your history.
           </p>
           <p>
-            <strong className="text-slate-700">Export formats.</strong> Coming soon — Word
-            (DOCX), PDF, VTT subtitles, and JSON in addition to TXT and SRT.
+            <strong className="text-slate-700">Email notifications.</strong> Coming soon — opt in to get an email when a queued transcript is ready.
           </p>
         </div>
       </div>
