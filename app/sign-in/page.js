@@ -3,14 +3,24 @@
 import { useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+import { detectLocaleFromPath, t, localized } from '@/lib/i18n'
 
 // /sign-in — magic link by email + Google OAuth button.
-// Stays English-only for Phase A; the rest of the site keeps its i18n.
+//
+// The page itself lives at /sign-in (no locale prefix in URL), but the UI
+// is rendered in the user's locale. We infer the locale from the `next`
+// search-param (which points at the locale-prefixed page the user came
+// from). After successful auth /auth/callback bounces them back to `next`,
+// so they keep their locale across the round-trip.
 
 function SignInForm() {
   const searchParams = useSearchParams()
   const next = searchParams.get('next') || '/account'
   const errorParam = searchParams.get('error')
+
+  // Locale comes from the page the user clicked Sign in on (carried via `next`).
+  // Defaults to EN when there's no locale prefix or `next` is missing.
+  const locale = detectLocaleFromPath(next)
 
   const [email, setEmail] = useState('')
   const [state, setState] = useState('idle') // idle | sending | sent | error
@@ -32,7 +42,7 @@ function SignInForm() {
       options: { emailRedirectTo: callbackUrl },
     })
     if (error) {
-      setErrorMsg(error.message || 'Could not send the magic link. Please try again.')
+      setErrorMsg(error.message || t(locale, 'auth.magicLinkError'))
       setState('error')
     } else {
       setState('sent')
@@ -47,7 +57,7 @@ function SignInForm() {
       options: { redirectTo: callbackUrl },
     })
     if (error) {
-      setErrorMsg(error.message || 'Could not start Google sign-in. Please try again.')
+      setErrorMsg(error.message || t(locale, 'auth.googleError'))
       setState('error')
     }
     // On success the browser navigates away to Google's consent page; no UI update needed.
@@ -57,18 +67,25 @@ function SignInForm() {
     return (
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-10 text-center">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-50 mb-5 text-3xl">📬</div>
-        <h2 className="text-xl font-semibold text-slate-800 mb-2">Check your inbox</h2>
+        <h2 className="text-xl font-semibold text-slate-800 mb-2">{t(locale, 'auth.inboxHeader')}</h2>
         <p className="text-sm text-slate-500 mb-1">
-          We sent a sign-in link to <strong className="text-slate-700">{email}</strong>.
+          {/* Split around {email} so we can render it as <strong>. */}
+          {(() => {
+            const tmpl = t(locale, 'auth.inboxBody')
+            const parts = tmpl.split('{email}')
+            return (
+              <>
+                {parts[0]}<strong className="text-slate-700">{email}</strong>{parts[1] || ''}
+              </>
+            )
+          })()}
         </p>
-        <p className="text-sm text-slate-500">
-          Click the link from the same device to finish signing in. The link is valid for one hour.
-        </p>
+        <p className="text-sm text-slate-500">{t(locale, 'auth.inboxHint')}</p>
         <button
           onClick={() => { setState('idle'); setEmail('') }}
           className="text-sm text-brand-600 hover:underline mt-6"
         >
-          ← Use a different email
+          {t(locale, 'auth.useDifferentEmail')}
         </button>
       </div>
     )
@@ -76,19 +93,17 @@ function SignInForm() {
 
   return (
     <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
-      <h1 className="text-2xl font-bold text-slate-900 mb-2 text-center">Sign in to Mictoo</h1>
-      <p className="text-sm text-slate-500 mb-7 text-center">
-        Free, optional, takes 10 seconds. Anonymous transcription keeps working without an account.
-      </p>
+      <h1 className="text-2xl font-bold text-slate-900 mb-2 text-center">{t(locale, 'auth.title')}</h1>
+      <p className="text-sm text-slate-500 mb-7 text-center">{t(locale, 'auth.subtitle')}</p>
 
       {errorParam === 'missing_code' && (
         <div className="bg-amber-50 border border-amber-100 rounded-xl p-3 text-sm text-amber-800 mb-5">
-          The sign-in link looks incomplete. Please try again.
+          {t(locale, 'auth.errorMissingCode')}
         </div>
       )}
       {errorParam === 'auth_failed' && (
         <div className="bg-red-50 border border-red-100 rounded-xl p-3 text-sm text-red-800 mb-5">
-          Sign-in failed. The link may have expired — request a new one.
+          {t(locale, 'auth.errorAuthFailed')}
         </div>
       )}
 
@@ -99,12 +114,12 @@ function SignInForm() {
         className="w-full inline-flex items-center justify-center gap-2 border border-slate-200 rounded-xl py-3 text-sm font-semibold text-slate-700 hover:border-slate-300 hover:bg-slate-50 transition-colors disabled:opacity-60"
       >
         <GoogleIcon className="w-4 h-4" />
-        Continue with Google
+        {t(locale, 'auth.continueWithGoogle')}
       </button>
 
       <div className="my-5 flex items-center gap-3 text-xs text-slate-400">
         <div className="flex-1 h-px bg-slate-100" />
-        <span>or with email</span>
+        <span>{t(locale, 'auth.orWithEmail')}</span>
         <div className="flex-1 h-px bg-slate-100" />
       </div>
 
@@ -112,7 +127,7 @@ function SignInForm() {
         <input
           type="email"
           required
-          placeholder="you@example.com"
+          placeholder={t(locale, 'auth.emailPlaceholder')}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           autoComplete="email"
@@ -124,7 +139,7 @@ function SignInForm() {
           disabled={state === 'sending' || !email}
           className="btn-primary w-full py-3 text-sm disabled:opacity-60"
         >
-          {state === 'sending' ? 'Sending…' : 'Send magic link'}
+          {state === 'sending' ? t(locale, 'auth.sending') : t(locale, 'auth.sendMagicLink')}
         </button>
       </form>
 
@@ -133,7 +148,10 @@ function SignInForm() {
       )}
 
       <p className="text-xs text-slate-400 mt-7 text-center">
-        We never share your email. Read our <a href="/privacy" className="text-brand-600 hover:underline">privacy policy</a>.
+        {t(locale, 'auth.emailPrivacyPrefix')}{' '}
+        <a href={localized('/privacy', locale)} className="text-brand-600 hover:underline">
+          {t(locale, 'auth.privacyPolicy')}
+        </a>.
       </p>
     </div>
   )
