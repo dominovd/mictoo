@@ -130,6 +130,25 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.6,
     },
+    // Conversion guides — capture "X to mp3" search intent and redirect to mictoo
+    {
+      url: 'https://mictoo.com/aac-to-mp3',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: 'https://mictoo.com/wma-to-mp3',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: 'https://mictoo.com/m4a-to-mp3',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
     // Long-tail use cases (pack #4)
     { url: 'https://mictoo.com/webinar-transcription',       lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
     { url: 'https://mictoo.com/dictation-to-text',            lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },

@@ -309,11 +309,25 @@ export async function POST(request) {
     // are Ogg-Opus (Ogg container + Opus codec, MIME audio/ogg), so renaming
     // to .ogg makes both providers happy and the decoder reads the bytes
     // unchanged.
+    //
+    // .mov / .3gp / .qt — iPhone "video" containers and old mobile video.
+    // These are almost always MP4-compatible bytes (MOV is literally MP4 with
+    // QuickTime-flavoured metadata, .3gp is a 3GPP profile of MP4). Whisper's
+    // extension allowlist has mp4 but not these, so a one-character rename
+    // unlocks them without re-encoding. Pure-QuickTime containers with codecs
+    // Whisper can't decode will still fail at decode and surface the generic
+    // unsupported-format error.
     const isAac = safeName.endsWith('.aac') || /^audio\/(x-)?aac$/i.test(fileType || '')
     const isOpus = safeName.endsWith('.opus') || /^audio\/opus$/i.test(fileType || '')
+    const isMov =
+      safeName.endsWith('.mov') ||
+      safeName.endsWith('.qt') ||
+      safeName.endsWith('.3gp') ||
+      /^video\/(quicktime|3gpp)$/i.test(fileType || '')
     let whisperName = safeName
     if (isAac) whisperName = whisperName.replace(/\.aac$/, '.m4a')
     else if (isOpus) whisperName = whisperName.replace(/\.opus$/, '.ogg')
+    else if (isMov) whisperName = whisperName.replace(/\.(mov|qt|3gp)$/, '.mp4')
     const whisperFile = new File([buffer], whisperName, { type: fileType })
 
     // ── Transcribe (Groq primary, OpenAI fallback) ──────────────────────────

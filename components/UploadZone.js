@@ -536,7 +536,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
         <input
           ref={fileRef}
           type="file"
-          accept=".mp3,.mp4,.m4a,.aac,.wav,.ogg,.opus,.webm,.mpeg,.flac"
+          accept=".mp3,.mp4,.m4a,.aac,.wav,.ogg,.opus,.webm,.mpeg,.flac,.mov,.qt,.3gp"
           className="hidden"
           onChange={handleFile}
         />
