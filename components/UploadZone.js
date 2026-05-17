@@ -115,6 +115,11 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   const [segments, setSegments] = useState([])
   const [language, setLanguage] = useState(defaultLanguage)
   const [error, setError] = useState('')
+  // True when the server signalled `signInHelps: true` in a 429 response,
+  // i.e. an anonymous user hit the IP rate limit and signing in would give
+  // them a fresh user-keyed budget. Drives the "Sign in to keep going" CTA
+  // shown in the error state.
+  const [errorOffersSignIn, setErrorOffersSignIn] = useState(false)
   const [copied, setCopied] = useState(false)
 
   // When Groq is rate-limited the server returns 202 + jobId; the client
@@ -258,6 +263,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     setQueueInfo({ position: null, queueLength: null, jobStatus: 'queued' })
     setRestoredFromSnapshot(false)
     setTranscriptId(null)
+    setErrorOffersSignIn(false)
   }
 
   // Poll /api/transcribe-status/[jobId] every 3s while a job is queued or
@@ -395,7 +401,11 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
 
       if (!res.ok && res.status !== 202) {
         const data = await res.json().catch(() => ({}))
-        throw new Error(data.error || 'Transcription failed. Please try again.')
+        const failed = new Error(data.error || 'Transcription failed. Please try again.')
+        // Carry the signInHelps flag through to the catch handler so the
+        // error UI knows whether to show a "Sign in to keep going" CTA.
+        failed.offersSignIn = !!data.signInHelps
+        throw failed
       }
 
       let data = await res.json()
@@ -430,6 +440,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     } catch (err) {
       if (ticker) clearInterval(ticker)
       setError(err?.message || 'Transcription failed. Please try again.')
+      setErrorOffersSignIn(!!err?.offersSignIn)
       setState('error')
     }
   }, [language, locale, generateSummary, pollJob])
@@ -792,6 +803,15 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   }
 
   if (state === 'error') {
+    // When the server signalled signInHelps (= anonymous user hit IP rate
+    // limit), surface a primary "Sign in" CTA. Signing in moves them onto
+    // the user-keyed bucket which is independent from the IP one — so they
+    // get a fresh budget immediately, not "wait 32 min".
+    const signInHref =
+      typeof window !== 'undefined'
+        ? `/sign-in?next=${encodeURIComponent(window.location.pathname || '/')}`
+        : '/sign-in'
+
     return (
       <div className="bg-white rounded-2xl border border-red-100 shadow-sm p-10 text-center">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-50 mb-5 text-3xl">
@@ -799,12 +819,21 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
         </div>
         <p className="text-lg font-semibold text-slate-800 mb-1">{t(locale, 'status.somethingWrong')}</p>
         <p className="text-sm text-slate-500 mb-3">{error}</p>
-        <p className="text-sm mb-6">
-          <a href="/how-to-compress-audio" className="text-brand-600 hover:underline">
-            {t(locale, 'status.howToCompress')}
-          </a>
-        </p>
-        <button onClick={reset} className="btn-primary">{t(locale, 'status.tryAgain')}</button>
+        {!errorOffersSignIn && (
+          <p className="text-sm mb-6">
+            <a href="/how-to-compress-audio" className="text-brand-600 hover:underline">
+              {t(locale, 'status.howToCompress')}
+            </a>
+          </p>
+        )}
+        {errorOffersSignIn ? (
+          <div className="flex items-center justify-center gap-2 flex-wrap">
+            <a href={signInHref} className="btn-primary">Sign in to keep going</a>
+            <button onClick={reset} className="btn-ghost">{t(locale, 'status.tryAgain')}</button>
+          </div>
+        ) : (
+          <button onClick={reset} className="btn-primary">{t(locale, 'status.tryAgain')}</button>
+        )}
       </div>
     )
   }

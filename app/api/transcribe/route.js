@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import OpenAI from 'openai'
 import { del } from '@vercel/blob'
 import { bumpTranscriptionCount } from '@/lib/stats'
-import { enqueueJob, isQueueAvailable } from '@/lib/queue'
+import { enqueueJob, isQueueAvailable, QueueFullError } from '@/lib/queue'
 import { createClient as createSupabaseServerClient } from '@/lib/supabase/server'
 
 // Internal signal: Groq is rate-limited (429) and the request should be
@@ -186,11 +186,21 @@ async function getRateLimiters() {
       analytics: true,
       prefix: 'mictoo:rl:anon',
     }),
-    auth: new Ratelimit({
+    // Authenticated users get TWO limiters checked in series. Hourly catches
+    // burst usage (e.g. a podcaster batching files); daily is the actual
+    // cost guardrail. Daily 7/user × 26 min audio × $0.111/h Groq = ~$0.34
+    // worst case per user per day.
+    authHourly: new Ratelimit({
       redis,
       limiter: Ratelimit.slidingWindow(5, '1 h'),
       analytics: true,
-      prefix: 'mictoo:rl:auth',
+      prefix: 'mictoo:rl:auth:h',
+    }),
+    authDaily: new Ratelimit({
+      redis,
+      limiter: Ratelimit.slidingWindow(7, '24 h'),
+      analytics: true,
+      prefix: 'mictoo:rl:auth:d',
     }),
   }
   return rateLimiters
@@ -247,26 +257,74 @@ export async function POST(request) {
     // ── Rate limit (different bucket for anon vs authed) ────────────────────
     const limiters = await getRateLimiters()
     if (limiters) {
-      const limiter = authUser ? limiters.auth : limiters.anon
-      const key = authUser ? authUser.id : getIP(request)
-      const { success, limit, remaining, reset } = await limiter.limit(key)
+      // Helper: convert ms-to-reset into a human-friendly "~Xh Ym" or "~N min".
+      const friendlyReset = (resetMs) => {
+        const ms = Math.max(0, resetMs - Date.now())
+        const minutes = Math.ceil(ms / 60000)
+        if (minutes < 60) return `~${minutes} min`
+        const h = Math.floor(minutes / 60)
+        const m = minutes % 60
+        return m ? `~${h}h ${m}m` : `~${h}h`
+      }
 
-      if (!success) {
-        const resetIn = Math.ceil((reset - Date.now()) / 1000 / 60)
-        const errorMsg = authUser
-          ? `Too many requests. You've used your ${limit} transcriptions this hour. Try again in ~${resetIn} min.`
-          : `Too many requests. You've used your ${limit} free transcriptions this hour. Sign in for higher limits, or try again in ~${resetIn} min.`
-        return NextResponse.json(
-          { error: errorMsg, signInHelps: !authUser },
-          {
-            status: 429,
-            headers: {
-              'X-RateLimit-Limit': String(limit),
-              'X-RateLimit-Remaining': String(remaining),
-              'X-RateLimit-Reset': String(reset),
+      if (authUser) {
+        // Daily cap first — when it's hit, no point also charging the hourly
+        // bucket. (Cheap double-check; the order also avoids an awkward case
+        // where a user hits hourly while already over daily.)
+        const d = await limiters.authDaily.limit(authUser.id)
+        if (!d.success) {
+          return NextResponse.json(
+            {
+              error: `Daily limit reached. You've used your ${d.limit} transcriptions for today. Resets in ${friendlyReset(d.reset)}.`,
+              signInHelps: false,
             },
-          }
-        )
+            {
+              status: 429,
+              headers: {
+                'X-RateLimit-Limit': String(d.limit),
+                'X-RateLimit-Remaining': String(d.remaining),
+                'X-RateLimit-Reset': String(d.reset),
+                'X-RateLimit-Scope': 'day',
+              },
+            }
+          )
+        }
+        const h = await limiters.authHourly.limit(authUser.id)
+        if (!h.success) {
+          return NextResponse.json(
+            {
+              error: `Too many requests this hour. You've used ${h.limit} transcriptions. Try again in ${friendlyReset(h.reset)}.`,
+              signInHelps: false,
+            },
+            {
+              status: 429,
+              headers: {
+                'X-RateLimit-Limit': String(h.limit),
+                'X-RateLimit-Remaining': String(h.remaining),
+                'X-RateLimit-Reset': String(h.reset),
+                'X-RateLimit-Scope': 'hour',
+              },
+            }
+          )
+        }
+      } else {
+        const a = await limiters.anon.limit(getIP(request))
+        if (!a.success) {
+          return NextResponse.json(
+            {
+              error: `Too many requests. You've used your ${a.limit} free transcriptions this hour. Sign in for higher limits, or try again in ${friendlyReset(a.reset)}.`,
+              signInHelps: true,
+            },
+            {
+              status: 429,
+              headers: {
+                'X-RateLimit-Limit': String(a.limit),
+                'X-RateLimit-Remaining': String(a.remaining),
+                'X-RateLimit-Reset': String(a.reset),
+              },
+            }
+          )
+        }
       }
     }
 
@@ -455,6 +513,13 @@ export async function POST(request) {
             { status: 202 }
           )
         } catch (queueErr) {
+          if (queueErr instanceof QueueFullError) {
+            console.warn(`[transcribe] queue full (${queueErr.currentLength} jobs), rejecting`)
+            return NextResponse.json(
+              { error: 'Service is at capacity right now. Please try again in 10–15 minutes.' },
+              { status: 503 }
+            )
+          }
           console.error('[transcribe] enqueue failed', queueErr?.message)
           return NextResponse.json(
             { error: 'Service is unusually busy right now. Please try again in a few minutes.' },
