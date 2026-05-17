@@ -28,13 +28,15 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Invalid JSON body.' }, { status: 400 })
   }
 
-  const { text, segments, fileName, language } = body || {}
-  if (!text && !segments?.length) {
-    return NextResponse.json({ error: 'Empty transcript.' }, { status: 400 })
+  const { text, segments, fileName, language, summary } = body || {}
+  const hasTranscript = !!text || !!segments?.length
+  const hasSummary = !!summary && (summary.summary || summary.keyPoints?.length || summary.actionItems?.length)
+  if (!hasTranscript && !hasSummary) {
+    return NextResponse.json({ error: 'Nothing to export.' }, { status: 400 })
   }
 
   try {
-    const buffer = await buildDocx({ text, segments, fileName, language })
+    const buffer = await buildDocx({ text, segments, fileName, language, summary })
     const downloadName = (fileName || 'transcript').replace(/\.[^.]+$/, '') + '.docx'
 
     return new Response(buffer, {

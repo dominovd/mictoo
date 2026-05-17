@@ -132,6 +132,14 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   // banner above the result so users understand where the data came from
   // and that it never went to our servers.
   const [restoredFromSnapshot, setRestoredFromSnapshot] = useState(false)
+
+  // What goes into DOCX / PDF / JSON exports. Three-state toggle:
+  //   'both'       — AI summary + transcript (default; most useful for sharing)
+  //   'summary'    — summary only (compact, good for meeting recaps)
+  //   'transcript' — transcript only (no AI section, like the original behaviour)
+  // The toggle is only shown when summaryData exists. VTT ignores this — it's
+  // always just subtitles from segments.
+  const [exportContent, setExportContent] = useState('both')
   useEffect(() => {
     const supabase = createClient()
     let mounted = true
@@ -485,7 +493,27 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
 
   const baseName = () => (file?.name?.replace(/\.[^.]+$/, '') || 'transcript')
 
+  // Builds the payload shared by all the export handlers, honoring the
+  // current `exportContent` toggle (Both / Summary only / Transcript only).
+  // VTT skips this — it's always just segments.
+  const buildExportPayload = () => {
+    const hasSummary = summaryStatus === 'done' && summaryData
+    const includeSummary = hasSummary && exportContent !== 'transcript'
+    const includeTranscript = exportContent !== 'summary' || !hasSummary
+
+    return {
+      text: includeTranscript ? transcript : '',
+      segments: includeTranscript ? segments : [],
+      fileName: file?.name,
+      fileSize: file?.size,
+      fileType: file?.type,
+      language: spokenLanguage,
+      summary: includeSummary ? summaryData : null,
+    }
+  }
+
   // Client-side: VTT and JSON are tiny, no need to hit the server.
+  // VTT is transcript-only by nature (subtitle cues), so it ignores the toggle.
   const downloadVTT = () => {
     if (!requireSignIn()) return
     const vtt = toVTT(segments)
@@ -495,14 +523,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
 
   const downloadJSON = () => {
     if (!requireSignIn()) return
-    const json = toJSON({
-      text: transcript,
-      segments,
-      language: spokenLanguage,
-      fileName: file?.name,
-      fileSize: file?.size,
-      fileType: file?.type,
-    })
+    const json = toJSON(buildExportPayload())
     triggerBlobDownload(new Blob([json], { type: 'application/json' }), baseName() + '.json')
   }
 
@@ -513,12 +534,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     const res = await fetch(`/api/export/${format}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        text: transcript,
-        segments,
-        fileName: file?.name,
-        language: spokenLanguage,
-      }),
+      body: JSON.stringify(buildExportPayload()),
     })
     if (res.status === 401) {
       // Session expired between page load and click — go re-auth.
@@ -653,6 +669,39 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
               <button onClick={downloadSRT} className="btn-ghost">
                 <SubtitleIcon className="w-4 h-4" /> .srt
               </button>
+            )}
+
+            {/* Export-content toggle. Only shown when an AI summary is
+                available — otherwise there's nothing to toggle and we'd
+                clutter the button row. Buttons below (DOCX/PDF/JSON) honour
+                this; VTT ignores it (subtitles are always transcript-only). */}
+            {summaryStatus === 'done' && summaryData && (
+              <div className="inline-flex items-center gap-0 bg-slate-100 rounded-lg p-0.5 text-xs">
+                <button
+                  type="button"
+                  onClick={() => setExportContent('both')}
+                  className={`px-2.5 py-1 rounded-md transition-colors ${exportContent === 'both' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                  title="Export the AI summary together with the transcript"
+                >
+                  Both
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setExportContent('summary')}
+                  className={`px-2.5 py-1 rounded-md transition-colors ${exportContent === 'summary' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                  title="Export only the AI summary"
+                >
+                  Summary
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setExportContent('transcript')}
+                  className={`px-2.5 py-1 rounded-md transition-colors ${exportContent === 'transcript' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                  title="Export only the transcript (no AI summary)"
+                >
+                  Transcript
+                </button>
+              </div>
             )}
 
             {/* Auth-gated formats. We always render the buttons so anonymous

@@ -34,14 +34,19 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Invalid JSON body.' }, { status: 400 })
   }
 
-  const { text, segments, fileName, language } = body || {}
-  if (!text && !segments?.length) {
-    return NextResponse.json({ error: 'Empty transcript.' }, { status: 400 })
+  const { text, segments, fileName, language, summary } = body || {}
+  const hasTranscript = !!text || !!segments?.length
+  const hasSummary = !!summary && (summary.summary || summary.keyPoints?.length || summary.actionItems?.length)
+  if (!hasTranscript && !hasSummary) {
+    return NextResponse.json({ error: 'Nothing to export.' }, { status: 400 })
   }
 
-  // Script-coverage check. If the transcript has non-Latin characters,
-  // refuse cleanly rather than ship a broken PDF.
-  if (!isPdfSupportedText(text)) {
+  // Script-coverage check. If the transcript or summary has non-Latin
+  // characters, refuse cleanly rather than ship a broken PDF.
+  const summaryBlob = summary
+    ? [summary.summary, ...(summary.keyPoints || []), ...(summary.actionItems || [])].join(' ')
+    : ''
+  if (!isPdfSupportedText(text) || !isPdfSupportedText(summaryBlob)) {
     return NextResponse.json(
       {
         error:
@@ -53,7 +58,7 @@ export async function POST(request) {
   }
 
   try {
-    const bytes = await buildPdf({ text, segments, fileName, language })
+    const bytes = await buildPdf({ text, segments, fileName, language, summary })
     const downloadName = (fileName || 'transcript').replace(/\.[^.]+$/, '') + '.pdf'
 
     return new Response(bytes, {
