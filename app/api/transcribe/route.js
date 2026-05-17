@@ -223,7 +223,17 @@ export async function POST(request) {
     // even though the MIME type and bytes are perfectly valid. Lowercase the
     // extension defensively so the format check sees what it expects.
     const safeName = fileName.replace(/\.([A-Za-z0-9]+)$/, (_, ext) => `.${ext.toLowerCase()}`)
-    const whisperFile = new File([buffer], safeName, { type: fileType })
+
+    // Whisper doesn't list "aac" in its supported extensions, but most files
+    // that arrive with .aac (Android recorders, iOS share-sheets) are actually
+    // MP4-AAC streams — same codec as .m4a, different filename. Renaming the
+    // upload to .m4a is enough to clear Whisper's extension check, and the
+    // decoder happily reads the bytes. Pure ADTS-AAC (raw stream) will still
+    // fail at decode; we surface an AAC-specific friendly error for that case
+    // below.
+    const isAac = safeName.endsWith('.aac') || /^audio\/(x-)?aac$/i.test(fileType || '')
+    const whisperName = isAac ? safeName.replace(/\.aac$/, '.m4a') : safeName
+    const whisperFile = new File([buffer], whisperName, { type: fileType })
 
     // ── Transcribe (Groq primary, OpenAI fallback) ──────────────────────────
     try {
@@ -247,12 +257,16 @@ export async function POST(request) {
       console.error('[transcribe]', { ...fileMeta, status: err?.status, message: err?.message })
 
       // OpenAI returns 400 for unsupported codecs, empty audio, broken containers,
-      // or audio-less video. Surface a friendly message instead of a 500.
+      // or audio-less video. Surface a friendly message instead of a 500. AAC
+      // files that survived our extension-rename trick but still failed are
+      // typically raw ADTS streams — point users to a conversion instead of
+      // the generic "format unsupported" message.
       if (err?.status === 400) {
         return NextResponse.json(
           {
-            error:
-              "This file format or codec is not supported. Try exporting as MP3 or M4A, or extract the audio track if the file is video-only.",
+            error: isAac
+              ? "This AAC recording uses a codec Whisper can't read directly. Convert it to MP3 or M4A first — QuickTime, Audacity, or any online audio converter can do this in seconds."
+              : "This file format or codec is not supported. Try exporting as MP3 or M4A, or extract the audio track if the file is video-only.",
           },
           { status: 400 }
         )
