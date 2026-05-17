@@ -231,8 +231,19 @@ export async function POST(request) {
     // decoder happily reads the bytes. Pure ADTS-AAC (raw stream) will still
     // fail at decode; we surface an AAC-specific friendly error for that case
     // below.
+    //
+    // Similar story for .opus: Groq accepts the extension, but OpenAI (our
+    // fallback provider) doesn't list "opus" — so a Groq 429/5xx that pushes
+    // us to OpenAI would otherwise return "format not supported" for a perfectly
+    // good WhatsApp/Telegram voice note. The .opus files those apps produce
+    // are Ogg-Opus (Ogg container + Opus codec, MIME audio/ogg), so renaming
+    // to .ogg makes both providers happy and the decoder reads the bytes
+    // unchanged.
     const isAac = safeName.endsWith('.aac') || /^audio\/(x-)?aac$/i.test(fileType || '')
-    const whisperName = isAac ? safeName.replace(/\.aac$/, '.m4a') : safeName
+    const isOpus = safeName.endsWith('.opus') || /^audio\/opus$/i.test(fileType || '')
+    let whisperName = safeName
+    if (isAac) whisperName = whisperName.replace(/\.aac$/, '.m4a')
+    else if (isOpus) whisperName = whisperName.replace(/\.opus$/, '.ogg')
     const whisperFile = new File([buffer], whisperName, { type: fileType })
 
     // ── Transcribe (Groq primary, OpenAI fallback) ──────────────────────────
