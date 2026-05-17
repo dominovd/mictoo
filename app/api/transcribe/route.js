@@ -33,6 +33,15 @@ const openai = process.env.OPENAI_API_KEY
   ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
   : null
 
+// OpenAI Whisper-1 is ~3.2x more expensive per minute than Groq's whisper-large-v3
+// ($0.006 vs $0.00185), so we want to gate the fallback path carefully. Files
+// larger than this skip OpenAI on Groq failure — a 30-min podcast at 256 kbps
+// is ~58 MB; one such file failing over to OpenAI burns ~$0.20, which adds up
+// fast during a Groq daily-cap-exhaustion day. Below the threshold (≈10 min of
+// audio at 128 kbps), the fallback covers WhatsApp-style voice notes cheaply
+// enough that the UX win outweighs the cost.
+const FALLBACK_MAX_BYTES = 10 * 1024 * 1024
+
 async function transcribeAudio(file, language) {
   const baseParams = {
     file,
@@ -40,39 +49,68 @@ async function transcribeAudio(file, language) {
     ...(language ? { language } : {}),
   }
 
-  // Try Groq first.
+  // Try Groq with one quick retry on transient errors. Groq's free-tier rate
+  // limits include short per-minute windows; many 429s clear in a couple of
+  // seconds. A retry before the (more expensive) OpenAI fallback catches the
+  // common case where the bucket was momentarily empty rather than truly
+  // exhausted. Hard errors (400 bad file, auth) skip the retry.
   if (groq) {
-    try {
-      return await groq.audio.transcriptions.create({
-        ...baseParams,
-        model: 'whisper-large-v3',
-      })
-    } catch (err) {
-      // 400 = file/codec is bad — falling back to another Whisper won't help.
-      if (err?.status === 400) throw err
-      // Everything else (429 quota, 5xx, network): try OpenAI if configured.
-      if (!openai) throw err
-      // Tagged "[transcribe] fallback:" so we can filter Vercel logs for it
-      // and see (a) how often Groq quota/5xx pushes us to OpenAI and
-      // (b) whether the recovery succeeded. Pair of warn/error lines per event.
-      console.warn(
-        `[transcribe] fallback: groq ${err?.status ?? 'error'} → openai`,
-        { code: err?.code, message: err?.message }
-      )
+    let lastErr = null
+    for (let attempt = 0; attempt < 2; attempt++) {
       try {
-        const result = await openai.audio.transcriptions.create({
+        return await groq.audio.transcriptions.create({
           ...baseParams,
-          model: 'whisper-1',
+          model: 'whisper-large-v3',
         })
-        console.warn('[transcribe] fallback: openai succeeded')
-        return result
-      } catch (fallbackErr) {
-        console.error(
-          `[transcribe] fallback: openai also failed ${fallbackErr?.status ?? 'error'}`,
-          { code: fallbackErr?.code, message: fallbackErr?.message }
-        )
-        throw fallbackErr
+      } catch (err) {
+        lastErr = err
+        if (err?.status === 400) throw err
+        const isTransient =
+          err?.status === 429 ||
+          (err?.status >= 500 && err?.status < 600) ||
+          !err?.status // network error / fetch failure
+        if (attempt === 0 && isTransient) {
+          await new Promise((r) => setTimeout(r, 3000))
+          continue
+        }
+        break
       }
+    }
+
+    // Groq still failing after retry. Decide whether the OpenAI fallback is
+    // worth attempting for this file.
+    if (!openai) throw lastErr
+    if (file.size > FALLBACK_MAX_BYTES) {
+      // Large file + Groq down = re-throw so the caller surfaces "try again
+      // later" instead of paying for OpenAI on a long recording. Logged at
+      // warn level so we can count these in the same `fallback:` filter.
+      console.warn(
+        `[transcribe] fallback: skipped (file ${file.size} bytes > ${FALLBACK_MAX_BYTES}), groq ${lastErr?.status ?? 'error'}`,
+        { code: lastErr?.code, message: lastErr?.message }
+      )
+      throw lastErr
+    }
+
+    // Tagged "[transcribe] fallback:" so we can filter Vercel logs for it
+    // and see (a) how often Groq quota/5xx pushes us to OpenAI and
+    // (b) whether the recovery succeeded. Pair of warn/error lines per event.
+    console.warn(
+      `[transcribe] fallback: groq ${lastErr?.status ?? 'error'} → openai`,
+      { code: lastErr?.code, message: lastErr?.message }
+    )
+    try {
+      const result = await openai.audio.transcriptions.create({
+        ...baseParams,
+        model: 'whisper-1',
+      })
+      console.warn('[transcribe] fallback: openai succeeded')
+      return result
+    } catch (fallbackErr) {
+      console.error(
+        `[transcribe] fallback: openai also failed ${fallbackErr?.status ?? 'error'}`,
+        { code: fallbackErr?.code, message: fallbackErr?.message }
+      )
+      throw fallbackErr
     }
   }
 
