@@ -1,9 +1,12 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { upload } from '@vercel/blob/client'
 import { detectLocaleFromPath, t, DICT } from '@/lib/i18n'
+import { createClient } from '@/lib/supabase/client'
+import { toVTT } from '@/lib/exports/vtt'
+import { toJSON } from '@/lib/exports/json'
 import SummaryCard from './SummaryCard'
 
 const ACCEPTED_TYPES = ['audio/mpeg', 'audio/mp4', 'audio/wav', 'audio/m4a', 'audio/ogg',
@@ -118,6 +121,26 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   // polls /api/transcribe-status/[jobId] until it transitions to completed
   // or failed. queueInfo holds { position, queueLength } for the UI label.
   const [queueInfo, setQueueInfo] = useState({ position: null, queueLength: null, jobStatus: 'queued' })
+
+  // Auth state. Drives the export buttons (DOCX/PDF/VTT/JSON) — anonymous
+  // users see them but a click bounces to /sign-in instead of generating.
+  const [authUser, setAuthUser] = useState(null)
+  const [authLoaded, setAuthLoaded] = useState(false)
+  useEffect(() => {
+    const supabase = createClient()
+    let mounted = true
+    supabase.auth.getUser().then(({ data }) => {
+      if (!mounted) return
+      setAuthUser(data?.user ?? null)
+      setAuthLoaded(true)
+    })
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!mounted) return
+      setAuthUser(session?.user ?? null)
+      setAuthLoaded(true)
+    })
+    return () => { mounted = false; subscription?.unsubscribe() }
+  }, [])
 
   // Separate state for the AI summary so it can stream in independently of
   // the transcript. status: idle | loading | done | error
@@ -363,6 +386,82 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     URL.revokeObjectURL(url)
   }
 
+  // ── Auth-gated export handlers (DOCX/PDF/VTT/JSON) ────────────────────────
+  // All four formats require sign-in. Anonymous users get redirected to the
+  // sign-in page with a `next` param that brings them back here.
+
+  const requireSignIn = () => {
+    if (authUser) return true
+    const next = encodeURIComponent(window.location.pathname + (window.location.hash || ''))
+    window.location.href = `/sign-in?next=${next}`
+    return false
+  }
+
+  const triggerBlobDownload = (blob, fileNameOut) => {
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = fileNameOut
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  const baseName = () => (file?.name?.replace(/\.[^.]+$/, '') || 'transcript')
+
+  // Client-side: VTT and JSON are tiny, no need to hit the server.
+  const downloadVTT = () => {
+    if (!requireSignIn()) return
+    const vtt = toVTT(segments)
+    if (!vtt) return
+    triggerBlobDownload(new Blob([vtt], { type: 'text/vtt' }), baseName() + '.vtt')
+  }
+
+  const downloadJSON = () => {
+    if (!requireSignIn()) return
+    const json = toJSON({
+      text: transcript,
+      segments,
+      language: spokenLanguage,
+      fileName: file?.name,
+      fileSize: file?.size,
+      fileType: file?.type,
+    })
+    triggerBlobDownload(new Blob([json], { type: 'application/json' }), baseName() + '.json')
+  }
+
+  // Server-side: DOCX and PDF need server libraries (docx, pdf-lib) so we
+  // post the transcript and stream back the binary file.
+  const downloadServerFormat = async (format) => {
+    if (!requireSignIn()) return
+    const res = await fetch(`/api/export/${format}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        text: transcript,
+        segments,
+        fileName: file?.name,
+        language: spokenLanguage,
+      }),
+    })
+    if (res.status === 401) {
+      // Session expired between page load and click — go re-auth.
+      requireSignIn()
+      return
+    }
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}))
+      // Surface unsupported_script and other clean errors via alert (good
+      // enough for an indie scope; can be replaced with a toast later).
+      alert(data.error || `Could not generate the ${format.toUpperCase()} file.`)
+      return
+    }
+    const blob = await res.blob()
+    triggerBlobDownload(blob, baseName() + '.' + format)
+  }
+
+  const downloadDOCX = () => downloadServerFormat('docx')
+  const downloadPDF  = () => downloadServerFormat('pdf')
+
   // ── STATES ──────────────────────────────────────────────────────────────────
 
   if (state === 'uploading' || state === 'queued') {
@@ -458,6 +557,50 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
                 <SubtitleIcon className="w-4 h-4" /> .srt
               </button>
             )}
+
+            {/* Auth-gated formats. We always render the buttons so anonymous
+                users see they exist — clicking just sends them to /sign-in. */}
+            <button
+              onClick={downloadDOCX}
+              className="btn-ghost"
+              title={authUser ? 'Export as Word document' : 'Sign in to export as Word'}
+              aria-label="Export as Word"
+            >
+              {!authUser && <LockIcon className="w-3 h-3 text-slate-400" />}
+              <DocIcon className="w-4 h-4" /> .docx
+            </button>
+            {hasSRT && (
+              <button
+                onClick={downloadPDF}
+                className="btn-ghost"
+                title={authUser ? 'Export as PDF' : 'Sign in to export as PDF'}
+                aria-label="Export as PDF"
+              >
+                {!authUser && <LockIcon className="w-3 h-3 text-slate-400" />}
+                <PdfIcon className="w-4 h-4" /> .pdf
+              </button>
+            )}
+            {hasSRT && (
+              <button
+                onClick={downloadVTT}
+                className="btn-ghost"
+                title={authUser ? 'Export as WebVTT subtitles' : 'Sign in to export as VTT'}
+                aria-label="Export as VTT"
+              >
+                {!authUser && <LockIcon className="w-3 h-3 text-slate-400" />}
+                <SubtitleIcon className="w-4 h-4" /> .vtt
+              </button>
+            )}
+            <button
+              onClick={downloadJSON}
+              className="btn-ghost"
+              title={authUser ? 'Export as JSON' : 'Sign in to export as JSON'}
+              aria-label="Export as JSON"
+            >
+              {!authUser && <LockIcon className="w-3 h-3 text-slate-400" />}
+              <CodeIcon className="w-4 h-4" /> .json
+            </button>
+
             <button onClick={reset} className="btn-primary">
               {t(locale, 'result.newFile')}
             </button>
@@ -610,6 +753,38 @@ function CheckIcon({ className }) {
   return (
     <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+    </svg>
+  )
+}
+
+function DocIcon({ className }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+    </svg>
+  )
+}
+
+function PdfIcon({ className }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+    </svg>
+  )
+}
+
+function CodeIcon({ className }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25M6.75 17.25L1.5 12l5.25-5.25m4.5 12l3-15" />
+    </svg>
+  )
+}
+
+function LockIcon({ className }) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
     </svg>
   )
 }
