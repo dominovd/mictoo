@@ -3,6 +3,10 @@
     {
       "path": "/api/cleanup-blobs",
       "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/transcribe-worker",
+      "schedule": "* * * * *"
     }
   ]
 }

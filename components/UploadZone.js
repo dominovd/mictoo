@@ -105,7 +105,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   const pathname = usePathname() || '/'
   const locale = localeProp || detectLocaleFromPath(pathname)
 
-  const [state, setState] = useState('idle') // idle | dragging | uploading | done | error
+  const [state, setState] = useState('idle') // idle | dragging | uploading | queued | done | error
   const [progress, setProgress] = useState(0)
   const [file, setFile] = useState(null)
   const [transcript, setTranscript] = useState('')
@@ -113,6 +113,11 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   const [language, setLanguage] = useState(defaultLanguage)
   const [error, setError] = useState('')
   const [copied, setCopied] = useState(false)
+
+  // When Groq is rate-limited the server returns 202 + jobId; the client
+  // polls /api/transcribe-status/[jobId] until it transitions to completed
+  // or failed. queueInfo holds { position, queueLength } for the UI label.
+  const [queueInfo, setQueueInfo] = useState({ position: null, queueLength: null, jobStatus: 'queued' })
 
   // Separate state for the AI summary so it can stream in independently of
   // the transcript. status: idle | loading | done | error
@@ -139,7 +144,49 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     setSummaryData(null)
     setSummaryError('')
     setSpokenLanguage(null)
+    setQueueInfo({ position: null, queueLength: null, jobStatus: 'queued' })
   }
+
+  // Poll /api/transcribe-status/[jobId] every 3s while a job is queued or
+  // processing. Resolves with the final transcription payload, or throws on
+  // failure / 404. Pulled out as its own function so processFile reads top-down.
+  const pollJob = useCallback(async (jobId) => {
+    const POLL_INTERVAL_MS = 3000
+    const MAX_WAIT_MS = 15 * 60 * 1000 // 15 minutes — well over a reasonable queue
+    const startedAt = Date.now()
+
+    while (Date.now() - startedAt < MAX_WAIT_MS) {
+      await new Promise(r => setTimeout(r, POLL_INTERVAL_MS))
+      const res = await fetch(`/api/transcribe-status/${jobId}`, { cache: 'no-store' })
+      if (res.status === 404) {
+        throw new Error('Job not found or expired.')
+      }
+      if (!res.ok) {
+        // Transient — keep trying for a few more cycles before giving up.
+        continue
+      }
+      const data = await res.json()
+      if (data.status === 'queued') {
+        setQueueInfo({
+          position: data.position ?? null,
+          queueLength: data.queueLength ?? null,
+          jobStatus: 'queued',
+        })
+        continue
+      }
+      if (data.status === 'processing') {
+        setQueueInfo(prev => ({ ...prev, jobStatus: 'processing' }))
+        continue
+      }
+      if (data.status === 'completed') {
+        return data
+      }
+      if (data.status === 'failed') {
+        throw new Error(data.error || 'Transcription failed.')
+      }
+    }
+    throw new Error('Transcription is taking longer than expected. Please try again later.')
+  }, [])
 
   // Kicks off the /api/summarize call. Pulled out so the Retry button in
   // SummaryCard can re-trigger without re-running the whole transcription.
@@ -226,12 +273,23 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
       clearInterval(ticker)
       ticker = null
 
-      if (!res.ok) {
+      if (!res.ok && res.status !== 202) {
         const data = await res.json().catch(() => ({}))
         throw new Error(data.error || 'Transcription failed. Please try again.')
       }
 
-      const data = await res.json()
+      let data = await res.json()
+
+      // 202 = Groq was rate-limited; server enqueued the job. Switch into
+      // polling mode and wait for the worker to finish. queueInfo drives the
+      // UI label ("Position N of M") while we wait.
+      if (res.status === 202 && data.jobId) {
+        setState('queued')
+        setProgress(50) // stay at 50%; queue progress is shown as position
+        setQueueInfo({ position: null, queueLength: null, jobStatus: 'queued' })
+        data = await pollJob(data.jobId)
+      }
+
       setProgress(100)
       const segs = data.segments ?? []
       const finalText = segs.length > 0 ? toParagraphs(segs) : data.text
@@ -251,7 +309,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
       setError(err?.message || 'Transcription failed. Please try again.')
       setState('error')
     }
-  }, [language, locale, generateSummary])
+  }, [language, locale, generateSummary, pollJob])
 
   const handleDrop = useCallback((e) => {
     e.preventDefault()
@@ -307,7 +365,28 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
 
   // ── STATES ──────────────────────────────────────────────────────────────────
 
-  if (state === 'uploading') {
+  if (state === 'uploading' || state === 'queued') {
+    // Headline + sub-line depend on whether we're still in flight to Groq
+    // (uploading) or stuck in the post-429 queue waiting for the worker.
+    const inQueue = state === 'queued'
+    const isProcessing = inQueue && queueInfo.jobStatus === 'processing'
+    const headline = isProcessing
+      ? t(locale, 'status.processing')
+      : inQueue
+        ? t(locale, 'status.queuedHeader')
+        : t(locale, 'status.transcribing')
+
+    // Rough wait estimate: ~45s per job ahead in queue (Whisper ~30s + worker overhead).
+    let queueLine = null
+    if (inQueue && queueInfo.position != null && queueInfo.queueLength != null) {
+      const minutes = Math.max(1, Math.ceil((queueInfo.position * 45) / 60))
+      queueLine = t(locale, 'status.queuePosition', {
+        position: queueInfo.position,
+        total: queueInfo.queueLength,
+        minutes,
+      })
+    }
+
     return (
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-10 text-center">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-50 mb-5">
@@ -315,15 +394,20 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
             <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2.5" strokeDasharray="32" strokeDashoffset="10"/>
           </svg>
         </div>
-        <p className="text-lg font-semibold text-slate-800 mb-1">{t(locale, 'status.transcribing')}</p>
-        <p className="text-sm text-slate-500 mb-6">{file?.name}</p>
+        <p className="text-lg font-semibold text-slate-800 mb-1">{headline}</p>
+        <p className="text-sm text-slate-500 mb-2">{file?.name}</p>
+        {queueLine && (
+          <p className="text-xs text-slate-500 mb-4">{queueLine}</p>
+        )}
         <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
           <div
             className="h-full bg-brand-500 rounded-full transition-all duration-700"
             style={{ width: `${progress}%` }}
           />
         </div>
-        <p className="text-xs text-slate-400 mt-2">{Math.round(progress)}%</p>
+        {!inQueue && (
+          <p className="text-xs text-slate-400 mt-2">{Math.round(progress)}%</p>
+        )}
 
         {/* AdSense slot — shown while user waits */}
         <div className="mt-8 border border-dashed border-slate-200 rounded-xl p-4 text-xs text-slate-400">

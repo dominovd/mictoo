@@ -2,6 +2,18 @@ import { NextResponse } from 'next/server'
 import OpenAI from 'openai'
 import { del } from '@vercel/blob'
 import { bumpTranscriptionCount } from '@/lib/stats'
+import { enqueueJob, isQueueAvailable } from '@/lib/queue'
+
+// Internal signal: Groq is rate-limited (429) and the request should be
+// enqueued for the worker to retry, instead of paying for the OpenAI fallback.
+// Lives only in this file — the route catches it and returns a 202 with jobId.
+class GroqQuotaExhaustedError extends Error {
+  constructor(originalErr) {
+    super('groq quota exhausted — enqueue for worker')
+    this.name = 'GroqQuotaExhaustedError'
+    this.originalErr = originalErr
+  }
+}
 
 export const runtime = 'nodejs'
 // 300s is the Pro plan ceiling. We need it because the OpenAI fallback path
@@ -77,8 +89,23 @@ async function transcribeAudio(file, language) {
       }
     }
 
-    // Groq still failing after retry. Decide whether the OpenAI fallback is
-    // worth attempting for this file.
+    // Groq still failing after retry. Different strategy depending on why:
+    //
+    //   429 (quota / per-minute spike that didn't clear in 3s) →
+    //     signal the caller to enqueue. The cron-driven worker will keep
+    //     retrying Groq as capacity returns. OpenAI fallback is NOT used here
+    //     because that's exactly the cost we're trying to avoid — the queue
+    //     trades latency for $$$.
+    //
+    //   5xx / network / unknown →
+    //     real Groq outage. Falling back to OpenAI is the right call (small
+    //     files only — cap at 10 MB so a long podcast during a Groq incident
+    //     doesn't burn ~$0.20 on a single transcription).
+    //
+    //   Anything else → re-throw.
+    if (lastErr?.status === 429) {
+      throw new GroqQuotaExhaustedError(lastErr)
+    }
     if (!openai) throw lastErr
     if (file.size > FALLBACK_MAX_BYTES) {
       // Large file + Groq down = re-throw so the caller surfaces "try again
@@ -92,7 +119,7 @@ async function transcribeAudio(file, language) {
     }
 
     // Tagged "[transcribe] fallback:" so we can filter Vercel logs for it
-    // and see (a) how often Groq quota/5xx pushes us to OpenAI and
+    // and see (a) how often Groq 5xx/network pushes us to OpenAI and
     // (b) whether the recovery succeeded. Pair of warn/error lines per event.
     console.warn(
       `[transcribe] fallback: groq ${lastErr?.status ?? 'error'} → openai`,
@@ -176,6 +203,11 @@ const MAX_BYTES = 25 * 1024 * 1024 // OpenAI Whisper hard cap
 
 export async function POST(request) {
   let blobUrl = null
+  // When we enqueue a job for the worker, the worker needs the blob to still
+  // exist later — so suppress the finally-block deletion in that branch.
+  // The hourly cleanup-blobs cron is the safety net if the worker never picks
+  // the job up.
+  let shouldDeleteBlob = true
 
   try {
     // ── Rate limit ──────────────────────────────────────────────────────────
@@ -300,6 +332,43 @@ export async function POST(request) {
         language: transcription.language ?? null,
       })
     } catch (err) {
+      // Groq is rate-limited / quota-exhausted (after our inline retry didn't
+      // clear it). Enqueue the job and return a 202 with a jobId so the client
+      // can poll for the result. The cron-driven worker will keep retrying
+      // Groq as capacity returns — much cheaper than the OpenAI fallback.
+      if (err instanceof GroqQuotaExhaustedError) {
+        if (!(await isQueueAvailable())) {
+          // Without Upstash we have nowhere to queue — surface 503 so the user
+          // can retry rather than silently failing.
+          console.error('[transcribe] groq 429 and queue unavailable')
+          return NextResponse.json(
+            { error: 'Service is unusually busy right now. Please try again in a few minutes.' },
+            { status: 503 }
+          )
+        }
+        try {
+          const jobId = await enqueueJob({
+            blobUrl,
+            language: language || '',
+            fileName,
+            fileType,
+            fileSize,
+          })
+          shouldDeleteBlob = false // worker needs it later
+          console.warn(`[transcribe] enqueued jobId=${jobId} (groq 429)`)
+          return NextResponse.json(
+            { jobId, status: 'queued' },
+            { status: 202 }
+          )
+        } catch (queueErr) {
+          console.error('[transcribe] enqueue failed', queueErr?.message)
+          return NextResponse.json(
+            { error: 'Service is unusually busy right now. Please try again in a few minutes.' },
+            { status: 503 }
+          )
+        }
+      }
+
       // Inner catch — file metadata is available for richer logs.
       // Helps us see which formats/codecs actually fail in production.
       const fileMeta = { name: fileName, type: fileType, size: fileSize }
@@ -343,8 +412,10 @@ export async function POST(request) {
   } finally {
     // Clean up the uploaded blob in every case — success, OpenAI error,
     // rate limit, even unexpected crashes — so we never leak storage.
-    // Best-effort: a failed delete just means the hourly cron will sweep it.
-    if (blobUrl) {
+    // Exception: if the request was enqueued for the worker, the worker needs
+    // the blob to still exist; it deletes after processing. The hourly
+    // cleanup-blobs cron is the safety net for blobs whose worker never runs.
+    if (blobUrl && shouldDeleteBlob) {
       del(blobUrl).catch((err) => {
         console.error('[transcribe] blob delete failed', err?.message)
       })
