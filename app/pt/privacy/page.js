@@ -39,7 +39,7 @@ export default function PtPrivacyPage() {
           body: (
             <>
               Podemos exibir anúncios via Google AdSense. O Google pode usar cookies para oferecer anúncios relevantes. Você pode desativá-los em{' '}
-              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Google Ad Settings</a>
+              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Google Ad Settings</a>
               . Podemos usar analytics anônimos (por exemplo, contagem de page views) para entender o uso. Nenhum dado pessoal identificável é coletado.
             </>
           ),

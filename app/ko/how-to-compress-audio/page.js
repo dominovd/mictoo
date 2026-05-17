@@ -38,9 +38,9 @@ export default function KoHowToCompressAudioPage() {
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">온라인 (설치 불필요)</h3>
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://convertio.co/mp4-mp3/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Convertio</a> — MP4 드래그, MP3 또는 M4A 선택, 다운로드.</li>
-            <li><a href="https://cloudconvert.com/mp4-to-mp3" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">CloudConvert</a> — MP4 → MP3 / M4A / WAV 지원.</li>
-            <li><a href="https://www.media.io/audio-converter.html" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Media.io</a> — 브라우저에서 빠른 변환.</li>
+            <li><a href="https://convertio.co/mp4-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — MP4 드래그, MP3 또는 M4A 선택, 다운로드.</li>
+            <li><a href="https://cloudconvert.com/mp4-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — MP4 → MP3 / M4A / WAV 지원.</li>
+            <li><a href="https://www.media.io/audio-converter.html" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Media.io</a> — 브라우저에서 빠른 변환.</li>
           </ul>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">명령줄 (ffmpeg)</h3>
@@ -59,8 +59,8 @@ export default function KoHowToCompressAudioPage() {
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">온라인</h3>
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Online Audio Converter</a> — 품질 슬라이더를 64 kbps, 모노로 설정.</li>
-            <li><a href="https://www.freeconvert.com/audio-compressor" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">FreeConvert Audio Compressor</a> — 목표 크기 선택.</li>
+            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — 품질 슬라이더를 64 kbps, 모노로 설정.</li>
+            <li><a href="https://www.freeconvert.com/audio-compressor" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">FreeConvert Audio Compressor</a> — 목표 크기 선택.</li>
           </ul>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">명령줄 (ffmpeg)</h3>
@@ -81,8 +81,8 @@ export default function KoHowToCompressAudioPage() {
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">온라인</h3>
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://mp3cut.net/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">mp3cut.net</a> — MP3 드래그, 시작/끝 설정, 다운로드.</li>
-            <li><a href="https://clideo.com/cut-audio" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Clideo Cut Audio</a> — 깔끔한 인터페이스, 대부분의 포맷 지원.</li>
+            <li><a href="https://mp3cut.net/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">mp3cut.net</a> — MP3 드래그, 시작/끝 설정, 다운로드.</li>
+            <li><a href="https://clideo.com/cut-audio" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Clideo Cut Audio</a> — 깔끔한 인터페이스, 대부분의 포맷 지원.</li>
           </ul>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">명령줄 (ffmpeg)</h3>

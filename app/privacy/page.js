@@ -42,7 +42,7 @@ export default function PrivacyPage() {
           body: (
             <>
               We may display ads via Google AdSense. Google may use cookies to serve relevant ads. You can opt out via{' '}
-              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Google Ad Settings</a>
+              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Google Ad Settings</a>
               . We may use anonymous analytics (e.g. page view counts) to understand usage. No personally identifiable data is collected.
             </>
           ),

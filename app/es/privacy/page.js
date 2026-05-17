@@ -39,7 +39,7 @@ export default function EsPrivacyPage() {
           body: (
             <>
               Podemos mostrar anuncios mediante Google AdSense. Google puede usar cookies para ofrecer anuncios relevantes. Puedes desactivarlas a través de{' '}
-              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Google Ad Settings</a>
+              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Google Ad Settings</a>
               . Podemos usar estadísticas anónimas (por ejemplo, conteo de páginas vistas) para entender el uso. No se recopila información personal identificable.
             </>
           ),

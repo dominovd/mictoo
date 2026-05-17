@@ -50,9 +50,9 @@ export default function M4aToMp3Page() {
             Drag, drop, download — usually under 10 seconds for a typical voice memo:
           </p>
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/m4a-to-mp3" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">CloudConvert</a> — clean UI, supports big files.</li>
-            <li><a href="https://convertio.co/m4a-mp3/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Convertio</a> — fast, MP3 quality selectable.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Online Audio Converter</a> — fine-grained quality controls.</li>
+            <li><a href="https://cloudconvert.com/m4a-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — clean UI, supports big files.</li>
+            <li><a href="https://convertio.co/m4a-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — fast, MP3 quality selectable.</li>
+            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — fine-grained quality controls.</li>
           </ul>
           <p className="text-xs text-slate-500 mt-3">
             Privacy: online tools upload your file. Skip for confidential recordings — use a desktop method.
@@ -86,7 +86,7 @@ export default function M4aToMp3Page() {
         <div>
           <h2 className="text-xl font-semibold text-slate-800 mb-3">Method 3 — VLC (cross-platform)</h2>
           <p className="mb-3">
-            <a href="https://www.videolan.org/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">VLC</a> on Windows/macOS/Linux:
+            <a href="https://www.videolan.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">VLC</a> on Windows/macOS/Linux:
           </p>
           <ol className="list-decimal pl-5 space-y-1">
             <li>Open VLC → <strong>Media → Convert / Save</strong>.</li>
@@ -100,7 +100,7 @@ export default function M4aToMp3Page() {
         <div>
           <h2 className="text-xl font-semibold text-slate-800 mb-3">Method 4 — Command line (ffmpeg)</h2>
           <p className="mb-4">
-            One line with <a href="https://ffmpeg.org/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">ffmpeg</a>:
+            One line with <a href="https://ffmpeg.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">ffmpeg</a>:
           </p>
           <pre className="bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto text-xs"><code>{`ffmpeg -i input.m4a -acodec libmp3lame -ab 128k output.mp3`}</code></pre>
           <p className="text-xs text-slate-500 mt-2">

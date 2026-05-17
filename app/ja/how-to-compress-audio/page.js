@@ -38,9 +38,9 @@ export default function JaHowToCompressAudioPage() {
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">オンライン(インストール不要)</h3>
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://convertio.co/mp4-mp3/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Convertio</a> — MP4をドラッグ、MP3またはM4Aを選択、ダウンロード。</li>
-            <li><a href="https://cloudconvert.com/mp4-to-mp3" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">CloudConvert</a> — MP4 → MP3 / M4A / WAVに対応。</li>
-            <li><a href="https://www.media.io/audio-converter.html" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Media.io</a> — ブラウザでの高速変換。</li>
+            <li><a href="https://convertio.co/mp4-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — MP4をドラッグ、MP3またはM4Aを選択、ダウンロード。</li>
+            <li><a href="https://cloudconvert.com/mp4-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — MP4 → MP3 / M4A / WAVに対応。</li>
+            <li><a href="https://www.media.io/audio-converter.html" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Media.io</a> — ブラウザでの高速変換。</li>
           </ul>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">コマンドライン(ffmpeg)</h3>
@@ -59,8 +59,8 @@ export default function JaHowToCompressAudioPage() {
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">オンライン</h3>
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Online Audio Converter</a> — 品質スライダーを64 kbps、モノラルに設定。</li>
-            <li><a href="https://www.freeconvert.com/audio-compressor" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">FreeConvert Audio Compressor</a> — 目標サイズを選択。</li>
+            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — 品質スライダーを64 kbps、モノラルに設定。</li>
+            <li><a href="https://www.freeconvert.com/audio-compressor" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">FreeConvert Audio Compressor</a> — 目標サイズを選択。</li>
           </ul>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">コマンドライン(ffmpeg)</h3>
@@ -81,8 +81,8 @@ export default function JaHowToCompressAudioPage() {
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">オンライン</h3>
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://mp3cut.net/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">mp3cut.net</a> — MP3をドラッグ、開始/終了を設定、ダウンロード。</li>
-            <li><a href="https://clideo.com/cut-audio" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Clideo Cut Audio</a> — クリーンなインターフェース、ほとんどのフォーマットに対応。</li>
+            <li><a href="https://mp3cut.net/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">mp3cut.net</a> — MP3をドラッグ、開始/終了を設定、ダウンロード。</li>
+            <li><a href="https://clideo.com/cut-audio" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Clideo Cut Audio</a> — クリーンなインターフェース、ほとんどのフォーマットに対応。</li>
           </ul>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">コマンドライン(ffmpeg)</h3>

@@ -39,7 +39,7 @@ export default function ItPrivacyPage() {
           body: (
             <>
               Potremmo mostrare annunci tramite Google AdSense. Google può usare cookie per offrire annunci pertinenti. Puoi disattivarli tramite{' '}
-              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Google Ad Settings</a>
+              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Google Ad Settings</a>
               . Potremmo usare analytics anonimi (ad esempio conteggio visualizzazioni pagina) per capire l'utilizzo. Non vengono raccolti dati personali identificativi.
             </>
           ),

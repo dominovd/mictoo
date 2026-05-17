@@ -36,10 +36,10 @@ export default function WmaToMp3Page() {
             Drag, drop, download — usually 5–15 seconds:
           </p>
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">CloudConvert</a> — supports up to 1 GB free.</li>
-            <li><a href="https://convertio.co/wma-mp3/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Convertio</a> — batch upload, MP3 quality selectable.</li>
-            <li><a href="https://www.freeconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">FreeConvert</a> — advanced options for bitrate and channels.</li>
-            <li><a href="https://www.media.io/convert/wma-to-mp3.html" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Media.io</a> — fast, clean interface.</li>
+            <li><a href="https://cloudconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — supports up to 1 GB free.</li>
+            <li><a href="https://convertio.co/wma-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — batch upload, MP3 quality selectable.</li>
+            <li><a href="https://www.freeconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">FreeConvert</a> — advanced options for bitrate and channels.</li>
+            <li><a href="https://www.media.io/convert/wma-to-mp3.html" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Media.io</a> — fast, clean interface.</li>
           </ul>
           <p className="text-xs text-slate-500 mt-3">
             Privacy: for confidential recordings (interviews, business calls, medical) prefer the desktop
@@ -60,7 +60,7 @@ export default function WmaToMp3Page() {
           />
 
           <p className="mb-3">
-            <a href="https://www.videolan.org/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">VLC</a> is
+            <a href="https://www.videolan.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">VLC</a> is
             free and reads WMA natively on all systems. Convert in four clicks:
           </p>
           <ol className="list-decimal pl-5 space-y-1">
@@ -76,7 +76,7 @@ export default function WmaToMp3Page() {
         <div>
           <h2 className="text-xl font-semibold text-slate-800 mb-3">Method 3 — Audacity (free, all platforms)</h2>
           <p className="mb-3">
-            <a href="https://www.audacityteam.org/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Audacity</a> works
+            <a href="https://www.audacityteam.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Audacity</a> works
             if you also want to clean up the audio (trim silence, boost quiet voice, remove background hum)
             before transcribing.
           </p>
@@ -91,7 +91,7 @@ export default function WmaToMp3Page() {
         <div>
           <h2 className="text-xl font-semibold text-slate-800 mb-3">Method 4 — Command line (ffmpeg)</h2>
           <p className="mb-4">
-            One line with <a href="https://ffmpeg.org/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">ffmpeg</a>:
+            One line with <a href="https://ffmpeg.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">ffmpeg</a>:
           </p>
           <pre className="bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto text-xs"><code>{`ffmpeg -i input.wma -acodec libmp3lame -ab 128k output.mp3`}</code></pre>
           <p className="text-xs text-slate-500 mt-2">

@@ -39,7 +39,7 @@ export default function KoPrivacyPage() {
           body: (
             <>
               Google AdSense를 통해 광고를 표시할 수 있습니다. Google은 관련성 있는 광고를 표시하기 위해 쿠키를 사용할 수 있습니다.{' '}
-              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Google 광고 설정</a>
+              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Google 광고 설정</a>
               에서 거부할 수 있습니다. 사용 현황을 이해하기 위해 익명 분석(예: 페이지뷰 수)을 사용할 수 있습니다. 개인을 식별할 수 있는 정보는 수집하지 않습니다.
             </>
           ),

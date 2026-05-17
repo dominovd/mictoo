@@ -39,7 +39,7 @@ export default function JaPrivacyPage() {
           body: (
             <>
               Google AdSenseを通じて広告を表示する場合があります。Googleは関連性のある広告を表示するためにCookieを使用することがあります。{' '}
-              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Google広告設定</a>
+              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Google広告設定</a>
               でオプトアウトできます。利用状況を理解するために匿名分析(例: ページビュー数)を使用する場合があります。個人を特定できる情報は一切収集しません。
             </>
           ),

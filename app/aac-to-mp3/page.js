@@ -49,9 +49,9 @@ export default function AacToMp3Page() {
             All of these work without registration:
           </p>
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/aac-to-mp3" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">CloudConvert</a> — clean UI, supports batch.</li>
-            <li><a href="https://convertio.co/aac-mp3/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Convertio</a> — fast, allows MP3 quality selection.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Online Audio Converter</a> — lets you pick mono/64 kbps for transcription.</li>
+            <li><a href="https://cloudconvert.com/aac-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — clean UI, supports batch.</li>
+            <li><a href="https://convertio.co/aac-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — fast, allows MP3 quality selection.</li>
+            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — lets you pick mono/64 kbps for transcription.</li>
           </ul>
           <p className="text-xs text-slate-500 mt-3">
             Privacy tip: online converters upload your file to their servers. For sensitive recordings (medical,
@@ -71,7 +71,7 @@ export default function AacToMp3Page() {
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">Windows / macOS / Linux — Audacity (free)</h3>
           <p>
-            Open the AAC file in <a href="https://www.audacityteam.org/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Audacity</a>,
+            Open the AAC file in <a href="https://www.audacityteam.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Audacity</a>,
             then <strong>File → Export → Export as MP3</strong>. Choose mono and 64–96 kbps if the audio is voice.
           </p>
 
@@ -87,7 +87,7 @@ export default function AacToMp3Page() {
         <div>
           <h2 className="text-xl font-semibold text-slate-800 mb-3">Method 3 — Command line (ffmpeg)</h2>
           <p className="mb-4">
-            One line if you have <a href="https://ffmpeg.org/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">ffmpeg</a> installed:
+            One line if you have <a href="https://ffmpeg.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">ffmpeg</a> installed:
           </p>
           <pre className="bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto text-xs"><code>{`ffmpeg -i input.aac -acodec libmp3lame -ab 128k output.mp3`}</code></pre>
           <p className="text-xs text-slate-500 mt-2">

@@ -40,9 +40,9 @@ export default function DeHowToCompressAudioPage() {
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">Online (ohne Installation)</h3>
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://convertio.co/mp4-mp3/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Convertio</a> — MP4 ablegen, MP3 oder M4A wählen, herunterladen.</li>
-            <li><a href="https://cloudconvert.com/mp4-to-mp3" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">CloudConvert</a> — unterstützt MP4 → MP3 / M4A / WAV.</li>
-            <li><a href="https://www.media.io/audio-converter.html" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Media.io</a> — schnelle Konvertierung im Browser.</li>
+            <li><a href="https://convertio.co/mp4-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — MP4 ablegen, MP3 oder M4A wählen, herunterladen.</li>
+            <li><a href="https://cloudconvert.com/mp4-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — unterstützt MP4 → MP3 / M4A / WAV.</li>
+            <li><a href="https://www.media.io/audio-converter.html" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Media.io</a> — schnelle Konvertierung im Browser.</li>
           </ul>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">Kommandozeile (ffmpeg)</h3>
@@ -62,8 +62,8 @@ export default function DeHowToCompressAudioPage() {
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">Online</h3>
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Online Audio Converter</a> — Qualitätsregler auf 64 kbps, Mono.</li>
-            <li><a href="https://www.freeconvert.com/audio-compressor" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">FreeConvert Audio Compressor</a> — Zielgröße wählen.</li>
+            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — Qualitätsregler auf 64 kbps, Mono.</li>
+            <li><a href="https://www.freeconvert.com/audio-compressor" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">FreeConvert Audio Compressor</a> — Zielgröße wählen.</li>
           </ul>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">Kommandozeile (ffmpeg)</h3>
@@ -85,8 +85,8 @@ export default function DeHowToCompressAudioPage() {
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">Online</h3>
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://mp3cut.net/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">mp3cut.net</a> — MP3 ablegen, Anfang/Ende setzen, herunterladen.</li>
-            <li><a href="https://clideo.com/cut-audio" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Clideo Cut Audio</a> — saubere UI, unterstützt die meisten Formate.</li>
+            <li><a href="https://mp3cut.net/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">mp3cut.net</a> — MP3 ablegen, Anfang/Ende setzen, herunterladen.</li>
+            <li><a href="https://clideo.com/cut-audio" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Clideo Cut Audio</a> — saubere UI, unterstützt die meisten Formate.</li>
           </ul>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">Kommandozeile (ffmpeg)</h3>

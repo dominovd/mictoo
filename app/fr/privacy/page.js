@@ -39,7 +39,7 @@ export default function FrPrivacyPage() {
           body: (
             <>
               Nous pouvons afficher des publicités via Google AdSense. Google peut utiliser des cookies pour proposer des publicités pertinentes. Vous pouvez vous désinscrire via{' '}
-              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Google Ad Settings</a>
+              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Google Ad Settings</a>
               . Nous pouvons utiliser des statistiques anonymes (par ex. nombre de pages vues) pour comprendre l&apos;usage. Aucune donnée personnelle identifiable n&apos;est collectée.
             </>
           ),

@@ -39,7 +39,7 @@ export default function PlPrivacyPage() {
           body: (
             <>
               Możemy wyświetlać reklamy przez Google AdSense. Google może używać plików cookie do wyświetlania trafnych reklam. Możesz zrezygnować w{' '}
-              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Google Ad Settings</a>
+              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Google Ad Settings</a>
               . Możemy używać anonimowej analityki (np. zliczania wyświetleń stron) do zrozumienia użycia. Nie zbieramy żadnych danych umożliwiających identyfikację osoby.
             </>
           ),

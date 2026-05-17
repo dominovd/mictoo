@@ -39,7 +39,7 @@ export default function DePrivacyPage() {
           body: (
             <>
               Wir zeigen möglicherweise Anzeigen über Google AdSense an. Google verwendet ggf. Cookies, um relevante Anzeigen zu schalten. Sie können dies über die{' '}
-              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">Google Ad Settings</a>
+              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Google Ad Settings</a>
               {' '}deaktivieren. Wir nutzen ggf. anonyme Analysen (z.&nbsp;B. Seitenaufrufe), um die Nutzung zu verstehen. Es werden keine personenbezogenen Daten erfasst.
             </>
           ),

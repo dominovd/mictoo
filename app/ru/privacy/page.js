@@ -39,7 +39,7 @@ export default function RuPrivacyPage() {
           body: (
             <>
               Мы можем показывать рекламу через Google AdSense. Google может использовать cookies для подбора релевантной рекламы. Вы можете отключить персонализацию в{' '}
-              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">настройках Google Ad Settings</a>
+              <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">настройках Google Ad Settings</a>
               . Мы можем использовать анонимную аналитику (например, счётчик просмотров страниц), чтобы понимать, как используется сервис. Персональные данные при этом не собираются.
             </>
           ),
