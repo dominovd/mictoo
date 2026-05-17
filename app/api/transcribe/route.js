@@ -4,6 +4,7 @@ import { del } from '@vercel/blob'
 import { bumpTranscriptionCount } from '@/lib/stats'
 import { enqueueJob, isQueueAvailable, QueueFullError, UserQueueFullError } from '@/lib/queue'
 import { createClient as createSupabaseServerClient } from '@/lib/supabase/server'
+import { isDeepgramAvailable, transcribeWithDeepgram } from '@/lib/transcribe/deepgram'
 
 // Internal signal: Groq is rate-limited (429) and the request should be
 // enqueued for the worker to retry, instead of paying for the OpenAI fallback.
@@ -32,9 +33,14 @@ export const maxDuration = 300
 // rest of the pipeline (.srt / .txt+timestamps / paragraph splitting) keeps
 // working unchanged.
 //
-// Fallback: OpenAI Whisper-1, used when Groq returns 429/5xx/network errors.
-// Belt-and-braces — most of the time we never hit it. OpenAI key is also kept
-// because /api/summarize still uses gpt-4o-mini.
+// Fallback chain when Groq has a real outage (5xx/network — NOT 429 which
+// enqueues instead, see GroqQuotaExhaustedError):
+//   1. Deepgram Nova-3 (~$0.258/h, $200 free credit ≈ 775h transcription).
+//      No size cap. Handles ~40 languages incl. multilingual auto-detect.
+//   2. OpenAI Whisper-1 ($0.36/h). Capped at FALLBACK_MAX_BYTES to bound
+//      worst-case spend during a double-outage day.
+//
+// OpenAI key is also kept because /api/summarize still uses gpt-4o-mini.
 const groq = process.env.GROQ_API_KEY
   ? new OpenAI({
       apiKey: process.env.GROQ_API_KEY,
@@ -46,16 +52,14 @@ const openai = process.env.OPENAI_API_KEY
   ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
   : null
 
-// OpenAI Whisper-1 is ~3.2x more expensive per minute than Groq's whisper-large-v3
-// ($0.006 vs $0.00185), so we want to gate the fallback path carefully. Files
-// larger than this skip OpenAI on Groq failure — a 30-min podcast at 256 kbps
-// is ~58 MB; one such file failing over to OpenAI burns ~$0.20, which adds up
-// fast during a Groq daily-cap-exhaustion day. Below the threshold (≈10 min of
-// audio at 128 kbps), the fallback covers WhatsApp-style voice notes cheaply
-// enough that the UX win outweighs the cost.
+// 10 MB cap applies to the OpenAI tier only. Deepgram has no cap because it's
+// ~28% cheaper than OpenAI and the starter credit covers months at our scale.
+// OpenAI Whisper-1 at $0.36/h × ~30 min on a 25 MB file = ~$0.18 per
+// transcription, which adds up during a double-outage; the cap keeps the
+// worst case bounded for files that can't be retried later.
 const FALLBACK_MAX_BYTES = 10 * 1024 * 1024
 
-async function transcribeAudio(file, language) {
+async function transcribeAudio(file, language, { buffer, fileType } = {}) {
   const baseParams = {
     file,
     response_format: 'verbose_json',
@@ -94,52 +98,78 @@ async function transcribeAudio(file, language) {
     //
     //   429 (quota / per-minute spike that didn't clear in 3s) →
     //     signal the caller to enqueue. The cron-driven worker will keep
-    //     retrying Groq as capacity returns. OpenAI fallback is NOT used here
+    //     retrying Groq as capacity returns. Paid fallback is NOT used here
     //     because that's exactly the cost we're trying to avoid — the queue
     //     trades latency for $$$.
     //
     //   5xx / network / unknown →
-    //     real Groq outage. Falling back to OpenAI is the right call (small
-    //     files only — cap at 10 MB so a long podcast during a Groq incident
-    //     doesn't burn ~$0.20 on a single transcription).
+    //     real Groq outage. Try the paid fallback chain:
+    //       Deepgram Nova-3 (no size cap, cheap)
+    //         ↓ on failure
+    //       OpenAI Whisper-1 (capped at 10 MB so a long podcast doesn't
+    //                         burn ~$0.20 on a single transcription)
     //
     //   Anything else → re-throw.
     if (lastErr?.status === 429) {
       throw new GroqQuotaExhaustedError(lastErr)
     }
-    if (!openai) throw lastErr
-    if (file.size > FALLBACK_MAX_BYTES) {
-      // Large file + Groq down = re-throw so the caller surfaces "try again
-      // later" instead of paying for OpenAI on a long recording. Logged at
-      // warn level so we can count these in the same `fallback:` filter.
+
+    const fallbackErrors = []
+
+    // Tier 2: Deepgram. No size cap — Nova-3 handles a 25 MB file in ~$0.06.
+    if (isDeepgramAvailable() && buffer) {
       console.warn(
-        `[transcribe] fallback: skipped (file ${file.size} bytes > ${FALLBACK_MAX_BYTES}), groq ${lastErr?.status ?? 'error'}`,
+        `[transcribe] fallback: groq ${lastErr?.status ?? 'error'} → deepgram`,
         { code: lastErr?.code, message: lastErr?.message }
       )
-      throw lastErr
+      try {
+        const result = await transcribeWithDeepgram(buffer, { fileType, language })
+        console.warn('[transcribe] fallback: deepgram succeeded')
+        return result
+      } catch (dgErr) {
+        console.warn(
+          `[transcribe] fallback: deepgram failed ${dgErr?.status ?? 'error'}`,
+          { message: dgErr?.message }
+        )
+        fallbackErrors.push({ provider: 'deepgram', err: dgErr })
+      }
     }
 
-    // Tagged "[transcribe] fallback:" so we can filter Vercel logs for it
-    // and see (a) how often Groq 5xx/network pushes us to OpenAI and
-    // (b) whether the recovery succeeded. Pair of warn/error lines per event.
-    console.warn(
-      `[transcribe] fallback: groq ${lastErr?.status ?? 'error'} → openai`,
-      { code: lastErr?.code, message: lastErr?.message }
-    )
-    try {
-      const result = await openai.audio.transcriptions.create({
-        ...baseParams,
-        model: 'whisper-1',
-      })
-      console.warn('[transcribe] fallback: openai succeeded')
-      return result
-    } catch (fallbackErr) {
-      console.error(
-        `[transcribe] fallback: openai also failed ${fallbackErr?.status ?? 'error'}`,
-        { code: fallbackErr?.code, message: fallbackErr?.message }
+    // Tier 3: OpenAI. Capped at 10 MB to bound worst-case spend during a
+    // double-outage day. If file is too large or OpenAI isn't configured,
+    // we re-throw the last error we have.
+    if (openai && file.size <= FALLBACK_MAX_BYTES) {
+      console.warn(
+        `[transcribe] fallback: → openai (deepgram unavailable or failed)`,
+        { groqStatus: lastErr?.status }
       )
-      throw fallbackErr
+      try {
+        const result = await openai.audio.transcriptions.create({
+          ...baseParams,
+          model: 'whisper-1',
+        })
+        console.warn('[transcribe] fallback: openai succeeded')
+        return result
+      } catch (oaErr) {
+        console.error(
+          `[transcribe] fallback: openai also failed ${oaErr?.status ?? 'error'}`,
+          { code: oaErr?.code, message: oaErr?.message }
+        )
+        fallbackErrors.push({ provider: 'openai', err: oaErr })
+      }
+    } else if (file.size > FALLBACK_MAX_BYTES && !isDeepgramAvailable()) {
+      // Old-style log entry: no fallback eligible at all (no Deepgram, file
+      // too big for OpenAI). Useful counter for capacity-planning.
+      console.warn(
+        `[transcribe] fallback: skipped (file ${file.size} bytes > ${FALLBACK_MAX_BYTES}, no deepgram), groq ${lastErr?.status ?? 'error'}`,
+        { code: lastErr?.code, message: lastErr?.message }
+      )
     }
+
+    // Surface the most specific error we collected. Prefer the last
+    // fallback's error (more recent context); fall back to Groq's.
+    const last = fallbackErrors[fallbackErrors.length - 1]
+    throw last ? last.err : lastErr
   }
 
   // No Groq configured — go straight to OpenAI.
@@ -466,7 +496,7 @@ export async function POST(request) {
 
     // ── Transcribe (Groq primary, OpenAI fallback) ──────────────────────────
     try {
-      const transcription = await transcribeAudio(whisperFile, language)
+      const transcription = await transcribeAudio(whisperFile, language, { buffer, fileType })
 
       // Fire-and-forget counter bump. Doesn't block response. Safe if Upstash absent.
       bumpTranscriptionCount()

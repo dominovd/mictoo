@@ -6,6 +6,7 @@ import { bumpTranscriptionCount } from '@/lib/stats'
 import { createServiceClient } from '@/lib/supabase/server'
 import { sendEmail } from '@/lib/email/send'
 import { transcriptReadyEmail } from '@/lib/email/templates/transcript-ready'
+import { isDeepgramAvailable, transcribeWithDeepgram } from '@/lib/transcribe/deepgram'
 
 export const runtime = 'nodejs'
 // Same ceiling as /api/transcribe — a 25 MB file may take up to ~5 min on the
@@ -17,15 +18,24 @@ export const maxDuration = 300
 // Cron schedule (every minute) drains the queue over time. Jobs that hit a
 // Groq 429 inside the worker get requeued (up to MAX_ATTEMPTS), so a Groq
 // daily-cap exhaustion just means the queue takes longer to clear, not that
-// we pay for OpenAI fallback.
+// we pay for fallback providers.
+//
+// Fallback chain when Groq finally fails (after MAX_ATTEMPTS or on 5xx):
+//   1. Deepgram Nova-3 (~$0.258/h, $200 free credit) — no size cap, multilang
+//   2. OpenAI Whisper-1 ($0.36/h) — last resort, capped at FALLBACK_MAX_BYTES
+//
+// Deepgram goes first because (a) it's ~28% cheaper than OpenAI, (b) the
+// starter credit covers months at our scale, and (c) it has no 10 MB cap
+// so even long podcasts can fall through cheaply during a Groq cap-out day.
 
 // After 3 retries (~3 minutes user wait) we conclude Groq's daily cap is
-// exhausted, not a per-minute spike. At that point we fall back to OpenAI
-// rather than make the user wait longer for an inevitable failure.
+// exhausted, not a per-minute spike. At that point we fall through to the
+// Deepgram → OpenAI chain rather than make the user wait longer.
 const MAX_ATTEMPTS = 3
-// Same cap as the sync /api/transcribe path: only files ≤ 10 MB are allowed
-// to use the OpenAI fallback when Groq is broken with 5xx/network errors.
-// Larger files stay in the queue or fail cleanly.
+// Only files ≤ 10 MB are allowed to use the OpenAI fallback. Larger files
+// rely on Deepgram (no size cap) or fail cleanly. The cap exists because a
+// 30-min podcast (~58 MB) on OpenAI Whisper-1 burns ~$0.20 per transcription
+// during a Groq cap-out day, which adds up fast.
 const FALLBACK_MAX_BYTES = 10 * 1024 * 1024
 
 const groq = process.env.GROQ_API_KEY
@@ -131,14 +141,36 @@ export async function GET(request) {
         )
       }
 
-      // For 429-after-exhaustion, 5xx, network, or any other transient error:
-      // try OpenAI fallback if the file is small enough to be worth it.
-      // Anything larger fails cleanly so we don't burn ~$0.20 per file on a
-      // long podcast during a Groq daily-cap day.
-      if (openai && fileSize <= FALLBACK_MAX_BYTES) {
+      // ── Fallback chain: Deepgram (no size cap) → OpenAI (≤10MB) ─────────
+      // Both 429-after-exhaustion and 5xx/network reach here. We try each
+      // available provider in order; the first success wins. Each tier is
+      // logged with `fallback:` prefix so Vercel logs can be filtered to
+      // measure how often each tier fires and what success rate is.
+      const fallbackErrors = []
+
+      // Tier 2: Deepgram. Preferred over OpenAI because cheaper, and has no
+      // 10MB cap so big files can still get transcribed during a Groq cap-out.
+      if (isDeepgramAvailable()) {
         console.warn(
-          `[transcribe-worker] fallback: groq ${err?.status ?? 'error'} → openai for jobId=${jobId}`,
+          `[transcribe-worker] fallback: groq ${err?.status ?? 'error'} → deepgram for jobId=${jobId}`,
           { code: err?.code, message: err?.message }
+        )
+        try {
+          transcription = await transcribeWithDeepgram(buffer, { fileType, language })
+          console.warn(`[transcribe-worker] fallback: deepgram succeeded jobId=${jobId}`)
+        } catch (dgErr) {
+          console.warn(
+            `[transcribe-worker] fallback: deepgram failed ${dgErr?.status ?? 'error'} jobId=${jobId}`,
+            { message: dgErr?.message }
+          )
+          fallbackErrors.push({ provider: 'deepgram', err: dgErr })
+        }
+      }
+
+      // Tier 3: OpenAI. Last-resort, only for small files because expensive.
+      if (!transcription && openai && fileSize <= FALLBACK_MAX_BYTES) {
+        console.warn(
+          `[transcribe-worker] fallback: → openai for jobId=${jobId} (deepgram unavailable or failed)`
         )
         try {
           transcription = await openai.audio.transcriptions.create({
@@ -148,21 +180,34 @@ export async function GET(request) {
             model: 'whisper-1',
           })
           console.warn(`[transcribe-worker] fallback: openai succeeded jobId=${jobId}`)
-        } catch (fallbackErr) {
+        } catch (oaErr) {
           console.error(
-            `[transcribe-worker] fallback: openai also failed ${fallbackErr?.status ?? 'error'}`,
-            { code: fallbackErr?.code, message: fallbackErr?.message }
+            `[transcribe-worker] fallback: openai also failed ${oaErr?.status ?? 'error'}`,
+            { code: oaErr?.code, message: oaErr?.message }
           )
-          throw fallbackErr
+          fallbackErrors.push({ provider: 'openai', err: oaErr })
         }
-      } else if (err?.status === 429) {
-        // 429-exhausted + file too large + can't fall back to OpenAI.
-        // Friendly message specifically about this case.
-        throw new Error(
-          'Service is at its daily limit and your file is too large for backup processing. Please try again tomorrow or upload a shorter file.'
-        )
-      } else {
-        throw err
+      }
+
+      // Still nothing? Surface the most user-friendly message we can.
+      if (!transcription) {
+        // Specific case: Groq daily cap + file too big for OpenAI + Deepgram
+        // either unavailable or also failed. Keep the dated message that
+        // tells the user what to do next.
+        const noFallbackAvailable =
+          err?.status === 429 &&
+          fileSize > FALLBACK_MAX_BYTES &&
+          !isDeepgramAvailable()
+        if (noFallbackAvailable) {
+          throw new Error(
+            'Service is at its daily limit and your file is too large for backup processing. Please try again tomorrow or upload a shorter file.'
+          )
+        }
+        // Otherwise re-throw the LAST fallback error (more specific than the
+        // original Groq error in the common case), or the Groq error if no
+        // fallback even ran.
+        const last = fallbackErrors[fallbackErrors.length - 1]
+        throw last ? last.err : err
       }
     }
 
