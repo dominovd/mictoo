@@ -386,7 +386,39 @@ export async function POST(request) {
     // extensions like "0516.MP3" which get rejected as "Invalid file format"
     // even though the MIME type and bytes are perfectly valid. Lowercase the
     // extension defensively so the format check sees what it expects.
-    const safeName = fileName.replace(/\.([A-Za-z0-9]+)$/, (_, ext) => `.${ext.toLowerCase()}`)
+    //
+    // Some clients also strip the extension entirely — Android share-sheets
+    // and some iOS share targets hand the file across as just "Dogs 6" or
+    // "0516" with no dot. Whisper then rejects with "file must be one of
+    // the following types: [flac mp3 mp4 mpeg mpg a m4a ogg opus wav webm]"
+    // even though the MIME type is correct. If we recognise the MIME, append
+    // the appropriate extension so the format check passes — the bytes are
+    // what they always were, only the filename was misleading.
+    const MIME_TO_EXT = {
+      'audio/mpeg':     '.mp3',
+      'audio/mp3':      '.mp3',
+      'audio/mp4':      '.m4a',
+      'audio/m4a':      '.m4a',
+      'audio/x-m4a':    '.m4a',
+      'audio/aac':      '.aac',
+      'audio/x-aac':    '.aac',
+      'audio/wav':      '.wav',
+      'audio/wave':     '.wav',
+      'audio/x-wav':    '.wav',
+      'audio/ogg':      '.ogg',
+      'audio/opus':     '.opus',
+      'audio/webm':     '.webm',
+      'audio/flac':     '.flac',
+      'audio/x-flac':   '.flac',
+      'video/mp4':      '.mp4',
+      'video/webm':     '.webm',
+      'video/quicktime':'.mov',
+      'video/3gpp':     '.3gp',
+    }
+    const hasExt = /\.[A-Za-z0-9]{2,5}$/.test(fileName)
+    const mimeExt = MIME_TO_EXT[(fileType || '').toLowerCase()] || ''
+    const fileNameWithExt = !hasExt && mimeExt ? `${fileName}${mimeExt}` : fileName
+    const safeName = fileNameWithExt.replace(/\.([A-Za-z0-9]+)$/, (_, ext) => `.${ext.toLowerCase()}`)
 
     // Whisper doesn't list "aac" in its supported extensions, but most files
     // that arrive with .aac (Android recorders, iOS share-sheets) are actually
