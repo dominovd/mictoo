@@ -54,6 +54,9 @@ export default function SiteFooter() {
     ['/timestamped-transcription', linkLabel('timestampedTranscript')],
     ['/youtube-to-text',           linkLabel('youtubeToText')],
     ['/how-to-compress-audio',     linkLabel('howToCompress')],
+    ['/aac-to-mp3',                linkLabel('aacToMp3')],
+    ['/wma-to-mp3',                linkLabel('wmaToMp3')],
+    ['/m4a-to-mp3',                linkLabel('m4aToMp3')],
   ]
   const byLanguage = [
     ['/french-speech-to-text',     linkLabel('frenchSpeechToText')],
