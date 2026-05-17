@@ -16,7 +16,10 @@ export const maxDuration = 300
 // daily-cap exhaustion just means the queue takes longer to clear, not that
 // we pay for OpenAI fallback.
 
-const MAX_ATTEMPTS = 5
+// After 3 retries (~3 minutes user wait) we conclude Groq's daily cap is
+// exhausted, not a per-minute spike. At that point we fall back to OpenAI
+// rather than make the user wait longer for an inevitable failure.
+const MAX_ATTEMPTS = 3
 // Same cap as the sync /api/transcribe path: only files ≤ 10 MB are allowed
 // to use the OpenAI fallback when Groq is broken with 5xx/network errors.
 // Larger files stay in the queue or fail cleanly.
@@ -92,9 +95,21 @@ export async function GET(request) {
         model: 'whisper-large-v3',
       })
     } catch (err) {
-      // 429 = Groq quota / rate limit. The whole point of the queue is to
-      // wait this out instead of paying for OpenAI. Requeue and let the
-      // next cron tick try again. Don't delete the blob — we still need it.
+      // 400 = bad file/codec. No retry, no fallback will help.
+      if (err?.status === 400) {
+        const friendly = isAac
+          ? "This AAC recording uses a codec Whisper can't read directly. Convert it to MP3 or M4A first — QuickTime, Audacity, or any online audio converter can do this in seconds."
+          : 'This file format or codec is not supported. Try exporting as MP3 or M4A, or extract the audio track if the file is video-only.'
+        throw new Error(friendly)
+      }
+
+      // 429 = Groq quota / rate limit. The queue is designed to wait out
+      // short per-minute spikes — retry a few times before paying for OpenAI.
+      // BUT: if we keep getting 429 after MAX_ATTEMPTS, we've hit Groq's
+      // *daily* cap (which won't refill for hours), not a momentary spike.
+      // In that case fall through to the OpenAI fallback path below — the
+      // user already waited ~5 min and we shouldn't fail their job to save
+      // a few cents.
       if (err?.status === 429) {
         const nextAttempt = Number(attemptCount || 0) + 1
         if (nextAttempt < MAX_ATTEMPTS) {
@@ -105,25 +120,18 @@ export async function GET(request) {
           shouldDeleteBlob = false
           return NextResponse.json({ status: 'requeued', jobId, attempt: nextAttempt })
         }
-        // Exhausted attempts — surface a user-friendly message rather than
-        // a raw 429. By the time we hit 5 retries Groq has been refusing
-        // for at least ~5 minutes, which is genuinely a service problem.
-        throw new Error(
-          'Service is unusually busy right now. Please try again in a few minutes.'
+        // Retries exhausted — log and fall through to the fallback section
+        // below. We don't throw here; the next block handles "should we try
+        // OpenAI given the file size?"
+        console.warn(
+          `[transcribe-worker] groq 429 attempts exhausted (${MAX_ATTEMPTS}), jobId=${jobId} — attempting openai fallback`
         )
       }
 
-      // 400 = bad file/codec — OpenAI won't help. Surface friendly error.
-      if (err?.status === 400) {
-        const friendly = isAac
-          ? "This AAC recording uses a codec Whisper can't read directly. Convert it to MP3 or M4A first — QuickTime, Audacity, or any online audio converter can do this in seconds."
-          : 'This file format or codec is not supported. Try exporting as MP3 or M4A, or extract the audio track if the file is video-only.'
-        throw new Error(friendly)
-      }
-
-      // 5xx / network / unknown — try OpenAI fallback if the file is small
-      // enough to be worth it. Anything larger just fails so we don't burn
-      // ~$0.20 per file on a long podcast during a Groq incident.
+      // For 429-after-exhaustion, 5xx, network, or any other transient error:
+      // try OpenAI fallback if the file is small enough to be worth it.
+      // Anything larger fails cleanly so we don't burn ~$0.20 per file on a
+      // long podcast during a Groq daily-cap day.
       if (openai && fileSize <= FALLBACK_MAX_BYTES) {
         console.warn(
           `[transcribe-worker] fallback: groq ${err?.status ?? 'error'} → openai for jobId=${jobId}`,
@@ -144,6 +152,12 @@ export async function GET(request) {
           )
           throw fallbackErr
         }
+      } else if (err?.status === 429) {
+        // 429-exhausted + file too large + can't fall back to OpenAI.
+        // Friendly message specifically about this case.
+        throw new Error(
+          'Service is at its daily limit and your file is too large for backup processing. Please try again tomorrow or upload a shorter file.'
+        )
       } else {
         throw err
       }
