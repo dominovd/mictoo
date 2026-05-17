@@ -3,6 +3,19 @@ export const metadata = {
   description: 'Convert WMA (Windows Media Audio) to MP3 free. Online converters, VLC, Audacity, and ffmpeg — pick what fits. Then transcribe the MP3 to text with Mictoo.',
   alternates: {
     canonical: 'https://mictoo.com/wma-to-mp3',
+    languages: {
+      'en': 'https://mictoo.com/wma-to-mp3',
+      'fr': 'https://mictoo.com/fr/wma-to-mp3',
+      'de': 'https://mictoo.com/de/wma-to-mp3',
+      'es': 'https://mictoo.com/es/wma-to-mp3',
+      'ru': 'https://mictoo.com/ru/wma-to-mp3',
+      'it': 'https://mictoo.com/it/wma-to-mp3',
+      'pt': 'https://mictoo.com/pt/wma-to-mp3',
+      'pl': 'https://mictoo.com/pl/wma-to-mp3',
+      'ja': 'https://mictoo.com/ja/wma-to-mp3',
+      'ko': 'https://mictoo.com/ko/wma-to-mp3',
+      'x-default': 'https://mictoo.com/wma-to-mp3',
+    },
   },
 }
 

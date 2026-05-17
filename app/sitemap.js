@@ -529,10 +529,33 @@ export default function sitemap() {
     { url: 'https://mictoo.com/ko/otter-alternative', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.65 },
     { url: 'https://mictoo.com/ko/notta-alternative', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: 'https://mictoo.com/ko/how-to-compress-audio', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
-
-
-
-
-
+    // Conversion guides — Batch 6 (2026-05-17) × 9 non-EN locales × 3 pages
+    { url: 'https://mictoo.com/fr/aac-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/de/aac-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/es/aac-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/ru/aac-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/it/aac-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/pt/aac-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/pl/aac-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/ja/aac-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/ko/aac-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/fr/wma-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/de/wma-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/es/wma-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/ru/wma-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/it/wma-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/pt/wma-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/pl/wma-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/ja/wma-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/ko/wma-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/fr/m4a-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/de/m4a-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/es/m4a-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/ru/m4a-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/it/m4a-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/pt/m4a-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/pl/m4a-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/ja/m4a-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/ko/m4a-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
   ]
 }

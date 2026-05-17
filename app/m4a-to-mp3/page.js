@@ -3,6 +3,19 @@ export const metadata = {
   description: 'Convert M4A to MP3 in seconds with free online tools, QuickTime, VLC, or ffmpeg. Plus a heads-up: most apps (including Mictoo transcription) accept M4A directly — you may not need to convert at all.',
   alternates: {
     canonical: 'https://mictoo.com/m4a-to-mp3',
+    languages: {
+      'en': 'https://mictoo.com/m4a-to-mp3',
+      'fr': 'https://mictoo.com/fr/m4a-to-mp3',
+      'de': 'https://mictoo.com/de/m4a-to-mp3',
+      'es': 'https://mictoo.com/es/m4a-to-mp3',
+      'ru': 'https://mictoo.com/ru/m4a-to-mp3',
+      'it': 'https://mictoo.com/it/m4a-to-mp3',
+      'pt': 'https://mictoo.com/pt/m4a-to-mp3',
+      'pl': 'https://mictoo.com/pl/m4a-to-mp3',
+      'ja': 'https://mictoo.com/ja/m4a-to-mp3',
+      'ko': 'https://mictoo.com/ko/m4a-to-mp3',
+      'x-default': 'https://mictoo.com/m4a-to-mp3',
+    },
   },
 }
 

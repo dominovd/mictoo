@@ -71,14 +71,6 @@ export default function SiteFooter() {
     ['/otter-alternative',        linkLabel('otterAlternative')],
     ['/notta-alternative',        linkLabel('nottaAlternative')],
   ]
-  const siteLocales = [
-    ['/',   '🇬🇧 English'],
-    ['/fr', '🇫🇷 Français'],
-    ['/de', '🇩🇪 Deutsch'],
-    ['/es', '🇪🇸 Español'],
-    ['/ru', '🇷🇺 Русский'],
-  ]
-
   const year = new Date().getFullYear()
 
   return (
@@ -91,20 +83,6 @@ export default function SiteFooter() {
           <FooterCol title={t(locale, 'footer.tools')}      items={tools}        hrefFor={hrefFor} />
           <FooterCol title={t(locale, 'footer.byLanguage')} items={byLanguage}   hrefFor={hrefFor} />
           <FooterCol title={t(locale, 'footer.compare')}    items={compareLinks} hrefFor={hrefFor} />
-        </div>
-
-        {/* Site languages — separate row, smaller, since it's locale switcher not content */}
-        <div className="border-t border-slate-100 pt-6 mb-6">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3 text-center">
-            {t(locale, 'footer.languages')}
-          </p>
-          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2">
-            {siteLocales.map(([href, label]) => (
-              <a key={href} href={href} className="text-sm text-slate-500 hover:text-brand-600 transition-colors">
-                {label}
-              </a>
-            ))}
-          </div>
         </div>
 
         {/* Bottom bar */}
