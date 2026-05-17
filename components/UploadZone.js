@@ -126,6 +126,12 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   // users see them but a click bounces to /sign-in instead of generating.
   const [authUser, setAuthUser] = useState(null)
   const [authLoaded, setAuthLoaded] = useState(false)
+
+  // Set true when we restored a transcript from the localStorage snapshot
+  // after a sign-in round-trip. Drives a small "restored from your browser"
+  // banner above the result so users understand where the data came from
+  // and that it never went to our servers.
+  const [restoredFromSnapshot, setRestoredFromSnapshot] = useState(false)
   useEffect(() => {
     const supabase = createClient()
     let mounted = true
@@ -155,6 +161,72 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
 
   const fileRef = useRef(null)
 
+  // ── Result persistence across sign-in round-trip ────────────────────────
+  // When an anonymous user clicks an auth-gated export button (.docx, .pdf,
+  // .vtt, .json), we redirect to /sign-in. Without this, after the auth flow
+  // brings them back the page re-mounts and the transcript is gone — they'd
+  // have to re-upload and pay for another Whisper call. Solution: snapshot
+  // the result state to localStorage right before the redirect, restore
+  // it on the next mount, then clear the snapshot so it doesn't leak across
+  // unrelated visits.
+  //
+  // localStorage (not sessionStorage) because magic-link emails frequently
+  // open in a NEW tab — sessionStorage there would be empty. The 30-min TTL
+  // below guards against stale snapshots from past sessions.
+  const RESULT_SNAPSHOT_KEY = 'mictoo:upload:pending'
+  const RESULT_SNAPSHOT_TTL_MS = 30 * 60 * 1000 // 30 minutes — anti-stale
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    try {
+      const raw = localStorage.getItem(RESULT_SNAPSHOT_KEY)
+      if (!raw) return
+      localStorage.removeItem(RESULT_SNAPSHOT_KEY)
+      const snap = JSON.parse(raw)
+      if (!snap?.ts || Date.now() - snap.ts > RESULT_SNAPSHOT_TTL_MS) return
+
+      // Restore everything that's needed to re-render the 'done' state.
+      // `file` is restored as a plain `{ name, size, type }` object — the
+      // component only reads those fields, never the raw bytes, so a plain
+      // object works the same as a File instance for our render code.
+      if (snap.transcript) setTranscript(snap.transcript)
+      if (snap.segments) setSegments(snap.segments)
+      if (snap.spokenLanguage !== undefined) setSpokenLanguage(snap.spokenLanguage)
+      if (snap.file) setFile(snap.file)
+      if (snap.summaryData) setSummaryData(snap.summaryData)
+      if (snap.summaryStatus) setSummaryStatus(snap.summaryStatus)
+      if (snap.summaryError) setSummaryError(snap.summaryError)
+      setState('done')
+      setRestoredFromSnapshot(true)
+    } catch {
+      // Ignore: corrupted snapshot just means user starts fresh.
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const saveResultSnapshot = () => {
+    if (typeof window === 'undefined') return
+    try {
+      localStorage.setItem(
+        RESULT_SNAPSHOT_KEY,
+        JSON.stringify({
+          ts: Date.now(),
+          transcript,
+          segments,
+          spokenLanguage,
+          file: file ? { name: file.name, size: file.size, type: file.type } : null,
+          summaryData,
+          summaryStatus,
+          summaryError,
+        })
+      )
+    } catch {
+      // Quota exceeded on very long transcripts — degrade silently. The
+      // worst case is the user has to re-upload, which is what was already
+      // happening before this snapshot existed.
+    }
+  }
+
   const reset = () => {
     setState('idle')
     setProgress(0)
@@ -168,6 +240,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     setSummaryError('')
     setSpokenLanguage(null)
     setQueueInfo({ position: null, queueLength: null, jobStatus: 'queued' })
+    setRestoredFromSnapshot(false)
   }
 
   // Poll /api/transcribe-status/[jobId] every 3s while a job is queued or
@@ -392,6 +465,10 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
 
   const requireSignIn = () => {
     if (authUser) return true
+    // Snapshot the current result so it's restored after the auth round-trip
+    // — see the comment on RESULT_SNAPSHOT_KEY above. Without this we'd
+    // make the user re-upload and pay for another Whisper call.
+    saveResultSnapshot()
     const next = encodeURIComponent(window.location.pathname + (window.location.hash || ''))
     window.location.href = `/sign-in?next=${next}`
     return false
@@ -524,6 +601,26 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
 
     return (
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+        {restoredFromSnapshot && (
+          <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-5 flex items-start gap-3 text-sm">
+            <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-500 text-white inline-flex items-center justify-center text-[11px] font-bold mt-0.5">✓</div>
+            <div className="flex-1 leading-relaxed">
+              <p className="font-semibold text-slate-800 mb-1">Your transcript is back</p>
+              <p className="text-slate-600 text-xs">
+                Restored from your browser's local storage — it was never uploaded to Mictoo's servers and is only visible to you on this device. It will be cleared when you refresh the page or click <em>New file</em>.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setRestoredFromSnapshot(false)}
+              className="flex-shrink-0 text-slate-400 hover:text-slate-600 text-lg leading-none"
+              aria-label="Dismiss"
+              title="Dismiss"
+            >
+              ×
+            </button>
+          </div>
+        )}
         <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
           <div>
             <h2 className="font-semibold text-slate-800">{t(locale, 'result.title')}</h2>
