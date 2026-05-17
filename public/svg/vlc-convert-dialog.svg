@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" role="img" aria-labelledby="title desc">
+  <title id="title">VLC Convert / Save dialog</title>
+  <desc id="desc">VLC Media menu opens a Convert dialog where you choose a source WMA file, select the Audio MP3 profile, set a destination filename ending in mp3, and click Start.</desc>
+  <defs>
+    <filter id="cardshadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="300" rx="16" fill="#f1f5f9"/>
+
+  <!-- Dialog window -->
+  <g transform="translate(80, 30)" filter="url(#cardshadow)">
+    <!-- Window background -->
+    <rect width="480" height="240" rx="10" fill="#ffffff"/>
+    <!-- Title bar -->
+    <rect width="480" height="34" rx="10" fill="#e2e8f0"/>
+    <rect y="24" width="480" height="10" fill="#e2e8f0"/>
+    <circle cx="16" cy="17" r="5" fill="#ef4444"/>
+    <circle cx="32" cy="17" r="5" fill="#f59e0b"/>
+    <circle cx="48" cy="17" r="5" fill="#22c55e"/>
+    <text x="240" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" fill="#334155" text-anchor="middle">Convert</text>
+
+    <!-- Source row -->
+    <text x="24" y="68" font-family="system-ui" font-size="12" font-weight="500" fill="#64748b">Source</text>
+    <rect x="24" y="76" width="320" height="28" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="34" y="94" font-family="ui-monospace, monospace" font-size="11" fill="#0f172a">recording.wma</text>
+    <rect x="352" y="76" width="80" height="28" rx="5" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="392" y="94" font-family="system-ui" font-size="11" fill="#334155" text-anchor="middle">Browse…</text>
+
+    <!-- Profile row -->
+    <text x="24" y="128" font-family="system-ui" font-size="12" font-weight="500" fill="#64748b">Profile</text>
+    <rect x="24" y="136" width="408" height="30" rx="5" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="1.5"/>
+    <text x="38" y="155" font-family="system-ui" font-size="12" font-weight="600" fill="#0369a1">Audio – MP3</text>
+    <path d="M418 149 l4 5 l4 -5" stroke="#0369a1" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Destination row -->
+    <text x="24" y="188" font-family="system-ui" font-size="12" font-weight="500" fill="#64748b">Destination</text>
+    <rect x="24" y="196" width="320" height="28" rx="5" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="34" y="214" font-family="ui-monospace, monospace" font-size="11" fill="#0f172a">recording.mp3</text>
+    <rect x="352" y="196" width="80" height="28" rx="5" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="392" y="214" font-family="system-ui" font-size="11" fill="#334155" text-anchor="middle">Browse…</text>
+  </g>
+
+  <!-- Start button outside the dialog, big -->
+  <g transform="translate(260, 268)">
+    <rect width="120" height="24" rx="6" fill="#0ea5e9"/>
+    <text x="60" y="16" font-family="system-ui" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">Start</text>
+  </g>
+</svg>

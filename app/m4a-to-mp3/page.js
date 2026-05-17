@@ -62,6 +62,15 @@ export default function M4aToMp3Page() {
         {/* Method 2: macOS native */}
         <div>
           <h2 className="text-xl font-semibold text-slate-800 mb-3">Method 2 — macOS (no install)</h2>
+
+          <img
+            src="/svg/macos-music-convert.svg"
+            alt="macOS Music app: click File in the menu bar, hover Convert in the dropdown, then choose Create MP3 Version from the submenu."
+            className="w-full rounded-2xl border border-slate-100 mb-5"
+            width={640}
+            height={280}
+          />
+
           <p className="mb-3">
             <strong>Music app:</strong> Drag the <code className="font-mono">.m4a</code> into Music,
             select it, then <strong>File → Convert → Create MP3 Version</strong>. The MP3 appears

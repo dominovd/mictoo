@@ -35,6 +35,15 @@ export default function AacToMp3Page() {
         {/* Method 1: online */}
         <div>
           <h2 className="text-xl font-semibold text-slate-800 mb-3">Method 1 — Online converter (no install)</h2>
+
+          <img
+            src="/svg/online-converter-3step.svg"
+            alt="Three-step flow: drop the AAC file, choose MP3 as the output format, download the result."
+            className="w-full rounded-2xl border border-slate-100 mb-5"
+            width={640}
+            height={240}
+          />
+
           <p className="mb-4">
             Fastest if your file is under ~200 MB. Drop it in a browser, get MP3 back in a few seconds.
             All of these work without registration:

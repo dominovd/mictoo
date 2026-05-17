@@ -50,6 +50,15 @@ export default function WmaToMp3Page() {
         {/* Method 2: VLC */}
         <div>
           <h2 className="text-xl font-semibold text-slate-800 mb-3">Method 2 — VLC (Windows / macOS / Linux)</h2>
+
+          <img
+            src="/svg/vlc-convert-dialog.svg"
+            alt="VLC Convert dialog: source set to recording.wma, profile dropdown set to Audio – MP3, destination filename ending in .mp3, with a Start button."
+            className="w-full rounded-2xl border border-slate-100 mb-5"
+            width={640}
+            height={300}
+          />
+
           <p className="mb-3">
             <a href="https://www.videolan.org/" target="_blank" rel="noopener noreferrer" className="text-brand-600 hover:underline">VLC</a> is
             free and reads WMA natively on all systems. Convert in four clicks:
