@@ -12,6 +12,7 @@ import { redirect } from 'next/navigation'
 import { headers } from 'next/headers'
 import { createClient } from '@/lib/supabase/server'
 import { detectLocaleFromPath, t, localized } from '@/lib/i18n'
+import AccountPreferences from '@/components/AccountPreferences'
 
 export const dynamic = 'force-dynamic'
 
@@ -47,6 +48,16 @@ export default async function AccountPage() {
     .select('email, full_name, avatar_url, created_at')
     .eq('id', user.id)
     .maybeSingle()
+
+  // Initial value for the email-notifications toggle. Missing row counts
+  // as opted-in (matches the column default), so the toggle starts on for
+  // every newly-registered user.
+  const { data: prefs } = await supabase
+    .from('notification_preferences')
+    .select('notify_on_transcript_ready')
+    .eq('user_id', user.id)
+    .maybeSingle()
+  const initialNotify = prefs?.notify_on_transcript_ready ?? true
 
   const display = profile?.full_name || profile?.email || user.email || 'You'
 
@@ -102,10 +113,19 @@ export default async function AccountPage() {
             <strong className="text-slate-700">{t(locale, 'account.exportHeading')}</strong>{' '}
             {t(locale, 'account.exportBody')}
           </p>
-          <p>
-            <strong className="text-slate-700">{t(locale, 'account.notifHeading')}</strong>{' '}
-            {t(locale, 'account.notifBody')}
-          </p>
+          <div className="pt-2">
+            <p className="font-semibold text-slate-700 mb-3">{t(locale, 'account.notifHeading')}</p>
+            <AccountPreferences
+              initialNotify={initialNotify}
+              labels={{
+                title: t(locale, 'account.notifyToggleTitle'),
+                subtitle: t(locale, 'account.notifyToggleSubtitle'),
+                saved: t(locale, 'account.notifySaved'),
+                saveFailed: t(locale, 'account.notifySaveFailed'),
+                signInRequired: t(locale, 'account.notifySignInRequired'),
+              }}
+            />
+          </div>
         </div>
       </div>
 

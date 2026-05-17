@@ -4,6 +4,8 @@ import { del } from '@vercel/blob'
 import { claimNextJob, setJobResult, setJobError, requeueJob } from '@/lib/queue'
 import { bumpTranscriptionCount } from '@/lib/stats'
 import { createServiceClient } from '@/lib/supabase/server'
+import { sendEmail } from '@/lib/email/send'
+import { transcriptReadyEmail } from '@/lib/email/templates/transcript-ready'
 
 export const runtime = 'nodejs'
 // Same ceiling as /api/transcribe — a 25 MB file may take up to ~5 min on the
@@ -216,6 +218,24 @@ export async function GET(request) {
       transcriptId,
     })
 
+    // ── Email notification ──────────────────────────────────────────────
+    // Fire-and-forget. The job is already marked completed and the client
+    // will see it via polling regardless — email is just a nice-to-have.
+    // Default behaviour: opted in (notify_on_transcript_ready defaults to
+    // true at the schema level; the row is created lazily here if missing).
+    // The summary may not have been generated yet (it runs client-side
+    // after the user sees the transcript), so we omit it from the email
+    // for queued jobs — fine, the user can read it in /history.
+    if (userId) {
+      notifyUser({
+        userId,
+        fileName,
+        text: transcription.text || '',
+      }).catch((err) => {
+        console.error('[transcribe-worker] notify failed', err?.message)
+      })
+    }
+
     return NextResponse.json({ status: 'completed', jobId, transcriptId })
   } catch (err) {
     console.error('[transcribe-worker] job failed', {
@@ -234,6 +254,53 @@ export async function GET(request) {
         console.error('[transcribe-worker] blob delete failed', err?.message)
       })
     }
+  }
+}
+
+// Send a "transcript is ready" email if the user is opted in.
+// `text` is the full transcript; we trim a preview from it inside the
+// template so the user has something to glance at without opening the page.
+//
+// Resolves silently on any error — email is non-critical, must NOT fail
+// the job or the worker's HTTP response.
+async function notifyUser({ userId, fileName, text }) {
+  const supabase = createServiceClient()
+
+  // Read preferences. Missing row means "use defaults", which is opted-in.
+  const { data: prefs } = await supabase
+    .from('notification_preferences')
+    .select('notify_on_transcript_ready')
+    .eq('user_id', userId)
+    .maybeSingle()
+  const wantsEmail = prefs?.notify_on_transcript_ready ?? true
+  if (!wantsEmail) return
+
+  // Need the user's email + name. Service-role client can read from
+  // auth.users via admin API.
+  const { data: userRes, error: userErr } = await supabase.auth.admin.getUserById(userId)
+  if (userErr || !userRes?.user?.email) {
+    console.error('[transcribe-worker] notify: could not resolve user email', userErr?.message)
+    return
+  }
+
+  const to = userRes.user.email
+  const meta = userRes.user.user_metadata || {}
+  const name = meta.full_name || meta.name || null
+
+  const preview = (text || '').trim().slice(0, 220).replace(/\s+\S*$/, '')
+
+  const { subject, html, text: plain } = transcriptReadyEmail({
+    name,
+    fileName: fileName || 'audio',
+    preview,
+    summary: null, // summary runs client-side after polling; not available here yet
+  })
+
+  const result = await sendEmail({ to, subject, html, text: plain })
+  if (!result.ok) {
+    console.error('[transcribe-worker] notify: send failed', result.error)
+  } else {
+    console.log(`[transcribe-worker] notify: sent to ${to} (id=${result.id})`)
   }
 }
 
