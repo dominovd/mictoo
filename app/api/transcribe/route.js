@@ -411,6 +411,14 @@ export async function POST(request) {
     // unlocks them without re-encoding. Pure-QuickTime containers with codecs
     // Whisper can't decode will still fail at decode and surface the generic
     // unsupported-format error.
+    // `audio/vnd.dlna.adts` is the explicit "this is raw ADTS AAC" MIME
+    // type used by some Android voice recorders and DLNA streamers. It's a
+    // strong signal that no amount of extension renaming will help — the
+    // bytes are not in an MP4 container, so Whisper's decoder will reject
+    // them after passing the file-extension check. The client should reject
+    // these uploads upfront (see UploadZone.processFile), but we surface a
+    // specific error here too in case someone hits the API directly.
+    const isAdtsAac = /^audio\/vnd\.dlna\.adts$/i.test(fileType || '')
     const isAac = safeName.endsWith('.aac') || /^audio\/(x-)?aac$/i.test(fileType || '')
     const isOpus = safeName.endsWith('.opus') || /^audio\/opus$/i.test(fileType || '')
     const isMov =
@@ -549,12 +557,20 @@ export async function POST(request) {
       // typically raw ADTS streams — point users to a conversion instead of
       // the generic "format unsupported" message.
       if (err?.status === 400) {
+        // Three buckets of user-facing message:
+        //   1. ADTS raw stream (most often from Android recorders)
+        //      → explicit "convert via VLC" message
+        //   2. AAC that survived rename but still failed
+        //      → general AAC conversion advice
+        //   3. Anything else
+        //      → generic format-not-supported
+        const errorMessage = isAdtsAac
+          ? "This file is in raw ADTS AAC format (common from Android voice recorders) which Whisper can't read directly. Open it in VLC and use Media → Convert / Save → MP3, then upload the converted file."
+          : isAac
+            ? "This AAC recording uses a codec Whisper can't read directly. Convert it to MP3 or M4A first — QuickTime, Audacity, or any online audio converter can do this in seconds."
+            : "This file format or codec is not supported. Try exporting as MP3 or M4A, or extract the audio track if the file is video-only."
         return NextResponse.json(
-          {
-            error: isAac
-              ? "This AAC recording uses a codec Whisper can't read directly. Convert it to MP3 or M4A first — QuickTime, Audacity, or any online audio converter can do this in seconds."
-              : "This file format or codec is not supported. Try exporting as MP3 or M4A, or extract the audio track if the file is video-only.",
-          },
+          { error: errorMessage },
           { status: 400 }
         )
       }

@@ -368,6 +368,18 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
       return
     }
 
+    // Reject raw ADTS-AAC streams upfront — these arrive with MIME
+    // `audio/vnd.dlna.adts` from certain Android voice recorders and DLNA
+    // streamers. Whisper cannot decode raw ADTS (no MP4 container around
+    // the bytes), and our .aac → .m4a rename trick fools the extension
+    // check but the decoder still fails. Better to tell the user now than
+    // let them wait through a 19 MB upload that will 400-out at the API.
+    if (f.type === 'audio/vnd.dlna.adts') {
+      setError(t(locale, 'status.aacAdtsNotSupported'))
+      setState('error')
+      return
+    }
+
     setFile(f)
     setState('uploading')
     setProgress(2)
