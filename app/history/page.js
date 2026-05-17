@@ -30,7 +30,7 @@ export default async function HistoryPage() {
 
   const { data: transcripts, error } = await supabase
     .from('transcripts')
-    .select('id, file_name, file_size, file_type, language, text, segments, duration_seconds, created_at')
+    .select('id, file_name, file_size, file_type, language, text, segments, summary, duration_seconds, created_at')
     .gte('created_at', sinceIso)
     .order('created_at', { ascending: false })
     .limit(100)

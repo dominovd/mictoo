@@ -167,6 +167,12 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   // language rather than the UI locale.
   const [spokenLanguage, setSpokenLanguage] = useState(null)
 
+  // Row id in `public.transcripts` for authed users. Non-null after the
+  // server-side insert in /api/transcribe (sync) or /api/transcribe-worker
+  // (queued). Passed to /api/summarize so the AI summary is written onto
+  // the same row and surfaces in /history.
+  const [transcriptId, setTranscriptId] = useState(null)
+
   const fileRef = useRef(null)
 
   // ── Result persistence across sign-in round-trip ────────────────────────
@@ -204,6 +210,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
       if (snap.summaryData) setSummaryData(snap.summaryData)
       if (snap.summaryStatus) setSummaryStatus(snap.summaryStatus)
       if (snap.summaryError) setSummaryError(snap.summaryError)
+      if (snap.transcriptId) setTranscriptId(snap.transcriptId)
       setState('done')
       setRestoredFromSnapshot(true)
     } catch {
@@ -226,6 +233,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
           summaryData,
           summaryStatus,
           summaryError,
+          transcriptId,
         })
       )
     } catch {
@@ -249,6 +257,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     setSpokenLanguage(null)
     setQueueInfo({ position: null, queueLength: null, jobStatus: 'queued' })
     setRestoredFromSnapshot(false)
+    setTranscriptId(null)
   }
 
   // Poll /api/transcribe-status/[jobId] every 3s while a job is queued or
@@ -297,7 +306,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   // spokenLanguage comes from Whisper's detected language (e.g. "ukrainian"),
   // so the summary is written in the recording's language by default rather
   // than the UI locale — that's almost always what the user wants.
-  const generateSummary = useCallback(async (transcriptText, spokenLanguage) => {
+  const generateSummary = useCallback(async (transcriptText, spokenLanguage, tId) => {
     if (!transcriptText || transcriptText.length < 30) return
     setSummaryStatus('loading')
     setSummaryError('')
@@ -305,7 +314,14 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
       const res = await fetch('/api/summarize', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ transcript: transcriptText, spokenLanguage, locale }),
+        body: JSON.stringify({
+          transcript: transcriptText,
+          spokenLanguage,
+          locale,
+          // Lets the server attach the summary back to /history. Null for
+          // anonymous users — no row was inserted, nothing to update.
+          transcriptId: tId || null,
+        }),
       })
       if (!res.ok) {
         const data = await res.json().catch(() => ({}))
@@ -398,16 +414,19 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
       const segs = data.segments ?? []
       const finalText = segs.length > 0 ? toParagraphs(segs) : data.text
       const detectedLang = data.language || null
+      const tId = data.transcriptId || null
       // Use paragraph-formatted text if segments are available, else raw text
       setTranscript(finalText)
       setSegments(segs)
       setSpokenLanguage(detectedLang)
+      setTranscriptId(tId)
       setState('done')
 
       // Kick off the AI summary in parallel — doesn't block the transcript UI.
       // Pass the detected spoken language so the summary is in the same
       // language as the recording (a Ukrainian audio → Ukrainian summary).
-      generateSummary(finalText, detectedLang)
+      // Pass transcriptId so the summary is attached to the same /history row.
+      generateSummary(finalText, detectedLang, tId)
     } catch (err) {
       if (ticker) clearInterval(ticker)
       setError(err?.message || 'Transcription failed. Please try again.')
@@ -757,7 +776,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
           status={summaryStatus}
           data={summaryData}
           error={summaryError}
-          onRetry={() => generateSummary(transcript, spokenLanguage)}
+          onRetry={() => generateSummary(transcript, spokenLanguage, transcriptId)}
         />
 
         <textarea

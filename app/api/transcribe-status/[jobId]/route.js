@@ -40,6 +40,10 @@ export async function GET(_request, { params }) {
       text: job.text || '',
       segments: job.segments || [],
       language: job.detectedLanguage || null,
+      // Row id in the `transcripts` table (only present for authed users
+      // whose jobs were saved to history). Lets the client attach the AI
+      // summary to that row when /api/summarize completes.
+      transcriptId: job.transcriptId || null,
     })
   }
 

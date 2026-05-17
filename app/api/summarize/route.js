@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import OpenAI from 'openai'
+import { createClient as createSupabaseServerClient } from '@/lib/supabase/server'
 
 export const runtime = 'nodejs'
 export const maxDuration = 30
@@ -120,6 +121,28 @@ export async function POST(request) {
     const actionItems = Array.isArray(parsed.actionItems)
       ? parsed.actionItems.filter(s => typeof s === 'string').map(s => s.trim()).filter(Boolean)
       : []
+
+    // If the caller passed a transcriptId and is authenticated, persist the
+    // summary onto the same row so it shows up in /history. RLS makes sure
+    // a malicious caller can't write to another user's row.
+    if (body.transcriptId && typeof body.transcriptId === 'string') {
+      try {
+        const supabase = createSupabaseServerClient()
+        const { data: { user } } = await supabase.auth.getUser()
+        if (user) {
+          const { error: updateErr } = await supabase
+            .from('transcripts')
+            .update({ summary: { summary, keyPoints, actionItems } })
+            .eq('id', body.transcriptId)
+            .eq('user_id', user.id)
+          if (updateErr) {
+            console.error('[summarize] could not attach to transcript', updateErr.message)
+          }
+        }
+      } catch (err) {
+        console.error('[summarize] history attach threw', err?.message)
+      }
+    }
 
     return NextResponse.json({ summary, keyPoints, actionItems })
   } catch (err) {

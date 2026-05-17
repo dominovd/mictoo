@@ -165,23 +165,26 @@ export async function GET(request) {
     }
 
     // ── Success ──────────────────────────────────────────────────────────
-    await setJobResult(jobId, {
-      text: transcription.text,
-      segments: transcription.segments ?? [],
-      language: transcription.language ?? null,
-    })
+    // We insert the transcript row first (below) and then echo the id back
+    // via setJobResult so the client polling /api/transcribe-status can pick
+    // it up. Order matters: insert → setJobResult.
     bumpTranscriptionCount()
 
     // Save to history for authenticated users. Worker uses the service-role
     // Supabase client because there's no user-cookie context here (cron-only
     // endpoint). We explicitly write user_id from the job so RLS would still
     // protect it on subsequent reads via the anon key.
+    //
+    // The inserted row's id is also tucked back into the job hash so the
+    // client (which polls /api/transcribe-status) can find out which row to
+    // attach the AI summary to when /api/summarize completes.
+    let transcriptId = null
     if (userId) {
       const segs = transcription.segments ?? []
       const durationSeconds = segs.length ? segs[segs.length - 1]?.end ?? null : null
       try {
         const supabase = createServiceClient()
-        const { error: dbErr } = await supabase
+        const { data, error: dbErr } = await supabase
           .from('transcripts')
           .insert({
             user_id: userId,
@@ -194,15 +197,26 @@ export async function GET(request) {
             duration_seconds: durationSeconds,
             source: 'web',
           })
+          .select('id')
+          .single()
         if (dbErr) {
           console.error('[transcribe-worker] save to history failed', dbErr.message)
+        } else if (data) {
+          transcriptId = data.id
         }
       } catch (err) {
         console.error('[transcribe-worker] save to history threw', err?.message)
       }
     }
 
-    return NextResponse.json({ status: 'completed', jobId })
+    await setJobResult(jobId, {
+      text: transcription.text,
+      segments: transcription.segments ?? [],
+      language: transcription.language ?? null,
+      transcriptId,
+    })
+
+    return NextResponse.json({ status: 'completed', jobId, transcriptId })
   } catch (err) {
     console.error('[transcribe-worker] job failed', {
       jobId,

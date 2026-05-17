@@ -375,13 +375,17 @@ export async function POST(request) {
 
       // Save to history for authenticated users (anonymous transcripts are
       // never persisted — preserves the "files immediately discarded" promise).
-      // Fire-and-forget; a DB hiccup must NOT fail the user's transcription.
+      // We need the inserted row's id so the client can later attach an AI
+      // summary to the same row when /api/summarize completes, so we DO await
+      // this insert (in contrast to the fire-and-forget pattern used elsewhere).
+      // A DB error logs but does NOT fail the user's transcription response.
+      let transcriptId = null
       if (authUser) {
         const segs = transcription.segments ?? []
         const durationSeconds = segs.length ? segs[segs.length - 1]?.end ?? null : null
         try {
           const supabase = createSupabaseServerClient()
-          supabase
+          const { data, error } = await supabase
             .from('transcripts')
             .insert({
               user_id: authUser.id,
@@ -394,9 +398,13 @@ export async function POST(request) {
               duration_seconds: durationSeconds,
               source: 'web',
             })
-            .then(({ error }) => {
-              if (error) console.error('[transcribe] save to history failed', error.message)
-            })
+            .select('id')
+            .single()
+          if (error) {
+            console.error('[transcribe] save to history failed', error.message)
+          } else if (data) {
+            transcriptId = data.id
+          }
         } catch (err) {
           console.error('[transcribe] save to history threw', err?.message)
         }
@@ -409,6 +417,10 @@ export async function POST(request) {
         // Used downstream by /api/summarize so the summary is written in the
         // same language as the recording, not the UI locale.
         language: transcription.language ?? null,
+        // ID of the row in `public.transcripts` for authed users; null for
+        // anonymous. Client uses it to attach the AI summary back to the
+        // same row when /api/summarize completes.
+        transcriptId,
       })
     } catch (err) {
       // Groq is rate-limited / quota-exhausted (after our inline retry didn't
