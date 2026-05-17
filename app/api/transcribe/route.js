@@ -216,7 +216,14 @@ export async function POST(request) {
     }
     const buffer = Buffer.from(arrayBuffer)
 
-    const whisperFile = new File([buffer], fileName, { type: fileType })
+    // Whisper APIs (both Groq and OpenAI) detect the file format from the
+    // filename extension and compare it case-sensitively to a lowercase
+    // allowlist (mp3, mp4, m4a, …). iPhone exports often use uppercase
+    // extensions like "0516.MP3" which get rejected as "Invalid file format"
+    // even though the MIME type and bytes are perfectly valid. Lowercase the
+    // extension defensively so the format check sees what it expects.
+    const safeName = fileName.replace(/\.([A-Za-z0-9]+)$/, (_, ext) => `.${ext.toLowerCase()}`)
+    const whisperFile = new File([buffer], safeName, { type: fileType })
 
     // ── Transcribe (Groq primary, OpenAI fallback) ──────────────────────────
     try {
