@@ -3,6 +3,7 @@ import OpenAI from 'openai'
 import { del } from '@vercel/blob'
 import { bumpTranscriptionCount } from '@/lib/stats'
 import { enqueueJob, isQueueAvailable } from '@/lib/queue'
+import { createClient as createSupabaseServerClient } from '@/lib/supabase/server'
 
 // Internal signal: Groq is rate-limited (429) and the request should be
 // enqueued for the worker to retry, instead of paying for the OpenAI fallback.
@@ -152,29 +153,47 @@ async function transcribeAudio(file, language) {
 }
 
 // ── Rate limiter (optional — only activates if Upstash env vars are set) ────
-let ratelimit = null
+// Two-tier policy:
+//
+//   Anonymous (rate by IP)     — 3 transcriptions / hour
+//   Authenticated (by user_id) — 5 transcriptions / hour
+//
+// The auth bump is small (~1.7×) but is the simplest tangible reason to
+// register today. We're keeping it conservative because each transcription
+// is real money (~$0.01 on Groq for an average ~5 min file, more if pushed
+// onto OpenAI fallback). Numbers can be raised later once we see actual
+// auth-tier traffic shape. Both limiters share the same Redis; we prefix
+// keys with `anon` / `auth` to keep them in separate slidingWindow buckets.
+let rateLimiters = null
 
-async function getRatelimiter() {
-  if (ratelimit) return ratelimit
+async function getRateLimiters() {
+  if (rateLimiters) return rateLimiters
   if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
     return null
   }
   const { Ratelimit } = await import('@upstash/ratelimit')
   const { Redis } = await import('@upstash/redis')
 
-  ratelimit = new Ratelimit({
-    redis: new Redis({
-      url: process.env.UPSTASH_REDIS_REST_URL,
-      token: process.env.UPSTASH_REDIS_REST_TOKEN,
-    }),
-    // 3 transcriptions per IP per hour. Tightened from 10 to align with the
-    // free-tier unit economics: at ~3.8 min avg per file and Groq pricing,
-    // 3 files = ~$0.02 of API cost per user/hour, which AdSense margin on
-    // surrounding SEO traffic can cover. Heavier use is the future paid tier.
-    limiter: Ratelimit.slidingWindow(3, '1 h'),
-    analytics: true,
+  const redis = new Redis({
+    url: process.env.UPSTASH_REDIS_REST_URL,
+    token: process.env.UPSTASH_REDIS_REST_TOKEN,
   })
-  return ratelimit
+
+  rateLimiters = {
+    anon: new Ratelimit({
+      redis,
+      limiter: Ratelimit.slidingWindow(3, '1 h'),
+      analytics: true,
+      prefix: 'mictoo:rl:anon',
+    }),
+    auth: new Ratelimit({
+      redis,
+      limiter: Ratelimit.slidingWindow(5, '1 h'),
+      analytics: true,
+      prefix: 'mictoo:rl:auth',
+    }),
+  }
+  return rateLimiters
 }
 
 function getIP(request) {
@@ -211,17 +230,34 @@ export async function POST(request) {
 
   try {
     // ── Rate limit ──────────────────────────────────────────────────────────
-    const limiter = await getRatelimiter()
-    if (limiter) {
-      const ip = getIP(request)
-      const { success, limit, remaining, reset } = await limiter.limit(ip)
+    // ── Auth check ──────────────────────────────────────────────────────────
+    // We look up the session here purely to decide which rate-limit bucket
+    // to apply (anon by IP vs registered by user_id). The user object is
+    // also useful later when we save transcripts to history (Phase B).
+    let authUser = null
+    try {
+      const supabase = createSupabaseServerClient()
+      const { data } = await supabase.auth.getUser()
+      authUser = data?.user ?? null
+    } catch {
+      // Auth lookup failed — treat as anonymous. We don't want a Supabase
+      // hiccup to break the transcription flow.
+    }
+
+    // ── Rate limit (different bucket for anon vs authed) ────────────────────
+    const limiters = await getRateLimiters()
+    if (limiters) {
+      const limiter = authUser ? limiters.auth : limiters.anon
+      const key = authUser ? authUser.id : getIP(request)
+      const { success, limit, remaining, reset } = await limiter.limit(key)
 
       if (!success) {
         const resetIn = Math.ceil((reset - Date.now()) / 1000 / 60)
+        const errorMsg = authUser
+          ? `Too many requests. You've used your ${limit} transcriptions this hour. Try again in ~${resetIn} min.`
+          : `Too many requests. You've used your ${limit} free transcriptions this hour. Sign in for higher limits, or try again in ~${resetIn} min.`
         return NextResponse.json(
-          {
-            error: `Too many requests. You've used your 3 free transcriptions this hour. Try again in ~${resetIn} min.`,
-          },
+          { error: errorMsg, signInHelps: !authUser },
           {
             status: 429,
             headers: {
