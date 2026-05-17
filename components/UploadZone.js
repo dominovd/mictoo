@@ -178,6 +178,15 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   // the same row and surfaces in /history.
   const [transcriptId, setTranscriptId] = useState(null)
 
+  // Multi-file batch state. Authenticated users can pick up to 3 files at
+  // once; we process the first immediately and queue the rest here. When a
+  // file reaches state='done', we auto-start the next after a brief pause
+  // so the user gets a glance at the result. Anonymous users never see this
+  // — their picker is single-file (matches their 3/hour budget).
+  const [batchQueue, setBatchQueue] = useState([])
+  const [batchTotal, setBatchTotal] = useState(0) // total files in this batch
+  const [batchDoneCount, setBatchDoneCount] = useState(0) // 0-based index of currently-processing file
+
   const fileRef = useRef(null)
 
   // ── Result persistence across sign-in round-trip ────────────────────────
@@ -264,6 +273,11 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     setRestoredFromSnapshot(false)
     setTranscriptId(null)
     setErrorOffersSignIn(false)
+    // Manual reset (e.g. "New file" button) wipes any pending batch too —
+    // user signalled they want a clean slate.
+    setBatchQueue([])
+    setBatchTotal(0)
+    setBatchDoneCount(0)
   }
 
   // Poll /api/transcribe-status/[jobId] every 3s while a job is queued or
@@ -445,17 +459,70 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     }
   }, [language, locale, generateSummary, pollJob])
 
+  // Max files in one batch. UI enforces this AND backend per-user queue
+  // depth caps at PER_USER_QUEUE_LIMIT (=3) anyway, so the user can't
+  // smuggle more in by tampering with the picker.
+  const MAX_BATCH = 3
+
+  // Pick a list of files for processing. Authed users get multi-file batch;
+  // anonymous users always single-file (matches their IP rate budget).
+  const acceptFiles = useCallback((fileList) => {
+    if (!fileList || fileList.length === 0) return
+    const all = Array.from(fileList)
+    if (!authUser || all.length === 1) {
+      processFile(all[0])
+      return
+    }
+    // Authed multi-file: process the first immediately, queue the rest.
+    const batch = all.slice(0, MAX_BATCH)
+    const [first, ...rest] = batch
+    setBatchQueue(rest)
+    setBatchTotal(batch.length)
+    setBatchDoneCount(0)
+    processFile(first)
+  }, [authUser, processFile])
+
   const handleDrop = useCallback((e) => {
     e.preventDefault()
     setState('idle')
-    const f = e.dataTransfer.files[0]
-    if (f) processFile(f)
-  }, [processFile])
+    acceptFiles(e.dataTransfer.files)
+  }, [acceptFiles])
 
   const handleFile = (e) => {
-    const f = e.target.files[0]
-    if (f) processFile(f)
+    acceptFiles(e.target.files)
   }
+
+  // When a file completes (state='done'), check whether there are more in
+  // the batch and start the next one after a short pause that lets the user
+  // see this file's result first.
+  useEffect(() => {
+    if (state !== 'done') return
+    if (batchQueue.length === 0) return
+    const timer = setTimeout(() => {
+      const [next, ...rest] = batchQueue
+      setBatchQueue(rest)
+      setBatchDoneCount(c => c + 1)
+      // Reset most state but keep batch counters.
+      setState('idle')
+      setProgress(0)
+      setFile(null)
+      setTranscript('')
+      setSegments([])
+      setError('')
+      setCopied(false)
+      setSummaryStatus('idle')
+      setSummaryData(null)
+      setSummaryError('')
+      setSpokenLanguage(null)
+      setTranscriptId(null)
+      setQueueInfo({ position: null, queueLength: null, jobStatus: 'queued' })
+      setRestoredFromSnapshot(false)
+      setErrorOffersSignIn(false)
+      // Kick off the next file.
+      processFile(next)
+    }, 4000) // 4-second glance window
+    return () => clearTimeout(timer)
+  }, [state, batchQueue, processFile])
 
   const copy = async () => {
     await navigator.clipboard.writeText(transcript)
@@ -617,7 +684,12 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
           </svg>
         </div>
         <p className="text-lg font-semibold text-slate-800 mb-1">{headline}</p>
-        <p className="text-sm text-slate-500 mb-2">{file?.name}</p>
+        <p className="text-sm text-slate-500 mb-2">
+          {file?.name}
+          {batchTotal > 1 && (
+            <span className="ml-2 text-xs text-slate-400">({batchDoneCount + 1} of {batchTotal})</span>
+          )}
+        </p>
         {queueLine && (
           <p className="text-xs text-slate-500 mb-4">{queueLine}</p>
         )}
@@ -669,10 +741,22 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
         )}
         <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
           <div>
-            <h2 className="font-semibold text-slate-800">{t(locale, 'result.title')}</h2>
+            <h2 className="font-semibold text-slate-800">
+              {t(locale, 'result.title')}
+              {batchTotal > 1 && (
+                <span className="ml-2 text-xs font-normal text-slate-400">
+                  ({batchDoneCount + 1} of {batchTotal})
+                </span>
+              )}
+            </h2>
             <p className="text-xs text-slate-400 mt-0.5">
               {t(locale, 'result.stats', { words: wordCount, chars: charCount, name: file?.name })}
             </p>
+            {batchQueue.length > 0 && (
+              <p className="text-xs text-brand-600 mt-1">
+                Next file starts in a few seconds — {batchQueue.length} more to go.
+              </p>
+            )}
           </div>
           <div className="flex items-center gap-2 flex-wrap">
             <button onClick={copy} className="btn-ghost">
@@ -874,6 +958,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
           ref={fileRef}
           type="file"
           accept=".mp3,.mp4,.m4a,.aac,.wav,.ogg,.opus,.webm,.mpeg,.flac,.mov,.qt,.3gp"
+          multiple={!!authUser}
           className="hidden"
           onChange={handleFile}
         />
@@ -887,6 +972,11 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
         <p className="text-xs text-slate-400">
           MP3 · MP4 · WAV · M4A · OGG · WEBM · FLAC &nbsp;·&nbsp; {t(locale, 'dropzone.maxSize')}
         </p>
+        {authUser && (
+          <p className="text-xs text-brand-600 mt-2">
+            Signed in — drop up to 3 files at once, we'll process them in order.
+          </p>
+        )}
       </div>
 
       {/* Preventive hint about the 25 MB limit — visible from the start so users

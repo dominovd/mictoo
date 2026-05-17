@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import OpenAI from 'openai'
 import { del } from '@vercel/blob'
 import { bumpTranscriptionCount } from '@/lib/stats'
-import { enqueueJob, isQueueAvailable, QueueFullError } from '@/lib/queue'
+import { enqueueJob, isQueueAvailable, QueueFullError, UserQueueFullError } from '@/lib/queue'
 import { createClient as createSupabaseServerClient } from '@/lib/supabase/server'
 
 // Internal signal: Groq is rate-limited (429) and the request should be
@@ -513,6 +513,16 @@ export async function POST(request) {
             { status: 202 }
           )
         } catch (queueErr) {
+          if (queueErr instanceof UserQueueFullError) {
+            console.warn(`[transcribe] user ${authUser?.id} at queue depth ${queueErr.currentDepth}/${queueErr.limit}`)
+            return NextResponse.json(
+              {
+                error: `You already have ${queueErr.currentDepth} transcripts being processed. Wait for one to finish before uploading more.`,
+                code: 'user_queue_full',
+              },
+              { status: 429 }
+            )
+          }
           if (queueErr instanceof QueueFullError) {
             console.warn(`[transcribe] queue full (${queueErr.currentLength} jobs), rejecting`)
             return NextResponse.json(

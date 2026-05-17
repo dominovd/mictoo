@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import OpenAI from 'openai'
 import { del } from '@vercel/blob'
-import { claimNextJob, setJobResult, setJobError, requeueJob } from '@/lib/queue'
+import { claimNextJob, setJobResult, setJobError, requeueJob, releaseUserSlot } from '@/lib/queue'
 import { bumpTranscriptionCount } from '@/lib/stats'
 import { createServiceClient } from '@/lib/supabase/server'
 import { sendEmail } from '@/lib/email/send'
@@ -236,6 +236,9 @@ export async function GET(request) {
       })
     }
 
+    // Free this user's queue slot — they can submit another file now.
+    if (userId) await releaseUserSlot(userId, jobId)
+
     return NextResponse.json({ status: 'completed', jobId, transcriptId })
   } catch (err) {
     console.error('[transcribe-worker] job failed', {
@@ -244,6 +247,7 @@ export async function GET(request) {
       message: err?.message,
     })
     await setJobError(jobId, err?.message || 'Transcription failed.')
+    if (userId) await releaseUserSlot(userId, jobId)
     return NextResponse.json(
       { status: 'failed', jobId, error: err?.message },
       { status: 500 }
