@@ -4,10 +4,13 @@ import { del } from '@vercel/blob'
 import { bumpTranscriptionCount } from '@/lib/stats'
 
 export const runtime = 'nodejs'
-// 120s gives us headroom: ~10–20s to download a 25 MB blob from Vercel
-// storage + 30–90s for Whisper on a long file. Pro plan supports up to 300s,
-// but staying lower keeps cold-start billing in check.
-export const maxDuration = 120
+// 300s is the Pro plan ceiling. We need it because the OpenAI fallback path
+// runs whisper-1 at ~1x realtime — a 25 MB file (up to ~26 min audio at low
+// bitrate) does not fit in the previous 120s budget if Groq is unavailable.
+// Groq itself finishes 25 MB in ~30s, so on the happy path we exit early
+// anyway and the higher ceiling only costs compute when fallback actually
+// kicks in.
+export const maxDuration = 300
 
 // ── Transcription providers ─────────────────────────────────────────────────
 // Primary: Groq (whisper-large-v3, ~$0.00185/min vs OpenAI's $0.006/min, and
