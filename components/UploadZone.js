@@ -493,12 +493,14 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   }
 
   // When a file completes (state='done'), check whether there are more in
-  // the batch and start the next one after a pause. The 30-second wait is
-  // deliberately generous: it lets the user read the result AND gives Groq
-  // ~half a per-minute window to rotate slots before we ask for another
-  // sync transcription. That way batched uploads from authed users don't
-  // crowd anonymous users out of the sync path.
-  const BATCH_INTERVAL_MS = 30_000
+  // the batch and start the next one after a short pause. 10s is the
+  // current compromise: long enough to glance at the result and to give
+  // Groq's per-minute window a small breather, short enough that a batch
+  // of 3 finishes in ~2 minutes total. Revisit if log analytics shows
+  // batched uploads from authed users crowding anonymous users out of
+  // sync slots — at that point routing batch files to a VPS queue is the
+  // proper fix.
+  const BATCH_INTERVAL_MS = 10_000
 
   useEffect(() => {
     if (state !== 'done') return
@@ -759,7 +761,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
             </p>
             {batchQueue.length > 0 && (
               <p className="text-xs text-brand-600 mt-1">
-                Next file starts in ~30 seconds — {batchQueue.length} more to go.
+                Next file starts in ~10 seconds — {batchQueue.length} more to go.
               </p>
             )}
           </div>
