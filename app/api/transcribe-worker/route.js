@@ -7,6 +7,7 @@ import { createServiceClient } from '@/lib/supabase/server'
 import { sendEmail } from '@/lib/email/send'
 import { transcriptReadyEmail } from '@/lib/email/templates/transcript-ready'
 import { isDeepgramAvailable, transcribeWithDeepgram } from '@/lib/transcribe/deepgram'
+import { isReplicateAvailable, transcribeWithReplicate } from '@/lib/transcribe/replicate'
 
 export const runtime = 'nodejs'
 // Same ceiling as /api/transcribe — a 25 MB file may take up to ~5 min on the
@@ -21,12 +22,13 @@ export const maxDuration = 300
 // we pay for fallback providers.
 //
 // Fallback chain when Groq finally fails (after MAX_ATTEMPTS or on 5xx):
-//   1. Deepgram Nova-3 (~$0.258/h, $200 free credit) — no size cap, multilang
-//   2. OpenAI Whisper-1 ($0.36/h) — last resort, capped at FALLBACK_MAX_BYTES
+//   1. Replicate insanely-fast-whisper (~$0.04/h)   — cheapest, NEW Tier 2
+//   2. Deepgram Nova-3 (~$0.26/h, $200 free credit) — safety net
+//   3. OpenAI Whisper-1 ($0.36/h)                    — last resort, ≤10MB
 //
-// Deepgram goes first because (a) it's ~28% cheaper than OpenAI, (b) the
-// starter credit covers months at our scale, and (c) it has no 10 MB cap
-// so even long podcasts can fall through cheaply during a Groq cap-out day.
+// Replicate goes first because it's ~7x cheaper than Deepgram while using
+// the same underlying model (whisper-large-v3). Deepgram stays as the safety
+// net so the $200 starter credit becomes a real long-term buffer.
 
 // After 7 retries (~7 minutes user wait) we conclude Groq's quota is
 // genuinely exhausted, not a per-minute or per-hour spike. At that point we
@@ -148,19 +150,40 @@ export async function GET(request) {
         )
       }
 
-      // ── Fallback chain: Deepgram (no size cap) → OpenAI (≤10MB) ─────────
+      // ── Fallback chain: Replicate → Deepgram → OpenAI (≤10MB) ──────────
       // Both 429-after-exhaustion and 5xx/network reach here. We try each
       // available provider in order; the first success wins. Each tier is
       // logged with `fallback:` prefix so Vercel logs can be filtered to
       // measure how often each tier fires and what success rate is.
       const fallbackErrors = []
 
-      // Tier 2: Deepgram. Preferred over OpenAI because cheaper, and has no
-      // 10MB cap so big files can still get transcribed during a Groq cap-out.
-      if (isDeepgramAvailable()) {
+      // Tier 2: Replicate (insanely-fast-whisper on A40). Cheapest of the
+      // paid options at ~$0.04/h audio. Uses the same whisper-large-v3 as
+      // Groq, just running on someone else's GPU. Cold start ~10-20s is
+      // acceptable in our async-queue context.
+      if (isReplicateAvailable() && blobUrl) {
         console.warn(
-          `[transcribe-worker] fallback: groq ${err?.status ?? 'error'} → deepgram for jobId=${jobId}`,
+          `[transcribe-worker] fallback: groq ${err?.status ?? 'error'} → replicate for jobId=${jobId}`,
           { code: err?.code, message: err?.message }
+        )
+        try {
+          transcription = await transcribeWithReplicate({ audioUrl: blobUrl, language })
+          console.warn(`[transcribe-worker] fallback: replicate succeeded jobId=${jobId}`)
+        } catch (repErr) {
+          console.warn(
+            `[transcribe-worker] fallback: replicate failed ${repErr?.status ?? 'error'} jobId=${jobId}`,
+            { message: repErr?.message }
+          )
+          fallbackErrors.push({ provider: 'replicate', err: repErr })
+        }
+      }
+
+      // Tier 3: Deepgram. Safety net if Replicate is down or rejects the file.
+      // ~7x more expensive per minute than Replicate but instant (no cold start)
+      // and has no size cap. $200 starter credit acts as long-term buffer.
+      if (!transcription && isDeepgramAvailable()) {
+        console.warn(
+          `[transcribe-worker] fallback: → deepgram for jobId=${jobId} (replicate unavailable or failed)`
         )
         try {
           transcription = await transcribeWithDeepgram(buffer, { fileType, language })
@@ -174,7 +197,7 @@ export async function GET(request) {
         }
       }
 
-      // Tier 3: OpenAI. Last-resort, only for small files because expensive.
+      // Tier 4: OpenAI. Last-resort, only for small files because expensive.
       if (!transcription && openai && fileSize <= FALLBACK_MAX_BYTES) {
         console.warn(
           `[transcribe-worker] fallback: → openai for jobId=${jobId} (deepgram unavailable or failed)`
@@ -198,12 +221,13 @@ export async function GET(request) {
 
       // Still nothing? Surface the most user-friendly message we can.
       if (!transcription) {
-        // Specific case: Groq daily cap + file too big for OpenAI + Deepgram
-        // either unavailable or also failed. Keep the dated message that
-        // tells the user what to do next.
+        // Specific case: Groq daily cap + no other fallback eligible for
+        // this file. Replicate and Deepgram both either unavailable or also
+        // failed, AND file too big for OpenAI. Tell the user what to do.
         const noFallbackAvailable =
           err?.status === 429 &&
           fileSize > FALLBACK_MAX_BYTES &&
+          !isReplicateAvailable() &&
           !isDeepgramAvailable()
         if (noFallbackAvailable) {
           throw new Error(
