@@ -28,10 +28,17 @@ export const maxDuration = 300
 // starter credit covers months at our scale, and (c) it has no 10 MB cap
 // so even long podcasts can fall through cheaply during a Groq cap-out day.
 
-// After 3 retries (~3 minutes user wait) we conclude Groq's daily cap is
-// exhausted, not a per-minute spike. At that point we fall through to the
-// Deepgram → OpenAI chain rather than make the user wait longer.
-const MAX_ATTEMPTS = 3
+// After 7 retries (~7 minutes user wait) we conclude Groq's quota is
+// genuinely exhausted, not a per-minute or per-hour spike. At that point we
+// fall through to the Deepgram → OpenAI chain.
+//
+// Tuned up from 3 → 7 on 2026-05-18 after Deepgram billing showed the chain
+// was firing ~10×/hour during peak hours, burning the $200 starter credit at
+// ~$3.60/day (~$108/mo). Groq has multiple quota windows (per-minute, per-hour,
+// per-day) and the per-hour bucket refills in 5–10 min in many cases — extra
+// retries let us catch those refills instead of paying for fallback.
+// Cron tick is 1 min so MAX_ATTEMPTS=7 ≈ up to 7 min user wait in worst case.
+const MAX_ATTEMPTS = 7
 // Only files ≤ 10 MB are allowed to use the OpenAI fallback. Larger files
 // rely on Deepgram (no size cap) or fail cleanly. The cap exists because a
 // 30-min podcast (~58 MB) on OpenAI Whisper-1 burns ~$0.20 per transcription
@@ -137,7 +144,7 @@ export async function GET(request) {
         // below. We don't throw here; the next block handles "should we try
         // OpenAI given the file size?"
         console.warn(
-          `[transcribe-worker] groq 429 attempts exhausted (${MAX_ATTEMPTS}), jobId=${jobId} — attempting openai fallback`
+          `[transcribe-worker] groq 429 attempts exhausted (${MAX_ATTEMPTS}), jobId=${jobId} — attempting deepgram → openai fallback chain`
         )
       }
 
