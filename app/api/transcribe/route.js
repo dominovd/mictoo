@@ -521,6 +521,10 @@ export async function POST(request) {
             ? `This file is ${fileMin} min long. The limit is ${maxMin} min — please split the recording into shorter pieces and upload them separately.`
             : `This file is ${fileMin} min long. Anonymous limit is ${maxMin} min. Sign up to transcribe files up to 60 min, or trim the recording first.`,
           signInHelps: !authUser,
+          // Hint to the client which guide link to surface. The client also
+          // sets this directly for its preflight check; the server echo
+          // covers direct-API callers that bypassed the browser preflight.
+          helpType: 'split',
         },
         { status: 413 }
       )

@@ -130,6 +130,12 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.6,
     },
+    {
+      url: 'https://mictoo.com/how-to-split-audio',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
     // Conversion guides — capture "X to mp3" search intent and redirect to mictoo
     {
       url: 'https://mictoo.com/aac-to-mp3',

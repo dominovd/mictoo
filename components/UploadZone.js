@@ -154,6 +154,11 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   // them a fresh user-keyed budget. Drives the "Sign in to keep going" CTA
   // shown in the error state.
   const [errorOffersSignIn, setErrorOffersSignIn] = useState(false)
+  // Which "how to fix this" guide to surface from the error screen. 'compress'
+  // for >25 MB files (legacy default), 'split' for files past the duration
+  // cap. null hides the link entirely (e.g. rate-limit errors where the only
+  // useful action is signing in or waiting).
+  const [errorHelpType, setErrorHelpType] = useState('compress')
   const [copied, setCopied] = useState(false)
 
   // When Groq is rate-limited the server returns 202 + jobId; the client
@@ -307,6 +312,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     setRestoredFromSnapshot(false)
     setTranscriptId(null)
     setErrorOffersSignIn(false)
+    setErrorHelpType('compress')
     // Manual reset (e.g. "New file" button) wipes any pending batch too —
     // user signalled they want a clean slate.
     setBatchQueue([])
@@ -398,6 +404,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     if (f.size > MAX_SIZE_BYTES) {
       const sizeStr = `${(f.size / (1024 * 1024)).toFixed(1)} MB`
       setError(t(locale, 'status.fileTooLargeDetailed', { size: sizeStr }))
+      setErrorHelpType('compress')
       setState('error')
       return
     }
@@ -410,6 +417,8 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     // let them wait through a 19 MB upload that will 400-out at the API.
     if (f.type === 'audio/vnd.dlna.adts') {
       setError(t(locale, 'status.aacAdtsNotSupported'))
+      // No "how to fix" guide for ADTS — the error itself names the tool.
+      setErrorHelpType(null)
       setState('error')
       return
     }
@@ -433,8 +442,10 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
         )
         // The anon message includes a "sign up" pitch — surface the same
         // CTA the rate-limit 429 path uses so the user sees a sign-in
-        // button on the error screen.
+        // button on the error screen. Pair it with the split-audio guide
+        // so users have an actionable second option besides registering.
         setErrorOffersSignIn(!authUser)
+        setErrorHelpType('split')
         setState('error')
         return
       }
@@ -491,6 +502,9 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
         // Carry the signInHelps flag through to the catch handler so the
         // error UI knows whether to show a "Sign in to keep going" CTA.
         failed.offersSignIn = !!data.signInHelps
+        // Server may hint which help-guide link to surface (e.g. 'split'
+        // for duration rejections). Forwarded to the error UI.
+        failed.helpType = data.helpType || null
         throw failed
       }
 
@@ -527,6 +541,10 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
       if (ticker) clearInterval(ticker)
       setError(err?.message || 'Transcription failed. Please try again.')
       setErrorOffersSignIn(!!err?.offersSignIn)
+      // Server-side duration rejection sends `helpType: 'split'`; respect it
+      // when present, otherwise fall back to compress as the safe default
+      // (covers historical errors and generic failures).
+      setErrorHelpType(err?.helpType || 'compress')
       setState('error')
     }
   }, [language, locale, generateSummary, pollJob])
@@ -597,6 +615,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
       setQueueInfo({ position: null, queueLength: null, jobStatus: 'queued' })
       setRestoredFromSnapshot(false)
       setErrorOffersSignIn(false)
+      setErrorHelpType('compress')
       // Kick off the next file.
       processFile(next)
     }, BATCH_INTERVAL_MS)
@@ -982,10 +1001,16 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
         </div>
         <p className="text-lg font-semibold text-slate-800 mb-1">{t(locale, 'status.somethingWrong')}</p>
         <p className="text-sm text-slate-500 mb-3">{error}</p>
-        {!errorOffersSignIn && (
+        {errorHelpType && (
+          // The "how to fix this" link is shown even when errorOffersSignIn is
+          // true — duration-rejected anon users need both options (sign up to
+          // unlock 60 min, OR follow the split guide right now).
           <p className="text-sm mb-6">
-            <a href="/how-to-compress-audio" className="text-brand-600 hover:underline">
-              {t(locale, 'status.howToCompress')}
+            <a
+              href={errorHelpType === 'split' ? '/how-to-split-audio' : '/how-to-compress-audio'}
+              className="text-brand-600 hover:underline"
+            >
+              {t(locale, errorHelpType === 'split' ? 'status.howToSplit' : 'status.howToCompress')}
             </a>
           </p>
         )}
