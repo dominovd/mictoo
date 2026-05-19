@@ -8,6 +8,7 @@ import { sendEmail } from '@/lib/email/send'
 import { transcriptReadyEmail } from '@/lib/email/templates/transcript-ready'
 import { isDeepgramAvailable, transcribeWithDeepgram } from '@/lib/transcribe/deepgram'
 import { isReplicateAvailable, transcribeWithReplicate } from '@/lib/transcribe/replicate'
+import { WHISPER_PROMPT } from '@/lib/transcribe/prompt'
 
 export const runtime = 'nodejs'
 // Same ceiling as /api/transcribe — a 25 MB file may take up to ~5 min on the
@@ -113,6 +114,7 @@ export async function GET(request) {
       transcription = await groq.audio.transcriptions.create({
         file: whisperFile,
         response_format: 'verbose_json',
+        prompt: WHISPER_PROMPT,
         ...(language ? { language } : {}),
         model: 'whisper-large-v3',
       })
@@ -209,6 +211,7 @@ export async function GET(request) {
           transcription = await openai.audio.transcriptions.create({
             file: whisperFile,
             response_format: 'verbose_json',
+            prompt: WHISPER_PROMPT,
             ...(language ? { language } : {}),
             model: 'whisper-1',
           })

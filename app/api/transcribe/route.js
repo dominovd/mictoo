@@ -6,6 +6,7 @@ import { enqueueJob, isQueueAvailable, QueueFullError, UserQueueFullError } from
 import { createClient as createSupabaseServerClient } from '@/lib/supabase/server'
 import { isDeepgramAvailable, transcribeWithDeepgram } from '@/lib/transcribe/deepgram'
 import { isReplicateAvailable, transcribeWithReplicate } from '@/lib/transcribe/replicate'
+import { WHISPER_PROMPT } from '@/lib/transcribe/prompt'
 
 // Internal signal: Groq is rate-limited (429) and the request should be
 // enqueued for the worker to retry, instead of paying for the OpenAI fallback.
@@ -66,6 +67,7 @@ async function transcribeAudio(file, language, { buffer, fileType, fileName } = 
   const baseParams = {
     file,
     response_format: 'verbose_json',
+    prompt: WHISPER_PROMPT,
     ...(language ? { language } : {}),
   }
 
