@@ -286,6 +286,16 @@ export default function sitemap() {
     { url: 'https://mictoo.com/de/how-to-compress-audio',       lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
     { url: 'https://mictoo.com/es/how-to-compress-audio',       lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
     { url: 'https://mictoo.com/ru/how-to-compress-audio',       lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    // Localized guide — how-to-split-audio (added 2026-05-19 alongside server-side duration cap)
+    { url: 'https://mictoo.com/fr/how-to-split-audio',          lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/de/how-to-split-audio',          lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/es/how-to-split-audio',          lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/ru/how-to-split-audio',          lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/it/how-to-split-audio',          lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/pt/how-to-split-audio',          lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/pl/how-to-split-audio',          lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/ja/how-to-split-audio',          lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    { url: 'https://mictoo.com/ko/how-to-split-audio',          lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
     // Localized use-case pages — FR
     { url: 'https://mictoo.com/fr/podcast-transcription',  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.75 },
     { url: 'https://mictoo.com/fr/lecture-transcription',  lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7  },
