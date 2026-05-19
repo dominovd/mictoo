@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { createHash } from 'node:crypto'
 import OpenAI from 'openai'
 import { del } from '@vercel/blob'
 import { bumpTranscriptionCount } from '@/lib/stats'
@@ -222,17 +223,31 @@ async function transcribeAudio(file, language, { buffer, fileType, fileName } = 
 }
 
 // ── Rate limiter (optional — only activates if Upstash env vars are set) ────
-// Two-tier policy:
+// Two-tier policy (2026-05-19 — tightened from previous 3/h IP-only anon):
 //
-//   Anonymous (rate by IP)     — 3 transcriptions / hour
-//   Authenticated (by user_id) — 5 transcriptions / hour
+//   Anonymous (fingerprint) — 3 transcriptions / 24h, duration ≤ 30 min
+//   Authenticated user_id   — 5 / h + 7 / day,        duration ≤ 60 min
 //
-// The auth bump is small (~1.7×) but is the simplest tangible reason to
-// register today. We're keeping it conservative because each transcription
-// is real money (~$0.01 on Groq for an average ~5 min file, more if pushed
-// onto OpenAI fallback). Numbers can be raised later once we see actual
-// auth-tier traffic shape. Both limiters share the same Redis; we prefix
-// keys with `anon` / `auth` to keep them in separate slidingWindow buckets.
+// Daily anon cap matches TurboScribe's free-tier pattern and turns the limit
+// into a reason to register rather than a reason to leave the site (the user
+// gets 24h to come back vs. a quick refresh). The duration caps protect
+// against accidental cost blow-ups on long-form recordings — a 25 MB file at
+// ~32 kbps mono speech can fit ~108 min of audio, so the byte cap alone
+// doesn't bound spend per request.
+//
+// Anonymous key is a hash of IP + User-Agent + country, not raw IP. Reasons:
+//   - Reduces collateral throttling behind shared NATs / corporate proxies:
+//     two users on the same office IP get separate buckets if their browsers
+//     differ at all (which they almost always do).
+//   - Same UA across different IPs (e.g. mobile-hopping between WiFi and
+//     cellular) still gets separate buckets — the IP component dominates,
+//     which is the desired behaviour for a daily cap.
+//   - md5 is fine here — not a security boundary, just a stable key.
+//
+// Both limiters share the same Redis; prefixes (`anon:d`, `auth:h`, `auth:d`)
+// keep them in separate slidingWindow buckets. The `anon:d` prefix is NEW
+// vs. the previous `anon` so old hourly tokens don't leak into the new
+// daily bucket on first deploy — fresh start for all anonymous users.
 let rateLimiters = null
 
 async function getRateLimiters() {
@@ -251,9 +266,9 @@ async function getRateLimiters() {
   rateLimiters = {
     anon: new Ratelimit({
       redis,
-      limiter: Ratelimit.slidingWindow(3, '1 h'),
+      limiter: Ratelimit.slidingWindow(3, '24 h'),
       analytics: true,
-      prefix: 'mictoo:rl:anon',
+      prefix: 'mictoo:rl:anon:d',
     }),
     // Authenticated users get TWO limiters checked in series. Hourly catches
     // burst usage (e.g. a podcaster batching files); daily is the actual
@@ -275,12 +290,21 @@ async function getRateLimiters() {
   return rateLimiters
 }
 
-function getIP(request) {
-  return (
+// Anonymous fingerprint = md5(IP | User-Agent | country). See the rate-limiter
+// comment above for the rationale. Falls back gracefully if any header is
+// missing — '127.0.0.1' for local dev is fine because the limiter only
+// activates when Upstash env is configured (i.e. not locally).
+function getAnonKey(request) {
+  const ip =
     request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
     request.headers.get('x-real-ip') ||
     '127.0.0.1'
-  )
+  const ua = request.headers.get('user-agent') || ''
+  const region =
+    request.headers.get('x-vercel-ip-country') ||
+    request.headers.get('x-vercel-ip-region') ||
+    ''
+  return createHash('md5').update(`${ip}|${ua}|${region}`).digest('hex')
 }
 
 // Only accept blob URLs from our own Vercel Blob storage — prevents the
@@ -377,11 +401,14 @@ export async function POST(request) {
           )
         }
       } else {
-        const a = await limiters.anon.limit(getIP(request))
+        const a = await limiters.anon.limit(getAnonKey(request))
         if (!a.success) {
+          // Daily cap message stays short and growth-oriented — the previous
+          // "Sign in for higher limits, or try again in N hours" was too
+          // negotiable. "Sign up to keep going free" is the action we want.
           return NextResponse.json(
             {
-              error: `Too many requests. You've used your ${a.limit} free transcriptions this hour. Sign in for higher limits, or try again in ${friendlyReset(a.reset)}.`,
+              error: `You've used ${a.limit} free transcripts today. Sign up to keep going free.`,
               signInHelps: true,
             },
             {
@@ -390,6 +417,7 @@ export async function POST(request) {
                 'X-RateLimit-Limit': String(a.limit),
                 'X-RateLimit-Remaining': String(a.remaining),
                 'X-RateLimit-Reset': String(a.reset),
+                'X-RateLimit-Scope': 'day',
               },
             }
           )
@@ -448,6 +476,55 @@ export async function POST(request) {
       )
     }
     const buffer = Buffer.from(arrayBuffer)
+
+    // ── Duration probe (safety net for direct API calls) ───────────────────
+    // The 25 MB byte cap doesn't bound spend per request: 25 MB at low-bitrate
+    // speech (~32 kbps mono) is ~108 min of audio, which on the OpenAI
+    // fallback path costs ~$0.65 for one transcription. The client also
+    // probes duration before upload (see UploadZone.processFile) so users
+    // see a friendly message early — this server-side check is the safety
+    // net for direct API calls and clients with disabled JS.
+    //
+    // Anon: 30 min cap. Auth: 60 min cap (the "register for more" payoff).
+    // If music-metadata can't read the file (corrupt container, exotic
+    // codec) we let it through — the transcription will surface a clearer
+    // error than "could not determine duration" would.
+    const ANON_MAX_DURATION_SEC = 30 * 60
+    const AUTH_MAX_DURATION_SEC = 60 * 60
+    const maxDurationSec = authUser ? AUTH_MAX_DURATION_SEC : ANON_MAX_DURATION_SEC
+    let probedDurationSec = null
+    try {
+      const mm = await import('music-metadata')
+      // music-metadata v10 uses an options object: { mimeType, size, duration }
+      // — the older (buf, mimeType) positional form was removed.
+      const meta = await mm.parseBuffer(buffer, {
+        mimeType: fileType,
+        size: buffer.length,
+        duration: true,
+      })
+      probedDurationSec = meta?.format?.duration ?? null
+    } catch (probeErr) {
+      console.warn(
+        `[transcribe] duration probe failed mime=${fileType} bytes=${fileSize}`,
+        { message: probeErr?.message }
+      )
+    }
+    if (probedDurationSec != null && probedDurationSec > maxDurationSec) {
+      const fileMin = Math.round(probedDurationSec / 60)
+      const maxMin = Math.floor(maxDurationSec / 60)
+      console.log(
+        `[transcribe] reject duration=${probedDurationSec.toFixed(1)}s max=${maxDurationSec}s auth=${authUser ? 'y' : 'n'} bytes=${fileSize}`
+      )
+      return NextResponse.json(
+        {
+          error: authUser
+            ? `This file is ${fileMin} min long. The limit is ${maxMin} min — please split the recording into shorter pieces and upload them separately.`
+            : `This file is ${fileMin} min long. Anonymous limit is ${maxMin} min. Sign up to transcribe files up to 60 min, or trim the recording first.`,
+          signInHelps: !authUser,
+        },
+        { status: 413 }
+      )
+    }
 
     // Whisper APIs (both Groq and OpenAI) detect the file format from the
     // filename extension and compare it case-sensitively to a lowercase

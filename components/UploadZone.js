@@ -19,6 +19,40 @@ const ACCEPTED_TYPES = ['audio/mpeg', 'audio/mp4', 'audio/wav', 'audio/m4a', 'au
 const MAX_SIZE_MB = 25
 const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024
 
+// Duration caps mirror the server's safety net in /api/transcribe. Probing
+// client-side gives the user instant feedback ("this file is 45 min long")
+// before a 23 MB upload they can't use anyway. Server still re-checks via
+// music-metadata after blob fetch, so a malicious client can't bypass.
+const ANON_MAX_DURATION_SEC = 30 * 60
+const AUTH_MAX_DURATION_SEC = 60 * 60
+
+// Read audio duration from a File using <audio>'s metadata-loaded event.
+// Returns seconds or null if the browser can't determine it (e.g. exotic
+// codec, broken container) — null lets the upload proceed so the server's
+// transcription error gives the user a real diagnostic instead of a
+// "could not determine duration" dead-end. 5-second timeout handles the
+// edge case where neither loadedmetadata nor error ever fires.
+function getAudioDurationSec(file) {
+  return new Promise((resolve) => {
+    const url = URL.createObjectURL(file)
+    const audio = new Audio()
+    audio.preload = 'metadata'
+    let resolved = false
+    const finish = (value) => {
+      if (resolved) return
+      resolved = true
+      URL.revokeObjectURL(url)
+      resolve(value)
+    }
+    audio.onloadedmetadata = () => {
+      finish(isFinite(audio.duration) ? audio.duration : null)
+    }
+    audio.onerror = () => finish(null)
+    setTimeout(() => finish(null), 5000)
+    audio.src = url
+  })
+}
+
 // Whisper language codes shown in the picker.
 // Labels (with flag) come from the i18n dictionary per UI locale.
 const PICKER_LANG_CODES = ['en', 'es', 'fr', 'de', 'pt', 'ru', 'it', 'nl', 'pl', 'tr', 'ja', 'ko', 'zh', 'ar', 'hi']
@@ -378,6 +412,32 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
       setError(t(locale, 'status.aacAdtsNotSupported'))
       setState('error')
       return
+    }
+
+    // Duration pre-check. Run before upload starts so a too-long file is
+    // caught instantly instead of wasting a 23 MB upload. Server re-checks
+    // via music-metadata; null from getAudioDurationSec (exotic codec /
+    // unreadable metadata) lets the upload through and the server is the
+    // safety net for those.
+    const durationSec = await getAudioDurationSec(f)
+    if (durationSec != null) {
+      const maxSec = authUser ? AUTH_MAX_DURATION_SEC : ANON_MAX_DURATION_SEC
+      if (durationSec > maxSec) {
+        const minutes = Math.round(durationSec / 60)
+        setError(
+          t(
+            locale,
+            authUser ? 'status.fileTooLongAuth' : 'status.fileTooLongAnon',
+            { minutes }
+          )
+        )
+        // The anon message includes a "sign up" pitch — surface the same
+        // CTA the rate-limit 429 path uses so the user sees a sign-in
+        // button on the error screen.
+        setErrorOffersSignIn(!authUser)
+        setState('error')
+        return
+      }
     }
 
     setFile(f)
