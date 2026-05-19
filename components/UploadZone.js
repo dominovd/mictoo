@@ -3,7 +3,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { upload } from '@vercel/blob/client'
-import { detectLocaleFromPath, t, DICT } from '@/lib/i18n'
+import { detectLocaleFromPath, localized, t, DICT } from '@/lib/i18n'
 import { createClient } from '@/lib/supabase/client'
 import { toVTT } from '@/lib/exports/vtt'
 import { toJSON } from '@/lib/exports/json'
@@ -1007,7 +1007,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
           // unlock 60 min, OR follow the split guide right now).
           <p className="text-sm mb-6">
             <a
-              href={errorHelpType === 'split' ? '/how-to-split-audio' : '/how-to-compress-audio'}
+              href={localized(errorHelpType === 'split' ? '/how-to-split-audio' : '/how-to-compress-audio', locale)}
               className="text-brand-600 hover:underline"
             >
               {t(locale, errorHelpType === 'split' ? 'status.howToSplit' : 'status.howToCompress')}
@@ -1074,7 +1074,16 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
         </p>
         <p className="text-slate-500 text-sm mb-4">{t(locale, 'dropzone.secondary')}</p>
         <p className="text-xs text-slate-400">
-          MP3 · MP4 · WAV · M4A · OGG · WEBM · FLAC &nbsp;·&nbsp; {t(locale, 'dropzone.maxSize')}
+          MP3 · MP4 · WAV · M4A · OGG · WEBM · FLAC &nbsp;·&nbsp; {t(locale, 'dropzone.maxSize')} &nbsp;·&nbsp; {t(locale, 'dropzone.maxDuration', { minutes: authUser ? 60 : 30 })}
+          {!authUser && (
+            <>
+              {' '}(
+              <a href="/sign-in" className="hover:text-brand-600 hover:underline transition-colors">
+                {t(locale, 'dropzone.signInForLonger')}
+              </a>
+              )
+            </>
+          )}
         </p>
         {authUser && (
           <p className="text-xs text-brand-600 mt-2">
@@ -1083,11 +1092,18 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
         )}
       </div>
 
-      {/* Preventive hint about the 25 MB limit — visible from the start so users
-          with larger files know what to do before they even try uploading. */}
+      {/* Preventive hints about the 25 MB and duration limits — visible from the
+          start so users with larger or longer files know what to do before they
+          even try uploading. Two parallel links because they point to two
+          different guides (compress for size, split for duration). */}
       <p className="text-xs text-slate-400 text-center mt-1">
-        <a href="/how-to-compress-audio" className="hover:text-brand-600 hover:underline transition-colors">
+        <a href={localized('/how-to-compress-audio', locale)} className="hover:text-brand-600 hover:underline transition-colors">
           {t(locale, 'dropzone.bigFileHint')}
+        </a>
+      </p>
+      <p className="text-xs text-slate-400 text-center mt-1">
+        <a href={localized('/how-to-split-audio', locale)} className="hover:text-brand-600 hover:underline transition-colors">
+          {t(locale, 'dropzone.longFileHint')}
         </a>
       </p>
     </div>
