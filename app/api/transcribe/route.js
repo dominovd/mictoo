@@ -80,10 +80,14 @@ async function transcribeAudio(file, language, { buffer, fileType, fileName } = 
     let lastErr = null
     for (let attempt = 0; attempt < 2; attempt++) {
       try {
-        return await groq.audio.transcriptions.create({
+        const result = await groq.audio.transcriptions.create({
           ...baseParams,
           model: 'whisper-large-v3',
         })
+        // Tag provider so the route's INSERT can save real source name
+        // instead of the hardcoded 'web'. Caller reads `_provider`.
+        result._provider = 'groq'
+        return result
       } catch (err) {
         lastErr = err
         if (err?.status === 400) throw err
@@ -135,6 +139,7 @@ async function transcribeAudio(file, language, { buffer, fileType, fileName } = 
       try {
         const result = await transcribeWithReplicate({ buffer, fileType, fileName, language })
         console.warn('[transcribe] fallback: replicate succeeded')
+        result._provider = 'replicate'
         return result
       } catch (repErr) {
         console.warn(
@@ -155,6 +160,7 @@ async function transcribeAudio(file, language, { buffer, fileType, fileName } = 
       try {
         const result = await transcribeWithDeepgram(buffer, { fileType, language })
         console.warn('[transcribe] fallback: deepgram succeeded')
+        result._provider = 'deepgram'
         return result
       } catch (dgErr) {
         console.warn(
@@ -179,6 +185,7 @@ async function transcribeAudio(file, language, { buffer, fileType, fileName } = 
           model: 'whisper-1',
         })
         console.warn('[transcribe] fallback: openai succeeded')
+        result._provider = 'openai'
         return result
       } catch (oaErr) {
         console.error(
@@ -206,10 +213,12 @@ async function transcribeAudio(file, language, { buffer, fileType, fileName } = 
   if (!openai) {
     throw new Error('No transcription provider configured (GROQ_API_KEY or OPENAI_API_KEY).')
   }
-  return openai.audio.transcriptions.create({
+  const result = await openai.audio.transcriptions.create({
     ...baseParams,
     model: 'whisper-1',
   })
+  result._provider = 'openai'
+  return result
 }
 
 // ── Rate limiter (optional — only activates if Upstash env vars are set) ────
@@ -528,6 +537,23 @@ export async function POST(request) {
     try {
       const transcription = await transcribeAudio(whisperFile, language, { buffer, fileType, fileName })
 
+      // Pull common shape pieces once so they're available to both the
+      // success-path log line and the history INSERT below.
+      const segs = transcription.segments ?? []
+      const durationSec = segs.length ? segs[segs.length - 1]?.end ?? null : null
+
+      // Success-path structured log. Emits one parseable line per successful
+      // transcription so Vercel logs can be sliced by provider/format/duration
+      // for cost-vs-input analysis (e.g. "which mime types are dominating
+      // Deepgram fallback spend?"). Grep with `[transcribe] ok` to count.
+      // Stays as console.log (not warn/error) so it doesn't pollute the
+      // error feed — it's a normal-success signal.
+      const extMatch = whisperName.match(/\.([A-Za-z0-9]+)$/)
+      const ext = extMatch ? extMatch[1] : ''
+      console.log(
+        `[transcribe] ok provider=${transcription._provider || 'unknown'} ext=${ext} mime=${fileType} bytes=${fileSize} duration_sec=${durationSec ?? 'null'} lang=${transcription.language?.toLowerCase() ?? 'null'} auth=${authUser ? 'y' : 'n'}`
+      )
+
       // Fire-and-forget counter bump. Doesn't block response. Safe if Upstash absent.
       bumpTranscriptionCount()
 
@@ -539,8 +565,6 @@ export async function POST(request) {
       // A DB error logs but does NOT fail the user's transcription response.
       let transcriptId = null
       if (authUser) {
-        const segs = transcription.segments ?? []
-        const durationSeconds = segs.length ? segs[segs.length - 1]?.end ?? null : null
         try {
           const supabase = createSupabaseServerClient()
           const { data, error } = await supabase
@@ -550,11 +574,16 @@ export async function POST(request) {
               file_name: fileName,
               file_size: fileSize,
               file_type: fileType,
-              language: transcription.language ?? null,
+              // Lowercase to avoid 'indonesian' vs 'Indonesian' dupes in DB —
+              // Whisper sometimes returns Title Case, sometimes lowercase.
+              language: transcription.language?.toLowerCase() ?? null,
               text: transcription.text ?? '',
               segments: segs,
-              duration_seconds: durationSeconds,
-              source: 'web',
+              duration_seconds: durationSec,
+              // Real provider name (groq/replicate/deepgram/openai) tagged
+              // on the transcription object by transcribeAudio() — see _provider
+              // assignments there. Falls back to 'web' for safety if missing.
+              source: transcription._provider || 'web',
             })
             .select('id')
             .single()
@@ -573,8 +602,10 @@ export async function POST(request) {
         segments: transcription.segments ?? [],
         // Spoken language as detected by Whisper (e.g. "ukrainian", "english").
         // Used downstream by /api/summarize so the summary is written in the
-        // same language as the recording, not the UI locale.
-        language: transcription.language ?? null,
+        // same language as the recording, not the UI locale. Lowercased to
+        // match the worker's setJobResult and the DB column — keeps the
+        // contract uniform whether transcription ran sync or queued.
+        language: transcription.language?.toLowerCase() ?? null,
         // ID of the row in `public.transcripts` for authed users; null for
         // anonymous. Client uses it to attach the AI summary back to the
         // same row when /api/summarize completes.

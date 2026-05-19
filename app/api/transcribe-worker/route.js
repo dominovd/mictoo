@@ -110,6 +110,10 @@ export async function GET(request) {
 
     // ── Try Groq ─────────────────────────────────────────────────────────
     let transcription
+    // Track which provider actually produced the transcription so we can
+    // save it in `transcripts.source` instead of the hardcoded 'web'.
+    // Set in each success branch below.
+    let usedProvider = null
     try {
       transcription = await groq.audio.transcriptions.create({
         file: whisperFile,
@@ -118,6 +122,7 @@ export async function GET(request) {
         ...(language ? { language } : {}),
         model: 'whisper-large-v3',
       })
+      usedProvider = 'groq'
     } catch (err) {
       // 400 = bad file/codec. No retry, no fallback will help.
       if (err?.status === 400) {
@@ -174,6 +179,7 @@ export async function GET(request) {
         try {
           transcription = await transcribeWithReplicate({ buffer, fileType, fileName, language })
           console.warn(`[transcribe-worker] fallback: replicate succeeded jobId=${jobId}`)
+          usedProvider = 'replicate'
         } catch (repErr) {
           console.warn(
             `[transcribe-worker] fallback: replicate failed ${repErr?.status ?? 'error'} jobId=${jobId}`,
@@ -193,6 +199,7 @@ export async function GET(request) {
         try {
           transcription = await transcribeWithDeepgram(buffer, { fileType, language })
           console.warn(`[transcribe-worker] fallback: deepgram succeeded jobId=${jobId}`)
+          usedProvider = 'deepgram'
         } catch (dgErr) {
           console.warn(
             `[transcribe-worker] fallback: deepgram failed ${dgErr?.status ?? 'error'} jobId=${jobId}`,
@@ -216,6 +223,7 @@ export async function GET(request) {
             model: 'whisper-1',
           })
           console.warn(`[transcribe-worker] fallback: openai succeeded jobId=${jobId}`)
+          usedProvider = 'openai'
         } catch (oaErr) {
           console.error(
             `[transcribe-worker] fallback: openai also failed ${oaErr?.status ?? 'error'}`,
@@ -252,6 +260,22 @@ export async function GET(request) {
     // We insert the transcript row first (below) and then echo the id back
     // via setJobResult so the client polling /api/transcribe-status can pick
     // it up. Order matters: insert → setJobResult.
+
+    // Pull common shape pieces once so they're available to the log,
+    // the history INSERT, and the client-facing result.
+    const segs = transcription.segments ?? []
+    const durationSec = segs.length ? segs[segs.length - 1]?.end ?? null : null
+
+    // Success-path structured log. Same shape as /api/transcribe so both
+    // paths can be analysed with one grep. Adds queued=y to distinguish
+    // worker-processed jobs (Groq cap-out path) from sync transcriptions
+    // — useful for measuring how often the queue is actually saving money.
+    const extMatch = (fileName || '').match(/\.([A-Za-z0-9]+)$/)
+    const ext = extMatch ? extMatch[1].toLowerCase() : ''
+    console.log(
+      `[transcribe] ok provider=${usedProvider || 'unknown'} ext=${ext} mime=${fileType} bytes=${fileSize} duration_sec=${durationSec ?? 'null'} lang=${transcription.language?.toLowerCase() ?? 'null'} auth=${userId ? 'y' : 'n'} queued=y jobId=${jobId}`
+    )
+
     bumpTranscriptionCount()
 
     // Save to history for authenticated users. Worker uses the service-role
@@ -264,8 +288,6 @@ export async function GET(request) {
     // attach the AI summary to when /api/summarize completes.
     let transcriptId = null
     if (userId) {
-      const segs = transcription.segments ?? []
-      const durationSeconds = segs.length ? segs[segs.length - 1]?.end ?? null : null
       try {
         const supabase = createServiceClient()
         const { data, error: dbErr } = await supabase
@@ -275,11 +297,15 @@ export async function GET(request) {
             file_name: fileName,
             file_size: fileSize,
             file_type: fileType,
-            language: transcription.language ?? null,
+            // Lowercase to avoid 'indonesian' vs 'Indonesian' dupes in DB —
+            // Whisper sometimes returns Title Case, sometimes lowercase.
+            language: transcription.language?.toLowerCase() ?? null,
             text: transcription.text ?? '',
             segments: segs,
-            duration_seconds: durationSeconds,
-            source: 'web',
+            duration_seconds: durationSec,
+            // Real provider name (groq/replicate/deepgram/openai) tracked
+            // in usedProvider above. Falls back to 'web' if somehow unset.
+            source: usedProvider || 'web',
           })
           .select('id')
           .single()
@@ -296,7 +322,8 @@ export async function GET(request) {
     await setJobResult(jobId, {
       text: transcription.text,
       segments: transcription.segments ?? [],
-      language: transcription.language ?? null,
+      // Lowercase for consistency with what's stored in DB above.
+      language: transcription.language?.toLowerCase() ?? null,
       transcriptId,
     })
 
