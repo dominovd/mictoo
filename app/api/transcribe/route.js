@@ -493,6 +493,14 @@ export async function POST(request) {
     const AUTH_MAX_DURATION_SEC = 60 * 60
     const maxDurationSec = authUser ? AUTH_MAX_DURATION_SEC : ANON_MAX_DURATION_SEC
     let probedDurationSec = null
+    // Container + codec also captured for success-path logging. Pattern we
+    // want to track over time: raw ADTS-AAC files (container='ADTS') making
+    // it past Groq into Replicate where ffmpeg trips on the .m4a-extension
+    // workaround. If the share of ADTS via fallback grows, the cost-benefit
+    // of an upfront ADTS reject changes — but right now Deepgram covers
+    // those silently so no preemptive reject (see 2026-05-19 logs analysis).
+    let probedContainer = null
+    let probedCodec = null
     try {
       const mm = await import('music-metadata')
       // music-metadata v10 uses an options object: { mimeType, size, duration }
@@ -503,6 +511,8 @@ export async function POST(request) {
         duration: true,
       })
       probedDurationSec = meta?.format?.duration ?? null
+      probedContainer = meta?.format?.container ?? null
+      probedCodec = meta?.format?.codec ?? null
     } catch (probeErr) {
       console.warn(
         `[transcribe] duration probe failed mime=${fileType} bytes=${fileSize}`,
@@ -632,7 +642,7 @@ export async function POST(request) {
       const extMatch = whisperName.match(/\.([A-Za-z0-9]+)$/)
       const ext = extMatch ? extMatch[1] : ''
       console.log(
-        `[transcribe] ok provider=${transcription._provider || 'unknown'} ext=${ext} mime=${fileType} bytes=${fileSize} duration_sec=${durationSec ?? 'null'} lang=${transcription.language?.toLowerCase() ?? 'null'} auth=${authUser ? 'y' : 'n'}`
+        `[transcribe] ok provider=${transcription._provider || 'unknown'} container=${probedContainer || '?'} codec=${probedCodec || '?'} ext=${ext} mime=${fileType} bytes=${fileSize} duration_sec=${durationSec ?? 'null'} lang=${transcription.language?.toLowerCase() ?? 'null'} auth=${authUser ? 'y' : 'n'}`
       )
 
       // Fire-and-forget counter bump. Doesn't block response. Safe if Upstash absent.

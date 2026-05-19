@@ -266,6 +266,29 @@ export async function GET(request) {
     const segs = transcription.segments ?? []
     const durationSec = segs.length ? segs[segs.length - 1]?.end ?? null : null
 
+    // Probe container + codec via music-metadata purely for the success log.
+    // The sync route already probed for duration enforcement before enqueueing,
+    // but that result wasn't persisted in the job hash — re-probing here costs
+    // ~20-50ms on a 5-25 MB buffer (negligible vs. transcription time) and
+    // keeps the two log streams shape-compatible. ADTS-AAC files surfacing as
+    // container='ADTS' in worker logs would tell us the queue path is hitting
+    // the same Replicate-fallback issue as the sync path (see 2026-05-19
+    // analysis); right now Deepgram covers those so no upfront reject.
+    let probedContainer = null
+    let probedCodec = null
+    try {
+      const mm = await import('music-metadata')
+      const meta = await mm.parseBuffer(buffer, {
+        mimeType: fileType || 'audio/mpeg',
+        size: buffer.length,
+      })
+      probedContainer = meta?.format?.container ?? null
+      probedCodec = meta?.format?.codec ?? null
+    } catch {
+      // Probe failures are non-fatal here — the transcription already
+      // succeeded, we just lose the format diagnostic for this row.
+    }
+
     // Success-path structured log. Same shape as /api/transcribe so both
     // paths can be analysed with one grep. Adds queued=y to distinguish
     // worker-processed jobs (Groq cap-out path) from sync transcriptions
@@ -273,7 +296,7 @@ export async function GET(request) {
     const extMatch = (fileName || '').match(/\.([A-Za-z0-9]+)$/)
     const ext = extMatch ? extMatch[1].toLowerCase() : ''
     console.log(
-      `[transcribe] ok provider=${usedProvider || 'unknown'} ext=${ext} mime=${fileType} bytes=${fileSize} duration_sec=${durationSec ?? 'null'} lang=${transcription.language?.toLowerCase() ?? 'null'} auth=${userId ? 'y' : 'n'} queued=y jobId=${jobId}`
+      `[transcribe] ok provider=${usedProvider || 'unknown'} container=${probedContainer || '?'} codec=${probedCodec || '?'} ext=${ext} mime=${fileType} bytes=${fileSize} duration_sec=${durationSec ?? 'null'} lang=${transcription.language?.toLowerCase() ?? 'null'} auth=${userId ? 'y' : 'n'} queued=y jobId=${jobId}`
     )
 
     bumpTranscriptionCount()
