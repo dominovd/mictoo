@@ -62,7 +62,7 @@ const openai = process.env.OPENAI_API_KEY
 // worst case bounded for files that can't be retried later.
 const FALLBACK_MAX_BYTES = 10 * 1024 * 1024
 
-async function transcribeAudio(file, language, { buffer, fileType, audioUrl } = {}) {
+async function transcribeAudio(file, language, { buffer, fileType, fileName } = {}) {
   const baseParams = {
     file,
     response_format: 'verbose_json',
@@ -122,14 +122,16 @@ async function transcribeAudio(file, language, { buffer, fileType, audioUrl } = 
     const fallbackErrors = []
 
     // Tier 2: Replicate (insanely-fast-whisper). Cheapest paid option at
-    // ~$0.04/h audio. Uses blobUrl directly — no re-upload needed.
-    if (isReplicateAvailable() && audioUrl) {
+    // ~$0.04/h audio. Passes the audio buffer (not URL) so Replicate hosts
+    // a clean copy on their CDN — avoids ffmpeg confusion on iOS Voice Memo
+    // URLs that end in ".mp4" despite being AAC-in-MP4.
+    if (isReplicateAvailable() && buffer) {
       console.warn(
         `[transcribe] fallback: groq ${lastErr?.status ?? 'error'} → replicate`,
         { code: lastErr?.code, message: lastErr?.message }
       )
       try {
-        const result = await transcribeWithReplicate({ audioUrl, language })
+        const result = await transcribeWithReplicate({ buffer, fileType, fileName, language })
         console.warn('[transcribe] fallback: replicate succeeded')
         return result
       } catch (repErr) {
@@ -522,7 +524,7 @@ export async function POST(request) {
 
     // ── Transcribe (Groq → Replicate → Deepgram → OpenAI fallback chain) ──
     try {
-      const transcription = await transcribeAudio(whisperFile, language, { buffer, fileType, audioUrl: blobUrl })
+      const transcription = await transcribeAudio(whisperFile, language, { buffer, fileType, fileName })
 
       // Fire-and-forget counter bump. Doesn't block response. Safe if Upstash absent.
       bumpTranscriptionCount()

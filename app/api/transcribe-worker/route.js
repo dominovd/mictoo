@@ -161,13 +161,16 @@ export async function GET(request) {
       // paid options at ~$0.04/h audio. Uses the same whisper-large-v3 as
       // Groq, just running on someone else's GPU. Cold start ~10-20s is
       // acceptable in our async-queue context.
-      if (isReplicateAvailable() && blobUrl) {
+      // Pass the buffer (not blobUrl) so Replicate hosts a copy on their
+      // CDN with a clean filename — avoids ffmpeg confusion on iOS Voice
+      // Memo URLs that end in ".mp4" despite being AAC-in-MP4.
+      if (isReplicateAvailable() && buffer) {
         console.warn(
           `[transcribe-worker] fallback: groq ${err?.status ?? 'error'} → replicate for jobId=${jobId}`,
           { code: err?.code, message: err?.message }
         )
         try {
-          transcription = await transcribeWithReplicate({ audioUrl: blobUrl, language })
+          transcription = await transcribeWithReplicate({ buffer, fileType, fileName, language })
           console.warn(`[transcribe-worker] fallback: replicate succeeded jobId=${jobId}`)
         } catch (repErr) {
           console.warn(
