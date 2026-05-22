@@ -613,6 +613,12 @@ export async function POST(request) {
     const isAdtsAac = /^audio\/vnd\.dlna\.adts$/i.test(fileType || '')
     const isAac = safeName.endsWith('.aac') || /^audio\/(x-)?aac$/i.test(fileType || '')
     const isOpus = safeName.endsWith('.opus') || /^audio\/opus$/i.test(fileType || '')
+    // .oga = Ogg-audio extension used by Telegram Desktop voice memo exports
+    // ("Audio de Ara.oga", "Zuzik posiela zvuk.oga"). MIME is correct
+    // (audio/ogg) and the bytes ARE valid Ogg-Opus, but Whisper's filename-
+    // extension allowlist only has "ogg", not "oga". A one-char rename clears
+    // the extension check; the decoder reads the bytes unchanged.
+    const isOga = safeName.endsWith('.oga')
     const isMov =
       safeName.endsWith('.mov') ||
       safeName.endsWith('.qt') ||
@@ -621,6 +627,7 @@ export async function POST(request) {
     let whisperName = safeName
     if (isAac) whisperName = whisperName.replace(/\.aac$/, '.m4a')
     else if (isOpus) whisperName = whisperName.replace(/\.opus$/, '.ogg')
+    else if (isOga) whisperName = whisperName.replace(/\.oga$/, '.ogg')
     else if (isMov) whisperName = whisperName.replace(/\.(mov|qt|3gp)$/, '.mp4')
     const whisperFile = new File([buffer], whisperName, { type: fileType })
 
@@ -641,8 +648,20 @@ export async function POST(request) {
       // error feed — it's a normal-success signal.
       const extMatch = whisperName.match(/\.([A-Za-z0-9]+)$/)
       const ext = extMatch ? extMatch[1] : ''
+      // lang_raw vs lang: we want to distinguish "Whisper returned the string
+      // 'null' or empty" from "we lowercased a real value". The 2026-05-22 log
+      // analysis flagged 25.7% null-lang share — without the raw value we can't
+      // tell if Whisper is returning literal null, an empty string, "und", or
+      // a value that's getting mangled by lowercase. Quote the raw value so
+      // empty-string vs missing is unambiguous in the log line.
+      const langRaw = transcription.language
+      const langRawStr =
+        langRaw === undefined ? 'undef'
+        : langRaw === null      ? 'null'
+        : typeof langRaw === 'string' ? `"${langRaw}"`
+        : String(langRaw)
       console.log(
-        `[transcribe] ok provider=${transcription._provider || 'unknown'} container=${probedContainer || '?'} codec=${probedCodec || '?'} ext=${ext} mime=${fileType} bytes=${fileSize} duration_sec=${durationSec ?? 'null'} lang=${transcription.language?.toLowerCase() ?? 'null'} auth=${authUser ? 'y' : 'n'}`
+        `[transcribe] ok provider=${transcription._provider || 'unknown'} container=${probedContainer || '?'} codec=${probedCodec || '?'} ext=${ext} mime=${fileType} bytes=${fileSize} duration_sec=${durationSec ?? 'null'} lang=${transcription.language?.toLowerCase() ?? 'null'} lang_raw=${langRawStr} auth=${authUser ? 'y' : 'n'}`
       )
 
       // Fire-and-forget counter bump. Doesn't block response. Safe if Upstash absent.

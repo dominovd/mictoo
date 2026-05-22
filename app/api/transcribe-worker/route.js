@@ -66,6 +66,9 @@ function buildWhisperFile(buffer, fileName, fileType) {
   const safeName = fileName.replace(/\.([A-Za-z0-9]+)$/, (_, ext) => `.${ext.toLowerCase()}`)
   const isAac = safeName.endsWith('.aac') || /^audio\/(x-)?aac$/i.test(fileType || '')
   const isOpus = safeName.endsWith('.opus') || /^audio\/opus$/i.test(fileType || '')
+  // .oga = Telegram Desktop voice-memo export. Bytes are valid Ogg-Opus but
+  // Whisper's extension allowlist has "ogg" not "oga". See /api/transcribe.
+  const isOga = safeName.endsWith('.oga')
   const isMov =
     safeName.endsWith('.mov') ||
     safeName.endsWith('.qt') ||
@@ -74,6 +77,7 @@ function buildWhisperFile(buffer, fileName, fileType) {
   let whisperName = safeName
   if (isAac) whisperName = whisperName.replace(/\.aac$/, '.m4a')
   else if (isOpus) whisperName = whisperName.replace(/\.opus$/, '.ogg')
+  else if (isOga) whisperName = whisperName.replace(/\.oga$/, '.ogg')
   else if (isMov) whisperName = whisperName.replace(/\.(mov|qt|3gp)$/, '.mp4')
   return { file: new File([buffer], whisperName, { type: fileType }), isAac }
 }
@@ -295,8 +299,18 @@ export async function GET(request) {
     // — useful for measuring how often the queue is actually saving money.
     const extMatch = (fileName || '').match(/\.([A-Za-z0-9]+)$/)
     const ext = extMatch ? extMatch[1].toLowerCase() : ''
+    // lang_raw distinguishes "Whisper returned undefined / null / empty / 'und'"
+    // from "we lowercased a real value" — added 2026-05-22 to diagnose the
+    // 25.7% null-lang share surfaced by the 3-day log analysis. Quote the raw
+    // string so empty-vs-missing is unambiguous in the log line.
+    const langRaw = transcription.language
+    const langRawStr =
+      langRaw === undefined ? 'undef'
+      : langRaw === null      ? 'null'
+      : typeof langRaw === 'string' ? `"${langRaw}"`
+      : String(langRaw)
     console.log(
-      `[transcribe] ok provider=${usedProvider || 'unknown'} container=${probedContainer || '?'} codec=${probedCodec || '?'} ext=${ext} mime=${fileType} bytes=${fileSize} duration_sec=${durationSec ?? 'null'} lang=${transcription.language?.toLowerCase() ?? 'null'} auth=${userId ? 'y' : 'n'} queued=y jobId=${jobId}`
+      `[transcribe] ok provider=${usedProvider || 'unknown'} container=${probedContainer || '?'} codec=${probedCodec || '?'} ext=${ext} mime=${fileType} bytes=${fileSize} duration_sec=${durationSec ?? 'null'} lang=${transcription.language?.toLowerCase() ?? 'null'} lang_raw=${langRawStr} auth=${userId ? 'y' : 'n'} queued=y jobId=${jobId}`
     )
 
     bumpTranscriptionCount()
