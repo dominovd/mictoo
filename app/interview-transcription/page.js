@@ -2,7 +2,8 @@ import LandingLayout from '@/components/LandingLayout'
 
 export const metadata = {
   title: 'Interview Transcription — Free Interview Transcript Generator | Mictoo',
-  description: 'Transcribe interviews to text for free. Upload your interview recording and get an accurate transcript with timestamps. Includes interview transcript examples and templates.',
+  description:
+    'Free interview transcription with AI. Drop your interview recording (MP3, M4A, MP4, WAV) and get a clean, timestamped transcript in seconds. Built for journalists and researchers.',
   alternates: {
     canonical: 'https://mictoo.com/interview-transcription',
     languages: {
@@ -21,87 +22,174 @@ export const metadata = {
   },
 }
 
-const INTERVIEW_TRANSCRIPT_EXAMPLE = `Interviewer: Can you walk me through your research methodology?
-
-Respondent: Sure. We used a mixed-methods approach, starting with a survey of 400 participants, then conducting in-depth interviews with 20 of them to explore the quantitative findings in more detail.
-
-Interviewer: What were the main challenges you encountered?
-
-Respondent: Recruiting participants was the biggest hurdle. We ended up partnering with three community organizations to reach a more diverse sample.`
-
 export default function InterviewTranscriptionPage() {
   return (
-    <>
-      <LandingLayout
-        badge="Research · Journalism · Free"
-        h1={<>Interview Transcription<br /><span className="text-brand-600">Free Interview Transcript Tool</span></>}
-        subtitle="Upload your interview recording and get an accurate text transcript in seconds. Works for qualitative research, journalism, HR interviews, and podcasts. No account required."
-        features={[
+    <LandingLayout
+      badge="Journalism · Research · Free"
+      h1={
+        <>
+          Interview Transcription
+          <br />
+          <span className="text-brand-600">Free Interview Transcripts</span>
+        </>
+      }
+      subtitle="Turn any interview recording into clean, citable text. For journalists, researchers, podcasters, hiring teams. No signup, no per-minute fee, no email required."
+      howItWorks={[
+        {
+          icon: '🎙️',
+          title: 'Drop the interview audio',
+          desc: 'MP3 from a voice recorder, M4A from a phone, MP4 from a video call, WAV from a field recorder. All work.',
+        },
+        {
+          icon: '⚡',
+          title: 'AI transcribes it',
+          desc: 'Whisper large-v3 reads the audio. A 30-minute interview usually finishes in about a minute.',
+        },
+        {
+          icon: '📋',
+          title: 'Read, edit, export',
+          desc: 'Browse the transcript with timestamps. Fix any wrong names or jargon inline. Download as TXT for notes, SRT for video, or copy to your coding software.',
+        },
+      ]}
+      whyUse={{
+        title: 'Why Mictoo for interview transcription',
+        bullets: [
           {
-            icon: '🎙️',
-            title: 'Any interview format',
-            desc: 'In-person recordings, phone calls, Zoom interviews, focus groups — upload as MP3, MP4, WAV, or M4A.',
+            title: 'Whisper handles interviews well',
+            desc: 'Single recordings with two voices and clear back-and-forth are the cleanest case for speech recognition. Most interviews come out at 90 to 95 percent accuracy on the first pass.',
           },
           {
-            icon: '📋',
-            title: 'Editable output',
-            desc: 'Edit the transcript directly in your browser. Add speaker labels, fix names, correct terminology — then download.',
+            title: 'Timestamps for citation and quote sourcing',
+            desc: 'Every line in the SRT export has a timestamp. When you need to verify a quote or jump back to a specific moment in the recording, the timestamp tells you exactly where.',
           },
           {
-            icon: '⏱️',
-            title: 'Timestamps for every segment',
-            desc: 'Download as .srt to get time-coded segments — useful for qualitative coding and referencing specific moments.',
-          },
-        ]}
-        faq={[
-          {
-            q: 'How do I transcribe an interview for free?',
-            a: 'Upload your interview recording (MP3, MP4, WAV, or M4A) using the tool above. The transcript is generated automatically within seconds.',
+            title: 'No per-interview cost',
+            desc: 'Some transcription services charge per-minute or per-interview. We do not. Transcribe one or fifty, the price is the same (free).',
           },
           {
-            q: 'What does an interview transcript look like?',
-            a: 'An interview transcript is a verbatim text record of everything spoken during the interview. It typically includes speaker turns labeled as "Interviewer" and "Respondent" (or by name), with the spoken text on each line.',
+            title: '50+ languages, including bilingual interviews',
+            desc: 'Cross-language interviews are common in research and journalism. Whisper handles code-switching better than most services.',
           },
           {
-            q: 'What is the correct interview transcript format?',
-            a: 'The standard format includes: (1) speaker label followed by a colon, (2) verbatim spoken text, (3) a blank line between turns. For research, add timestamps at each turn. For journalism, consecutive speech by the same person may be combined.',
+            title: 'Privacy and source protection',
+            desc: 'The file streams to the transcription provider and is discarded. We do not retain the audio. For sensitive source material, this matters.',
+          },
+        ],
+      }}
+      useCases={{
+        title: 'Who uses interview transcripts',
+        items: [
+          {
+            title: 'Journalism and feature writing',
+            desc: 'Reporters transcribe their interviews to quote accurately and to skim long conversations for the most useful material. A 60-minute interview often becomes 3 to 5 key quotes for the published piece.',
           },
           {
-            q: 'How do I format an interview transcript for qualitative research?',
-            a: 'For qualitative research, use verbatim transcription including all hesitations and filler words. Add timestamps every 30–60 seconds. Label speakers consistently (e.g. "P1", "P2" for anonymity). Edit names and identifying details if required by your IRB protocol.',
+            title: 'Qualitative research and academic studies',
+            desc: 'Researchers transcribe semi-structured interviews to code and analyze in tools like NVivo, Atlas.ti, or MAXQDA. The transcript is the dataset.',
           },
           {
-            q: 'Does Mictoo add speaker labels automatically?',
-            a: 'Not automatically — the transcript is output as a single text block. You can manually add speaker labels by editing the transcript in the browser before downloading.',
+            title: 'Podcasting interviews',
+            desc: 'Show hosts transcribe guest interviews for show notes, episode blog posts, and quote graphics for social media. The audio reaches one audience; the text reaches a different one through search.',
           },
           {
-            q: 'What is the difference between transcription and interview notes?',
-            a: 'Interview notes summarize key points and paraphrase the speaker. A transcript is a verbatim record of every word spoken — more accurate and required for most research and legal contexts.',
+            title: 'Hiring and candidate screening',
+            desc: 'Recruiters and hiring managers transcribe interviews to share with the team. Easier than a video for cross-time-zone reviewers. Easier to compare notes when everyone has the same text.',
           },
           {
-            q: 'How long does it take to transcribe a 1-hour interview?',
-            a: 'With Mictoo, a 1-hour interview is typically transcribed in under 2 minutes. Manual transcription of a 1-hour interview typically takes 4–6 hours.',
+            title: 'User research and customer interviews',
+            desc: 'Product teams transcribe customer conversations to find patterns. The transcript goes into the research repository (Dovetail, Marvin, or a shared Notion).',
           },
-        ]}
-        relatedLinks={[
-          { href: '/transcribe-audio-to-text', label: 'Audio to Text' },
-          { href: '/timestamped-transcription', label: 'Timestamped Transcription' },
-          { href: '/business-transcription', label: 'Business Transcription' },
-          { href: '/', label: 'All formats' },
-        ]}
-      />
-
-      {/* Interview transcript example section */}
-      <section className="max-w-2xl mx-auto px-4 pb-16">
-        <h2 className="text-xl font-bold text-slate-900 mb-4">Interview transcript example</h2>
-        <p className="text-sm text-slate-500 mb-4">A basic qualitative research interview transcript looks like this:</p>
-        <pre className="bg-slate-50 border border-slate-200 rounded-xl p-5 text-sm text-slate-700 whitespace-pre-wrap leading-relaxed font-mono">
-          {INTERVIEW_TRANSCRIPT_EXAMPLE}
-        </pre>
-        <p className="text-xs text-slate-400 mt-3">
-          After transcribing with Mictoo, edit directly in the browser to add speaker labels before downloading.
-        </p>
-      </section>
-    </>
+        ],
+      }}
+      proTips={{
+        title: 'Pro tips for interview transcription',
+        tips: [
+          {
+            title: 'Use a real microphone, even for the phone interview',
+            desc: 'A lavalier or USB mic for the in-person interviewee, and a decent headset for the interviewer on the phone. Quality of the recording is the biggest single factor in transcript accuracy.',
+          },
+          {
+            title: 'Record in a quiet space',
+            desc: 'Coffee shop interviews look great on camera and transcribe poorly. Background music and chatter degrade accuracy more than people expect.',
+          },
+          {
+            title: 'For two-speaker interviews, transcribe the whole recording then add speaker labels manually',
+            desc: 'Whisper does not do speaker diarization. For a clean back-and-forth interview, adding "Interviewer:" and "Source:" labels takes about 5 minutes per 30-minute interview.',
+          },
+          {
+            title: 'If you have separate audio tracks, transcribe each separately',
+            desc: 'Then you get clean attribution without any guesswork. Some research-grade recorders capture two mics into two channels of one stereo file. You can split that into two mono files first.',
+          },
+          {
+            title: 'Save the transcript with the date and source name',
+            desc: 'A transcript file called 2026-05-24-jane-smith.txt is easier to find six months later than transcript-final-v2.txt.',
+          },
+          {
+            title: 'Edit the first 50 lines for accuracy, leave the rest as-is',
+            desc: 'People skim transcripts. The first part matters most. Past that, fix only the quotes you plan to use.',
+          },
+          {
+            title: 'Set the language manually if the interview is not in English',
+            desc: 'Auto-detect works for most files, but a 5-second false-start at the beginning can mislead it. Picking the language explicitly is more reliable.',
+          },
+        ],
+      }}
+      faq={[
+        {
+          q: 'Is this accurate enough for journalism quotes?',
+          a: 'For verbatim quoting, you should always verify against the audio. Whisper gets 90 to 95 percent of words right on clean interview audio. The 5 to 10 percent it misses often includes names, technical terms, and overlapping speech. Use the SRT timestamps to jump back to the recording for any quote you want to publish.',
+        },
+        {
+          q: 'Will I get speaker labels?',
+          a: 'Not automatically. You add them based on the conversation flow. For a 2-speaker interview this is fast. For panels or focus groups, plan extra time or upload each speaker track separately if you have them.',
+        },
+        {
+          q: 'Can I transcribe an interview in another language?',
+          a: 'Yes, 50+ languages with auto-detect. For interviews under 5 minutes or non-English interviews that start with English chit-chat, pick the language manually.',
+        },
+        {
+          q: 'My interview is 90 minutes. What do I do?',
+          a: 'Split it into chunks under our 60-minute cap. The natural break is wherever the conversation pauses (mid-interview coffee, topic change).',
+        },
+        {
+          q: 'How accurate are technical terms and proper nouns?',
+          a: 'Less accurate than common vocabulary. Whisper does not know your source company name, the medical term they used, or the specific software they referenced. Expect to fix these manually. The rest of the transcript will be solid.',
+        },
+        {
+          q: 'Is the audio stored?',
+          a: 'No. The file streams to the transcription provider (Groq, with OpenAI as backup), gets processed, then is discarded. We do not retain the audio on our servers.',
+        },
+        {
+          q: 'Is this compliant with research ethics policies?',
+          a: 'Most IRB-approved research protocols require knowing where audio is processed. Our providers process in the US. We do not retain. For specific IRB compliance, document the workflow and check with your IRB. For maximum control, use a local Whisper installation on your own machine instead.',
+        },
+        {
+          q: 'Can I import the transcript into NVivo, Atlas.ti, or Dedoose?',
+          a: 'Yes. Download as TXT and import into your qualitative analysis tool. The transcript is plain text, no special format needed.',
+        },
+        {
+          q: 'How long does transcription take?',
+          a: 'About 1 to 2 percent of the audio length. A 30-minute interview finishes in around 60 seconds.',
+        },
+        {
+          q: 'What if the interview has poor audio quality?',
+          a: 'Run it through a denoise tool first (Audacity Noise Reduction or Adobe Podcast Enhance). Then upload the cleaned version. Better input gives noticeably better output.',
+        },
+        {
+          q: 'Can I transcribe an interview that I recorded on my phone?',
+          a: 'Yes. iPhone Voice Memos save as M4A, Android voice recorders usually save as M4A or MP3. Both work. AirDrop or email the file to your computer, then upload here.',
+        },
+        {
+          q: 'Will the timestamps in the SRT match the original recording exactly?',
+          a: 'Yes, to the millisecond. The SRT timestamps reflect the actual time in the audio file. They work for jumping back to a specific moment in any audio or video player.',
+        },
+      ]}
+      relatedLinks={[
+        { href: '/podcast-transcription', label: 'Podcast Transcription', desc: 'For podcast interviews and host conversations.' },
+        { href: '/timestamped-transcription', label: 'Timestamped Transcription', desc: 'For word-level or sentence-level timestamps.' },
+        { href: '/voice-memo-to-text', label: 'Voice Memo to Text', desc: 'For phone-recorded interviews.' },
+        { href: '/business-transcription', label: 'Business Transcription', desc: 'For sales calls, customer calls, focus groups.' },
+      ]}
+    />
   )
 }

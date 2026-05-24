@@ -1,8 +1,9 @@
 import LandingLayout from '@/components/LandingLayout'
 
 export const metadata = {
-  title: 'Podcast Transcription — Free Podcast Transcript Generator | Mictoo',
-  description: 'Transcribe podcast episodes to text for free. Upload your audio file and get a full podcast transcript instantly. Supports MP3, M4A, WAV. No signup required.',
+  title: 'Podcast Transcription — Free AI Podcast Transcript Generator | Mictoo',
+  description:
+    'Free podcast transcription with AI. Upload your episode (MP3, MP4, M4A, WAV) and get a clean, timestamped transcript in seconds. No signup, no per-minute fee.',
   alternates: {
     canonical: 'https://mictoo.com/podcast-transcription',
     languages: {
@@ -24,57 +25,182 @@ export const metadata = {
 export default function PodcastTranscriptionPage() {
   return (
     <LandingLayout
-      badge="Podcasters · YouTube · Free"
-      h1={<>Podcast Transcription<br /><span className="text-brand-600">Free Podcast Transcript Generator</span></>}
-      subtitle="Turn any podcast episode into a full text transcript in seconds. Great for show notes, blog posts, SEO, and accessibility. Upload MP3, M4A, or WAV — no account needed."
-      features={[
+      badge="Podcasters · Hosts · Free"
+      h1={
+        <>
+          Podcast Transcription
+          <br />
+          <span className="text-brand-600">Free Podcast Transcript Generator</span>
+        </>
+      }
+      subtitle="Turn any episode into clean text. Drop your MP3, MP4, or M4A file and get a transcript in seconds. No account, no per-minute fee."
+      howItWorks={[
         {
-          icon: '🎙️',
-          title: 'Any podcast format',
-          desc: 'Upload MP3, M4A, WAV, OGG, or FLAC podcast files. Works with all podcast hosting exports.',
+          icon: '📂',
+          title: 'Drop the episode',
+          desc: 'Upload your MP3, MP4, M4A, WAV, or FLAC. Cloud Recording from Riverside, exports from Descript, raw Zoom audio, anchor.fm files. All fine.',
         },
         {
-          icon: '📝',
-          title: 'Show notes & blog posts',
-          desc: 'Turn your episode transcript into SEO-friendly blog content, show notes, or a searchable archive.',
+          icon: '⚡',
+          title: 'AI does the work',
+          desc: 'Whisper large-v3 runs on our backend and converts the audio to text. Most 30-minute episodes finish in under a minute.',
         },
         {
-          icon: '♿',
-          title: 'Accessibility',
-          desc: 'Provide transcripts to make your podcast accessible to deaf and hard-of-hearing listeners.',
+          icon: '📋',
+          title: 'Copy, download, or edit',
+          desc: 'Grab the text as plain TXT, SRT for subtitles, or paste it straight into your show notes editor. Tweak wrong words inline before exporting.',
         },
       ]}
+      whyUse={{
+        title: 'Why podcasters use Mictoo',
+        bullets: [
+          {
+            title: 'Long episodes are fine',
+            desc: 'Up to 60 minutes per file once you sign in (free). For a two-part split, we keep timestamps relative so you can stitch the SRT files back together without doing math.',
+          },
+          {
+            title: 'Accents and crosstalk hold up',
+            desc: 'Whisper large-v3 is the strongest open speech model we know of for non-native English. If you co-host with someone in Berlin or São Paulo, the transcript will not turn into mush.',
+          },
+          {
+            title: 'Music beds do not break it',
+            desc: 'Our pipeline runs voice activity detection before transcription. Long instrumental intros get tagged as silence, not invented words. Sponsor reads with bed music underneath still come through clean.',
+          },
+          {
+            title: 'No subscription',
+            desc: 'A lot of podcasters transcribe one or two episodes a month. Paying 15 dollars for a monthly seat is wasteful for that. Drop the file when you need it. We make money on ads and a future Pro tier for heavy users.',
+          },
+          {
+            title: 'Your audio is not stored',
+            desc: 'Files stream straight to the speech provider, get transcribed, then go away. We do not keep your episodes, and the providers we use (Groq, OpenAI) do not train on API data.',
+          },
+        ],
+      }}
+      useCases={{
+        title: 'What podcasters actually do with the transcript',
+        items: [
+          {
+            title: 'Show notes and blog posts',
+            desc: 'Paste the transcript into your CMS, mark the chapters, drop in links, ship the blog post. A 45-minute episode gives you 6000 to 8000 words of source material. Three or four lightly edited blog posts out of one recording.',
+          },
+          {
+            title: 'Episode quote cards for social',
+            desc: 'Scan the transcript for the line that landed and turn it into a graphic. Much faster than scrubbing the audio file at 1.5x looking for the timestamp.',
+          },
+          {
+            title: 'Searchable archive for your back catalog',
+            desc: 'Run your old episodes through batch transcription and you suddenly have a Ctrl+F across years of conversations. Useful when a guest comes back and you want to remember what you talked about last time.',
+          },
+          {
+            title: 'YouTube auto-captions replacement',
+            desc: "YouTube's auto-captions are mediocre for podcasts with two voices and any music. Upload a Mictoo SRT instead. Better punctuation, fewer wrong words, better accessibility.",
+          },
+          {
+            title: 'Accessibility transcript link',
+            desc: 'A lot of podcasters add a "Read the transcript" link in their RSS show notes. That helps deaf and hard-of-hearing listeners, and it helps search engines find your content.',
+          },
+        ],
+      }}
+      proTips={{
+        title: 'Pro tips for cleaner podcast transcripts',
+        tips: [
+          {
+            title: 'Strip the music intro and outro first',
+            desc: 'Whisper is good at ignoring music, but a 90-second instrumental cold open sometimes triggers phantom words. If your intro is the same every episode, just trim the first 1:30 in Audacity before upload. Saves a few minutes of cleanup later.',
+          },
+          {
+            title: 'Export at 64 kbps mono if your raw file is huge',
+            desc: 'Voice does not need stereo, and 64 kbps is plenty for speech. A two-hour episode at 64 kbps mono is around 55 MB. That fits in the 60 MB signed-in limit without splitting. Use ffmpeg: ffmpeg -i episode.wav -ac 1 -b:a 64k episode.mp3.',
+          },
+          {
+            title: 'For interviews with bad guest audio, transcribe each track separately',
+            desc: 'If you record on Riverside or SquadCast and have separate audio per speaker, upload each track on its own. Whisper has an easier time with one voice at a time. You get cleaner attribution, fewer dropped words during crosstalk.',
+          },
+          {
+            title: 'Set the language explicitly for short episodes',
+            desc: 'Auto-detect samples the first chunk of audio. If you open with a one-word cold open or laugh, detection can fall back to the wrong language. For anything under 5 minutes, pick the language manually.',
+          },
+          {
+            title: 'Punctuation will be imperfect. Fix the first 10 lines, then leave the rest',
+            desc: 'Whisper gets most punctuation right, but it sometimes misses semicolons and quoted speech. For show notes, the first 10 lines matter (people skim). Past that, ship it.',
+          },
+          {
+            title: 'Use SRT export even if you do not need subtitles',
+            desc: 'SRT gives you timestamps every few seconds. Even if you are pasting into a blog post, those timestamps help you jump back to the audio to verify a quote. We have a free SRT generator on this site.',
+          },
+        ],
+      }}
       faq={[
         {
-          q: 'How do I transcribe a podcast episode for free?',
-          a: 'Download your podcast episode as an MP3 or M4A file. Upload it above and get the full transcript within seconds.',
+          q: 'Can I transcribe a 2-hour episode?',
+          a: 'Yes, but split it first. Our per-file cap is 30 minutes free, or 60 minutes once you sign in. For a 2-hour episode, split into two or three parts and transcribe each. Our audio splitter guide walks through how to do it in 60 seconds with ffmpeg or Audacity.',
         },
         {
-          q: 'Can I get a transcript of a Spotify podcast?',
-          a: 'If you have access to the podcast audio file (e.g. your own show), upload it directly. For third-party podcasts, you can download episodes using a podcast app that supports offline listening, then upload the file.',
+          q: 'Do I get speaker labels (host vs guest)?',
+          a: 'Not automatically right now. Whisper itself does not do speaker diarization. If you have separate tracks per speaker (common in Riverside, SquadCast, Zencastr), upload each one separately and label them yourself in the final transcript. We are looking at adding diarization, but only when we can do it well.',
         },
         {
-          q: 'Why should podcasters create transcripts?',
-          a: 'Transcripts improve SEO (Google indexes the text), improve accessibility for deaf listeners, can be repurposed as blog posts or newsletters, and help listeners skim content.',
+          q: 'How does it handle accents and bilingual podcasts?',
+          a: 'Whisper large-v3 was trained on 680,000 hours of multilingual audio. Non-native English, regional accents, and code-switching all work better than smaller models. For a podcast that switches between English and Spanish mid-episode, pick "Auto-detect" as the language and Whisper will follow along.',
         },
         {
-          q: 'How accurate is podcast transcription?',
-          a: 'For clear, well-recorded podcasts with a single host or guest, accuracy is typically 95%+. Accuracy drops with multiple overlapping speakers, heavy accents, or poor audio quality.',
+          q: 'What audio formats do you support for podcasts?',
+          a: 'MP3, M4A, WAV, FLAC, OGG, WEBM, and AAC. Plus video files like MP4 and MOV (we extract the audio). If your podcast host gives you a download in any of these, you are set. AIFF and ALAC are not supported directly, convert to WAV first.',
         },
         {
-          q: 'Can I transcribe a two-person podcast interview?',
-          a: 'Yes. The transcript captures all spoken words. Speaker labels (Host/Guest) need to be added manually by editing the transcript in the browser.',
+          q: 'Is there a per-episode word limit?',
+          a: 'No word limit. The only limit is the file size (25 MB free, 60 MB signed in) and duration (30 min free, 60 min signed in). A typical 60-minute episode produces around 9000 to 11000 words.',
         },
         {
-          q: 'What file size can I upload?',
-          a: 'Up to 25 MB. Most MP3 podcast episodes at 128kbps are well within this limit for up to 25 minutes. For longer episodes, export at a lower bitrate or split the file.',
+          q: 'How accurate is podcast transcription compared to human transcribers?',
+          a: 'For clean studio audio, Whisper large-v3 typically lands at 5 to 10 percent word error rate. Human transcribers are around 3 to 5 percent. For most show notes and blog repurposing work, AI is good enough. For court testimony or academic citation, hire a human.',
+        },
+        {
+          q: 'Will my episode be stored on your servers?',
+          a: 'No. We pipe the audio straight to the transcription provider (Groq, with OpenAI as backup). They process it and we discard it. We never write your podcast file to our database or our object storage.',
+        },
+        {
+          q: 'Can I download as SRT for subtitles?',
+          a: 'Yes. After transcription, hit the SRT download button. Use it directly in YouTube Studio, Premiere Pro, DaVinci Resolve, or any video editor.',
+        },
+        {
+          q: 'Do you charge per minute?',
+          a: 'No. Transcription on Mictoo is free. We are funded by ads at the moment, with a paid Pro tier coming later for users who need longer files or batch uploads.',
+        },
+        {
+          q: 'My episode has explicit language. Will it get censored?',
+          a: 'No filtering. The transcript reflects exactly what was said. If you want to edit profanity for a clean version, do that yourself after download.',
+        },
+        {
+          q: 'Can I edit the transcript before downloading?',
+          a: 'Yes. There is a basic editor in the result view. Fix any wrong words, then download the edited version as TXT or SRT.',
+        },
+        {
+          q: 'Is podcast transcription on Mictoo compliant with GDPR?',
+          a: 'We do not store the audio or the transcript on our servers after you leave the page. We are based in Europe, and our providers (Groq US, OpenAI US) have DPAs in place. For specific compliance questions, see our Privacy Policy or email info@mictoo.com.',
         },
       ]}
       relatedLinks={[
-        { href: '/transcribe-mp3-to-text', label: 'MP3 to Text' },
-        { href: '/m4a-to-text', label: 'M4A to Text' },
-        { href: '/interview-transcription', label: 'Interview Transcription' },
-        { href: '/', label: 'All formats' },
+        {
+          href: '/free-srt-generator',
+          label: 'Free SRT Generator',
+          desc: 'Get podcast-ready subtitle files, not just plain text.',
+        },
+        {
+          href: '/timestamped-transcription',
+          label: 'Timestamped Transcription',
+          desc: 'For chapter markers, jump-cuts, and quote sourcing.',
+        },
+        {
+          href: '/interview-transcription',
+          label: 'Interview Transcription',
+          desc: 'Same engine, with notes tuned for the one-on-one format.',
+        },
+        {
+          href: '/youtube-to-text',
+          label: 'YouTube to Text',
+          desc: 'Already have your episode on YouTube? Pull the audio straight from there.',
+        },
       ]}
     />
   )
