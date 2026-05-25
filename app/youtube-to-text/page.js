@@ -38,7 +38,7 @@ export default function YouTubeToTextPage() {
         {
           icon: '⬇️',
           title: 'Download the video or audio',
-          desc: 'Use yt-dlp, a browser extension, or any reputable YouTube downloader. Save as MP4, M4A, or MP3. For long videos, audio-only (M4A) gives you a smaller file. Check the legal section in the FAQ before downloading.',
+          desc: 'Easiest way: a free desktop app like 4K Video Downloader or ClipGrab (Mac, Windows, Linux). Open the app, paste the YouTube link, pick "audio only" (M4A or MP3), hit download. Done in seconds. See the FAQ below for the legal side.',
         },
         {
           icon: '📂',
@@ -105,35 +105,35 @@ export default function YouTubeToTextPage() {
         title: 'Pro tips for YouTube transcription',
         tips: [
           {
-            title: 'Download audio-only for transcription',
-            desc: 'You do not need video for transcription. Audio-only M4A is a tenth of the size and downloads in seconds. With yt-dlp: yt-dlp -x --audio-format m4a https://youtube.com/watch?v=XXXX. The M4A is usually under 25 MB even for 30-minute videos.',
+            title: 'Always pick "audio only" in the downloader',
+            desc: 'You do not need video for transcription. An audio-only M4A is about a tenth of the size of the video and downloads in seconds. Both 4K Video Downloader and ClipGrab have an "audio only" option in the format dropdown. The M4A is usually under 25 MB even for 30-minute videos.',
           },
           {
-            title: 'For videos over 30 minutes, download in audio-only and split',
-            desc: 'Audio-only avoids the size limit on most videos. If a 90-minute talk still goes over 60 MB, split with ffmpeg into three 30-minute chunks.',
+            title: 'For videos over 30 minutes, audio-only usually fits without splitting',
+            desc: 'Audio-only avoids the size limit on most videos. If a 90-minute talk still goes over 60 MB, split it into three 30-minute pieces. Our splitting guide has step-by-step instructions for Audacity, no command line needed.',
           },
           {
             title: 'Skip the intro music and outro',
-            desc: 'YouTube tutorials often have 15 seconds of theme music at the start and end. Trim those in Audacity before upload. Whisper sometimes invents words during music-only sections.',
+            desc: 'YouTube tutorials often have 15 seconds of theme music at the start and end. Trim those in Audacity (Effect, Truncate Silence works for the silence parts; for music intros, just select and delete) before upload. Whisper sometimes invents words during music-only sections.',
           },
           {
             title: 'For tutorial channels with on-screen code, you still need the audio version',
-            desc: 'OCR for on-screen text is a different tool. If the tutorial relies on showing code, you will need to grab screenshots separately for the visual part.',
+            desc: 'On-screen text recognition is a different category of tool (OCR). If the tutorial relies on showing code, you will need to grab screenshots separately for the visual part. The transcript captures everything the presenter says out loud.',
           },
           {
             title: 'Live captions from YouTube can be a sanity check',
-            desc: 'If you have auto-captions on YouTube, you can compare them to your Whisper transcript to spot disagreements. Usually Whisper wins, but on rare slang or proper nouns YouTube might catch something Whisper missed.',
+            desc: 'If the video has YouTube auto-captions, you can compare them side by side with your Whisper transcript to spot disagreements. Usually Whisper wins, but on rare slang or proper nouns YouTube might catch something Whisper missed.',
           },
           {
-            title: 'Channel name and video title go in the file metadata',
-            desc: 'When you batch-download multiple videos, yt-dlp can save the title as the filename: yt-dlp -o "%(title)s.%(ext)s" -x --audio-format m4a URL. That keeps your transcripts organized later.',
+            title: 'Use a downloader that keeps the video title as the filename',
+            desc: '4K Video Downloader and ClipGrab both let you set the output filename to the YouTube title by default. That keeps your transcripts organized later instead of ending up with a folder full of "video.mp4", "video (1).mp4", "video (2).mp4".',
           },
         ],
       }}
       faq={[
         {
           q: 'Can I paste a YouTube URL directly into Mictoo?',
-          a: 'Not currently. YouTube actively blocks third-party servers from fetching videos. You need to download the video or audio first with a tool like yt-dlp, then upload the file to Mictoo. Adding URL support would require us to host video fetching infrastructure that YouTube routinely breaks.',
+          a: 'Not currently. YouTube actively blocks third-party servers from fetching videos. You have to download the video or audio first on your own computer (a free desktop app like 4K Video Downloader or ClipGrab does this in two clicks), then upload the file to Mictoo. Adding URL support would mean we run server-side downloading infrastructure that YouTube routinely breaks.',
         },
         {
           q: 'Is it legal to transcribe YouTube videos?',
@@ -145,11 +145,11 @@ export default function YouTubeToTextPage() {
         },
         {
           q: 'What is the best YouTube downloader to use?',
-          a: 'yt-dlp is the most reliable open-source option. It works on Mac, Linux, and Windows. Avoid sketchy "online YouTube downloader" sites, many of them serve malware ads. If you do not want a command-line tool, the official YouTube Premium download (for your own viewing) is fine.',
+          a: 'For most people: 4K Video Downloader or ClipGrab. Both are free, both have a clean desktop app for Mac, Windows, and Linux, both let you grab audio-only with one click. Avoid the "online YouTube downloader" websites that show up in Google results, most of them are buried in malware ads and break every few months. If you are comfortable with the command line, yt-dlp is the most reliable option (it is the engine that powers a lot of the GUI apps under the hood).',
         },
         {
           q: 'How do I download just the audio?',
-          a: 'With yt-dlp: yt-dlp -x --audio-format m4a "URL". The -x flag extracts audio only, much faster and smaller than downloading video. Output is M4A by default, which we accept directly.',
+          a: 'In 4K Video Downloader: paste the YouTube link, when the format dialog opens, pick "Extract Audio" and choose M4A or MP3. In ClipGrab: paste the link, in the "Format" dropdown pick MP3 or "Original audio". Both produce a single audio file ready to upload here.',
         },
         {
           q: 'What if my YouTube video is in a language I do not speak?',
@@ -157,7 +157,7 @@ export default function YouTubeToTextPage() {
         },
         {
           q: 'How long does a YouTube video take to transcribe?',
-          a: 'Just the transcription step takes about 1 to 2 percent of the audio length. A 30-minute talk finishes in around a minute. Download time depends on your connection and yt-dlp speed.',
+          a: 'Just the transcription step takes about 1 to 2 percent of the audio length. A 30-minute talk finishes in around a minute. The download step (before you upload here) depends on your internet connection. A 30-minute audio-only download is usually well under a minute on a normal home connection.',
         },
         {
           q: 'Will I get speaker labels for multi-speaker YouTube videos?',
@@ -177,7 +177,7 @@ export default function YouTubeToTextPage() {
         },
         {
           q: 'Can I transcribe a YouTube livestream after it ends?',
-          a: 'Yes, as long as the livestream is archived as a regular video. Download it the same way (yt-dlp), then upload. Live transcription during the stream itself is not supported.',
+          a: 'Yes, as long as the livestream is archived on the channel as a regular video. Download the archive the same way you would any other YouTube video, then upload here. Live transcription during the stream itself is not supported.',
         },
       ]}
       relatedLinks={[
