@@ -6,6 +6,19 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 1,
     },
+    // Blog
+    {
+      url: 'https://mictoo.com/blog',
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+    {
+      url: 'https://mictoo.com/blog/mp3-vs-m4a-vs-wav-vs-flac-for-transcription',
+      lastModified: new Date('2026-05-25'),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
     // Format landing pages
     {
       url: 'https://mictoo.com/transcribe-audio-to-text',
