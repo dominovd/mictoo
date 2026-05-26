@@ -92,9 +92,12 @@ export default function SiteFooter() {
             <p>{t(locale, 'footer.copyright', { year })}</p>
             <TranscriptionCounter />
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-4 flex-wrap justify-center sm:justify-end">
             <a href={localized('/about', locale)} className="hover:text-slate-600 transition-colors">{t(locale, 'footer.about')}</a>
             <a href={localized('/contact', locale)} className="hover:text-slate-600 transition-colors">{t(locale, 'footer.contact')}</a>
+            {/* Blog is EN-only for now — always link to /blog regardless of locale.
+                Label is localized so non-EN users see "Блог" / "ブログ" etc. */}
+            <a href="/blog" className="hover:text-slate-600 transition-colors">{t(locale, 'footer.blog')}</a>
             <a href={localized('/privacy', locale)} className="hover:text-slate-600 transition-colors">{t(locale, 'footer.privacy')}</a>
             <a href={localized('/terms', locale)} className="hover:text-slate-600 transition-colors">{t(locale, 'footer.terms')}</a>
           </div>
