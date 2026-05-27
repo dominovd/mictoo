@@ -32,6 +32,12 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.75,
     },
+    {
+      url: 'https://mictoo.com/how-to-transcribe-instagram-reels',
+      lastModified: new Date('2026-05-27'),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
     // Format landing pages
     {
       url: 'https://mictoo.com/transcribe-audio-to-text',
