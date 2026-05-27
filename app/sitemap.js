@@ -586,5 +586,15 @@ export default function sitemap() {
     { url: 'https://mictoo.com/pl/m4a-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
     { url: 'https://mictoo.com/ja/m4a-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
     { url: 'https://mictoo.com/ko/m4a-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
+    // Wave 6 — Format converters (2026-05-27). Real ffmpeg-backed tools, not
+    // just SEO landings. Target the biggest "X to Y" search keywords —
+    // mp4-to-mp3 alone is 550K vol/mo per Semrush. EN-only for now,
+    // localization in a follow-up wave.
+    { url: 'https://mictoo.com/mp4-to-mp3',  lastModified: new Date('2026-05-27'), changeFrequency: 'monthly', priority: 0.85 },
+    { url: 'https://mictoo.com/wav-to-mp3',  lastModified: new Date('2026-05-27'), changeFrequency: 'monthly', priority: 0.75 },
+    { url: 'https://mictoo.com/webm-to-mp3', lastModified: new Date('2026-05-27'), changeFrequency: 'monthly', priority: 0.7  },
+    { url: 'https://mictoo.com/flac-to-mp3', lastModified: new Date('2026-05-27'), changeFrequency: 'monthly', priority: 0.65 },
+    { url: 'https://mictoo.com/mp3-to-m4a',  lastModified: new Date('2026-05-27'), changeFrequency: 'monthly', priority: 0.7  },
+    { url: 'https://mictoo.com/mp3-to-wav',  lastModified: new Date('2026-05-27'), changeFrequency: 'monthly', priority: 0.65 },
   ]
 }

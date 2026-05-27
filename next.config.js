@@ -2,7 +2,7 @@
 const nextConfig = {
   // In App Router, FormData is handled natively — no bodyParser config needed
   experimental: {
-    serverComponentsExternalPackages: ['openai'],
+    serverComponentsExternalPackages: ['openai', '@ffmpeg-installer/ffmpeg'],
   },
 }
 

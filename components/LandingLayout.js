@@ -29,6 +29,10 @@ export default function LandingLayout({
   faq,
   relatedLinks,
   defaultLanguage = '',
+  // Optional override for the hero tool. Pages can pass a custom node here
+  // (e.g. <ConverterZone />) and the default <UploadZone /> won't render.
+  // Default: undefined → UploadZone (transcription pages).
+  tool,
 }) {
   const locale = defaultLanguage || 'en'
 
@@ -63,9 +67,9 @@ export default function LandingLayout({
         </div>
       </section>
 
-      {/* Upload tool */}
+      {/* Hero tool — UploadZone by default, custom node if `tool` prop given */}
       <section id="tool" className="max-w-2xl mx-auto px-4 -mt-6 pb-12 pt-10 scroll-mt-20">
-        <UploadZone defaultLanguage={defaultLanguage} locale={locale} />
+        {tool || <UploadZone defaultLanguage={defaultLanguage} locale={locale} />}
       </section>
 
       {/* How it works (new template) */}
