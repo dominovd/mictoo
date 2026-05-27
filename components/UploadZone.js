@@ -93,6 +93,44 @@ function toSRT(segments) {
     .join('\n\n') + '\n'
 }
 
+// MM:SS or H:MM:SS clock format for the Reader view's timestamp column.
+// Skip the hour digit when the audio is under an hour so a 90-second voice memo
+// shows "0:00" / "0:42" instead of the visually cluttered "00:00" / "00:00:42".
+function fmtClockShort(sec) {
+  const s = Math.max(0, Math.floor(sec || 0))
+  const h = Math.floor(s / 3600)
+  const m = Math.floor((s % 3600) / 60)
+  const r = s % 60
+  if (h > 0) return `${h}:${String(m).padStart(2, '0')}:${String(r).padStart(2, '0')}`
+  return `${m}:${String(r).padStart(2, '0')}`
+}
+
+// Reader view: render Whisper segments as a two-column list — left timestamp,
+// right text. Far easier to scan than a wall of paragraphs. Used in the "done"
+// state when segments are available (Editor view is the textarea fallback).
+function TranscriptReader({ segments }) {
+  if (!segments?.length) return null
+  return (
+    <div className="border border-slate-200 rounded-xl bg-white max-h-[28rem] overflow-y-auto divide-y divide-slate-100">
+      {segments.map((seg, i) => {
+        const text = (seg.text || '').trim()
+        if (!text) return null
+        return (
+          <div
+            key={i}
+            className="grid grid-cols-[3.25rem_1fr] gap-3 px-4 py-2.5 hover:bg-slate-50 transition-colors"
+          >
+            <span className="font-mono text-xs text-brand-600 pt-0.5 select-none tabular-nums">
+              {fmtClockShort(seg.start)}
+            </span>
+            <span className="text-sm text-slate-700 leading-relaxed">{text}</span>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
 // Plain text with [HH:MM:SS] timestamp prefix per paragraph.
 // Mirrors the paragraph-splitting logic from toParagraphs() — a new timestamp
 // is emitted whenever there's a gap longer than PAUSE_THRESHOLD between segments.
@@ -147,6 +185,10 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   const [file, setFile] = useState(null)
   const [transcript, setTranscript] = useState('')
   const [segments, setSegments] = useState([])
+  // 'reader' = per-line timestamps + text (TranscriptReader, default when we
+  // have segments). 'editor' = textarea — fallback when no segments, or when
+  // the user wants to fix a typo before exporting.
+  const [viewMode, setViewMode] = useState('reader')
   const [language, setLanguage] = useState(defaultLanguage)
   const [error, setError] = useState('')
   // True when the server signalled `signInHelps: true` in a 429 response,
@@ -972,13 +1014,46 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
           onRetry={() => generateSummary(transcript, spokenLanguage, transcriptId)}
         />
 
-        <textarea
-          className="w-full h-64 text-sm text-slate-700 border border-slate-100 rounded-xl p-4 bg-slate-50 resize-y focus:outline-none focus:ring-2 focus:ring-brand-500"
-          value={transcript}
-          onChange={e => setTranscript(e.target.value)}
-        />
+        {/* Reader / Editor toggle. The Reader view (per-line timestamp + text
+            rows from Whisper segments) is the default when we have segments —
+            it's far easier to scan than a wall of text. The Editor falls back
+            to the plain textarea so the user can fix typos / proper nouns
+            before exporting. When segments aren't available (rare edge case),
+            we skip the toggle and render the Editor only. */}
+        {hasSRT && (
+          <div className="inline-flex items-center gap-0 bg-slate-100 rounded-lg p-0.5 text-xs mb-3">
+            <button
+              type="button"
+              onClick={() => setViewMode('reader')}
+              className={`px-3 py-1.5 rounded-md transition-colors ${viewMode === 'reader' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+              title={t(locale, 'result.viewReaderHint')}
+            >
+              {t(locale, 'result.viewReader')}
+            </button>
+            <button
+              type="button"
+              onClick={() => setViewMode('editor')}
+              className={`px-3 py-1.5 rounded-md transition-colors ${viewMode === 'editor' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+              title={t(locale, 'result.viewEditorHint')}
+            >
+              {t(locale, 'result.viewEditor')}
+            </button>
+          </div>
+        )}
+
+        {hasSRT && viewMode === 'reader' ? (
+          <TranscriptReader segments={segments} />
+        ) : (
+          <textarea
+            className="w-full h-64 text-sm text-slate-700 border border-slate-100 rounded-xl p-4 bg-slate-50 resize-y focus:outline-none focus:ring-2 focus:ring-brand-500"
+            value={transcript}
+            onChange={e => setTranscript(e.target.value)}
+          />
+        )}
         <p className="text-xs text-slate-400 mt-2">
-          {t(locale, 'result.editHint')}{hasSRT ? t(locale, 'result.srtHint') : ''}
+          {hasSRT && viewMode === 'reader'
+            ? t(locale, 'result.viewReaderHint')
+            : t(locale, 'result.editHint') + (hasSRT ? t(locale, 'result.srtHint') : '')}
         </p>
       </div>
     )
