@@ -106,7 +106,7 @@ export default function SiteFooter() {
             English-speakers searching for foreign-language transcription
             (see reference_mictoo_localization), so showing them on a /fr
             or /de page would confuse the locale. */}
-        <div className={`grid grid-cols-2 md:grid-cols-3 ${locale === 'en' ? 'lg:grid-cols-6' : 'lg:grid-cols-5'} gap-x-6 gap-y-10 mb-10`}>
+        <div className={`grid grid-cols-2 md:grid-cols-3 ${locale === 'en' ? 'lg:grid-cols-6' : 'lg:grid-cols-5'} gap-x-4 lg:gap-x-3 gap-y-10 mb-10`}>
           <FooterCol accent="brand"   title={t(locale, 'footer.useCases')}   items={useCases}     hrefFor={hrefFor} />
           <FooterCol accent="sky"     title={t(locale, 'footer.formats')}    items={formats}      hrefFor={hrefFor} />
           <FooterCol accent="amber"   title={t(locale, 'footer.tools')}      items={tools}        hrefFor={hrefFor} />
