@@ -26,7 +26,7 @@ export default function PtPodcastPage() {
     <LandingLayout
       defaultLanguage="pt"
       badge="Podcasters · Hosts · Grátis"
-      h1={<>Transcrição de podcast<br /><span className="text-brand-600">Gerador grátis de transcript</span></>}
+      h1={<>Transcrição de podcast<br /><span className="text-brand-600">Gerador grátis de transcrição</span></>}
       subtitle="Transforme qualquer episódio em texto limpo. Envie seu MP3, MP4 ou M4A e receba a transcrição em segundos. Sem conta, sem cobrança por minuto."
       howItWorks={[
         { icon: '📂', title: 'Solte o episódio', desc: 'MP3, MP4, M4A, WAV ou FLAC. Cloud recording do Riverside, exports do Descript, áudio bruto do Zoom, arquivos do Anchor.fm. Tudo funciona.' },
@@ -57,7 +57,7 @@ export default function PtPodcastPage() {
       ]}}
       faq={[
         { q: 'Posso transcrever um episódio de 2 horas?', a: 'Sim, mas divida antes. Nosso cap de arquivo é 30 minutos grátis, ou 60 minutos após cadastro. Para um episódio de 2 horas, divida em duas ou três partes e transcreva cada. Nosso guia de divisão de áudio explica como em 60 segundos com ffmpeg ou Audacity.' },
-        { q: 'Recebo etiquetas de orador (Host vs. Convidado)?', a: 'Por enquanto não automaticamente. O Whisper em si não faz diarização. Se você tem faixas separadas por orador (comum em Riverside, SquadCast, Zencastr), suba cada uma separadamente e etiquete no transcript final. Estamos olhando diarização, mas só lançamos se acertarmos.' },
+        { q: 'Recebo etiquetas de orador (Host vs. Convidado)?', a: 'Por enquanto não automaticamente. O Whisper em si não faz diarização. Se você tem faixas separadas por orador (comum em Riverside, SquadCast, Zencastr), suba cada uma separadamente e etiquete na transcrição final. Estamos olhando diarização, mas só lançamos se acertarmos.' },
         { q: 'Como lida com sotaques e podcasts bilíngues?', a: 'O Whisper large-v3 foi treinado em 680.000 horas de áudio multilíngue. Inglês não-nativo, sotaques regionais e code-switching funcionam melhor do que em modelos menores. Para um podcast que troca entre inglês e espanhol no meio do episódio, escolha "Detecção automática" como idioma, e o Whisper acompanha a troca.' },
         { q: 'Quais formatos de áudio vocês suportam para podcasts?', a: 'MP3, M4A, WAV, FLAC, OGG, WEBM e AAC. Mais arquivos de vídeo como MP4 e MOV (extraímos o áudio). Se seu host de podcast oferece download num desses, está pronto. AIFF e ALAC não são suportados diretamente, converta para WAV antes.' },
         { q: 'Tem limite de palavras por episódio?', a: 'Sem limite de palavras. Só o limite de tamanho de arquivo (25 MB grátis, 60 MB com cadastro) e duração (30 min grátis, 60 min com cadastro). Um episódio típico de 60 minutos produz cerca de 9000 a 11.000 palavras.' },
@@ -67,7 +67,7 @@ export default function PtPodcastPage() {
         { q: 'Vocês cobram por minuto?', a: 'Não. Transcrição no Mictoo é grátis. Estamos atualmente financiados por publicidade, com plano Pro pago vindo depois para usuários que precisam de arquivos mais longos ou upload em lote.' },
         { q: 'Meu episódio tem linguagem explícita. Vai ser censurado?', a: 'Sem filtragem. A transcrição reflete exatamente o que foi dito. Se você quer editar palavrões para uma versão limpa, faça depois do download.' },
         { q: 'Posso editar a transcrição antes do download?', a: 'Sim. Tem um editor simples no view de resultado. Corrija palavras erradas, depois baixe a versão editada como TXT ou SRT.' },
-        { q: 'A transcrição de podcast no Mictoo é GDPR-compliant?', a: 'Não guardamos áudio nem transcript nos nossos servidores depois que você sai da página. Estamos na Europa, e nossos provedores (Groq US, OpenAI US) têm DPAs assinados. Para dúvidas específicas de compliance, veja nossa privacy policy ou escreva para info@mictoo.com.' },
+        { q: 'A transcrição de podcast no Mictoo é GDPR-compliant?', a: 'Não guardamos áudio nem transcrição nos nossos servidores depois que você sai da página. Estamos na Europa, e nossos provedores (Groq US, OpenAI US) têm DPAs assinados. Para dúvidas específicas de compliance, veja nossa privacy policy ou escreva para info@mictoo.com.' },
       ]}
       relatedLinks={[
         { href: '/pt/free-srt-generator', label: 'Gerador SRT', desc: 'Arquivos de legenda prontos para podcast, não só texto puro.' },

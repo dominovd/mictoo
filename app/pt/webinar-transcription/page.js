@@ -24,7 +24,7 @@ export default function PtWebinarPage() {
   return (
     <LandingLayout
       badge="Webinars · MP4 · Grátis"
-      h1={<>Transcrição de webinar<br /><span className="text-brand-600">Gerador grátis de transcript</span></>}
+      h1={<>Transcrição de webinar<br /><span className="text-brand-600">Gerador grátis de transcrição</span></>}
       subtitle="Transforme a gravação do seu webinar em uma transcrição em texto pesquisável ou em um arquivo de legendas SRT. Funciona com Zoom, Webex, GoToWebinar e qualquer export MP4/MP3."
       defaultLanguage="pt"
       features={[

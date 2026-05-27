@@ -45,7 +45,7 @@ export default function EsOtterAlternativePage() {
       ]}
       whenToChoose={{
         mictoo: [
-          'Tienes una grabación y quieres un transcript rápido y gratis',
+          'Tienes una grabación y quieres una transcripción rápida y gratis',
           'Trabajas con audio no en inglés (ruso, alemán, japonés, etc.)',
           'No quieres un bot IA en tus llamadas',
           'Transcribes podcasts, clases, notas de voz — no solo reuniones',

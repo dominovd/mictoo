@@ -15,7 +15,7 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Transcrição de reuniões — transcript IA grátis para calls e reuniões | Mictoo',
+  title: 'Transcrição de reuniões — transcrição IA grátis para calls e reuniões | Mictoo',
   description:
     'Transcrição IA grátis de reuniões. Envie qualquer gravação de reunião (de qualquer plataforma) e receba texto limpo em segundos. Sem cadastro, sem cobrança por minuto, mais de 50 idiomas.',
   alternates: { canonical: 'https://mictoo.com/pt/meeting-transcription', languages: LANGS },

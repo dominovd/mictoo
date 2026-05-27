@@ -61,7 +61,7 @@ export default function EsNottaAlternativePage() {
         { q: '¿Es Mictoo realmente gratis sin cuota de minutos?', a: 'Sí. El único límite es el tamaño por archivo (25 MB, que da unos 25 minutos a un bitrate típico de podcast). No hay seguimiento mensual de minutos ni límite del número de archivos.' },
         { q: '¿Por qué Notta limita tanto a los usuarios gratis?', a: 'Notta usa un modelo freemium donde la capa gratis está limitada a propósito para incentivar el pago. El modelo de Mictoo es con anuncios, así que la capa gratis es generosa por diseño.' },
         { q: '¿Cómo gana dinero Mictoo si es gratis?', a: 'Anuncios display (Google AdSense), mostrados en el estado de carga mientras el archivo se transcribe. La transcripción y la zona de subida no llevan anuncios.' },
-        { q: '¿Mictoo soporta transcripción en vivo?', a: 'No — Mictoo trabaja solo sobre archivos grabados. Para captura en directo usa los subtítulos integrados de tu plataforma (Zoom, Google Meet, Teams) y luego sube la grabación a Mictoo para un transcript pulido.' },
+        { q: '¿Mictoo soporta transcripción en vivo?', a: 'No — Mictoo trabaja solo sobre archivos grabados. Para captura en directo usa los subtítulos integrados de tu plataforma (Zoom, Google Meet, Teams) y luego sube la grabación a Mictoo para una transcripción pulida.' },
         { q: '¿Qué idiomas soporta Mictoo?', a: 'OpenAI Whisper maneja 50+ idiomas con detección automática — inglés, español, francés, alemán, ruso, ucraniano, japonés, chino, árabe, hindi, coreano y muchos más. No hace falta seleccionar idioma salvo que la detección se equivoque.' },
       ]}
       relatedLinks={[

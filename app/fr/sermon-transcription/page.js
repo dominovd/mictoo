@@ -15,7 +15,7 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Transcription de sermon — Générateur gratuit de transcript de sermon | Mictoo',
+  title: 'Transcription de sermon — générateur gratuit de transcription | Mictoo',
   description: "Transcrivez gratuitement vos sermons et audios d'église en texte. Parfait pour les blogs, notes d'étude et l'accessibilité. Compatible MP3, MP4, M4A. Sans inscription.",
   alternates: { canonical: 'https://mictoo.com/fr/sermon-transcription', languages: LANGS },
 }
@@ -24,7 +24,7 @@ export default function FrSermonPage() {
   return (
     <LandingLayout
       badge="Sermons · Église · Gratuit"
-      h1={<>Transcription de sermon<br /><span className="text-brand-600">Générateur gratuit de transcript</span></>}
+      h1={<>Transcription de sermon<br /><span className="text-brand-600">Générateur gratuit de transcription</span></>}
       subtitle="Transformez vos enregistrements de sermons en texte propre en quelques secondes. Idéal pour les blogs d'église, guides d'étude, posts sociaux et pour rendre vos messages accessibles aux personnes malentendantes."
       defaultLanguage="fr"
       features={[
