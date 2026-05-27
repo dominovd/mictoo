@@ -223,7 +223,7 @@ export default function LandingLayout({
             href="#tool"
             className="inline-block bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-6 py-3 rounded-xl transition-colors"
           >
-            ↑ Back to the uploader
+            {t(locale, 'landing.ctaButton')}
           </a>
         </section>
       )}
