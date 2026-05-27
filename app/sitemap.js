@@ -19,6 +19,19 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.75,
     },
+    {
+      url: 'https://mictoo.com/blog/can-chatgpt-transcribe-audio',
+      lastModified: new Date('2026-05-27'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    // Guide pages
+    {
+      url: 'https://mictoo.com/how-to-download-youtube-video',
+      lastModified: new Date('2026-05-27'),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
     // Format landing pages
     {
       url: 'https://mictoo.com/transcribe-audio-to-text',

@@ -7,6 +7,14 @@
  */
 const POSTS = [
   {
+    slug: 'can-chatgpt-transcribe-audio',
+    title: 'Can ChatGPT Transcribe Audio? Honest Answer for 2026',
+    excerpt:
+      'Short version: not really. ChatGPT is a chat product, not a transcription product. Here is what the consumer app actually does with audio, what the API can do, and the three practical paths when you need a real transcript.',
+    publishedAt: '2026-05-27',
+    readingMinutes: 8,
+  },
+  {
     slug: 'mp3-vs-m4a-vs-wav-vs-flac-for-transcription',
     title: 'MP3 vs M4A vs WAV vs FLAC for Transcription: Which Format Should You Use?',
     excerpt:
