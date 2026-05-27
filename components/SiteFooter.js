@@ -163,12 +163,12 @@ function FooterCol({ title, items, hrefFor, accent = 'brand' }) {
           <li key={path}>
             <a
               href={hrefFor(path)}
-              className="group flex items-center gap-2.5 text-sm text-slate-500 hover:text-slate-900 transition-colors"
+              className="group flex items-start gap-2.5 text-sm text-slate-500 hover:text-slate-900 transition-colors"
             >
-              <span className={`text-slate-300 ${a.hover} transition-colors`}>
+              <span className={`text-slate-300 mt-0.5 ${a.hover} transition-colors`}>
                 <FooterIcon name={icon} />
               </span>
-              <span className="truncate">{label}</span>
+              <span className="leading-snug">{label}</span>
             </a>
           </li>
         ))}
