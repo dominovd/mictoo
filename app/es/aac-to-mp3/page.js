@@ -51,11 +51,6 @@ export default function EsAacToMp3Page() {
           <p className="mb-4">
             El más rápido si tu archivo pesa menos de ~200 MB. Arrastra en el navegador, recibe el MP3 en segundos. Todos sin registro:
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/aac-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — interfaz limpia, soporta lotes.</li>
-            <li><a href="https://convertio.co/aac-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — rápido, calidad MP3 seleccionable.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — permite elegir mono/64 kbps para transcripción.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             Privacidad: los convertidores online suben tu archivo a sus servidores. Para grabaciones sensibles (médicas, legales, llamadas de negocio) usa un método de escritorio.
           </p>

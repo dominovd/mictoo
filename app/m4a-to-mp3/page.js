@@ -60,15 +60,15 @@ export default function M4aToMp3Page() {
         <div>
           <h2 className="text-xl font-semibold text-slate-800 mb-3">Method 1 — Online converter</h2>
           <p className="mb-4">
-            Drag, drop, download — usually under 10 seconds for a typical voice memo:
+            We don&apos;t host an M4A → MP3 converter yet — for most M4A files there&apos;s simply no reason to convert. If you do need MP3 specifically and want a browser-based path, our <a href="/mp3-to-m4a" className="text-brand-600 hover:underline">MP3 to M4A converter</a> covers the reverse direction, and the desktop methods below handle M4A → MP3 cleanly in seconds:
           </p>
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/m4a-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — clean UI, supports big files.</li>
-            <li><a href="https://convertio.co/m4a-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — fast, MP3 quality selectable.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — fine-grained quality controls.</li>
+            <li>For transcription, skip conversion entirely — drop the <code className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">.m4a</code> straight into <a href="/" className="text-brand-600 hover:underline">Mictoo</a>.</li>
+            <li>For audio editing, use Audacity (free, all platforms) — it reads M4A and exports MP3 directly.</li>
+            <li>For Apple users, the Music app does it in three clicks — see Method 2 below.</li>
           </ul>
           <p className="text-xs text-slate-500 mt-3">
-            Privacy: online tools upload your file. Skip for confidential recordings — use a desktop method.
+            Privacy: the desktop methods below run entirely on your machine — nothing leaves your computer.
           </p>
         </div>
 

@@ -54,11 +54,6 @@ export default function PlM4aToMp3Page() {
           <p className="mb-4">
             Przeciągnij, upuść, pobierz — zwykle poniżej 10 sekund dla typowej notatki głosowej:
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/m4a-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — czysty interfejs, obsługuje duże pliki.</li>
-            <li><a href="https://convertio.co/m4a-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — szybki, wybór jakości MP3.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — precyzyjne ustawienia jakości.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             Prywatność: narzędzia online wysyłają plik. Pomiń je dla wrażliwych nagrań — użyj metody desktopowej.
           </p>

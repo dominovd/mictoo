@@ -51,11 +51,6 @@ export default function DeAacToMp3Page() {
           <p className="mb-4">
             Am schnellsten für Dateien unter ~200 MB. Im Browser ablegen, MP3 in Sekunden zurückbekommen. Alle ohne Registrierung:
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/aac-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — saubere Oberfläche, unterstützt Stapelverarbeitung.</li>
-            <li><a href="https://convertio.co/aac-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — schnell, MP3-Qualität wählbar.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — Mono/64 kbps für Transkription wählbar.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             Datenschutz-Hinweis: Online-Konverter laden Ihre Datei auf ihre Server. Für vertrauliche Aufnahmen (medizinisch, juristisch, Geschäftsanrufe) nutzen Sie eine Desktop-Methode unten.
           </p>

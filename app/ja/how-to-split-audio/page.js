@@ -37,11 +37,6 @@ export default function JaHowToSplitAudioPage() {
             チャンクをダウンロードします。各セグメントで繰り返します。
           </p>
 
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://mp3cut.net/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">mp3cut.net</a> — ファイルをドラッグし、マーカーを動かして開始/終了を設定、Cutをクリック、ダウンロード。ブラウザ内で動作します。</li>
-            <li><a href="https://clideo.com/cut-audio" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Clideo Cut Audio</a> — クリーンなUI、MP3、M4A、WAV、FLAC、OGGおよび動画ファイルに対応。</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — 長いファイルにも対応し、セグメントの一括エクスポートが可能。</li>
-          </ul>
 
           <p className="mt-3 text-xs text-slate-500">
             ヒント：自然な間（文の切れ目や話者の交代）で分割すると、結合後の文字起こしが滑らかに読めます。

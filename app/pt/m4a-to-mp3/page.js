@@ -54,11 +54,6 @@ export default function PtM4aToMp3Page() {
           <p className="mb-4">
             Arrasta, solta, baixa — geralmente abaixo de 10 segundos para um memo de voz típico:
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/m4a-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — interface limpa, suporta arquivos grandes.</li>
-            <li><a href="https://convertio.co/m4a-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — rápido, qualidade MP3 selecionável.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — controles finos de qualidade.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             Privacidade: ferramentas online enviam seu arquivo. Pule-as para gravações confidenciais — use um método desktop.
           </p>

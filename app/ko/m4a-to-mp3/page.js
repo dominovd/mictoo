@@ -54,11 +54,6 @@ export default function KoM4aToMp3Page() {
           <p className="mb-4">
             드래그, 드롭, 다운로드 — 일반적인 음성 메모는 보통 10초 미만:
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/m4a-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — 깔끔한 UI, 대용량 지원.</li>
-            <li><a href="https://convertio.co/m4a-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — 빠르고 MP3 품질 선택 가능.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — 세밀한 품질 컨트롤.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             개인정보: 온라인 도구는 파일을 업로드합니다. 민감한 녹음은 건너뛰고 데스크톱 방식을 사용하세요.
           </p>

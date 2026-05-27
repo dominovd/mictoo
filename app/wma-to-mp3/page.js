@@ -45,18 +45,10 @@ export default function WmaToMp3Page() {
         <div>
           <h2 className="text-xl font-semibold text-slate-800 mb-3">Method 1 — Online converter (no install)</h2>
           <p className="mb-4">
-            Easiest path if your file is under ~200 MB and the recording isn&apos;t sensitive.
-            Drag, drop, download — usually 5–15 seconds:
+            WMA uses a proprietary Microsoft codec, so most browser converters (ours included) don&apos;t handle it yet — ffmpeg needs a special build that&apos;s heavy for serverless. The desktop methods below are the fastest reliable route. If your end goal is a transcript, you can also feed the MP3 result straight into <a href="/" className="text-brand-600 hover:underline">Mictoo</a> for free.
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — supports up to 1 GB free.</li>
-            <li><a href="https://convertio.co/wma-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — batch upload, MP3 quality selectable.</li>
-            <li><a href="https://www.freeconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">FreeConvert</a> — advanced options for bitrate and channels.</li>
-            <li><a href="https://www.media.io/convert/wma-to-mp3.html" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Media.io</a> — fast, clean interface.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
-            Privacy: for confidential recordings (interviews, business calls, medical) prefer the desktop
-            methods below — your audio never leaves your computer.
+            Privacy bonus: the desktop methods run entirely offline — useful for confidential recordings (interviews, business calls, medical).
           </p>
         </div>
 

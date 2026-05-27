@@ -41,10 +41,11 @@ export default function HowToCompressAudioPage() {
           </p>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">Online (no install)</h3>
+          <p className="mb-2">Use our own browser converter — drop the file, get MP3 back in a few seconds. Free, no signup, no watermark:</p>
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://convertio.co/mp4-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — drag MP4, choose MP3 or M4A, download.</li>
-            <li><a href="https://cloudconvert.com/mp4-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — supports MP4 → MP3 / M4A / WAV.</li>
-            <li><a href="https://www.media.io/audio-converter.html" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Media.io</a> — fast in-browser conversion.</li>
+            <li><a href="/mp4-to-mp3" className="text-brand-600 hover:underline">MP4 to MP3</a> — pulls the audio out of any MP4 video.</li>
+            <li><a href="/webm-to-mp3" className="text-brand-600 hover:underline">WEBM to MP3</a> — for YouTube downloads and screen recordings.</li>
+            <li><a href="/wav-to-mp3" className="text-brand-600 hover:underline">WAV to MP3</a> — shrinks an uncompressed WAV to a manageable MP3.</li>
           </ul>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">Command line (ffmpeg)</h3>
@@ -64,10 +65,9 @@ export default function HowToCompressAudioPage() {
           </p>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">Online</h3>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — set quality slider to 64 kbps, mono.</li>
-            <li><a href="https://www.freeconvert.com/audio-compressor" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">FreeConvert Audio Compressor</a> — choose target size.</li>
-          </ul>
+          <p className="mb-2">
+            We don&apos;t host a re-encode tool yet, so for bitrate reduction the easiest path is the ffmpeg one-liner below. If you prefer a GUI, Audacity (free, all platforms) handles it via <strong>File → Export → Export as MP3</strong> with the quality slider set to 64–96 kbps.
+          </p>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">Command line (ffmpeg)</h3>
           <pre className="bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto text-xs"><code>{`ffmpeg -i input.mp3 -ac 1 -b:a 64k output.mp3`}</code></pre>
@@ -88,10 +88,9 @@ export default function HowToCompressAudioPage() {
           </p>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">Online</h3>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://mp3cut.net/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">mp3cut.net</a> — drag MP3, set start/end, download.</li>
-            <li><a href="https://clideo.com/cut-audio" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Clideo Cut Audio</a> — clean UI, supports most formats.</li>
-          </ul>
+          <p className="mb-2">
+            Splitting in the browser needs more horsepower than our serverless converter has today. For now the ffmpeg one-liner below is the cleanest route, or open the file in Audacity and export each region separately. See the dedicated <a href="/how-to-split-audio" className="text-brand-600 hover:underline">how to split a long audio file</a> guide for both methods step by step.
+          </p>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">Command line (ffmpeg)</h3>
           <pre className="bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto text-xs"><code>{`ffmpeg -i input.mp3 -f segment -segment_time 1200 -c copy part_%03d.mp3`}</code></pre>

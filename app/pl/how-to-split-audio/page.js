@@ -38,11 +38,6 @@ export default function PlHowToSplitAudioPage() {
             pobierz fragment. Powtórz dla każdego segmentu.
           </p>
 
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://mp3cut.net/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">mp3cut.net</a> — przeciągnij plik, przesuń znaczniki początku/końca, kliknij Cut, pobierz. Działa w przeglądarce.</li>
-            <li><a href="https://clideo.com/cut-audio" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Clideo Cut Audio</a> — czysty interfejs, obsługuje MP3, M4A, WAV, FLAC, OGG i pliki wideo.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — radzi sobie z długimi plikami i pozwala eksportować segmenty wsadowo.</li>
-          </ul>
 
           <p className="mt-3 text-xs text-slate-500">
             Wskazówka: tnij w naturalnej pauzie (między zdaniami lub zmianami rozmówców), żeby

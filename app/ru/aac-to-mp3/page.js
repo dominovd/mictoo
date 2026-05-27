@@ -51,11 +51,6 @@ export default function RuAacToMp3Page() {
           <p className="mb-4">
             Самый быстрый вариант для файлов до ~200 МБ. Перетащите в браузер, получите MP3 за пару секунд. Все работают без регистрации:
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/aac-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — чистый интерфейс, поддерживает пакетную обработку.</li>
-            <li><a href="https://convertio.co/aac-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — быстрый, можно выбрать качество MP3.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — позволяет выбрать моно/64 кбит/с для транскрипции.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             Конфиденциальность: онлайн-конвертеры загружают файл на свои серверы. Для чувствительных записей (медицина, юридические, деловые звонки) используйте десктоп-методы ниже.
           </p>

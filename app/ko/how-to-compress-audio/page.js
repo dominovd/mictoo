@@ -37,10 +37,11 @@ export default function KoHowToCompressAudioPage() {
           </p>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">온라인 (설치 불필요)</h3>
+          <p className="mb-2">저희 브라우저 변환기를 사용하세요 — 파일을 끌어다 놓으면 몇 초 안에 MP3 를 받습니다. 무료, 가입 불필요, 워터마크 없음:</p>
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://convertio.co/mp4-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — MP4 드래그, MP3 또는 M4A 선택, 다운로드.</li>
-            <li><a href="https://cloudconvert.com/mp4-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — MP4 → MP3 / M4A / WAV 지원.</li>
-            <li><a href="https://www.media.io/audio-converter.html" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Media.io</a> — 브라우저에서 빠른 변환.</li>
+            <li><a href="/mp4-to-mp3" className="text-brand-600 hover:underline">MP4를 MP3로</a> — 모든 MP4 영상에서 오디오를 추출합니다.</li>
+            <li><a href="/webm-to-mp3" className="text-brand-600 hover:underline">WEBM를 MP3로</a> — YouTube 다운로드와 화면 녹화에 적합합니다.</li>
+            <li><a href="/wav-to-mp3" className="text-brand-600 hover:underline">WAV를 MP3로</a> — 압축되지 않은 WAV를 다루기 쉬운 MP3 로 줄입니다.</li>
           </ul>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">명령줄 (ffmpeg)</h3>
@@ -57,12 +58,6 @@ export default function KoHowToCompressAudioPage() {
             긴 오디오 파일에 가장 좋은 방법입니다.
           </p>
 
-          <h3 className="font-semibold text-slate-700 mt-4 mb-2">온라인</h3>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — 품질 슬라이더를 64 kbps, 모노로 설정.</li>
-            <li><a href="https://www.freeconvert.com/audio-compressor" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">FreeConvert Audio Compressor</a> — 목표 크기 선택.</li>
-          </ul>
-
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">명령줄 (ffmpeg)</h3>
           <pre className="bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto text-xs"><code>{`ffmpeg -i input.mp3 -ac 1 -b:a 64k output.mp3`}</code></pre>
           <p className="text-xs text-slate-500 mt-2">
@@ -78,12 +73,6 @@ export default function KoHowToCompressAudioPage() {
             원본 품질을 유지해야 한다면(법률, 의료, 아카이브 녹음) 파일을 20-25분 청크로 분할하고 각각을 별도로 받아쓰기하세요.
             그런 다음 텍스트 편집기에서 받아쓰기를 연결하세요.
           </p>
-
-          <h3 className="font-semibold text-slate-700 mt-4 mb-2">온라인</h3>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://mp3cut.net/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">mp3cut.net</a> — MP3 드래그, 시작/끝 설정, 다운로드.</li>
-            <li><a href="https://clideo.com/cut-audio" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Clideo Cut Audio</a> — 깔끔한 인터페이스, 대부분의 포맷 지원.</li>
-          </ul>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">명령줄 (ffmpeg)</h3>
           <pre className="bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto text-xs"><code>{`ffmpeg -i input.mp3 -f segment -segment_time 1200 -c copy part_%03d.mp3`}</code></pre>

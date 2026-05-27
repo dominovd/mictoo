@@ -38,11 +38,6 @@ export default function RuHowToSplitAudioPage() {
             скачайте часть. Повторите для каждого сегмента.
           </p>
 
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://mp3cut.net/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">mp3cut.net</a> — загрузите файл, двигайте маркеры начала и конца, нажмите Cut, скачайте. Работает прямо в браузере.</li>
-            <li><a href="https://clideo.com/cut-audio" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Clideo Cut Audio</a> — чистый интерфейс, поддерживает MP3, M4A, WAV, FLAC, OGG и видеофайлы.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — справляется с длинными файлами и позволяет пакетно экспортировать сегменты.</li>
-          </ul>
 
           <p className="mt-3 text-xs text-slate-500">
             Совет: режьте на естественной паузе (между предложениями или сменой говорящих),

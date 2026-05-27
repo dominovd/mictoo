@@ -54,11 +54,6 @@ export default function ItM4aToMp3Page() {
           <p className="mb-4">
             Trascina, rilascia, scarica — di solito sotto i 10 secondi per un memo vocale tipico:
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/m4a-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — interfaccia pulita, supporta file grandi.</li>
-            <li><a href="https://convertio.co/m4a-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — veloce, qualità MP3 selezionabile.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — controlli di qualità fini.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             Privacy: gli strumenti online caricano il file. Saltali per registrazioni confidenziali — usa un metodo desktop.
           </p>

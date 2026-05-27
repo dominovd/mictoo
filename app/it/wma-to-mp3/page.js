@@ -39,12 +39,6 @@ export default function ItWmaToMp3Page() {
           <p className="mb-4">
             Il modo più semplice se il file è sotto ~200 MB e la registrazione non è sensibile. Trascina, rilascia, scarica — di solito 5–15 secondi:
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — supporta fino a 1 GB gratis.</li>
-            <li><a href="https://convertio.co/wma-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — upload in batch, qualità MP3 selezionabile.</li>
-            <li><a href="https://www.freeconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">FreeConvert</a> — opzioni avanzate per bitrate e canali.</li>
-            <li><a href="https://www.media.io/convert/wma-to-mp3.html" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Media.io</a> — veloce, interfaccia pulita.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             Privacy: per registrazioni confidenziali (interviste, chiamate di lavoro, medico) preferisci i metodi desktop — il tuo audio non lascia mai il computer.
           </p>

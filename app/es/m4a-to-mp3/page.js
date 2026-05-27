@@ -54,11 +54,6 @@ export default function EsM4aToMp3Page() {
           <p className="mb-4">
             Arrastra, suelta, descarga — normalmente menos de 10 segundos para una nota de voz típica:
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/m4a-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — interfaz limpia, soporta archivos grandes.</li>
-            <li><a href="https://convertio.co/m4a-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — rápido, calidad MP3 seleccionable.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — controles finos de calidad.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             Privacidad: las herramientas online suben tu archivo. Sáltatelas para grabaciones confidenciales — usa un método de escritorio.
           </p>

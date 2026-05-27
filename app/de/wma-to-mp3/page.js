@@ -39,12 +39,6 @@ export default function DeWmaToMp3Page() {
           <p className="mb-4">
             Am einfachsten für Dateien unter ~200 MB und nicht-sensible Aufnahmen. Ziehen, ablegen, herunterladen — meist 5–15 Sekunden:
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — kostenlos bis 1 GB.</li>
-            <li><a href="https://convertio.co/wma-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — Stapel-Upload, MP3-Qualität wählbar.</li>
-            <li><a href="https://www.freeconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">FreeConvert</a> — erweiterte Optionen für Bitrate und Kanäle.</li>
-            <li><a href="https://www.media.io/convert/wma-to-mp3.html" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Media.io</a> — schnell, saubere Oberfläche.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             Datenschutz: für vertrauliche Aufnahmen (Interviews, Geschäftsanrufe, medizinisch) nutzen Sie die Desktop-Methoden — Ihre Audio verlässt nie Ihren Computer.
           </p>

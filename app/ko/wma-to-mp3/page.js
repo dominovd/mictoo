@@ -39,12 +39,6 @@ export default function KoWmaToMp3Page() {
           <p className="mb-4">
             파일이 ~200 MB 이하이고 녹음이 민감하지 않다면 가장 쉬운 길. 드래그, 드롭, 다운로드 — 보통 5–15초:
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — 무료로 최대 1 GB 지원.</li>
-            <li><a href="https://convertio.co/wma-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — 배치 업로드, MP3 품질 선택 가능.</li>
-            <li><a href="https://www.freeconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">FreeConvert</a> — 비트레이트와 채널 고급 옵션.</li>
-            <li><a href="https://www.media.io/convert/wma-to-mp3.html" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Media.io</a> — 빠르고 깔끔한 인터페이스.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             개인정보: 민감한 녹음(인터뷰, 업무 통화, 의료)에는 아래 데스크톱 방법을 사용 — 오디오가 컴퓨터를 떠나지 않습니다.
           </p>

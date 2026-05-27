@@ -39,12 +39,6 @@ export default function PlWmaToMp3Page() {
           <p className="mb-4">
             Najprostsza droga, jeśli plik ma mniej niż ~200 MB i nagranie nie jest wrażliwe. Przeciągnij, upuść, pobierz — zwykle 5–15 sekund:
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — obsługuje do 1 GB za darmo.</li>
-            <li><a href="https://convertio.co/wma-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — wsadowy upload, wybór jakości MP3.</li>
-            <li><a href="https://www.freeconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">FreeConvert</a> — zaawansowane opcje dla bitrate i kanałów.</li>
-            <li><a href="https://www.media.io/convert/wma-to-mp3.html" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Media.io</a> — szybki, czysty interfejs.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             Prywatność: dla poufnych nagrań (wywiady, rozmowy służbowe, medyczne) preferuj metody desktopowe — audio nigdy nie opuszcza komputera.
           </p>

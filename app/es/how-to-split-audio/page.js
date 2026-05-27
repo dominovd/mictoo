@@ -37,11 +37,6 @@ export default function EsHowToSplitAudioPage() {
             La opción más rápida para una división puntual. Arrastra el archivo, define inicio/fin, descarga el trozo. Repite por cada segmento.
           </p>
 
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://mp3cut.net/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">mp3cut.net</a> — arrastra el archivo, mueve los marcadores de inicio/fin, pulsa Cut, descarga. Funciona en el navegador.</li>
-            <li><a href="https://clideo.com/cut-audio" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Clideo Cut Audio</a> — interfaz limpia, admite MP3, M4A, WAV, FLAC, OGG y archivos de vídeo.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — maneja archivos largos y permite exportar segmentos en lote.</li>
-          </ul>
 
           <p className="mt-3 text-xs text-slate-500">
             Consejo: corta en una pausa natural (entre frases o cambios de orador)

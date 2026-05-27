@@ -39,12 +39,6 @@ export default function EsWmaToMp3Page() {
           <p className="mb-4">
             El camino más fácil si tu archivo pesa menos de ~200 MB y la grabación no es sensible. Arrastra, suelta, descarga — normalmente 5–15 segundos:
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — soporta hasta 1 GB gratis.</li>
-            <li><a href="https://convertio.co/wma-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — subida por lotes, calidad MP3 seleccionable.</li>
-            <li><a href="https://www.freeconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">FreeConvert</a> — opciones avanzadas para bitrate y canales.</li>
-            <li><a href="https://www.media.io/convert/wma-to-mp3.html" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Media.io</a> — rápido, interfaz limpia.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             Privacidad: para grabaciones confidenciales (entrevistas, llamadas de negocio, médico) prefiere los métodos de escritorio — tu audio nunca sale de tu equipo.
           </p>

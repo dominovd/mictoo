@@ -37,10 +37,11 @@ export default function JaHowToCompressAudioPage() {
           </p>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">オンライン(インストール不要)</h3>
+          <p className="mb-2">私たち独自のブラウザ変換ツールをご利用ください — ファイルをドロップして数秒で MP3 を取得。無料、登録不要、ウォーターマークなし:</p>
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://convertio.co/mp4-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — MP4をドラッグ、MP3またはM4Aを選択、ダウンロード。</li>
-            <li><a href="https://cloudconvert.com/mp4-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — MP4 → MP3 / M4A / WAVに対応。</li>
-            <li><a href="https://www.media.io/audio-converter.html" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Media.io</a> — ブラウザでの高速変換。</li>
+            <li><a href="/mp4-to-mp3" className="text-brand-600 hover:underline">MP4 を MP3 に</a> — あらゆる MP4 動画から音声を抽出します。</li>
+            <li><a href="/webm-to-mp3" className="text-brand-600 hover:underline">WEBM を MP3 に</a> — YouTube のダウンロードや画面録画用。</li>
+            <li><a href="/wav-to-mp3" className="text-brand-600 hover:underline">WAV を MP3 に</a> — 非圧縮の WAV を扱いやすい MP3 に縮小します。</li>
           </ul>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">コマンドライン(ffmpeg)</h3>
@@ -57,12 +58,6 @@ export default function JaHowToCompressAudioPage() {
             長い音声ファイルに最適な方法です。
           </p>
 
-          <h3 className="font-semibold text-slate-700 mt-4 mb-2">オンライン</h3>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — 品質スライダーを64 kbps、モノラルに設定。</li>
-            <li><a href="https://www.freeconvert.com/audio-compressor" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">FreeConvert Audio Compressor</a> — 目標サイズを選択。</li>
-          </ul>
-
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">コマンドライン(ffmpeg)</h3>
           <pre className="bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto text-xs"><code>{`ffmpeg -i input.mp3 -ac 1 -b:a 64k output.mp3`}</code></pre>
           <p className="text-xs text-slate-500 mt-2">
@@ -78,12 +73,6 @@ export default function JaHowToCompressAudioPage() {
             元の品質を保持する必要がある場合(法律、医療、アーカイブの録音)は、ファイルを20〜25分のチャンクに分割し、それぞれを別々に文字起こしします。
             その後、任意のテキストエディターで文字起こしを連結します。
           </p>
-
-          <h3 className="font-semibold text-slate-700 mt-4 mb-2">オンライン</h3>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://mp3cut.net/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">mp3cut.net</a> — MP3をドラッグ、開始/終了を設定、ダウンロード。</li>
-            <li><a href="https://clideo.com/cut-audio" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Clideo Cut Audio</a> — クリーンなインターフェース、ほとんどのフォーマットに対応。</li>
-          </ul>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">コマンドライン(ffmpeg)</h3>
           <pre className="bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto text-xs"><code>{`ffmpeg -i input.mp3 -f segment -segment_time 1200 -c copy part_%03d.mp3`}</code></pre>

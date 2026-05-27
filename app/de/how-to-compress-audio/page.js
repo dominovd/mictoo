@@ -39,10 +39,11 @@ export default function DeHowToCompressAudioPage() {
           </p>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">Online (ohne Installation)</h3>
+          <p className="mb-2">Verwenden Sie unseren eigenen Browser-Konverter — Datei ablegen, MP3 in wenigen Sekunden erhalten. Kostenlos, keine Anmeldung, kein Wasserzeichen:</p>
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://convertio.co/mp4-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — MP4 ablegen, MP3 oder M4A wählen, herunterladen.</li>
-            <li><a href="https://cloudconvert.com/mp4-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — unterstützt MP4 → MP3 / M4A / WAV.</li>
-            <li><a href="https://www.media.io/audio-converter.html" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Media.io</a> — schnelle Konvertierung im Browser.</li>
+            <li><a href="/mp4-to-mp3" className="text-brand-600 hover:underline">MP4 zu MP3</a> — extrahiert die Audiospur aus jedem MP4-Video.</li>
+            <li><a href="/webm-to-mp3" className="text-brand-600 hover:underline">WEBM zu MP3</a> — für YouTube-Downloads und Bildschirmaufnahmen.</li>
+            <li><a href="/wav-to-mp3" className="text-brand-600 hover:underline">WAV zu MP3</a> — verkleinert eine unkomprimierte WAV-Datei zu einem handhabbaren MP3.</li>
           </ul>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">Kommandozeile (ffmpeg)</h3>
@@ -60,12 +61,6 @@ export default function DeHowToCompressAudioPage() {
             für lange Audiodateien.
           </p>
 
-          <h3 className="font-semibold text-slate-700 mt-4 mb-2">Online</h3>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — Qualitätsregler auf 64 kbps, Mono.</li>
-            <li><a href="https://www.freeconvert.com/audio-compressor" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">FreeConvert Audio Compressor</a> — Zielgröße wählen.</li>
-          </ul>
-
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">Kommandozeile (ffmpeg)</h3>
           <pre className="bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto text-xs"><code>{`ffmpeg -i input.mp3 -ac 1 -b:a 64k output.mp3`}</code></pre>
           <p className="text-xs text-slate-500 mt-2">
@@ -82,12 +77,6 @@ export default function DeHowToCompressAudioPage() {
             in 20-25-Minuten-Stücke und transkribieren jedes separat. Dann fügen Sie die Transkripte in einem beliebigen
             Texteditor zusammen.
           </p>
-
-          <h3 className="font-semibold text-slate-700 mt-4 mb-2">Online</h3>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://mp3cut.net/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">mp3cut.net</a> — MP3 ablegen, Anfang/Ende setzen, herunterladen.</li>
-            <li><a href="https://clideo.com/cut-audio" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Clideo Cut Audio</a> — saubere UI, unterstützt die meisten Formate.</li>
-          </ul>
 
           <h3 className="font-semibold text-slate-700 mt-4 mb-2">Kommandozeile (ffmpeg)</h3>
           <pre className="bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto text-xs"><code>{`ffmpeg -i input.mp3 -f segment -segment_time 1200 -c copy part_%03d.mp3`}</code></pre>

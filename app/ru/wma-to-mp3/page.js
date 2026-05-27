@@ -39,12 +39,6 @@ export default function RuWmaToMp3Page() {
           <p className="mb-4">
             Самый простой путь, если файл до ~200 МБ и запись не конфиденциальная. Перетащить, отпустить, скачать — обычно 5–15 секунд:
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — поддерживает до 1 ГБ бесплатно.</li>
-            <li><a href="https://convertio.co/wma-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — пакетная загрузка, выбор качества MP3.</li>
-            <li><a href="https://www.freeconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">FreeConvert</a> — продвинутые настройки битрейта и каналов.</li>
-            <li><a href="https://www.media.io/convert/wma-to-mp3.html" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Media.io</a> — быстрый, чистый интерфейс.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             Конфиденциальность: для чувствительных записей (интервью, деловые звонки, медицина) используйте десктоп-методы ниже — аудио никогда не покидает ваш компьютер.
           </p>

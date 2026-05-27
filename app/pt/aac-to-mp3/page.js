@@ -51,11 +51,6 @@ export default function PtAacToMp3Page() {
           <p className="mb-4">
             O mais rápido para arquivos abaixo de ~200 MB. Arraste no navegador, receba o MP3 em segundos. Todos sem cadastro:
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/aac-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — interface limpa, suporta lotes.</li>
-            <li><a href="https://convertio.co/aac-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — rápido, qualidade MP3 selecionável.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — permite escolher mono/64 kbps para transcrição.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             Privacidade: conversores online enviam seu arquivo para os servidores deles. Para gravações sensíveis (médicas, jurídicas, chamadas de trabalho) use um método desktop abaixo.
           </p>

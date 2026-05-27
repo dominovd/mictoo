@@ -54,11 +54,6 @@ export default function FrM4aToMp3Page() {
           <p className="mb-4">
             Glisser, déposer, télécharger — généralement moins de 10 secondes pour un mémo vocal typique :
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/m4a-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — interface propre, supporte les gros fichiers.</li>
-            <li><a href="https://convertio.co/m4a-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — rapide, qualité MP3 sélectionnable.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — contrôles fins de qualité.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             Vie privée : les outils en ligne envoient votre fichier. Évitez-les pour des enregistrements confidentiels — utilisez une méthode de bureau.
           </p>

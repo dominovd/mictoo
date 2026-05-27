@@ -54,11 +54,6 @@ export default function DeM4aToMp3Page() {
           <p className="mb-4">
             Ziehen, ablegen, herunterladen — meist unter 10 Sekunden für ein typisches Sprachmemo:
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/m4a-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — saubere Oberfläche, große Dateien.</li>
-            <li><a href="https://convertio.co/m4a-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — schnell, MP3-Qualität wählbar.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — feingranulare Qualitätskontrolle.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             Datenschutz: Online-Tools laden Ihre Datei hoch. Überspringen Sie sie bei vertraulichen Aufnahmen — nutzen Sie eine Desktop-Methode.
           </p>

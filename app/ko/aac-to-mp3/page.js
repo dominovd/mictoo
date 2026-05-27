@@ -51,11 +51,6 @@ export default function KoAacToMp3Page() {
           <p className="mb-4">
             약 200 MB 이하 파일에 가장 빠릅니다. 브라우저에 드롭하면 몇 초 만에 MP3가 반환됩니다. 모두 가입 없이 가능:
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/aac-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — 깔끔한 UI, 배치 지원.</li>
-            <li><a href="https://convertio.co/aac-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — 빠르고, MP3 품질 선택 가능.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — 전사용 모노/64 kbps 선택 가능.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             개인정보: 온라인 컨버터는 파일을 자사 서버에 업로드합니다. 민감한 녹음(의료, 법률, 업무 통화)에는 아래 데스크톱 방법을 사용하세요.
           </p>

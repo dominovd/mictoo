@@ -39,12 +39,6 @@ export default function JaWmaToMp3Page() {
           <p className="mb-4">
             ファイルが~200 MB以下で機密性が低いなら最も簡単です。ドラッグ、ドロップ、ダウンロード — 通常5～15秒：
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — 無料で1 GBまで対応。</li>
-            <li><a href="https://convertio.co/wma-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — バッチアップロード、MP3品質選択可能。</li>
-            <li><a href="https://www.freeconvert.com/wma-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">FreeConvert</a> — ビットレートとチャンネルの詳細設定。</li>
-            <li><a href="https://www.media.io/convert/wma-to-mp3.html" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Media.io</a> — 高速、クリーンなインターフェース。</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             プライバシー：機密性の高い録音（インタビュー、業務通話、医療）には下のデスクトップ手法を選択 — 音声は決してPCを離れません。
           </p>

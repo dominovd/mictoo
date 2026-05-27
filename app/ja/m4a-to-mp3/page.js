@@ -54,11 +54,6 @@ export default function JaM4aToMp3Page() {
           <p className="mb-4">
             ドラッグ、ドロップ、ダウンロード — 通常のボイスメモなら10秒以下：
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/m4a-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — クリーンなUI、大きいファイルに対応。</li>
-            <li><a href="https://convertio.co/m4a-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — 高速、MP3品質選択可能。</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — 細かい品質コントロール。</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             プライバシー：オンラインツールはファイルをアップロードします。機密録音にはスキップしデスクトップ手法を使用。
           </p>

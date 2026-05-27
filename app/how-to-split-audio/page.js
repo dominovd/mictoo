@@ -36,15 +36,8 @@ export default function HowToSplitAudioPage() {
         <div>
           <h2 className="text-xl font-semibold text-slate-800 mb-3">Method 1 — Online tools (no install)</h2>
           <p className="mb-4">
-            The fastest option for a one-off split. Drag the file in, set a start/end time, download
-            the chunk. Repeat for each segment.
+            We don&apos;t host a browser-based splitter yet — splitting needs heavier processing than our serverless converter has today. For a one-off split the cleanest free routes are Audacity (Method 2) or ffmpeg (Method 3) below. If you don&apos;t want to install anything, splitting in Google&apos;s online Audacity-clone or a local file manager that does &quot;trim&quot; on audio (macOS Files app, Windows Voice Recorder) handles short clips well enough.
           </p>
-
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://mp3cut.net/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">mp3cut.net</a> — drag the file in, drag the markers to set start/end, click Cut, download. Works in browser, no upload to a server.</li>
-            <li><a href="https://clideo.com/cut-audio" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Clideo Cut Audio</a> — clean UI, supports MP3, M4A, WAV, FLAC, OGG and video files.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — handles longer files and lets you batch-export segments.</li>
-          </ul>
 
           <p className="mt-3 text-xs text-slate-500">
             Tip: split at a natural pause (between sentences or speakers) so the transcript reads

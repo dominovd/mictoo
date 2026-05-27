@@ -38,11 +38,6 @@ export default function DeHowToSplitAudioPage() {
             Teil herunterladen. Für jedes Segment wiederholen.
           </p>
 
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://mp3cut.net/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">mp3cut.net</a> — Datei reinziehen, Marker für Start/Ende schieben, Cut klicken, herunterladen. Läuft im Browser.</li>
-            <li><a href="https://clideo.com/cut-audio" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Clideo Cut Audio</a> — aufgeräumte Oberfläche, unterstützt MP3, M4A, WAV, FLAC, OGG und Videodateien.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — bewältigt lange Dateien und erlaubt das Exportieren mehrerer Segmente im Stapel.</li>
-          </ul>
 
           <p className="mt-3 text-xs text-slate-500">
             Tipp: Schneiden Sie an einer natürlichen Pause (zwischen Sätzen oder Sprechern),

@@ -51,11 +51,6 @@ export default function JaAacToMp3Page() {
           <p className="mb-4">
             ~200 MB以下のファイルなら最速。ブラウザにドロップして数秒でMP3が返ってきます。すべて登録不要：
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/aac-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — クリーンなUI、バッチ対応。</li>
-            <li><a href="https://convertio.co/aac-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — 高速、MP3品質を選べる。</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — 文字起こし用にモノラル/64 kbpsを選択可能。</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             プライバシー：オンラインコンバーターはファイルを自社サーバーにアップロードします。機密音声（医療、法務、業務通話）には下記のデスクトップ手法を推奨。
           </p>

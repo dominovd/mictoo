@@ -58,17 +58,14 @@ export default function AacToMp3Page() {
           />
 
           <p className="mb-4">
-            Fastest if your file is under ~200 MB. Drop it in a browser, get MP3 back in a few seconds.
-            All of these work without registration:
+            Fastest if your file is under ~60 MB. Drop it in a browser, get MP3 back in a few seconds, no registration:
           </p>
           <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/aac-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — clean UI, supports batch.</li>
-            <li><a href="https://convertio.co/aac-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — fast, allows MP3 quality selection.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — lets you pick mono/64 kbps for transcription.</li>
+            <li>If the AAC sits inside an MP4 (most iPhone share-sheet exports), use our <a href="/mp4-to-mp3" className="text-brand-600 hover:underline">MP4 to MP3 converter</a> — it pulls the audio track and re-encodes to 128 kbps MP3.</li>
+            <li>For a raw <code className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">.aac</code> stream, the desktop methods below are the most reliable today. We&apos;re building an AAC converter next.</li>
           </ul>
           <p className="text-xs text-slate-500 mt-3">
-            Privacy tip: online converters upload your file to their servers. For sensitive recordings (medical,
-            legal, business calls), use a desktop method below.
+            Privacy tip: our server processes the file in memory and deletes both the upload and the result within the hour. For confidential recordings (medical, legal, business calls), the desktop methods below are fully offline.
           </p>
         </div>
 

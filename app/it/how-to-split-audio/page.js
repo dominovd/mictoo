@@ -38,11 +38,6 @@ export default function ItHowToSplitAudioPage() {
             scarica il pezzo. Ripeti per ogni segmento.
           </p>
 
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://mp3cut.net/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">mp3cut.net</a> — trascina il file, sposta i marker di inizio/fine, premi Cut, scarica. Funziona nel browser.</li>
-            <li><a href="https://clideo.com/cut-audio" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Clideo Cut Audio</a> — interfaccia pulita, supporta MP3, M4A, WAV, FLAC, OGG e file video.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — gestisce file lunghi e permette di esportare segmenti in batch.</li>
-          </ul>
 
           <p className="mt-3 text-xs text-slate-500">
             Consiglio: taglia in una pausa naturale (tra frasi o cambi di interlocutore) così la trascrizione

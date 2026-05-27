@@ -51,11 +51,6 @@ export default function FrAacToMp3Page() {
           <p className="mb-4">
             Le plus rapide pour les fichiers de moins de ~200 Mo. Glissez-déposez dans le navigateur, récupérez le MP3 en quelques secondes. Tous fonctionnent sans inscription :
           </p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://cloudconvert.com/aac-to-mp3" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">CloudConvert</a> — interface propre, gère les lots.</li>
-            <li><a href="https://convertio.co/aac-mp3/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Convertio</a> — rapide, sélection de la qualité MP3.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — permet de choisir mono/64 kbps pour la transcription.</li>
-          </ul>
           <p className="text-xs text-slate-500 mt-3">
             Conseil vie privée : les convertisseurs en ligne envoient votre fichier sur leurs serveurs. Pour des enregistrements sensibles (médical, juridique, appels professionnels), préférez une méthode de bureau ci-dessous.
           </p>

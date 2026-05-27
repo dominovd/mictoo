@@ -37,11 +37,6 @@ export default function KoHowToSplitAudioPage() {
             조각을 다운로드합니다. 각 세그먼트마다 반복합니다.
           </p>
 
-          <ul className="list-disc pl-5 space-y-1">
-            <li><a href="https://mp3cut.net/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">mp3cut.net</a> — 파일을 끌어다 놓고, 시작/종료 마커를 끌고, Cut을 클릭한 뒤 다운로드. 브라우저에서 동작.</li>
-            <li><a href="https://clideo.com/cut-audio" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Clideo Cut Audio</a> — 깔끔한 UI, MP3, M4A, WAV, FLAC, OGG 및 동영상 파일 지원.</li>
-            <li><a href="https://online-audio-converter.com/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Online Audio Converter</a> — 긴 파일도 처리 가능하며 세그먼트를 일괄 내보낼 수 있음.</li>
-          </ul>
 
           <p className="mt-3 text-xs text-slate-500">
             팁: 자연스러운 멈춤(문장 사이 또는 화자 전환)에서 분할하면 부분을 결합한 후 전사가 매끄럽게 읽힙니다.
