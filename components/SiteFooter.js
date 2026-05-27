@@ -88,12 +88,18 @@ export default function SiteFooter() {
   return (
     <footer className="border-t border-slate-100 bg-slate-50/60 py-14 mt-16">
       <div className="max-w-6xl mx-auto px-4">
-        {/* Main grid. 2 cols on mobile, 3 on tablet, 5 on desktop. */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-10 mb-10">
+        {/* Main grid. 2 cols on mobile, 3 on tablet, 4 or 5 on desktop.
+            The "By language" column is EN-only — those pages target US
+            English-speakers searching for foreign-language transcription
+            (see reference_mictoo_localization), so showing them on a /fr
+            or /de page would confuse the locale. */}
+        <div className={`grid grid-cols-2 md:grid-cols-3 ${locale === 'en' ? 'lg:grid-cols-5' : 'lg:grid-cols-4'} gap-x-6 gap-y-10 mb-10`}>
           <FooterCol accent="brand"   title={t(locale, 'footer.useCases')}   items={useCases}     hrefFor={hrefFor} />
           <FooterCol accent="sky"     title={t(locale, 'footer.formats')}    items={formats}      hrefFor={hrefFor} />
           <FooterCol accent="amber"   title={t(locale, 'footer.tools')}      items={tools}        hrefFor={hrefFor} />
-          <FooterCol accent="emerald" title={t(locale, 'footer.byLanguage')} items={byLanguage}   hrefFor={hrefFor} />
+          {locale === 'en' && (
+            <FooterCol accent="emerald" title={t(locale, 'footer.byLanguage')} items={byLanguage}   hrefFor={hrefFor} />
+          )}
           <FooterCol accent="violet"  title={t(locale, 'footer.compare')}    items={compareLinks} hrefFor={hrefFor} />
         </div>
 
