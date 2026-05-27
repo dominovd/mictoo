@@ -108,21 +108,48 @@ function fmtClockShort(sec) {
 // Reader view: render Whisper segments as a two-column list — left timestamp,
 // right text. Far easier to scan than a wall of paragraphs. Used in the "done"
 // state when segments are available (Editor view is the textarea fallback).
-function TranscriptReader({ segments }) {
+//
+// When an `onSeek` handler is passed (audio player available), the timestamp
+// becomes a clickable button that jumps the player. The `currentTime` prop
+// (seconds) drives row highlighting for the currently-playing segment.
+function TranscriptReader({ segments, currentTime = 0, onSeek }) {
   if (!segments?.length) return null
+  // Index of the segment that contains `currentTime`. -1 when nothing matches
+  // (player paused at the very start or past the end).
+  const activeIdx = segments.findIndex(
+    (s) => currentTime >= (s.start || 0) && currentTime < (s.end || 0)
+  )
   return (
     <div className="border border-slate-200 rounded-xl bg-white max-h-[28rem] overflow-y-auto divide-y divide-slate-100">
       {segments.map((seg, i) => {
         const text = (seg.text || '').trim()
         if (!text) return null
+        const isActive = i === activeIdx
+        const Tag = onSeek ? 'button' : 'span'
         return (
           <div
             key={i}
-            className="grid grid-cols-[3.25rem_1fr] gap-3 px-4 py-2.5 hover:bg-slate-50 transition-colors"
+            data-seg-idx={i}
+            className={`grid grid-cols-[3.25rem_1fr] gap-3 px-4 py-2.5 transition-colors ${
+              isActive ? 'bg-brand-50' : 'hover:bg-slate-50'
+            }`}
           >
-            <span className="font-mono text-xs text-brand-600 pt-0.5 select-none tabular-nums">
+            <Tag
+              {...(onSeek
+                ? {
+                    type: 'button',
+                    onClick: () => onSeek(seg.start || 0),
+                    className: `font-mono text-xs text-brand-600 pt-0.5 select-none tabular-nums text-left hover:text-brand-700 hover:underline cursor-pointer ${
+                      isActive ? 'font-semibold' : ''
+                    }`,
+                    title: 'Jump to this moment',
+                  }
+                : {
+                    className: 'font-mono text-xs text-brand-600 pt-0.5 select-none tabular-nums',
+                  })}
+            >
               {fmtClockShort(seg.start)}
-            </span>
+            </Tag>
             <span className="text-sm text-slate-700 leading-relaxed">{text}</span>
           </div>
         )
@@ -189,6 +216,16 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   // have segments). 'editor' = textarea — fallback when no segments, or when
   // the user wants to fix a typo before exporting.
   const [viewMode, setViewMode] = useState('reader')
+  // Local object URL for the uploaded File, so we can offer in-browser audio
+  // playback alongside the transcript. Stays alive only on the device — the
+  // server-side blob has typically been deleted by the time we render. Null
+  // when the source isn't available (e.g. restored-from-snapshot flow has
+  // the transcript but no File).
+  const [audioUrl, setAudioUrl] = useState(null)
+  const audioRef = useRef(null)
+  // Current playback time in seconds, updated via the audio element's
+  // timeupdate event. Drives row-highlighting in the Reader view.
+  const [audioCurrentTime, setAudioCurrentTime] = useState(0)
   const [language, setLanguage] = useState(defaultLanguage)
   const [error, setError] = useState('')
   // True when the server signalled `signInHelps: true` in a 429 response,
@@ -355,12 +392,28 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     setTranscriptId(null)
     setErrorOffersSignIn(false)
     setErrorHelpType('compress')
+    setAudioCurrentTime(0)
     // Manual reset (e.g. "New file" button) wipes any pending batch too —
     // user signalled they want a clean slate.
     setBatchQueue([])
     setBatchTotal(0)
     setBatchDoneCount(0)
   }
+
+  // Whenever a fresh File lands in state, mint a local object URL so the
+  // result view can offer in-browser playback. We revoke the previous URL
+  // (and on unmount) to avoid memory leaks. Anonymous/restored-from-snapshot
+  // sessions don't have a File — audioUrl stays null and the player is
+  // simply not rendered.
+  useEffect(() => {
+    if (!file) {
+      setAudioUrl(null)
+      return
+    }
+    const url = URL.createObjectURL(file)
+    setAudioUrl(url)
+    return () => URL.revokeObjectURL(url)
+  }, [file])
 
   // Poll /api/transcribe-status/[jobId] every 3s while a job is queued or
   // processing. Resolves with the final transcription payload, or throws on
@@ -1041,8 +1094,33 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
           </div>
         )}
 
+        {/* Optional audio player. Only renders when we have a local object
+            URL for the source File — i.e. the user uploaded in this session,
+            not a restored-from-snapshot transcript. The Reader-view timestamps
+            below are wired to seek this element. */}
+        {audioUrl && hasSRT && viewMode === 'reader' && (
+          <audio
+            ref={audioRef}
+            src={audioUrl}
+            controls
+            preload="metadata"
+            className="w-full mb-3"
+            onTimeUpdate={(e) => setAudioCurrentTime(e.currentTarget.currentTime || 0)}
+            onSeeked={(e) => setAudioCurrentTime(e.currentTarget.currentTime || 0)}
+          />
+        )}
+
         {hasSRT && viewMode === 'reader' ? (
-          <TranscriptReader segments={segments} />
+          <TranscriptReader
+            segments={segments}
+            currentTime={audioCurrentTime}
+            onSeek={audioUrl ? (sec) => {
+              const el = audioRef.current
+              if (!el) return
+              el.currentTime = Math.max(0, sec)
+              el.play().catch(() => {})
+            } : undefined}
+          />
         ) : (
           <textarea
             className="w-full h-64 text-sm text-slate-700 border border-slate-100 rounded-xl p-4 bg-slate-50 resize-y focus:outline-none focus:ring-2 focus:ring-brand-500"
