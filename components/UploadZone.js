@@ -226,6 +226,17 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   // Current playback time in seconds, updated via the audio element's
   // timeupdate event. Drives row-highlighting in the Reader view.
   const [audioCurrentTime, setAudioCurrentTime] = useState(0)
+
+  // Translation state. translatedSegments holds the translated copy of
+  // `segments` when present; the Reader renders it instead of the original.
+  // status: idle | loading | error. translateLang is the code currently
+  // showing ('' = original). Exports always use the ORIGINAL transcript;
+  // translation is view-only by design (keeps SRT timing 1:1 with audio).
+  const [translatedSegments, setTranslatedSegments] = useState(null)
+  const [translateLang, setTranslateLang] = useState('')
+  const [translateTarget, setTranslateTarget] = useState('es')
+  const [translateStatus, setTranslateStatus] = useState('idle')
+  const [translateError, setTranslateError] = useState('')
   const [language, setLanguage] = useState(defaultLanguage)
   const [error, setError] = useState('')
   // True when the server signalled `signInHelps: true` in a 429 response,
@@ -393,12 +404,47 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     setErrorOffersSignIn(false)
     setErrorHelpType('compress')
     setAudioCurrentTime(0)
+    setTranslatedSegments(null)
+    setTranslateLang('')
+    setTranslateStatus('idle')
+    setTranslateError('')
     // Manual reset (e.g. "New file" button) wipes any pending batch too —
     // user signalled they want a clean slate.
     setBatchQueue([])
     setBatchTotal(0)
     setBatchDoneCount(0)
   }
+
+  // Translate the current transcript into `targetCode`. Stores the result so
+  // the Reader can render it instead of the original. Exports are unaffected
+  // by design — the SRT/VTT timings must match the audio, and translated
+  // text is a viewing aid, not the canonical transcript.
+  const translateTo = useCallback(async (targetCode) => {
+    if (!segments.length) return
+    setTranslateStatus('loading')
+    setTranslateError('')
+    try {
+      const res = await fetch('/api/translate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          segments: segments.map(s => ({ start: s.start, end: s.end, text: s.text })),
+          targetLang: targetCode,
+          sourceLang: spokenLanguage || undefined,
+        }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        throw new Error(data?.error || `Translation failed (${res.status})`)
+      }
+      setTranslatedSegments(data.segments || [])
+      setTranslateLang(targetCode)
+      setTranslateStatus('done')
+    } catch (err) {
+      setTranslateError(err?.message || 'Translation failed.')
+      setTranslateStatus('error')
+    }
+  }, [segments, spokenLanguage])
 
   // Whenever a fresh File lands in state, mint a local object URL so the
   // result view can offer in-browser playback. We revoke the previous URL
@@ -1094,6 +1140,67 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
           </div>
         )}
 
+        {/* Translate row. Only visible alongside the Reader view (translation
+            doesn't apply to the Editor textarea). The picker mirrors the
+            language selector used at upload; we exclude the spoken-language
+            from the targets since translating into itself is a no-op. */}
+        {hasSRT && viewMode === 'reader' && (
+          <div className="flex items-center flex-wrap gap-2 mb-3">
+            <select
+              value={translateTarget}
+              onChange={(e) => setTranslateTarget(e.target.value)}
+              disabled={translateStatus === 'loading'}
+              className="text-sm border border-slate-200 rounded-lg px-3 py-1.5 bg-white text-slate-700 hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500"
+              aria-label="Translation target language"
+            >
+              {PICKER_LANG_CODES
+                .filter(code => code !== (spokenLanguage || '').toLowerCase())
+                .map(code => (
+                  <option key={code} value={code}>{DICT[locale]?.languages?.[code] ?? DICT.en.languages[code]}</option>
+                ))}
+            </select>
+            <button
+              type="button"
+              onClick={() => translateTo(translateTarget)}
+              disabled={translateStatus === 'loading'}
+              className="text-sm px-3 py-1.5 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors inline-flex items-center gap-1.5"
+            >
+              {translateStatus === 'loading' ? (
+                <>
+                  <svg className="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4z" />
+                  </svg>
+                  {t(locale, 'result.translating')}
+                </>
+              ) : (
+                t(locale, 'result.translate')
+              )}
+            </button>
+            {translatedSegments && translateStatus === 'done' && (
+              <>
+                <span className="text-xs text-slate-500 ml-1">
+                  {t(locale, 'result.showingTranslation', { lang: DICT[locale]?.languages?.[translateLang] ?? DICT.en.languages[translateLang] ?? translateLang.toUpperCase() })}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setTranslatedSegments(null)
+                    setTranslateLang('')
+                    setTranslateStatus('idle')
+                  }}
+                  className="text-xs text-brand-600 hover:underline"
+                >
+                  {t(locale, 'result.showOriginal')}
+                </button>
+              </>
+            )}
+            {translateStatus === 'error' && (
+              <span className="text-xs text-red-600">{translateError}</span>
+            )}
+          </div>
+        )}
+
         {/* Optional audio player. Only renders when we have a local object
             URL for the source File — i.e. the user uploaded in this session,
             not a restored-from-snapshot transcript. The Reader-view timestamps
@@ -1112,7 +1219,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
 
         {hasSRT && viewMode === 'reader' ? (
           <TranscriptReader
-            segments={segments}
+            segments={translatedSegments || segments}
             currentTime={audioCurrentTime}
             onSeek={audioUrl ? (sec) => {
               const el = audioRef.current
