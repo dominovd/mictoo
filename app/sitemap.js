@@ -588,13 +588,22 @@ export default function sitemap() {
     { url: 'https://mictoo.com/ko/m4a-to-mp3', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.55 },
     // Wave 6 — Format converters (2026-05-27). Real ffmpeg-backed tools, not
     // just SEO landings. Target the biggest "X to Y" search keywords —
-    // mp4-to-mp3 alone is 550K vol/mo per Semrush. EN-only for now,
-    // localization in a follow-up wave.
+    // mp4-to-mp3 alone is 550K vol/mo per Semrush. Localized into all 9
+    // additional locales 2026-05-27 (originally shipped EN-only same day).
     { url: 'https://mictoo.com/mp4-to-mp3',  lastModified: new Date('2026-05-27'), changeFrequency: 'monthly', priority: 0.85 },
     { url: 'https://mictoo.com/wav-to-mp3',  lastModified: new Date('2026-05-27'), changeFrequency: 'monthly', priority: 0.75 },
     { url: 'https://mictoo.com/webm-to-mp3', lastModified: new Date('2026-05-27'), changeFrequency: 'monthly', priority: 0.7  },
     { url: 'https://mictoo.com/flac-to-mp3', lastModified: new Date('2026-05-27'), changeFrequency: 'monthly', priority: 0.65 },
     { url: 'https://mictoo.com/mp3-to-m4a',  lastModified: new Date('2026-05-27'), changeFrequency: 'monthly', priority: 0.7  },
     { url: 'https://mictoo.com/mp3-to-wav',  lastModified: new Date('2026-05-27'), changeFrequency: 'monthly', priority: 0.65 },
+    // Localized Wave 6 converters — same 6 slugs × 9 locales.
+    ...['fr','de','es','ru','it','pt','pl','ja','ko'].flatMap(loc => [
+      { url: `https://mictoo.com/${loc}/mp4-to-mp3`,  lastModified: new Date('2026-05-27'), changeFrequency: 'monthly', priority: 0.6 },
+      { url: `https://mictoo.com/${loc}/wav-to-mp3`,  lastModified: new Date('2026-05-27'), changeFrequency: 'monthly', priority: 0.55 },
+      { url: `https://mictoo.com/${loc}/webm-to-mp3`, lastModified: new Date('2026-05-27'), changeFrequency: 'monthly', priority: 0.5  },
+      { url: `https://mictoo.com/${loc}/flac-to-mp3`, lastModified: new Date('2026-05-27'), changeFrequency: 'monthly', priority: 0.5  },
+      { url: `https://mictoo.com/${loc}/mp3-to-m4a`,  lastModified: new Date('2026-05-27'), changeFrequency: 'monthly', priority: 0.5  },
+      { url: `https://mictoo.com/${loc}/mp3-to-wav`,  lastModified: new Date('2026-05-27'), changeFrequency: 'monthly', priority: 0.5  },
+    ]),
   ]
 }
