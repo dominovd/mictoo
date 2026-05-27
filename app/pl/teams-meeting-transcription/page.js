@@ -15,34 +15,65 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Transkrypcja Microsoft Teams — Transkrybuj nagrania Teams | Mictoo',
-  description: 'Transkrybuj za darmo nagrania spotkań Microsoft Teams na tekst. Działa z MP4 z OneDrive lub SharePoint. Bez rejestracji.',
+  title: 'Transkrypcja Microsoft Teams — transkrybuj spotkania | Mictoo',
+  description:
+    'Darmowa transkrypcja Microsoft Teams. Prześlij swoje nagranie (MP4) z OneDrive lub SharePoint i otrzymaj czystą transkrypcję AI w kilka sekund. Bez rejestracji.',
   alternates: { canonical: 'https://mictoo.com/pl/teams-meeting-transcription', languages: LANGS },
 }
 
 export default function PlTeamsPage() {
   return (
     <LandingLayout
-      badge="Microsoft Teams · MP4 · Za darmo"
-      h1={<>Transkrypcja Microsoft Teams<br /><span className="text-brand-600">Spotkania Teams w tekście</span></>}
-      subtitle="Przekształć nagranie swojego spotkania Microsoft Teams w czystą transkrypcję tekstową lub plik napisów SRT. Za darmo, bez konta. Działa z MP4 z OneDrive lub SharePoint."
       defaultLanguage="pl"
-      features={[
-        { icon: '🏢', title: 'Dostosowane do procesów Teams', desc: 'Pobierz nagranie z OneDrive lub SharePoint — zwykle w "Recordings" w chacie spotkania — i prześlij do Mictoo. MP4 działa bezpośrednio.' },
-        { icon: '📤', title: 'Udostępnialne transkrypcje', desc: 'Wklej transkrypcję w chat Teams, OneNote lub komponent Loop, aby udostępnić uczestnikom, którzy ominęli spotkanie.' },
-        { icon: '🌐', title: 'Wszystkie języki spotkań', desc: 'Transkrybuje polski, angielski, hiszpański, francuski, niemiecki, włoski, holenderski, japoński, chiński i ponad 40 innych. Język jest wykrywany automatycznie.' },
+      badge="TEAMS · ONEDRIVE · ZA DARMO"
+      h1={<>Transkrypcja Microsoft Teams<br /><span className="text-brand-600">Darmowa transkrypcja spotkań Teams</span></>}
+      subtitle="Zamień swoje nagranie Teams w czysty tekst. Upuść MP4 z OneDrive lub SharePoint, w sekundach masz transkrypcję. Bez rejestracji, bez opłaty za minutę."
+      howItWorks={[
+        { icon: '☁️', title: 'Pobierz z OneDrive lub SharePoint', desc: 'Nagrania Teams są w OneDrive organizatora (spotkania poza kanałem) lub na stronie SharePoint (spotkania kanału). Pobierz jako MP4. Dla długich spotkań wyciągnij audio wcześniej.' },
+        { icon: '⚡', title: 'Upuść plik', desc: 'Wyciągamy audio z MP4 i wysyłamy do Whisper large-v3. Spotkanie 30-minutowe jest gotowe w około minutę.' },
+        { icon: '📋', title: 'Weź transkrypcję', desc: 'Przeczytaj w przeglądarce, skopiuj lub pobierz jako TXT lub SRT. Popraw błędne nazwy lub terminy techniczne inline przed eksportem.' },
       ]}
+      whyUse={{ title: 'Dlaczego Mictoo dla spotkań Teams', bullets: [
+        { title: 'Działa bez specyficznej licencji Microsoft 365 na transkrypcję', desc: 'Dopóki masz plik nagrania, możesz tutaj transkrybować. Nie potrzeba Teams Premium ani konkretnych planów Office.' },
+        { title: 'Silniejsze pokrycie nieangielskie i akcentów', desc: 'Transkrypcja Microsoft Teams działa dobrze w angielskim i głównych językach zachodnioeuropejskich. Whisper large-v3 pokrywa ponad 50 języków z silniejszym traktowaniem akcentów i rozmów dwujęzycznych.' },
+        { title: 'Za darmo, bez licznika minut', desc: 'Transkrypcja Teams jest wbudowana w twoją licencję, ale ograniczona feature gates. Mictoo nie ma cap spotkania ani miesięcznego limitu minut.' },
+        { title: 'Eksport SRT dla edytorów wideo', desc: 'Transkrypcja Teams żyje w aplikacji Teams lub pobiera się jako VTT. My eksportujemy oba, TXT i czysty SRT, drop-in kompatybilny z Premiere, DaVinci, CapCut i YouTube Studio.' },
+        { title: 'Prywatność domyślnie', desc: 'Plik jest strumieniowany do dostawcy transkrypcji, przetwarzany i odrzucany. Nie przechowujemy twojego audio spotkania.' },
+      ]}}
+      useCases={{ title: 'Do czego ludzie transkrybują spotkania Teams', items: [
+        { title: 'Protokoły spotkań projektowych', desc: 'Wklej transkrypcję w Confluence, Notion lub na stronie SharePoint. Kto przegapił spotkanie, czyta tekst w 5 minut zamiast oglądać 60 minut wideo.' },
+        { title: 'Przegląd calli klientów dla zespołów account', desc: 'Zapisz transkrypcję obok deala w Salesforce, Dynamics lub HubSpot. Wyszukanie cytatu do emaila follow-up zajmuje sekundy.' },
+        { title: 'Log decyzji przekrojowych', desc: 'Duże decyzje z calli Teams są podsumowane w transkrypcji. Przydatne dla governance i audit trail.' },
+        { title: 'Calle z dostawcami i kontrahentami', desc: 'Gdy projekt obejmuje strony zewnętrzne, transkrypcja to jednoznaczny zapis tego, co zostało ustalone.' },
+        { title: 'Compliance i branże regulowane', desc: 'Niektóre branże wymagają zapisu określonych rozmów. Transkrypcje czynią nagrania audio przeszukiwalnymi i indeksowalnymi.' },
+      ]}}
+      proTips={{ title: 'Wskazówki do transkrypcji Teams', tips: [
+        { title: 'Wyciągnij audio z MP4 przed uploadem', desc: 'MP4 z Teams to wideo 720p lub 1080p, nieistotne dla transkrypcji. Weź tylko audio: ffmpeg -i teams.mp4 -vn -ac 1 -b:a 64k teams.mp3. MP4 1.5 GB schodzi do 30 MB lub mniej.' },
+        { title: 'Pobierz z OneDrive lub SharePoint, nie streamuj', desc: 'OneDrive czasem odtwarza MP4 w przeglądarce. Upewnij się, że naprawdę pobrałeś plik, zanim spróbujesz wgrać tutaj. Linki udostępniania SharePoint to nie to samo co sam plik.' },
+        { title: 'Dla spotkań powyżej 60 minut podziel przed uploadem', desc: 'Potnij na kawałki 30 lub 45-minutowe. Transkrypcje można złączyć. Długie calle Teams są częste i warto je traktować z troską.' },
+        { title: 'Wycisz powiadomienia w tle podczas spotkania, jeśli możesz', desc: 'Powiadomienia desktop Outlooka i dźwięki czatu Teams podczas calla trafiają do audio i czasem do transkrypcji. Użyj Focus Assist na Windows lub "Nie przeszkadzać" na Mac.' },
+        { title: 'Mikrofony sali konferencyjnej wymagają oczyszczania', desc: 'Teams Rooms z mikrofonami sufitowymi mają zmienną jakość audio. Echo i nagrywanie z dalekiego pola szkodzą dokładności. Adobe Podcast Enhance (darmowe web) może pomóc na tych nagraniach przed uploadem.' },
+        { title: 'Dla poufnych spotkań nie wgrywaj na zewnątrz', desc: 'Nawet do nas. Dla rozmów HR, prawnych lub zarządczych preferuj transkrypcję on-premise. Nasz serwis jest dla niepoufnych spotkań, gdzie przetwarzanie AI w chmurze jest akceptowalne.' },
+      ]}}
       faq={[
-        { q: 'Gdzie Teams zapisuje moje nagrania spotkań?', a: 'W większości organizacji Teams zapisuje nagrania w OneDrive nagrywającego (chaty 1:1 / grupowe) lub w folderze SharePoint kanału (spotkania kanału). Otwórz nagranie, kliknij Pobierz i otrzymasz plik MP4.' },
-        { q: 'Czy Teams nie oferuje już transkrypcji?', a: 'Microsoft Teams oferuje wbudowaną transkrypcję live, jeśli admin ją włączył, ale plik pozostaje w ekosystemie Teams i nie zawsze można go pobrać. Mictoo daje przenośny .txt lub .srt do użycia gdziekolwiek.' },
-        { q: 'Czy mogę otrzymać napisy SRT do wideo Teams?', a: 'Tak. Po transkrypcji możesz pobrać plik .srt z timestampami i użyć jako napisów na YouTube, Vimeo lub w dowolnym edytorze wideo.' },
-        { q: 'A co z poufną treścią spotkań?', a: 'Mictoo nie przechowuje plików. Audio jest wysyłane do naszego dostawcy AI tylko do transkrypcji i natychmiastowo odrzucane. Dla spotkań z regulowanymi danymi sprawdź politykę swojej organizacji dotyczącą zewnętrznych usług AI.' },
-        { q: 'Jaki jest maksymalny czas nagrania Teams?', a: 'Do 25 MB na plik. Większość MP4 z Teams przekracza ten limit dla spotkań powyżej 30 minut — wyodrębnij audio (M4A) lub użyj kompresora wideo.' },
+        { q: 'Czy Mictoo działa z nagraniami Microsoft Teams?', a: 'Tak. Pobierz MP4 z OneDrive (OneDrive organizatora dla spotkań poza kanałem) lub ze strony SharePoint kanału. Wgraj tutaj. Wyciągnięcie audio wcześniej przyspiesza dla długich spotkań.' },
+        { q: 'Czy potrzebuję Teams Premium lub konkretnego planu Microsoft 365?', a: 'Potrzebujesz planu, który pozwala nagrywać spotkania. Gdy nagranie jest w OneDrive lub SharePoint, transkrypcja tutaj jest darmowa niezależnie od licencji.' },
+        { q: 'Czy moje nagranie wraca do Microsoftu?', a: 'Nie. Plik idzie do naszego dostawcy transkrypcji (Groq, z OpenAI jako backup) i jest odrzucany po przetworzeniu. Nic nie wraca do Microsoftu, Outlooka ani innego serwisu Microsoft.' },
+        { q: 'Jak to wypada w porównaniu z wbudowaną transkrypcją Teams?', a: 'Transkrypcja Teams jest ok dla spotkań anglojęzycznych, jeśli twoja licencja to obejmuje. Nasza jest darmowa, działa w większej liczbie języków i akcentów i eksportuje czysty SRT dla edytorów wideo. Używaj tego, co pasuje do spotkania.' },
+        { q: 'Moje nagranie Teams przekracza 60 MB. Co teraz?', a: 'Wyciągnij tylko audio z ffmpeg lub narzędzia audio. MP4 z Teams 1.5 GB schodzi do mniej niż 30 MB jako audio. Jeśli samo audio nadal powyżej 60 MB, podziel na kawałki.' },
+        { q: 'Czy dostanę etykiety mówców?', a: 'Nie automatycznie. Dla spotkania z rozróżnialnymi głosami możesz dodać etykiety ręcznie w oparciu o rozmowę. Jeśli spotkanie zostało nagrane z osobnymi ścieżkami audio na mówcę (rzadkie w Teams), wgraj każdą ścieżkę osobno dla czystej atrybucji.' },
+        { q: 'Czy działa z wiadomościami czatu Teams?', a: 'Nie. Wiadomości czatu zostają w Teams. Transkrybujemy tylko audio. Połącz oba sam, jeśli potrzebujesz obojga.' },
+        { q: 'Jak dokładna jest transkrypcja Teams?', a: 'Dla spotkań z dobrymi mikrofonami (laptop z USB headsetem): 90-95%. Dla spotkań w salach konferencyjnych z mikrofonami sufitowymi: 80-90%. Nazwy, terminy techniczne i skróty często wymagają oczyszczania.' },
+        { q: 'Czy mogę transkrybować spotkanie Teams w czasie rzeczywistym?', a: 'Nie. Pracujemy z plikami nagranymi. Do czasu rzeczywistego podczas spotkania użyj wbudowanych napisów na żywo Teams lub funkcji Transcript.' },
+        { q: 'Jakie języki obsługujecie?', a: 'Ponad 50 języków z auto-wykrywaniem. Dla spotkań poniżej 5 minut lub plików z niemowymi intrami (muzyka poczekalni, hold tones) wybierz język ręcznie.' },
+        { q: 'Czy mogę wyeksportować transkrypcję do dokumentu Word lub OneDrive?', a: 'Eksportujemy czysty tekst (TXT) i SRT. Skopiuj i wklej w Word, lub sam wgraj TXT do OneDrive. Integracji Microsoft 365 jeszcze nie mamy.' },
+        { q: 'Czy to jest zgodne z RODO dla spotkań Teams w Europie?', a: 'Nie przechowujemy audio ani transkryptu na naszych serwerach po opuszczeniu strony. Jesteśmy w Europie, a nasi dostawcy (Groq US, OpenAI US) podpisali DPA. Dla konkretnych pytań compliance zobacz naszą politykę prywatności lub napisz na info@mictoo.com.' },
       ]}
       relatedLinks={[
-        { href: '/pl/zoom-transcription', label: 'Transkrypcja Zoom' },
-        { href: '/pl/meeting-transcription', label: 'Transkrypcja spotkań' },
-        { href: '/pl', label: 'Wszystkie formaty' },
+        { href: '/pl/zoom-transcription', label: 'Transkrypcja Zoom', desc: 'Dla nagrań Zoom Cloud lub lokalnych.' },
+        { href: '/pl/google-meet-transcription', label: 'Transkrypcja Google Meet', desc: 'Dla nagrań Google Meet.' },
+        { href: '/pl/meeting-transcription', label: 'Transkrypcja spotkań', desc: 'Dla nagrań z innych platform.' },
+        { href: '/pl/business-transcription', label: 'Transkrypcja business', desc: 'Dla calli sprzedażowych, wywiadów i innego audio business.' },
       ]}
     />
   )
