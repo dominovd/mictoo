@@ -229,10 +229,13 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
 
   // Translation state. translatedSegments holds the translated copy of
   // `segments` when present; the Reader renders it instead of the original.
-  // status: idle | loading | error. translateLang is the code currently
-  // showing ('' = original). Exports always use the ORIGINAL transcript;
-  // translation is view-only by design (keeps SRT timing 1:1 with audio).
+  // translatedTranscript is the same content flat-joined into paragraphs so
+  // the Editor textarea has something editable. status: idle | loading |
+  // error. translateLang is the code currently showing ('' = original).
+  // Exports still use the ORIGINAL transcript by default; localized exports
+  // would be a separate feature.
   const [translatedSegments, setTranslatedSegments] = useState(null)
+  const [translatedTranscript, setTranslatedTranscript] = useState('')
   const [translateLang, setTranslateLang] = useState('')
   const [translateTarget, setTranslateTarget] = useState('es')
   const [translateStatus, setTranslateStatus] = useState('idle')
@@ -273,7 +276,11 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   //   'transcript' — transcript only (no AI section, like the original behaviour)
   // The toggle is only shown when summaryData exists. VTT ignores this — it's
   // always just subtitles from segments.
-  const [exportContent, setExportContent] = useState('both')
+  // 'all' = transcript + summary (renamed from 'both' now that translation
+  // exists as a separate mode), 'summary' = summary only, 'transcript' =
+  // original transcript only, 'translation' = translated transcript only.
+  // 'translation' is only selectable when translatedSegments is non-null.
+  const [exportContent, setExportContent] = useState('all')
   useEffect(() => {
     const supabase = createClient()
     let mounted = true
@@ -405,6 +412,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     setErrorHelpType('compress')
     setAudioCurrentTime(0)
     setTranslatedSegments(null)
+    setTranslatedTranscript('')
     setTranslateLang('')
     setTranslateStatus('idle')
     setTranslateError('')
@@ -437,7 +445,12 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
       if (!res.ok) {
         throw new Error(data?.error || `Translation failed (${res.status})`)
       }
-      setTranslatedSegments(data.segments || [])
+      const segs = data.segments || []
+      setTranslatedSegments(segs)
+      // Flat-join the translated segments into paragraphs so the Editor
+      // textarea has something editable. Same pause-threshold logic as the
+      // original transcript so the layout feels familiar.
+      setTranslatedTranscript(toParagraphs(segs))
       setTranslateLang(targetCode)
       setTranslateStatus('done')
     } catch (err) {
@@ -763,42 +776,55 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     return () => clearTimeout(timer)
   }, [state, batchQueue, processFile])
 
+  // Pick which transcript/segments the export handlers should use, based on
+  // the exportContent toggle. When 'translation' is selected we route txt
+  // exports to the user-edited translatedTranscript and srt/vtt to the
+  // translatedSegments (timing intact, text translated — exactly the format
+  // video creators want for foreign-language captions).
+  const isExportingTranslation = exportContent === 'translation' && translatedSegments
+  const activeText = () => (isExportingTranslation ? translatedTranscript : transcript)
+  const activeSegments = () => (isExportingTranslation ? translatedSegments : segments)
+  // Append '.es' / '.fr' / etc to the filename when exporting translation
+  // so users with both the original and a translation in the same folder
+  // don't overwrite each other.
+  const fileSuffix = () => (isExportingTranslation && translateLang ? `.${translateLang}` : '')
+
   const copy = async () => {
-    await navigator.clipboard.writeText(transcript)
+    await navigator.clipboard.writeText(activeText())
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }
 
   const downloadTxt = () => {
-    const blob = new Blob([transcript], { type: 'text/plain' })
+    const blob = new Blob([activeText()], { type: 'text/plain' })
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = (file?.name?.replace(/\.[^.]+$/, '') || 'transcript') + '.txt'
+    a.download = (file?.name?.replace(/\.[^.]+$/, '') || 'transcript') + fileSuffix() + '.txt'
     a.click()
     URL.revokeObjectURL(url)
   }
 
   const downloadSRT = () => {
-    const srt = toSRT(segments)
+    const srt = toSRT(activeSegments())
     if (!srt) return
     const blob = new Blob([srt], { type: 'text/plain' })
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = (file?.name?.replace(/\.[^.]+$/, '') || 'transcript') + '.srt'
+    a.download = (file?.name?.replace(/\.[^.]+$/, '') || 'transcript') + fileSuffix() + '.srt'
     a.click()
     URL.revokeObjectURL(url)
   }
 
   const downloadTimestampedTxt = () => {
-    const txt = toTimestampedTxt(segments)
+    const txt = toTimestampedTxt(activeSegments())
     if (!txt) return
     const blob = new Blob([txt], { type: 'text/plain' })
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = (file?.name?.replace(/\.[^.]+$/, '') || 'transcript') + '-timestamped.txt'
+    a.download = (file?.name?.replace(/\.[^.]+$/, '') || 'transcript') + fileSuffix() + '-timestamped.txt'
     a.click()
     URL.revokeObjectURL(url)
   }
@@ -829,32 +855,41 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
 
   const baseName = () => (file?.name?.replace(/\.[^.]+$/, '') || 'transcript')
 
-  // Builds the payload shared by all the export handlers, honoring the
-  // current `exportContent` toggle (Both / Summary only / Transcript only).
-  // VTT skips this — it's always just segments.
+  // Builds the payload shared by all the server-backed export handlers
+  // (DOCX, PDF, JSON), honoring the current `exportContent` toggle:
+  //   all         → original transcript + summary (if present)
+  //   summary     → summary only
+  //   transcript  → original transcript only
+  //   translation → translated transcript only (no summary — translation
+  //                 is its own deliverable)
+  // VTT skips this — it's always just segments and respects the toggle
+  // separately via activeSegments().
   const buildExportPayload = () => {
     const hasSummary = summaryStatus === 'done' && summaryData
-    const includeSummary = hasSummary && exportContent !== 'transcript'
+    const includeSummary = hasSummary && (exportContent === 'all' || exportContent === 'summary')
     const includeTranscript = exportContent !== 'summary' || !hasSummary
+    const useTranslation = exportContent === 'translation' && translatedSegments
 
     return {
-      text: includeTranscript ? transcript : '',
-      segments: includeTranscript ? segments : [],
-      fileName: file?.name,
+      text: includeTranscript ? (useTranslation ? translatedTranscript : transcript) : '',
+      segments: includeTranscript ? (useTranslation ? translatedSegments : segments) : [],
+      fileName: file?.name ? (useTranslation && translateLang ? file.name.replace(/\.[^.]+$/, '') + `.${translateLang}` + (file.name.match(/\.[^.]+$/)?.[0] || '') : file.name) : undefined,
       fileSize: file?.size,
       fileType: file?.type,
-      language: spokenLanguage,
+      language: useTranslation ? translateLang : spokenLanguage,
       summary: includeSummary ? summaryData : null,
     }
   }
 
   // Client-side: VTT and JSON are tiny, no need to hit the server.
-  // VTT is transcript-only by nature (subtitle cues), so it ignores the toggle.
+  // VTT honors the translation toggle: original captions by default,
+  // translated captions when exportContent === 'translation'. Same timing
+  // either way — only the cue text changes.
   const downloadVTT = () => {
     if (!requireSignIn()) return
-    const vtt = toVTT(segments)
+    const vtt = toVTT(activeSegments())
     if (!vtt) return
-    triggerBlobDownload(new Blob([vtt], { type: 'text/vtt' }), baseName() + '.vtt')
+    triggerBlobDownload(new Blob([vtt], { type: 'text/vtt' }), baseName() + fileSuffix() + '.vtt')
   }
 
   const downloadJSON = () => {
@@ -1024,36 +1059,49 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
               </button>
             )}
 
-            {/* Export-content toggle. Only shown when an AI summary is
-                available — otherwise there's nothing to toggle and we'd
-                clutter the button row. Buttons below (DOCX/PDF/JSON) honour
-                this; VTT ignores it (subtitles are always transcript-only). */}
-            {summaryStatus === 'done' && summaryData && (
+            {/* Export-content toggle. Shown whenever there's something to
+                pick between (summary or translation present). All download
+                buttons (Copy/.txt/.srt/timestamped-.txt/DOCX/PDF/VTT/JSON)
+                honour this — when 'translation' is selected the file uses
+                the translated text and the filename gets a .{lang} suffix. */}
+            {((summaryStatus === 'done' && summaryData) || translatedSegments) && (
               <div className="inline-flex items-center gap-0 bg-slate-100 rounded-lg p-0.5 text-xs">
                 <button
                   type="button"
-                  onClick={() => setExportContent('both')}
-                  className={`px-2.5 py-1 rounded-md transition-colors ${exportContent === 'both' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
-                  title="Export the AI summary together with the transcript"
+                  onClick={() => setExportContent('all')}
+                  className={`px-2.5 py-1 rounded-md transition-colors ${exportContent === 'all' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                  title="Export the original transcript together with the AI summary"
                 >
-                  Both
+                  All
                 </button>
-                <button
-                  type="button"
-                  onClick={() => setExportContent('summary')}
-                  className={`px-2.5 py-1 rounded-md transition-colors ${exportContent === 'summary' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
-                  title="Export only the AI summary"
-                >
-                  Summary
-                </button>
+                {summaryStatus === 'done' && summaryData && (
+                  <button
+                    type="button"
+                    onClick={() => setExportContent('summary')}
+                    className={`px-2.5 py-1 rounded-md transition-colors ${exportContent === 'summary' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                    title="Export only the AI summary"
+                  >
+                    Summary
+                  </button>
+                )}
                 <button
                   type="button"
                   onClick={() => setExportContent('transcript')}
                   className={`px-2.5 py-1 rounded-md transition-colors ${exportContent === 'transcript' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
-                  title="Export only the transcript (no AI summary)"
+                  title="Export only the original transcript"
                 >
                   Transcript
                 </button>
+                {translatedSegments && (
+                  <button
+                    type="button"
+                    onClick={() => setExportContent('translation')}
+                    className={`px-2.5 py-1 rounded-md transition-colors ${exportContent === 'translation' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                    title={`Export the ${(DICT[locale]?.languages?.[translateLang] ?? DICT.en.languages[translateLang] ?? translateLang.toUpperCase())} translation`}
+                  >
+                    {DICT[locale]?.languages?.[translateLang] ?? DICT.en.languages[translateLang] ?? translateLang.toUpperCase()}
+                  </button>
+                )}
               </div>
             )}
 
@@ -1186,6 +1234,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
                   type="button"
                   onClick={() => {
                     setTranslatedSegments(null)
+                    setTranslatedTranscript('')
                     setTranslateLang('')
                     setTranslateStatus('idle')
                   }}
@@ -1228,17 +1277,30 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
               el.play().catch(() => {})
             } : undefined}
           />
+        ) : translatedSegments ? (
+          // Editor mode + translation active → bind textarea to the
+          // translated text. The original stays in `transcript` state so
+          // toggling "Show original" puts it right back.
+          <textarea
+            className="w-full h-64 text-sm text-slate-700 border border-slate-100 rounded-xl p-4 bg-slate-50 resize-y focus:outline-none focus:ring-2 focus:ring-brand-500"
+            value={translatedTranscript}
+            onChange={e => setTranslatedTranscript(e.target.value)}
+            aria-label="Edit translated transcript"
+          />
         ) : (
           <textarea
             className="w-full h-64 text-sm text-slate-700 border border-slate-100 rounded-xl p-4 bg-slate-50 resize-y focus:outline-none focus:ring-2 focus:ring-brand-500"
             value={transcript}
             onChange={e => setTranscript(e.target.value)}
+            aria-label="Edit transcript"
           />
         )}
         <p className="text-xs text-slate-400 mt-2">
           {hasSRT && viewMode === 'reader'
             ? t(locale, 'result.viewReaderHint')
-            : t(locale, 'result.editHint') + (hasSRT ? t(locale, 'result.srtHint') : '')}
+            : translatedSegments
+              ? t(locale, 'result.editingTranslation', { lang: DICT[locale]?.languages?.[translateLang] ?? DICT.en.languages[translateLang] ?? translateLang.toUpperCase() })
+              : t(locale, 'result.editHint') + (hasSRT ? t(locale, 'result.srtHint') : '')}
         </p>
       </div>
     )
