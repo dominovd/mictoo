@@ -73,14 +73,6 @@ export default function PortuguesePage() {
           a: 'Não. Os arquivos são processados instantaneamente e não ficam armazenados em nossos servidores.',
         },
       ]}
-      relatedLinks={[
-        { href: '/', label: 'English' },
-        { href: '/fr', label: 'Français' },
-        { href: '/de', label: 'Deutsch' },
-        { href: '/es', label: 'Español' },
-        { href: '/ru', label: 'Русский' },
-        { href: '/it', label: 'Italiano' },
-      ]}
     />
   )
 }

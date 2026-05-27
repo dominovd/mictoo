@@ -73,16 +73,6 @@ export default function JapanesePage() {
           a: 'いいえ。ファイルは即座に処理され、サーバーに保存されることはありません。',
         },
       ]}
-      relatedLinks={[
-        { href: '/', label: 'English' },
-        { href: '/fr', label: 'Français' },
-        { href: '/de', label: 'Deutsch' },
-        { href: '/es', label: 'Español' },
-        { href: '/ru', label: 'Русский' },
-        { href: '/it', label: 'Italiano' },
-        { href: '/pt', label: 'Português' },
-        { href: '/pl', label: 'Polski' },
-      ]}
     />
   )
 }

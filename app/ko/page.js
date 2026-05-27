@@ -73,17 +73,6 @@ export default function KoreanPage() {
           a: '아니요. 파일은 즉시 처리되며 서버에 저장되지 않습니다.',
         },
       ]}
-      relatedLinks={[
-        { href: '/', label: 'English' },
-        { href: '/fr', label: 'Français' },
-        { href: '/de', label: 'Deutsch' },
-        { href: '/es', label: 'Español' },
-        { href: '/ru', label: 'Русский' },
-        { href: '/it', label: 'Italiano' },
-        { href: '/pt', label: 'Português' },
-        { href: '/pl', label: 'Polski' },
-        { href: '/ja', label: '日本語' },
-      ]}
     />
   )
 }

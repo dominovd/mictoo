@@ -73,13 +73,6 @@ export default function ItalianPage() {
           a: 'No. I file vengono elaborati istantaneamente e non vengono memorizzati sui nostri server.',
         },
       ]}
-      relatedLinks={[
-        { href: '/', label: 'English' },
-        { href: '/fr', label: 'Français' },
-        { href: '/de', label: 'Deutsch' },
-        { href: '/es', label: 'Español' },
-        { href: '/ru', label: 'Русский' },
-      ]}
     />
   )
 }

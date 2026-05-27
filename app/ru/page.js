@@ -73,12 +73,6 @@ export default function RussianPage() {
           a: 'Нет. Файлы обрабатываются мгновенно и не хранятся на наших серверах.',
         },
       ]}
-      relatedLinks={[
-        { href: '/', label: 'English' },
-        { href: '/fr', label: 'Français' },
-        { href: '/de', label: 'Deutsch' },
-        { href: '/es', label: 'Español' },
-      ]}
     />
   )
 }

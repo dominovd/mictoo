@@ -73,12 +73,6 @@ export default function GermanPage() {
           a: 'Nein. Ihre Dateien werden sofort verarbeitet und nicht auf unseren Servern gespeichert.',
         },
       ]}
-      relatedLinks={[
-        { href: '/', label: 'English' },
-        { href: '/fr', label: 'Français' },
-        { href: '/es', label: 'Español' },
-        { href: '/ru', label: 'Русский' },
-      ]}
     />
   )
 }

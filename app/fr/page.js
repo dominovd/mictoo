@@ -73,12 +73,6 @@ export default function FrenchPage() {
           a: 'Non. Vos fichiers sont traités immédiatement et ne sont jamais stockés sur nos serveurs.',
         },
       ]}
-      relatedLinks={[
-        { href: '/', label: 'English' },
-        { href: '/de', label: 'Deutsch' },
-        { href: '/es', label: 'Español' },
-        { href: '/ru', label: 'Русский' },
-      ]}
     />
   )
 }

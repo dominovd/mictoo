@@ -73,15 +73,6 @@ export default function PolishPage() {
           a: 'Nie. Pliki są przetwarzane natychmiastowo i nie są przechowywane na naszych serwerach.',
         },
       ]}
-      relatedLinks={[
-        { href: '/', label: 'English' },
-        { href: '/fr', label: 'Français' },
-        { href: '/de', label: 'Deutsch' },
-        { href: '/es', label: 'Español' },
-        { href: '/ru', label: 'Русский' },
-        { href: '/it', label: 'Italiano' },
-        { href: '/pt', label: 'Português' },
-      ]}
     />
   )
 }

@@ -73,12 +73,6 @@ export default function SpanishPage() {
           a: 'No. Tus archivos nunca se almacenan en nuestros servidores. Se procesan al instante y se eliminan.',
         },
       ]}
-      relatedLinks={[
-        { href: '/', label: 'English' },
-        { href: '/fr', label: 'Français' },
-        { href: '/de', label: 'Deutsch' },
-        { href: '/ru', label: 'Русский' },
-      ]}
     />
   )
 }
