@@ -305,18 +305,36 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* FAQ — accordion (matches landing pages). First item opens by default
+          so first-time visitors see the format. JSON-LD FAQPage schema is
+          already emitted at the top of <Home /> from the same FAQ array. */}
       <section id="faq" className="bg-white border-t border-slate-100 py-16 px-4">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-2xl font-bold text-slate-900 mb-10 text-center">
             Frequently asked questions
           </h2>
-          <div className="space-y-6">
-            {FAQ.map(({ q, a }) => (
-              <div key={q} className="border-b border-slate-100 pb-6 last:border-0 last:pb-0">
-                <h3 className="font-semibold text-slate-800 mb-2">{q}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{a}</p>
-              </div>
+          <div className="space-y-3">
+            {FAQ.map(({ q, a }, i) => (
+              <details
+                key={q}
+                className="group border border-slate-200 rounded-xl overflow-hidden bg-white open:shadow-sm"
+                {...(i === 0 ? { open: true } : {})}
+              >
+                <summary className="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-3 font-semibold text-slate-800 hover:bg-slate-50 transition-colors">
+                  <span>{q}</span>
+                  <svg
+                    className="w-4 h-4 flex-shrink-0 text-slate-400 transition-transform group-open:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-5 pb-5 text-sm text-slate-600 leading-relaxed">
+                  <p>{a}</p>
+                </div>
+              </details>
             ))}
           </div>
         </div>
