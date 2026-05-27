@@ -181,9 +181,9 @@ export default function YouTubeToTextPage() {
         },
       ]}
       relatedLinks={[
+        { href: '/how-to-download-youtube-video', label: 'Download YouTube Video', desc: 'Step-by-step guide to grabbing the MP4 or MP3 with free tools, before you upload it here.' },
         { href: '/transcribe-video-to-text', label: 'Video to Text', desc: 'For non-YouTube video files (Zoom, screen recordings, vlogs).' },
         { href: '/free-srt-generator', label: 'Free SRT Generator', desc: 'For uploading clean captions back to YouTube Studio.' },
-        { href: '/podcast-transcription', label: 'Podcast Transcription', desc: 'For podcast-style audio uploaded to YouTube.' },
         { href: '/how-to-split-audio', label: 'How to Split Audio', desc: 'For long videos that exceed our 60-minute file limit.' },
       ]}
     />

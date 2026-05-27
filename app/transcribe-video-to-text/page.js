@@ -183,7 +183,7 @@ export default function VideoToTextPage() {
       relatedLinks={[
         { href: '/free-srt-generator', label: 'Free SRT Generator', desc: 'The same tool, branded for subtitle-first workflows.' },
         { href: '/youtube-to-text', label: 'YouTube to Text', desc: 'If your video is already on YouTube.' },
-        { href: '/zoom-transcription', label: 'Zoom Transcription', desc: 'Specifically for Zoom MP4 recordings.' },
+        { href: '/how-to-download-youtube-video', label: 'Download YouTube Video', desc: 'How to grab the MP4 (or MP3) from YouTube before uploading it here.' },
         { href: '/how-to-compress-audio', label: 'How to Compress Audio', desc: 'For videos with audio over the size limit.' },
       ]}
     />

@@ -57,6 +57,10 @@ export default function SiteFooter() {
     ['/free-srt-generator',        lab('srtGenerator'),          'captions'],
     ['/timestamped-transcription', lab('timestampedTranscript'), 'clock'],
     ['/youtube-to-text',           lab('youtubeToText'),         'play'],
+    // YouTube-downloader guide is EN-only for now; only inject it when the
+    // current locale is English so non-EN visitors don't see a link to an
+    // English-only page. Once localized, move it out of this conditional.
+    ...(locale === 'en' ? [['/how-to-download-youtube-video', 'Download YouTube video', 'play']] : []),
     ['/how-to-compress-audio',     lab('howToCompress'),         'compress'],
     ['/how-to-split-audio',        lab('howToSplit'),            'scissors'],
     // Wave 6 — functional converters (real ffmpeg backend, not just SEO).
