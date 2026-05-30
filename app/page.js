@@ -214,6 +214,16 @@ export default function Home() {
               title: 'Editable output',
               desc: 'Review and edit your transcript right in the browser, then copy to clipboard or download as a .txt file.',
             },
+            {
+              icon: '🧠',
+              title: 'AI summary included',
+              desc: "After every transcript we generate a free GPT-powered summary with the key points and action items — same feature TurboScribe puts behind a $20/month paywall. No extra click, no upgrade prompt.",
+            },
+            {
+              icon: '🌐',
+              title: 'Translate to 28 languages',
+              desc: 'One click translates the full transcript into Spanish, French, German, Japanese, and 24 others. Original timestamps preserved so the translated SRT still matches the audio.',
+            },
           ].map(({ icon, title, desc }) => (
             <div key={title} className="flex gap-4 bg-white border border-slate-100 rounded-2xl p-5 shadow-sm">
               <div className="text-2xl flex-shrink-0">{icon}</div>

@@ -54,6 +54,8 @@ export default function PolishPage() {
         { title: 'Wysoka dokładność', desc: "Napędzane przez Whisper od OpenAI, ten sam model rozpoznawania mowy, którego używa ChatGPT i czołowe serwisy transkrypcyjne." },
         { title: 'Szybkie wyniki', desc: "Plik 10-minutowy jest transkrybowany w mniej niż 30 sekund. Bez kolejki, bez pop-upów typu 'poczekaj 30 sekund'." },
         { title: 'Edytowalny wynik', desc: "Przejrzyj i popraw transkrypcję w przeglądarce, potem skopiuj do schowka albo pobierz jako .txt, .srt lub .pdf." },
+        { title: "Streszczenie AI w komplecie", desc: "Po każdej transkrypcji generujemy darmowe streszczenie z kluczowymi punktami i listą zadań. Ta sama funkcja, którą TurboScribe sprzedaje za 20 $/mies. Bez dodatkowego kliknięcia, bez zachęt do upgrade'u." },
+        { title: "Tłumaczenie na 28 języków", desc: "Jednym kliknięciem tłumaczysz pełną transkrypcję na hiszpański, francuski, niemiecki, japoński i 24 inne. Oryginalne znaczniki czasu są zachowane, więc przetłumaczony SRT nadal pasuje do audio." },
       ]}}
       useCases={{ title: 'Kto używa Mictoo', items: [
         { title: 'Studenci', desc: "Transkrybuj wykłady, wywiady i nagrania badawcze. Tekst da się przeszukiwać, łatwiej powtarzać niż przesłuchiwać audio." },

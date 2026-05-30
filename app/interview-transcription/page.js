@@ -74,6 +74,10 @@ export default function InterviewTranscriptionPage() {
             title: 'Privacy and source protection',
             desc: 'The file streams to the transcription provider and is discarded. We do not retain the audio. For sensitive source material, this matters.',
           },
+          {
+            title: 'Free AI summary with key takeaways',
+            desc: 'After every interview transcript we generate a GPT-powered summary with key points and action items. Useful for skimming a 60-minute interview before drafting. TurboScribe puts the same feature behind a 20 dollar a month plan.',
+          },
         ],
       }}
       useCases={{

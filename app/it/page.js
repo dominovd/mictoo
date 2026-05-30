@@ -54,6 +54,8 @@ export default function ItalianPage() {
         { title: 'Alta precisione', desc: "Basato su Whisper di OpenAI, lo stesso modello di riconoscimento vocale usato in ChatGPT e dai principali servizi di trascrizione." },
         { title: 'Risultati rapidi', desc: "Un file di 10 minuti viene trascritto in meno di 30 secondi. Niente code di attesa, niente pop-up del tipo 'aspetta 30 secondi'." },
         { title: 'Output modificabile', desc: "Rileggi e correggi la trascrizione nel browser, poi copia negli appunti o scarica in .txt, .srt o .pdf." },
+        { title: "Riassunto IA incluso", desc: "Dopo ogni trascrizione generiamo un riassunto gratuito con i punti chiave e le azioni da fare. La stessa funzione che TurboScribe vende a 20 $/mese. Senza clic extra, senza inviti al pagamento." },
+        { title: "Traduzione in 28 lingue", desc: "Un clic traduce l'intera trascrizione in spagnolo, francese, tedesco, giapponese e altre 24 lingue. I timestamp originali restano intatti, quindi il file SRT tradotto rimane sincronizzato con l'audio." },
       ]}}
       useCases={{ title: 'Chi usa Mictoo', items: [
         { title: 'Studenti', desc: "Trascrivi lezioni, interviste e registrazioni di ricerca. Testo cercabile, più facile da ripassare rispetto a un audio da riascoltare." },

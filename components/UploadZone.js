@@ -1352,19 +1352,21 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   return (
     <div className="space-y-3">
       {/* Language selector */}
-      <div className="flex items-center justify-end gap-2">
+      <div className="flex items-center justify-end gap-2 flex-wrap">
         <label htmlFor="lang-select" className="text-xs text-slate-400 font-medium">{t(locale, 'picker.label')}:</label>
         <select
           id="lang-select"
           value={language}
           onChange={e => setLanguage(e.target.value)}
           className="text-xs border border-slate-200 rounded-lg px-2 py-1.5 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500 cursor-pointer"
+          title={t(locale, 'picker.hint')}
         >
           <option value="">{t(locale, 'picker.auto')}</option>
           {PICKER_LANG_CODES.map(code => (
             <option key={code} value={code}>{DICT[locale]?.languages?.[code] ?? DICT.en.languages[code]}</option>
           ))}
         </select>
+        <span className="text-[11px] text-slate-400 w-full text-right sm:w-auto">{t(locale, 'picker.hint')}</span>
       </div>
 
       {/* Drop zone */}

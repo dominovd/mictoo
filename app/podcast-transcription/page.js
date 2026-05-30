@@ -74,6 +74,10 @@ export default function PodcastTranscriptionPage() {
             title: 'Your audio is not stored',
             desc: 'Files stream straight to the speech provider, get transcribed, then go away. We do not keep your episodes, and the providers we use (Groq, OpenAI) do not train on API data.',
           },
+          {
+            title: 'AI summary for free after every episode',
+            desc: "Each transcript comes with a GPT-generated summary and key points — exactly the raw material you need for show notes and chapter markers. TurboScribe charges 20 dollars a month for the same feature. We don't.",
+          },
         ],
       }}
       useCases={{

@@ -74,6 +74,10 @@ export default function MeetingTranscriptionPage() {
             title: 'Nothing is stored',
             desc: 'The file streams to the transcription provider and is discarded. We do not write your meeting audio to our servers.',
           },
+          {
+            title: 'AI summary with action items, free',
+            desc: 'After every meeting transcript we generate a GPT summary plus the action items mentioned. The thing meeting-notes apps charge 15-20 dollars a month for. Included with every upload.',
+          },
         ],
       }}
       useCases={{
