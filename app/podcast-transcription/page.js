@@ -76,7 +76,7 @@ export default function PodcastTranscriptionPage() {
           },
           {
             title: 'AI summary for free after every episode',
-            desc: "Each transcript comes with a GPT-generated summary and key points — exactly the raw material you need for show notes and chapter markers. TurboScribe charges 20 dollars a month for the same feature. We don't.",
+            desc: "Each transcript comes with a GPT-generated summary and key points — exactly the raw material you need for show notes and chapter markers. Competitors typically charge 15-20 dollars a month for the same feature. We don't.",
           },
         ],
       }}

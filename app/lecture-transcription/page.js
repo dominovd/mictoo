@@ -76,7 +76,7 @@ export default function LectureTranscriptionPage() {
           },
           {
             title: 'Free AI summary — study aid built in',
-            desc: 'After every lecture transcript we generate a GPT summary with key points. Cuts a 60-minute lecture down to a one-screen study aid you can scan before an exam. The same feature TurboScribe gates behind a 20 dollar a month plan.',
+            desc: 'After every lecture transcript we generate a GPT summary with key points. Cuts a 60-minute lecture down to a one-screen study aid you can scan before an exam. The same feature competitors typically gate behind a 15-20 dollar a month plan.',
           },
         ],
       }}

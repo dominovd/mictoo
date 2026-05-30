@@ -54,7 +54,7 @@ export default function SpanishPage() {
         { title: 'Alta precisión', desc: "Basado en Whisper de OpenAI, el mismo modelo de reconocimiento de voz que usa ChatGPT y los principales servicios de transcripción." },
         { title: 'Resultados rápidos', desc: "Un archivo de 10 minutos se transcribe en menos de 30 segundos. Sin colas de espera, sin pop-ups de \"espere 30 segundos\"." },
         { title: 'Salida editable', desc: "Revise y corrija la transcripción en el navegador, luego copie al portapapeles o descargue en .txt, .srt o .pdf." },
-        { title: "Resumen con IA incluido", desc: "Después de cada transcripción, generamos un resumen gratuito con los puntos clave y las acciones a seguir. La misma función que TurboScribe cobra a 20 $/mes. Sin clic extra, sin invitación a pagar." },
+        { title: "Resumen con IA incluido", desc: "Después de cada transcripción, generamos un resumen gratuito con los puntos clave y las acciones a seguir. Los competidores suelen cobrar entre 15 y 20 $/mes por esta función. Sin clic extra, sin invitación a pagar." },
         { title: "Traducción a 28 idiomas", desc: "Un clic traduce la transcripción completa al inglés, francés, alemán, japonés y otros 24 idiomas. Los timestamps originales se conservan, así el SRT traducido sigue sincronizado con el audio." },
       ]}}
       useCases={{ title: 'Quién usa Mictoo', items: [

@@ -217,7 +217,7 @@ export default function Home() {
             {
               icon: '🧠',
               title: 'AI summary included',
-              desc: "After every transcript we generate a free GPT-powered summary with the key points and action items — same feature TurboScribe puts behind a $20/month paywall. No extra click, no upgrade prompt.",
+              desc: "After every transcript we generate a free GPT-powered summary with the key points and action items — competitors typically charge $15–20/month for this. No extra click, no upgrade prompt.",
             },
             {
               icon: '🌐',

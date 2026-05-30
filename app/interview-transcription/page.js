@@ -76,7 +76,7 @@ export default function InterviewTranscriptionPage() {
           },
           {
             title: 'Free AI summary with key takeaways',
-            desc: 'After every interview transcript we generate a GPT-powered summary with key points and action items. Useful for skimming a 60-minute interview before drafting. TurboScribe puts the same feature behind a 20 dollar a month plan.',
+            desc: 'After every interview transcript we generate a GPT-powered summary with key points and action items. Useful for skimming a 60-minute interview before drafting. Competitors typically put the same feature behind a 15-20 dollar a month plan.',
           },
         ],
       }}

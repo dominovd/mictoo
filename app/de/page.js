@@ -54,7 +54,7 @@ export default function GermanPage() {
         { title: 'Hohe Genauigkeit', desc: 'Betrieben mit Whisper von OpenAI, demselben Spracherkennungsmodell, das in ChatGPT und bei führenden Transkriptionsdiensten zum Einsatz kommt.' },
         { title: 'Schnelle Ergebnisse', desc: 'Eine 10-minütige Datei wird in unter 30 Sekunden transkribiert. Keine Warteschlange, keine "Bitte warten Sie 30 Sekunden"-Pop-ups.' },
         { title: 'Bearbeitbare Ausgabe', desc: 'Lesen und korrigieren Sie das Transkript im Browser, kopieren Sie es in die Zwischenablage oder laden Sie es als .txt, .srt oder .pdf herunter.' },
-        { title: "KI-Zusammenfassung inklusive", desc: "Nach jeder Transkription erstellen wir kostenlos eine GPT-basierte Zusammenfassung mit Kernaussagen und To-dos. Dieselbe Funktion, die TurboScribe für 20 $/Monat verlangt. Kein zusätzlicher Klick, kein Upgrade-Hinweis." },
+        { title: "KI-Zusammenfassung inklusive", desc: "Nach jeder Transkription erstellen wir kostenlos eine GPT-basierte Zusammenfassung mit Kernaussagen und To-dos. Wettbewerber verlangen für diese Funktion typischerweise 15 bis 20 $/Monat. Kein zusätzlicher Klick, kein Upgrade-Hinweis." },
         { title: "In 28 Sprachen übersetzen", desc: "Ein Klick übersetzt die komplette Transkription ins Spanische, Französische, Japanische und 25 weitere Sprachen. Die ursprünglichen Zeitstempel bleiben erhalten, sodass die übersetzte SRT-Datei weiterhin zum Audio passt." },
       ]}}
       useCases={{ title: 'Wer nutzt Mictoo', items: [
