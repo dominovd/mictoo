@@ -1,4 +1,5 @@
 import UploadZone from '@/components/UploadZone'
+import TrustRow from '@/components/TrustRow'
 
 // ── Page-level metadata & canonical ─────────────────────────────────────────
 export const metadata = {
@@ -124,10 +125,11 @@ export default function Home() {
             Transcribe Audio &amp; Video<br />
             <span className="text-brand-600">to Text with AI, Free</span>
           </h1>
-          <p className="text-lg text-slate-500 mb-8">
+          <p className="text-lg text-slate-500 mb-4">
             Upload any audio or video file and get an accurate AI-powered text transcript in seconds.
             No account required.
           </p>
+          <TrustRow locale="en" />
         </div>
       </section>
 

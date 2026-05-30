@@ -1,4 +1,5 @@
 import UploadZone from '@/components/UploadZone'
+import TrustRow from '@/components/TrustRow'
 import { t } from '@/lib/i18n'
 
 /**
@@ -64,6 +65,7 @@ export default function LandingLayout({
             {h1}
           </h1>
           <p className="text-lg text-slate-500 mb-0">{subtitle}</p>
+          <TrustRow locale={locale} />
         </div>
       </section>
 
