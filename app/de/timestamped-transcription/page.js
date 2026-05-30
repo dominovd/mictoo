@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Kostenlose Transkription mit Zeitstempeln. Holen Sie sich Zeitstempel auf Wort- oder Satzebene für jedes Audio oder Video. Perfekt für Journalismus, Forschung, Podcasting, Video-Bearbeitung.',
   alternates: { canonical: 'https://mictoo.com/de/timestamped-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Transkription mit Zeitstempeln — kostenloser Time-Coded-Transkript-Generator | Mictoo",
+    description: "Kostenlose Transkription mit Zeitstempeln. Holen Sie sich Zeitstempel auf Wort- oder Satzebene für jedes Audio oder Video. Perfekt für Journalismus, Forschung, Podcasting, Video-Bearbeitung.",
+    url: "https://mictoo.com/de/timestamped-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Transkription mit Zeitstempeln — kostenloser Time-Coded-Transkript-Generator | Mictoo",
+    description: "Kostenlose Transkription mit Zeitstempeln. Holen Sie sich Zeitstempel auf Wort- oder Satzebene für jedes Audio oder Video. Perfekt für Journalismus, Forschung, Podcasting, Video-Bearbeitung.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeTimestampedPage() {

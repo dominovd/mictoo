@@ -18,6 +18,21 @@ export const metadata = {
   title: 'M4Aをテキストに — オンラインM4A無料文字起こし | Mictoo',
   description: 'M4A音声ファイルを無料でテキストに変換。iPhoneボイスメモ、録音、ポッドキャストなど任意のM4Aファイルをアップロードして、即座に文字起こしを取得。登録不要。',
   alternates: { canonical: 'https://mictoo.com/ja/m4a-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "M4Aをテキストに — オンラインM4A無料文字起こし | Mictoo",
+    description: "M4A音声ファイルを無料でテキストに変換。iPhoneボイスメモ、録音、ポッドキャストなど任意のM4Aファイルをアップロードして、即座に文字起こしを取得。登録不要。",
+    url: "https://mictoo.com/ja/m4a-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "M4Aをテキストに — オンラインM4A無料文字起こし | Mictoo",
+    description: "M4A音声ファイルを無料でテキストに変換。iPhoneボイスメモ、録音、ポッドキャストなど任意のM4Aファイルをアップロードして、即座に文字起こしを取得。登録不要。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaM4AToTextPage() {

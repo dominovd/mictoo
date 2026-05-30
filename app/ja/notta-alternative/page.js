@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Nottaの代替 — 月間制限なしの無料文字起こし | Mictoo',
   description: 'Nottaは無料ユーザーを月120分、各文字起こしを3分に制限します。Mictooは無料、登録不要、月の分数クォータなし — OpenAI Whisperベース。',
   alternates: { canonical: 'https://mictoo.com/ja/notta-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Nottaの代替 — 月間制限なしの無料文字起こし | Mictoo",
+    description: "Nottaは無料ユーザーを月120分、各文字起こしを3分に制限します。Mictooは無料、登録不要、月の分数クォータなし — OpenAI Whisperベース。",
+    url: "https://mictoo.com/ja/notta-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nottaの代替 — 月間制限なしの無料文字起こし | Mictoo",
+    description: "Nottaは無料ユーザーを月120分、各文字起こしを3分に制限します。Mictooは無料、登録不要、月の分数クォータなし — OpenAI Whisperベース。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaNottaAlternativePage() {

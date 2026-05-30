@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '무료 SRT 자막 생성기. 오디오 또는 비디오 파일을 업로드하여 타임코드가 있는 깨끗한 .srt를 몇 초 만에 받으세요. YouTube, Premiere, DaVinci, CapCut에서 작동.',
   alternates: { canonical: 'https://mictoo.com/ko/free-srt-generator', languages: LANGS },
+
+  openGraph: {
+    title: "SRT 생성기 — 온라인으로 SRT 자막 파일 생성 | Mictoo",
+    description: "무료 SRT 자막 생성기. 오디오 또는 비디오 파일을 업로드하여 타임코드가 있는 깨끗한 .srt를 몇 초 만에 받으세요. YouTube, Premiere, DaVinci, CapCut에서 작동.",
+    url: "https://mictoo.com/ko/free-srt-generator",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SRT 생성기 — 온라인으로 SRT 자막 파일 생성 | Mictoo",
+    description: "무료 SRT 자막 생성기. 오디오 또는 비디오 파일을 업로드하여 타임코드가 있는 깨끗한 .srt를 몇 초 만에 받으세요. YouTube, Premiere, DaVinci, CapCut에서 작동.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoSrtPage() {

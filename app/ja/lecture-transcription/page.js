@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '無料講義文字起こし。講義、コース、セミナーの録音(MP3、M4A、MP4)をアップロードしてクリーンなテキストを数秒で取得。学生向け。',
   alternates: { canonical: 'https://mictoo.com/ja/lecture-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "講義文字起こし — 無料AIジェネレーター | Mictoo",
+    description: "無料講義文字起こし。講義、コース、セミナーの録音(MP3、M4A、MP4)をアップロードしてクリーンなテキストを数秒で取得。学生向け。",
+    url: "https://mictoo.com/ja/lecture-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "講義文字起こし — 無料AIジェネレーター | Mictoo",
+    description: "無料講義文字起こし。講義、コース、セミナーの録音(MP3、M4A、MP4)をアップロードしてクリーンなテキストを数秒で取得。学生向け。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaLecturePage() {

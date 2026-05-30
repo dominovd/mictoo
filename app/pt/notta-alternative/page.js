@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Alternativa ao Notta — Transcrição grátis sem limites mensais | Mictoo',
   description: 'O Notta limita usuários grátis a 120 minutos por mês e cada transcrição a 3 minutos. O Mictoo é grátis, sem cadastro, sem cota mensal de minutos — baseado em OpenAI Whisper.',
   alternates: { canonical: 'https://mictoo.com/pt/notta-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Alternativa ao Notta — Transcrição grátis sem limites mensais | Mictoo",
+    description: "O Notta limita usuários grátis a 120 minutos por mês e cada transcrição a 3 minutos. O Mictoo é grátis, sem cadastro, sem cota mensal de minutos — baseado em OpenAI Whisper.",
+    url: "https://mictoo.com/pt/notta-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Alternativa ao Notta — Transcrição grátis sem limites mensais | Mictoo",
+    description: "O Notta limita usuários grátis a 120 minutos por mês e cada transcrição a 3 minutos. O Mictoo é grátis, sem cadastro, sem cota mensal de minutos — baseado em OpenAI Whisper.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PtNottaAlternativePage() {

@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'WAV를 MP3로 무료 온라인 변환합니다. 무손실 WAV 파일을 휴대하기 좋은 128 kbps MP3로 몇 초 만에 줄입니다. 가입 없이, 워터마크 없음. 최대 25 MB.',
   alternates: { canonical: 'https://mictoo.com/ko/wav-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "WAV를 MP3로 — 무료 온라인 변환기 | Mictoo",
+    description: "WAV를 MP3로 무료 온라인 변환합니다. 무손실 WAV 파일을 휴대하기 좋은 128 kbps MP3로 몇 초 만에 줄입니다. 가입 없이, 워터마크 없음. 최대 25 MB.",
+    url: "https://mictoo.com/ko/wav-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WAV를 MP3로 — 무료 온라인 변환기 | Mictoo",
+    description: "WAV를 MP3로 무료 온라인 변환합니다. 무손실 WAV 파일을 휴대하기 좋은 128 kbps MP3로 몇 초 만에 줄입니다. 가입 없이, 워터마크 없음. 최대 25 MB.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoWavToMp3Page() {

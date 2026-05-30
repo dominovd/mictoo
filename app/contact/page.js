@@ -21,6 +21,21 @@ export const metadata = {
     canonical: 'https://mictoo.com/contact',
     languages: LOCALE_ALTERNATES,
   },
+
+  openGraph: {
+    title: "Contact — Mictoo",
+    description: "Contact Mictoo. info@mictoo.com goes to a real human inbox. Reply within one business day. Support scope, business inquiries, and FAQ shortcuts listed here.",
+    url: "https://mictoo.com/contact",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact — Mictoo",
+    description: "Contact Mictoo. info@mictoo.com goes to a real human inbox. Reply within one business day. Support scope, business inquiries, and FAQ shortcuts listed here.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ContactPage() {

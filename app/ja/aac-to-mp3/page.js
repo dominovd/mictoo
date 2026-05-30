@@ -16,6 +16,21 @@ export const metadata = {
   title: 'AACをMP3に変換する方法 — 無料の方法（2026年）| Mictoo',
   description: "AAC音声ファイルを無料でMP3に変換。オンラインコンバーター、QuickTime/VLC、ffmpegコマンドラインの3つの方法。ヒント：MictooはほとんどのAACファイルを変換なしで直接文字起こしできます。",
   alternates: { canonical: 'https://mictoo.com/ja/aac-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "AACをMP3に変換する方法 — 無料の方法（2026年）| Mictoo",
+    description: "AAC音声ファイルを無料でMP3に変換。オンラインコンバーター、QuickTime/VLC、ffmpegコマンドラインの3つの方法。ヒント：MictooはほとんどのAACファイルを変換なしで直接文字起こしできます。",
+    url: "https://mictoo.com/ja/aac-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AACをMP3に変換する方法 — 無料の方法（2026年）| Mictoo",
+    description: "AAC音声ファイルを無料でMP3に変換。オンラインコンバーター、QuickTime/VLC、ffmpegコマンドラインの3つの方法。ヒント：MictooはほとんどのAACファイルを変換なしで直接文字起こしできます。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaAacToMp3Page() {

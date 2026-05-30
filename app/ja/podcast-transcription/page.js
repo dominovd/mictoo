@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'ポッドキャストの無料AI文字起こし。エピソード(MP3、MP4、M4A、WAV)をアップロードしてタイムコード付きのクリーンな文字起こしを数秒で取得。アカウント不要、分単位課金なし。',
   alternates: { canonical: 'https://mictoo.com/ja/podcast-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "ポッドキャスト文字起こし — 無料AIジェネレーター | Mictoo",
+    description: "ポッドキャストの無料AI文字起こし。エピソード(MP3、MP4、M4A、WAV)をアップロードしてタイムコード付きのクリーンな文字起こしを数秒で取得。アカウント不要、分単位課金なし。",
+    url: "https://mictoo.com/ja/podcast-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ポッドキャスト文字起こし — 無料AIジェネレーター | Mictoo",
+    description: "ポッドキャストの無料AI文字起こし。エピソード(MP3、MP4、M4A、WAV)をアップロードしてタイムコード付きのクリーンな文字起こしを数秒で取得。アカウント不要、分単位課金なし。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaPodcastPage() {

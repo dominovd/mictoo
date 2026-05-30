@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Otter 대안 — 라이브 회의가 아닌 녹화 받아쓰기 | Mictoo',
   description: 'Otter는 라이브 회의의 실시간 자막용으로 제작되었습니다. Mictoo는 이미 있는 녹화를 받아쓰기 — 무료, 가입 불필요, 봇 없음. OpenAI Whisper 기반.',
   alternates: { canonical: 'https://mictoo.com/ko/otter-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Otter 대안 — 라이브 회의가 아닌 녹화 받아쓰기 | Mictoo",
+    description: "Otter는 라이브 회의의 실시간 자막용으로 제작되었습니다. Mictoo는 이미 있는 녹화를 받아쓰기 — 무료, 가입 불필요, 봇 없음. OpenAI Whisper 기반.",
+    url: "https://mictoo.com/ko/otter-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Otter 대안 — 라이브 회의가 아닌 녹화 받아쓰기 | Mictoo",
+    description: "Otter는 라이브 회의의 실시간 자막용으로 제작되었습니다. Mictoo는 이미 있는 녹화를 받아쓰기 — 무료, 가입 불필요, 봇 없음. OpenAI Whisper 기반.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoOtterAlternativePage() {

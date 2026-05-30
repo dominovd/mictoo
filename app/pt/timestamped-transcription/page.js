@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Transcrição grátis com timecode. Receba timecode por palavra ou frase para qualquer áudio ou vídeo. Perfeito para jornalismo, pesquisa, podcasting, edição de vídeo.',
   alternates: { canonical: 'https://mictoo.com/pt/timestamped-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Transcrição com timecode — gerador grátis | Mictoo",
+    description: "Transcrição grátis com timecode. Receba timecode por palavra ou frase para qualquer áudio ou vídeo. Perfeito para jornalismo, pesquisa, podcasting, edição de vídeo.",
+    url: "https://mictoo.com/pt/timestamped-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Transcrição com timecode — gerador grátis | Mictoo",
+    description: "Transcrição grátis com timecode. Receba timecode por palavra ou frase para qualquer áudio ou vídeo. Perfeito para jornalismo, pesquisa, podcasting, edição de vídeo.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PtTimestampedPage() {

@@ -18,6 +18,21 @@ export const metadata = {
   title: 'OGGをテキストに — オンラインOGG音声無料文字起こし | Mictoo',
   description: 'OGG音声ファイルをオンラインで無料でテキストに変換。任意のOGG Vorbis録音をアップロードして、即座に正確な文字起こしを取得。登録不要。',
   alternates: { canonical: 'https://mictoo.com/ja/ogg-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "OGGをテキストに — オンラインOGG音声無料文字起こし | Mictoo",
+    description: "OGG音声ファイルをオンラインで無料でテキストに変換。任意のOGG Vorbis録音をアップロードして、即座に正確な文字起こしを取得。登録不要。",
+    url: "https://mictoo.com/ja/ogg-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OGGをテキストに — オンラインOGG音声無料文字起こし | Mictoo",
+    description: "OGG音声ファイルをオンラインで無料でテキストに変換。任意のOGG Vorbis録音をアップロードして、即座に正確な文字起こしを取得。登録不要。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaOggToTextPage() {

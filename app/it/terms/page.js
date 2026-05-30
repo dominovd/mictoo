@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Termini di servizio — Mictoo',
   description: 'Termini di servizio per l\'utilizzo di Mictoo.',
   alternates: { canonical: 'https://mictoo.com/it/terms', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "Termini di servizio — Mictoo",
+    description: "Termini di servizio per l\\'utilizzo di Mictoo.",
+    url: "https://mictoo.com/it/terms",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Termini di servizio — Mictoo",
+    description: "Termini di servizio per l\\'utilizzo di Mictoo.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItTermsPage() {

@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Trascrizione gratuita di memo vocali. Rilascia il tuo memo iPhone o la registrazione vocale Android (M4A, MP3) e ottieni testo pulito in pochi secondi. Senza registrazione.',
   alternates: { canonical: 'https://mictoo.com/it/voice-memo-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "Memo vocale in testo — trascrivi Voice Memos iPhone gratis | Mictoo",
+    description: "Trascrizione gratuita di memo vocali. Rilascia il tuo memo iPhone o la registrazione vocale Android (M4A, MP3) e ottieni testo pulito in pochi secondi. Senza registrazione.",
+    url: "https://mictoo.com/it/voice-memo-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Memo vocale in testo — trascrivi Voice Memos iPhone gratis | Mictoo",
+    description: "Trascrizione gratuita di memo vocali. Rilascia il tuo memo iPhone o la registrazione vocale Android (M4A, MP3) e ottieni testo pulito in pochi secondi. Senza registrazione.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItVoiceMemoPage() {

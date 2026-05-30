@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Alternativa ao TurboScribe — Transcrição Whisper grátis, sem cadastro | Mictoo',
   description: 'O TurboScribe é uma ferramenta popular baseada em Whisper, mas exige conta e limita usuários grátis a 30 minutos por dia. O Mictoo é totalmente sem cadastro com resumo IA integrado.',
   alternates: { canonical: 'https://mictoo.com/pt/turboscribe-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Alternativa ao TurboScribe — Transcrição Whisper grátis, sem cadastro | Mictoo",
+    description: "O TurboScribe é uma ferramenta popular baseada em Whisper, mas exige conta e limita usuários grátis a 30 minutos por dia. O Mictoo é totalmente sem cadastro com resumo IA integrado.",
+    url: "https://mictoo.com/pt/turboscribe-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Alternativa ao TurboScribe — Transcrição Whisper grátis, sem cadastro | Mictoo",
+    description: "O TurboScribe é uma ferramenta popular baseada em Whisper, mas exige conta e limita usuários grátis a 30 minutos por dia. O Mictoo é totalmente sem cadastro com resumo IA integrado.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PtTurboScribeAlternativePage() {

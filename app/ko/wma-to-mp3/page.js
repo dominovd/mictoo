@@ -16,6 +16,21 @@ export const metadata = {
   title: 'WMA를 MP3로 변환하는 방법 — 무료 방법 (2026) | Mictoo',
   description: "WMA(Windows Media Audio)를 MP3로 무료로 변환하세요. 온라인 컨버터, VLC, Audacity, ffmpeg 중에서 맞는 것을 선택. 그 다음 Mictoo로 MP3를 텍스트로 전사.",
   alternates: { canonical: 'https://mictoo.com/ko/wma-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "WMA를 MP3로 변환하는 방법 — 무료 방법 (2026) | Mictoo",
+    description: "WMA(Windows Media Audio)를 MP3로 무료로 변환하세요. 온라인 컨버터, VLC, Audacity, ffmpeg 중에서 맞는 것을 선택. 그 다음 Mictoo로 MP3를 텍스트로 전사.",
+    url: "https://mictoo.com/ko/wma-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WMA를 MP3로 변환하는 방법 — 무료 방법 (2026) | Mictoo",
+    description: "WMA(Windows Media Audio)를 MP3로 무료로 변환하세요. 온라인 컨버터, VLC, Audacity, ffmpeg 중에서 맞는 것을 선택. 그 다음 Mictoo로 MP3를 텍스트로 전사.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoWmaToMp3Page() {

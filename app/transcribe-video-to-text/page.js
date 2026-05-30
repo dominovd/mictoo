@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/transcribe-video-to-text',
     },
   },
+
+  openGraph: {
+    title: "Video to Text — Free Online Video Transcription | Mictoo",
+    description: "Free video to text transcription. Upload MP4, MOV, WEBM, AVI and get an AI transcript or SRT subtitle file. Works with screen recordings, tutorials, vlogs.",
+    url: "https://mictoo.com/transcribe-video-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Video to Text — Free Online Video Transcription | Mictoo",
+    description: "Free video to text transcription. Upload MP4, MOV, WEBM, AVI and get an AI transcript or SRT subtitle file. Works with screen recordings, tutorials, vlogs.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function VideoToTextPage() {

@@ -16,6 +16,21 @@ export const metadata = {
   title: 'Jak skompresować audio do transkrypcji — Darmowe metody | Mictoo',
   description: 'Trzy darmowe sposoby zmniejszenia pliku audio lub wideo poniżej 25 MB do transkrypcji: wyodrębnij audio, obniż bitrate lub podziel plik. Bez instalacji oprogramowania.',
   alternates: { canonical: 'https://mictoo.com/pl/how-to-compress-audio', languages: LANGS },
+
+  openGraph: {
+    title: "Jak skompresować audio do transkrypcji — Darmowe metody | Mictoo",
+    description: "Trzy darmowe sposoby zmniejszenia pliku audio lub wideo poniżej 25 MB do transkrypcji: wyodrębnij audio, obniż bitrate lub podziel plik. Bez instalacji oprogramowania.",
+    url: "https://mictoo.com/pl/how-to-compress-audio",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jak skompresować audio do transkrypcji — Darmowe metody | Mictoo",
+    description: "Trzy darmowe sposoby zmniejszenia pliku audio lub wideo poniżej 25 MB do transkrypcji: wyodrębnij audio, obniż bitrate lub podziel plik. Bez instalacji oprogramowania.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlHowToCompressAudioPage() {

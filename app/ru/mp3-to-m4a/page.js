@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'Конвертируйте MP3 в M4A бесплатно онлайн. Перекодируйте MP3 в AAC внутри контейнера M4A для iPhone, iTunes и экосистемы Apple. Без регистрации, без водяного знака.',
   alternates: { canonical: 'https://mictoo.com/ru/mp3-to-m4a', languages: LANGS },
+
+  openGraph: {
+    title: "MP3 в M4A — бесплатный онлайн-конвертер | Mictoo",
+    description: "Конвертируйте MP3 в M4A бесплатно онлайн. Перекодируйте MP3 в AAC внутри контейнера M4A для iPhone, iTunes и экосистемы Apple. Без регистрации, без водяного знака.",
+    url: "https://mictoo.com/ru/mp3-to-m4a",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3 в M4A — бесплатный онлайн-конвертер | Mictoo",
+    description: "Конвертируйте MP3 в M4A бесплатно онлайн. Перекодируйте MP3 в AAC внутри контейнера M4A для iPhone, iTunes и экосистемы Apple. Без регистрации, без водяного знака.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuMp3ToM4aPage() {

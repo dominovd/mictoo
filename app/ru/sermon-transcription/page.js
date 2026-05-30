@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Транскрибация проповедей — Бесплатный генератор расшифровок проповедей | Mictoo',
   description: 'Бесплатная расшифровка проповедей и церковного аудио в текст. Подходит для блогов, заметок для изучения и доступности. Поддержка MP3, MP4, M4A. Без регистрации.',
   alternates: { canonical: 'https://mictoo.com/ru/sermon-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Транскрибация проповедей — Бесплатный генератор расшифровок проповедей | Mictoo",
+    description: "Бесплатная расшифровка проповедей и церковного аудио в текст. Подходит для блогов, заметок для изучения и доступности. Поддержка MP3, MP4, M4A. Без регистрации.",
+    url: "https://mictoo.com/ru/sermon-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Транскрибация проповедей — Бесплатный генератор расшифровок проповедей | Mictoo",
+    description: "Бесплатная расшифровка проповедей и церковного аудио в текст. Подходит для блогов, заметок для изучения и доступности. Поддержка MP3, MP4, M4A. Без регистрации.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuSermonPage() {

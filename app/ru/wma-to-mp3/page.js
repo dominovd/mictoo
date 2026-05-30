@@ -16,6 +16,21 @@ export const metadata = {
   title: 'Как конвертировать WMA в MP3 — бесплатные способы (2026) | Mictoo',
   description: "Конвертируйте WMA (Windows Media Audio) в MP3 бесплатно. Онлайн-конвертеры, VLC, Audacity и ffmpeg — выберите подходящий. Затем транскрибируйте MP3 в текст с Mictoo.",
   alternates: { canonical: 'https://mictoo.com/ru/wma-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "Как конвертировать WMA в MP3 — бесплатные способы (2026) | Mictoo",
+    description: "Конвертируйте WMA (Windows Media Audio) в MP3 бесплатно. Онлайн-конвертеры, VLC, Audacity и ffmpeg — выберите подходящий. Затем транскрибируйте MP3 в текст с Mictoo.",
+    url: "https://mictoo.com/ru/wma-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Как конвертировать WMA в MP3 — бесплатные способы (2026) | Mictoo",
+    description: "Конвертируйте WMA (Windows Media Audio) в MP3 бесплатно. Онлайн-конвертеры, VLC, Audacity и ffmpeg — выберите подходящий. Затем транскрибируйте MP3 в текст с Mictoo.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuWmaToMp3Page() {

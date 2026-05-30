@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Transcripción gratuita de notas de voz. Sube tu Voice Memo de iPhone o la grabación de Android (M4A, MP3) y obtén texto limpio en segundos. Sin registro.',
   alternates: { canonical: 'https://mictoo.com/es/voice-memo-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "Nota de voz a texto — transcribe Voice Memos de iPhone gratis | Mictoo",
+    description: "Transcripción gratuita de notas de voz. Sube tu Voice Memo de iPhone o la grabación de Android (M4A, MP3) y obtén texto limpio en segundos. Sin registro.",
+    url: "https://mictoo.com/es/voice-memo-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nota de voz a texto — transcribe Voice Memos de iPhone gratis | Mictoo",
+    description: "Transcripción gratuita de notas de voz. Sube tu Voice Memo de iPhone o la grabación de Android (M4A, MP3) y obtén texto limpio en segundos. Sin registro.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function EsVoiceMemoPage() {

@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'Konwertuj WAV na MP3 online za darmo. Zmniejsz pliki WAV bezstratne na przenośne MP3 128 kbps w kilka sekund. Bez rejestracji, bez znaku wodnego. Do 25 MB.',
   alternates: { canonical: 'https://mictoo.com/pl/wav-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "WAV na MP3 — darmowy konwerter online | Mictoo",
+    description: "Konwertuj WAV na MP3 online za darmo. Zmniejsz pliki WAV bezstratne na przenośne MP3 128 kbps w kilka sekund. Bez rejestracji, bez znaku wodnego. Do 25 MB.",
+    url: "https://mictoo.com/pl/wav-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WAV na MP3 — darmowy konwerter online | Mictoo",
+    description: "Konwertuj WAV na MP3 online za darmo. Zmniejsz pliki WAV bezstratne na przenośne MP3 128 kbps w kilka sekund. Bez rejestracji, bez znaku wodnego. Do 25 MB.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlWavToMp3Page() {

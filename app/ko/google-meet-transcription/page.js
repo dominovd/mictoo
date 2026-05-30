@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '무료 Google Meet 받아쓰기. Drive에서 녹화(MP4 또는 M4A)를 업로드하여 깨끗한 AI 받아쓰기를 몇 초 만에 받으세요. 무료 Google Workspace에서 작동.',
   alternates: { canonical: 'https://mictoo.com/ko/google-meet-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Google Meet 받아쓰기 — Meet 녹화를 무료로 받아쓰기 | Mictoo",
+    description: "무료 Google Meet 받아쓰기. Drive에서 녹화(MP4 또는 M4A)를 업로드하여 깨끗한 AI 받아쓰기를 몇 초 만에 받으세요. 무료 Google Workspace에서 작동.",
+    url: "https://mictoo.com/ko/google-meet-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Google Meet 받아쓰기 — Meet 녹화를 무료로 받아쓰기 | Mictoo",
+    description: "무료 Google Meet 받아쓰기. Drive에서 녹화(MP4 또는 M4A)를 업로드하여 깨끗한 AI 받아쓰기를 몇 초 만에 받으세요. 무료 Google Workspace에서 작동.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoGoogleMeetPage() {

@@ -18,6 +18,21 @@ export const metadata = {
   title: 'AAC를 텍스트로 — 무료 온라인 AAC 오디오 받아쓰기 | Mictoo',
   description: 'AAC 오디오 파일을 무료로 텍스트로 받아쓰기. .aac, .m4a 또는 기타 AAC 인코딩 파일을 드래그하고 몇 초 만에 정확한 받아쓰기를 받으세요.',
   alternates: { canonical: 'https://mictoo.com/ko/aac-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "AAC를 텍스트로 — 무료 온라인 AAC 오디오 받아쓰기 | Mictoo",
+    description: "AAC 오디오 파일을 무료로 텍스트로 받아쓰기. .aac, .m4a 또는 기타 AAC 인코딩 파일을 드래그하고 몇 초 만에 정확한 받아쓰기를 받으세요.",
+    url: "https://mictoo.com/ko/aac-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AAC를 텍스트로 — 무료 온라인 AAC 오디오 받아쓰기 | Mictoo",
+    description: "AAC 오디오 파일을 무료로 텍스트로 받아쓰기. .aac, .m4a 또는 기타 AAC 인코딩 파일을 드래그하고 몇 초 만에 정확한 받아쓰기를 받으세요.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoAacToTextPage() {

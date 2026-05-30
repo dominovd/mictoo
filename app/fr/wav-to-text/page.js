@@ -18,6 +18,21 @@ export const metadata = {
   title: 'WAV en texte — Transcription WAV gratuite en ligne | Mictoo',
   description: 'Convertissez les fichiers WAV en texte en ligne gratuitement. Déposez un fichier audio WAV et obtenez une transcription précise en quelques secondes. Sans inscription.',
   alternates: { canonical: 'https://mictoo.com/fr/wav-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "WAV en texte — Transcription WAV gratuite en ligne | Mictoo",
+    description: "Convertissez les fichiers WAV en texte en ligne gratuitement. Déposez un fichier audio WAV et obtenez une transcription précise en quelques secondes. Sans inscription.",
+    url: "https://mictoo.com/fr/wav-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WAV en texte — Transcription WAV gratuite en ligne | Mictoo",
+    description: "Convertissez les fichiers WAV en texte en ligne gratuitement. Déposez un fichier audio WAV et obtenez une transcription précise en quelques secondes. Sans inscription.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function FrWavToTextPage() {

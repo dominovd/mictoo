@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/wav-to-text',
     },
   },
+
+  openGraph: {
+    title: "WAV to Text — Free WAV File Transcription Online | Mictoo",
+    description: "Free WAV to text converter. Upload any WAV audio file and get a clean AI transcript in seconds. Lossless audio, 50+ languages, no signup.",
+    url: "https://mictoo.com/wav-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WAV to Text — Free WAV File Transcription Online | Mictoo",
+    description: "Free WAV to text converter. Upload any WAV audio file and get a clean AI transcript in seconds. Lossless audio, 50+ languages, no signup.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function WavToTextPage() {

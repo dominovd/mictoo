@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'MP3를 M4A로 무료 온라인 변환합니다. MP3를 AAC로 재인코딩해 iPhone, iTunes, Apple 생태계용 M4A 컨테이너에 담습니다. 가입 없이, 워터마크 없음.',
   alternates: { canonical: 'https://mictoo.com/ko/mp3-to-m4a', languages: LANGS },
+
+  openGraph: {
+    title: "MP3를 M4A로 — 무료 온라인 변환기 | Mictoo",
+    description: "MP3를 M4A로 무료 온라인 변환합니다. MP3를 AAC로 재인코딩해 iPhone, iTunes, Apple 생태계용 M4A 컨테이너에 담습니다. 가입 없이, 워터마크 없음.",
+    url: "https://mictoo.com/ko/mp3-to-m4a",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3를 M4A로 — 무료 온라인 변환기 | Mictoo",
+    description: "MP3를 M4A로 무료 온라인 변환합니다. MP3를 AAC로 재인코딩해 iPhone, iTunes, Apple 생태계용 M4A 컨테이너에 담습니다. 가입 없이, 워터마크 없음.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoMp3ToM4aPage() {

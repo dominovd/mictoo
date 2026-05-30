@@ -19,6 +19,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/notta-alternative',
     },
   },
+
+  openGraph: {
+    title: "Notta Alternative — Free Transcription Without Monthly Limits | Mictoo",
+    description: "Notta caps free users at 120 minutes per month and limits each transcription to 3 minutes. Mictoo is free, no signup, no monthly minute quota — powered by OpenAI Whisper.",
+    url: "https://mictoo.com/notta-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Notta Alternative — Free Transcription Without Monthly Limits | Mictoo",
+    description: "Notta caps free users at 120 minutes per month and limits each transcription to 3 minutes. Mictoo is free, no signup, no monthly minute quota — powered by OpenAI Whisper.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function NottaAlternativePage() {

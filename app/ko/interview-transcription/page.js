@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '무료 AI 인터뷰 받아쓰기. 인터뷰 녹화(MP3, M4A, MP4, WAV)를 업로드하여 타임코드가 있는 깨끗한 받아쓰기를 몇 초 만에 받으세요. 기자와 연구자를 위해 제작됨.',
   alternates: { canonical: 'https://mictoo.com/ko/interview-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "인터뷰 받아쓰기 — 무료 AI 생성기 | Mictoo",
+    description: "무료 AI 인터뷰 받아쓰기. 인터뷰 녹화(MP3, M4A, MP4, WAV)를 업로드하여 타임코드가 있는 깨끗한 받아쓰기를 몇 초 만에 받으세요. 기자와 연구자를 위해 제작됨.",
+    url: "https://mictoo.com/ko/interview-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "인터뷰 받아쓰기 — 무료 AI 생성기 | Mictoo",
+    description: "무료 AI 인터뷰 받아쓰기. 인터뷰 녹화(MP3, M4A, MP4, WAV)를 업로드하여 타임코드가 있는 깨끗한 받아쓰기를 몇 초 만에 받으세요. 기자와 연구자를 위해 제작됨.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoInterviewPage() {

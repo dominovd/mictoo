@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Transcrição grátis YouTube em texto. Baixe o vídeo, solte o arquivo, receba uma transcrição IA precisa. Melhor que as legendas automáticas do YouTube, com timecode e export SRT.',
   alternates: { canonical: 'https://mictoo.com/pt/youtube-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "YouTube em texto — transcreva vídeos do YouTube grátis | Mictoo",
+    description: "Transcrição grátis YouTube em texto. Baixe o vídeo, solte o arquivo, receba uma transcrição IA precisa. Melhor que as legendas automáticas do YouTube, com timecode e export SRT.",
+    url: "https://mictoo.com/pt/youtube-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "YouTube em texto — transcreva vídeos do YouTube grátis | Mictoo",
+    description: "Transcrição grátis YouTube em texto. Baixe o vídeo, solte o arquivo, receba uma transcrição IA precisa. Melhor que as legendas automáticas do YouTube, com timecode e export SRT.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PtYouTubeToTextPage() {

@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Dyktowanie na tekst — Darmowa transkrypcja dyktowania głosowego | Mictoo',
   description: 'Konwertuj dyktowane nagrania audio na tekst za darmo. Idealne dla pisarzy, lekarzy, prawników i badaczy. Obsługuje MP3, M4A, WAV. Bez rejestracji.',
   alternates: { canonical: 'https://mictoo.com/pl/dictation-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "Dyktowanie na tekst — Darmowa transkrypcja dyktowania głosowego | Mictoo",
+    description: "Konwertuj dyktowane nagrania audio na tekst za darmo. Idealne dla pisarzy, lekarzy, prawników i badaczy. Obsługuje MP3, M4A, WAV. Bez rejestracji.",
+    url: "https://mictoo.com/pl/dictation-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dyktowanie na tekst — Darmowa transkrypcja dyktowania głosowego | Mictoo",
+    description: "Konwertuj dyktowane nagrania audio na tekst za darmo. Idealne dla pisarzy, lekarzy, prawników i badaczy. Obsługuje MP3, M4A, WAV. Bez rejestracji.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlDictationPage() {

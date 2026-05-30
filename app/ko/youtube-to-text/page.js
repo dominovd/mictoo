@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '무료 YouTube 텍스트 받아쓰기. 비디오를 다운로드하고 파일을 드롭하면 정확한 AI 받아쓰기. YouTube 자동 자막보다 우수, 타임코드와 SRT 내보내기 포함.',
   alternates: { canonical: 'https://mictoo.com/ko/youtube-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "YouTube를 텍스트로 — YouTube 비디오 무료 받아쓰기 | Mictoo",
+    description: "무료 YouTube 텍스트 받아쓰기. 비디오를 다운로드하고 파일을 드롭하면 정확한 AI 받아쓰기. YouTube 자동 자막보다 우수, 타임코드와 SRT 내보내기 포함.",
+    url: "https://mictoo.com/ko/youtube-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "YouTube를 텍스트로 — YouTube 비디오 무료 받아쓰기 | Mictoo",
+    description: "무료 YouTube 텍스트 받아쓰기. 비디오를 다운로드하고 파일을 드롭하면 정확한 AI 받아쓰기. YouTube 자동 자막보다 우수, 타임코드와 SRT 내보내기 포함.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoYouTubeToTextPage() {

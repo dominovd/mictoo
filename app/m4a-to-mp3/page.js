@@ -17,6 +17,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/m4a-to-mp3',
     },
   },
+
+  openGraph: {
+    title: "How to Convert M4A to MP3 — Free Methods (Or Skip It) | Mictoo",
+    description: "Convert M4A to MP3 in seconds with free online tools, QuickTime, VLC, or ffmpeg. Plus a heads-up: most apps (including Mictoo transcription) accept M4A directly — you may not need to convert at all.",
+    url: "https://mictoo.com/m4a-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Convert M4A to MP3 — Free Methods (Or Skip It) | Mictoo",
+    description: "Convert M4A to MP3 in seconds with free online tools, QuickTime, VLC, or ffmpeg. Plus a heads-up: most apps (including Mictoo transcription) accept M4A directly — you may not need to convert at all.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function M4aToMp3Page() {

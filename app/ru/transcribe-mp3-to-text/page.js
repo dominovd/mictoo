@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Бесплатный конвертер MP3 в текст. Загрузите любой MP3 и получите AI-расшифровку за секунды. Подходит для подкастов, интервью, лекций. 50+ языков, без регистрации.',
   alternates: { canonical: 'https://mictoo.com/ru/transcribe-mp3-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "MP3 в текст — бесплатная AI-расшифровка | Mictoo",
+    description: "Бесплатный конвертер MP3 в текст. Загрузите любой MP3 и получите AI-расшифровку за секунды. Подходит для подкастов, интервью, лекций. 50+ языков, без регистрации.",
+    url: "https://mictoo.com/ru/transcribe-mp3-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3 в текст — бесплатная AI-расшифровка | Mictoo",
+    description: "Бесплатный конвертер MP3 в текст. Загрузите любой MP3 и получите AI-расшифровку за секунды. Подходит для подкастов, интервью, лекций. 50+ языков, без регистрации.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuMp3ToTextPage() {

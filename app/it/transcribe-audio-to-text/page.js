@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Audio in testo — trascrizione gratuita online | Mictoo',
   description: 'Convertitore audio in testo gratuito. Carica qualsiasi file audio (MP3, WAV, M4A, FLAC, OGG, AAC) e ottieni una trascrizione pulita in pochi secondi. Senza registrazione, oltre 50 lingue.',
   alternates: { canonical: 'https://mictoo.com/it/transcribe-audio-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "Audio in testo — trascrizione gratuita online | Mictoo",
+    description: "Convertitore audio in testo gratuito. Carica qualsiasi file audio (MP3, WAV, M4A, FLAC, OGG, AAC) e ottieni una trascrizione pulita in pochi secondi. Senza registrazione, oltre 50 lingue.",
+    url: "https://mictoo.com/it/transcribe-audio-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Audio in testo — trascrizione gratuita online | Mictoo",
+    description: "Convertitore audio in testo gratuito. Carica qualsiasi file audio (MP3, WAV, M4A, FLAC, OGG, AAC) e ottieni una trascrizione pulita in pochi secondi. Senza registrazione, oltre 50 lingue.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItAudioToTextPage() {

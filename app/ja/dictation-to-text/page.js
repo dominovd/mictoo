@@ -18,6 +18,21 @@ export const metadata = {
   title: '音声口述をテキストに — 無料音声ディクテーション文字起こし | Mictoo',
   description: '口述音声録音を無料でテキストに変換。作家、医師、弁護士、研究者に最適。MP3、M4A、WAV対応。登録不要。',
   alternates: { canonical: 'https://mictoo.com/ja/dictation-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "音声口述をテキストに — 無料音声ディクテーション文字起こし | Mictoo",
+    description: "口述音声録音を無料でテキストに変換。作家、医師、弁護士、研究者に最適。MP3、M4A、WAV対応。登録不要。",
+    url: "https://mictoo.com/ja/dictation-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "音声口述をテキストに — 無料音声ディクテーション文字起こし | Mictoo",
+    description: "口述音声録音を無料でテキストに変換。作家、医師、弁護士、研究者に最適。MP3、M4A、WAV対応。登録不要。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaDictationPage() {

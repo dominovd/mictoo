@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Video in testo — trascrizione video online gratis | Mictoo',
   description: 'Trascrizione video in testo gratis. Carica MP4, MOV, WEBM, AVI e ottieni una trascrizione IA o un file SRT. Funziona con registrazioni schermo, tutorial, vlog.',
   alternates: { canonical: 'https://mictoo.com/it/transcribe-video-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "Video in testo — trascrizione video online gratis | Mictoo",
+    description: "Trascrizione video in testo gratis. Carica MP4, MOV, WEBM, AVI e ottieni una trascrizione IA o un file SRT. Funziona con registrazioni schermo, tutorial, vlog.",
+    url: "https://mictoo.com/it/transcribe-video-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Video in testo — trascrizione video online gratis | Mictoo",
+    description: "Trascrizione video in testo gratis. Carica MP4, MOV, WEBM, AVI e ottieni una trascrizione IA o un file SRT. Funziona con registrazioni schermo, tutorial, vlog.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItVideoToTextPage() {

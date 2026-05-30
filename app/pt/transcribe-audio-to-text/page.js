@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Conversor grátis de áudio em texto. Envie qualquer arquivo (MP3, WAV, M4A, FLAC, OGG, AAC) e receba uma transcrição limpa em segundos. Sem cadastro, mais de 50 idiomas.',
   alternates: { canonical: 'https://mictoo.com/pt/transcribe-audio-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "Áudio em texto — transcrição online grátis | Mictoo",
+    description: "Conversor grátis de áudio em texto. Envie qualquer arquivo (MP3, WAV, M4A, FLAC, OGG, AAC) e receba uma transcrição limpa em segundos. Sem cadastro, mais de 50 idiomas.",
+    url: "https://mictoo.com/pt/transcribe-audio-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Áudio em texto — transcrição online grátis | Mictoo",
+    description: "Conversor grátis de áudio em texto. Envie qualquer arquivo (MP3, WAV, M4A, FLAC, OGG, AAC) e receba uma transcrição limpa em segundos. Sem cadastro, mais de 50 idiomas.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PtAudioToTextPage() {

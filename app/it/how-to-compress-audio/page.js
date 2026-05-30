@@ -16,6 +16,21 @@ export const metadata = {
   title: 'Come comprimere audio per la trascrizione — Metodi gratis | Mictoo',
   description: "Tre modi gratuiti per ridurre un file audio o video sotto i 25 MB per la trascrizione: estrai audio, abbassa il bitrate o dividi il file. Senza installare software.",
   alternates: { canonical: 'https://mictoo.com/it/how-to-compress-audio', languages: LANGS },
+
+  openGraph: {
+    title: "Come comprimere audio per la trascrizione — Metodi gratis | Mictoo",
+    description: "Tre modi gratuiti per ridurre un file audio o video sotto i 25 MB per la trascrizione: estrai audio, abbassa il bitrate o dividi il file. Senza installare software.",
+    url: "https://mictoo.com/it/how-to-compress-audio",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Come comprimere audio per la trascrizione — Metodi gratis | Mictoo",
+    description: "Tre modi gratuiti per ridurre un file audio o video sotto i 25 MB per la trascrizione: estrai audio, abbassa il bitrate o dividi il file. Senza installare software.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItHowToCompressAudioPage() {

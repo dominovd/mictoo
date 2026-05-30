@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'Converti MP3 in M4A online gratis. Ri-codifica MP3 in AAC dentro un contenitore M4A per iPhone, iTunes e l\'ecosistema Apple. Senza registrazione, senza filigrana.',
   alternates: { canonical: 'https://mictoo.com/it/mp3-to-m4a', languages: LANGS },
+
+  openGraph: {
+    title: "MP3 in M4A — convertitore online gratuito | Mictoo",
+    description: "Converti MP3 in M4A online gratis. Ri-codifica MP3 in AAC dentro un contenitore M4A per iPhone, iTunes e l\\'ecosistema Apple. Senza registrazione, senza filigrana.",
+    url: "https://mictoo.com/it/mp3-to-m4a",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3 in M4A — convertitore online gratuito | Mictoo",
+    description: "Converti MP3 in M4A online gratis. Ri-codifica MP3 in AAC dentro un contenitore M4A per iPhone, iTunes e l\\'ecosistema Apple. Senza registrazione, senza filigrana.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItMp3ToM4aPage() {

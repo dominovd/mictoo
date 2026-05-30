@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'WEBM을 MP3로 무료 온라인 변환합니다. WEBM 비디오나 오디오 파일에서 MP3 오디오를 몇 초 만에 꺼냅니다. 가입 없이, 워터마크 없음. 최대 25 MB.',
   alternates: { canonical: 'https://mictoo.com/ko/webm-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "WEBM을 MP3로 — 무료 온라인 변환기 | Mictoo",
+    description: "WEBM을 MP3로 무료 온라인 변환합니다. WEBM 비디오나 오디오 파일에서 MP3 오디오를 몇 초 만에 꺼냅니다. 가입 없이, 워터마크 없음. 최대 25 MB.",
+    url: "https://mictoo.com/ko/webm-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WEBM을 MP3로 — 무료 온라인 변환기 | Mictoo",
+    description: "WEBM을 MP3로 무료 온라인 변환합니다. WEBM 비디오나 오디오 파일에서 MP3 오디오를 몇 초 만에 꺼냅니다. 가입 없이, 워터마크 없음. 최대 25 MB.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoWebmToMp3Page() {

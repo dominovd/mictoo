@@ -18,6 +18,21 @@ export const metadata = {
   title: 'WAV na tekst — Darmowa transkrypcja WAV online | Mictoo',
   description: 'Konwertuj pliki WAV na tekst online za darmo. Prześlij dowolny plik audio WAV i otrzymaj precyzyjną transkrypcję w kilka sekund. Bez rejestracji.',
   alternates: { canonical: 'https://mictoo.com/pl/wav-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "WAV na tekst — Darmowa transkrypcja WAV online | Mictoo",
+    description: "Konwertuj pliki WAV na tekst online za darmo. Prześlij dowolny plik audio WAV i otrzymaj precyzyjną transkrypcję w kilka sekund. Bez rejestracji.",
+    url: "https://mictoo.com/pl/wav-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WAV na tekst — Darmowa transkrypcja WAV online | Mictoo",
+    description: "Konwertuj pliki WAV na tekst online za darmo. Prześlij dowolny plik audio WAV i otrzymaj precyzyjną transkrypcję w kilka sekund. Bez rejestracji.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlWavToTextPage() {

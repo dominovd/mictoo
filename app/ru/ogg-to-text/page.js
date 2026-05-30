@@ -18,6 +18,21 @@ export const metadata = {
   title: 'OGG в текст — Бесплатная расшифровка OGG онлайн | Mictoo',
   description: 'Бесплатная конвертация OGG-аудио в текст онлайн. Загрузите любую OGG Vorbis запись и получите точную расшифровку мгновенно. Без регистрации.',
   alternates: { canonical: 'https://mictoo.com/ru/ogg-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "OGG в текст — Бесплатная расшифровка OGG онлайн | Mictoo",
+    description: "Бесплатная конвертация OGG-аудио в текст онлайн. Загрузите любую OGG Vorbis запись и получите точную расшифровку мгновенно. Без регистрации.",
+    url: "https://mictoo.com/ru/ogg-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OGG в текст — Бесплатная расшифровка OGG онлайн | Mictoo",
+    description: "Бесплатная конвертация OGG-аудио в текст онлайн. Загрузите любую OGG Vorbis запись и получите точную расшифровку мгновенно. Без регистрации.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuOggToTextPage() {

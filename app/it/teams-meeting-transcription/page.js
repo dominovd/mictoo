@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Trascrizione Microsoft Teams — trascrivi le riunioni | Mictoo',
   description: 'Trascrizione gratuita Microsoft Teams. Carica la registrazione (MP4) da OneDrive o SharePoint e ottieni una trascrizione IA pulita in pochi secondi. Senza registrazione.',
   alternates: { canonical: 'https://mictoo.com/it/teams-meeting-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Trascrizione Microsoft Teams — trascrivi le riunioni | Mictoo",
+    description: "Trascrizione gratuita Microsoft Teams. Carica la registrazione (MP4) da OneDrive o SharePoint e ottieni una trascrizione IA pulita in pochi secondi. Senza registrazione.",
+    url: "https://mictoo.com/it/teams-meeting-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Trascrizione Microsoft Teams — trascrivi le riunioni | Mictoo",
+    description: "Trascrizione gratuita Microsoft Teams. Carica la registrazione (MP4) da OneDrive o SharePoint e ottieni una trascrizione IA pulita in pochi secondi. Senza registrazione.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItTeamsPage() {

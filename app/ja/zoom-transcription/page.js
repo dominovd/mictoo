@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '無料Zoom文字起こし。Cloud Recording(MP4)またはLocal Recording(M4A)をアップロードして正確なAI文字起こしを数秒で取得。登録不要、分単位課金なし。',
   alternates: { canonical: 'https://mictoo.com/ja/zoom-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Zoom文字起こし — Zoom録画を無料で文字起こし | Mictoo",
+    description: "無料Zoom文字起こし。Cloud Recording(MP4)またはLocal Recording(M4A)をアップロードして正確なAI文字起こしを数秒で取得。登録不要、分単位課金なし。",
+    url: "https://mictoo.com/ja/zoom-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zoom文字起こし — Zoom録画を無料で文字起こし | Mictoo",
+    description: "無料Zoom文字起こし。Cloud Recording(MP4)またはLocal Recording(M4A)をアップロードして正確なAI文字起こしを数秒で取得。登録不要、分単位課金なし。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaZoomPage() {

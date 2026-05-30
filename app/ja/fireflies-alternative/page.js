@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Firefliesの代替 — ボットなしで会議を文字起こし | Mictoo',
   description: 'Firefliesはボットとして会議に参加して録音・文字起こしを行います。Mictooはすでにある録音を文字起こし — ボットなし、登録なし、OAuthなし。OpenAI Whisperで無料。',
   alternates: { canonical: 'https://mictoo.com/ja/fireflies-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Firefliesの代替 — ボットなしで会議を文字起こし | Mictoo",
+    description: "Firefliesはボットとして会議に参加して録音・文字起こしを行います。Mictooはすでにある録音を文字起こし — ボットなし、登録なし、OAuthなし。OpenAI Whisperで無料。",
+    url: "https://mictoo.com/ja/fireflies-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Firefliesの代替 — ボットなしで会議を文字起こし | Mictoo",
+    description: "Firefliesはボットとして会議に参加して録音・文字起こしを行います。Mictooはすでにある録音を文字起こし — ボットなし、登録なし、OAuthなし。OpenAI Whisperで無料。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaFirefliesAlternativePage() {

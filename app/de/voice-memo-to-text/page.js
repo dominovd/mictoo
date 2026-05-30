@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Kostenlose Sprachmemo-Transkription. Legen Sie Ihr iPhone-Sprachmemo oder Ihre Android-Sprachaufnahme (M4A, MP3) ab und erhalten Sie in Sekunden sauberen Text. Ohne Anmeldung.',
   alternates: { canonical: 'https://mictoo.com/de/voice-memo-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "Sprachmemo in Text — iPhone-Sprachmemos kostenlos transkribieren | Mictoo",
+    description: "Kostenlose Sprachmemo-Transkription. Legen Sie Ihr iPhone-Sprachmemo oder Ihre Android-Sprachaufnahme (M4A, MP3) ab und erhalten Sie in Sekunden sauberen Text. Ohne Anmeldung.",
+    url: "https://mictoo.com/de/voice-memo-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sprachmemo in Text — iPhone-Sprachmemos kostenlos transkribieren | Mictoo",
+    description: "Kostenlose Sprachmemo-Transkription. Legen Sie Ihr iPhone-Sprachmemo oder Ihre Android-Sprachaufnahme (M4A, MP3) ab und erhalten Sie in Sekunden sauberen Text. Ohne Anmeldung.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeVoiceMemoPage() {

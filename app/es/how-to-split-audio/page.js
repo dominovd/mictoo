@@ -16,6 +16,21 @@ export const metadata = {
   title: 'Cómo dividir un audio largo para la transcripción — Métodos gratuitos | Mictoo',
   description: 'Tres formas gratuitas de dividir una grabación larga en partes más cortas para la transcripción: herramientas online, Audacity o ffmpeg. Funciona con MP3, M4A, WAV, MP4 y más.',
   alternates: { canonical: 'https://mictoo.com/es/how-to-split-audio', languages: LANGS },
+
+  openGraph: {
+    title: "Cómo dividir un audio largo para la transcripción — Métodos gratuitos | Mictoo",
+    description: "Tres formas gratuitas de dividir una grabación larga en partes más cortas para la transcripción: herramientas online, Audacity o ffmpeg. Funciona con MP3, M4A, WAV, MP4 y más.",
+    url: "https://mictoo.com/es/how-to-split-audio",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cómo dividir un audio largo para la transcripción — Métodos gratuitos | Mictoo",
+    description: "Tres formas gratuitas de dividir una grabación larga en partes más cortas para la transcripción: herramientas online, Audacity o ffmpeg. Funciona con MP3, M4A, WAV, MP4 y más.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function EsHowToSplitAudioPage() {

@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'Convert MP4 to MP3 free online. Drop your video, get a clean 128 kbps MP3 audio file in seconds. No signup, no watermark, no email. Up to 25 MB.',
   alternates: { canonical: 'https://mictoo.com/mp4-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "MP4 to MP3 — free online converter | Mictoo",
+    description: "Convert MP4 to MP3 free online. Drop your video, get a clean 128 kbps MP3 audio file in seconds. No signup, no watermark, no email. Up to 25 MB.",
+    url: "https://mictoo.com/mp4-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP4 to MP3 — free online converter | Mictoo",
+    description: "Convert MP4 to MP3 free online. Drop your video, get a clean 128 kbps MP3 audio file in seconds. No signup, no watermark, no email. Up to 25 MB.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function Mp4ToMp3Page() {

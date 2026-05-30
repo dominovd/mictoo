@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Dictado a texto — Transcripción gratis de dictado por voz | Mictoo',
   description: 'Convierte grabaciones de dictado a texto gratis. Ideal para escritores, médicos, abogados e investigadores. Soporta MP3, M4A, WAV. Sin registro.',
   alternates: { canonical: 'https://mictoo.com/es/dictation-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "Dictado a texto — Transcripción gratis de dictado por voz | Mictoo",
+    description: "Convierte grabaciones de dictado a texto gratis. Ideal para escritores, médicos, abogados e investigadores. Soporta MP3, M4A, WAV. Sin registro.",
+    url: "https://mictoo.com/es/dictation-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dictado a texto — Transcripción gratis de dictado por voz | Mictoo",
+    description: "Convierte grabaciones de dictado a texto gratis. Ideal para escritores, médicos, abogados e investigadores. Soporta MP3, M4A, WAV. Sin registro.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function EsDictationPage() {

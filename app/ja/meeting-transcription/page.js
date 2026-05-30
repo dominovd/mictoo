@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '無料AI会議文字起こし。任意のプラットフォームからの会議録画をアップロードして、数秒でクリーンなテキストを取得。登録不要、分単位課金なし、50以上の言語。',
   alternates: { canonical: 'https://mictoo.com/ja/meeting-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "会議文字起こし — 通話と会議用の無料AI文字起こし | Mictoo",
+    description: "無料AI会議文字起こし。任意のプラットフォームからの会議録画をアップロードして、数秒でクリーンなテキストを取得。登録不要、分単位課金なし、50以上の言語。",
+    url: "https://mictoo.com/ja/meeting-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "会議文字起こし — 通話と会議用の無料AI文字起こし | Mictoo",
+    description: "無料AI会議文字起こし。任意のプラットフォームからの会議録画をアップロードして、数秒でクリーンなテキストを取得。登録不要、分単位課金なし、50以上の言語。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaMeetingPage() {

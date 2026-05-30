@@ -18,6 +18,21 @@ export const metadata = {
   title: 'M4A를 텍스트로 — 무료 온라인 M4A 받아쓰기 | Mictoo',
   description: 'M4A 오디오 파일을 무료로 텍스트로 변환. iPhone 음성 메모, 녹음, 팟캐스트 등 모든 M4A 파일을 업로드하고 즉시 받아쓰기를 받으세요. 가입 불필요.',
   alternates: { canonical: 'https://mictoo.com/ko/m4a-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "M4A를 텍스트로 — 무료 온라인 M4A 받아쓰기 | Mictoo",
+    description: "M4A 오디오 파일을 무료로 텍스트로 변환. iPhone 음성 메모, 녹음, 팟캐스트 등 모든 M4A 파일을 업로드하고 즉시 받아쓰기를 받으세요. 가입 불필요.",
+    url: "https://mictoo.com/ko/m4a-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "M4A를 텍스트로 — 무료 온라인 M4A 받아쓰기 | Mictoo",
+    description: "M4A 오디오 파일을 무료로 텍스트로 변환. iPhone 음성 메모, 녹음, 팟캐스트 등 모든 M4A 파일을 업로드하고 즉시 받아쓰기를 받으세요. 가입 불필요.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoM4AToTextPage() {

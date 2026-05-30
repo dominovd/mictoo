@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Mictooの背後にいる人々、無料AI音声・動画文字起こしツール。動作の仕組み、収益化の方法、あなたのファイルにすること(としないこと)。',
   alternates: { canonical: 'https://mictoo.com/ja/about', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "Mictooについて — 無料AI文字起こしツール",
+    description: "Mictooの背後にいる人々、無料AI音声・動画文字起こしツール。動作の仕組み、収益化の方法、あなたのファイルにすること(としないこと)。",
+    url: "https://mictoo.com/ja/about",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mictooについて — 無料AI文字起こしツール",
+    description: "Mictooの背後にいる人々、無料AI音声・動画文字起こしツール。動作の仕組み、収益化の方法、あなたのファイルにすること(としないこと)。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaAboutPage() {

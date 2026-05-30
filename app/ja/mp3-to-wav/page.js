@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'MP3からWAVへの変換が無料オンラインで使えます。圧縮されたMP3を音声編集ソフト向けの非圧縮16ビット/44.1 kHz WAVに展開します。登録不要、ウォーターマークなし。',
   alternates: { canonical: 'https://mictoo.com/ja/mp3-to-wav', languages: LANGS },
+
+  openGraph: {
+    title: "MP3からWAVへ — 無料オンライン変換ツール | Mictoo",
+    description: "MP3からWAVへの変換が無料オンラインで使えます。圧縮されたMP3を音声編集ソフト向けの非圧縮16ビット/44.1 kHz WAVに展開します。登録不要、ウォーターマークなし。",
+    url: "https://mictoo.com/ja/mp3-to-wav",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3からWAVへ — 無料オンライン変換ツール | Mictoo",
+    description: "MP3からWAVへの変換が無料オンラインで使えます。圧縮されたMP3を音声編集ソフト向けの非圧縮16ビット/44.1 kHz WAVに展開します。登録不要、ウォーターマークなし。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaMp3ToWavPage() {

@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Transcrição IA grátis de reuniões. Envie qualquer gravação de reunião (de qualquer plataforma) e receba texto limpo em segundos. Sem cadastro, sem cobrança por minuto, mais de 50 idiomas.',
   alternates: { canonical: 'https://mictoo.com/pt/meeting-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Transcrição de reuniões — transcrição IA grátis para calls e reuniões | Mictoo",
+    description: "Transcrição IA grátis de reuniões. Envie qualquer gravação de reunião (de qualquer plataforma) e receba texto limpo em segundos. Sem cadastro, sem cobrança por minuto, mais de 50 idiomas.",
+    url: "https://mictoo.com/pt/meeting-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Transcrição de reuniões — transcrição IA grátis para calls e reuniões | Mictoo",
+    description: "Transcrição IA grátis de reuniões. Envie qualquer gravação de reunião (de qualquer plataforma) e receba texto limpo em segundos. Sem cadastro, sem cobrança por minuto, mais de 50 idiomas.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PtMeetingPage() {

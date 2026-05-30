@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Términos del servicio — Mictoo',
   description: 'Términos del servicio de la herramienta gratuita de transcripción Mictoo.',
   alternates: { canonical: 'https://mictoo.com/es/terms', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "Términos del servicio — Mictoo",
+    description: "Términos del servicio de la herramienta gratuita de transcripción Mictoo.",
+    url: "https://mictoo.com/es/terms",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Términos del servicio — Mictoo",
+    description: "Términos del servicio de la herramienta gratuita de transcripción Mictoo.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function EsTermsPage() {

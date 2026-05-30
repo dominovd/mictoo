@@ -16,6 +16,21 @@ export const metadata = {
   title: 'Jak skonwertować AAC na MP3 — darmowe metody (2026) | Mictoo',
   description: "Skonwertuj pliki AAC na MP3 za darmo. Trzy szybkie sposoby — konwerter online, QuickTime/VLC lub ffmpeg z wiersza poleceń. Wskazówka: Mictoo transkrybuje większość plików AAC bezpośrednio, bez konwersji.",
   alternates: { canonical: 'https://mictoo.com/pl/aac-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "Jak skonwertować AAC na MP3 — darmowe metody (2026) | Mictoo",
+    description: "Skonwertuj pliki AAC na MP3 za darmo. Trzy szybkie sposoby — konwerter online, QuickTime/VLC lub ffmpeg z wiersza poleceń. Wskazówka: Mictoo transkrybuje większość plików AAC bezpośrednio, bez konwersji.",
+    url: "https://mictoo.com/pl/aac-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jak skonwertować AAC na MP3 — darmowe metody (2026) | Mictoo",
+    description: "Skonwertuj pliki AAC na MP3 za darmo. Trzy szybkie sposoby — konwerter online, QuickTime/VLC lub ffmpeg z wiersza poleceń. Wskazówka: Mictoo transkrybuje większość plików AAC bezpośrednio, bez konwersji.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlAacToMp3Page() {

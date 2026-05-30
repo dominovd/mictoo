@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Descriptの代替 — 登録不要の無料文字起こし | Mictoo',
   description: '文字起こしだけのDescript代替をお探しですか?MictooはOpenAI Whisperを使った登録不要の無料AI文字起こしを提供します。エディターなし、サブスクリプションなし。',
   alternates: { canonical: 'https://mictoo.com/ja/descript-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Descriptの代替 — 登録不要の無料文字起こし | Mictoo",
+    description: "文字起こしだけのDescript代替をお探しですか?MictooはOpenAI Whisperを使った登録不要の無料AI文字起こしを提供します。エディターなし、サブスクリプションなし。",
+    url: "https://mictoo.com/ja/descript-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Descriptの代替 — 登録不要の無料文字起こし | Mictoo",
+    description: "文字起こしだけのDescript代替をお探しですか?MictooはOpenAI Whisperを使った登録不要の無料AI文字起こしを提供します。エディターなし、サブスクリプションなし。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaDescriptAlternativePage() {

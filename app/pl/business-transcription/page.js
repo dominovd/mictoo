@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Darmowa transkrypcja business. Calle sprzedażowe, customer interview, focus groups, posiedzenia zarządu, konferencje. Wgraj i otrzymaj czystą transkrypcję AI w kilka sekund. Bez rejestracji.',
   alternates: { canonical: 'https://mictoo.com/pl/business-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Transkrypcja business — darmowe narzędzie dla spotkań i calli | Mictoo",
+    description: "Darmowa transkrypcja business. Calle sprzedażowe, customer interview, focus groups, posiedzenia zarządu, konferencje. Wgraj i otrzymaj czystą transkrypcję AI w kilka sekund. Bez rejestracji.",
+    url: "https://mictoo.com/pl/business-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Transkrypcja business — darmowe narzędzie dla spotkań i calli | Mictoo",
+    description: "Darmowa transkrypcja business. Calle sprzedażowe, customer interview, focus groups, posiedzenia zarządu, konferencje. Wgraj i otrzymaj czystą transkrypcję AI w kilka sekund. Bez rejestracji.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlBusinessPage() {

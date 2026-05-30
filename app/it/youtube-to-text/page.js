@@ -18,6 +18,21 @@ export const metadata = {
   title: 'YouTube in testo — trascrivi video YouTube gratis | Mictoo',
   description: 'Trascrizione gratuita YouTube in testo. Scarica il video, rilascia il file, ottieni una trascrizione IA precisa. Meglio dei sottotitoli automatici di YouTube, con timecode ed export SRT.',
   alternates: { canonical: 'https://mictoo.com/it/youtube-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "YouTube in testo — trascrivi video YouTube gratis | Mictoo",
+    description: "Trascrizione gratuita YouTube in testo. Scarica il video, rilascia il file, ottieni una trascrizione IA precisa. Meglio dei sottotitoli automatici di YouTube, con timecode ed export SRT.",
+    url: "https://mictoo.com/it/youtube-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "YouTube in testo — trascrivi video YouTube gratis | Mictoo",
+    description: "Trascrizione gratuita YouTube in testo. Scarica il video, rilascia il file, ottieni una trascrizione IA precisa. Meglio dei sottotitoli automatici di YouTube, con timecode ed export SRT.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItYouTubeToTextPage() {

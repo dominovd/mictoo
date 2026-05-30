@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Бесплатная расшифровка Zoom. Загрузите Cloud Recording (MP4) или локальную запись (M4A) и получите точный AI-транскрипт за секунды. Без регистрации, без оплаты за минуту.',
   alternates: { canonical: 'https://mictoo.com/ru/zoom-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Расшифровка Zoom — бесплатная транскрибация записей Zoom | Mictoo",
+    description: "Бесплатная расшифровка Zoom. Загрузите Cloud Recording (MP4) или локальную запись (M4A) и получите точный AI-транскрипт за секунды. Без регистрации, без оплаты за минуту.",
+    url: "https://mictoo.com/ru/zoom-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Расшифровка Zoom — бесплатная транскрибация записей Zoom | Mictoo",
+    description: "Бесплатная расшифровка Zoom. Загрузите Cloud Recording (MP4) или локальную запись (M4A) и получите точный AI-транскрипт за секунды. Без регистрации, без оплаты за минуту.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuZoomPage() {

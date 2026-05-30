@@ -18,6 +18,21 @@ export const metadata = {
   title: '이용약관 — Mictoo',
   description: 'Mictoo 이용약관.',
   alternates: { canonical: 'https://mictoo.com/ko/terms', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "이용약관 — Mictoo",
+    description: "Mictoo 이용약관.",
+    url: "https://mictoo.com/ko/terms",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "이용약관 — Mictoo",
+    description: "Mictoo 이용약관.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoTermsPage() {

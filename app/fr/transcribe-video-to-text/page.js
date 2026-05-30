@@ -19,6 +19,21 @@ export const metadata = {
   description:
     "Transcription vidéo en texte gratuite. Déposez MP4, MOV, WEBM, AVI et obtenez une transcription IA ou un fichier SRT. Marche avec captures d'écran, tutoriels, vlogs.",
   alternates: { canonical: 'https://mictoo.com/fr/transcribe-video-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "Vidéo en texte — transcription gratuite en ligne | Mictoo",
+    description: "Transcription vidéo en texte gratuite. Déposez MP4, MOV, WEBM, AVI et obtenez une transcription IA ou un fichier SRT. Marche avec captures d'écran, tutoriels, vlogs.",
+    url: "https://mictoo.com/fr/transcribe-video-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vidéo en texte — transcription gratuite en ligne | Mictoo",
+    description: "Transcription vidéo en texte gratuite. Déposez MP4, MOV, WEBM, AVI et obtenez une transcription IA ou un fichier SRT. Marche avec captures d'écran, tutoriels, vlogs.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function FrVideoToTextPage() {

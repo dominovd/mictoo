@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Gerador grátis de legendas SRT. Envie seu arquivo de áudio ou vídeo e receba um .srt limpo com timecode em segundos. Funciona com YouTube, Premiere, DaVinci, CapCut.',
   alternates: { canonical: 'https://mictoo.com/pt/free-srt-generator', languages: LANGS },
+
+  openGraph: {
+    title: "Gerador SRT — crie arquivos SRT de legenda online | Mictoo",
+    description: "Gerador grátis de legendas SRT. Envie seu arquivo de áudio ou vídeo e receba um .srt limpo com timecode em segundos. Funciona com YouTube, Premiere, DaVinci, CapCut.",
+    url: "https://mictoo.com/pt/free-srt-generator",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Gerador SRT — crie arquivos SRT de legenda online | Mictoo",
+    description: "Gerador grátis de legendas SRT. Envie seu arquivo de áudio ou vídeo e receba um .srt limpo com timecode em segundos. Funciona com YouTube, Premiere, DaVinci, CapCut.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PtSrtPage() {

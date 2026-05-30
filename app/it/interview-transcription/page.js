@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Trascrizione intervista — generatore gratuito IA | Mictoo',
   description: 'Trascrizione intervista gratuita con IA. Carica la registrazione (MP3, M4A, MP4, WAV) e ottieni una trascrizione pulita con timecode in pochi secondi. Costruito per giornalisti e ricercatori.',
   alternates: { canonical: 'https://mictoo.com/it/interview-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Trascrizione intervista — generatore gratuito IA | Mictoo",
+    description: "Trascrizione intervista gratuita con IA. Carica la registrazione (MP3, M4A, MP4, WAV) e ottieni una trascrizione pulita con timecode in pochi secondi. Costruito per giornalisti e ricercatori.",
+    url: "https://mictoo.com/it/interview-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Trascrizione intervista — generatore gratuito IA | Mictoo",
+    description: "Trascrizione intervista gratuita con IA. Carica la registrazione (MP3, M4A, MP4, WAV) e ottieni una trascrizione pulita con timecode in pochi secondi. Costruito per giornalisti e ricercatori.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItInterviewPage() {

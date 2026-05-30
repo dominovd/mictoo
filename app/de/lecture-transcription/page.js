@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Kostenlose Vorlesungs-Transkription. Laden Sie die Aufnahme einer Vorlesung, eines Kurses oder Seminars (MP3, M4A, MP4) hoch und erhalten Sie in Sekunden sauberen Text. Gebaut für Studierende.',
   alternates: { canonical: 'https://mictoo.com/de/lecture-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Vorlesungs-Transkription — kostenloser Transkript-Generator | Mictoo",
+    description: "Kostenlose Vorlesungs-Transkription. Laden Sie die Aufnahme einer Vorlesung, eines Kurses oder Seminars (MP3, M4A, MP4) hoch und erhalten Sie in Sekunden sauberen Text. Gebaut für Studierende.",
+    url: "https://mictoo.com/de/lecture-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vorlesungs-Transkription — kostenloser Transkript-Generator | Mictoo",
+    description: "Kostenlose Vorlesungs-Transkription. Laden Sie die Aufnahme einer Vorlesung, eines Kurses oder Seminars (MP3, M4A, MP4) hoch und erhalten Sie in Sekunden sauberen Text. Gebaut für Studierende.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeLecturePage() {

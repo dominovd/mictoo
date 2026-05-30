@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '無料タイムコード付き文字起こし。あらゆる音声または動画の単語または文レベルのタイムコード。ジャーナリズム、研究、ポッドキャスティング、動画編集に最適。',
   alternates: { canonical: 'https://mictoo.com/ja/timestamped-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "タイムコード付き文字起こし — 無料ジェネレーター | Mictoo",
+    description: "無料タイムコード付き文字起こし。あらゆる音声または動画の単語または文レベルのタイムコード。ジャーナリズム、研究、ポッドキャスティング、動画編集に最適。",
+    url: "https://mictoo.com/ja/timestamped-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "タイムコード付き文字起こし — 無料ジェネレーター | Mictoo",
+    description: "無料タイムコード付き文字起こし。あらゆる音声または動画の単語または文レベルのタイムコード。ジャーナリズム、研究、ポッドキャスティング、動画編集に最適。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaTimestampedPage() {

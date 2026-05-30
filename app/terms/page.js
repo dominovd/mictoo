@@ -21,6 +21,21 @@ export const metadata = {
     canonical: 'https://mictoo.com/terms',
     languages: LOCALE_ALTERNATES,
   },
+
+  openGraph: {
+    title: "Terms of Service — Mictoo",
+    description: "Terms of service for Mictoo free transcription tool.",
+    url: "https://mictoo.com/terms",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service — Mictoo",
+    description: "Terms of service for Mictoo free transcription tool.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function TermsPage() {

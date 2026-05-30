@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Transcription de sermon — générateur gratuit de transcription | Mictoo',
   description: "Transcrivez gratuitement vos sermons et audios d'église en texte. Parfait pour les blogs, notes d'étude et l'accessibilité. Compatible MP3, MP4, M4A. Sans inscription.",
   alternates: { canonical: 'https://mictoo.com/fr/sermon-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Transcription de sermon — générateur gratuit de transcription | Mictoo",
+    description: "Transcrivez gratuitement vos sermons et audios d'église en texte. Parfait pour les blogs, notes d'étude et l'accessibilité. Compatible MP3, MP4, M4A. Sans inscription.",
+    url: "https://mictoo.com/fr/sermon-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Transcription de sermon — générateur gratuit de transcription | Mictoo",
+    description: "Transcrivez gratuitement vos sermons et audios d'église en texte. Parfait pour les blogs, notes d'étude et l'accessibilité. Compatible MP3, MP4, M4A. Sans inscription.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function FrSermonPage() {

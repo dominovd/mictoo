@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '無料Google Meet文字起こし。Driveからの録画(MP4またはM4A)をアップロードして、クリーンなAI文字起こしを数秒で取得。無料Google Workspaceで動作。',
   alternates: { canonical: 'https://mictoo.com/ja/google-meet-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Google Meet 文字起こし — Meet録画を無料で文字起こし | Mictoo",
+    description: "無料Google Meet文字起こし。Driveからの録画(MP4またはM4A)をアップロードして、クリーンなAI文字起こしを数秒で取得。無料Google Workspaceで動作。",
+    url: "https://mictoo.com/ja/google-meet-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Google Meet 文字起こし — Meet録画を無料で文字起こし | Mictoo",
+    description: "無料Google Meet文字起こし。Driveからの録画(MP4またはM4A)をアップロードして、クリーンなAI文字起こしを数秒で取得。無料Google Workspaceで動作。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaGoogleMeetPage() {

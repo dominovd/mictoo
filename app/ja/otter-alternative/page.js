@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Otterの代替 — ライブ会議ではなく録音を文字起こし | Mictoo',
   description: 'Otterはライブ会議のリアルタイム字幕用に作られています。Mictooはすでにある録音を文字起こし — 無料、登録不要、ボットなし。OpenAI Whisperベース。',
   alternates: { canonical: 'https://mictoo.com/ja/otter-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Otterの代替 — ライブ会議ではなく録音を文字起こし | Mictoo",
+    description: "Otterはライブ会議のリアルタイム字幕用に作られています。Mictooはすでにある録音を文字起こし — 無料、登録不要、ボットなし。OpenAI Whisperベース。",
+    url: "https://mictoo.com/ja/otter-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Otterの代替 — ライブ会議ではなく録音を文字起こし | Mictoo",
+    description: "Otterはライブ会議のリアルタイム字幕用に作られています。Mictooはすでにある録音を文字起こし — 無料、登録不要、ボットなし。OpenAI Whisperベース。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaOtterAlternativePage() {

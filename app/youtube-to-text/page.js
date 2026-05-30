@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/youtube-to-text',
     },
   },
+
+  openGraph: {
+    title: "YouTube to Text — Transcribe YouTube Videos Free | Mictoo",
+    description: "Free YouTube to text transcription. Download the video, drop the file, get an accurate AI transcript. Better than YouTube auto-captions, with timestamps and SRT export.",
+    url: "https://mictoo.com/youtube-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "YouTube to Text — Transcribe YouTube Videos Free | Mictoo",
+    description: "Free YouTube to text transcription. Download the video, drop the file, get an accurate AI transcript. Better than YouTube auto-captions, with timestamps and SRT export.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function YouTubeToTextPage() {

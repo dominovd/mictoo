@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Descript-Alternative — Kostenlose Transkription ohne Anmeldung | Mictoo',
   description: 'Suchen Sie eine Descript-Alternative nur für die Transkription? Mictoo bietet kostenlose KI-Transkription ohne Anmeldung, basierend auf OpenAI Whisper. Kein Editor, kein Abo.',
   alternates: { canonical: 'https://mictoo.com/de/descript-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Descript-Alternative — Kostenlose Transkription ohne Anmeldung | Mictoo",
+    description: "Suchen Sie eine Descript-Alternative nur für die Transkription? Mictoo bietet kostenlose KI-Transkription ohne Anmeldung, basierend auf OpenAI Whisper. Kein Editor, kein Abo.",
+    url: "https://mictoo.com/de/descript-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Descript-Alternative — Kostenlose Transkription ohne Anmeldung | Mictoo",
+    description: "Suchen Sie eine Descript-Alternative nur für die Transkription? Mictoo bietet kostenlose KI-Transkription ohne Anmeldung, basierend auf OpenAI Whisper. Kein Editor, kein Abo.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeDescriptAlternativePage() {

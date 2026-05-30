@@ -16,6 +16,21 @@ export const metadata = {
   title: 'AAC를 MP3로 변환하는 방법 — 무료 방법 (2026) | Mictoo',
   description: "AAC 오디오 파일을 무료로 MP3로 변환하세요. 온라인 컨버터, QuickTime/VLC, ffmpeg 명령줄의 세 가지 빠른 방법. 팁: Mictoo는 대부분의 AAC 파일을 변환 없이 바로 받아들입니다.",
   alternates: { canonical: 'https://mictoo.com/ko/aac-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "AAC를 MP3로 변환하는 방법 — 무료 방법 (2026) | Mictoo",
+    description: "AAC 오디오 파일을 무료로 MP3로 변환하세요. 온라인 컨버터, QuickTime/VLC, ffmpeg 명령줄의 세 가지 빠른 방법. 팁: Mictoo는 대부분의 AAC 파일을 변환 없이 바로 받아들입니다.",
+    url: "https://mictoo.com/ko/aac-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AAC를 MP3로 변환하는 방법 — 무료 방법 (2026) | Mictoo",
+    description: "AAC 오디오 파일을 무료로 MP3로 변환하세요. 온라인 컨버터, QuickTime/VLC, ffmpeg 명령줄의 세 가지 빠른 방법. 팁: Mictoo는 대부분의 AAC 파일을 변환 없이 바로 받아들입니다.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoAacToMp3Page() {

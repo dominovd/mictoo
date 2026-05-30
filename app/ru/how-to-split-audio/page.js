@@ -16,6 +16,21 @@ export const metadata = {
   title: 'Как разделить длинное аудио для расшифровки — Бесплатные способы | Mictoo',
   description: 'Три бесплатных способа разделить длинную запись на короткие части для расшифровки: онлайн-инструменты, Audacity или ffmpeg. Работает с MP3, M4A, WAV, MP4 и другими форматами.',
   alternates: { canonical: 'https://mictoo.com/ru/how-to-split-audio', languages: LANGS },
+
+  openGraph: {
+    title: "Как разделить длинное аудио для расшифровки — Бесплатные способы | Mictoo",
+    description: "Три бесплатных способа разделить длинную запись на короткие части для расшифровки: онлайн-инструменты, Audacity или ffmpeg. Работает с MP3, M4A, WAV, MP4 и другими форматами.",
+    url: "https://mictoo.com/ru/how-to-split-audio",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Как разделить длинное аудио для расшифровки — Бесплатные способы | Mictoo",
+    description: "Три бесплатных способа разделить длинную запись на короткие части для расшифровки: онлайн-инструменты, Audacity или ffmpeg. Работает с MP3, M4A, WAV, MP4 и другими форматами.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuHowToSplitAudioPage() {

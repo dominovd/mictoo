@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/webinar-transcription',
     },
   },
+
+  openGraph: {
+    title: "Webinar Transcription — Free Transcript for Webinar Recordings | Mictoo",
+    description: "Free webinar transcription. Upload your recording from Zoom, Webex, GoToWebinar, Demio, or any platform. Clean AI transcript with timestamps in seconds.",
+    url: "https://mictoo.com/webinar-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Webinar Transcription — Free Transcript for Webinar Recordings | Mictoo",
+    description: "Free webinar transcription. Upload your recording from Zoom, Webex, GoToWebinar, Demio, or any platform. Clean AI transcript with timestamps in seconds.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function WebinarTranscriptionPage() {

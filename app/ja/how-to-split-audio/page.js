@@ -16,6 +16,21 @@ export const metadata = {
   title: '長い音声ファイルを文字起こし用に分割する方法 — 無料の方法 | Mictoo',
   description: '長い録音を文字起こし用に短い部分に分割する3つの無料の方法：オンラインツール、Audacity、ffmpeg。MP3、M4A、WAV、MP4などに対応。',
   alternates: { canonical: 'https://mictoo.com/ja/how-to-split-audio', languages: LANGS },
+
+  openGraph: {
+    title: "長い音声ファイルを文字起こし用に分割する方法 — 無料の方法 | Mictoo",
+    description: "長い録音を文字起こし用に短い部分に分割する3つの無料の方法：オンラインツール、Audacity、ffmpeg。MP3、M4A、WAV、MP4などに対応。",
+    url: "https://mictoo.com/ja/how-to-split-audio",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "長い音声ファイルを文字起こし用に分割する方法 — 無料の方法 | Mictoo",
+    description: "長い録音を文字起こし用に短い部分に分割する3つの無料の方法：オンラインツール、Audacity、ffmpeg。MP3、M4A、WAV、MP4などに対応。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaHowToSplitAudioPage() {

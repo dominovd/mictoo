@@ -20,6 +20,21 @@ export const metadata = {
   description:
     "Convertissez FLAC en MP3 gratuitement en ligne. Réduisez du FLAC sans perte en MP3 à 128 kbps en quelques secondes. Sans inscription, sans filigrane. Jusqu'à 25 Mo.",
   alternates: { canonical: 'https://mictoo.com/fr/flac-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "FLAC vers MP3 — convertisseur en ligne gratuit | Mictoo",
+    description: "Convertissez FLAC en MP3 gratuitement en ligne. Réduisez du FLAC sans perte en MP3 à 128 kbps en quelques secondes. Sans inscription, sans filigrane. Jusqu'à 25 Mo.",
+    url: "https://mictoo.com/fr/flac-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FLAC vers MP3 — convertisseur en ligne gratuit | Mictoo",
+    description: "Convertissez FLAC en MP3 gratuitement en ligne. Réduisez du FLAC sans perte en MP3 à 128 kbps en quelques secondes. Sans inscription, sans filigrane. Jusqu'à 25 Mo.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function FrFlacToMp3Page() {

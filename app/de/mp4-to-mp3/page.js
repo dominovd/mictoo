@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'MP4 zu MP3 kostenlos online konvertieren. Video ablegen, in Sekunden eine saubere MP3-Audiodatei mit 128 kbps erhalten. Ohne Anmeldung, ohne Wasserzeichen, ohne E-Mail. Bis zu 25 MB.',
   alternates: { canonical: 'https://mictoo.com/de/mp4-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "MP4 zu MP3 — kostenloser Online-Konverter | Mictoo",
+    description: "MP4 zu MP3 kostenlos online konvertieren. Video ablegen, in Sekunden eine saubere MP3-Audiodatei mit 128 kbps erhalten. Ohne Anmeldung, ohne Wasserzeichen, ohne E-Mail. Bis zu 25 MB.",
+    url: "https://mictoo.com/de/mp4-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP4 zu MP3 — kostenloser Online-Konverter | Mictoo",
+    description: "MP4 zu MP3 kostenlos online konvertieren. Video ablegen, in Sekunden eine saubere MP3-Audiodatei mit 128 kbps erhalten. Ohne Anmeldung, ohne Wasserzeichen, ohne E-Mail. Bis zu 25 MB.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeMp4ToMp3Page() {

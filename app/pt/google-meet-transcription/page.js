@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Transcrição Google Meet grátis. Envie sua gravação do Drive (MP4 ou M4A) e receba uma transcrição IA limpa em segundos. Funciona com Google Workspace grátis.',
   alternates: { canonical: 'https://mictoo.com/pt/google-meet-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Transcrição do Google Meet — transcreva gravações Meet grátis | Mictoo",
+    description: "Transcrição Google Meet grátis. Envie sua gravação do Drive (MP4 ou M4A) e receba uma transcrição IA limpa em segundos. Funciona com Google Workspace grátis.",
+    url: "https://mictoo.com/pt/google-meet-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Transcrição do Google Meet — transcreva gravações Meet grátis | Mictoo",
+    description: "Transcrição Google Meet grátis. Envie sua gravação do Drive (MP4 ou M4A) e receba uma transcrição IA limpa em segundos. Funciona com Google Workspace grátis.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PtGoogleMeetPage() {

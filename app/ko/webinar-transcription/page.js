@@ -18,6 +18,21 @@ export const metadata = {
   title: '웨비나 받아쓰기 — 녹화의 무료 받아쓰기 | Mictoo',
   description: '웨비나 녹화를 텍스트와 SRT 자막으로 무료로 받아쓰기. Zoom, Webex, GoToWebinar 및 모든 MP4·MP3 내보내기와 작동. 가입 불필요.',
   alternates: { canonical: 'https://mictoo.com/ko/webinar-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "웨비나 받아쓰기 — 녹화의 무료 받아쓰기 | Mictoo",
+    description: "웨비나 녹화를 텍스트와 SRT 자막으로 무료로 받아쓰기. Zoom, Webex, GoToWebinar 및 모든 MP4·MP3 내보내기와 작동. 가입 불필요.",
+    url: "https://mictoo.com/ko/webinar-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "웨비나 받아쓰기 — 녹화의 무료 받아쓰기 | Mictoo",
+    description: "웨비나 녹화를 텍스트와 SRT 자막으로 무료로 받아쓰기. Zoom, Webex, GoToWebinar 및 모든 MP4·MP3 내보내기와 작동. 가입 불필요.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoWebinarPage() {

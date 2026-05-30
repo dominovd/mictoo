@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/ogg-to-text',
     },
   },
+
+  openGraph: {
+    title: "OGG to Text — Free OGG Audio Transcription Online | Mictoo",
+    description: "Free OGG to text converter. Upload any OGG file (Vorbis, Opus, FLAC inside OGG, Telegram .oga voice notes). Clean AI transcript in seconds, 50+ languages.",
+    url: "https://mictoo.com/ogg-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OGG to Text — Free OGG Audio Transcription Online | Mictoo",
+    description: "Free OGG to text converter. Upload any OGG file (Vorbis, Opus, FLAC inside OGG, Telegram .oga voice notes). Clean AI transcript in seconds, 50+ languages.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function OggToTextPage() {

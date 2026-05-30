@@ -18,6 +18,21 @@ export const metadata = {
   title: '개인정보처리방침 — Mictoo',
   description: 'Mictoo 개인정보처리방침. 오디오 파일이나 받아쓰기를 저장하지 않습니다.',
   alternates: { canonical: 'https://mictoo.com/ko/privacy', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "개인정보처리방침 — Mictoo",
+    description: "Mictoo 개인정보처리방침. 오디오 파일이나 받아쓰기를 저장하지 않습니다.",
+    url: "https://mictoo.com/ko/privacy",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "개인정보처리방침 — Mictoo",
+    description: "Mictoo 개인정보처리방침. 오디오 파일이나 받아쓰기를 저장하지 않습니다.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoPrivacyPage() {

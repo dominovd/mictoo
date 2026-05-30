@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Kostenlose KI-Meeting-Transkription. Laden Sie eine beliebige Meeting-Aufnahme (von jeder Plattform) hoch und erhalten Sie in Sekunden sauberen Text. Ohne Anmeldung, ohne Tarif pro Minute, über 50 Sprachen.',
   alternates: { canonical: 'https://mictoo.com/de/meeting-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Meeting-Transkription — kostenloses KI-Transkript für Calls und Meetings | Mictoo",
+    description: "Kostenlose KI-Meeting-Transkription. Laden Sie eine beliebige Meeting-Aufnahme (von jeder Plattform) hoch und erhalten Sie in Sekunden sauberen Text. Ohne Anmeldung, ohne Tarif pro Minute, über 50 Sprachen.",
+    url: "https://mictoo.com/de/meeting-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Meeting-Transkription — kostenloses KI-Transkript für Calls und Meetings | Mictoo",
+    description: "Kostenlose KI-Meeting-Transkription. Laden Sie eine beliebige Meeting-Aufnahme (von jeder Plattform) hoch und erhalten Sie in Sekunden sauberen Text. Ohne Anmeldung, ohne Tarif pro Minute, über 50 Sprachen.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeMeetingPage() {

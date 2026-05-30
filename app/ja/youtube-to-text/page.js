@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '無料YouTubeテキスト文字起こし。動画をダウンロードしてファイルをドロップすれば、正確なAI文字起こし。YouTubeの自動字幕より良い、タイムコードとSRTエクスポート付き。',
   alternates: { canonical: 'https://mictoo.com/ja/youtube-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "YouTubeをテキストに — YouTube動画を無料文字起こし | Mictoo",
+    description: "無料YouTubeテキスト文字起こし。動画をダウンロードしてファイルをドロップすれば、正確なAI文字起こし。YouTubeの自動字幕より良い、タイムコードとSRTエクスポート付き。",
+    url: "https://mictoo.com/ja/youtube-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "YouTubeをテキストに — YouTube動画を無料文字起こし | Mictoo",
+    description: "無料YouTubeテキスト文字起こし。動画をダウンロードしてファイルをドロップすれば、正確なAI文字起こし。YouTubeの自動字幕より良い、タイムコードとSRTエクスポート付き。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaYouTubeToTextPage() {

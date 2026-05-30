@@ -18,6 +18,21 @@ export const metadata = {
   title: 'AAC в текст — Бесплатная расшифровка AAC онлайн | Mictoo',
   description: 'Бесплатная расшифровка AAC-аудиофайлов в текст. Перетащите .aac, .m4a или другой AAC-закодированный файл и получите точную расшифровку за несколько секунд.',
   alternates: { canonical: 'https://mictoo.com/ru/aac-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "AAC в текст — Бесплатная расшифровка AAC онлайн | Mictoo",
+    description: "Бесплатная расшифровка AAC-аудиофайлов в текст. Перетащите .aac, .m4a или другой AAC-закодированный файл и получите точную расшифровку за несколько секунд.",
+    url: "https://mictoo.com/ru/aac-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AAC в текст — Бесплатная расшифровка AAC онлайн | Mictoo",
+    description: "Бесплатная расшифровка AAC-аудиофайлов в текст. Перетащите .aac, .m4a или другой AAC-закодированный файл и получите точную расшифровку за несколько секунд.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuAacToTextPage() {

@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/transcribe-audio-to-text',
     },
   },
+
+  openGraph: {
+    title: "Audio to Text — Free Online Audio Transcription | Mictoo",
+    description: "Free online audio to text converter. Drop any audio file (MP3, WAV, M4A, FLAC, OGG, AAC) and get a clean transcript in seconds. No signup, 50+ languages.",
+    url: "https://mictoo.com/transcribe-audio-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Audio to Text — Free Online Audio Transcription | Mictoo",
+    description: "Free online audio to text converter. Drop any audio file (MP3, WAV, M4A, FLAC, OGG, AAC) and get a clean transcript in seconds. No signup, 50+ languages.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function AudioToTextPage() {

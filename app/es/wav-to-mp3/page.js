@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'Convierta WAV a MP3 gratis en línea. Reduzca archivos WAV sin pérdida a MP3 portátiles de 128 kbps en segundos. Sin registro, sin marca de agua. Hasta 25 MB.',
   alternates: { canonical: 'https://mictoo.com/es/wav-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "WAV a MP3 — conversor en línea gratuito | Mictoo",
+    description: "Convierta WAV a MP3 gratis en línea. Reduzca archivos WAV sin pérdida a MP3 portátiles de 128 kbps en segundos. Sin registro, sin marca de agua. Hasta 25 MB.",
+    url: "https://mictoo.com/es/wav-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WAV a MP3 — conversor en línea gratuito | Mictoo",
+    description: "Convierta WAV a MP3 gratis en línea. Reduzca archivos WAV sin pérdida a MP3 portátiles de 128 kbps en segundos. Sin registro, sin marca de agua. Hasta 25 MB.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function EsWavToMp3Page() {

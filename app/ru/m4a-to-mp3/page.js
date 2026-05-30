@@ -16,6 +16,21 @@ export const metadata = {
   title: 'Как конвертировать M4A в MP3 — бесплатные способы (или пропустить) | Mictoo',
   description: "Конвертируйте M4A в MP3 за секунды бесплатными онлайн-инструментами, QuickTime, VLC или ffmpeg. К сведению: большинство приложений (включая Mictoo) принимают M4A напрямую — возможно, конвертация и не нужна.",
   alternates: { canonical: 'https://mictoo.com/ru/m4a-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "Как конвертировать M4A в MP3 — бесплатные способы (или пропустить) | Mictoo",
+    description: "Конвертируйте M4A в MP3 за секунды бесплатными онлайн-инструментами, QuickTime, VLC или ffmpeg. К сведению: большинство приложений (включая Mictoo) принимают M4A напрямую — возможно, конвертация и не нужна.",
+    url: "https://mictoo.com/ru/m4a-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Как конвертировать M4A в MP3 — бесплатные способы (или пропустить) | Mictoo",
+    description: "Конвертируйте M4A в MP3 за секунды бесплатными онлайн-инструментами, QuickTime, VLC или ffmpeg. К сведению: большинство приложений (включая Mictoo) принимают M4A напрямую — возможно, конвертация и не нужна.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuM4aToMp3Page() {

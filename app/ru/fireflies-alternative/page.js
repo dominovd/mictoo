@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Альтернатива Fireflies — Расшифровка встреч без бота | Mictoo',
   description: 'Fireflies подключается к вашим встречам как бот, чтобы записать и расшифровать. Mictoo расшифровывает уже имеющиеся записи — без бота, без регистрации, без OAuth. Бесплатно на OpenAI Whisper.',
   alternates: { canonical: 'https://mictoo.com/ru/fireflies-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Альтернатива Fireflies — Расшифровка встреч без бота | Mictoo",
+    description: "Fireflies подключается к вашим встречам как бот, чтобы записать и расшифровать. Mictoo расшифровывает уже имеющиеся записи — без бота, без регистрации, без OAuth. Бесплатно на OpenAI Whisper.",
+    url: "https://mictoo.com/ru/fireflies-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Альтернатива Fireflies — Расшифровка встреч без бота | Mictoo",
+    description: "Fireflies подключается к вашим встречам как бот, чтобы записать и расшифровать. Mictoo расшифровывает уже имеющиеся записи — без бота, без регистрации, без OAuth. Бесплатно на OpenAI Whisper.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuFirefliesAlternativePage() {

@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Transkrypcja kazań — Darmowy generator transkryptów kazań | Mictoo',
   description: 'Transkrybuj kazania i audio kościelne na tekst za darmo. Idealne do blogów, notatek do studium i dostępności. Obsługuje MP3, MP4, M4A. Bez rejestracji.',
   alternates: { canonical: 'https://mictoo.com/pl/sermon-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Transkrypcja kazań — Darmowy generator transkryptów kazań | Mictoo",
+    description: "Transkrybuj kazania i audio kościelne na tekst za darmo. Idealne do blogów, notatek do studium i dostępności. Obsługuje MP3, MP4, M4A. Bez rejestracji.",
+    url: "https://mictoo.com/pl/sermon-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Transkrypcja kazań — Darmowy generator transkryptów kazań | Mictoo",
+    description: "Transkrybuj kazania i audio kościelne na tekst za darmo. Idealne do blogów, notatek do studium i dostępności. Obsługuje MP3, MP4, M4A. Bez rejestracji.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlSermonPage() {

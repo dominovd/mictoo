@@ -16,6 +16,21 @@ export const metadata = {
   title: 'M4AをMP3に変換する方法 — 無料の方法（または不要）| Mictoo',
   description: "無料のオンラインツール、QuickTime、VLC、ffmpegでM4Aを数秒でMP3に変換。注意：ほとんどのアプリ（Mictooを含む）はM4Aを直接受け付けるため、変換が不要な場合もあります。",
   alternates: { canonical: 'https://mictoo.com/ja/m4a-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "M4AをMP3に変換する方法 — 無料の方法（または不要）| Mictoo",
+    description: "無料のオンラインツール、QuickTime、VLC、ffmpegでM4Aを数秒でMP3に変換。注意：ほとんどのアプリ（Mictooを含む）はM4Aを直接受け付けるため、変換が不要な場合もあります。",
+    url: "https://mictoo.com/ja/m4a-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "M4AをMP3に変換する方法 — 無料の方法（または不要）| Mictoo",
+    description: "無料のオンラインツール、QuickTime、VLC、ffmpegでM4Aを数秒でMP3に変換。注意：ほとんどのアプリ（Mictooを含む）はM4Aを直接受け付けるため、変換が不要な場合もあります。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaM4aToMp3Page() {

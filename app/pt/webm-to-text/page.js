@@ -18,6 +18,21 @@ export const metadata = {
   title: 'WEBM em texto — Transcrição de WEBM grátis online | Mictoo',
   description: 'Converta arquivos de áudio e vídeo WEBM em texto grátis online. Envie qualquer gravação WEBM e receba uma transcrição precisa na hora. Sem cadastro.',
   alternates: { canonical: 'https://mictoo.com/pt/webm-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "WEBM em texto — Transcrição de WEBM grátis online | Mictoo",
+    description: "Converta arquivos de áudio e vídeo WEBM em texto grátis online. Envie qualquer gravação WEBM e receba uma transcrição precisa na hora. Sem cadastro.",
+    url: "https://mictoo.com/pt/webm-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WEBM em texto — Transcrição de WEBM grátis online | Mictoo",
+    description: "Converta arquivos de áudio e vídeo WEBM em texto grátis online. Envie qualquer gravação WEBM e receba uma transcrição precisa na hora. Sem cadastro.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PtWebmToTextPage() {

@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '무료 Zoom 받아쓰기. Cloud Recording(MP4) 또는 로컬 녹화(M4A)를 업로드하여 정확한 AI 받아쓰기를 몇 초 만에 받으세요. 가입 불필요, 분당 과금 없음.',
   alternates: { canonical: 'https://mictoo.com/ko/zoom-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Zoom 받아쓰기 — Zoom 녹화를 무료로 받아쓰기 | Mictoo",
+    description: "무료 Zoom 받아쓰기. Cloud Recording(MP4) 또는 로컬 녹화(M4A)를 업로드하여 정확한 AI 받아쓰기를 몇 초 만에 받으세요. 가입 불필요, 분당 과금 없음.",
+    url: "https://mictoo.com/ko/zoom-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zoom 받아쓰기 — Zoom 녹화를 무료로 받아쓰기 | Mictoo",
+    description: "무료 Zoom 받아쓰기. Cloud Recording(MP4) 또는 로컬 녹화(M4A)를 업로드하여 정확한 AI 받아쓰기를 몇 초 만에 받으세요. 가입 불필요, 분당 과금 없음.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoZoomPage() {

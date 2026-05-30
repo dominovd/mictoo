@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Бесплатная расшифровка голосовых заметок. Загрузите iPhone Voice Memo или запись с Android (M4A, MP3) и получите чистый текст за секунды. Без регистрации.',
   alternates: { canonical: 'https://mictoo.com/ru/voice-memo-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "Голосовая заметка в текст — расшифровка iPhone Voice Memos | Mictoo",
+    description: "Бесплатная расшифровка голосовых заметок. Загрузите iPhone Voice Memo или запись с Android (M4A, MP3) и получите чистый текст за секунды. Без регистрации.",
+    url: "https://mictoo.com/ru/voice-memo-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Голосовая заметка в текст — расшифровка iPhone Voice Memos | Mictoo",
+    description: "Бесплатная расшифровка голосовых заметок. Загрузите iPhone Voice Memo или запись с Android (M4A, MP3) и получите чистый текст за секунды. Без регистрации.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuVoiceMemoPage() {

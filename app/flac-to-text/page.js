@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/flac-to-text',
     },
   },
+
+  openGraph: {
+    title: "FLAC to Text — Free FLAC Audio Transcription Online | Mictoo",
+    description: "Free FLAC to text converter. Upload any FLAC audio file and get a clean AI transcript in seconds. Lossless compressed audio, 50+ languages, no signup.",
+    url: "https://mictoo.com/flac-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FLAC to Text — Free FLAC Audio Transcription Online | Mictoo",
+    description: "Free FLAC to text converter. Upload any FLAC audio file and get a clean AI transcript in seconds. Lossless compressed audio, 50+ languages, no signup.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function FlacToTextPage() {

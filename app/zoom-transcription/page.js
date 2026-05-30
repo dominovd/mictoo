@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/zoom-transcription',
     },
   },
+
+  openGraph: {
+    title: "Zoom Transcription — Transcribe Zoom Recordings Free | Mictoo",
+    description: "Free Zoom transcription. Upload your Zoom Cloud Recording (MP4) or local recording (M4A) and get an accurate AI transcript in seconds. No signup, no per-minute fee.",
+    url: "https://mictoo.com/zoom-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zoom Transcription — Transcribe Zoom Recordings Free | Mictoo",
+    description: "Free Zoom transcription. Upload your Zoom Cloud Recording (MP4) or local recording (M4A) and get an accurate AI transcript in seconds. No signup, no per-minute fee.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ZoomTranscriptionPage() {

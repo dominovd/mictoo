@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Условия использования — Mictoo',
   description: 'Условия использования бесплатного сервиса транскрибации Mictoo.',
   alternates: { canonical: 'https://mictoo.com/ru/terms', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "Условия использования — Mictoo",
+    description: "Условия использования бесплатного сервиса транскрибации Mictoo.",
+    url: "https://mictoo.com/ru/terms",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Условия использования — Mictoo",
+    description: "Условия использования бесплатного сервиса транскрибации Mictoo.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuTermsPage() {

@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Otter-Alternative — Aufnahmen transkribieren, nicht Live-Meetings | Mictoo',
   description: 'Otter ist auf Live-Meeting-Transkription mit Echtzeit-Untertiteln gebaut. Mictoo transkribiert Aufnahmen, die Sie bereits haben — kostenlos, ohne Anmeldung, ohne Bot. Angetrieben von OpenAI Whisper.',
   alternates: { canonical: 'https://mictoo.com/de/otter-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Otter-Alternative — Aufnahmen transkribieren, nicht Live-Meetings | Mictoo",
+    description: "Otter ist auf Live-Meeting-Transkription mit Echtzeit-Untertiteln gebaut. Mictoo transkribiert Aufnahmen, die Sie bereits haben — kostenlos, ohne Anmeldung, ohne Bot. Angetrieben von OpenAI Whisper.",
+    url: "https://mictoo.com/de/otter-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Otter-Alternative — Aufnahmen transkribieren, nicht Live-Meetings | Mictoo",
+    description: "Otter ist auf Live-Meeting-Transkription mit Echtzeit-Untertiteln gebaut. Mictoo transkribiert Aufnahmen, die Sie bereits haben — kostenlos, ohne Anmeldung, ohne Bot. Angetrieben von OpenAI Whisper.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeOtterAlternativePage() {

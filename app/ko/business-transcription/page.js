@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '무료 비즈니스 받아쓰기. 영업 통화, 고객 인터뷰, 포커스 그룹, 이사회 회의, 컨퍼런스. 업로드하여 몇 초 만에 깨끗한 AI 받아쓰기. 가입 불필요.',
   alternates: { canonical: 'https://mictoo.com/ko/business-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "비즈니스 받아쓰기 — 회의와 통화용 무료 도구 | Mictoo",
+    description: "무료 비즈니스 받아쓰기. 영업 통화, 고객 인터뷰, 포커스 그룹, 이사회 회의, 컨퍼런스. 업로드하여 몇 초 만에 깨끗한 AI 받아쓰기. 가입 불필요.",
+    url: "https://mictoo.com/ko/business-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "비즈니스 받아쓰기 — 회의와 통화용 무료 도구 | Mictoo",
+    description: "무료 비즈니스 받아쓰기. 영업 통화, 고객 인터뷰, 포커스 그룹, 이사회 회의, 컨퍼런스. 업로드하여 몇 초 만에 깨끗한 AI 받아쓰기. 가입 불필요.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoBusinessPage() {

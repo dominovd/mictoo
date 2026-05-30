@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/aac-to-text',
     },
   },
+
+  openGraph: {
+    title: "AAC to Text — Free AAC Audio Transcription Online | Mictoo",
+    description: "Free AAC to text converter. Upload any AAC audio file (.aac, .adts, AAC-in-MP4). Clean AI transcript in seconds, 50+ languages, no signup.",
+    url: "https://mictoo.com/aac-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AAC to Text — Free AAC Audio Transcription Online | Mictoo",
+    description: "Free AAC to text converter. Upload any AAC audio file (.aac, .adts, AAC-in-MP4). Clean AI transcript in seconds, 50+ languages, no signup.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function AacToTextPage() {

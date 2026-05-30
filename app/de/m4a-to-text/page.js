@@ -18,6 +18,21 @@ export const metadata = {
   title: 'M4A zu Text — Kostenlose M4A-Transkription online | Mictoo',
   description: 'M4A-Audiodateien kostenlos in Text umwandeln. Laden Sie eine beliebige M4A-Datei hoch — iPhone-Sprachmemos, Aufnahmen, Podcasts — und erhalten Sie sofort eine Transkription. Ohne Anmeldung.',
   alternates: { canonical: 'https://mictoo.com/de/m4a-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "M4A zu Text — Kostenlose M4A-Transkription online | Mictoo",
+    description: "M4A-Audiodateien kostenlos in Text umwandeln. Laden Sie eine beliebige M4A-Datei hoch — iPhone-Sprachmemos, Aufnahmen, Podcasts — und erhalten Sie sofort eine Transkription. Ohne Anmeldung.",
+    url: "https://mictoo.com/de/m4a-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "M4A zu Text — Kostenlose M4A-Transkription online | Mictoo",
+    description: "M4A-Audiodateien kostenlos in Text umwandeln. Laden Sie eine beliebige M4A-Datei hoch — iPhone-Sprachmemos, Aufnahmen, Podcasts — und erhalten Sie sofort eine Transkription. Ohne Anmeldung.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeM4AToTextPage() {

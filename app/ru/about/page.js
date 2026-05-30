@@ -18,6 +18,21 @@ export const metadata = {
   title: 'О сервисе — Mictoo, бесплатная транскрибация на ИИ',
   description: 'О Mictoo, бесплатном AI-сервисе расшифровки аудио и видео. Кто стоит за ним, как работает, как зарабатывает, и что мы делаем (и не делаем) с вашими файлами.',
   alternates: { canonical: 'https://mictoo.com/ru/about', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "О сервисе — Mictoo, бесплатная транскрибация на ИИ",
+    description: "О Mictoo, бесплатном AI-сервисе расшифровки аудио и видео. Кто стоит за ним, как работает, как зарабатывает, и что мы делаем (и не делаем) с вашими файлами.",
+    url: "https://mictoo.com/ru/about",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "О сервисе — Mictoo, бесплатная транскрибация на ИИ",
+    description: "О Mictoo, бесплатном AI-сервисе расшифровки аудио и видео. Кто стоит за ним, как работает, как зарабатывает, и что мы делаем (и не делаем) с вашими файлами.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuAboutPage() {

@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/webm-to-text',
     },
   },
+
+  openGraph: {
+    title: "WEBM to Text — Free WEBM Transcription Online | Mictoo",
+    description: "Free WEBM to text converter. Upload any WEBM audio or video file (Discord recordings, browser MediaRecorder, web app exports). Clean AI transcript in seconds.",
+    url: "https://mictoo.com/webm-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WEBM to Text — Free WEBM Transcription Online | Mictoo",
+    description: "Free WEBM to text converter. Upload any WEBM audio or video file (Discord recordings, browser MediaRecorder, web app exports). Clean AI transcript in seconds.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function WebmToTextPage() {

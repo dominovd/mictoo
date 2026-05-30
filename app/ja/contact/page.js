@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Mictooお問い合わせ。info@mictoo.comは実際の人間の受信箱に届きます。1営業日以内に返信。サポート範囲、ビジネス問い合わせ、FAQショートカット。',
   alternates: { canonical: 'https://mictoo.com/ja/contact', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "お問い合わせ — Mictoo",
+    description: "Mictooお問い合わせ。info@mictoo.comは実際の人間の受信箱に届きます。1営業日以内に返信。サポート範囲、ビジネス問い合わせ、FAQショートカット。",
+    url: "https://mictoo.com/ja/contact",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "お問い合わせ — Mictoo",
+    description: "Mictooお問い合わせ。info@mictoo.comは実際の人間の受信箱に届きます。1営業日以内に返信。サポート範囲、ビジネス問い合わせ、FAQショートカット。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaContactPage() {

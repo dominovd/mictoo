@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '無料の動画テキスト文字起こし。MP4、MOV、WEBM、AVIをアップロードしてAI文字起こしまたはSRT字幕ファイルを取得。スクリーンレコーディング、チュートリアル、ブログに対応。',
   alternates: { canonical: 'https://mictoo.com/ja/transcribe-video-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "動画をテキストに — 無料オンライン文字起こし | Mictoo",
+    description: "無料の動画テキスト文字起こし。MP4、MOV、WEBM、AVIをアップロードしてAI文字起こしまたはSRT字幕ファイルを取得。スクリーンレコーディング、チュートリアル、ブログに対応。",
+    url: "https://mictoo.com/ja/transcribe-video-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "動画をテキストに — 無料オンライン文字起こし | Mictoo",
+    description: "無料の動画テキスト文字起こし。MP4、MOV、WEBM、AVIをアップロードしてAI文字起こしまたはSRT字幕ファイルを取得。スクリーンレコーディング、チュートリアル、ブログに対応。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaVideoToTextPage() {

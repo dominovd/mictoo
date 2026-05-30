@@ -21,6 +21,21 @@ export const metadata = {
     canonical: 'https://mictoo.com/about',
     languages: LOCALE_ALTERNATES,
   },
+
+  openGraph: {
+    title: "About Mictoo — Free AI Transcription Tool",
+    description: "About Mictoo, a free AI audio and video transcription tool. Who built it, how it works, how we make money, and what we will and will not do with your files.",
+    url: "https://mictoo.com/about",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Mictoo — Free AI Transcription Tool",
+    description: "About Mictoo, a free AI audio and video transcription tool. Who built it, how it works, how we make money, and what we will and will not do with your files.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function AboutPage() {

@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Diktat zu Text — Kostenlose Transkription von Sprachdiktat | Mictoo',
   description: 'Wandeln Sie diktierte Audioaufnahmen kostenlos in Text um. Ideal für Autoren, Ärzte, Anwälte und Forscher. Unterstützt MP3, M4A, WAV. Ohne Anmeldung.',
   alternates: { canonical: 'https://mictoo.com/de/dictation-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "Diktat zu Text — Kostenlose Transkription von Sprachdiktat | Mictoo",
+    description: "Wandeln Sie diktierte Audioaufnahmen kostenlos in Text um. Ideal für Autoren, Ärzte, Anwälte und Forscher. Unterstützt MP3, M4A, WAV. Ohne Anmeldung.",
+    url: "https://mictoo.com/de/dictation-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Diktat zu Text — Kostenlose Transkription von Sprachdiktat | Mictoo",
+    description: "Wandeln Sie diktierte Audioaufnahmen kostenlos in Text um. Ideal für Autoren, Ärzte, Anwälte und Forscher. Unterstützt MP3, M4A, WAV. Ohne Anmeldung.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeDictationPage() {

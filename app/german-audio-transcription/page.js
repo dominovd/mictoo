@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/german-audio-transcription',
     },
   },
+
+  openGraph: {
+    title: "German Audio Transcription — Free AI Speech to Text | Mictoo",
+    description: "Free German audio transcription. Upload any German audio (MP3, M4A, MP4, WAV). Handles Hochdeutsch, Austrian German, Swiss German. 50+ languages, no signup.",
+    url: "https://mictoo.com/german-audio-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "German Audio Transcription — Free AI Speech to Text | Mictoo",
+    description: "Free German audio transcription. Upload any German audio (MP3, M4A, MP4, WAV). Handles Hochdeutsch, Austrian German, Swiss German. 50+ languages, no signup.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function GermanAudioTranscriptionPage() {

@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '無料Microsoft Teams文字起こし。OneDriveまたはSharePointからの録画(MP4)をアップロードして、クリーンなAI文字起こしを数秒で取得。登録不要。',
   alternates: { canonical: 'https://mictoo.com/ja/teams-meeting-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Microsoft Teams文字起こし — 会議を文字起こし | Mictoo",
+    description: "無料Microsoft Teams文字起こし。OneDriveまたはSharePointからの録画(MP4)をアップロードして、クリーンなAI文字起こしを数秒で取得。登録不要。",
+    url: "https://mictoo.com/ja/teams-meeting-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Microsoft Teams文字起こし — 会議を文字起こし | Mictoo",
+    description: "無料Microsoft Teams文字起こし。OneDriveまたはSharePointからの録画(MP4)をアップロードして、クリーンなAI文字起こしを数秒で取得。登録不要。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaTeamsPage() {

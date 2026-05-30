@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/transcribe-mp3-to-text',
     },
   },
+
+  openGraph: {
+    title: "MP3 to Text — Free AI MP3 Transcription Online | Mictoo",
+    description: "Free MP3 to text converter. Upload any MP3 file and get a clean AI transcript in seconds. Works with podcasts, interviews, lectures. 50+ languages, no signup.",
+    url: "https://mictoo.com/transcribe-mp3-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3 to Text — Free AI MP3 Transcription Online | Mictoo",
+    description: "Free MP3 to text converter. Upload any MP3 file and get a clean AI transcript in seconds. Works with podcasts, interviews, lectures. 50+ languages, no signup.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function Mp3ToTextPage() {

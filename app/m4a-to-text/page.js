@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/m4a-to-text',
     },
   },
+
+  openGraph: {
+    title: "M4A to Text — Free M4A Transcription Online | Mictoo",
+    description: "Free M4A to text converter. Upload iPhone Voice Memos, Apple Music recordings, podcast M4As. Clean AI transcript in seconds, 50+ languages, no signup.",
+    url: "https://mictoo.com/m4a-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "M4A to Text — Free M4A Transcription Online | Mictoo",
+    description: "Free M4A to text converter. Upload iPhone Voice Memos, Apple Music recordings, podcast M4As. Clean AI transcript in seconds, 50+ languages, no signup.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function M4aToTextPage() {

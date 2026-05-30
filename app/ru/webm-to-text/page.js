@@ -18,6 +18,21 @@ export const metadata = {
   title: 'WEBM в текст — Бесплатная расшифровка WEBM онлайн | Mictoo',
   description: 'Бесплатная конвертация WEBM-аудио и видео в текст онлайн. Загрузите любую WEBM-запись и получите точную расшифровку мгновенно. Без регистрации.',
   alternates: { canonical: 'https://mictoo.com/ru/webm-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "WEBM в текст — Бесплатная расшифровка WEBM онлайн | Mictoo",
+    description: "Бесплатная конвертация WEBM-аудио и видео в текст онлайн. Загрузите любую WEBM-запись и получите точную расшифровку мгновенно. Без регистрации.",
+    url: "https://mictoo.com/ru/webm-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WEBM в текст — Бесплатная расшифровка WEBM онлайн | Mictoo",
+    description: "Бесплатная конвертация WEBM-аудио и видео в текст онлайн. Загрузите любую WEBM-запись и получите точную расшифровку мгновенно. Без регистрации.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuWebmToTextPage() {

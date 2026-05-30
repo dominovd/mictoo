@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '무료 강의 받아쓰기. 강의, 코스 또는 세미나 녹화(MP3, M4A, MP4)를 업로드하여 깨끗한 텍스트를 몇 초 만에 받으세요. 학생용.',
   alternates: { canonical: 'https://mictoo.com/ko/lecture-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "강의 받아쓰기 — 무료 AI 생성기 | Mictoo",
+    description: "무료 강의 받아쓰기. 강의, 코스 또는 세미나 녹화(MP3, M4A, MP4)를 업로드하여 깨끗한 텍스트를 몇 초 만에 받으세요. 학생용.",
+    url: "https://mictoo.com/ko/lecture-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "강의 받아쓰기 — 무료 AI 생성기 | Mictoo",
+    description: "무료 강의 받아쓰기. 강의, 코스 또는 세미나 녹화(MP3, M4A, MP4)를 업로드하여 깨끗한 텍스트를 몇 초 만에 받으세요. 학생용.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoLecturePage() {

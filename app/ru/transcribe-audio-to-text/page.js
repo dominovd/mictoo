@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Бесплатный конвертер аудио в текст. Загрузите любой аудиофайл (MP3, WAV, M4A, FLAC, OGG, AAC) и получите чистую расшифровку за секунды. Без регистрации, 50+ языков.',
   alternates: { canonical: 'https://mictoo.com/ru/transcribe-audio-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "Аудио в текст — бесплатная онлайн-расшифровка | Mictoo",
+    description: "Бесплатный конвертер аудио в текст. Загрузите любой аудиофайл (MP3, WAV, M4A, FLAC, OGG, AAC) и получите чистую расшифровку за секунды. Без регистрации, 50+ языков.",
+    url: "https://mictoo.com/ru/transcribe-audio-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Аудио в текст — бесплатная онлайн-расшифровка | Mictoo",
+    description: "Бесплатный конвертер аудио в текст. Загрузите любой аудиофайл (MP3, WAV, M4A, FLAC, OGG, AAC) и получите чистую расшифровку за секунды. Без регистрации, 50+ языков.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuAudioToTextPage() {

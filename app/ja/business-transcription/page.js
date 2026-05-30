@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '無料ビジネス文字起こし。営業通話、カスタマーインタビュー、フォーカスグループ、取締役会、カンファレンス。アップロードして数秒でクリーンなAI文字起こし。登録不要。',
   alternates: { canonical: 'https://mictoo.com/ja/business-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "ビジネス文字起こし — 会議と通話用の無料ツール | Mictoo",
+    description: "無料ビジネス文字起こし。営業通話、カスタマーインタビュー、フォーカスグループ、取締役会、カンファレンス。アップロードして数秒でクリーンなAI文字起こし。登録不要。",
+    url: "https://mictoo.com/ja/business-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ビジネス文字起こし — 会議と通話用の無料ツール | Mictoo",
+    description: "無料ビジネス文字起こし。営業通話、カスタマーインタビュー、フォーカスグループ、取締役会、カンファレンス。アップロードして数秒でクリーンなAI文字起こし。登録不要。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaBusinessPage() {

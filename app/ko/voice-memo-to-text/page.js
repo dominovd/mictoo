@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '무료 음성 메모 받아쓰기. iPhone 음성 메모 또는 Android 녹음(M4A, MP3)을 드롭하여 깨끗한 텍스트를 몇 초 만에 받으세요. 가입 불필요.',
   alternates: { canonical: 'https://mictoo.com/ko/voice-memo-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "음성 메모를 텍스트로 — iPhone Voice Memos 무료 받아쓰기 | Mictoo",
+    description: "무료 음성 메모 받아쓰기. iPhone 음성 메모 또는 Android 녹음(M4A, MP3)을 드롭하여 깨끗한 텍스트를 몇 초 만에 받으세요. 가입 불필요.",
+    url: "https://mictoo.com/ko/voice-memo-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "음성 메모를 텍스트로 — iPhone Voice Memos 무료 받아쓰기 | Mictoo",
+    description: "무료 음성 메모 받아쓰기. iPhone 음성 메모 또는 Android 녹음(M4A, MP3)을 드롭하여 깨끗한 텍스트를 몇 초 만에 받으세요. 가입 불필요.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoVoiceMemoPage() {

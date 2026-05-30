@@ -16,6 +16,21 @@ export const metadata = {
   title: '긴 오디오 파일을 전사용으로 분할하는 방법 — 무료 방법 | Mictoo',
   description: '긴 녹음을 전사용으로 짧은 부분으로 분할하는 세 가지 무료 방법: 온라인 도구, Audacity 또는 ffmpeg. MP3, M4A, WAV, MP4 등 지원.',
   alternates: { canonical: 'https://mictoo.com/ko/how-to-split-audio', languages: LANGS },
+
+  openGraph: {
+    title: "긴 오디오 파일을 전사용으로 분할하는 방법 — 무료 방법 | Mictoo",
+    description: "긴 녹음을 전사용으로 짧은 부분으로 분할하는 세 가지 무료 방법: 온라인 도구, Audacity 또는 ffmpeg. MP3, M4A, WAV, MP4 등 지원.",
+    url: "https://mictoo.com/ko/how-to-split-audio",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "긴 오디오 파일을 전사용으로 분할하는 방법 — 무료 방법 | Mictoo",
+    description: "긴 녹음을 전사용으로 짧은 부분으로 분할하는 세 가지 무료 방법: 온라인 도구, Audacity 또는 ffmpeg. MP3, M4A, WAV, MP4 등 지원.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoHowToSplitAudioPage() {

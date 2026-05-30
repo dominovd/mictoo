@@ -16,6 +16,21 @@ export const metadata = {
   title: 'WMAをMP3に変換する方法 — 無料の方法（2026年）| Mictoo',
   description: "WMA（Windows Media Audio）を無料でMP3に変換。オンラインコンバーター、VLC、Audacity、ffmpegから合うものを選択。その後、MictooでMP3をテキストに文字起こし。",
   alternates: { canonical: 'https://mictoo.com/ja/wma-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "WMAをMP3に変換する方法 — 無料の方法（2026年）| Mictoo",
+    description: "WMA（Windows Media Audio）を無料でMP3に変換。オンラインコンバーター、VLC、Audacity、ffmpegから合うものを選択。その後、MictooでMP3をテキストに文字起こし。",
+    url: "https://mictoo.com/ja/wma-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WMAをMP3に変換する方法 — 無料の方法（2026年）| Mictoo",
+    description: "WMA（Windows Media Audio）を無料でMP3に変換。オンラインコンバーター、VLC、Audacity、ffmpegから合うものを選択。その後、MictooでMP3をテキストに文字起こし。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaWmaToMp3Page() {

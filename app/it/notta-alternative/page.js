@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Alternativa a Notta — Trascrizione gratis senza limiti mensili | Mictoo',
   description: 'Notta limita gli utenti gratis a 120 minuti al mese e ogni trascrizione a 3 minuti. Mictoo è gratis, senza registrazione, senza quota mensile di minuti — basato su OpenAI Whisper.',
   alternates: { canonical: 'https://mictoo.com/it/notta-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Alternativa a Notta — Trascrizione gratis senza limiti mensili | Mictoo",
+    description: "Notta limita gli utenti gratis a 120 minuti al mese e ogni trascrizione a 3 minuti. Mictoo è gratis, senza registrazione, senza quota mensile di minuti — basato su OpenAI Whisper.",
+    url: "https://mictoo.com/it/notta-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Alternativa a Notta — Trascrizione gratis senza limiti mensili | Mictoo",
+    description: "Notta limita gli utenti gratis a 120 minuti al mese e ogni trascrizione a 3 minuti. Mictoo è gratis, senza registrazione, senza quota mensile di minuti — basato su OpenAI Whisper.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItNottaAlternativePage() {

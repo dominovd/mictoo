@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'Konwertuj MP4 na MP3 online za darmo. Upuść swój film, dostań czysty plik audio MP3 128 kbps w kilka sekund. Bez rejestracji, bez znaku wodnego, bez emaila. Do 25 MB.',
   alternates: { canonical: 'https://mictoo.com/pl/mp4-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "MP4 na MP3 — darmowy konwerter online | Mictoo",
+    description: "Konwertuj MP4 na MP3 online za darmo. Upuść swój film, dostań czysty plik audio MP3 128 kbps w kilka sekund. Bez rejestracji, bez znaku wodnego, bez emaila. Do 25 MB.",
+    url: "https://mictoo.com/pl/mp4-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP4 na MP3 — darmowy konwerter online | Mictoo",
+    description: "Konwertuj MP4 na MP3 online za darmo. Upuść swój film, dostań czysty plik audio MP3 128 kbps w kilka sekund. Bez rejestracji, bez znaku wodnego, bez emaila. Do 25 MB.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlMp4ToMp3Page() {

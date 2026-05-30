@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Dettatura in testo — Trascrizione gratis di dettatura vocale | Mictoo',
   description: 'Converti gratis le tue dettature audio in testo. Ideale per scrittori, medici, avvocati e ricercatori. Supporta MP3, M4A, WAV. Senza registrazione.',
   alternates: { canonical: 'https://mictoo.com/it/dictation-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "Dettatura in testo — Trascrizione gratis di dettatura vocale | Mictoo",
+    description: "Converti gratis le tue dettature audio in testo. Ideale per scrittori, medici, avvocati e ricercatori. Supporta MP3, M4A, WAV. Senza registrazione.",
+    url: "https://mictoo.com/it/dictation-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dettatura in testo — Trascrizione gratis di dettatura vocale | Mictoo",
+    description: "Converti gratis le tue dettature audio in testo. Ideale per scrittori, medici, avvocati e ricercatori. Supporta MP3, M4A, WAV. Senza registrazione.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItDictationPage() {

@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/sermon-transcription',
     },
   },
+
+  openGraph: {
+    title: "Sermon Transcription — Free Transcript Generator for Sermons | Mictoo",
+    description: "Free sermon transcription. Upload your service recording (MP3, MP4, M4A, WAV) and get a clean AI transcript in seconds. Built for churches, pastors, and study notes.",
+    url: "https://mictoo.com/sermon-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sermon Transcription — Free Transcript Generator for Sermons | Mictoo",
+    description: "Free sermon transcription. Upload your service recording (MP3, MP4, M4A, WAV) and get a clean AI transcript in seconds. Built for churches, pastors, and study notes.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function SermonTranscriptionPage() {

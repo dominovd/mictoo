@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Бесплатная расшифровка YouTube в текст. Скачайте видео, загрузите файл, получите точную AI-расшифровку. Лучше чем авто-субтитры YouTube, с таймкодами и SRT-экспортом.',
   alternates: { canonical: 'https://mictoo.com/ru/youtube-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "YouTube в текст — бесплатная расшифровка видео YouTube | Mictoo",
+    description: "Бесплатная расшифровка YouTube в текст. Скачайте видео, загрузите файл, получите точную AI-расшифровку. Лучше чем авто-субтитры YouTube, с таймкодами и SRT-экспортом.",
+    url: "https://mictoo.com/ru/youtube-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "YouTube в текст — бесплатная расшифровка видео YouTube | Mictoo",
+    description: "Бесплатная расшифровка YouTube в текст. Скачайте видео, загрузите файл, получите точную AI-расшифровку. Лучше чем авто-субтитры YouTube, с таймкодами и SRT-экспортом.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuYouTubeToTextPage() {

@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '무료 타임코드 받아쓰기. 모든 오디오나 비디오의 단어 또는 문장 수준 타임코드. 저널리즘, 연구, 팟캐스팅, 비디오 편집에 완벽.',
   alternates: { canonical: 'https://mictoo.com/ko/timestamped-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "타임코드 받아쓰기 — 무료 생성기 | Mictoo",
+    description: "무료 타임코드 받아쓰기. 모든 오디오나 비디오의 단어 또는 문장 수준 타임코드. 저널리즘, 연구, 팟캐스팅, 비디오 편집에 완벽.",
+    url: "https://mictoo.com/ko/timestamped-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "타임코드 받아쓰기 — 무료 생성기 | Mictoo",
+    description: "무료 타임코드 받아쓰기. 모든 오디오나 비디오의 단어 또는 문장 수준 타임코드. 저널리즘, 연구, 팟캐스팅, 비디오 편집에 완벽.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoTimestampedPage() {

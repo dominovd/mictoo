@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Kostenloser MP3-zu-Text-Konverter. Laden Sie eine beliebige MP3 hoch und erhalten Sie in Sekunden ein sauberes KI-Transkript. Funktioniert mit Podcasts, Interviews, Vorlesungen. Über 50 Sprachen, ohne Anmeldung.',
   alternates: { canonical: 'https://mictoo.com/de/transcribe-mp3-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "MP3 in Text — kostenlose KI-MP3-Transkription | Mictoo",
+    description: "Kostenloser MP3-zu-Text-Konverter. Laden Sie eine beliebige MP3 hoch und erhalten Sie in Sekunden ein sauberes KI-Transkript. Funktioniert mit Podcasts, Interviews, Vorlesungen. Über 50 Sprachen, ohne Anmeldung.",
+    url: "https://mictoo.com/de/transcribe-mp3-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3 in Text — kostenlose KI-MP3-Transkription | Mictoo",
+    description: "Kostenloser MP3-zu-Text-Konverter. Laden Sie eine beliebige MP3 hoch und erhalten Sie in Sekunden ein sauberes KI-Transkript. Funktioniert mit Podcasts, Interviews, Vorlesungen. Über 50 Sprachen, ohne Anmeldung.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeMp3ToTextPage() {

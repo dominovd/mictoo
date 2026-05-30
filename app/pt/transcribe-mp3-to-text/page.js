@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Conversor grátis MP3 em texto. Envie qualquer MP3 e receba transcrição IA em segundos. Funciona com podcasts, entrevistas, aulas. Mais de 50 idiomas, sem cadastro.',
   alternates: { canonical: 'https://mictoo.com/pt/transcribe-mp3-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "MP3 em texto — transcrição grátis de MP3 com IA | Mictoo",
+    description: "Conversor grátis MP3 em texto. Envie qualquer MP3 e receba transcrição IA em segundos. Funciona com podcasts, entrevistas, aulas. Mais de 50 idiomas, sem cadastro.",
+    url: "https://mictoo.com/pt/transcribe-mp3-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3 em texto — transcrição grátis de MP3 com IA | Mictoo",
+    description: "Conversor grátis MP3 em texto. Envie qualquer MP3 e receba transcrição IA em segundos. Funciona com podcasts, entrevistas, aulas. Mais de 50 idiomas, sem cadastro.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PtMp3ToTextPage() {

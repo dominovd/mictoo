@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Бесплатная расшифровка Google Meet. Загрузите запись Meet из Drive (MP4 или M4A) и получите чистую AI-расшифровку за секунды. Работает на бесплатном Google Workspace.',
   alternates: { canonical: 'https://mictoo.com/ru/google-meet-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Расшифровка Google Meet — бесплатная транскрибация записей | Mictoo",
+    description: "Бесплатная расшифровка Google Meet. Загрузите запись Meet из Drive (MP4 или M4A) и получите чистую AI-расшифровку за секунды. Работает на бесплатном Google Workspace.",
+    url: "https://mictoo.com/ru/google-meet-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Расшифровка Google Meet — бесплатная транскрибация записей | Mictoo",
+    description: "Бесплатная расшифровка Google Meet. Загрузите запись Meet из Drive (MP4 или M4A) и получите чистую AI-расшифровку за секунды. Работает на бесплатном Google Workspace.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuGoogleMeetPage() {

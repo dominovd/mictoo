@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Darmowa transkrypcja ze znacznikami czasu. Otrzymaj timecode na słowo lub zdanie dla dowolnego audio lub wideo. Idealne dla dziennikarstwa, badań, podcastingu, edycji wideo.',
   alternates: { canonical: 'https://mictoo.com/pl/timestamped-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Transkrypcja ze znacznikami czasu — darmowy generator | Mictoo",
+    description: "Darmowa transkrypcja ze znacznikami czasu. Otrzymaj timecode na słowo lub zdanie dla dowolnego audio lub wideo. Idealne dla dziennikarstwa, badań, podcastingu, edycji wideo.",
+    url: "https://mictoo.com/pl/timestamped-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Transkrypcja ze znacznikami czasu — darmowy generator | Mictoo",
+    description: "Darmowa transkrypcja ze znacznikami czasu. Otrzymaj timecode na słowo lub zdanie dla dowolnego audio lub wideo. Idealne dla dziennikarstwa, badań, podcastingu, edycji wideo.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlTimestampedPage() {

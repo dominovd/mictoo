@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Conversor gratuito de MP3 a texto. Sube cualquier MP3 y obtén una transcripción con IA en segundos. Funciona con podcasts, entrevistas y clases. Más de 50 idiomas, sin registro.',
   alternates: { canonical: 'https://mictoo.com/es/transcribe-mp3-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "MP3 a texto — transcripción gratuita con IA | Mictoo",
+    description: "Conversor gratuito de MP3 a texto. Sube cualquier MP3 y obtén una transcripción con IA en segundos. Funciona con podcasts, entrevistas y clases. Más de 50 idiomas, sin registro.",
+    url: "https://mictoo.com/es/transcribe-mp3-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3 a texto — transcripción gratuita con IA | Mictoo",
+    description: "Conversor gratuito de MP3 a texto. Sube cualquier MP3 y obtén una transcripción con IA en segundos. Funciona con podcasts, entrevistas y clases. Más de 50 idiomas, sin registro.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function EsMp3ToTextPage() {

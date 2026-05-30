@@ -19,6 +19,21 @@ export const metadata = {
   description:
     "Transcription IA gratuite de podcast. Chargez votre épisode (MP3, MP4, M4A, WAV) et obtenez une transcription propre et horodatée en quelques secondes. Sans inscription, sans tarif à la minute.",
   alternates: { canonical: 'https://mictoo.com/fr/podcast-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Transcription de podcast — générateur IA gratuit | Mictoo",
+    description: "Transcription IA gratuite de podcast. Chargez votre épisode (MP3, MP4, M4A, WAV) et obtenez une transcription propre et horodatée en quelques secondes. Sans inscription, sans tarif à la minute.",
+    url: "https://mictoo.com/fr/podcast-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Transcription de podcast — générateur IA gratuit | Mictoo",
+    description: "Transcription IA gratuite de podcast. Chargez votre épisode (MP3, MP4, M4A, WAV) et obtenez une transcription propre et horodatée en quelques secondes. Sans inscription, sans tarif à la minute.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function FrPodcastPage() {

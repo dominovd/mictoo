@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'MP4からMP3への変換が無料オンラインで使えます。動画ファイルをドロップするだけで、数秒できれいな128 kbpsのMP3音声ファイルが手に入ります。登録不要、ウォーターマークなし、メール不要。最大25 MBまで。',
   alternates: { canonical: 'https://mictoo.com/ja/mp4-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "MP4からMP3へ — 無料オンライン変換ツール | Mictoo",
+    description: "MP4からMP3への変換が無料オンラインで使えます。動画ファイルをドロップするだけで、数秒できれいな128 kbpsのMP3音声ファイルが手に入ります。登録不要、ウォーターマークなし、メール不要。最大25 MBまで。",
+    url: "https://mictoo.com/ja/mp4-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP4からMP3へ — 無料オンライン変換ツール | Mictoo",
+    description: "MP4からMP3への変換が無料オンラインで使えます。動画ファイルをドロップするだけで、数秒できれいな128 kbpsのMP3音声ファイルが手に入ります。登録不要、ウォーターマークなし、メール不要。最大25 MBまで。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaMp4ToMp3Page() {

@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Альтернатива Otter — Расшифровка записей, не live-встреч | Mictoo',
   description: 'Otter сделан для live-расшифровки встреч с субтитрами в реальном времени. Mictoo расшифровывает уже имеющиеся записи — бесплатно, без регистрации, без бота. На OpenAI Whisper.',
   alternates: { canonical: 'https://mictoo.com/ru/otter-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Альтернатива Otter — Расшифровка записей, не live-встреч | Mictoo",
+    description: "Otter сделан для live-расшифровки встреч с субтитрами в реальном времени. Mictoo расшифровывает уже имеющиеся записи — бесплатно, без регистрации, без бота. На OpenAI Whisper.",
+    url: "https://mictoo.com/ru/otter-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Альтернатива Otter — Расшифровка записей, не live-встреч | Mictoo",
+    description: "Otter сделан для live-расшифровки встреч с субтитрами в реальном времени. Mictoo расшифровывает уже имеющиеся записи — бесплатно, без регистрации, без бота. На OpenAI Whisper.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuOtterAlternativePage() {

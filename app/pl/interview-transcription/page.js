@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Darmowa transkrypcja wywiadu z AI. Prześlij swoje nagranie (MP3, M4A, MP4, WAV) i otrzymaj czystą transkrypcję z timecode w kilka sekund. Zbudowane dla dziennikarzy i badaczy.',
   alternates: { canonical: 'https://mictoo.com/pl/interview-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Transkrypcja wywiadu — darmowy generator AI | Mictoo",
+    description: "Darmowa transkrypcja wywiadu z AI. Prześlij swoje nagranie (MP3, M4A, MP4, WAV) i otrzymaj czystą transkrypcję z timecode w kilka sekund. Zbudowane dla dziennikarzy i badaczy.",
+    url: "https://mictoo.com/pl/interview-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Transkrypcja wywiadu — darmowy generator AI | Mictoo",
+    description: "Darmowa transkrypcja wywiadu z AI. Prześlij swoje nagranie (MP3, M4A, MP4, WAV) i otrzymaj czystą transkrypcję z timecode w kilka sekund. Zbudowane dla dziennikarzy i badaczy.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlInterviewPage() {

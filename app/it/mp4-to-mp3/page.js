@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'Converti MP4 in MP3 online gratis. Trascina il tuo video, ottieni un file audio MP3 pulito a 128 kbps in pochi secondi. Senza registrazione, senza filigrana, senza email. Fino a 25 MB.',
   alternates: { canonical: 'https://mictoo.com/it/mp4-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "MP4 in MP3 — convertitore online gratuito | Mictoo",
+    description: "Converti MP4 in MP3 online gratis. Trascina il tuo video, ottieni un file audio MP3 pulito a 128 kbps in pochi secondi. Senza registrazione, senza filigrana, senza email. Fino a 25 MB.",
+    url: "https://mictoo.com/it/mp4-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP4 in MP3 — convertitore online gratuito | Mictoo",
+    description: "Converti MP4 in MP3 online gratis. Trascina il tuo video, ottieni un file audio MP3 pulito a 128 kbps in pochi secondi. Senza registrazione, senza filigrana, senza email. Fino a 25 MB.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItMp4ToMp3Page() {

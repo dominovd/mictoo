@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/free-srt-generator',
     },
   },
+
+  openGraph: {
+    title: "Free SRT Generator — Create SRT Subtitle Files Online | Mictoo",
+    description: "Free SRT subtitle generator. Upload your audio or video file and get a clean .srt file with timestamps in seconds. Works with YouTube, Premiere, DaVinci, CapCut.",
+    url: "https://mictoo.com/free-srt-generator",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free SRT Generator — Create SRT Subtitle Files Online | Mictoo",
+    description: "Free SRT subtitle generator. Upload your audio or video file and get a clean .srt file with timestamps in seconds. Works with YouTube, Premiere, DaVinci, CapCut.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function SrtGeneratorPage() {

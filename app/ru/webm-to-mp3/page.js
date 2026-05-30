@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'Конвертируйте WEBM в MP3 бесплатно онлайн. Вытащите MP3-аудио из любого WEBM-видео или аудиофайла за секунды. Без регистрации, без водяного знака. До 25 MB.',
   alternates: { canonical: 'https://mictoo.com/ru/webm-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "WEBM в MP3 — бесплатный онлайн-конвертер | Mictoo",
+    description: "Конвертируйте WEBM в MP3 бесплатно онлайн. Вытащите MP3-аудио из любого WEBM-видео или аудиофайла за секунды. Без регистрации, без водяного знака. До 25 MB.",
+    url: "https://mictoo.com/ru/webm-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WEBM в MP3 — бесплатный онлайн-конвертер | Mictoo",
+    description: "Конвертируйте WEBM в MP3 бесплатно онлайн. Вытащите MP3-аудио из любого WEBM-видео или аудиофайла за секунды. Без регистрации, без водяного знака. До 25 MB.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuWebmToMp3Page() {

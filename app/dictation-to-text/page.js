@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/dictation-to-text',
     },
   },
+
+  openGraph: {
+    title: "Dictation to Text — Free Voice Dictation Transcription | Mictoo",
+    description: "Free dictation to text. Record a draft by voice, drop the file, get clean text. Built for writers, professionals, and anyone who thinks faster than they type.",
+    url: "https://mictoo.com/dictation-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dictation to Text — Free Voice Dictation Transcription | Mictoo",
+    description: "Free dictation to text. Record a draft by voice, drop the file, get clean text. Built for writers, professionals, and anyone who thinks faster than they type.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DictationToTextPage() {

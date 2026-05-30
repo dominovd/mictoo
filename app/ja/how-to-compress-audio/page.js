@@ -16,6 +16,21 @@ export const metadata = {
   title: '文字起こし用に音声を圧縮する方法 — 無料の方法 | Mictoo',
   description: '文字起こし用に音声・動画ファイルを25 MB未満に縮小する3つの無料の方法: 音声を抽出、ビットレートを下げる、ファイルを分割。ソフトウェアのインストール不要。',
   alternates: { canonical: 'https://mictoo.com/ja/how-to-compress-audio', languages: LANGS },
+
+  openGraph: {
+    title: "文字起こし用に音声を圧縮する方法 — 無料の方法 | Mictoo",
+    description: "文字起こし用に音声・動画ファイルを25 MB未満に縮小する3つの無料の方法: 音声を抽出、ビットレートを下げる、ファイルを分割。ソフトウェアのインストール不要。",
+    url: "https://mictoo.com/ja/how-to-compress-audio",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "文字起こし用に音声を圧縮する方法 — 無料の方法 | Mictoo",
+    description: "文字起こし用に音声・動画ファイルを25 MB未満に縮小する3つの無料の方法: 音声を抽出、ビットレートを下げる、ファイルを分割。ソフトウェアのインストール不要。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaHowToCompressAudioPage() {

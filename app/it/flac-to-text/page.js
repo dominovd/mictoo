@@ -18,6 +18,21 @@ export const metadata = {
   title: 'FLAC in testo — Trascrizione audio FLAC gratis online | Mictoo',
   description: 'Converti file FLAC in testo gratis online. Carica qualsiasi registrazione FLAC e ottieni una trascrizione precisa in pochi secondi. Senza registrazione.',
   alternates: { canonical: 'https://mictoo.com/it/flac-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "FLAC in testo — Trascrizione audio FLAC gratis online | Mictoo",
+    description: "Converti file FLAC in testo gratis online. Carica qualsiasi registrazione FLAC e ottieni una trascrizione precisa in pochi secondi. Senza registrazione.",
+    url: "https://mictoo.com/it/flac-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FLAC in testo — Trascrizione audio FLAC gratis online | Mictoo",
+    description: "Converti file FLAC in testo gratis online. Carica qualsiasi registrazione FLAC e ottieni una trascrizione precisa in pochi secondi. Senza registrazione.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItFlacToTextPage() {

@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Диктовка в текст — Бесплатная расшифровка голосовой диктовки | Mictoo',
   description: 'Бесплатная конвертация надиктованных аудиозаписей в текст. Подходит для писателей, врачей, юристов и исследователей. Поддержка MP3, M4A, WAV. Без регистрации.',
   alternates: { canonical: 'https://mictoo.com/ru/dictation-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "Диктовка в текст — Бесплатная расшифровка голосовой диктовки | Mictoo",
+    description: "Бесплатная конвертация надиктованных аудиозаписей в текст. Подходит для писателей, врачей, юристов и исследователей. Поддержка MP3, M4A, WAV. Без регистрации.",
+    url: "https://mictoo.com/ru/dictation-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Диктовка в текст — Бесплатная расшифровка голосовой диктовки | Mictoo",
+    description: "Бесплатная конвертация надиктованных аудиозаписей в текст. Подходит для писателей, врачей, юристов и исследователей. Поддержка MP3, M4A, WAV. Без регистрации.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuDictationPage() {

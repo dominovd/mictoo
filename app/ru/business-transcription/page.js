@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Бесплатная бизнес-расшифровка. Продажные звонки, customer interviews, фокус-группы, board-встречи, конференции. Загружайте и получайте чистый AI-транскрипт за секунды.',
   alternates: { canonical: 'https://mictoo.com/ru/business-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Бизнес-расшифровка — бесплатный транскрипт встреч и звонков | Mictoo",
+    description: "Бесплатная бизнес-расшифровка. Продажные звонки, customer interviews, фокус-группы, board-встречи, конференции. Загружайте и получайте чистый AI-транскрипт за секунды.",
+    url: "https://mictoo.com/ru/business-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Бизнес-расшифровка — бесплатный транскрипт встреч и звонков | Mictoo",
+    description: "Бесплатная бизнес-расшифровка. Продажные звонки, customer interviews, фокус-группы, board-встречи, конференции. Загружайте и получайте чистый AI-транскрипт за секунды.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuBusinessPage() {

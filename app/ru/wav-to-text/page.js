@@ -18,6 +18,21 @@ export const metadata = {
   title: 'WAV в текст — Бесплатная онлайн-расшифровка WAV | Mictoo',
   description: 'Бесплатная конвертация WAV-файлов в текст онлайн. Загрузите любой WAV-аудиофайл и получите точную расшифровку за несколько секунд. Без регистрации.',
   alternates: { canonical: 'https://mictoo.com/ru/wav-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "WAV в текст — Бесплатная онлайн-расшифровка WAV | Mictoo",
+    description: "Бесплатная конвертация WAV-файлов в текст онлайн. Загрузите любой WAV-аудиофайл и получите точную расшифровку за несколько секунд. Без регистрации.",
+    url: "https://mictoo.com/ru/wav-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WAV в текст — Бесплатная онлайн-расшифровка WAV | Mictoo",
+    description: "Бесплатная конвертация WAV-файлов в текст онлайн. Загрузите любой WAV-аудиофайл и получите точную расшифровку за несколько секунд. Без регистрации.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuWavToTextPage() {

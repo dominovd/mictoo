@@ -19,6 +19,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/fireflies-alternative',
     },
   },
+
+  openGraph: {
+    title: "Fireflies Alternative — Transcribe Meetings Without a Bot | Mictoo",
+    description: "Fireflies auto-joins your meetings as a bot to record and transcribe. Mictoo transcribes recordings you already have — no bot, no signup, no OAuth. Free with OpenAI Whisper.",
+    url: "https://mictoo.com/fireflies-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Fireflies Alternative — Transcribe Meetings Without a Bot | Mictoo",
+    description: "Fireflies auto-joins your meetings as a bot to record and transcribe. Mictoo transcribes recordings you already have — no bot, no signup, no OAuth. Free with OpenAI Whisper.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function FirefliesAlternativePage() {

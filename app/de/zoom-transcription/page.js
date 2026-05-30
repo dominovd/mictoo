@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Kostenlose Zoom-Transkription. Laden Sie Ihre Cloud Recording (MP4) oder lokale Aufnahme (M4A) hoch und erhalten Sie in Sekunden ein präzises KI-Transkript. Ohne Anmeldung, ohne Tarif pro Minute.',
   alternates: { canonical: 'https://mictoo.com/de/zoom-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Zoom-Transkription — Zoom-Aufnahmen kostenlos transkribieren | Mictoo",
+    description: "Kostenlose Zoom-Transkription. Laden Sie Ihre Cloud Recording (MP4) oder lokale Aufnahme (M4A) hoch und erhalten Sie in Sekunden ein präzises KI-Transkript. Ohne Anmeldung, ohne Tarif pro Minute.",
+    url: "https://mictoo.com/de/zoom-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zoom-Transkription — Zoom-Aufnahmen kostenlos transkribieren | Mictoo",
+    description: "Kostenlose Zoom-Transkription. Laden Sie Ihre Cloud Recording (MP4) oder lokale Aufnahme (M4A) hoch und erhalten Sie in Sekunden ein präzises KI-Transkript. Ohne Anmeldung, ohne Tarif pro Minute.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeZoomPage() {

@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Transcripción gratuita con marcas de tiempo. Obtén marcas por palabra o por frase para cualquier audio o vídeo. Pensado para periodismo, research, podcasting, montaje de vídeo.',
   alternates: { canonical: 'https://mictoo.com/es/timestamped-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Transcripción con marcas de tiempo — generador gratuito | Mictoo",
+    description: "Transcripción gratuita con marcas de tiempo. Obtén marcas por palabra o por frase para cualquier audio o vídeo. Pensado para periodismo, research, podcasting, montaje de vídeo.",
+    url: "https://mictoo.com/es/timestamped-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Transcripción con marcas de tiempo — generador gratuito | Mictoo",
+    description: "Transcripción gratuita con marcas de tiempo. Obtén marcas por palabra o por frase para cualquier audio o vídeo. Pensado para periodismo, research, podcasting, montaje de vídeo.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function EsTimestampedPage() {

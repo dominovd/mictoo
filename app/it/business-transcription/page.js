@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Trascrizione business gratuita. Call vendita, customer interview, focus group, riunioni del consiglio, conferenze. Carica e ottieni una trascrizione IA pulita in pochi secondi. Senza registrazione.',
   alternates: { canonical: 'https://mictoo.com/it/business-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Trascrizione business — strumento gratuito per meeting e call | Mictoo",
+    description: "Trascrizione business gratuita. Call vendita, customer interview, focus group, riunioni del consiglio, conferenze. Carica e ottieni una trascrizione IA pulita in pochi secondi. Senza registrazione.",
+    url: "https://mictoo.com/it/business-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Trascrizione business — strumento gratuito per meeting e call | Mictoo",
+    description: "Trascrizione business gratuita. Call vendita, customer interview, focus group, riunioni del consiglio, conferenze. Carica e ottieni una trascrizione IA pulita in pochi secondi. Senza registrazione.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItBusinessPage() {

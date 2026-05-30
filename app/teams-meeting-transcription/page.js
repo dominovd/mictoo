@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/teams-meeting-transcription',
     },
   },
+
+  openGraph: {
+    title: "Teams Meeting Transcription — Transcribe Microsoft Teams Recordings | Mictoo",
+    description: "Free Microsoft Teams transcription. Upload your Teams recording (MP4) from OneDrive or SharePoint and get a clean AI transcript in seconds. No signup.",
+    url: "https://mictoo.com/teams-meeting-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Teams Meeting Transcription — Transcribe Microsoft Teams Recordings | Mictoo",
+    description: "Free Microsoft Teams transcription. Upload your Teams recording (MP4) from OneDrive or SharePoint and get a clean AI transcript in seconds. No signup.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function TeamsMeetingTranscriptionPage() {

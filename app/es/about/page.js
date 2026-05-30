@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Acerca de Mictoo — Herramienta gratuita de transcripción con IA',
   description: 'Sobre Mictoo, una herramienta gratuita de transcripción de audio y vídeo con IA. Quién está detrás, cómo funciona, cómo ganamos dinero y qué hacemos (y qué no) con tus archivos.',
   alternates: { canonical: 'https://mictoo.com/es/about', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "Acerca de Mictoo — Herramienta gratuita de transcripción con IA",
+    description: "Sobre Mictoo, una herramienta gratuita de transcripción de audio y vídeo con IA. Quién está detrás, cómo funciona, cómo ganamos dinero y qué hacemos (y qué no) con tus archivos.",
+    url: "https://mictoo.com/es/about",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Acerca de Mictoo — Herramienta gratuita de transcripción con IA",
+    description: "Sobre Mictoo, una herramienta gratuita de transcripción de audio y vídeo con IA. Quién está detrás, cómo funciona, cómo ganamos dinero y qué hacemos (y qué no) con tus archivos.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function EsAboutPage() {

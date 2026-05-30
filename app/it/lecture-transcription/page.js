@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Trascrizione gratuita di lezioni. Carica la registrazione di una lezione, un corso o un seminario (MP3, M4A, MP4) e ottieni testo pulito in pochi secondi. Costruito per studenti.',
   alternates: { canonical: 'https://mictoo.com/it/lecture-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Trascrizione lezione — generatore gratuito IA | Mictoo",
+    description: "Trascrizione gratuita di lezioni. Carica la registrazione di una lezione, un corso o un seminario (MP3, M4A, MP4) e ottieni testo pulito in pochi secondi. Costruito per studenti.",
+    url: "https://mictoo.com/it/lecture-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Trascrizione lezione — generatore gratuito IA | Mictoo",
+    description: "Trascrizione gratuita di lezioni. Carica la registrazione di una lezione, un corso o un seminario (MP3, M4A, MP4) e ottieni testo pulito in pochi secondi. Costruito per studenti.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItLecturePage() {

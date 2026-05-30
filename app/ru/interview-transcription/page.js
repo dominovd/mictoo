@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Бесплатная AI-расшифровка интервью. Загрузите запись интервью (MP3, M4A, MP4, WAV) и получите чистую расшифровку с таймкодами за секунды. Для журналистов и исследователей.',
   alternates: { canonical: 'https://mictoo.com/ru/interview-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Расшифровка интервью — бесплатный AI-генератор транскриптов | Mictoo",
+    description: "Бесплатная AI-расшифровка интервью. Загрузите запись интервью (MP3, M4A, MP4, WAV) и получите чистую расшифровку с таймкодами за секунды. Для журналистов и исследователей.",
+    url: "https://mictoo.com/ru/interview-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Расшифровка интервью — бесплатный AI-генератор транскриптов | Mictoo",
+    description: "Бесплатная AI-расшифровка интервью. Загрузите запись интервью (MP3, M4A, MP4, WAV) и получите чистую расшифровку с таймкодами за секунды. Для журналистов и исследователей.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuInterviewPage() {

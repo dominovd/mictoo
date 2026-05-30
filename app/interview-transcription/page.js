@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/interview-transcription',
     },
   },
+
+  openGraph: {
+    title: "Interview Transcription — Free Interview Transcript Generator | Mictoo",
+    description: "Free interview transcription with AI. Drop your interview recording (MP3, M4A, MP4, WAV) and get a clean, timestamped transcript in seconds. Built for journalists and researchers.",
+    url: "https://mictoo.com/interview-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Interview Transcription — Free Interview Transcript Generator | Mictoo",
+    description: "Free interview transcription with AI. Drop your interview recording (MP3, M4A, MP4, WAV) and get a clean, timestamped transcript in seconds. Built for journalists and researchers.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function InterviewTranscriptionPage() {

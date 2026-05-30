@@ -5,6 +5,21 @@ export const metadata = {
   alternates: {
     canonical: 'https://mictoo.com/how-to-download-youtube-video',
   },
+
+  openGraph: {
+    title: "How to Download YouTube Videos for Transcription — Free Methods (2026) | Mictoo",
+    description: "Three free desktop tools to download a YouTube video as MP4 or MP3 in 2026: 4K Video Downloader, yt-dlp, ClipGrab. Plus a screen-recording fallback. Honest comparison, no in-browser tools to fail you.",
+    url: "https://mictoo.com/how-to-download-youtube-video",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Download YouTube Videos for Transcription — Free Methods (2026) | Mictoo",
+    description: "Three free desktop tools to download a YouTube video as MP4 or MP3 in 2026: 4K Video Downloader, yt-dlp, ClipGrab. Plus a screen-recording fallback. Honest comparison, no in-browser tools to fail you.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function HowToDownloadYouTubeVideoPage() {

@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'Convert MP3 to M4A free online. Re-encode MP3 to AAC inside an M4A container for iPhone, iTunes, and Apple ecosystem. No signup, no watermark.',
   alternates: { canonical: 'https://mictoo.com/mp3-to-m4a', languages: LANGS },
+
+  openGraph: {
+    title: "MP3 to M4A — free online converter | Mictoo",
+    description: "Convert MP3 to M4A free online. Re-encode MP3 to AAC inside an M4A container for iPhone, iTunes, and Apple ecosystem. No signup, no watermark.",
+    url: "https://mictoo.com/mp3-to-m4a",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3 to M4A — free online converter | Mictoo",
+    description: "Convert MP3 to M4A free online. Re-encode MP3 to AAC inside an M4A container for iPhone, iTunes, and Apple ecosystem. No signup, no watermark.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function Mp3ToM4aPage() {

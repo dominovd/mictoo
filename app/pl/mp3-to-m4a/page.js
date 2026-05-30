@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'Konwertuj MP3 na M4A online za darmo. Ponownie zakoduj MP3 na AAC wewnątrz kontenera M4A dla iPhone, iTunes i ekosystemu Apple. Bez rejestracji, bez znaku wodnego.',
   alternates: { canonical: 'https://mictoo.com/pl/mp3-to-m4a', languages: LANGS },
+
+  openGraph: {
+    title: "MP3 na M4A — darmowy konwerter online | Mictoo",
+    description: "Konwertuj MP3 na M4A online za darmo. Ponownie zakoduj MP3 na AAC wewnątrz kontenera M4A dla iPhone, iTunes i ekosystemu Apple. Bez rejestracji, bez znaku wodnego.",
+    url: "https://mictoo.com/pl/mp3-to-m4a",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3 na M4A — darmowy konwerter online | Mictoo",
+    description: "Konwertuj MP3 na M4A online za darmo. Ponownie zakoduj MP3 na AAC wewnątrz kontenera M4A dla iPhone, iTunes i ekosystemu Apple. Bez rejestracji, bez znaku wodnego.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlMp3ToM4aPage() {

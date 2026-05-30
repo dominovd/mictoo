@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Kontakt Mictoo. info@mictoo.com trafia do prawdziwej skrzynki. Odpowiedź w ciągu jednego dnia roboczego. Zakres wsparcia, zapytania biznesowe i skróty do FAQ.',
   alternates: { canonical: 'https://mictoo.com/pl/contact', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "Kontakt — Mictoo",
+    description: "Kontakt Mictoo. info@mictoo.com trafia do prawdziwej skrzynki. Odpowiedź w ciągu jednego dnia roboczego. Zakres wsparcia, zapytania biznesowe i skróty do FAQ.",
+    url: "https://mictoo.com/pl/contact",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kontakt — Mictoo",
+    description: "Kontakt Mictoo. info@mictoo.com trafia do prawdziwej skrzynki. Odpowiedź w ciągu jednego dnia roboczego. Zakres wsparcia, zapytania biznesowe i skróty do FAQ.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlContactPage() {

@@ -17,6 +17,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/how-to-compress-audio',
     },
   },
+
+  openGraph: {
+    title: "How to Compress Audio for Transcription — Free Methods | Mictoo",
+    description: "Three free ways to shrink an audio or video file under 25 MB for transcription: extract audio, lower bitrate, or split the file. No software install needed.",
+    url: "https://mictoo.com/how-to-compress-audio",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Compress Audio for Transcription — Free Methods | Mictoo",
+    description: "Three free ways to shrink an audio or video file under 25 MB for transcription: extract audio, lower bitrate, or split the file. No software install needed.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function HowToCompressAudioPage() {

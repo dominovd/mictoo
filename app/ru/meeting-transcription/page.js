@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Бесплатная AI-расшифровка встреч. Загрузите запись любой встречи (с любой платформы) и получите чистый текст за секунды. Без регистрации, без оплаты за минуту, 50+ языков.',
   alternates: { canonical: 'https://mictoo.com/ru/meeting-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Расшифровка встреч — бесплатный AI-транскрипт звонков | Mictoo",
+    description: "Бесплатная AI-расшифровка встреч. Загрузите запись любой встречи (с любой платформы) и получите чистый текст за секунды. Без регистрации, без оплаты за минуту, 50+ языков.",
+    url: "https://mictoo.com/ru/meeting-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Расшифровка встреч — бесплатный AI-транскрипт звонков | Mictoo",
+    description: "Бесплатная AI-расшифровка встреч. Загрузите запись любой встречи (с любой платформы) и получите чистый текст за секунды. Без регистрации, без оплаты за минуту, 50+ языков.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuMeetingPage() {

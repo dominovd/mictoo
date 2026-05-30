@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Kostenlose KI-Podcast-Transkription. Laden Sie Ihre Episode hoch (MP3, MP4, M4A, WAV) und erhalten Sie in Sekunden ein sauberes Transkript mit Zeitstempeln. Ohne Anmeldung, ohne Tarif pro Minute.',
   alternates: { canonical: 'https://mictoo.com/de/podcast-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Podcast-Transkription — kostenloser KI-Transkript-Generator | Mictoo",
+    description: "Kostenlose KI-Podcast-Transkription. Laden Sie Ihre Episode hoch (MP3, MP4, M4A, WAV) und erhalten Sie in Sekunden ein sauberes Transkript mit Zeitstempeln. Ohne Anmeldung, ohne Tarif pro Minute.",
+    url: "https://mictoo.com/de/podcast-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Podcast-Transkription — kostenloser KI-Transkript-Generator | Mictoo",
+    description: "Kostenlose KI-Podcast-Transkription. Laden Sie Ihre Episode hoch (MP3, MP4, M4A, WAV) und erhalten Sie in Sekunden ein sauberes Transkript mit Zeitstempeln. Ohne Anmeldung, ohne Tarif pro Minute.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DePodcastPage() {

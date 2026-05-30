@@ -19,6 +19,21 @@ export const metadata = {
   description:
     "Transcription horodatée gratuite. Obtenez des horodatages par mot ou par phrase pour n'importe quel audio ou vidéo. Conçu pour le journalisme, la recherche, le podcasting, le montage vidéo.",
   alternates: { canonical: 'https://mictoo.com/fr/timestamped-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Transcription horodatée — générateur gratuit de transcripts time-coded | Mictoo",
+    description: "Transcription horodatée gratuite. Obtenez des horodatages par mot ou par phrase pour n'importe quel audio ou vidéo. Conçu pour le journalisme, la recherche, le podcasting, le montage vidéo.",
+    url: "https://mictoo.com/fr/timestamped-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Transcription horodatée — générateur gratuit de transcripts time-coded | Mictoo",
+    description: "Transcription horodatée gratuite. Obtenez des horodatages par mot ou par phrase pour n'importe quel audio ou vidéo. Conçu pour le journalisme, la recherche, le podcasting, le montage vidéo.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function FrTimestampedPage() {

@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Darmowa transkrypcja Zoom. Prześlij swoje Cloud Recording (MP4) lub nagranie lokalne (M4A) i otrzymaj precyzyjną transkrypcję AI w kilka sekund. Bez rejestracji.',
   alternates: { canonical: 'https://mictoo.com/pl/zoom-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Transkrypcja Zoom — transkrybuj nagrania Zoom za darmo | Mictoo",
+    description: "Darmowa transkrypcja Zoom. Prześlij swoje Cloud Recording (MP4) lub nagranie lokalne (M4A) i otrzymaj precyzyjną transkrypcję AI w kilka sekund. Bez rejestracji.",
+    url: "https://mictoo.com/pl/zoom-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Transkrypcja Zoom — transkrybuj nagrania Zoom za darmo | Mictoo",
+    description: "Darmowa transkrypcja Zoom. Prześlij swoje Cloud Recording (MP4) lub nagranie lokalne (M4A) i otrzymaj precyzyjną transkrypcję AI w kilka sekund. Bez rejestracji.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlZoomPage() {

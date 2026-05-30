@@ -16,6 +16,21 @@ export const metadata = {
   title: 'Come convertire M4A in MP3 — metodi gratuiti (o saltarlo) | Mictoo',
   description: "Converti M4A in MP3 in secondi con strumenti online gratuiti, QuickTime, VLC o ffmpeg. Nota: la maggior parte delle app (incluso Mictoo) accetta M4A direttamente — potresti non aver bisogno di convertire.",
   alternates: { canonical: 'https://mictoo.com/it/m4a-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "Come convertire M4A in MP3 — metodi gratuiti (o saltarlo) | Mictoo",
+    description: "Converti M4A in MP3 in secondi con strumenti online gratuiti, QuickTime, VLC o ffmpeg. Nota: la maggior parte delle app (incluso Mictoo) accetta M4A direttamente — potresti non aver bisogno di convertire.",
+    url: "https://mictoo.com/it/m4a-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Come convertire M4A in MP3 — metodi gratuiti (o saltarlo) | Mictoo",
+    description: "Converti M4A in MP3 in secondi con strumenti online gratuiti, QuickTime, VLC o ffmpeg. Nota: la maggior parte delle app (incluso Mictoo) accetta M4A direttamente — potresti non aver bisogno di convertire.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItM4aToMp3Page() {

@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Descript 대안 — 가입 불필요 무료 받아쓰기 | Mictoo',
   description: '받아쓰기 전용 Descript 대안을 찾고 계신가요? Mictoo는 OpenAI Whisper를 기반으로 한 가입 불필요 무료 AI 받아쓰기를 제공합니다. 편집기 없음, 구독 없음.',
   alternates: { canonical: 'https://mictoo.com/ko/descript-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Descript 대안 — 가입 불필요 무료 받아쓰기 | Mictoo",
+    description: "받아쓰기 전용 Descript 대안을 찾고 계신가요? Mictoo는 OpenAI Whisper를 기반으로 한 가입 불필요 무료 AI 받아쓰기를 제공합니다. 편집기 없음, 구독 없음.",
+    url: "https://mictoo.com/ko/descript-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Descript 대안 — 가입 불필요 무료 받아쓰기 | Mictoo",
+    description: "받아쓰기 전용 Descript 대안을 찾고 계신가요? Mictoo는 OpenAI Whisper를 기반으로 한 가입 불필요 무료 AI 받아쓰기를 제공합니다. 편집기 없음, 구독 없음.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoDescriptAlternativePage() {

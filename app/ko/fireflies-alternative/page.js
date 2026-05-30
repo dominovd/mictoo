@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Fireflies 대안 — 봇 없이 회의 받아쓰기 | Mictoo',
   description: 'Fireflies는 봇으로 회의에 참여하여 녹음 및 받아쓰기를 합니다. Mictoo는 이미 있는 녹화를 받아쓰기 — 봇 없음, 가입 없음, OAuth 없음. OpenAI Whisper로 무료.',
   alternates: { canonical: 'https://mictoo.com/ko/fireflies-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Fireflies 대안 — 봇 없이 회의 받아쓰기 | Mictoo",
+    description: "Fireflies는 봇으로 회의에 참여하여 녹음 및 받아쓰기를 합니다. Mictoo는 이미 있는 녹화를 받아쓰기 — 봇 없음, 가입 없음, OAuth 없음. OpenAI Whisper로 무료.",
+    url: "https://mictoo.com/ko/fireflies-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Fireflies 대안 — 봇 없이 회의 받아쓰기 | Mictoo",
+    description: "Fireflies는 봇으로 회의에 참여하여 녹음 및 받아쓰기를 합니다. Mictoo는 이미 있는 녹화를 받아쓰기 — 봇 없음, 가입 없음, OAuth 없음. OpenAI Whisper로 무료.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoFirefliesAlternativePage() {

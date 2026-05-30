@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '無料のMP3テキスト変換ツール。任意のMP3をアップロードして数秒でAI文字起こしを取得。ポッドキャスト、インタビュー、講義に対応。50以上の言語、登録不要。',
   alternates: { canonical: 'https://mictoo.com/ja/transcribe-mp3-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "MP3をテキストに — 無料AI MP3文字起こし | Mictoo",
+    description: "無料のMP3テキスト変換ツール。任意のMP3をアップロードして数秒でAI文字起こしを取得。ポッドキャスト、インタビュー、講義に対応。50以上の言語、登録不要。",
+    url: "https://mictoo.com/ja/transcribe-mp3-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3をテキストに — 無料AI MP3文字起こし | Mictoo",
+    description: "無料のMP3テキスト変換ツール。任意のMP3をアップロードして数秒でAI文字起こしを取得。ポッドキャスト、インタビュー、講義に対応。50以上の言語、登録不要。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaMp3ToTextPage() {

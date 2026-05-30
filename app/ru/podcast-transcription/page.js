@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Бесплатная расшифровка подкастов с AI. Загрузите эпизод (MP3, MP4, M4A, WAV) и получите чистый транскрипт с таймкодами за секунды. Без регистрации, без оплаты за минуту.',
   alternates: { canonical: 'https://mictoo.com/ru/podcast-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Расшифровка подкастов — бесплатный AI-генератор транскриптов | Mictoo",
+    description: "Бесплатная расшифровка подкастов с AI. Загрузите эпизод (MP3, MP4, M4A, WAV) и получите чистый транскрипт с таймкодами за секунды. Без регистрации, без оплаты за минуту.",
+    url: "https://mictoo.com/ru/podcast-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Расшифровка подкастов — бесплатный AI-генератор транскриптов | Mictoo",
+    description: "Бесплатная расшифровка подкастов с AI. Загрузите эпизод (MP3, MP4, M4A, WAV) и получите чистый транскрипт с таймкодами за секунды. Без регистрации, без оплаты за минуту.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuPodcastPage() {

@@ -18,6 +18,21 @@ export const metadata = {
   title: '説教文字起こし — 無料説教トランスクリプトジェネレーター | Mictoo',
   description: '説教や教会の音声を無料でテキストに文字起こし。ブログ、学習ノート、アクセシビリティに最適。MP3、MP4、M4Aに対応。登録不要。',
   alternates: { canonical: 'https://mictoo.com/ja/sermon-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "説教文字起こし — 無料説教トランスクリプトジェネレーター | Mictoo",
+    description: "説教や教会の音声を無料でテキストに文字起こし。ブログ、学習ノート、アクセシビリティに最適。MP3、MP4、M4Aに対応。登録不要。",
+    url: "https://mictoo.com/ja/sermon-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "説教文字起こし — 無料説教トランスクリプトジェネレーター | Mictoo",
+    description: "説教や教会の音声を無料でテキストに文字起こし。ブログ、学習ノート、アクセシビリティに最適。MP3、MP4、M4Aに対応。登録不要。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaSermonPage() {

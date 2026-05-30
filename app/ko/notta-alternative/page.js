@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Notta 대안 — 월간 제한 없는 무료 받아쓰기 | Mictoo',
   description: 'Notta는 무료 사용자를 월 120분, 각 받아쓰기를 3분으로 제한합니다. Mictoo는 무료, 가입 불필요, 월 분 할당량 없음 — OpenAI Whisper 기반.',
   alternates: { canonical: 'https://mictoo.com/ko/notta-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Notta 대안 — 월간 제한 없는 무료 받아쓰기 | Mictoo",
+    description: "Notta는 무료 사용자를 월 120분, 각 받아쓰기를 3분으로 제한합니다. Mictoo는 무료, 가입 불필요, 월 분 할당량 없음 — OpenAI Whisper 기반.",
+    url: "https://mictoo.com/ko/notta-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Notta 대안 — 월간 제한 없는 무료 받아쓰기 | Mictoo",
+    description: "Notta는 무료 사용자를 월 120분, 각 받아쓰기를 3분으로 제한합니다. Mictoo는 무료, 가입 불필요, 월 분 할당량 없음 — OpenAI Whisper 기반.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoNottaAlternativePage() {

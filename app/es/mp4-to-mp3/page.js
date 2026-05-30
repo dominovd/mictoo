@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'Convierta MP4 a MP3 gratis en línea. Suelte su vídeo y obtenga un archivo de audio MP3 limpio a 128 kbps en segundos. Sin registro, sin marca de agua, sin email. Hasta 25 MB.',
   alternates: { canonical: 'https://mictoo.com/es/mp4-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "MP4 a MP3 — conversor en línea gratuito | Mictoo",
+    description: "Convierta MP4 a MP3 gratis en línea. Suelte su vídeo y obtenga un archivo de audio MP3 limpio a 128 kbps en segundos. Sin registro, sin marca de agua, sin email. Hasta 25 MB.",
+    url: "https://mictoo.com/es/mp4-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP4 a MP3 — conversor en línea gratuito | Mictoo",
+    description: "Convierta MP4 a MP3 gratis en línea. Suelte su vídeo y obtenga un archivo de audio MP3 limpio a 128 kbps en segundos. Sin registro, sin marca de agua, sin email. Hasta 25 MB.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function EsMp4ToMp3Page() {

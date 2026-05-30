@@ -16,6 +16,21 @@ export const metadata = {
   title: '받아쓰기를 위한 오디오 압축 방법 — 무료 방법 | Mictoo',
   description: '받아쓰기를 위해 오디오 또는 비디오 파일을 25MB 미만으로 줄이는 세 가지 무료 방법: 오디오 추출, 비트레이트 낮추기 또는 파일 분할. 소프트웨어 설치 불필요.',
   alternates: { canonical: 'https://mictoo.com/ko/how-to-compress-audio', languages: LANGS },
+
+  openGraph: {
+    title: "받아쓰기를 위한 오디오 압축 방법 — 무료 방법 | Mictoo",
+    description: "받아쓰기를 위해 오디오 또는 비디오 파일을 25MB 미만으로 줄이는 세 가지 무료 방법: 오디오 추출, 비트레이트 낮추기 또는 파일 분할. 소프트웨어 설치 불필요.",
+    url: "https://mictoo.com/ko/how-to-compress-audio",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "받아쓰기를 위한 오디오 압축 방법 — 무료 방법 | Mictoo",
+    description: "받아쓰기를 위해 오디오 또는 비디오 파일을 25MB 미만으로 줄이는 세 가지 무료 방법: 오디오 추출, 비트레이트 낮추기 또는 파일 분할. 소프트웨어 설치 불필요.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoHowToCompressAudioPage() {

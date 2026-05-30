@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'MP4를 MP3로 무료 온라인 변환합니다. 비디오를 드롭하면 깔끔한 128 kbps MP3 오디오 파일을 몇 초 만에 얻을 수 있습니다. 가입 없이, 워터마크 없음, 이메일 불필요. 최대 25 MB.',
   alternates: { canonical: 'https://mictoo.com/ko/mp4-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "MP4를 MP3로 — 무료 온라인 변환기 | Mictoo",
+    description: "MP4를 MP3로 무료 온라인 변환합니다. 비디오를 드롭하면 깔끔한 128 kbps MP3 오디오 파일을 몇 초 만에 얻을 수 있습니다. 가입 없이, 워터마크 없음, 이메일 불필요. 최대 25 MB.",
+    url: "https://mictoo.com/ko/mp4-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP4를 MP3로 — 무료 온라인 변환기 | Mictoo",
+    description: "MP4를 MP3로 무료 온라인 변환합니다. 비디오를 드롭하면 깔끔한 128 kbps MP3 오디오 파일을 몇 초 만에 얻을 수 있습니다. 가입 없이, 워터마크 없음, 이메일 불필요. 최대 25 MB.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoMp4ToMp3Page() {

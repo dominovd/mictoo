@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Informativa sulla privacy — Mictoo',
   description: 'Informativa sulla privacy di Mictoo. Non memorizziamo i tuoi file audio né le trascrizioni.',
   alternates: { canonical: 'https://mictoo.com/it/privacy', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "Informativa sulla privacy — Mictoo",
+    description: "Informativa sulla privacy di Mictoo. Non memorizziamo i tuoi file audio né le trascrizioni.",
+    url: "https://mictoo.com/it/privacy",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Informativa sulla privacy — Mictoo",
+    description: "Informativa sulla privacy di Mictoo. Non memorizziamo i tuoi file audio né le trascrizioni.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItPrivacyPage() {

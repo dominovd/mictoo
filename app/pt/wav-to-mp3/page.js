@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'Converta WAV para MP3 online grátis. Encolha arquivos WAV sem perdas em MP3 portátil a 128 kbps em segundos. Sem cadastro, sem marca d\'água. Até 25 MB.',
   alternates: { canonical: 'https://mictoo.com/pt/wav-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "WAV para MP3 — conversor online gratuito | Mictoo",
+    description: "Converta WAV para MP3 online grátis. Encolha arquivos WAV sem perdas em MP3 portátil a 128 kbps em segundos. Sem cadastro, sem marca d\\'água. Até 25 MB.",
+    url: "https://mictoo.com/pt/wav-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WAV para MP3 — conversor online gratuito | Mictoo",
+    description: "Converta WAV para MP3 online grátis. Encolha arquivos WAV sem perdas em MP3 portátil a 128 kbps em segundos. Sem cadastro, sem marca d\\'água. Até 25 MB.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PtWavToMp3Page() {

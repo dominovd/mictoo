@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'MP3를 WAV로 무료 온라인 변환합니다. 압축된 MP3를 오디오 편집용 비압축 16비트/44.1 kHz WAV로 펼칩니다. 가입 없이, 워터마크 없음.',
   alternates: { canonical: 'https://mictoo.com/ko/mp3-to-wav', languages: LANGS },
+
+  openGraph: {
+    title: "MP3를 WAV로 — 무료 온라인 변환기 | Mictoo",
+    description: "MP3를 WAV로 무료 온라인 변환합니다. 압축된 MP3를 오디오 편집용 비압축 16비트/44.1 kHz WAV로 펼칩니다. 가입 없이, 워터마크 없음.",
+    url: "https://mictoo.com/ko/mp3-to-wav",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3를 WAV로 — 무료 온라인 변환기 | Mictoo",
+    description: "MP3를 WAV로 무료 온라인 변환합니다. 압축된 MP3를 오디오 편집용 비압축 16비트/44.1 kHz WAV로 펼칩니다. 가입 없이, 워터마크 없음.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoMp3ToWavPage() {

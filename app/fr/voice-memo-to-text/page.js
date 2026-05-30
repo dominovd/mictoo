@@ -19,6 +19,21 @@ export const metadata = {
   description:
     "Transcription gratuite de mémos vocaux. Chargez votre mémo vocal iPhone ou enregistrement Android (M4A, MP3) et obtenez du texte propre en quelques secondes. Sans inscription.",
   alternates: { canonical: 'https://mictoo.com/fr/voice-memo-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "Mémo vocal en texte — transcrivez les mémos vocaux iPhone gratuitement | Mictoo",
+    description: "Transcription gratuite de mémos vocaux. Chargez votre mémo vocal iPhone ou enregistrement Android (M4A, MP3) et obtenez du texte propre en quelques secondes. Sans inscription.",
+    url: "https://mictoo.com/fr/voice-memo-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mémo vocal en texte — transcrivez les mémos vocaux iPhone gratuitement | Mictoo",
+    description: "Transcription gratuite de mémos vocaux. Chargez votre mémo vocal iPhone ou enregistrement Android (M4A, MP3) et obtenez du texte propre en quelques secondes. Sans inscription.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function FrVoiceMemoPage() {

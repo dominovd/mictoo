@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Alternativa a Otter — Trascrivi registrazioni, non riunioni live | Mictoo',
   description: 'Otter è pensato per la trascrizione live di riunioni con sottotitoli in tempo reale. Mictoo trascrive le registrazioni che hai già — gratis, senza registrazione, senza bot. Basato su OpenAI Whisper.',
   alternates: { canonical: 'https://mictoo.com/it/otter-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Alternativa a Otter — Trascrivi registrazioni, non riunioni live | Mictoo",
+    description: "Otter è pensato per la trascrizione live di riunioni con sottotitoli in tempo reale. Mictoo trascrive le registrazioni che hai già — gratis, senza registrazione, senza bot. Basato su OpenAI Whisper.",
+    url: "https://mictoo.com/it/otter-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Alternativa a Otter — Trascrivi registrazioni, non riunioni live | Mictoo",
+    description: "Otter è pensato per la trascrizione live di riunioni con sottotitoli in tempo reale. Mictoo trascrive le registrazioni che hai già — gratis, senza registrazione, senza bot. Basato su OpenAI Whisper.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItOtterAlternativePage() {

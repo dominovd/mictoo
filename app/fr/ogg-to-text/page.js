@@ -18,6 +18,21 @@ export const metadata = {
   title: 'OGG en texte — Transcription audio OGG gratuite en ligne | Mictoo',
   description: "Convertissez gratuitement les fichiers audio OGG en texte en ligne. Déposez n'importe quel enregistrement OGG Vorbis et obtenez une transcription précise instantanément. Sans inscription.",
   alternates: { canonical: 'https://mictoo.com/fr/ogg-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "OGG en texte — Transcription audio OGG gratuite en ligne | Mictoo",
+    description: "Convertissez gratuitement les fichiers audio OGG en texte en ligne. Déposez n'importe quel enregistrement OGG Vorbis et obtenez une transcription précise instantanément. Sans inscription.",
+    url: "https://mictoo.com/fr/ogg-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OGG en texte — Transcription audio OGG gratuite en ligne | Mictoo",
+    description: "Convertissez gratuitement les fichiers audio OGG en texte en ligne. Déposez n'importe quel enregistrement OGG Vorbis et obtenez une transcription précise instantanément. Sans inscription.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function FrOggToTextPage() {

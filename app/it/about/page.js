@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Chi c\'è dietro Mictoo, uno strumento gratuito di trascrizione audio e video basato su IA. Come funziona, come guadagniamo, e cosa facciamo (e non facciamo) con i tuoi file.',
   alternates: { canonical: 'https://mictoo.com/it/about', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "Chi è Mictoo — strumento gratuito di trascrizione IA",
+    description: "Chi c\\'è dietro Mictoo, uno strumento gratuito di trascrizione audio e video basato su IA. Come funziona, come guadagniamo, e cosa facciamo (e non facciamo) con i tuoi file.",
+    url: "https://mictoo.com/it/about",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Chi è Mictoo — strumento gratuito di trascrizione IA",
+    description: "Chi c\\'è dietro Mictoo, uno strumento gratuito di trascrizione audio e video basato su IA. Come funziona, come guadagniamo, e cosa facciamo (e non facciamo) con i tuoi file.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItAboutPage() {

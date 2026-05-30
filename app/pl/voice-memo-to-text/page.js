@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Darmowa transkrypcja notatek głosowych. Upuść notatkę z iPhone lub nagranie głosowe Android (M4A, MP3) i otrzymaj czysty tekst w kilka sekund. Bez rejestracji.',
   alternates: { canonical: 'https://mictoo.com/pl/voice-memo-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "Notatka głosowa na tekst — transkrybuj Voice Memos iPhone za darmo | Mictoo",
+    description: "Darmowa transkrypcja notatek głosowych. Upuść notatkę z iPhone lub nagranie głosowe Android (M4A, MP3) i otrzymaj czysty tekst w kilka sekund. Bez rejestracji.",
+    url: "https://mictoo.com/pl/voice-memo-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Notatka głosowa na tekst — transkrybuj Voice Memos iPhone za darmo | Mictoo",
+    description: "Darmowa transkrypcja notatek głosowych. Upuść notatkę z iPhone lub nagranie głosowe Android (M4A, MP3) i otrzymaj czysty tekst w kilka sekund. Bez rejestracji.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlVoiceMemoPage() {

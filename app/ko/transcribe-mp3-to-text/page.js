@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '무료 MP3 텍스트 변환기. 모든 MP3를 업로드하여 몇 초 만에 AI 받아쓰기. 팟캐스트, 인터뷰, 강의에 작동. 50개 이상의 언어, 가입 불필요.',
   alternates: { canonical: 'https://mictoo.com/ko/transcribe-mp3-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "MP3를 텍스트로 — 무료 AI MP3 받아쓰기 | Mictoo",
+    description: "무료 MP3 텍스트 변환기. 모든 MP3를 업로드하여 몇 초 만에 AI 받아쓰기. 팟캐스트, 인터뷰, 강의에 작동. 50개 이상의 언어, 가입 불필요.",
+    url: "https://mictoo.com/ko/transcribe-mp3-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3를 텍스트로 — 무료 AI MP3 받아쓰기 | Mictoo",
+    description: "무료 MP3 텍스트 변환기. 모든 MP3를 업로드하여 몇 초 만에 AI 받아쓰기. 팟캐스트, 인터뷰, 강의에 작동. 50개 이상의 언어, 가입 불필요.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoMp3ToTextPage() {

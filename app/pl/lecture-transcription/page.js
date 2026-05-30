@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Darmowa transkrypcja wykładów. Prześlij nagranie wykładu, kursu lub seminarium (MP3, M4A, MP4) i otrzymaj czysty tekst w kilka sekund. Zbudowane dla studentów.',
   alternates: { canonical: 'https://mictoo.com/pl/lecture-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Transkrypcja wykładu — darmowy generator AI | Mictoo",
+    description: "Darmowa transkrypcja wykładów. Prześlij nagranie wykładu, kursu lub seminarium (MP3, M4A, MP4) i otrzymaj czysty tekst w kilka sekund. Zbudowane dla studentów.",
+    url: "https://mictoo.com/pl/lecture-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Transkrypcja wykładu — darmowy generator AI | Mictoo",
+    description: "Darmowa transkrypcja wykładów. Prześlij nagranie wykładu, kursu lub seminarium (MP3, M4A, MP4) i otrzymaj czysty tekst w kilka sekund. Zbudowane dla studentów.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlLecturePage() {

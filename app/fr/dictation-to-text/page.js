@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Dictée en texte — Transcription de dictée vocale gratuite | Mictoo',
   description: 'Convertissez gratuitement vos dictées audio en texte. Parfait pour écrivains, médecins, avocats et chercheurs. Compatible MP3, M4A, WAV. Sans inscription.',
   alternates: { canonical: 'https://mictoo.com/fr/dictation-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "Dictée en texte — Transcription de dictée vocale gratuite | Mictoo",
+    description: "Convertissez gratuitement vos dictées audio en texte. Parfait pour écrivains, médecins, avocats et chercheurs. Compatible MP3, M4A, WAV. Sans inscription.",
+    url: "https://mictoo.com/fr/dictation-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dictée en texte — Transcription de dictée vocale gratuite | Mictoo",
+    description: "Convertissez gratuitement vos dictées audio en texte. Parfait pour écrivains, médecins, avocats et chercheurs. Compatible MP3, M4A, WAV. Sans inscription.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function FrDictationPage() {

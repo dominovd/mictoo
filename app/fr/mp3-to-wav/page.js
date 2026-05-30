@@ -20,6 +20,21 @@ export const metadata = {
   description:
     "Convertissez MP3 en WAV gratuitement en ligne. Développez un MP3 compressé en WAV PCM 16-bit/44.1 kHz non compressé pour l'édition audio. Sans inscription, sans filigrane.",
   alternates: { canonical: 'https://mictoo.com/fr/mp3-to-wav', languages: LANGS },
+
+  openGraph: {
+    title: "MP3 vers WAV — convertisseur en ligne gratuit | Mictoo",
+    description: "Convertissez MP3 en WAV gratuitement en ligne. Développez un MP3 compressé en WAV PCM 16-bit/44.1 kHz non compressé pour l'édition audio. Sans inscription, sans filigrane.",
+    url: "https://mictoo.com/fr/mp3-to-wav",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3 vers WAV — convertisseur en ligne gratuit | Mictoo",
+    description: "Convertissez MP3 en WAV gratuitement en ligne. Développez un MP3 compressé en WAV PCM 16-bit/44.1 kHz non compressé pour l'édition audio. Sans inscription, sans filigrane.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function FrMp3ToWavPage() {

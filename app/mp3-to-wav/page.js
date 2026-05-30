@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'Convert MP3 to WAV free online. Expand compressed MP3 into uncompressed 16-bit/44.1 kHz WAV for audio editing. No signup, no watermark.',
   alternates: { canonical: 'https://mictoo.com/mp3-to-wav', languages: LANGS },
+
+  openGraph: {
+    title: "MP3 to WAV — free online converter | Mictoo",
+    description: "Convert MP3 to WAV free online. Expand compressed MP3 into uncompressed 16-bit/44.1 kHz WAV for audio editing. No signup, no watermark.",
+    url: "https://mictoo.com/mp3-to-wav",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3 to WAV — free online converter | Mictoo",
+    description: "Convert MP3 to WAV free online. Expand compressed MP3 into uncompressed 16-bit/44.1 kHz WAV for audio editing. No signup, no watermark.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function Mp3ToWavPage() {

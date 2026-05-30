@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/voice-memo-to-text',
     },
   },
+
+  openGraph: {
+    title: "Voice Memo to Text — Transcribe iPhone Voice Memos Free | Mictoo",
+    description: "Free voice memo transcription. Drop your iPhone Voice Memo or Android voice recorder file (M4A, MP3) and get clean text in seconds. No signup, no per-minute fee.",
+    url: "https://mictoo.com/voice-memo-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Voice Memo to Text — Transcribe iPhone Voice Memos Free | Mictoo",
+    description: "Free voice memo transcription. Drop your iPhone Voice Memo or Android voice recorder file (M4A, MP3) and get clean text in seconds. No signup, no per-minute fee.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function VoiceMemoToTextPage() {

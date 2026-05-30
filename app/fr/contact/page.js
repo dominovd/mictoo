@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Contact — Mictoo',
   description: 'Contact Mictoo. info@mictoo.com va dans une vraie boîte humaine. Réponse sous un jour ouvré. Périmètre du support, demandes business et raccourcis FAQ.',
   alternates: { canonical: 'https://mictoo.com/fr/contact', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "Contact — Mictoo",
+    description: "Contact Mictoo. info@mictoo.com va dans une vraie boîte humaine. Réponse sous un jour ouvré. Périmètre du support, demandes business et raccourcis FAQ.",
+    url: "https://mictoo.com/fr/contact",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact — Mictoo",
+    description: "Contact Mictoo. info@mictoo.com va dans une vraie boîte humaine. Réponse sous un jour ouvré. Périmètre du support, demandes business et raccourcis FAQ.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function FrContactPage() {

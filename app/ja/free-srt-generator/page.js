@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '無料SRT字幕ジェネレーター。音声または動画ファイルをアップロードしてタイムコード付きクリーンな.srtを数秒で取得。YouTube、Premiere、DaVinci、CapCutで動作。',
   alternates: { canonical: 'https://mictoo.com/ja/free-srt-generator', languages: LANGS },
+
+  openGraph: {
+    title: "SRTジェネレーター — オンラインでSRT字幕ファイル作成 | Mictoo",
+    description: "無料SRT字幕ジェネレーター。音声または動画ファイルをアップロードしてタイムコード付きクリーンな.srtを数秒で取得。YouTube、Premiere、DaVinci、CapCutで動作。",
+    url: "https://mictoo.com/ja/free-srt-generator",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SRTジェネレーター — オンラインでSRT字幕ファイル作成 | Mictoo",
+    description: "無料SRT字幕ジェネレーター。音声または動画ファイルをアップロードしてタイムコード付きクリーンな.srtを数秒で取得。YouTube、Premiere、DaVinci、CapCutで動作。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaSrtPage() {

@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/spanish-audio-to-text',
     },
   },
+
+  openGraph: {
+    title: "Spanish Audio to Text — Free AI Transcription for Spanish | Mictoo",
+    description: "Free Spanish audio to text transcription. Upload any Spanish audio (MP3, M4A, MP4, WAV) and get an accurate transcript. Handles Castilian, Mexican, Argentine, all Latin American varieties.",
+    url: "https://mictoo.com/spanish-audio-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Spanish Audio to Text — Free AI Transcription for Spanish | Mictoo",
+    description: "Free Spanish audio to text transcription. Upload any Spanish audio (MP3, M4A, MP4, WAV) and get an accurate transcript. Handles Castilian, Mexican, Argentine, all Latin American varieties.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function SpanishAudioToTextPage() {

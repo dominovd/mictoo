@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '무료 비디오 텍스트 받아쓰기. MP4, MOV, WEBM, AVI를 업로드하여 AI 받아쓰기 또는 SRT 자막 파일을 얻으세요. 스크린 녹화, 튜토리얼, 블로그에 작동.',
   alternates: { canonical: 'https://mictoo.com/ko/transcribe-video-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "비디오를 텍스트로 — 무료 온라인 받아쓰기 | Mictoo",
+    description: "무료 비디오 텍스트 받아쓰기. MP4, MOV, WEBM, AVI를 업로드하여 AI 받아쓰기 또는 SRT 자막 파일을 얻으세요. 스크린 녹화, 튜토리얼, 블로그에 작동.",
+    url: "https://mictoo.com/ko/transcribe-video-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "비디오를 텍스트로 — 무료 온라인 받아쓰기 | Mictoo",
+    description: "무료 비디오 텍스트 받아쓰기. MP4, MOV, WEBM, AVI를 업로드하여 AI 받아쓰기 또는 SRT 자막 파일을 얻으세요. 스크린 녹화, 튜토리얼, 블로그에 작동.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoVideoToTextPage() {

@@ -18,6 +18,21 @@ export const metadata = {
   title: 'WAV in testo — Trascrizione WAV gratis online | Mictoo',
   description: 'Converti file WAV in testo online gratis. Carica qualsiasi file audio WAV e ottieni una trascrizione precisa in pochi secondi. Senza registrazione.',
   alternates: { canonical: 'https://mictoo.com/it/wav-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "WAV in testo — Trascrizione WAV gratis online | Mictoo",
+    description: "Converti file WAV in testo online gratis. Carica qualsiasi file audio WAV e ottieni una trascrizione precisa in pochi secondi. Senza registrazione.",
+    url: "https://mictoo.com/it/wav-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WAV in testo — Trascrizione WAV gratis online | Mictoo",
+    description: "Converti file WAV in testo online gratis. Carica qualsiasi file audio WAV e ottieni una trascrizione precisa in pochi secondi. Senza registrazione.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItWavToTextPage() {

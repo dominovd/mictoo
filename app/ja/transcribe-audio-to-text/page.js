@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '無料の音声テキスト変換ツール。任意のファイル(MP3、WAV、M4A、FLAC、OGG、AAC)をアップロードして、数秒でクリーンな文字起こしを取得。登録不要、50以上の言語対応。',
   alternates: { canonical: 'https://mictoo.com/ja/transcribe-audio-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "音声をテキストに — 無料オンライン文字起こし | Mictoo",
+    description: "無料の音声テキスト変換ツール。任意のファイル(MP3、WAV、M4A、FLAC、OGG、AAC)をアップロードして、数秒でクリーンな文字起こしを取得。登録不要、50以上の言語対応。",
+    url: "https://mictoo.com/ja/transcribe-audio-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "音声をテキストに — 無料オンライン文字起こし | Mictoo",
+    description: "無料の音声テキスト変換ツール。任意のファイル(MP3、WAV、M4A、FLAC、OGG、AAC)をアップロードして、数秒でクリーンな文字起こしを取得。登録不要、50以上の言語対応。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaAudioToTextPage() {

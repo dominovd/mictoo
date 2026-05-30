@@ -16,6 +16,21 @@ export const metadata = {
   title: 'Comment convertir WMA en MP3 — méthodes gratuites (2026) | Mictoo',
   description: "Convertissez WMA (Windows Media Audio) en MP3 gratuitement. Convertisseurs en ligne, VLC, Audacity et ffmpeg — choisissez ce qui vous convient. Puis transcrivez le MP3 en texte avec Mictoo.",
   alternates: { canonical: 'https://mictoo.com/fr/wma-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "Comment convertir WMA en MP3 — méthodes gratuites (2026) | Mictoo",
+    description: "Convertissez WMA (Windows Media Audio) en MP3 gratuitement. Convertisseurs en ligne, VLC, Audacity et ffmpeg — choisissez ce qui vous convient. Puis transcrivez le MP3 en texte avec Mictoo.",
+    url: "https://mictoo.com/fr/wma-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Comment convertir WMA en MP3 — méthodes gratuites (2026) | Mictoo",
+    description: "Convertissez WMA (Windows Media Audio) en MP3 gratuitement. Convertisseurs en ligne, VLC, Audacity et ffmpeg — choisissez ce qui vous convient. Puis transcrivez le MP3 en texte avec Mictoo.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function FrWmaToMp3Page() {

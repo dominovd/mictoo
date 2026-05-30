@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Альтернатива Notta — Бесплатная расшифровка без месячных лимитов | Mictoo',
   description: 'Notta ограничивает бесплатных юзеров 120 минутами в месяц и расшифровкой по 3 минуты на файл. Mictoo — бесплатно, без регистрации, без месячных лимитов минут, на OpenAI Whisper.',
   alternates: { canonical: 'https://mictoo.com/ru/notta-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Альтернатива Notta — Бесплатная расшифровка без месячных лимитов | Mictoo",
+    description: "Notta ограничивает бесплатных юзеров 120 минутами в месяц и расшифровкой по 3 минуты на файл. Mictoo — бесплатно, без регистрации, без месячных лимитов минут, на OpenAI Whisper.",
+    url: "https://mictoo.com/ru/notta-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Альтернатива Notta — Бесплатная расшифровка без месячных лимитов | Mictoo",
+    description: "Notta ограничивает бесплатных юзеров 120 минутами в месяц и расшифровкой по 3 минуты на файл. Mictoo — бесплатно, без регистрации, без месячных лимитов минут, на OpenAI Whisper.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuNottaAlternativePage() {

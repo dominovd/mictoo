@@ -19,6 +19,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/turboscribe-alternative',
     },
   },
+
+  openGraph: {
+    title: "TurboScribe Alternative — Free Whisper Transcription, No Signup | Mictoo",
+    description: "TurboScribe is a popular Whisper-based transcription tool but requires an account and limits free users to 30 minutes per day. Mictoo is fully no-signup with built-in AI summary.",
+    url: "https://mictoo.com/turboscribe-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TurboScribe Alternative — Free Whisper Transcription, No Signup | Mictoo",
+    description: "TurboScribe is a popular Whisper-based transcription tool but requires an account and limits free users to 30 minutes per day. Mictoo is fully no-signup with built-in AI summary.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function TurboScribeAlternativePage() {

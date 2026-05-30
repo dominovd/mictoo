@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '무료 AI 회의 받아쓰기. 모든 플랫폼의 회의 녹화를 업로드하여 몇 초 만에 깨끗한 텍스트. 가입 불필요, 분당 과금 없음, 50개 이상의 언어.',
   alternates: { canonical: 'https://mictoo.com/ko/meeting-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "회의 받아쓰기 — 통화와 회의용 무료 AI 받아쓰기 | Mictoo",
+    description: "무료 AI 회의 받아쓰기. 모든 플랫폼의 회의 녹화를 업로드하여 몇 초 만에 깨끗한 텍스트. 가입 불필요, 분당 과금 없음, 50개 이상의 언어.",
+    url: "https://mictoo.com/ko/meeting-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "회의 받아쓰기 — 통화와 회의용 무료 AI 받아쓰기 | Mictoo",
+    description: "무료 AI 회의 받아쓰기. 모든 플랫폼의 회의 녹화를 업로드하여 몇 초 만에 깨끗한 텍스트. 가입 불필요, 분당 과금 없음, 50개 이상의 언어.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoMeetingPage() {

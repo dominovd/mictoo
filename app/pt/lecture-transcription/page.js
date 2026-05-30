@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Transcrição grátis de aulas. Envie a gravação de uma aula, curso ou seminário (MP3, M4A, MP4) e receba texto limpo em segundos. Feito para estudantes.',
   alternates: { canonical: 'https://mictoo.com/pt/lecture-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Transcrição de aula — gerador gratuito IA | Mictoo",
+    description: "Transcrição grátis de aulas. Envie a gravação de uma aula, curso ou seminário (MP3, M4A, MP4) e receba texto limpo em segundos. Feito para estudantes.",
+    url: "https://mictoo.com/pt/lecture-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Transcrição de aula — gerador gratuito IA | Mictoo",
+    description: "Transcrição grátis de aulas. Envie a gravação de uma aula, curso ou seminário (MP3, M4A, MP4) e receba texto limpo em segundos. Feito para estudantes.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PtLecturePage() {

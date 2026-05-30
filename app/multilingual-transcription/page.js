@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/multilingual-transcription',
     },
   },
+
+  openGraph: {
+    title: "Multilingual Transcription — Free AI Tool for 50+ Languages | Mictoo",
+    description: "Free multilingual transcription. Auto-detect across 50+ languages. Code-switching, bilingual interviews, mid-recording language changes all handled. No signup.",
+    url: "https://mictoo.com/multilingual-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Multilingual Transcription — Free AI Tool for 50+ Languages | Mictoo",
+    description: "Free multilingual transcription. Auto-detect across 50+ languages. Code-switching, bilingual interviews, mid-recording language changes all handled. No signup.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function MultilingualTranscriptionPage() {

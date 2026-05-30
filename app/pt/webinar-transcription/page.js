@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Transcrição de webinar — Transcript grátis para gravações | Mictoo',
   description: 'Transcreva grátis gravações de webinar em texto e legendas SRT. Funciona com Zoom, Webex, GoToWebinar e qualquer export MP4 ou MP3. Sem cadastro.',
   alternates: { canonical: 'https://mictoo.com/pt/webinar-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Transcrição de webinar — Transcript grátis para gravações | Mictoo",
+    description: "Transcreva grátis gravações de webinar em texto e legendas SRT. Funciona com Zoom, Webex, GoToWebinar e qualquer export MP4 ou MP3. Sem cadastro.",
+    url: "https://mictoo.com/pt/webinar-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Transcrição de webinar — Transcript grátis para gravações | Mictoo",
+    description: "Transcreva grátis gravações de webinar em texto e legendas SRT. Funciona com Zoom, Webex, GoToWebinar e qualquer export MP4 ou MP3. Sem cadastro.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PtWebinarPage() {

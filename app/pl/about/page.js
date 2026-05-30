@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Kto stoi za Mictoo, darmowym narzędziem do transkrypcji audio i wideo z AI. Jak działa, jak zarabiamy i co robimy (i nie robimy) z twoimi plikami.',
   alternates: { canonical: 'https://mictoo.com/pl/about', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "O Mictoo — darmowe narzędzie do transkrypcji AI",
+    description: "Kto stoi za Mictoo, darmowym narzędziem do transkrypcji audio i wideo z AI. Jak działa, jak zarabiamy i co robimy (i nie robimy) z twoimi plikami.",
+    url: "https://mictoo.com/pl/about",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "O Mictoo — darmowe narzędzie do transkrypcji AI",
+    description: "Kto stoi za Mictoo, darmowym narzędziem do transkrypcji audio i wideo z AI. Jak działa, jak zarabiamy i co robimy (i nie robimy) z twoimi plikami.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlAboutPage() {

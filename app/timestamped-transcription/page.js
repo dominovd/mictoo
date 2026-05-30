@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/timestamped-transcription',
     },
   },
+
+  openGraph: {
+    title: "Timestamped Transcription — Free Time-Coded Transcript Generator | Mictoo",
+    description: "Free timestamped transcription. Get word-level or sentence-level timestamps for any audio or video. Perfect for journalism, research, podcasting, video editing.",
+    url: "https://mictoo.com/timestamped-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Timestamped Transcription — Free Time-Coded Transcript Generator | Mictoo",
+    description: "Free timestamped transcription. Get word-level or sentence-level timestamps for any audio or video. Perfect for journalism, research, podcasting, video editing.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function TimestampedTranscriptionPage() {

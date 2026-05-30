@@ -18,6 +18,21 @@ export const metadata = {
   title: 'プライバシーポリシー — Mictoo',
   description: 'Mictooのプライバシーポリシー。音声ファイルや文字起こしを保存することはありません。',
   alternates: { canonical: 'https://mictoo.com/ja/privacy', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "プライバシーポリシー — Mictoo",
+    description: "Mictooのプライバシーポリシー。音声ファイルや文字起こしを保存することはありません。",
+    url: "https://mictoo.com/ja/privacy",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "プライバシーポリシー — Mictoo",
+    description: "Mictooのプライバシーポリシー。音声ファイルや文字起こしを保存することはありません。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaPrivacyPage() {

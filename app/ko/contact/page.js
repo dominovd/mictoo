@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Mictoo 문의. info@mictoo.com은 실제 사람의 받은편지함으로 갑니다. 1영업일 이내 응답. 지원 범위, 비즈니스 문의, FAQ 단축키.',
   alternates: { canonical: 'https://mictoo.com/ko/contact', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "문의 — Mictoo",
+    description: "Mictoo 문의. info@mictoo.com은 실제 사람의 받은편지함으로 갑니다. 1영업일 이내 응답. 지원 범위, 비즈니스 문의, FAQ 단축키.",
+    url: "https://mictoo.com/ko/contact",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "문의 — Mictoo",
+    description: "Mictoo 문의. info@mictoo.com은 실제 사람의 받은편지함으로 갑니다. 1영업일 이내 응답. 지원 범위, 비즈니스 문의, FAQ 단축키.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoContactPage() {

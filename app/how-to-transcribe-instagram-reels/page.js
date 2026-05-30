@@ -5,6 +5,21 @@ export const metadata = {
   alternates: {
     canonical: 'https://mictoo.com/how-to-transcribe-instagram-reels',
   },
+
+  openGraph: {
+    title: "How to Transcribe Instagram Reels — Free, in 3 Steps (2026) | Mictoo",
+    description: "Three free ways to turn an Instagram Reel into a text transcript: save the Reel, drop it into Mictoo, copy the text. Works for your own Reels and (with caveats) public ones. No app install, no subscription.",
+    url: "https://mictoo.com/how-to-transcribe-instagram-reels",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Transcribe Instagram Reels — Free, in 3 Steps (2026) | Mictoo",
+    description: "Three free ways to turn an Instagram Reel into a text transcript: save the Reel, drop it into Mictoo, copy the text. Works for your own Reels and (with caveats) public ones. No app install, no subscription.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function HowToTranscribeInstagramReelsPage() {

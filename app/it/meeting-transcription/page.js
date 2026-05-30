@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Trascrizione riunioni — trascript IA gratuito per call e meeting | Mictoo',
   description: 'Trascrizione IA gratuita per riunioni. Carica qualsiasi registrazione (da qualunque piattaforma) e ottieni testo pulito in pochi secondi. Senza registrazione, oltre 50 lingue.',
   alternates: { canonical: 'https://mictoo.com/it/meeting-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Trascrizione riunioni — trascript IA gratuito per call e meeting | Mictoo",
+    description: "Trascrizione IA gratuita per riunioni. Carica qualsiasi registrazione (da qualunque piattaforma) e ottieni testo pulito in pochi secondi. Senza registrazione, oltre 50 lingue.",
+    url: "https://mictoo.com/it/meeting-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Trascrizione riunioni — trascript IA gratuito per call e meeting | Mictoo",
+    description: "Trascrizione IA gratuita per riunioni. Carica qualsiasi registrazione (da qualunque piattaforma) e ottieni testo pulito in pochi secondi. Senza registrazione, oltre 50 lingue.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItMeetingPage() {

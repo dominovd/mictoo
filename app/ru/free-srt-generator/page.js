@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Бесплатный SRT-генератор. Загрузите аудио или видео и получите чистый .srt с таймкодами за секунды. Работает с YouTube, Premiere, DaVinci, CapCut.',
   alternates: { canonical: 'https://mictoo.com/ru/free-srt-generator', languages: LANGS },
+
+  openGraph: {
+    title: "SRT-генератор — создавайте SRT-субтитры онлайн бесплатно | Mictoo",
+    description: "Бесплатный SRT-генератор. Загрузите аудио или видео и получите чистый .srt с таймкодами за секунды. Работает с YouTube, Premiere, DaVinci, CapCut.",
+    url: "https://mictoo.com/ru/free-srt-generator",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SRT-генератор — создавайте SRT-субтитры онлайн бесплатно | Mictoo",
+    description: "Бесплатный SRT-генератор. Загрузите аудио или видео и получите чистый .srt с таймкодами за секунды. Работает с YouTube, Premiere, DaVinci, CapCut.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuSrtPage() {

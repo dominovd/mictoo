@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '무료 오디오 텍스트 변환기. 모든 파일(MP3, WAV, M4A, FLAC, OGG, AAC)을 업로드하여 몇 초 만에 깨끗한 받아쓰기를 얻으세요. 가입 불필요, 50개 이상의 언어 지원.',
   alternates: { canonical: 'https://mictoo.com/ko/transcribe-audio-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "오디오를 텍스트로 — 무료 온라인 받아쓰기 | Mictoo",
+    description: "무료 오디오 텍스트 변환기. 모든 파일(MP3, WAV, M4A, FLAC, OGG, AAC)을 업로드하여 몇 초 만에 깨끗한 받아쓰기를 얻으세요. 가입 불필요, 50개 이상의 언어 지원.",
+    url: "https://mictoo.com/ko/transcribe-audio-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "오디오를 텍스트로 — 무료 온라인 받아쓰기 | Mictoo",
+    description: "무료 오디오 텍스트 변환기. 모든 파일(MP3, WAV, M4A, FLAC, OGG, AAC)을 업로드하여 몇 초 만에 깨끗한 받아쓰기를 얻으세요. 가입 불필요, 50개 이상의 언어 지원.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoAudioToTextPage() {

@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/french-speech-to-text',
     },
   },
+
+  openGraph: {
+    title: "French Speech to Text — Free AI Transcription for French Audio | Mictoo",
+    description: "Free French speech to text transcription. Upload any French audio (MP3, M4A, MP4, WAV) and get an accurate transcript. Handles Metropolitan French, Quebec, African French.",
+    url: "https://mictoo.com/french-speech-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "French Speech to Text — Free AI Transcription for French Audio | Mictoo",
+    description: "Free French speech to text transcription. Upload any French audio (MP3, M4A, MP4, WAV) and get an accurate transcript. Handles Metropolitan French, Quebec, African French.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function FrenchSpeechToTextPage() {

@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'Convert WAV to MP3 free online. Shrink lossless WAV files to portable 128 kbps MP3 in seconds. No signup, no watermark. Up to 25 MB.',
   alternates: { canonical: 'https://mictoo.com/wav-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "WAV to MP3 — free online converter | Mictoo",
+    description: "Convert WAV to MP3 free online. Shrink lossless WAV files to portable 128 kbps MP3 in seconds. No signup, no watermark. Up to 25 MB.",
+    url: "https://mictoo.com/wav-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WAV to MP3 — free online converter | Mictoo",
+    description: "Convert WAV to MP3 free online. Shrink lossless WAV files to portable 128 kbps MP3 in seconds. No signup, no watermark. Up to 25 MB.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function WavToMp3Page() {

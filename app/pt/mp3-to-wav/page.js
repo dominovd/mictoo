@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'Converta MP3 para WAV online grátis. Expanda MP3 comprimido em WAV não comprimido a 16-bit/44.1 kHz para edição de áudio. Sem cadastro, sem marca d\'água.',
   alternates: { canonical: 'https://mictoo.com/pt/mp3-to-wav', languages: LANGS },
+
+  openGraph: {
+    title: "MP3 para WAV — conversor online gratuito | Mictoo",
+    description: "Converta MP3 para WAV online grátis. Expanda MP3 comprimido em WAV não comprimido a 16-bit/44.1 kHz para edição de áudio. Sem cadastro, sem marca d\\'água.",
+    url: "https://mictoo.com/pt/mp3-to-wav",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3 para WAV — conversor online gratuito | Mictoo",
+    description: "Converta MP3 para WAV online grátis. Expanda MP3 comprimido em WAV não comprimido a 16-bit/44.1 kHz para edição de áudio. Sem cadastro, sem marca d\\'água.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PtMp3ToWavPage() {

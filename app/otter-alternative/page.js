@@ -19,6 +19,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/otter-alternative',
     },
   },
+
+  openGraph: {
+    title: "Otter Alternative — Transcribe Recordings, Not Live Meetings | Mictoo",
+    description: "Otter is built for live meeting transcription with real-time captions. Mictoo transcribes recordings you already have — free, no signup, no bot. Powered by OpenAI Whisper.",
+    url: "https://mictoo.com/otter-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Otter Alternative — Transcribe Recordings, Not Live Meetings | Mictoo",
+    description: "Otter is built for live meeting transcription with real-time captions. Mictoo transcribes recordings you already have — free, no signup, no bot. Powered by OpenAI Whisper.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function OtterAlternativePage() {

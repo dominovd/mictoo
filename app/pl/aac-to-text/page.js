@@ -18,6 +18,21 @@ export const metadata = {
   title: 'AAC na tekst — Darmowa transkrypcja audio AAC online | Mictoo',
   description: 'Transkrybuj pliki audio AAC na tekst za darmo. Przeciągnij swój .aac, .m4a lub inny plik zakodowany w AAC i otrzymaj precyzyjną transkrypcję w kilka sekund.',
   alternates: { canonical: 'https://mictoo.com/pl/aac-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "AAC na tekst — Darmowa transkrypcja audio AAC online | Mictoo",
+    description: "Transkrybuj pliki audio AAC na tekst za darmo. Przeciągnij swój .aac, .m4a lub inny plik zakodowany w AAC i otrzymaj precyzyjną transkrypcję w kilka sekund.",
+    url: "https://mictoo.com/pl/aac-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AAC na tekst — Darmowa transkrypcja audio AAC online | Mictoo",
+    description: "Transkrybuj pliki audio AAC na tekst za darmo. Przeciągnij swój .aac, .m4a lub inny plik zakodowany w AAC i otrzymaj precyzyjną transkrypcję w kilka sekund.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlAacToTextPage() {

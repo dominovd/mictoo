@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/business-transcription',
     },
   },
+
+  openGraph: {
+    title: "Business Transcription — Free Meeting & Call Transcript Tool | Mictoo",
+    description: "Free business transcription. Sales calls, customer interviews, focus groups, board meetings, conferences. Upload, get a clean AI transcript in seconds. No signup.",
+    url: "https://mictoo.com/business-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Business Transcription — Free Meeting & Call Transcript Tool | Mictoo",
+    description: "Free business transcription. Sales calls, customer interviews, focus groups, board meetings, conferences. Upload, get a clean AI transcript in seconds. No signup.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function BusinessTranscriptionPage() {

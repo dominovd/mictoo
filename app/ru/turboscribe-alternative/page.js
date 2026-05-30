@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Альтернатива TurboScribe — Бесплатная Whisper-расшифровка без регистрации | Mictoo',
   description: 'TurboScribe — популярный инструмент на Whisper, но требует аккаунт и ограничивает бесплатных юзеров 30 минутами в день. Mictoo полностью без регистрации, с встроенным ИИ-резюме.',
   alternates: { canonical: 'https://mictoo.com/ru/turboscribe-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Альтернатива TurboScribe — Бесплатная Whisper-расшифровка без регистрации | Mictoo",
+    description: "TurboScribe — популярный инструмент на Whisper, но требует аккаунт и ограничивает бесплатных юзеров 30 минутами в день. Mictoo полностью без регистрации, с встроенным ИИ-резюме.",
+    url: "https://mictoo.com/ru/turboscribe-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Альтернатива TurboScribe — Бесплатная Whisper-расшифровка без регистрации | Mictoo",
+    description: "TurboScribe — популярный инструмент на Whisper, но требует аккаунт и ограничивает бесплатных юзеров 30 минутами в день. Mictoo полностью без регистрации, с встроенным ИИ-резюме.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuTurboScribeAlternativePage() {

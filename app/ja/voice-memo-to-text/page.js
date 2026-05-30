@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '無料ボイスメモ文字起こし。iPhoneボイスメモまたはAndroid録音(M4A、MP3)をドロップしてクリーンなテキストを数秒で取得。登録不要。',
   alternates: { canonical: 'https://mictoo.com/ja/voice-memo-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "ボイスメモをテキストに — iPhone Voice Memosを無料で文字起こし | Mictoo",
+    description: "無料ボイスメモ文字起こし。iPhoneボイスメモまたはAndroid録音(M4A、MP3)をドロップしてクリーンなテキストを数秒で取得。登録不要。",
+    url: "https://mictoo.com/ja/voice-memo-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ボイスメモをテキストに — iPhone Voice Memosを無料で文字起こし | Mictoo",
+    description: "無料ボイスメモ文字起こし。iPhoneボイスメモまたはAndroid録音(M4A、MP3)をドロップしてクリーンなテキストを数秒で取得。登録不要。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaVoiceMemoPage() {

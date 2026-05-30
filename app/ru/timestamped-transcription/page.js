@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Бесплатная расшифровка с таймкодами. Получите временные метки по словам или предложениям для любого аудио или видео. Для журналистики, ресёрча, подкастинга, видеомонтажа.',
   alternates: { canonical: 'https://mictoo.com/ru/timestamped-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Расшифровка с таймкодами — бесплатный генератор time-coded транскриптов | Mictoo",
+    description: "Бесплатная расшифровка с таймкодами. Получите временные метки по словам или предложениям для любого аудио или видео. Для журналистики, ресёрча, подкастинга, видеомонтажа.",
+    url: "https://mictoo.com/ru/timestamped-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Расшифровка с таймкодами — бесплатный генератор time-coded транскриптов | Mictoo",
+    description: "Бесплатная расшифровка с таймкодами. Получите временные метки по словам или предложениям для любого аудио или видео. Для журналистики, ресёрча, подкастинга, видеомонтажа.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuTimestampedPage() {

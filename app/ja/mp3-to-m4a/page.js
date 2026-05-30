@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'MP3からM4Aへの変換が無料オンラインで使えます。MP3をAACに再エンコードし、iPhone、iTunes、Apple環境向けのM4Aコンテナに入れます。登録不要、ウォーターマークなし。',
   alternates: { canonical: 'https://mictoo.com/ja/mp3-to-m4a', languages: LANGS },
+
+  openGraph: {
+    title: "MP3からM4Aへ — 無料オンライン変換ツール | Mictoo",
+    description: "MP3からM4Aへの変換が無料オンラインで使えます。MP3をAACに再エンコードし、iPhone、iTunes、Apple環境向けのM4Aコンテナに入れます。登録不要、ウォーターマークなし。",
+    url: "https://mictoo.com/ja/mp3-to-m4a",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3からM4Aへ — 無料オンライン変換ツール | Mictoo",
+    description: "MP3からM4Aへの変換が無料オンラインで使えます。MP3をAACに再エンコードし、iPhone、iTunes、Apple環境向けのM4Aコンテナに入れます。登録不要、ウォーターマークなし。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaMp3ToM4aPage() {

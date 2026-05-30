@@ -20,6 +20,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/google-meet-transcription',
     },
   },
+
+  openGraph: {
+    title: "Google Meet Transcription — Transcribe Meet Recordings Free | Mictoo",
+    description: "Free Google Meet transcription. Upload your Meet recording from Drive (MP4 or M4A) and get a clean AI transcript in seconds. No signup, works on free Google Workspace.",
+    url: "https://mictoo.com/google-meet-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Google Meet Transcription — Transcribe Meet Recordings Free | Mictoo",
+    description: "Free Google Meet transcription. Upload your Meet recording from Drive (MP4 or M4A) and get a clean AI transcript in seconds. No signup, works on free Google Workspace.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function GoogleMeetTranscriptionPage() {

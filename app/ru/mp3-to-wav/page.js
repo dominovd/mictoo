@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'Конвертируйте MP3 в WAV бесплатно онлайн. Разверните сжатый MP3 в несжатый WAV 16-bit/44.1 kHz для аудиоредакторов. Без регистрации, без водяного знака.',
   alternates: { canonical: 'https://mictoo.com/ru/mp3-to-wav', languages: LANGS },
+
+  openGraph: {
+    title: "MP3 в WAV — бесплатный онлайн-конвертер | Mictoo",
+    description: "Конвертируйте MP3 в WAV бесплатно онлайн. Разверните сжатый MP3 в несжатый WAV 16-bit/44.1 kHz для аудиоредакторов. Без регистрации, без водяного знака.",
+    url: "https://mictoo.com/ru/mp3-to-wav",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3 в WAV — бесплатный онлайн-конвертер | Mictoo",
+    description: "Конвертируйте MP3 в WAV бесплатно онлайн. Разверните сжатый MP3 в несжатый WAV 16-bit/44.1 kHz для аудиоредакторов. Без регистрации, без водяного знака.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuMp3ToWavPage() {

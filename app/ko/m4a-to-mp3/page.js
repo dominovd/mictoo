@@ -16,6 +16,21 @@ export const metadata = {
   title: 'M4A를 MP3로 변환하는 방법 — 무료 방법 (또는 건너뛰기) | Mictoo',
   description: "무료 온라인 도구, QuickTime, VLC 또는 ffmpeg로 M4A를 몇 초 만에 MP3로 변환. 참고: 대부분의 앱(Mictoo 포함)은 M4A를 직접 받아들이므로 변환할 필요가 없을 수도 있습니다.",
   alternates: { canonical: 'https://mictoo.com/ko/m4a-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "M4A를 MP3로 변환하는 방법 — 무료 방법 (또는 건너뛰기) | Mictoo",
+    description: "무료 온라인 도구, QuickTime, VLC 또는 ffmpeg로 M4A를 몇 초 만에 MP3로 변환. 참고: 대부분의 앱(Mictoo 포함)은 M4A를 직접 받아들이므로 변환할 필요가 없을 수도 있습니다.",
+    url: "https://mictoo.com/ko/m4a-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "M4A를 MP3로 변환하는 방법 — 무료 방법 (또는 건너뛰기) | Mictoo",
+    description: "무료 온라인 도구, QuickTime, VLC 또는 ffmpeg로 M4A를 몇 초 만에 MP3로 변환. 참고: 대부분의 앱(Mictoo 포함)은 M4A를 직접 받아들이므로 변환할 필요가 없을 수도 있습니다.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoM4aToMp3Page() {

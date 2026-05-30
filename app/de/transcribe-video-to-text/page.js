@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Kostenlose Video-zu-Text-Transkription. Laden Sie MP4, MOV, WEBM, AVI hoch und bekommen Sie ein KI-Transkript oder eine SRT-Untertiteldatei. Funktioniert mit Bildschirmaufnahmen, Tutorials, Vlogs.',
   alternates: { canonical: 'https://mictoo.com/de/transcribe-video-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "Video in Text — kostenlose Online-Transkription | Mictoo",
+    description: "Kostenlose Video-zu-Text-Transkription. Laden Sie MP4, MOV, WEBM, AVI hoch und bekommen Sie ein KI-Transkript oder eine SRT-Untertiteldatei. Funktioniert mit Bildschirmaufnahmen, Tutorials, Vlogs.",
+    url: "https://mictoo.com/de/transcribe-video-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Video in Text — kostenlose Online-Transkription | Mictoo",
+    description: "Kostenlose Video-zu-Text-Transkription. Laden Sie MP4, MOV, WEBM, AVI hoch und bekommen Sie ein KI-Transkript oder eine SRT-Untertiteldatei. Funktioniert mit Bildschirmaufnahmen, Tutorials, Vlogs.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeVideoToTextPage() {

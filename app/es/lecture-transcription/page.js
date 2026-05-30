@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Transcripción gratuita de clases. Sube la grabación de una clase, conferencia universitaria o seminario (MP3, M4A, MP4) y obtén texto limpio en segundos. Pensado para estudiantes.',
   alternates: { canonical: 'https://mictoo.com/es/lecture-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Transcripción de clases — generador gratuito de transcripciones | Mictoo",
+    description: "Transcripción gratuita de clases. Sube la grabación de una clase, conferencia universitaria o seminario (MP3, M4A, MP4) y obtén texto limpio en segundos. Pensado para estudiantes.",
+    url: "https://mictoo.com/es/lecture-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Transcripción de clases — generador gratuito de transcripciones | Mictoo",
+    description: "Transcripción gratuita de clases. Sube la grabación de una clase, conferencia universitaria o seminario (MP3, M4A, MP4) y obtén texto limpio en segundos. Pensado para estudiantes.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function EsLecturePage() {

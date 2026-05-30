@@ -18,6 +18,21 @@ export const metadata = {
   title: 'AAC en texte — Transcription audio AAC gratuite en ligne | Mictoo',
   description: "Transcrivez gratuitement les fichiers audio AAC en texte. Déposez vos fichiers .aac, .m4a ou tout fichier AAC-encodé et obtenez une transcription précise en quelques secondes.",
   alternates: { canonical: 'https://mictoo.com/fr/aac-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "AAC en texte — Transcription audio AAC gratuite en ligne | Mictoo",
+    description: "Transcrivez gratuitement les fichiers audio AAC en texte. Déposez vos fichiers .aac, .m4a ou tout fichier AAC-encodé et obtenez une transcription précise en quelques secondes.",
+    url: "https://mictoo.com/fr/aac-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AAC en texte — Transcription audio AAC gratuite en ligne | Mictoo",
+    description: "Transcrivez gratuitement les fichiers audio AAC en texte. Déposez vos fichiers .aac, .m4a ou tout fichier AAC-encodé et obtenez une transcription précise en quelques secondes.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function FrAacToTextPage() {

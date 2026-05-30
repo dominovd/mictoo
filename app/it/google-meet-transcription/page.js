@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Trascrizione Google Meet — trascrivi le registrazioni Meet gratis | Mictoo',
   description: 'Trascrizione gratuita Google Meet. Carica la tua registrazione Meet da Drive (MP4 o M4A) e ottieni una trascrizione IA pulita in pochi secondi. Funziona su Google Workspace gratuito.',
   alternates: { canonical: 'https://mictoo.com/it/google-meet-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Trascrizione Google Meet — trascrivi le registrazioni Meet gratis | Mictoo",
+    description: "Trascrizione gratuita Google Meet. Carica la tua registrazione Meet da Drive (MP4 o M4A) e ottieni una trascrizione IA pulita in pochi secondi. Funziona su Google Workspace gratuito.",
+    url: "https://mictoo.com/it/google-meet-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Trascrizione Google Meet — trascrivi le registrazioni Meet gratis | Mictoo",
+    description: "Trascrizione gratuita Google Meet. Carica la tua registrazione Meet da Drive (MP4 o M4A) e ottieni una trascrizione IA pulita in pochi secondi. Funziona su Google Workspace gratuito.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItGoogleMeetPage() {

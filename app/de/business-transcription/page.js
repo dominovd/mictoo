@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Kostenlose Business-Transkription. Vertriebs-Calls, Customer Interviews, Fokusgruppen, Vorstandssitzungen, Konferenzen. Hochladen und in Sekunden ein sauberes KI-Transkript erhalten. Ohne Anmeldung.',
   alternates: { canonical: 'https://mictoo.com/de/business-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Business-Transkription — kostenloses Tool für Meetings und Calls | Mictoo",
+    description: "Kostenlose Business-Transkription. Vertriebs-Calls, Customer Interviews, Fokusgruppen, Vorstandssitzungen, Konferenzen. Hochladen und in Sekunden ein sauberes KI-Transkript erhalten. Ohne Anmeldung.",
+    url: "https://mictoo.com/de/business-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Business-Transkription — kostenloses Tool für Meetings und Calls | Mictoo",
+    description: "Kostenlose Business-Transkription. Vertriebs-Calls, Customer Interviews, Fokusgruppen, Vorstandssitzungen, Konferenzen. Hochladen und in Sekunden ein sauberes KI-Transkript erhalten. Ohne Anmeldung.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeBusinessPage() {

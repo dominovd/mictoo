@@ -17,6 +17,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/wma-to-mp3',
     },
   },
+
+  openGraph: {
+    title: "How to Convert WMA to MP3 — Free Methods (2026) | Mictoo",
+    description: "Convert WMA (Windows Media Audio) to MP3 free. Online converters, VLC, Audacity, and ffmpeg — pick what fits. Then transcribe the MP3 to text with Mictoo.",
+    url: "https://mictoo.com/wma-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Convert WMA to MP3 — Free Methods (2026) | Mictoo",
+    description: "Convert WMA (Windows Media Audio) to MP3 free. Online converters, VLC, Audacity, and ffmpeg — pick what fits. Then transcribe the MP3 to text with Mictoo.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function WmaToMp3Page() {

@@ -18,6 +18,21 @@ export const metadata = {
   title: '利用規約 — Mictoo',
   description: 'Mictooの利用規約。',
   alternates: { canonical: 'https://mictoo.com/ja/terms', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "利用規約 — Mictoo",
+    description: "Mictooの利用規約。",
+    url: "https://mictoo.com/ja/terms",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "利用規約 — Mictoo",
+    description: "Mictooの利用規約。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaTermsPage() {

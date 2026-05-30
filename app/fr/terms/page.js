@@ -18,6 +18,21 @@ export const metadata = {
   title: "Conditions d'utilisation — Mictoo",
   description: "Conditions d'utilisation de l'outil de transcription gratuit Mictoo.",
   alternates: { canonical: 'https://mictoo.com/fr/terms', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "Conditions d'utilisation — Mictoo",
+    description: "Conditions d'utilisation de l'outil de transcription gratuit Mictoo.",
+    url: "https://mictoo.com/fr/terms",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Conditions d'utilisation — Mictoo",
+    description: "Conditions d'utilisation de l'outil de transcription gratuit Mictoo.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function FrTermsPage() {

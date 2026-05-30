@@ -18,6 +18,21 @@ export const metadata = {
   title: 'WAV zu Text — Kostenlose WAV-Transkription online | Mictoo',
   description: 'WAV-Dateien kostenlos online in Text umwandeln. Laden Sie eine beliebige WAV-Audiodatei hoch und erhalten Sie in Sekunden eine genaue Transkription. Ohne Anmeldung.',
   alternates: { canonical: 'https://mictoo.com/de/wav-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "WAV zu Text — Kostenlose WAV-Transkription online | Mictoo",
+    description: "WAV-Dateien kostenlos online in Text umwandeln. Laden Sie eine beliebige WAV-Audiodatei hoch und erhalten Sie in Sekunden eine genaue Transkription. Ohne Anmeldung.",
+    url: "https://mictoo.com/de/wav-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WAV zu Text — Kostenlose WAV-Transkription online | Mictoo",
+    description: "WAV-Dateien kostenlos online in Text umwandeln. Laden Sie eine beliebige WAV-Audiodatei hoch und erhalten Sie in Sekunden eine genaue Transkription. Ohne Anmeldung.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeWavToTextPage() {

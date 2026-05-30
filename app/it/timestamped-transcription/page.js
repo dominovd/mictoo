@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Trascrizione gratuita con timecode. Ottieni timecode a livello di parola o frase per qualsiasi audio o video. Perfetto per giornalismo, ricerca, podcasting, video editing.',
   alternates: { canonical: 'https://mictoo.com/it/timestamped-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Trascrizione con timecode — generatore gratuito | Mictoo",
+    description: "Trascrizione gratuita con timecode. Ottieni timecode a livello di parola o frase per qualsiasi audio o video. Perfetto per giornalismo, ricerca, podcasting, video editing.",
+    url: "https://mictoo.com/it/timestamped-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Trascrizione con timecode — generatore gratuito | Mictoo",
+    description: "Trascrizione gratuita con timecode. Ottieni timecode a livello di parola o frase per qualsiasi audio o video. Perfetto per giornalismo, ricerca, podcasting, video editing.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function ItTimestampedPage() {

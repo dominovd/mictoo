@@ -18,6 +18,21 @@ export const metadata = {
   title: 'AACをテキストに — オンラインAAC音声無料文字起こし | Mictoo',
   description: 'AAC音声ファイルを無料でテキストに文字起こし。.aac、.m4a、その他のAACエンコードファイルをドラッグして、数秒で正確な文字起こしを取得。',
   alternates: { canonical: 'https://mictoo.com/ja/aac-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "AACをテキストに — オンラインAAC音声無料文字起こし | Mictoo",
+    description: "AAC音声ファイルを無料でテキストに文字起こし。.aac、.m4a、その他のAACエンコードファイルをドラッグして、数秒で正確な文字起こしを取得。",
+    url: "https://mictoo.com/ja/aac-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AACをテキストに — オンラインAAC音声無料文字起こし | Mictoo",
+    description: "AAC音声ファイルを無料でテキストに文字起こし。.aac、.m4a、その他のAACエンコードファイルをドラッグして、数秒で正確な文字起こしを取得。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaAacToTextPage() {

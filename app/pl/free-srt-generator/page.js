@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Darmowy generator napisów SRT. Prześlij swój plik audio lub wideo i otrzymaj czysty .srt z timecode w kilka sekund. Działa z YouTube, Premiere, DaVinci, CapCut.',
   alternates: { canonical: 'https://mictoo.com/pl/free-srt-generator', languages: LANGS },
+
+  openGraph: {
+    title: "Generator SRT — twórz pliki napisów SRT online | Mictoo",
+    description: "Darmowy generator napisów SRT. Prześlij swój plik audio lub wideo i otrzymaj czysty .srt z timecode w kilka sekund. Działa z YouTube, Premiere, DaVinci, CapCut.",
+    url: "https://mictoo.com/pl/free-srt-generator",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Generator SRT — twórz pliki napisów SRT online | Mictoo",
+    description: "Darmowy generator napisów SRT. Prześlij swój plik audio lub wideo i otrzymaj czysty .srt z timecode w kilka sekund. Działa z YouTube, Premiere, DaVinci, CapCut.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlSrtPage() {

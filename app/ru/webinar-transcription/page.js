@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Транскрибация вебинаров — Бесплатная расшифровка записей | Mictoo',
   description: 'Бесплатная расшифровка записей вебинаров в текст и SRT-субтитры. Работает с Zoom, Webex, GoToWebinar и любыми экспортами MP4 или MP3. Без регистрации.',
   alternates: { canonical: 'https://mictoo.com/ru/webinar-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Транскрибация вебинаров — Бесплатная расшифровка записей | Mictoo",
+    description: "Бесплатная расшифровка записей вебинаров в текст и SRT-субтитры. Работает с Zoom, Webex, GoToWebinar и любыми экспортами MP4 или MP3. Без регистрации.",
+    url: "https://mictoo.com/ru/webinar-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Транскрибация вебинаров — Бесплатная расшифровка записей | Mictoo",
+    description: "Бесплатная расшифровка записей вебинаров в текст и SRT-субтитры. Работает с Zoom, Webex, GoToWebinar и любыми экспортами MP4 или MP3. Без регистрации.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuWebinarPage() {

@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Über Mictoo — Kostenloses KI-Transkriptionstool',
   description: 'Über Mictoo, ein kostenloses KI-gestütztes Audio- und Video-Transkriptionstool. Wer dahintersteht, wie es funktioniert, wie wir Geld verdienen, und was wir mit Ihren Dateien tun (und nicht tun).',
   alternates: { canonical: 'https://mictoo.com/de/about', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "Über Mictoo — Kostenloses KI-Transkriptionstool",
+    description: "Über Mictoo, ein kostenloses KI-gestütztes Audio- und Video-Transkriptionstool. Wer dahintersteht, wie es funktioniert, wie wir Geld verdienen, und was wir mit Ihren Dateien tun (und nicht tun).",
+    url: "https://mictoo.com/de/about",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Über Mictoo — Kostenloses KI-Transkriptionstool",
+    description: "Über Mictoo, ein kostenloses KI-gestütztes Audio- und Video-Transkriptionstool. Wer dahintersteht, wie es funktioniert, wie wir Geld verdienen, und was wir mit Ihren Dateien tun (und nicht tun).",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeAboutPage() {

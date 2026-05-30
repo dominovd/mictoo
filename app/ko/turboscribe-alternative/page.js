@@ -18,6 +18,21 @@ export const metadata = {
   title: 'TurboScribe 대안 — 가입 불필요 Whisper 무료 받아쓰기 | Mictoo',
   description: 'TurboScribe는 Whisper 기반 인기 도구이지만 계정이 필요하고 무료 사용자를 하루 30분으로 제한합니다. Mictoo는 AI 요약 내장으로 완전 가입 불필요.',
   alternates: { canonical: 'https://mictoo.com/ko/turboscribe-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "TurboScribe 대안 — 가입 불필요 Whisper 무료 받아쓰기 | Mictoo",
+    description: "TurboScribe는 Whisper 기반 인기 도구이지만 계정이 필요하고 무료 사용자를 하루 30분으로 제한합니다. Mictoo는 AI 요약 내장으로 완전 가입 불필요.",
+    url: "https://mictoo.com/ko/turboscribe-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TurboScribe 대안 — 가입 불필요 Whisper 무료 받아쓰기 | Mictoo",
+    description: "TurboScribe는 Whisper 기반 인기 도구이지만 계정이 필요하고 무료 사용자를 하루 30분으로 제한합니다. Mictoo는 AI 요약 내장으로 완전 가입 불필요.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoTurboScribeAlternativePage() {

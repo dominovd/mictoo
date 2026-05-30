@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Webinar-Transkription — Kostenloses Transkript für Webinar-Aufzeichnungen | Mictoo',
   description: 'Transkribieren Sie Webinar-Aufzeichnungen kostenlos in Text und SRT-Untertitel. Funktioniert mit Zoom, Webex, GoToWebinar und allen MP4/MP3-Exporten. Ohne Anmeldung.',
   alternates: { canonical: 'https://mictoo.com/de/webinar-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Webinar-Transkription — Kostenloses Transkript für Webinar-Aufzeichnungen | Mictoo",
+    description: "Transkribieren Sie Webinar-Aufzeichnungen kostenlos in Text und SRT-Untertitel. Funktioniert mit Zoom, Webex, GoToWebinar und allen MP4/MP3-Exporten. Ohne Anmeldung.",
+    url: "https://mictoo.com/de/webinar-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Webinar-Transkription — Kostenloses Transkript für Webinar-Aufzeichnungen | Mictoo",
+    description: "Transkribieren Sie Webinar-Aufzeichnungen kostenlos in Text und SRT-Untertitel. Funktioniert mit Zoom, Webex, GoToWebinar und allen MP4/MP3-Exporten. Ohne Anmeldung.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeWebinarPage() {

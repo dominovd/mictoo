@@ -21,6 +21,21 @@ export const metadata = {
     canonical: 'https://mictoo.com/privacy',
     languages: LOCALE_ALTERNATES,
   },
+
+  openGraph: {
+    title: "Privacy Policy — Mictoo",
+    description: "Privacy policy for Mictoo. We do not store your audio files or transcripts.",
+    url: "https://mictoo.com/privacy",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy — Mictoo",
+    description: "Privacy policy for Mictoo. We do not store your audio files or transcripts.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PrivacyPage() {

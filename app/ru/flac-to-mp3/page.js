@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'Конвертируйте FLAC в MP3 бесплатно онлайн. Сожмите FLAC без потерь в MP3 на 128 kbps за секунды. Без регистрации, без водяного знака. До 25 MB.',
   alternates: { canonical: 'https://mictoo.com/ru/flac-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "FLAC в MP3 — бесплатный онлайн-конвертер | Mictoo",
+    description: "Конвертируйте FLAC в MP3 бесплатно онлайн. Сожмите FLAC без потерь в MP3 на 128 kbps за секунды. Без регистрации, без водяного знака. До 25 MB.",
+    url: "https://mictoo.com/ru/flac-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FLAC в MP3 — бесплатный онлайн-конвертер | Mictoo",
+    description: "Конвертируйте FLAC в MP3 бесплатно онлайн. Сожмите FLAC без потерь в MP3 на 128 kbps за секунды. Без регистрации, без водяного знака. До 25 MB.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuFlacToMp3Page() {

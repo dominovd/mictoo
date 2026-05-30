@@ -18,6 +18,21 @@ export const metadata = {
   title: '설교 받아쓰기 — 무료 설교 받아쓰기 생성기 | Mictoo',
   description: '설교와 교회 오디오를 텍스트로 무료로 받아쓰기. 블로그, 학습 노트, 접근성에 이상적. MP3, MP4, M4A 지원. 가입 불필요.',
   alternates: { canonical: 'https://mictoo.com/ko/sermon-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "설교 받아쓰기 — 무료 설교 받아쓰기 생성기 | Mictoo",
+    description: "설교와 교회 오디오를 텍스트로 무료로 받아쓰기. 블로그, 학습 노트, 접근성에 이상적. MP3, MP4, M4A 지원. 가입 불필요.",
+    url: "https://mictoo.com/ko/sermon-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "설교 받아쓰기 — 무료 설교 받아쓰기 생성기 | Mictoo",
+    description: "설교와 교회 오디오를 텍스트로 무료로 받아쓰기. 블로그, 학습 노트, 접근성에 이상적. MP3, MP4, M4A 지원. 가입 불필요.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoSermonPage() {

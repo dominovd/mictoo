@@ -18,6 +18,21 @@ export const metadata = {
   title: 'AAC a texto — Transcripción de audio AAC gratis online | Mictoo',
   description: 'Transcribe archivos de audio AAC a texto gratis. Arrastra tu .aac, .m4a u otro archivo codificado en AAC y obtén una transcripción precisa en segundos.',
   alternates: { canonical: 'https://mictoo.com/es/aac-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "AAC a texto — Transcripción de audio AAC gratis online | Mictoo",
+    description: "Transcribe archivos de audio AAC a texto gratis. Arrastra tu .aac, .m4a u otro archivo codificado en AAC y obtén una transcripción precisa en segundos.",
+    url: "https://mictoo.com/es/aac-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AAC a texto — Transcripción de audio AAC gratis online | Mictoo",
+    description: "Transcribe archivos de audio AAC a texto gratis. Arrastra tu .aac, .m4a u otro archivo codificado en AAC y obtén una transcripción precisa en segundos.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function EsAacToTextPage() {

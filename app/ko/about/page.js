@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Mictoo 뒤에 있는 사람들, 무료 AI 오디오·비디오 받아쓰기 도구. 작동 방식, 수익화 방법, 파일에 하는(그리고 하지 않는) 일.',
   alternates: { canonical: 'https://mictoo.com/ko/about', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "Mictoo 소개 — 무료 AI 받아쓰기 도구",
+    description: "Mictoo 뒤에 있는 사람들, 무료 AI 오디오·비디오 받아쓰기 도구. 작동 방식, 수익화 방법, 파일에 하는(그리고 하지 않는) 일.",
+    url: "https://mictoo.com/ko/about",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mictoo 소개 — 무료 AI 받아쓰기 도구",
+    description: "Mictoo 뒤에 있는 사람들, 무료 AI 오디오·비디오 받아쓰기 도구. 작동 방식, 수익화 방법, 파일에 하는(그리고 하지 않는) 일.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoAboutPage() {

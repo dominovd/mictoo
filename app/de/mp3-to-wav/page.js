@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'MP3 zu WAV kostenlos online konvertieren. Komprimierte MP3 zu unkomprimiertem 16-Bit/44,1 kHz WAV für die Audiobearbeitung erweitern. Ohne Anmeldung, ohne Wasserzeichen.',
   alternates: { canonical: 'https://mictoo.com/de/mp3-to-wav', languages: LANGS },
+
+  openGraph: {
+    title: "MP3 zu WAV — kostenloser Online-Konverter | Mictoo",
+    description: "MP3 zu WAV kostenlos online konvertieren. Komprimierte MP3 zu unkomprimiertem 16-Bit/44,1 kHz WAV für die Audiobearbeitung erweitern. Ohne Anmeldung, ohne Wasserzeichen.",
+    url: "https://mictoo.com/de/mp3-to-wav",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MP3 zu WAV — kostenloser Online-Konverter | Mictoo",
+    description: "MP3 zu WAV kostenlos online konvertieren. Komprimierte MP3 zu unkomprimiertem 16-Bit/44,1 kHz WAV für die Audiobearbeitung erweitern. Ohne Anmeldung, ohne Wasserzeichen.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeMp3ToWavPage() {

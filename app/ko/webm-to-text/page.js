@@ -18,6 +18,21 @@ export const metadata = {
   title: 'WEBM을 텍스트로 — 무료 온라인 WEBM 받아쓰기 | Mictoo',
   description: 'WEBM 오디오·비디오 파일을 온라인에서 무료로 텍스트로 변환. 모든 WEBM 녹화를 업로드하고 즉시 정확한 받아쓰기를 받으세요. 가입 불필요.',
   alternates: { canonical: 'https://mictoo.com/ko/webm-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "WEBM을 텍스트로 — 무료 온라인 WEBM 받아쓰기 | Mictoo",
+    description: "WEBM 오디오·비디오 파일을 온라인에서 무료로 텍스트로 변환. 모든 WEBM 녹화를 업로드하고 즉시 정확한 받아쓰기를 받으세요. 가입 불필요.",
+    url: "https://mictoo.com/ko/webm-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WEBM을 텍스트로 — 무료 온라인 WEBM 받아쓰기 | Mictoo",
+    description: "WEBM 오디오·비디오 파일을 온라인에서 무료로 텍스트로 변환. 모든 WEBM 녹화를 업로드하고 즉시 정확한 받아쓰기를 받으세요. 가입 불필요.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoWebmToTextPage() {

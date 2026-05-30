@@ -18,6 +18,21 @@ export const metadata = {
   title: 'WEBMをテキストに — オンラインWEBM無料文字起こし | Mictoo',
   description: 'WEBM音声・動画ファイルをオンラインで無料でテキストに変換。任意のWEBM録画をアップロードして、即座に正確な文字起こしを取得。登録不要。',
   alternates: { canonical: 'https://mictoo.com/ja/webm-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "WEBMをテキストに — オンラインWEBM無料文字起こし | Mictoo",
+    description: "WEBM音声・動画ファイルをオンラインで無料でテキストに変換。任意のWEBM録画をアップロードして、即座に正確な文字起こしを取得。登録不要。",
+    url: "https://mictoo.com/ja/webm-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WEBMをテキストに — オンラインWEBM無料文字起こし | Mictoo",
+    description: "WEBM音声・動画ファイルをオンラインで無料でテキストに変換。任意のWEBM録画をアップロードして、即座に正確な文字起こしを取得。登録不要。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaWebmToTextPage() {

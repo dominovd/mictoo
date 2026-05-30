@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '無料AIインタビュー文字起こし。インタビュー録画(MP3、M4A、MP4、WAV)をアップロードしてタイムコード付きクリーン文字起こしを数秒で取得。ジャーナリストと研究者向け。',
   alternates: { canonical: 'https://mictoo.com/ja/interview-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "インタビュー文字起こし — 無料AIジェネレーター | Mictoo",
+    description: "無料AIインタビュー文字起こし。インタビュー録画(MP3、M4A、MP4、WAV)をアップロードしてタイムコード付きクリーン文字起こしを数秒で取得。ジャーナリストと研究者向け。",
+    url: "https://mictoo.com/ja/interview-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "インタビュー文字起こし — 無料AIジェネレーター | Mictoo",
+    description: "無料AIインタビュー文字起こし。インタビュー録画(MP3、M4A、MP4、WAV)をアップロードしてタイムコード付きクリーン文字起こしを数秒で取得。ジャーナリストと研究者向け。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaInterviewPage() {

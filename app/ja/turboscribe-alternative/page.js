@@ -18,6 +18,21 @@ export const metadata = {
   title: 'TurboScribeの代替 — 登録不要のWhisper無料文字起こし | Mictoo',
   description: 'TurboScribeはWhisperベースの人気ツールですが、アカウントが必要で無料ユーザーは1日30分に制限されます。MictooはAI要約内蔵で完全に登録不要です。',
   alternates: { canonical: 'https://mictoo.com/ja/turboscribe-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "TurboScribeの代替 — 登録不要のWhisper無料文字起こし | Mictoo",
+    description: "TurboScribeはWhisperベースの人気ツールですが、アカウントが必要で無料ユーザーは1日30分に制限されます。MictooはAI要約内蔵で完全に登録不要です。",
+    url: "https://mictoo.com/ja/turboscribe-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TurboScribeの代替 — 登録不要のWhisper無料文字起こし | Mictoo",
+    description: "TurboScribeはWhisperベースの人気ツールですが、アカウントが必要で無料ユーザーは1日30分に制限されます。MictooはAI要約内蔵で完全に登録不要です。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaTurboScribeAlternativePage() {

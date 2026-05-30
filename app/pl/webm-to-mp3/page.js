@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'Konwertuj WEBM na MP3 online za darmo. Wyciągnij audio MP3 z dowolnego pliku WEBM wideo lub audio w kilka sekund. Bez rejestracji, bez znaku wodnego. Do 25 MB.',
   alternates: { canonical: 'https://mictoo.com/pl/webm-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "WEBM na MP3 — darmowy konwerter online | Mictoo",
+    description: "Konwertuj WEBM na MP3 online za darmo. Wyciągnij audio MP3 z dowolnego pliku WEBM wideo lub audio w kilka sekund. Bez rejestracji, bez znaku wodnego. Do 25 MB.",
+    url: "https://mictoo.com/pl/webm-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WEBM na MP3 — darmowy konwerter online | Mictoo",
+    description: "Konwertuj WEBM na MP3 online za darmo. Wyciągnij audio MP3 z dowolnego pliku WEBM wideo lub audio w kilka sekund. Bez rejestracji, bez znaku wodnego. Do 25 MB.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlWebmToMp3Page() {

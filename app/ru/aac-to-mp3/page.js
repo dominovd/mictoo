@@ -16,6 +16,21 @@ export const metadata = {
   title: 'Как конвертировать AAC в MP3 — бесплатные способы (2026) | Mictoo',
   description: "Конвертируйте AAC в MP3 бесплатно. Три быстрых способа — онлайн-конвертер, QuickTime/VLC или ffmpeg в командной строке. Совет: Mictoo транскрибирует большинство AAC-файлов напрямую, без конвертации.",
   alternates: { canonical: 'https://mictoo.com/ru/aac-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "Как конвертировать AAC в MP3 — бесплатные способы (2026) | Mictoo",
+    description: "Конвертируйте AAC в MP3 бесплатно. Три быстрых способа — онлайн-конвертер, QuickTime/VLC или ffmpeg в командной строке. Совет: Mictoo транскрибирует большинство AAC-файлов напрямую, без конвертации.",
+    url: "https://mictoo.com/ru/aac-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Как конвертировать AAC в MP3 — бесплатные способы (2026) | Mictoo",
+    description: "Конвертируйте AAC в MP3 бесплатно. Три быстрых способа — онлайн-конвертер, QuickTime/VLC или ffmpeg в командной строке. Совет: Mictoo транскрибирует большинство AAC-файлов напрямую, без конвертации.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuAacToMp3Page() {

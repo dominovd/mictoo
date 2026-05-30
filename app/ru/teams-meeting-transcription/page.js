@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Бесплатная расшифровка Microsoft Teams. Загрузите запись (MP4) из OneDrive или SharePoint и получите чистую AI-расшифровку за секунды. Без регистрации.',
   alternates: { canonical: 'https://mictoo.com/ru/teams-meeting-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Расшифровка Microsoft Teams — транскрибация встреч | Mictoo",
+    description: "Бесплатная расшифровка Microsoft Teams. Загрузите запись (MP4) из OneDrive или SharePoint и получите чистую AI-расшифровку за секунды. Без регистрации.",
+    url: "https://mictoo.com/ru/teams-meeting-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Расшифровка Microsoft Teams — транскрибация встреч | Mictoo",
+    description: "Бесплатная расшифровка Microsoft Teams. Загрузите запись (MP4) из OneDrive или SharePoint и получите чистую AI-расшифровку за секунды. Без регистрации.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuTeamsPage() {

@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Contato Mictoo. info@mictoo.com chega numa caixa humana real. Resposta em até um dia útil. Escopo de suporte, pedidos business e atalhos para o FAQ.',
   alternates: { canonical: 'https://mictoo.com/pt/contact', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "Contato — Mictoo",
+    description: "Contato Mictoo. info@mictoo.com chega numa caixa humana real. Resposta em até um dia útil. Escopo de suporte, pedidos business e atalhos para o FAQ.",
+    url: "https://mictoo.com/pt/contact",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contato — Mictoo",
+    description: "Contato Mictoo. info@mictoo.com chega numa caixa humana real. Resposta em até um dia útil. Escopo de suporte, pedidos business e atalhos para o FAQ.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PtContactPage() {

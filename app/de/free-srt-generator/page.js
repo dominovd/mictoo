@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Kostenloser SRT-Untertitel-Generator. Laden Sie Ihre Audio- oder Videodatei hoch und erhalten Sie in Sekunden eine saubere .srt-Datei mit Zeitstempeln. Funktioniert mit YouTube, Premiere, DaVinci, CapCut.',
   alternates: { canonical: 'https://mictoo.com/de/free-srt-generator', languages: LANGS },
+
+  openGraph: {
+    title: "SRT-Generator — SRT-Untertiteldateien online erstellen | Mictoo",
+    description: "Kostenloser SRT-Untertitel-Generator. Laden Sie Ihre Audio- oder Videodatei hoch und erhalten Sie in Sekunden eine saubere .srt-Datei mit Zeitstempeln. Funktioniert mit YouTube, Premiere, DaVinci, CapCut.",
+    url: "https://mictoo.com/de/free-srt-generator",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SRT-Generator — SRT-Untertiteldateien online erstellen | Mictoo",
+    description: "Kostenloser SRT-Untertitel-Generator. Laden Sie Ihre Audio- oder Videodatei hoch und erhalten Sie in Sekunden eine saubere .srt-Datei mit Zeitstempeln. Funktioniert mit YouTube, Premiere, DaVinci, CapCut.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeSrtPage() {

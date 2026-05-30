@@ -18,6 +18,21 @@ export const metadata = {
   title: '구술을 텍스트로 — 무료 음성 구술 받아쓰기 | Mictoo',
   description: '구술 오디오 녹음을 무료로 텍스트로 변환. 작가, 의사, 변호사, 연구자에 이상적. MP3, M4A, WAV 지원. 가입 불필요.',
   alternates: { canonical: 'https://mictoo.com/ko/dictation-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "구술을 텍스트로 — 무료 음성 구술 받아쓰기 | Mictoo",
+    description: "구술 오디오 녹음을 무료로 텍스트로 변환. 작가, 의사, 변호사, 연구자에 이상적. MP3, M4A, WAV 지원. 가입 불필요.",
+    url: "https://mictoo.com/ko/dictation-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "구술을 텍스트로 — 무료 음성 구술 받아쓰기 | Mictoo",
+    description: "구술 오디오 녹음을 무료로 텍스트로 변환. 작가, 의사, 변호사, 연구자에 이상적. MP3, M4A, WAV 지원. 가입 불필요.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoDictationPage() {

@@ -18,6 +18,21 @@ export const metadata = {
   title: 'FLAC zu Text — Kostenlose FLAC-Audio-Transkription online | Mictoo',
   description: 'FLAC-Audiodateien kostenlos online in Text umwandeln. Laden Sie eine beliebige FLAC-Aufnahme hoch und erhalten Sie in Sekunden eine genaue Transkription. Ohne Anmeldung.',
   alternates: { canonical: 'https://mictoo.com/de/flac-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "FLAC zu Text — Kostenlose FLAC-Audio-Transkription online | Mictoo",
+    description: "FLAC-Audiodateien kostenlos online in Text umwandeln. Laden Sie eine beliebige FLAC-Aufnahme hoch und erhalten Sie in Sekunden eine genaue Transkription. Ohne Anmeldung.",
+    url: "https://mictoo.com/de/flac-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FLAC zu Text — Kostenlose FLAC-Audio-Transkription online | Mictoo",
+    description: "FLAC-Audiodateien kostenlos online in Text umwandeln. Laden Sie eine beliebige FLAC-Aufnahme hoch und erhalten Sie in Sekunden eine genaue Transkription. Ohne Anmeldung.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeFlacToTextPage() {

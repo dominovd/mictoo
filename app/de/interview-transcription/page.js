@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Kostenlose KI-Interview-Transkription. Laden Sie Ihre Interview-Aufnahme (MP3, M4A, MP4, WAV) hoch und erhalten Sie in Sekunden ein sauberes, zeitstempel-versehenes Transkript. Gebaut für Journalisten und Forscher.',
   alternates: { canonical: 'https://mictoo.com/de/interview-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Interview-Transkription — kostenloser KI-Transkript-Generator | Mictoo",
+    description: "Kostenlose KI-Interview-Transkription. Laden Sie Ihre Interview-Aufnahme (MP3, M4A, MP4, WAV) hoch und erhalten Sie in Sekunden ein sauberes, zeitstempel-versehenes Transkript. Gebaut für Journalisten und Forscher.",
+    url: "https://mictoo.com/de/interview-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Interview-Transkription — kostenloser KI-Transkript-Generator | Mictoo",
+    description: "Kostenlose KI-Interview-Transkription. Laden Sie Ihre Interview-Aufnahme (MP3, M4A, MP4, WAV) hoch und erhalten Sie in Sekunden ein sauberes, zeitstempel-versehenes Transkript. Gebaut für Journalisten und Forscher.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function DeInterviewPage() {

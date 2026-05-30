@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Alternatywa dla Fireflies — Transkrybuj spotkania bez bota | Mictoo',
   description: 'Fireflies dołącza do twoich spotkań jako bot, aby nagrywać i transkrybować. Mictoo transkrybuje nagrania, które już masz — bez bota, bez rejestracji, bez OAuth. Za darmo z OpenAI Whisper.',
   alternates: { canonical: 'https://mictoo.com/pl/fireflies-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Alternatywa dla Fireflies — Transkrybuj spotkania bez bota | Mictoo",
+    description: "Fireflies dołącza do twoich spotkań jako bot, aby nagrywać i transkrybować. Mictoo transkrybuje nagrania, które już masz — bez bota, bez rejestracji, bez OAuth. Za darmo z OpenAI Whisper.",
+    url: "https://mictoo.com/pl/fireflies-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Alternatywa dla Fireflies — Transkrybuj spotkania bez bota | Mictoo",
+    description: "Fireflies dołącza do twoich spotkań jako bot, aby nagrywać i transkrybować. Mictoo transkrybuje nagrania, które już masz — bez bota, bez rejestracji, bez OAuth. Za darmo z OpenAI Whisper.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlFirefliesAlternativePage() {

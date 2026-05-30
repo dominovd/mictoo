@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Darmowa transkrypcja wideo na tekst. Prześlij MP4, MOV, WEBM, AVI i otrzymaj transkrypcję AI lub plik napisów SRT. Działa ze screencastami, tutorialami, vlogami.',
   alternates: { canonical: 'https://mictoo.com/pl/transcribe-video-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "Wideo na tekst — darmowa transkrypcja online | Mictoo",
+    description: "Darmowa transkrypcja wideo na tekst. Prześlij MP4, MOV, WEBM, AVI i otrzymaj transkrypcję AI lub plik napisów SRT. Działa ze screencastami, tutorialami, vlogami.",
+    url: "https://mictoo.com/pl/transcribe-video-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wideo na tekst — darmowa transkrypcja online | Mictoo",
+    description: "Darmowa transkrypcja wideo na tekst. Prześlij MP4, MOV, WEBM, AVI i otrzymaj transkrypcję AI lub plik napisów SRT. Działa ze screencastami, tutorialami, vlogami.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlVideoToTextPage() {

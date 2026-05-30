@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Альтернатива Descript — Бесплатная расшифровка без регистрации | Mictoo',
   description: 'Ищете альтернативу Descript только для транскрибации? Mictoo даёт бесплатную ИИ-расшифровку без регистрации на OpenAI Whisper. Без редактора, без подписки.',
   alternates: { canonical: 'https://mictoo.com/ru/descript-alternative', languages: LANGS },
+
+  openGraph: {
+    title: "Альтернатива Descript — Бесплатная расшифровка без регистрации | Mictoo",
+    description: "Ищете альтернативу Descript только для транскрибации? Mictoo даёт бесплатную ИИ-расшифровку без регистрации на OpenAI Whisper. Без редактора, без подписки.",
+    url: "https://mictoo.com/ru/descript-alternative",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Альтернатива Descript — Бесплатная расшифровка без регистрации | Mictoo",
+    description: "Ищете альтернативу Descript только для транскрибации? Mictoo даёт бесплатную ИИ-расшифровку без регистрации на OpenAI Whisper. Без редактора, без подписки.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuDescriptAlternativePage() {

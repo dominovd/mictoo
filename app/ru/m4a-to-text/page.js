@@ -18,6 +18,21 @@ export const metadata = {
   title: 'M4A в текст — Бесплатная расшифровка M4A онлайн | Mictoo',
   description: 'Бесплатная конвертация M4A-аудио в текст. Загрузите любой M4A-файл — голосовые заметки iPhone, записи, подкасты — и получите расшифровку мгновенно. Без регистрации.',
   alternates: { canonical: 'https://mictoo.com/ru/m4a-to-text', languages: LANGS },
+
+  openGraph: {
+    title: "M4A в текст — Бесплатная расшифровка M4A онлайн | Mictoo",
+    description: "Бесплатная конвертация M4A-аудио в текст. Загрузите любой M4A-файл — голосовые заметки iPhone, записи, подкасты — и получите расшифровку мгновенно. Без регистрации.",
+    url: "https://mictoo.com/ru/m4a-to-text",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "M4A в текст — Бесплатная расшифровка M4A онлайн | Mictoo",
+    description: "Бесплатная конвертация M4A-аудио в текст. Загрузите любой M4A-файл — голосовые заметки iPhone, записи, подкасты — и получите расшифровку мгновенно. Без регистрации.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuM4AToTextPage() {

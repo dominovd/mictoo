@@ -17,6 +17,21 @@ export const metadata = {
       'x-default': 'https://mictoo.com/how-to-split-audio',
     },
   },
+
+  openGraph: {
+    title: "How to Split a Long Audio File for Transcription — Free Methods | Mictoo",
+    description: "Three free ways to split a long recording into shorter parts for transcription: online tools, Audacity, or ffmpeg. Works for MP3, M4A, WAV, MP4 and more.",
+    url: "https://mictoo.com/how-to-split-audio",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "How to Split a Long Audio File for Transcription — Free Methods | Mictoo",
+    description: "Three free ways to split a long recording into shorter parts for transcription: online tools, Audacity, or ffmpeg. Works for MP3, M4A, WAV, MP4 and more.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function HowToSplitAudioPage() {

@@ -20,6 +20,21 @@ export const metadata = {
   description:
     "Convertissez WEBM en MP3 gratuitement en ligne. Extrayez l'audio MP3 de n'importe quel fichier WEBM, vidéo ou audio, en quelques secondes. Sans inscription, sans filigrane. Jusqu'à 25 Mo.",
   alternates: { canonical: 'https://mictoo.com/fr/webm-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "WEBM vers MP3 — convertisseur en ligne gratuit | Mictoo",
+    description: "Convertissez WEBM en MP3 gratuitement en ligne. Extrayez l'audio MP3 de n'importe quel fichier WEBM, vidéo ou audio, en quelques secondes. Sans inscription, sans filigrane. Jusqu'à 25 Mo.",
+    url: "https://mictoo.com/fr/webm-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WEBM vers MP3 — convertisseur en ligne gratuit | Mictoo",
+    description: "Convertissez WEBM en MP3 gratuitement en ligne. Extrayez l'audio MP3 de n'importe quel fichier WEBM, vidéo ou audio, en quelques secondes. Sans inscription, sans filigrane. Jusqu'à 25 Mo.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function FrWebmToMp3Page() {

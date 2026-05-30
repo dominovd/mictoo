@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Darmowa transkrypcja podcastu z AI. Prześlij swój odcinek (MP3, MP4, M4A, WAV) i otrzymaj czystą transkrypcję z timecode w kilka sekund. Bez rejestracji, bez opłaty za minutę.',
   alternates: { canonical: 'https://mictoo.com/pl/podcast-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Transkrypcja podcastu — darmowy generator AI | Mictoo",
+    description: "Darmowa transkrypcja podcastu z AI. Prześlij swój odcinek (MP3, MP4, M4A, WAV) i otrzymaj czystą transkrypcję z timecode w kilka sekund. Bez rejestracji, bez opłaty za minutę.",
+    url: "https://mictoo.com/pl/podcast-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Transkrypcja podcastu — darmowy generator AI | Mictoo",
+    description: "Darmowa transkrypcja podcastu z AI. Prześlij swój odcinek (MP3, MP4, M4A, WAV) i otrzymaj czystą transkrypcję z timecode w kilka sekund. Bez rejestracji, bez opłaty za minutę.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlPodcastPage() {

@@ -18,6 +18,21 @@ export const metadata = {
   title: 'Regulamin — Mictoo',
   description: 'Regulamin korzystania z Mictoo.',
   alternates: { canonical: 'https://mictoo.com/pl/terms', languages: LOCALE_ALTERNATES },
+
+  openGraph: {
+    title: "Regulamin — Mictoo",
+    description: "Regulamin korzystania z Mictoo.",
+    url: "https://mictoo.com/pl/terms",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Regulamin — Mictoo",
+    description: "Regulamin korzystania z Mictoo.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function PlTermsPage() {

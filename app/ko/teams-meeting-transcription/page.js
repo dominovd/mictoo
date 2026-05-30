@@ -19,6 +19,21 @@ export const metadata = {
   description:
     '무료 Microsoft Teams 받아쓰기. OneDrive 또는 SharePoint에서 녹화(MP4)를 업로드하여 깨끗한 AI 받아쓰기를 몇 초 만에 받으세요. 가입 불필요.',
   alternates: { canonical: 'https://mictoo.com/ko/teams-meeting-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Microsoft Teams 받아쓰기 — 회의 받아쓰기 | Mictoo",
+    description: "무료 Microsoft Teams 받아쓰기. OneDrive 또는 SharePoint에서 녹화(MP4)를 업로드하여 깨끗한 AI 받아쓰기를 몇 초 만에 받으세요. 가입 불필요.",
+    url: "https://mictoo.com/ko/teams-meeting-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Microsoft Teams 받아쓰기 — 회의 받아쓰기 | Mictoo",
+    description: "무료 Microsoft Teams 받아쓰기. OneDrive 또는 SharePoint에서 녹화(MP4)를 업로드하여 깨끗한 AI 받아쓰기를 몇 초 만에 받으세요. 가입 불필요.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function KoTeamsPage() {

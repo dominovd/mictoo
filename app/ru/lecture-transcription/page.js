@@ -19,6 +19,21 @@ export const metadata = {
   description:
     'Бесплатная расшифровка лекций. Загрузите запись лекции, занятия или семинара (MP3, M4A, MP4) и получите чистый текст за секунды. Сделано для студентов.',
   alternates: { canonical: 'https://mictoo.com/ru/lecture-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "Расшифровка лекций — бесплатный генератор транскриптов | Mictoo",
+    description: "Бесплатная расшифровка лекций. Загрузите запись лекции, занятия или семинара (MP3, M4A, MP4) и получите чистый текст за секунды. Сделано для студентов.",
+    url: "https://mictoo.com/ru/lecture-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Расшифровка лекций — бесплатный генератор транскриптов | Mictoo",
+    description: "Бесплатная расшифровка лекций. Загрузите запись лекции, занятия или семинара (MP3, M4A, MP4) и получите чистый текст за секунды. Сделано для студентов.",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function RuLecturePage() {

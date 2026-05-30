@@ -20,6 +20,21 @@ export const metadata = {
   description:
     'WEBMからMP3への変換が無料オンラインで使えます。WEBM動画や音声ファイルから数秒でMP3音声を取り出せます。登録不要、ウォーターマークなし。最大25 MB。',
   alternates: { canonical: 'https://mictoo.com/ja/webm-to-mp3', languages: LANGS },
+
+  openGraph: {
+    title: "WEBMからMP3へ — 無料オンライン変換ツール | Mictoo",
+    description: "WEBMからMP3への変換が無料オンラインで使えます。WEBM動画や音声ファイルから数秒でMP3音声を取り出せます。登録不要、ウォーターマークなし。最大25 MB。",
+    url: "https://mictoo.com/ja/webm-to-mp3",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WEBMからMP3へ — 無料オンライン変換ツール | Mictoo",
+    description: "WEBMからMP3への変換が無料オンラインで使えます。WEBM動画や音声ファイルから数秒でMP3音声を取り出せます。登録不要、ウォーターマークなし。最大25 MB。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaWebmToMp3Page() {

@@ -18,6 +18,21 @@ export const metadata = {
   title: 'ウェビナー文字起こし — 録画の無料トランスクリプト | Mictoo',
   description: 'ウェビナー録画をテキストとSRT字幕に無料で文字起こし。Zoom、Webex、GoToWebinarおよび任意のMP4・MP3エクスポートで動作。登録不要。',
   alternates: { canonical: 'https://mictoo.com/ja/webinar-transcription', languages: LANGS },
+
+  openGraph: {
+    title: "ウェビナー文字起こし — 録画の無料トランスクリプト | Mictoo",
+    description: "ウェビナー録画をテキストとSRT字幕に無料で文字起こし。Zoom、Webex、GoToWebinarおよび任意のMP4・MP3エクスポートで動作。登録不要。",
+    url: "https://mictoo.com/ja/webinar-transcription",
+    siteName: "Mictoo",
+    type: "website",
+    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ウェビナー文字起こし — 録画の無料トランスクリプト | Mictoo",
+    description: "ウェビナー録画をテキストとSRT字幕に無料で文字起こし。Zoom、Webex、GoToWebinarおよび任意のMP4・MP3エクスポートで動作。登録不要。",
+    images: ["https://mictoo.com/opengraph-image"],
+  },
 }
 
 export default function JaWebinarPage() {
