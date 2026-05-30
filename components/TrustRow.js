@@ -9,8 +9,14 @@ import { detectLocaleFromPath, t } from '@/lib/i18n'
 //      the visibility threshold so we don't surface embarrassing numbers
 //      before launch traction)
 //   2. 50+ languages — Whisper's actual coverage
-//   3. ~30s typical — our real median for a 10-min file
+//   3. No signup required — biggest friction-removal vs paid competitors
 //   4. OpenAI Whisper — credibility through association (and accurate)
+//
+// Speed was here originally but landed as a weak signal: "typical" is
+// vague (a 60-min file isn't typical), it's table stakes in the space,
+// and Vercel cold starts can blow through 30s. Friction-removal is a
+// stronger axis since "No signup" is literally THE differentiator vs
+// TurboScribe / Otter / Rev which all require an email.
 //
 // All four are factual; nothing fake. The counter falls back to the static
 // three when the API is down or under threshold, so the row never collapses
@@ -40,7 +46,7 @@ export default function TrustRow({ locale: localeProp }) {
   const items = [
     showCounter && t(locale, 'trust.transcripts', { count: formatted }),
     t(locale, 'trust.languages'),
-    t(locale, 'trust.speed'),
+    t(locale, 'trust.noSignup'),
     t(locale, 'trust.engine'),
   ].filter(Boolean)
 
