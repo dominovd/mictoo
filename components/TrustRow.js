@@ -8,15 +8,15 @@ import { detectLocaleFromPath, t } from '@/lib/i18n'
 //   1. Live transcription counter (real, from /api/stats — only shown above
 //      the visibility threshold so we don't surface embarrassing numbers
 //      before launch traction)
-//   2. 50+ languages — Whisper's actual coverage
-//   3. No signup required — biggest friction-removal vs paid competitors
+//   2. AI summary — bundled feature, competitors paywall this at $15-20/mo
+//   3. Translate, 28 langs — bundled feature, also paywalled by competitors
 //   4. OpenAI Whisper — credibility through association (and accurate)
 //
-// Speed was here originally but landed as a weak signal: "typical" is
-// vague (a 60-min file isn't typical), it's table stakes in the space,
-// and Vercel cold starts can blow through 30s. Friction-removal is a
-// stronger axis since "No signup" is literally THE differentiator vs
-// TurboScribe / Otter / Rev which all require an email.
+// Previous versions had "50+ languages" and "No signup required" here, but
+// both duplicated the badge directly above ("AI · FREE · NO SIGNUP · 50+
+// LANGUAGES"). Swapped to surface the two strongest pricing differentiators
+// that aren't in the badge — both are free in Mictoo and paid in TurboScribe
+// / Otter / Rev.
 //
 // All four are factual; nothing fake. The counter falls back to the static
 // three when the API is down or under threshold, so the row never collapses
@@ -45,8 +45,8 @@ export default function TrustRow({ locale: localeProp }) {
 
   const items = [
     showCounter && t(locale, 'trust.transcripts', { count: formatted }),
-    t(locale, 'trust.languages'),
-    t(locale, 'trust.noSignup'),
+    t(locale, 'trust.summary'),
+    t(locale, 'trust.translate'),
     t(locale, 'trust.engine'),
   ].filter(Boolean)
 
