@@ -250,6 +250,10 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   const [youtubeUrl, setYoutubeUrl] = useState('')
   const [youtubeStatus, setYoutubeStatus] = useState('idle') // idle | loading | error | noCaptions
   const [youtubeError, setYoutubeError] = useState('')
+  // Debug payload returned by /api/youtube-captions when something doesn't
+  // work. Rendered in a tiny <details> below the error message so the user
+  // can screenshot it without opening DevTools.
+  const [youtubeDebug, setYoutubeDebug] = useState(null)
   // True when the server signalled `signInHelps: true` in a 429 response,
   // i.e. an anonymous user hit the IP rate limit and signing in would give
   // them a fresh user-keyed budget. Drives the "Sign in to keep going" CTA
@@ -479,6 +483,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     if (!url) return
     setYoutubeStatus('loading')
     setYoutubeError('')
+    setYoutubeDebug(null)
     try {
       const res = await fetch('/api/youtube-captions', {
         method: 'POST',
@@ -488,9 +493,11 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
       const data = await res.json().catch(() => ({}))
 
       if (!res.ok) {
+        if (data?.debug) setYoutubeDebug(data.debug)
         throw new Error(data?.error || `Request failed (${res.status})`)
       }
       if (data?.noCaptions) {
+        if (data?.debug) setYoutubeDebug(data.debug)
         setYoutubeStatus('noCaptions')
         setYoutubeError(data.error || 'This video has no captions.')
         return
@@ -1489,6 +1496,16 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
         )}
         {youtubeStatus === 'error' && (
           <p className="text-xs text-red-600 mt-2">{youtubeError}</p>
+        )}
+        {/* Dev/debug: surface the diagnostic payload inline so we can see
+            which client got rejected without opening DevTools. Hidden by
+            default, click "show details" to expand. Safe to ship — the
+            content is purely technical and only appears on failures. */}
+        {youtubeDebug && (youtubeStatus === 'noCaptions' || youtubeStatus === 'error') && (
+          <details className="text-[10px] text-slate-500 mt-2">
+            <summary className="cursor-pointer select-none">show technical details</summary>
+            <pre className="bg-slate-50 border border-slate-200 rounded p-2 mt-1 overflow-auto whitespace-pre-wrap break-words">{JSON.stringify(youtubeDebug, null, 2)}</pre>
+          </details>
         )}
       </div>
 
