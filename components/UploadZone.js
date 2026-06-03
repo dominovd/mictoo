@@ -9,6 +9,20 @@ import { toVTT } from '@/lib/exports/vtt'
 import { toJSON } from '@/lib/exports/json'
 import SummaryCard from './SummaryCard'
 
+// Feature flag — YouTube URL → captions ingestion (Option F). Hidden
+// in prod since 2026-06-03: YouTube IP-blocks the entire Vercel
+// datacenter range at the network layer. All 6 Innertube clients
+// (WEB, MWEB, TVHTML5, TVHTML5_EMBED, ANDROID, IOS) come back with
+// LOGIN_REQUIRED or 400. No combination of client signatures from our
+// code can fix it — needs either a residential proxy ($30+/mo +
+// maintenance) or a 3rd-party transcript API ($19/mo for supadata.ai).
+// Decision: keep the code intact (route, lib, i18n strings all still
+// shipped), hide the UI. Revisit at the 2026-06-24 AdSense decision
+// point — if approved, optionally re-enable through supadata; if
+// rejected, kill the code paths entirely. See memory:
+// project_mictoo_youtube_downloader_strategy.md for full context.
+const YOUTUBE_URL_INPUT_ENABLED = false
+
 const ACCEPTED_TYPES = ['audio/mpeg', 'audio/mp4', 'audio/wav', 'audio/m4a', 'audio/ogg',
   'audio/webm', 'video/mp4', 'video/webm', 'video/mpeg', 'audio/x-m4a',
   'audio/flac', 'application/octet-stream']
@@ -1443,78 +1457,75 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
         </select>
       </div>
 
-      {/* YouTube URL input — Option F: scrape YouTube's own auto-captions
-          instead of transcribing audio. Costs us nothing (YouTube already
-          ran the speech recognition) and avoids the residential-proxy
-          headache that would be needed for a real audio downloader.
-          Limitations are surfaced inline: if the video has no captions we
-          send the user to the download-then-upload guide. */}
-      <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-4">
-        <div className="flex items-center justify-between mb-2">
-          <label htmlFor="yt-url" className="text-xs text-slate-500 font-medium">
-            {t(locale, 'youtube.label')}
-          </label>
-          <span className="text-[11px] text-slate-400">{t(locale, 'youtube.hint')}</span>
-        </div>
-        <div className="flex flex-col sm:flex-row gap-2">
-          <input
-            id="yt-url"
-            type="url"
-            value={youtubeUrl}
-            onChange={e => setYoutubeUrl(e.target.value)}
-            onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); fetchYouTubeCaptions() } }}
-            placeholder="https://www.youtube.com/watch?v=..."
-            className="flex-1 text-sm border border-slate-200 rounded-lg px-3 py-2 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500"
-            disabled={youtubeStatus === 'loading'}
-          />
-          <button
-            type="button"
-            onClick={fetchYouTubeCaptions}
-            disabled={youtubeStatus === 'loading' || !youtubeUrl.trim()}
-            className="text-sm px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors inline-flex items-center justify-center gap-1.5 whitespace-nowrap"
-          >
-            {youtubeStatus === 'loading' ? (
-              <>
-                <svg className="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4z" />
-                </svg>
-                {t(locale, 'youtube.fetching')}
-              </>
-            ) : (
-              t(locale, 'youtube.button')
+      {/* YouTube URL input — gated by YOUTUBE_URL_INPUT_ENABLED. See the
+          flag declaration at the top of the file for why it's off. The
+          entire block + "or" divider stay together: if the input isn't
+          shown, the divider above the drop zone would be a non-sequitur. */}
+      {YOUTUBE_URL_INPUT_ENABLED && (
+        <>
+          <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-4">
+            <div className="flex items-center justify-between mb-2">
+              <label htmlFor="yt-url" className="text-xs text-slate-500 font-medium">
+                {t(locale, 'youtube.label')}
+              </label>
+              <span className="text-[11px] text-slate-400">{t(locale, 'youtube.hint')}</span>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2">
+              <input
+                id="yt-url"
+                type="url"
+                value={youtubeUrl}
+                onChange={e => setYoutubeUrl(e.target.value)}
+                onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); fetchYouTubeCaptions() } }}
+                placeholder="https://www.youtube.com/watch?v=..."
+                className="flex-1 text-sm border border-slate-200 rounded-lg px-3 py-2 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                disabled={youtubeStatus === 'loading'}
+              />
+              <button
+                type="button"
+                onClick={fetchYouTubeCaptions}
+                disabled={youtubeStatus === 'loading' || !youtubeUrl.trim()}
+                className="text-sm px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors inline-flex items-center justify-center gap-1.5 whitespace-nowrap"
+              >
+                {youtubeStatus === 'loading' ? (
+                  <>
+                    <svg className="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4z" />
+                    </svg>
+                    {t(locale, 'youtube.fetching')}
+                  </>
+                ) : (
+                  t(locale, 'youtube.button')
+                )}
+              </button>
+            </div>
+            {youtubeStatus === 'noCaptions' && (
+              <p className="text-xs text-amber-700 mt-2">
+                {t(locale, 'youtube.noCaptions')}{' '}
+                <a href="/how-to-download-youtube-video" className="text-brand-600 hover:underline font-medium">
+                  {t(locale, 'youtube.downloadGuide')}
+                </a>
+              </p>
             )}
-          </button>
-        </div>
-        {youtubeStatus === 'noCaptions' && (
-          <p className="text-xs text-amber-700 mt-2">
-            {t(locale, 'youtube.noCaptions')}{' '}
-            <a href="/how-to-download-youtube-video" className="text-brand-600 hover:underline font-medium">
-              {t(locale, 'youtube.downloadGuide')}
-            </a>
-          </p>
-        )}
-        {youtubeStatus === 'error' && (
-          <p className="text-xs text-red-600 mt-2">{youtubeError}</p>
-        )}
-        {/* Dev/debug: surface the diagnostic payload inline so we can see
-            which client got rejected without opening DevTools. Hidden by
-            default, click "show details" to expand. Safe to ship — the
-            content is purely technical and only appears on failures. */}
-        {youtubeDebug && (youtubeStatus === 'noCaptions' || youtubeStatus === 'error') && (
-          <details className="text-[10px] text-slate-500 mt-2">
-            <summary className="cursor-pointer select-none">show technical details</summary>
-            <pre className="bg-slate-50 border border-slate-200 rounded p-2 mt-1 overflow-auto whitespace-pre-wrap break-words">{JSON.stringify(youtubeDebug, null, 2)}</pre>
-          </details>
-        )}
-      </div>
+            {youtubeStatus === 'error' && (
+              <p className="text-xs text-red-600 mt-2">{youtubeError}</p>
+            )}
+            {youtubeDebug && (youtubeStatus === 'noCaptions' || youtubeStatus === 'error') && (
+              <details className="text-[10px] text-slate-500 mt-2">
+                <summary className="cursor-pointer select-none">show technical details</summary>
+                <pre className="bg-slate-50 border border-slate-200 rounded p-2 mt-1 overflow-auto whitespace-pre-wrap break-words">{JSON.stringify(youtubeDebug, null, 2)}</pre>
+              </details>
+            )}
+          </div>
 
-      {/* "or" divider before the file drop zone */}
-      <div className="flex items-center gap-3 my-3">
-        <div className="flex-1 h-px bg-slate-200" />
-        <span className="text-[11px] uppercase tracking-wide text-slate-400 font-medium">{t(locale, 'youtube.or')}</span>
-        <div className="flex-1 h-px bg-slate-200" />
-      </div>
+          <div className="flex items-center gap-3 my-3">
+            <div className="flex-1 h-px bg-slate-200" />
+            <span className="text-[11px] uppercase tracking-wide text-slate-400 font-medium">{t(locale, 'youtube.or')}</span>
+            <div className="flex-1 h-px bg-slate-200" />
+          </div>
+        </>
+      )}
 
       {/* Drop zone */}
       <div
