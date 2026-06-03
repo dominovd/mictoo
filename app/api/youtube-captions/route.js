@@ -127,22 +127,24 @@ export async function POST(request) {
     try {
       result = await getYouTubeCaptions(url, { preferLang })
     } catch (err) {
-      // Map our internal error codes to user-facing messages + appropriate
-      // HTTP status. NO_CAPTIONS is the single most common "expected" outcome
-      // — surface it with 200 + a `noCaptions: true` flag so the client can
-      // route the user to the download guide without an error UI.
       const code = err?.code || 'UNKNOWN'
       const msg = err?.message || 'Could not fetch captions.'
+      const debug = err?.debug || null
+      // Log to Vercel function logs with the diagnostic trail so we can
+      // see *why* something failed without asking the user.
+      console.error('youtube-captions:', code, msg, debug)
       if (code === 'NO_CAPTIONS') {
-        return NextResponse.json({ noCaptions: true, error: msg }, { status: 200 })
+        return NextResponse.json({ noCaptions: true, error: msg, debug }, { status: 200 })
+      }
+      if (code === 'BLOCKED') {
+        // YouTube rejected our datacenter IP. Surface to the client as
+        // noCaptions so the UX falls through to the download guide.
+        return NextResponse.json({ noCaptions: true, blocked: true, error: msg, debug }, { status: 200 })
       }
       if (code === 'BAD_URL') {
         return NextResponse.json({ error: msg }, { status: 400 })
       }
-      // Treat YouTube blocking / fetch failures as 502 so the client can
-      // distinguish them from validation errors.
-      console.error('youtube-captions:', code, msg)
-      return NextResponse.json({ error: msg, code }, { status: 502 })
+      return NextResponse.json({ error: msg, code, debug }, { status: 502 })
     }
 
     // Reassemble a flat text for the existing transcript flow (Reader uses
