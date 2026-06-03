@@ -242,6 +242,14 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
   const [translateError, setTranslateError] = useState('')
   const [language, setLanguage] = useState(defaultLanguage)
   const [error, setError] = useState('')
+  // YouTube URL flow (Option F in project_mictoo_youtube_downloader_strategy):
+  // user pastes a YouTube URL → we fetch the auto-captions YouTube already
+  // generates → render them in the same Reader as a normal transcription.
+  // Zero Whisper cost on our side. Fallback when the video has no captions
+  // is a link to /how-to-download-youtube-video.
+  const [youtubeUrl, setYoutubeUrl] = useState('')
+  const [youtubeStatus, setYoutubeStatus] = useState('idle') // idle | loading | error | noCaptions
+  const [youtubeError, setYoutubeError] = useState('')
   // True when the server signalled `signInHelps: true` in a 429 response,
   // i.e. an anonymous user hit the IP rate limit and signing in would give
   // them a fresh user-keyed budget. Drives the "Sign in to keep going" CTA
@@ -416,6 +424,9 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
     setTranslateLang('')
     setTranslateStatus('idle')
     setTranslateError('')
+    setYoutubeUrl('')
+    setYoutubeStatus('idle')
+    setYoutubeError('')
     // Manual reset (e.g. "New file" button) wipes any pending batch too —
     // user signalled they want a clean slate.
     setBatchQueue([])
@@ -458,6 +469,63 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
       setTranslateStatus('error')
     }
   }, [segments, spokenLanguage])
+
+  // Fetch YouTube captions for the URL the user pasted. On success populate
+  // the same transcript + segments state as a normal upload, then flip to
+  // the 'done' state so the Reader renders. On "no captions" we surface a
+  // pointer to /how-to-download-youtube-video as the fallback.
+  const fetchYouTubeCaptions = useCallback(async () => {
+    const url = (youtubeUrl || '').trim()
+    if (!url) return
+    setYoutubeStatus('loading')
+    setYoutubeError('')
+    try {
+      const res = await fetch('/api/youtube-captions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url, lang: language || undefined }),
+      })
+      const data = await res.json().catch(() => ({}))
+
+      if (!res.ok) {
+        throw new Error(data?.error || `Request failed (${res.status})`)
+      }
+      if (data?.noCaptions) {
+        setYoutubeStatus('noCaptions')
+        setYoutubeError(data.error || 'This video has no captions.')
+        return
+      }
+      if (!Array.isArray(data?.segments) || !data.segments.length) {
+        throw new Error('No captions returned.')
+      }
+
+      // Pump into the same state as a normal transcription so the result
+      // screen renders without any code changes.
+      setTranscript(data.text || data.segments.map(s => s.text).join(' '))
+      setSegments(data.segments)
+      setSpokenLanguage(data.languageCode || null)
+      setTranscriptId(null)
+      // Synthesize a pseudo-File so result-header stats and exports use the
+      // YouTube video title as the filename. The Reader doesn't actually need
+      // a File — only the audio player does, and we already gate that on
+      // audioUrl which stays null for the YouTube path.
+      const safeTitle = (data.title || `youtube-${data.videoId}`).replace(/[\\/:*?"<>|]/g, '').slice(0, 80)
+      const fakeFile = new File([''], `${safeTitle}.txt`, { type: 'text/plain' })
+      setFile(fakeFile)
+      setYoutubeStatus('idle')
+      setState('done')
+
+      // Kick off the AI summary as we do after a normal transcribe.
+      generateSummary(data.text || '', data.languageCode || null, null)
+    } catch (err) {
+      setYoutubeError(err?.message || 'Could not fetch YouTube captions.')
+      setYoutubeStatus('error')
+    }
+  // generateSummary is a useCallback whose identity is stable enough; we
+  // intentionally narrow deps to avoid stale-closure traps when language
+  // changes mid-flow.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [youtubeUrl, language])
 
   // Whenever a fresh File lands in state, mint a local object URL so the
   // result view can offer in-browser playback. We revoke the previous URL
@@ -1366,6 +1434,69 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
             <option key={code} value={code}>{DICT[locale]?.languages?.[code] ?? DICT.en.languages[code]}</option>
           ))}
         </select>
+      </div>
+
+      {/* YouTube URL input — Option F: scrape YouTube's own auto-captions
+          instead of transcribing audio. Costs us nothing (YouTube already
+          ran the speech recognition) and avoids the residential-proxy
+          headache that would be needed for a real audio downloader.
+          Limitations are surfaced inline: if the video has no captions we
+          send the user to the download-then-upload guide. */}
+      <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-4">
+        <div className="flex items-center justify-between mb-2">
+          <label htmlFor="yt-url" className="text-xs text-slate-500 font-medium">
+            {t(locale, 'youtube.label')}
+          </label>
+          <span className="text-[11px] text-slate-400">{t(locale, 'youtube.hint')}</span>
+        </div>
+        <div className="flex flex-col sm:flex-row gap-2">
+          <input
+            id="yt-url"
+            type="url"
+            value={youtubeUrl}
+            onChange={e => setYoutubeUrl(e.target.value)}
+            onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); fetchYouTubeCaptions() } }}
+            placeholder="https://www.youtube.com/watch?v=..."
+            className="flex-1 text-sm border border-slate-200 rounded-lg px-3 py-2 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500"
+            disabled={youtubeStatus === 'loading'}
+          />
+          <button
+            type="button"
+            onClick={fetchYouTubeCaptions}
+            disabled={youtubeStatus === 'loading' || !youtubeUrl.trim()}
+            className="text-sm px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors inline-flex items-center justify-center gap-1.5 whitespace-nowrap"
+          >
+            {youtubeStatus === 'loading' ? (
+              <>
+                <svg className="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4z" />
+                </svg>
+                {t(locale, 'youtube.fetching')}
+              </>
+            ) : (
+              t(locale, 'youtube.button')
+            )}
+          </button>
+        </div>
+        {youtubeStatus === 'noCaptions' && (
+          <p className="text-xs text-amber-700 mt-2">
+            {t(locale, 'youtube.noCaptions')}{' '}
+            <a href="/how-to-download-youtube-video" className="text-brand-600 hover:underline font-medium">
+              {t(locale, 'youtube.downloadGuide')}
+            </a>
+          </p>
+        )}
+        {youtubeStatus === 'error' && (
+          <p className="text-xs text-red-600 mt-2">{youtubeError}</p>
+        )}
+      </div>
+
+      {/* "or" divider before the file drop zone */}
+      <div className="flex items-center gap-3 my-3">
+        <div className="flex-1 h-px bg-slate-200" />
+        <span className="text-[11px] uppercase tracking-wide text-slate-400 font-medium">{t(locale, 'youtube.or')}</span>
+        <div className="flex-1 h-px bg-slate-200" />
       </div>
 
       {/* Drop zone */}
