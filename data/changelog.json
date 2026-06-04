@@ -1,71 +1,17 @@
 {
-  "_comment": "Source of truth for the /whats-new page and the SiteHeader red-dot indicator. Entries are rendered newest-first by date. Each entry: { date (YYYY-MM-DD), title, body (plain text — paragraphs split on blank lines), tags ([] of strings used as small labels). Add the newest entry at the TOP of the array so date sort isn't strictly required to look right while editing. Header's unread indicator compares localStorage 'mictoo:changelog_lastSeen' against entries[0].date.",
+  "_comment": "Source of truth for the /whats-new page and the SiteHeader red-dot indicator. Entries are rendered newest-first by date. Each entry: { date (YYYY-MM-DD), title, body (plain text — paragraphs split on blank lines, inline links via markdown-style [label](url)), tags ([] of strings used as small labels). Add the newest entry at the TOP of the array so date sort isn't strictly required to look right while editing. Header's unread indicator compares localStorage 'mictoo:changelog_lastSeen' against entries[0].date.",
   "entries": [
     {
       "date": "2026-06-04",
-      "title": "YouTube URL → transcript on /youtube-to-text and /transcribe-video-to-text",
-      "body": "Paste a YouTube link and get the transcript back in a couple of seconds — no need to download the video first. Full timestamps, AI summary, copy/export as TXT/SRT/VTT/DOCX. Powered by transcriptapi.com; YouTube directly is blocked from datacenter IPs.\n\nAvailable on two landing pages where this is the primary user intent. The main upload zone still focuses on file uploads.",
+      "title": "Paste a YouTube link, get a transcript",
+      "body": "You no longer need to download the video first. Paste any YouTube URL on [/youtube-to-text](/youtube-to-text) or [/transcribe-video-to-text](/transcribe-video-to-text) and the transcript comes back in a couple of seconds with timestamps, an AI summary, and copy/export to TXT, SRT, VTT, or DOCX.\n\nIf the video has no captions, we'll send you to the [download-and-upload guide](/how-to-download-youtube-video) so you can still get the text.",
       "tags": ["new", "youtube"]
     },
     {
       "date": "2026-06-04",
-      "title": "Popular YouTube transcripts as searchable pages",
-      "body": "First 12 of a planned 30 famous YouTube videos (TED talks, viral classics, long-form podcasts) now live at /transcripts. Each page includes the full transcript with clickable timestamps and an AI summary. Drop-in resource for students, researchers, journalists who need to quote or scan a video without watching the whole thing.\n\nMore videos coming as we curate.",
+      "title": "12 famous YouTube videos now have searchable transcripts",
+      "body": "Browse the new [transcripts hub](/transcripts) for full transcripts of TED talks like [Ken Robinson — Do Schools Kill Creativity](/transcripts/ted-do-schools-kill-creativity-ken-robinson) and [Brené Brown — The Power of Vulnerability](/transcripts/ted-power-of-vulnerability-brene-brown), classics like [Steve Jobs' 2005 Stanford Commencement](/transcripts/steve-jobs-stanford-commencement-2005), plus long-form interviews from Andrew Huberman and Lex Fridman.\n\nEvery page has timestamps, an AI summary, and links back to the original video. More coming as we curate. Want to transcribe your own video? [Drop a file](/transcribe-video-to-text).",
       "tags": ["seo", "youtube"]
-    },
-    {
-      "date": "2026-05-27",
-      "title": "Editor mode for transcripts and translations",
-      "body": "Edit the transcript directly in the browser before exporting. Toggle between Reader (read-with-timestamps) and Editor (correct mistakes) views. Translation results are editable too, so the SRT you download is the SRT you want.",
-      "tags": ["feature"]
-    },
-    {
-      "date": "2026-05-27",
-      "title": "Translate transcript to 28 languages",
-      "body": "After transcription, hit Translate, pick a target language. Whisper handles the source language, GPT-4o-mini handles the translation. Original timestamps are preserved so the translated SRT stays synced with the audio.",
-      "tags": ["feature"]
-    },
-    {
-      "date": "2026-05-27",
-      "title": "Audio player with click-to-jump",
-      "body": "An audio player sits above your transcript. Click any timestamp and the audio jumps to that moment. The current segment highlights as it plays. Useful for verifying tricky words (\"did Whisper get that brand name right?\") without re-opening the file in another app.",
-      "tags": ["feature"]
-    },
-    {
-      "date": "2026-05-27",
-      "title": "Six free ffmpeg-backed format converters",
-      "body": "Convert MP4 to MP3, WAV to MP3, WEBM to MP3, FLAC to MP3, MP3 to M4A, MP3 to WAV — all in-browser, all free, no signup, no ads. Same backend Mictoo uses for transcription. Localized into all 10 site languages.",
-      "tags": ["feature"]
-    },
-    {
-      "date": "2026-05-25",
-      "title": "AdSense submitted, ad-free for now",
-      "body": "Mictoo applied for Google AdSense on 2026-05-16 to fund the bandwidth and Whisper API costs. We won't run ads until approved (decision expected late June). When ads do appear they'll be unobtrusive sidebars and footers, never on the upload zone or in the transcript itself.",
-      "tags": ["update"]
-    },
-    {
-      "date": "2026-05-22",
-      "title": "Sign-in via Google or email + transcription history",
-      "body": "Sign in to save your transcripts, increase upload limits (60 MB vs 25 MB anonymous), and skip the queue when Groq is rate-limited. All transcripts stay in your private History — search, re-download, share. Anonymous transcribing still works exactly the same; signing in is optional.",
-      "tags": ["feature"]
-    },
-    {
-      "date": "2026-05-19",
-      "title": "Queue mode when the transcription engine is busy",
-      "body": "When Groq Whisper (our primary engine, fastest) returns 429 rate-limit, your file goes into a small queue and processes in the background instead of failing. You'll see your position; we'll fall back to OpenAI Whisper automatically if the queue grows. End result: way fewer \"please try again\" errors during traffic spikes.",
-      "tags": ["reliability"]
-    },
-    {
-      "date": "2026-05-17",
-      "title": "10 site languages, 90+ localized pages",
-      "body": "Mictoo is now fully localized in English, French, German, Spanish, Russian, Italian, Portuguese, Polish, Japanese, and Korean. The language switcher in the top-right remembers your choice. Every use-case landing page (interview, lecture, meeting, podcast, etc.) has a native-language version.",
-      "tags": ["i18n"]
-    },
-    {
-      "date": "2026-05-15",
-      "title": "AI summary after every transcription",
-      "body": "Free, automatic, no extra click. Once your transcript is ready, Mictoo also generates a concise summary with key points and action items below the text. Useful for long meetings, lectures, and podcasts where you want the gist before reading the full transcript. Competitors typically charge 15-20/month for this — we ship it free.",
-      "tags": ["feature"]
     }
   ]
 }

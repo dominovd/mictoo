@@ -78,13 +78,41 @@ function formatDate(iso) {
   }
 }
 
+// Inline markdown-style link parser: turns "[label](url)" inside a text
+// span into a real <a>. Anything between or around link tokens stays
+// plain text. Intentionally tiny — no full markdown lib needed, we only
+// support links (entries don't need bold/italic/headings).
+function renderInline(text, keyPrefix) {
+  const parts = []
+  const re = /\[([^\]]+)\]\(([^)]+)\)/g
+  let last = 0
+  let m
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > last) parts.push(text.slice(last, m.index))
+    parts.push(
+      <a
+        key={`${keyPrefix}-${m.index}`}
+        href={m[2]}
+        className="text-brand-600 hover:underline font-medium"
+      >
+        {m[1]}
+      </a>
+    )
+    last = m.index + m[0].length
+  }
+  if (last < text.length) parts.push(text.slice(last))
+  return parts
+}
+
 // Paragraph rendering for the body — split on blank lines so we can
 // have multi-paragraph entries without an MDX dependency.
 function renderBody(body) {
   if (!body) return null
   const paragraphs = body.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean)
   return paragraphs.map((p, i) => (
-    <p key={i} className="text-slate-600 leading-relaxed mb-3 last:mb-0">{p}</p>
+    <p key={i} className="text-slate-600 leading-relaxed mb-3 last:mb-0">
+      {renderInline(p, `p${i}`)}
+    </p>
   ))
 }
 
