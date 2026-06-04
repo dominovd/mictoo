@@ -129,6 +129,11 @@ export default function SiteFooter() {
             {/* Blog is EN-only — label is localized so non-EN users still see
                 "Блог" / "ブログ" etc. */}
             <a href="/blog"                         className="hover:text-slate-600 transition-colors">{t(locale, 'footer.blog')}</a>
+            {/* Wave 8 transcripts hub — EN-only at launch like the how-to
+                guides. Localize once we see Search Console impressions. */}
+            {locale === 'en' && (
+              <a href="/transcripts"                className="hover:text-slate-600 transition-colors">Transcripts</a>
+            )}
             <a href={localized('/privacy', locale)} className="hover:text-slate-600 transition-colors">{t(locale, 'footer.privacy')}</a>
             <a href={localized('/terms', locale)}   className="hover:text-slate-600 transition-colors">{t(locale, 'footer.terms')}</a>
           </div>

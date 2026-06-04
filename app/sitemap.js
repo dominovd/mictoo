@@ -1,4 +1,28 @@
+import fs from 'node:fs'
+import path from 'node:path'
+
+// Wave 8 (2026-06-04): discover all published transcript JSON files at
+// build time so each gets its own sitemap entry. Filenames starting with
+// "_" are dev-only samples and skipped.
+function discoverTranscriptSlugs() {
+  try {
+    const dir = path.join(process.cwd(), 'data', 'transcripts')
+    return fs.readdirSync(dir)
+      .filter(f => f.endsWith('.json') && !f.startsWith('_'))
+      .map(f => f.replace(/\.json$/, ''))
+  } catch {
+    return []
+  }
+}
+
 export default function sitemap() {
+  const transcriptEntries = discoverTranscriptSlugs().map(slug => ({
+    url: `https://mictoo.com/transcripts/${slug}`,
+    lastModified: new Date('2026-06-04'),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }))
+
   return [
     {
       url: 'https://mictoo.com',
@@ -6,6 +30,14 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 1,
     },
+    // Wave 8 — transcripts hub + individual transcript pages.
+    {
+      url: 'https://mictoo.com/transcripts',
+      lastModified: new Date('2026-06-04'),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    ...transcriptEntries,
     // Blog
     {
       url: 'https://mictoo.com/blog',

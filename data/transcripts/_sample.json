@@ -1,0 +1,31 @@
+{
+  "_comment": "Placeholder transcript used only to validate the template renders end-to-end before the user has a transcriptapi API key. Once scripts/build-transcript-pages.mjs runs against the real seed list, this file becomes irrelevant. The page route filters out filenames starting with _ so this never ships to prod.",
+  "slug": "_sample",
+  "category": "viral-classics",
+  "videoId": "UF8uR6Z6KLc",
+  "videoUrl": "https://www.youtube.com/watch?v=UF8uR6Z6KLc",
+  "title": "Steve Jobs' 2005 Stanford Commencement Address (sample)",
+  "author": "Stanford",
+  "durationSec": 904,
+  "language": "en",
+  "notes": "Placeholder sample — replace via batch script. Real Steve Jobs commencement excerpts below for layout testing.",
+  "segments": [
+    { "start": 0.0,  "text": "Thank you. I am honored to be with you today" },
+    { "start": 4.3,  "text": "at your commencement from one of the finest universities in the world." },
+    { "start": 9.8,  "text": "Truth be told, I never graduated from college," },
+    { "start": 13.2, "text": "and this is the closest I've ever gotten to a college graduation." },
+    { "start": 17.6, "text": "Today I want to tell you three stories from my life." },
+    { "start": 21.0, "text": "That's it. No big deal. Just three stories." },
+    { "start": 25.5, "text": "The first story is about connecting the dots." },
+    { "start": 30.1, "text": "I dropped out of Reed College after the first six months," },
+    { "start": 33.8, "text": "but then stayed around as a drop-in for another eighteen months or so before I really quit." },
+    { "start": 40.4, "text": "So why did I drop out?" },
+    { "start": 42.9, "text": "It started before I was born." },
+    { "start": 47.1, "text": "My biological mother was a young, unwed graduate student," },
+    { "start": 51.6, "text": "and she decided to put me up for adoption." }
+  ],
+  "text": "Thank you. I am honored to be with you today at your commencement from one of the finest universities in the world. Truth be told, I never graduated from college, and this is the closest I've ever gotten to a college graduation. Today I want to tell you three stories from my life. That's it. No big deal. Just three stories. The first story is about connecting the dots. I dropped out of Reed College after the first six months, but then stayed around as a drop-in for another eighteen months or so before I really quit. So why did I drop out? It started before I was born. My biological mother was a young, unwed graduate student, and she decided to put me up for adoption.",
+  "summary": "*A young Steve Jobs lays out three short stories — connecting the dots, love and loss, and death — that shape how he thinks about life and work.*\n\nKey insights:\n• You cannot connect the dots looking forward — only looking back. Trust that the dots will somehow connect in your future.\n• Getting fired from Apple was the best thing that could have happened — the heaviness of being successful was replaced by the lightness of being a beginner again.\n• Remembering you'll die is the best way to avoid the trap of thinking you have something to lose.\n• Your time is limited, so don't waste it living someone else's life.\n• The only way to do great work is to love what you do.\n\nMemorable quote: \"Stay hungry. Stay foolish.\"",
+  "provider": "manual-placeholder",
+  "builtAt": "2026-06-04T00:00:00.000Z"
+}

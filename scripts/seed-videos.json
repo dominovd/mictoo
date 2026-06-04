@@ -1,0 +1,217 @@
+{
+  "_comment": "Wave 8 seed list — 30 famous YouTube videos pre-transcribed for SEO landing pages. Mix of TED Talks, long-form podcasts, and viral one-offs per 2026-06-04 decision. URL slug becomes the page path /transcripts/{slug}. Each entry: { videoId, slug, category, title (manual override, optional — provider title used if blank), notes (one-line context shown in the page intro) }. Keep this file as the source of truth for which videos are published; the build script reads it and writes data/transcripts/{slug}.json per entry.",
+  "videos": [
+    {
+      "videoId": "iG9CE55wbtY",
+      "slug": "ted-do-schools-kill-creativity-ken-robinson",
+      "category": "ted-talks",
+      "title": "Do Schools Kill Creativity? — Sir Ken Robinson",
+      "notes": "The most-watched TED Talk of all time (80M+ views). Sir Ken Robinson on why education systems suppress creative thinking."
+    },
+    {
+      "videoId": "8KkKuTCFvzI",
+      "slug": "ted-power-of-vulnerability-brene-brown",
+      "category": "ted-talks",
+      "title": "The Power of Vulnerability — Brené Brown",
+      "notes": "Brené Brown's 2010 TEDxHouston talk on shame, courage, and connection. ~70M views."
+    },
+    {
+      "videoId": "u4ZoJKF_VuA",
+      "slug": "ted-how-great-leaders-inspire-action-simon-sinek",
+      "category": "ted-talks",
+      "title": "How Great Leaders Inspire Action — Simon Sinek",
+      "notes": "Simon Sinek's 'Start With Why' framework, 2009 TEDxPuget Sound. ~65M views."
+    },
+    {
+      "videoId": "arj7oStGLkU",
+      "slug": "ted-inside-mind-master-procrastinator-tim-urban",
+      "category": "ted-talks",
+      "title": "Inside the Mind of a Master Procrastinator — Tim Urban",
+      "notes": "Tim Urban's 2016 talk on procrastination, the Instant Gratification Monkey, and the Panic Monster. ~65M views."
+    },
+    {
+      "videoId": "Ks-_Mh1QhMc",
+      "slug": "ted-your-body-language-may-shape-who-you-are-amy-cuddy",
+      "category": "ted-talks",
+      "title": "Your Body Language May Shape Who You Are — Amy Cuddy",
+      "notes": "Amy Cuddy's 2012 talk on power posing and the relationship between body language and confidence."
+    },
+    {
+      "videoId": "iCvmsMzlF7o",
+      "slug": "ted-looks-arent-everything-believe-me-im-a-model-cameron-russell",
+      "category": "ted-talks",
+      "title": "Looks Aren't Everything. Believe Me, I'm a Model — Cameron Russell",
+      "notes": "Cameron Russell's 2012 TEDxMidAtlantic talk on image, modeling, and what we judge people on."
+    },
+    {
+      "videoId": "fLJsdqxnZb0",
+      "slug": "ted-the-puzzle-of-motivation-dan-pink",
+      "category": "ted-talks",
+      "title": "The Puzzle of Motivation — Dan Pink",
+      "notes": "Dan Pink's 2009 TEDGlobal talk on autonomy, mastery, and purpose as drivers of motivation."
+    },
+    {
+      "videoId": "fW8amMCVAJQ",
+      "slug": "ted-what-makes-a-good-life-robert-waldinger",
+      "category": "ted-talks",
+      "title": "What Makes a Good Life? Lessons from the Longest Study on Happiness — Robert Waldinger",
+      "notes": "Robert Waldinger summarizing 75 years of the Harvard Study of Adult Development. Relationships matter more than wealth or fame."
+    },
+    {
+      "videoId": "RcGyVTAoXEU",
+      "slug": "ted-the-happy-secret-to-better-work-shawn-achor",
+      "category": "ted-talks",
+      "title": "The Happy Secret to Better Work — Shawn Achor",
+      "notes": "Shawn Achor's 2011 TEDxBloomington talk on positive psychology and reversing the happiness-success formula."
+    },
+    {
+      "videoId": "H14bBuluwB8",
+      "slug": "ted-grit-power-of-passion-and-perseverance-angela-duckworth",
+      "category": "ted-talks",
+      "title": "Grit: The Power of Passion and Perseverance — Angela Duckworth",
+      "notes": "Angela Duckworth's 2013 talk introducing 'grit' as a stronger predictor of success than IQ or talent."
+    },
+
+    {
+      "videoId": "DcWqzZ3I2cY",
+      "slug": "lex-fridman-elon-musk-3",
+      "category": "long-form-podcasts",
+      "title": "Elon Musk: SpaceX, Mars, Tesla Autopilot, Self-Driving, Robotics, and AI — Lex Fridman Podcast #252",
+      "notes": "Long-form Lex Fridman interview with Elon Musk covering space, AI, and Twitter/X. Multi-hour conversation."
+    },
+    {
+      "videoId": "smUkOPqlhmM",
+      "slug": "huberman-andrew-huberman-sleep-toolkit",
+      "category": "long-form-podcasts",
+      "title": "Toolkit for Sleep — Andrew Huberman",
+      "notes": "Huberman Lab episode laying out science-based protocols for better sleep, light exposure, and circadian timing."
+    },
+    {
+      "videoId": "qJXKhu5UZwk",
+      "slug": "huberman-master-your-focus-with-dopamine",
+      "category": "long-form-podcasts",
+      "title": "Controlling Your Dopamine for Motivation, Focus & Satisfaction — Andrew Huberman",
+      "notes": "Huberman Lab on the dopamine system and how to use it to drive motivation without burning out."
+    },
+    {
+      "videoId": "BMTt8gSl13s",
+      "slug": "lex-fridman-naval-ravikant",
+      "category": "long-form-podcasts",
+      "title": "Naval Ravikant: Happiness, Reducing Anxiety, Crypto, and Aliens — Lex Fridman Podcast",
+      "notes": "Naval Ravikant on philosophy, building wealth without luck, happiness as a learned skill, and the long now."
+    },
+    {
+      "videoId": "vJG698U2Mvo",
+      "slug": "tim-ferriss-derek-sivers",
+      "category": "long-form-podcasts",
+      "title": "Derek Sivers — Tim Ferriss Show",
+      "notes": "Tim Ferriss interviews Derek Sivers on selling CD Baby, philosophy of business, and useful not true beliefs."
+    },
+    {
+      "videoId": "5MgBikgcWnY",
+      "slug": "huberman-david-goggins-mental-toughness",
+      "category": "long-form-podcasts",
+      "title": "David Goggins: How to Build Immense Inner Strength — Huberman Lab",
+      "notes": "Andrew Huberman and David Goggins on building mental toughness, callusing the mind, and the 40% rule."
+    },
+    {
+      "videoId": "FmwgmkW6IDw",
+      "slug": "lex-fridman-jordan-peterson",
+      "category": "long-form-podcasts",
+      "title": "Jordan Peterson: Life, Death, Power, Fame, and Meaning — Lex Fridman Podcast",
+      "notes": "Lex Fridman and Jordan Peterson covering responsibility, mortality, meaning, and Western philosophy."
+    },
+    {
+      "videoId": "9k9-V4U0d2g",
+      "slug": "huberman-jocko-willink-discipline-leadership",
+      "category": "long-form-podcasts",
+      "title": "Jocko Willink: How to Become Resilient, Forge Mental Toughness & Lead Yourself & Others — Huberman Lab",
+      "notes": "Huberman with Jocko Willink on discipline, ownership, leadership, and recovering from setbacks."
+    },
+    {
+      "videoId": "LiifgUDZdfg",
+      "slug": "tim-ferriss-jerry-seinfeld",
+      "category": "long-form-podcasts",
+      "title": "Jerry Seinfeld — The Tim Ferriss Show",
+      "notes": "Tim Ferriss and Jerry Seinfeld on creativity, deliberate writing practice, and consistent execution."
+    },
+    {
+      "videoId": "0_KwM6L8MhE",
+      "slug": "lex-fridman-sam-altman",
+      "category": "long-form-podcasts",
+      "title": "Sam Altman: OpenAI, GPT-5, Sora, Board Saga, Elon Musk — Lex Fridman Podcast",
+      "notes": "Lex interviews Sam Altman on AGI timelines, the OpenAI board reversal, and what's coming after GPT-4."
+    },
+
+    {
+      "videoId": "UF8uR6Z6KLc",
+      "slug": "steve-jobs-stanford-commencement-2005",
+      "category": "viral-classics",
+      "title": "Steve Jobs' 2005 Stanford Commencement Address",
+      "notes": "Steve Jobs' famous 'stay hungry, stay foolish' commencement speech. Three stories: connecting the dots, love and loss, and death."
+    },
+    {
+      "videoId": "vK_TNDh6smk",
+      "slug": "i-have-a-dream-martin-luther-king",
+      "category": "viral-classics",
+      "title": "Martin Luther King Jr. — 'I Have a Dream' Full Speech",
+      "notes": "The complete 1963 Lincoln Memorial speech. One of the most-cited public addresses in modern history."
+    },
+    {
+      "videoId": "MQHRA1jdfd0",
+      "slug": "david-foster-wallace-this-is-water",
+      "category": "viral-classics",
+      "title": "David Foster Wallace — 'This Is Water' Commencement Speech",
+      "notes": "DFW's 2005 Kenyon College commencement on real freedom, attention, and the default self."
+    },
+    {
+      "videoId": "tShavGuo0_E",
+      "slug": "richard-feynman-on-magnets",
+      "category": "viral-classics",
+      "title": "Richard Feynman on Why Magnets Attract — BBC Interview",
+      "notes": "Feynman's famous 1983 BBC interview on what it means to 'explain' something and the recursion of 'why' questions."
+    },
+    {
+      "videoId": "1lp7-WxgFOk",
+      "slug": "naomi-shihab-nye-valentine-for-ernest-mann",
+      "category": "viral-classics",
+      "title": "Naomi Shihab Nye Reads 'Valentine for Ernest Mann'",
+      "notes": "Naomi Shihab Nye reads her poem about finding poems in unlikely places. Frequently cited in writing courses."
+    },
+    {
+      "videoId": "3-toa3RbU7E",
+      "slug": "kurzgesagt-optimistic-nihilism",
+      "category": "viral-classics",
+      "title": "Optimistic Nihilism — Kurzgesagt",
+      "notes": "Kurzgesagt's most-shared philosophy video: how meaning works in a universe without inherent purpose."
+    },
+    {
+      "videoId": "kZkdrfxonHo",
+      "slug": "vsauce-michael-stevens-what-is-reality",
+      "category": "viral-classics",
+      "title": "What Is Reality? — Vsauce",
+      "notes": "Vsauce's Michael Stevens on perception, the nature of reality, and what we can actually know."
+    },
+    {
+      "videoId": "ZJtCt0jeo3M",
+      "slug": "kurzgesagt-existential-crisis",
+      "category": "viral-classics",
+      "title": "An Antidote to Existential Crisis — Kurzgesagt",
+      "notes": "Kurzgesagt on cosmic insignificance and why feeling small can be liberating instead of terrifying."
+    },
+    {
+      "videoId": "QRQuKcKQEZE",
+      "slug": "neil-degrasse-tyson-most-astounding-fact",
+      "category": "viral-classics",
+      "title": "Neil deGrasse Tyson — The Most Astounding Fact About the Universe",
+      "notes": "Neil deGrasse Tyson's viral 90-second answer about stardust and our connectedness to the cosmos."
+    },
+    {
+      "videoId": "VHrLPs3-XJI",
+      "slug": "jim-carrey-maharishi-university-commencement-2014",
+      "category": "viral-classics",
+      "title": "Jim Carrey's Commencement Address at Maharishi University 2014",
+      "notes": "Jim Carrey's commencement speech: 'You can fail at what you don't want, so you might as well take a chance on doing what you love.'"
+    }
+  ]
+}
