@@ -131,7 +131,13 @@ function fmtClockShort(sec) {
 // When an `onSeek` handler is passed (audio player available), the timestamp
 // becomes a clickable button that jumps the player. The `currentTime` prop
 // (seconds) drives row highlighting for the currently-playing segment.
-function TranscriptReader({ segments, currentTime = 0, onSeek }) {
+//
+// `query` (non-empty string) turns on inline highlight + match navigation.
+// `activeMatchIdx` decides which <mark> gets the "focused" stronger highlight
+// (auto-scrolled into view when it changes). `onMatchCountChange(n)` reports
+// the total match count back up to the search bar, used to drive the counter
+// and enable/disable prev/next arrows.
+function TranscriptReader({ segments, currentTime = 0, onSeek, query = '', activeMatchIdx = 0, onMatchCountChange }) {
   // Index of the segment that contains `currentTime`. -1 when nothing matches
   // (player paused at the very start or past the end). Hooks must be called
   // unconditionally, so this and the auto-scroll effect run even on empty
@@ -143,21 +149,79 @@ function TranscriptReader({ segments, currentTime = 0, onSeek }) {
       )
     : -1
 
-  // Auto-scroll the active segment into view inside the Reader container.
-  // Important when the user clicks a Chat timestamp citation that seeks the
-  // audio player — without this, the highlighted row could be far below or
-  // above the visible Reader window and the user wouldn't see anything
-  // happen. block:'nearest' avoids jarring jumps when the user is already
-  // looking at the right area.
-  useEffect(() => {
-    if (activeIdx < 0) return
-    const row = containerRef.current?.querySelector(`[data-seg-idx="${activeIdx}"]`)
-    if (row) {
-      row.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+  // Collect every match position across all segments in one flat counter so
+  // the parent can drive prev/next navigation. We assign each match a
+  // globally-unique index (matchOrdinal) which the renderer uses to set the
+  // data attribute the auto-scroll effect targets.
+  const q = (query || '').trim()
+  const qLower = q.toLowerCase()
+  let matchCounter = 0
+  const matchesPerSegment = []
+  if (q && segments?.length) {
+    for (const seg of segments) {
+      const txt = (seg.text || '').trim()
+      const lower = txt.toLowerCase()
+      const positions = []
+      if (qLower) {
+        let from = 0
+        let idx
+        while ((idx = lower.indexOf(qLower, from)) !== -1) {
+          positions.push({ start: idx, end: idx + qLower.length, ordinal: matchCounter++ })
+          from = idx + qLower.length
+        }
+      }
+      matchesPerSegment.push(positions)
     }
-  }, [activeIdx])
+  }
+  const totalMatches = matchCounter
+
+  // Report match count up to the search bar. Effect dep on totalMatches +
+  // the live query so a query change with the same count still re-syncs.
+  useEffect(() => {
+    if (onMatchCountChange) onMatchCountChange(totalMatches)
+  }, [totalMatches, q, onMatchCountChange])
+
+  // Auto-scroll target switches based on what's "live":
+  //   - if there's a search query with matches → scroll to the active match
+  //   - otherwise → scroll to the currently-playing segment (existing behavior)
+  useEffect(() => {
+    if (!containerRef.current) return
+    if (q && totalMatches > 0) {
+      const safeIdx = Math.max(0, Math.min(activeMatchIdx, totalMatches - 1))
+      const el = containerRef.current.querySelector(`[data-match-ordinal="${safeIdx}"]`)
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      return
+    }
+    if (activeIdx < 0) return
+    const row = containerRef.current.querySelector(`[data-seg-idx="${activeIdx}"]`)
+    if (row) row.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+  }, [activeIdx, q, activeMatchIdx, totalMatches])
 
   if (!segments?.length) return null
+
+  // Helper: render text with <mark> spans at the given positions.
+  const renderHighlighted = (text, positions) => {
+    if (!positions.length) return text
+    const out = []
+    let cursor = 0
+    positions.forEach((p, i) => {
+      if (p.start > cursor) out.push(<span key={`t${i}`}>{text.slice(cursor, p.start)}</span>)
+      const isActive = p.ordinal === activeMatchIdx
+      out.push(
+        <mark
+          key={`m${i}`}
+          data-match-ordinal={p.ordinal}
+          className={`rounded px-0.5 ${isActive ? 'bg-amber-300 text-slate-900' : 'bg-yellow-200 text-slate-800'}`}
+        >
+          {text.slice(p.start, p.end)}
+        </mark>
+      )
+      cursor = p.end
+    })
+    if (cursor < text.length) out.push(<span key="tail">{text.slice(cursor)}</span>)
+    return out
+  }
+
   return (
     <div ref={containerRef} className="border border-slate-200 rounded-xl bg-white max-h-[28rem] overflow-y-auto divide-y divide-slate-100">
       {segments.map((seg, i) => {
@@ -165,6 +229,7 @@ function TranscriptReader({ segments, currentTime = 0, onSeek }) {
         if (!text) return null
         const isActive = i === activeIdx
         const Tag = onSeek ? 'button' : 'span'
+        const positions = matchesPerSegment[i] || []
         return (
           <div
             key={i}
@@ -189,7 +254,9 @@ function TranscriptReader({ segments, currentTime = 0, onSeek }) {
             >
               {fmtClockShort(seg.start)}
             </Tag>
-            <span className="text-sm text-slate-700 leading-relaxed">{text}</span>
+            <span className="text-sm text-slate-700 leading-relaxed">
+              {q ? renderHighlighted(text, positions) : text}
+            </span>
           </div>
         )
       })}
@@ -255,6 +322,17 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
   // have segments). 'editor' = textarea — fallback when no segments, or when
   // the user wants to fix a typo before exporting.
   const [viewMode, setViewMode] = useState('reader')
+  // Search-in-transcript (Reader mode only). Lives at this level so the
+  // counter / prev-next bar above the Reader can drive activeMatchIdx,
+  // and TranscriptReader reports total match count back here on every
+  // query change.
+  const [searchQuery, setSearchQuery] = useState('')
+  const [searchActiveIdx, setSearchActiveIdx] = useState(0)
+  const [searchTotal, setSearchTotal] = useState(0)
+  // Reset focus to first match whenever the query itself changes; without
+  // this the user types a new query but the activeIdx stays at e.g. 5
+  // and the highlight feels stuck.
+  useEffect(() => { setSearchActiveIdx(0) }, [searchQuery])
   // Local object URL for the uploaded File, so we can offer in-browser audio
   // playback alongside the transcript. Stays alive only on the device — the
   // server-side blob has typically been deleted by the time we render. Null
@@ -1408,16 +1486,99 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
         )}
 
         {hasSRT && viewMode === 'reader' ? (
-          <TranscriptReader
-            segments={translatedSegments || segments}
-            currentTime={audioCurrentTime}
-            onSeek={audioUrl ? (sec) => {
-              const el = audioRef.current
-              if (!el) return
-              el.currentTime = Math.max(0, sec)
-              el.play().catch(() => {})
-            } : undefined}
-          />
+          <>
+            {/* Search bar above the Reader. Only renders in Reader mode —
+                in Editor mode the textarea supports browser Cmd+F natively.
+                Stays visible at all times (no expand/collapse) since it's a
+                single-row affordance and discovery matters more than chrome
+                minimalism for this. */}
+            <div className="flex items-center gap-2 mb-3">
+              <div className="relative flex-1">
+                <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Escape') { e.preventDefault(); setSearchQuery('') }
+                    else if (e.key === 'Enter') {
+                      e.preventDefault()
+                      if (searchTotal > 0) {
+                        const next = (searchActiveIdx + 1) % searchTotal
+                        setSearchActiveIdx(next)
+                      }
+                    }
+                  }}
+                  placeholder={t(locale, 'reader.search.placeholder')}
+                  className="w-full text-sm border border-slate-200 rounded-lg pl-9 pr-3 py-2 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                />
+              </div>
+              {searchQuery && (
+                <>
+                  <span className="text-xs text-slate-500 tabular-nums whitespace-nowrap">
+                    {searchTotal > 0
+                      ? t(locale, 'reader.search.count', { current: searchActiveIdx + 1, total: searchTotal })
+                      : t(locale, 'reader.search.noResults')}
+                  </span>
+                  <div className="inline-flex items-center gap-0.5">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (searchTotal === 0) return
+                        setSearchActiveIdx((searchActiveIdx - 1 + searchTotal) % searchTotal)
+                      }}
+                      disabled={searchTotal === 0}
+                      title={t(locale, 'reader.search.prev')}
+                      className="p-1.5 rounded hover:bg-slate-100 disabled:opacity-40 disabled:hover:bg-transparent"
+                    >
+                      <svg className="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (searchTotal === 0) return
+                        setSearchActiveIdx((searchActiveIdx + 1) % searchTotal)
+                      }}
+                      disabled={searchTotal === 0}
+                      title={t(locale, 'reader.search.next')}
+                      className="p-1.5 rounded hover:bg-slate-100 disabled:opacity-40 disabled:hover:bg-transparent"
+                    >
+                      <svg className="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setSearchQuery('')}
+                    title={t(locale, 'reader.search.clear')}
+                    className="p-1.5 rounded hover:bg-slate-100"
+                  >
+                    <svg className="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </>
+              )}
+            </div>
+            <TranscriptReader
+              segments={translatedSegments || segments}
+              currentTime={audioCurrentTime}
+              onSeek={audioUrl ? (sec) => {
+                const el = audioRef.current
+                if (!el) return
+                el.currentTime = Math.max(0, sec)
+                el.play().catch(() => {})
+              } : undefined}
+              query={searchQuery}
+              activeMatchIdx={searchActiveIdx}
+              onMatchCountChange={setSearchTotal}
+            />
+          </>
         ) : translatedSegments ? (
           // Editor mode + translation active → bind textarea to the
           // translated text. The original stays in `transcript` state so
