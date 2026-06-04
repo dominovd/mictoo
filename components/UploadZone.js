@@ -132,14 +132,34 @@ function fmtClockShort(sec) {
 // becomes a clickable button that jumps the player. The `currentTime` prop
 // (seconds) drives row highlighting for the currently-playing segment.
 function TranscriptReader({ segments, currentTime = 0, onSeek }) {
-  if (!segments?.length) return null
   // Index of the segment that contains `currentTime`. -1 when nothing matches
-  // (player paused at the very start or past the end).
-  const activeIdx = segments.findIndex(
-    (s) => currentTime >= (s.start || 0) && currentTime < (s.end || 0)
-  )
+  // (player paused at the very start or past the end). Hooks must be called
+  // unconditionally, so this and the auto-scroll effect run even on empty
+  // segments; the early-return below short-circuits the render itself.
+  const containerRef = useRef(null)
+  const activeIdx = segments?.length
+    ? segments.findIndex(
+        (s) => currentTime >= (s.start || 0) && currentTime < (s.end || 0)
+      )
+    : -1
+
+  // Auto-scroll the active segment into view inside the Reader container.
+  // Important when the user clicks a Chat timestamp citation that seeks the
+  // audio player — without this, the highlighted row could be far below or
+  // above the visible Reader window and the user wouldn't see anything
+  // happen. block:'nearest' avoids jarring jumps when the user is already
+  // looking at the right area.
+  useEffect(() => {
+    if (activeIdx < 0) return
+    const row = containerRef.current?.querySelector(`[data-seg-idx="${activeIdx}"]`)
+    if (row) {
+      row.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    }
+  }, [activeIdx])
+
+  if (!segments?.length) return null
   return (
-    <div className="border border-slate-200 rounded-xl bg-white max-h-[28rem] overflow-y-auto divide-y divide-slate-100">
+    <div ref={containerRef} className="border border-slate-200 rounded-xl bg-white max-h-[28rem] overflow-y-auto divide-y divide-slate-100">
       {segments.map((seg, i) => {
         const text = (seg.text || '').trim()
         if (!text) return null
