@@ -9,6 +9,7 @@ import { toVTT } from '@/lib/exports/vtt'
 import { toJSON } from '@/lib/exports/json'
 import SummaryCard from './SummaryCard'
 import YouTubeFetchCounter from './YouTubeFetchCounter'
+import ChatPanel from './ChatPanel'
 
 // YouTube URL input is now gated per-page via the `enableYouTubeUrl`
 // prop instead of a global flag (was YOUTUBE_URL_INPUT_ENABLED = false).
@@ -1253,6 +1254,28 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
           error={summaryError}
           onRetry={() => generateSummary(transcript, spokenLanguage, transcriptId)}
         />
+
+        {/* Chat with transcript — RAG over the current transcript via
+            /api/chat. Auth-required: anonymous visitors see a locked
+            teaser, logged-in visitors get the full collapse-to-expand
+            chat panel. Only renders when we have real Whisper segments
+            (the RAG retrieval needs them); falls back to nothing
+            otherwise so the result view stays clean for the rare
+            no-segments case. */}
+        {hasSRT && (
+          <ChatPanel
+            segments={segments}
+            onSeek={(s) => {
+              if (audioRef.current) {
+                audioRef.current.currentTime = s
+                audioRef.current.play().catch(() => {})
+              }
+            }}
+            isAuth={!!authUser}
+            pathname={pathname}
+            locale={locale}
+          />
+        )}
 
         {/* Reader / Editor toggle. The Reader view (per-line timestamp + text
             rows from Whisper segments) is the default when we have segments —
