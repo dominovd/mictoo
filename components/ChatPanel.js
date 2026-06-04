@@ -44,30 +44,43 @@ function parseTimestamp(ts) {
   return null
 }
 
-// Renders an answer string, turning [HH:MM:SS] / [MM:SS] / [H:MM:SS]
-// tokens into clickable buttons that seek the audio player. The model
-// is instructed to use those bracket-wrapped timestamps for citations.
+// Renders an answer string, turning bracketed timestamp citations into
+// clickable buttons that seek the audio player. Accepts both single
+// timestamps ([12:34], [1:23:45]) and ranges that the model often emits
+// to mark where a topic was discussed ([00:00 – 01:34], [12:34 - 15:00]).
+// Ranges click-seek to the START — the span is informational, the seek
+// target needs to be a single point.
+//
+// Dash characters in the wild: em-dash (—), en-dash (–), hyphen (-),
+// minus-like Unicode chars. The regex accepts any combination plus
+// optional whitespace around the separator so model variations don't
+// fall through as plain text.
 function renderAnswer(text, onSeek) {
   if (!text) return null
   const parts = []
-  // Matches [12:34], [1:23:45], [12:34:56] — anywhere in the text.
-  const re = /\[(\d{1,2}:\d{2}(?::\d{2})?)\]/g
+  const TS = '\\d{1,2}:\\d{2}(?::\\d{2})?'  // MM:SS or H:MM:SS
+  // Range first (greedy match) so the single-timestamp branch doesn't
+  // steal half of a range token.
+  const re = new RegExp(`\\[(${TS})\\s*[–—-]\\s*(${TS})\\]|\\[(${TS})\\]`, 'g')
   let last = 0
   let m
   let keyCounter = 0
   while ((m = re.exec(text)) !== null) {
     if (m.index > last) parts.push(<span key={`t${keyCounter++}`}>{text.slice(last, m.index)}</span>)
-    const seconds = parseTimestamp(m[1])
-    if (seconds != null && onSeek) {
+    const isRange = !!m[1]
+    const startStr = isRange ? m[1] : m[3]
+    const endStr = isRange ? m[2] : null
+    const seekTo = parseTimestamp(startStr)
+    if (seekTo != null && onSeek) {
       parts.push(
         <button
           key={`b${keyCounter++}`}
           type="button"
-          onClick={() => onSeek(seconds)}
+          onClick={() => onSeek(seekTo)}
           className="inline-flex items-baseline gap-0.5 font-mono text-xs px-1.5 py-0.5 rounded bg-brand-50 text-brand-700 hover:bg-brand-100 transition-colors"
-          title="Jump to this moment"
+          title={isRange ? `Jump to ${startStr} (discussed through ${endStr})` : 'Jump to this moment'}
         >
-          {m[0]}
+          {isRange ? `${startStr} – ${endStr}` : startStr}
         </button>
       )
     } else {
