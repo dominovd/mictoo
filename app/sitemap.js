@@ -38,6 +38,13 @@ export default function sitemap() {
       priority: 0.8,
     },
     ...transcriptEntries,
+    // Changelog — updated whenever a new entry ships.
+    {
+      url: 'https://mictoo.com/whats-new',
+      lastModified: new Date('2026-06-04'),
+      changeFrequency: 'weekly',
+      priority: 0.5,
+    },
     // Blog
     {
       url: 'https://mictoo.com/blog',

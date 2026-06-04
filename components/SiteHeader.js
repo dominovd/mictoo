@@ -19,6 +19,30 @@ export default function SiteHeader() {
   const [user, setUser] = useState(null)
   const [authLoaded, setAuthLoaded] = useState(false)
 
+  // Unread changelog indicator. Fetches the latest entry date from
+  // /api/changelog-meta and compares against localStorage. Renders a
+  // small red dot next to "What's new" until the user actually visits
+  // /whats-new (that page writes the latest date into localStorage
+  // before unmount). EN locale only — changelog is English-only for now.
+  const [hasUnread, setHasUnread] = useState(false)
+  useEffect(() => {
+    if (locale !== 'en') return
+    // Don't show the indicator on the changelog page itself — they're
+    // about to mark it read anyway.
+    if (pathname.startsWith('/whats-new')) return
+    let cancelled = false
+    fetch('/api/changelog-meta')
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (cancelled || !data?.latest) return
+        let lastSeen = null
+        try { lastSeen = localStorage.getItem('mictoo:changelog_lastSeen') } catch {}
+        if (!lastSeen || data.latest > lastSeen) setHasUnread(true)
+      })
+      .catch(() => { /* silent — indicator just won't render */ })
+    return () => { cancelled = true }
+  }, [locale, pathname])
+
   useEffect(() => {
     const supabase = createClient()
     let mounted = true
@@ -60,6 +84,20 @@ export default function SiteHeader() {
           <a href={`${localized('/', locale)}#how-it-works`} className="btn-ghost hidden md:inline-flex whitespace-nowrap">{t(locale, 'nav.howItWorks')}</a>
           <a href={localized('/about', locale)} className="btn-ghost hidden md:inline-flex whitespace-nowrap">{t(locale, 'nav.about')}</a>
           <a href={localized('/contact', locale)} className="btn-ghost hidden md:inline-flex whitespace-nowrap">{t(locale, 'nav.contact')}</a>
+          {/* EN-only — changelog content is English. Other locales get
+              this once we localize the entries. Red dot when there's an
+              entry newer than localStorage's last-seen marker. */}
+          {locale === 'en' && (
+            <a href="/whats-new" className="btn-ghost hidden md:inline-flex whitespace-nowrap relative">
+              What's new
+              {hasUnread && (
+                <span
+                  aria-label="New updates"
+                  className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-red-500"
+                />
+              )}
+            </a>
+          )}
           <LanguageSwitcher />
           <AuthMenu authLoaded={authLoaded} user={user} pathname={pathname} />
         </nav>

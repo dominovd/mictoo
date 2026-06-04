@@ -134,6 +134,10 @@ export default function SiteFooter() {
             {locale === 'en' && (
               <a href="/transcripts"                className="hover:text-slate-600 transition-colors">Transcripts</a>
             )}
+            {/* Changelog — EN-only, matches header link */}
+            {locale === 'en' && (
+              <a href="/whats-new"                  className="hover:text-slate-600 transition-colors">What's new</a>
+            )}
             <a href={localized('/privacy', locale)} className="hover:text-slate-600 transition-colors">{t(locale, 'footer.privacy')}</a>
             <a href={localized('/terms', locale)}   className="hover:text-slate-600 transition-colors">{t(locale, 'footer.terms')}</a>
           </div>

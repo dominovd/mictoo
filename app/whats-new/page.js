@@ -1,0 +1,177 @@
+// What's new — chronological changelog page.
+//
+// Data source: data/changelog.json. SSG (static at build time) because
+// updates ship in commits, not at runtime. Adding a new entry is a code
+// change + redeploy, which is fine for our cadence (1-3 entries per week
+// at most).
+//
+// Header's red-dot indicator (see SiteHeader) reads the same file at
+// build time via /api/changelog-meta (returns latest entry's date) so
+// users see the indicator updated within one minute of the redeploy.
+
+import fs from 'node:fs'
+import path from 'node:path'
+
+const DATA_PATH = path.join(process.cwd(), 'data', 'changelog.json')
+
+function loadEntries() {
+  try {
+    const raw = fs.readFileSync(DATA_PATH, 'utf-8')
+    const parsed = JSON.parse(raw)
+    const entries = Array.isArray(parsed.entries) ? parsed.entries : []
+    // Sort newest first by date string (YYYY-MM-DD sorts correctly).
+    return entries.slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+  } catch {
+    return []
+  }
+}
+
+export const metadata = {
+  title: "What's New — Recent Updates to Mictoo",
+  description:
+    "Latest updates to Mictoo's free AI transcription tool: new features, integrations, language support, and product changes.",
+  alternates: {
+    canonical: 'https://mictoo.com/whats-new',
+  },
+  openGraph: {
+    title: "What's New — Mictoo Updates",
+    description: "Latest feature releases and product changes on Mictoo.",
+    url: 'https://mictoo.com/whats-new',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "What's New — Mictoo Updates",
+    description: "Latest feature releases and product changes on Mictoo.",
+    images: ['https://mictoo.com/opengraph-image'],
+  },
+}
+
+// Tags get a colored pill. New = brand-color (primary signal),
+// everything else = neutral gray. Keep the palette small so the page
+// stays scannable.
+function tagClass(tag) {
+  if (tag === 'new') return 'bg-brand-100 text-brand-700 border-brand-200'
+  if (tag === 'feature') return 'bg-emerald-50 text-emerald-700 border-emerald-200'
+  if (tag === 'youtube') return 'bg-red-50 text-red-700 border-red-200'
+  if (tag === 'seo') return 'bg-amber-50 text-amber-700 border-amber-200'
+  if (tag === 'reliability') return 'bg-sky-50 text-sky-700 border-sky-200'
+  if (tag === 'i18n') return 'bg-violet-50 text-violet-700 border-violet-200'
+  return 'bg-slate-100 text-slate-600 border-slate-200'
+}
+
+function formatDate(iso) {
+  if (!iso) return ''
+  // Render as "June 4, 2026" — friendlier than ISO. Use UTC so the date
+  // doesn't shift by timezone at midnight.
+  try {
+    return new Date(iso + 'T12:00:00Z').toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      timeZone: 'UTC',
+    })
+  } catch {
+    return iso
+  }
+}
+
+// Paragraph rendering for the body — split on blank lines so we can
+// have multi-paragraph entries without an MDX dependency.
+function renderBody(body) {
+  if (!body) return null
+  const paragraphs = body.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean)
+  return paragraphs.map((p, i) => (
+    <p key={i} className="text-slate-600 leading-relaxed mb-3 last:mb-0">{p}</p>
+  ))
+}
+
+export default function WhatsNewPage() {
+  const entries = loadEntries()
+
+  // Tiny inline script that, on page load, writes the latest entry's
+  // date to localStorage so the header's red-dot disappears as soon as
+  // the user lands here. Runs in the user's browser; SSR is fine
+  // because the script body is a static string at build time.
+  const latestDate = entries[0]?.date || ''
+  const markReadScript = `try{localStorage.setItem('mictoo:changelog_lastSeen', ${JSON.stringify(latestDate)});}catch(e){}`
+
+  return (
+    <section className="max-w-2xl mx-auto px-4 py-12">
+      <script dangerouslySetInnerHTML={{ __html: markReadScript }} />
+
+      <nav className="text-xs text-slate-500 mb-4">
+        <a href="/" className="hover:underline">Home</a>
+        <span className="mx-1.5">/</span>
+        <span className="text-slate-700">What's new</span>
+      </nav>
+
+      <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
+        What's new
+      </h1>
+      <p className="text-slate-600 leading-relaxed mb-10">
+        Recent updates to Mictoo — new features, integrations, and product
+        changes. Updated whenever something ships. Want to suggest something?
+        Drop us a line at{' '}
+        <a href="/contact" className="text-brand-600 hover:underline font-medium">
+          /contact
+        </a>.
+      </p>
+
+      {entries.length === 0 && (
+        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center">
+          <p className="text-slate-600 text-sm">No updates published yet.</p>
+        </div>
+      )}
+
+      <div className="space-y-8">
+        {entries.map((entry, i) => (
+          <article key={i} className="border-l-2 border-slate-200 pl-5 hover:border-brand-300 transition-colors">
+            <header className="mb-2">
+              <time className="text-xs font-semibold text-slate-500 uppercase tracking-wide">
+                {formatDate(entry.date)}
+              </time>
+              <h2 className="text-lg font-semibold text-slate-900 mt-1 mb-2 leading-snug">
+                {entry.title}
+              </h2>
+              {entry.tags?.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {entry.tags.map(tag => (
+                    <span
+                      key={tag}
+                      className={`text-[10px] uppercase tracking-wide font-semibold px-2 py-0.5 rounded-full border ${tagClass(tag)}`}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </header>
+            <div>{renderBody(entry.body)}</div>
+          </article>
+        ))}
+      </div>
+
+      {/* Bottom CTA — match the pattern from other content pages */}
+      <div className="mt-16 border-t border-slate-200 pt-8">
+        <div className="bg-gradient-to-br from-brand-50 to-white border border-brand-100 rounded-2xl p-6 text-center">
+          <p className="text-base font-semibold text-slate-800 mb-2">
+            Try Mictoo for yourself
+          </p>
+          <p className="text-sm text-slate-600 mb-4">
+            Free AI transcription, no signup. Drop any audio or video file,
+            get text back in about 30 seconds.
+          </p>
+          <a
+            href="/"
+            className="inline-block text-sm font-semibold px-5 py-2.5 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors"
+          >
+            Transcribe a file →
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
