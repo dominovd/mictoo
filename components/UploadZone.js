@@ -8,6 +8,7 @@ import { createClient } from '@/lib/supabase/client'
 import { toVTT } from '@/lib/exports/vtt'
 import { toJSON } from '@/lib/exports/json'
 import SummaryCard from './SummaryCard'
+import YouTubeFetchCounter from './YouTubeFetchCounter'
 
 // YouTube URL input is now gated per-page via the `enableYouTubeUrl`
 // prop instead of a global flag (was YOUTUBE_URL_INPUT_ENABLED = false).
@@ -1520,6 +1521,11 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
                 <pre className="bg-slate-50 border border-slate-200 rounded p-2 mt-1 overflow-auto whitespace-pre-wrap break-words">{JSON.stringify(youtubeDebug, null, 2)}</pre>
               </details>
             )}
+            {/* Wave 8.5 social proof — only renders once we've crossed
+                the visibility threshold (see component). Subtle, sits at
+                the bottom of the card so it doesn't compete with error
+                states above it. */}
+            <YouTubeFetchCounter />
           </div>
 
           <div className="flex items-center gap-3 my-3">

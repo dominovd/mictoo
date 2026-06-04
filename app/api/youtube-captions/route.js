@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createHash } from 'crypto'
 import { fetchTranscript } from '@/lib/yt-transcript-provider'
+import { bumpYouTubeFetchCount } from '@/lib/stats'
 import { createClient as createSupabaseServerClient } from '@/lib/supabase/server'
 
 export const runtime = 'nodejs'
@@ -143,6 +144,12 @@ export async function POST(request) {
       }
       return NextResponse.json({ error: msg, code }, { status: 502 })
     }
+
+    // Fire-and-forget counter bump for the Wave 8.5 social proof badge on
+    // /youtube-to-text + /transcribe-video-to-text. Never blocks the user
+    // response, errors swallowed inside the helper. Only successful
+    // fetches count — failures and cache hits-as-failures don't bump.
+    bumpYouTubeFetchCount().catch(() => {})
 
     return NextResponse.json({
       videoId: result.videoId,

@@ -1,16 +1,22 @@
 import { NextResponse } from 'next/server'
-import { getTranscriptionCount } from '@/lib/stats'
+import { getTranscriptionCount, getYouTubeFetchCount } from '@/lib/stats'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
-// Read-only counter endpoint for the UI badge in SiteFooter.
-// Cached at the edge for 5 minutes — the counter doesn't need real-time precision.
+// Read-only counter endpoint for the UI badges. Returns both the global
+// transcription counter (footer trust badge) and the YouTube URL fetch
+// counter (Wave 8.5 social proof on /youtube-to-text + /transcribe-video-
+// to-text). Cached at the edge for 5 minutes — counters don't need
+// real-time precision.
 export async function GET() {
-  const count = await getTranscriptionCount()
+  const [count, youtubeCount] = await Promise.all([
+    getTranscriptionCount(),
+    getYouTubeFetchCount(),
+  ])
 
   return NextResponse.json(
-    { count },
+    { count, youtubeCount },
     {
       headers: {
         'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
