@@ -9,19 +9,22 @@ import { toVTT } from '@/lib/exports/vtt'
 import { toJSON } from '@/lib/exports/json'
 import SummaryCard from './SummaryCard'
 
-// Feature flag — YouTube URL → captions ingestion (Option F). Hidden
-// in prod since 2026-06-03: YouTube IP-blocks the entire Vercel
-// datacenter range at the network layer. All 6 Innertube clients
-// (WEB, MWEB, TVHTML5, TVHTML5_EMBED, ANDROID, IOS) come back with
-// LOGIN_REQUIRED or 400. No combination of client signatures from our
-// code can fix it — needs either a residential proxy ($30+/mo +
-// maintenance) or a 3rd-party transcript API ($19/mo for supadata.ai).
-// Decision: keep the code intact (route, lib, i18n strings all still
-// shipped), hide the UI. Revisit at the 2026-06-24 AdSense decision
-// point — if approved, optionally re-enable through supadata; if
-// rejected, kill the code paths entirely. See memory:
-// project_mictoo_youtube_downloader_strategy.md for full context.
-const YOUTUBE_URL_INPUT_ENABLED = false
+// YouTube URL input is now gated per-page via the `enableYouTubeUrl`
+// prop instead of a global flag (was YOUTUBE_URL_INPUT_ENABLED = false).
+//
+// History (2026-06-03 → 2026-06-04):
+//   - Built direct Innertube fetcher (Option F). YouTube IP-blocks all
+//     Vercel datacenter IPs across every client signature. Hid behind
+//     global flag.
+//   - 2026-06-04: switched backend to transcriptapi.com (paid 3rd party
+//     that runs residential proxies). Backend now works. lib/yt-
+//     transcript-provider.js is the new abstraction; /api/youtube-
+//     captions/route.js uses it.
+//   - Decision: enable URL input only on the pages where it makes UX
+//     sense (/youtube-to-text, /transcribe-video-to-text), not on the
+//     main homepage (which stays "drop a file"-focused). Per-page prop
+//     instead of a global toggle lets us iterate.
+// See project_mictoo_youtube_downloader_strategy.md for context.
 
 const ACCEPTED_TYPES = ['audio/mpeg', 'audio/mp4', 'audio/wav', 'audio/m4a', 'audio/ogg',
   'audio/webm', 'video/mp4', 'video/webm', 'video/mpeg', 'audio/x-m4a',
@@ -214,7 +217,7 @@ function toTimestampedTxt(segments) {
   return paragraphs.join('\n\n') + '\n'
 }
 
-export default function UploadZone({ defaultLanguage = '', locale: localeProp }) {
+export default function UploadZone({ defaultLanguage = '', locale: localeProp, enableYouTubeUrl = false }) {
   // UI locale: explicit prop (from /fr, /de, /es, /ru pages via LandingLayout)
   // wins, otherwise infer from URL (covers EN homepage and all format/use-case
   // pages, which currently share the EN dictionary).
@@ -1457,11 +1460,11 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp })
         </select>
       </div>
 
-      {/* YouTube URL input — gated by YOUTUBE_URL_INPUT_ENABLED. See the
-          flag declaration at the top of the file for why it's off. The
+      {/* YouTube URL input — gated by the enableYouTubeUrl prop. See the
+          comment at the top of the file for the migration history. The
           entire block + "or" divider stay together: if the input isn't
           shown, the divider above the drop zone would be a non-sequitur. */}
-      {YOUTUBE_URL_INPUT_ENABLED && (
+      {enableYouTubeUrl && (
         <>
           <div className="rounded-2xl border border-slate-200 bg-white shadow-sm p-4">
             <div className="flex items-center justify-between mb-2">

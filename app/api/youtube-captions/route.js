@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createHash } from 'crypto'
-import { getYouTubeCaptions } from '@/lib/youtube-captions'
+import { fetchTranscript } from '@/lib/yt-transcript-provider'
 import { createClient as createSupabaseServerClient } from '@/lib/supabase/server'
 
 export const runtime = 'nodejs'
@@ -25,23 +25,22 @@ async function getRateLimiters() {
   })
 
   rateLimiters = {
-    // Captions fetch is essentially free for us — generous caps. Still
-    // rate-limited to prevent abuse / accidental loops.
+    // Tight limits during the transcriptapi Free-tier launch (100 credits
+    // lifetime). Anon = 3/day, auth = 5/day. transcriptapi already serves
+    // repeat fetches of the same video from a shared 24h cache for free,
+    // so heavy users hitting the same popular videos don't actually burn
+    // our quota. These caps protect against (a) accidental loops and
+    // (b) one bad actor scraping us. Bump them up after we move to the
+    // Annual $4.50/mo (1000 credits/mo recurring) plan.
     anon: new Ratelimit({
       redis,
-      limiter: Ratelimit.slidingWindow(10, '24 h'),
+      limiter: Ratelimit.slidingWindow(3, '24 h'),
       analytics: true,
       prefix: 'mictoo:rl:yt:anon:d',
     }),
-    authHourly: new Ratelimit({
-      redis,
-      limiter: Ratelimit.slidingWindow(20, '1 h'),
-      analytics: true,
-      prefix: 'mictoo:rl:yt:auth:h',
-    }),
     authDaily: new Ratelimit({
       redis,
-      limiter: Ratelimit.slidingWindow(40, '24 h'),
+      limiter: Ratelimit.slidingWindow(5, '24 h'),
       analytics: true,
       prefix: 'mictoo:rl:yt:auth:d',
     }),
@@ -92,18 +91,11 @@ export async function POST(request) {
             { status: 429 }
           )
         }
-        const h = await limiters.authHourly.limit(authUser.id)
-        if (!h.success) {
-          return NextResponse.json(
-            { error: `Too many requests this hour. You've used ${h.limit}. Try again in ${friendlyReset(h.reset)}.`, signInHelps: false },
-            { status: 429 }
-          )
-        }
       } else {
         const a = await limiters.anon.limit(getAnonKey(request))
         if (!a.success) {
           return NextResponse.json(
-            { error: `You've used ${a.limit} free YouTube fetches today. Sign up to keep going free.`, signInHelps: true },
+            { error: `You've used ${a.limit} free YouTube fetches today. Sign up for ${5} per day.`, signInHelps: true },
             { status: 429 }
           )
         }
@@ -125,42 +117,44 @@ export async function POST(request) {
 
     let result
     try {
-      result = await getYouTubeCaptions(url, { preferLang })
+      result = await fetchTranscript(url)
     } catch (err) {
       const code = err?.code || 'UNKNOWN'
       const msg = err?.message || 'Could not fetch captions.'
-      const debug = err?.debug || null
-      // Log to Vercel function logs with the diagnostic trail so we can
-      // see *why* something failed without asking the user.
-      console.error('youtube-captions:', code, msg, debug)
+      console.error('youtube-captions:', code, msg)
+      // NO_CAPTIONS = soft fail. Surface to client with noCaptions:true so
+      // the UI shows the "use the download guide" fallback instead of a
+      // generic error.
       if (code === 'NO_CAPTIONS') {
-        return NextResponse.json({ noCaptions: true, error: msg, debug }, { status: 200 })
-      }
-      if (code === 'BLOCKED') {
-        // YouTube rejected our datacenter IP. Surface to the client as
-        // noCaptions so the UX falls through to the download guide.
-        return NextResponse.json({ noCaptions: true, blocked: true, error: msg, debug }, { status: 200 })
+        return NextResponse.json({ noCaptions: true, error: msg }, { status: 200 })
       }
       if (code === 'BAD_URL') {
         return NextResponse.json({ error: msg }, { status: 400 })
       }
-      return NextResponse.json({ error: msg, code, debug }, { status: 502 })
+      if (code === 'NO_API_KEY') {
+        // Misconfiguration — env var missing in prod. Surface a friendly
+        // error but log loudly so we notice.
+        console.error('CRITICAL: TRANSCRIPTAPI_KEY missing from environment.')
+        return NextResponse.json({ error: 'YouTube ingestion temporarily unavailable.' }, { status: 503 })
+      }
+      if (code === 'RATE_LIMITED') {
+        // Provider rate limit (not ours). Bubble up.
+        return NextResponse.json({ error: 'Upstream rate limit, please retry in a minute.' }, { status: 429 })
+      }
+      return NextResponse.json({ error: msg, code }, { status: 502 })
     }
-
-    // Reassemble a flat text for the existing transcript flow (Reader uses
-    // segments, but Editor + exports work off `text`).
-    const text = result.segments.map(s => s.text).join(' ').replace(/\s+/g, ' ').trim()
 
     return NextResponse.json({
       videoId: result.videoId,
       title: result.title,
       author: result.author,
       durationSec: result.durationSec,
-      languageCode: result.languageCode,
-      languageName: result.languageName,
-      isAutoGenerated: result.isAutoGenerated,
+      languageCode: result.language,
+      languageName: undefined,
+      isAutoGenerated: false,
       segments: result.segments,
-      text,
+      text: result.text,
+      provider: result.provider,
     })
   } catch (err) {
     console.error('youtube-captions route error:', err?.message || err)

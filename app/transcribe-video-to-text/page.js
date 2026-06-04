@@ -40,6 +40,7 @@ export const metadata = {
 export default function VideoToTextPage() {
   return (
     <LandingLayout
+      enableYouTubeUrl
       badge="MP4 · MOV · WEBM · FREE"
       h1={
         <>

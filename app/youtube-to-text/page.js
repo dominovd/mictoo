@@ -40,6 +40,7 @@ export const metadata = {
 export default function YouTubeToTextPage() {
   return (
     <LandingLayout
+      enableYouTubeUrl
       badge="YouTube · SRT · FREE"
       h1={
         <>

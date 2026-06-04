@@ -34,6 +34,11 @@ export default function LandingLayout({
   // (e.g. <ConverterZone />) and the default <UploadZone /> won't render.
   // Default: undefined → UploadZone (transcription pages).
   tool,
+  // Show the "paste YouTube URL" input above the file drop zone. Off by
+  // default; enable only on pages where YouTube URL ingestion is the
+  // primary intent (/youtube-to-text, /transcribe-video-to-text). Backed
+  // by transcriptapi.com — see lib/yt-transcript-provider.js.
+  enableYouTubeUrl = false,
 }) {
   const locale = defaultLanguage || 'en'
 
@@ -71,7 +76,7 @@ export default function LandingLayout({
 
       {/* Hero tool — UploadZone by default, custom node if `tool` prop given */}
       <section id="tool" className="max-w-2xl mx-auto px-4 -mt-6 pb-12 pt-10 scroll-mt-20">
-        {tool || <UploadZone defaultLanguage={defaultLanguage} locale={locale} />}
+        {tool || <UploadZone defaultLanguage={defaultLanguage} locale={locale} enableYouTubeUrl={enableYouTubeUrl} />}
       </section>
 
       {/* How it works (new template) */}
