@@ -7,6 +7,14 @@
  */
 const POSTS = [
   {
+    slug: 'how-to-chat-with-transcripts',
+    title: 'How to Chat with Your Transcript (and Why It Beats Reading 60 Minutes of Text)',
+    excerpt:
+      'Practical guide to the new Chat feature: sample prompts that work, how RAG retrieval keeps answers grounded in the actual source, and the honest limits. Free, sign-in required.',
+    publishedAt: '2026-06-04',
+    readingMinutes: 9,
+  },
+  {
     slug: 'can-chatgpt-transcribe-audio',
     title: 'Can ChatGPT Transcribe Audio? Honest Answer for 2026',
     excerpt:

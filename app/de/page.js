@@ -56,6 +56,7 @@ export default function GermanPage() {
         { title: 'Bearbeitbare Ausgabe', desc: 'Lesen und korrigieren Sie das Transkript im Browser, kopieren Sie es in die Zwischenablage oder laden Sie es als .txt, .srt oder .pdf herunter.' },
         { title: "KI-Zusammenfassung inklusive", desc: "Nach jeder Transkription erstellen wir kostenlos eine GPT-basierte Zusammenfassung mit Kernaussagen und To-dos. Wettbewerber verlangen für diese Funktion typischerweise 15 bis 20 $/Monat. Kein zusätzlicher Klick, kein Upgrade-Hinweis." },
         { title: "In 28 Sprachen übersetzen", desc: "Ein Klick übersetzt die komplette Transkription ins Spanische, Französische, Japanische und 25 weitere Sprachen. Die ursprünglichen Zeitstempel bleiben erhalten, sodass die übersetzte SRT-Datei weiterhin zum Audio passt." },
+        { title: "Mit Ihrer Transkription chatten", desc: "Stellen Sie jede Frage zu einer Transkription, die Sie erstellt haben, und erhalten Sie Antworten mit anklickbaren Zeitstempeln. Kostenlos, erfordert nur eine Anmeldung." },
       ]}}
       useCases={{ title: 'Wer nutzt Mictoo', items: [
         { title: 'Studierende', desc: 'Vorlesungen, Interviews und Forschungsaufnahmen transkribieren. Der Text ist durchsuchbar und einfacher zu wiederholen als Audio.' },

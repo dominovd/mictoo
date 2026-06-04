@@ -56,6 +56,7 @@ export default function PortuguesePage() {
         { title: 'Saída editável', desc: "Releia e corrija a transcrição no navegador, depois copie para a área de transferência ou baixe em .txt, .srt ou .pdf." },
         { title: "Resumo com IA incluso", desc: "Após cada transcrição, geramos um resumo grátis com os pontos-chave e as ações a tomar. Os concorrentes geralmente cobram US$15–20/mês por esta função. Sem clique extra, sem convite para upgrade." },
         { title: "Tradução para 28 idiomas", desc: "Um clique traduz a transcrição completa para espanhol, francês, alemão, japonês e mais 24. Os timestamps originais ficam preservados, então o SRT traduzido continua sincronizado com o áudio." },
+        { title: "Converse com sua transcrição", desc: "Pergunte qualquer coisa sobre uma transcrição que você criou e receba respostas com marcas de tempo clicáveis. Grátis, basta entrar." },
       ]}}
       useCases={{ title: 'Quem usa o Mictoo', items: [
         { title: 'Estudantes', desc: "Transcreva aulas, entrevistas e gravações de pesquisa. Texto pesquisável, mais fácil de revisar do que ficar varrendo o áudio." },

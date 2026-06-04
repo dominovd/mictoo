@@ -56,6 +56,7 @@ export default function PolishPage() {
         { title: 'Edytowalny wynik', desc: "Przejrzyj i popraw transkrypcję w przeglądarce, potem skopiuj do schowka albo pobierz jako .txt, .srt lub .pdf." },
         { title: "Streszczenie AI w komplecie", desc: "Po każdej transkrypcji generujemy darmowe streszczenie z kluczowymi punktami i listą zadań. Konkurenci zazwyczaj sprzedają tę funkcję za 15-20 $/mies. Bez dodatkowego kliknięcia, bez zachęt do upgrade'u." },
         { title: "Tłumaczenie na 28 języków", desc: "Jednym kliknięciem tłumaczysz pełną transkrypcję na hiszpański, francuski, niemiecki, japoński i 24 inne. Oryginalne znaczniki czasu są zachowane, więc przetłumaczony SRT nadal pasuje do audio." },
+        { title: "Rozmawiaj ze swoją transkrypcją", desc: "Zapytaj o cokolwiek dotyczącego stworzonej transkrypcji i otrzymaj odpowiedzi z klikalnymi znacznikami czasu. Bezpłatnie, wymaga tylko zalogowania." },
       ]}}
       useCases={{ title: 'Kto używa Mictoo', items: [
         { title: 'Studenci', desc: "Transkrybuj wykłady, wywiady i nagrania badawcze. Tekst da się przeszukiwać, łatwiej powtarzać niż przesłuchiwać audio." },

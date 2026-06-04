@@ -226,6 +226,11 @@ export default function Home() {
               title: 'Translate to 28 languages',
               desc: 'One click translates the full transcript into Spanish, French, German, Japanese, and 24 others. Original timestamps preserved so the translated SRT still matches the audio.',
             },
+            {
+              icon: '💬',
+              title: 'Chat with your transcript',
+              desc: "Ask anything about a transcript you've created and get answers cited with clickable timestamps. Free, just requires a sign-in.",
+            },
           ].map(({ icon, title, desc }) => (
             <div key={title} className="flex gap-4 bg-white border border-slate-100 rounded-2xl p-5 shadow-sm">
               <div className="text-2xl flex-shrink-0">{icon}</div>

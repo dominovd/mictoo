@@ -64,6 +64,12 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: 'https://mictoo.com/blog/how-to-chat-with-transcripts',
+      lastModified: new Date('2026-06-04'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
     // Guide pages
     {
       url: 'https://mictoo.com/how-to-download-youtube-video',

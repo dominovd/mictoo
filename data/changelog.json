@@ -3,6 +3,12 @@
   "entries": [
     {
       "date": "2026-06-04",
+      "title": "Chat with your transcript (sign-in required)",
+      "body": "Ask questions about any transcript you've created and get answers cited with clickable timestamps that jump to that moment in the audio. Three suggested prompts get you started: \"Summarize the key points\", \"Pull out action items\", \"Find a memorable quote\". Or type your own.\n\nSign in is required for Chat — anonymous transcribing still works exactly the same. 10 questions per hour, 20 per day. Free, like everything else. [How to chat with your transcript →](/blog/how-to-chat-with-transcripts)",
+      "tags": ["new", "feature"]
+    },
+    {
+      "date": "2026-06-04",
       "title": "Paste a YouTube link, get a transcript",
       "body": "You no longer need to download the video first. Paste any YouTube URL on [/youtube-to-text](/youtube-to-text) or [/transcribe-video-to-text](/transcribe-video-to-text) and the transcript comes back in a couple of seconds with timestamps, an AI summary, and copy/export to TXT, SRT, VTT, or DOCX.\n\nIf the video has no captions, we'll send you to the [download-and-upload guide](/how-to-download-youtube-video) so you can still get the text.",
       "tags": ["new", "youtube"]

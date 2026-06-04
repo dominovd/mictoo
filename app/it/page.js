@@ -56,6 +56,7 @@ export default function ItalianPage() {
         { title: 'Output modificabile', desc: "Rileggi e correggi la trascrizione nel browser, poi copia negli appunti o scarica in .txt, .srt o .pdf." },
         { title: "Riassunto IA incluso", desc: "Dopo ogni trascrizione generiamo un riassunto gratuito con i punti chiave e le azioni da fare. I concorrenti tipicamente vendono questa funzione a 15-20 $/mese. Senza clic extra, senza inviti al pagamento." },
         { title: "Traduzione in 28 lingue", desc: "Un clic traduce l'intera trascrizione in spagnolo, francese, tedesco, giapponese e altre 24 lingue. I timestamp originali restano intatti, quindi il file SRT tradotto rimane sincronizzato con l'audio." },
+        { title: "Chatta con la tua trascrizione", desc: "Chiedi qualsiasi cosa su una trascrizione che hai creato e ricevi risposte con timestamp cliccabili. Gratis, basta accedere." },
       ]}}
       useCases={{ title: 'Chi usa Mictoo', items: [
         { title: 'Studenti', desc: "Trascrivi lezioni, interviste e registrazioni di ricerca. Testo cercabile, più facile da ripassare rispetto a un audio da riascoltare." },
