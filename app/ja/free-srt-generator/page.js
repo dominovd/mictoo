@@ -40,6 +40,7 @@ export default function JaSrtPage() {
   return (
     <LandingLayout
       defaultLanguage="ja"
+      enableYouTubeUrl
       badge="SRT · 字幕 · 無料"
       h1={<>SRTジェネレーター<br /><span className="text-brand-600">あらゆる音声・動画からAI字幕</span></>}
       subtitle="あらゆる音声または動画から字幕ファイルを生成。数秒で正確なタイムコード付きクリーンな.srtを取得。YouTube、Premiere、DaVinci Resolve、CapCut、Final Cut用のドロップイン。"

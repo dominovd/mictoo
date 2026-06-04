@@ -40,6 +40,7 @@ export default function RuSrtPage() {
   return (
     <LandingLayout
       defaultLanguage="ru"
+      enableYouTubeUrl
       badge="SRT · Субтитры · Бесплатно"
       h1={
         <>

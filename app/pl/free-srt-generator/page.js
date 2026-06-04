@@ -40,6 +40,7 @@ export default function PlSrtPage() {
   return (
     <LandingLayout
       defaultLanguage="pl"
+      enableYouTubeUrl
       badge="SRT · Napisy · Za darmo"
       h1={<>Generator SRT<br /><span className="text-brand-600">Napisy AI z dowolnego audio lub wideo</span></>}
       subtitle="Generuj pliki napisów z dowolnego audio lub wideo. Otrzymaj czysty .srt z precyzyjnymi timecodes w kilka sekund. Drop-in dla YouTube, Premiere, DaVinci Resolve, CapCut, Final Cut."

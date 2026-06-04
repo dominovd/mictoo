@@ -40,6 +40,7 @@ export default function KoSrtPage() {
   return (
     <LandingLayout
       defaultLanguage="ko"
+      enableYouTubeUrl
       badge="SRT · 자막 · 무료"
       h1={<>SRT 생성기<br /><span className="text-brand-600">모든 오디오나 비디오의 AI 자막</span></>}
       subtitle="모든 오디오나 비디오에서 자막 파일을 생성. 몇 초 만에 정확한 타임코드가 있는 깨끗한 .srt를 받으세요. YouTube, Premiere, DaVinci Resolve, CapCut, Final Cut용 드롭인."

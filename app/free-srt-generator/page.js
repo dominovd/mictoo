@@ -40,6 +40,7 @@ export const metadata = {
 export default function SrtGeneratorPage() {
   return (
     <LandingLayout
+      enableYouTubeUrl
       badge="SRT · Subtitles · Free"
       h1={
         <>
@@ -52,8 +53,8 @@ export default function SrtGeneratorPage() {
       howItWorks={[
         {
           icon: '📂',
-          title: 'Drop the audio or video',
-          desc: 'MP3, M4A, MP4, MOV, WAV, FLAC, OGG, WEBM, AAC. We extract audio from video automatically.',
+          title: 'Drop the audio or video — or paste a YouTube URL',
+          desc: "MP3, M4A, MP4, MOV, WAV, FLAC, OGG, WEBM, AAC for file upload — we extract audio from video automatically. New: paste a YouTube link in the field above and we'll pull the captions, format them as SRT, and skip the download step entirely.",
         },
         {
           icon: '⚡',
@@ -69,6 +70,10 @@ export default function SrtGeneratorPage() {
       whyUse={{
         title: 'Why this SRT generator',
         bullets: [
+          {
+            title: 'Skip the download — paste a YouTube URL',
+            desc: "For YouTube videos, drop the link instead of downloading the file first. You get back an SRT in seconds, ready to drop into Premiere or YouTube Studio. If the video has no captions, upload the audio and Whisper handles it.",
+          },
           {
             title: 'Whisper large-v3 timestamps are frame-accurate',
             desc: 'Timestamps are in milliseconds, which is more precise than any common video frame rate. They line up correctly at 24, 25, 29.97, 30, 50, and 60 fps without offset adjustment.',

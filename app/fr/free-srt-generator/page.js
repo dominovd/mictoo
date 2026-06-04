@@ -40,6 +40,7 @@ export default function FrSrtPage() {
   return (
     <LandingLayout
       defaultLanguage="fr"
+      enableYouTubeUrl
       badge="SRT · Sous-titres · Gratuit"
       h1={
         <>

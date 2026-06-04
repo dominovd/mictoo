@@ -40,6 +40,7 @@ export default function ItSrtPage() {
   return (
     <LandingLayout
       defaultLanguage="it"
+      enableYouTubeUrl
       badge="SRT · Sottotitoli · Gratis"
       h1={
         <>

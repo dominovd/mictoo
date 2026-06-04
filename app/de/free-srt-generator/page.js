@@ -40,6 +40,7 @@ export default function DeSrtPage() {
   return (
     <LandingLayout
       defaultLanguage="de"
+      enableYouTubeUrl
       badge="SRT · Untertitel · Kostenlos"
       h1={
         <>

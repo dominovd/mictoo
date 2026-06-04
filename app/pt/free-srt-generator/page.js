@@ -40,6 +40,7 @@ export default function PtSrtPage() {
   return (
     <LandingLayout
       defaultLanguage="pt"
+      enableYouTubeUrl
       badge="SRT · Legendas · Grátis"
       h1={<>Gerador SRT<br /><span className="text-brand-600">Legendas IA de qualquer áudio ou vídeo</span></>}
       subtitle="Gere arquivos de legenda de qualquer áudio ou vídeo. Receba um .srt limpo com timecode preciso em segundos. Drop-in para YouTube, Premiere, DaVinci Resolve, CapCut, Final Cut."
