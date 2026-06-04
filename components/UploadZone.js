@@ -1269,6 +1269,11 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
               if (audioRef.current) {
                 audioRef.current.currentTime = s
                 audioRef.current.play().catch(() => {})
+                // Scroll the player into view so the user sees something
+                // happen — without this, clicking a Chat-cited timestamp
+                // silently seeks an off-screen audio element and looks
+                // like a dead link to the user.
+                audioRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
               }
             }}
             isAuth={!!authUser}
