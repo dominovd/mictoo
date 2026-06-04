@@ -40,20 +40,22 @@ export default function PlYouTubeToTextPage() {
   return (
     <LandingLayout
       defaultLanguage="pl"
+      enableYouTubeUrl
       badge="YouTube · SRT · ZA DARMO"
       h1={<>YouTube na tekst<br /><span className="text-brand-600">Darmowe narzędzie do transkrypcji YouTube</span></>}
       subtitle="Otrzymaj czystą, precyzyjną transkrypcję dowolnego filmu YouTube. Pobierz plik, upuść tutaj, AI robi resztę. Lepsze niż auto-napisy YouTube, z porządną interpunkcją i timecode."
       howItWorks={[
-        { icon: '⬇️', title: 'Pobierz wideo lub audio', desc: 'Najprościej: darmowa aplikacja desktop jak 4K Video Downloader lub ClipGrab (Mac, Windows, Linux). Otwórz aplikację, wklej link YouTube, wybierz "Tylko audio" (M4A lub MP3), kliknij pobierz. Gotowe w sekundach. Strona prawna w FAQ poniżej.' },
-        { icon: '📂', title: 'Upuść plik', desc: 'Przeciągnij pobrany plik do Mictoo. Akceptujemy MP4, M4A, MP3, WAV, FLAC, OGG, WEBM. Audio idzie do Whisper large-v3.' },
-        { icon: '📋', title: 'Weź transkrypcję', desc: 'Przeczytaj w przeglądarce, skopiuj do schowka lub pobierz jako TXT lub SRT. SRT działa jako napisy YouTube, dużo lepiej niż auto-napisy.' },
+        { icon: '🔗', title: 'Wklej link YouTube', desc: 'Wrzuć dowolny link YouTube w pole powyżej. W kilka sekund wyciągamy gotowe napisy, bez pobierania i bez czekania, aż Whisper przetranskrybuje wszystko od nowa. Działa dla większości publicznych filmów z auto-napisami lub napisami od twórcy.' },
+        { icon: '📂', title: 'Albo prześlij plik', desc: 'Film nie ma napisów, jest prywatny lub po prostu chcesz świeżą jakość Whispera? Pobierz audio darmową aplikacją desktop (zobacz nasz przewodnik pobierania poniżej), upuść na tej samej stronie, a my przepuścimy plik przez Whisper large-v3.' },
+        { icon: '📋', title: 'Weź transkrypcję', desc: 'Czytaj w przeglądarce, kopiuj do schowka lub eksportuj jako TXT, SRT, VTT albo DOCX. Tłumacz na 28 języków jednym kliknięciem. Darmowe podsumowanie AI na górze każdej transkrypcji.' },
       ]}
-      whyUse={{ title: 'Dlaczego Mictoo zamiast auto-napisów YouTube', bullets: [
-        { title: 'Auto-napisy gubią interpunkcję i nazwy własne', desc: 'Napisy YouTube to strumień świadomości bez przecinków, bez kropek i z tendencją do okaleczania nazw. Whisper large-v3 daje ci kompletne zdania z interpunkcją, kapitalizacją i rozpoznawalnymi nazwami własnymi.' },
-        { title: 'Auto-napisy nie zawsze są dostępne', desc: 'Mniejsze kanały, prywatne filmy, zakończone transmisje na żywo lub filmy w mniej popularnych językach często nie mają napisów lub mają słabe automatyczne. Whisper działa na wszystkich.' },
-        { title: 'Lepsza dokładność dla muzyki i akcentów', desc: 'Auto-napisy YouTube walczą z fragmentami muzycznymi i angielskim nienatywnym. Whisper radzi sobie z obojgiem lepiej, z mniejszą liczbą halucynowanych słów i silniejszym pokryciem akcentów.' },
-        { title: 'Dostajesz czysty SRT, nie format XML YouTube', desc: 'Ścieżka napisów YouTube pobiera się jako XML lub VTT z dziwnymi timestampami. Nasz SRT jest standardowy, drop-in kompatybilny z każdym edytorem wideo.' },
-        { title: 'Działa na filmach, które nie są twoje', desc: 'Możesz transkrybować wykłady, wywiady, podcasty na YouTube do osobistej nauki lub badań bez potrzeby dostępu właściciela kanału (z zastrzeżeniem prawa autorskiego i warunków YouTube, zobacz FAQ).' },
+      whyUse={{ title: 'Co dostajesz na Mictoo', bullets: [
+        { title: 'Bez kroku z pobieraniem', desc: 'Wklej link YouTube, a transkrypcja wraca w kilka sekund. Bez aplikacji desktop, bez ogarniania plików, bez czekania na upload długiego filmu.' },
+        { title: 'Świeża transkrypcja Whispera jako fallback', desc: 'Jeśli film nie ma napisów, prześlij audio. Whisper large-v3 ogarnia akcenty, muzykę i nazwy własne lepiej niż auto-napisy YouTube: mniej halucynowanych słów, pełna interpunkcja.' },
+        { title: 'Czysty SRT, gotowy do edycji', desc: 'Standardowy format SRT, który wczytuje się bezpośrednio do Premiere, DaVinci Resolve, Final Cut, CapCut. Bez XML, bez dziwnych timestampów, bez ręcznego czyszczenia.' },
+        { title: 'Darmowe podsumowanie AI dla każdej transkrypcji', desc: 'Kluczowe wnioski i punkty do działania na górze każdego wyniku, bez dodatkowego kliknięcia. Konkurencja zwykle bierze za to 15–20 $ miesięcznie.' },
+        { title: 'Tłumaczenie na 28 języków', desc: 'Jedno kliknięcie po transkrypcji. Oryginalne timestampy są zachowane, więc przetłumaczony SRT zostaje zsynchronizowany z audio.' },
+        { title: 'Bez rejestracji, bez znaku wodnego, bez limitów czasowych', desc: 'Użycie anonimowe do 25 MB. Darmowa rejestracja daje pliki do 60 MB i prywatną historię transkrypcji.' },
       ]}}
       useCases={{ title: 'Do czego ludzie używają transkrypcji YouTube', items: [
         { title: 'Studiowanie długich wykładów i tutoriali', desc: '90-minutowy wykład MIT łatwiej studiować z wersją tekstową. Przejrzyj część, której potrzebujesz, skocz do timecode w wideo dla wyjaśnienia na żywo.' },

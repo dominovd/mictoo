@@ -40,6 +40,7 @@ export default function FrYouTubeToTextPage() {
   return (
     <LandingLayout
       defaultLanguage="fr"
+      enableYouTubeUrl
       badge="YouTube · SRT · GRATUIT"
       h1={
         <>
@@ -51,43 +52,47 @@ export default function FrYouTubeToTextPage() {
       subtitle="Obtenez une transcription propre et précise de n'importe quelle vidéo YouTube. Téléchargez le fichier, déposez-le ici, l'IA fait le reste. Mieux que les sous-titres auto YouTube, avec une vraie ponctuation et des horodatages."
       howItWorks={[
         {
-          icon: '⬇️',
-          title: "Téléchargez la vidéo ou l'audio",
-          desc: "Le plus simple : une app desktop gratuite comme 4K Video Downloader ou ClipGrab (Mac, Windows, Linux). Ouvrez l'app, collez le lien YouTube, choisissez « audio seul » (M4A ou MP3), cliquez télécharger. Prêt en quelques secondes. Côté juridique, voir la FAQ ci-dessous.",
+          icon: '🔗',
+          title: 'Collez un lien YouTube',
+          desc: "Déposez n'importe quelle URL YouTube dans le champ ci-dessus. On récupère les sous-titres existants en quelques secondes — pas de téléchargement, pas d'attente pour que Whisper retranscrive. Fonctionne pour la plupart des vidéos publiques avec sous-titres auto ou sous-titres ajoutés par le créateur.",
         },
         {
           icon: '📂',
-          title: 'Déposez le fichier',
-          desc: 'Glissez le fichier téléchargé dans Mictoo. On accepte MP4, M4A, MP3, WAV, FLAC, OGG, WEBM. L\'audio part vers Whisper large-v3.',
+          title: 'Ou chargez un fichier',
+          desc: "Pas de sous-titres sur la vidéo, upload privé, ou vous voulez juste une qualité Whisper fraîche ? Téléchargez l'audio avec une app desktop gratuite (voir notre guide de téléchargement plus bas), déposez-le sur la même page, et on le passe dans Whisper large-v3.",
         },
         {
           icon: '📋',
           title: 'Récupérez la transcription',
-          desc: 'Lisez dans le navigateur, copiez dans le presse-papiers ou téléchargez en TXT ou SRT. Le SRT marche comme sous-titres YouTube, bien mieux que les sous-titres auto.',
+          desc: 'Lisez dans le navigateur, copiez dans le presse-papiers, ou exportez en TXT, SRT, VTT ou DOCX. Traduisez en 28 langues en un clic. Résumé IA gratuit en haut de chaque résultat.',
         },
       ]}
       whyUse={{
-        title: 'Pourquoi utiliser Mictoo plutôt que les sous-titres auto YouTube',
+        title: 'Ce que vous obtenez sur Mictoo',
         bullets: [
           {
-            title: 'Les sous-titres auto loupent la ponctuation et les noms propres',
-            desc: "Les sous-titres YouTube sont un flot sans virgules, sans points et avec une tendance à massacrer les noms. Whisper large-v3 vous donne de vraies phrases avec ponctuation, majuscules et noms propres reconnaissables.",
+            title: 'Pas besoin de téléchargement',
+            desc: "Collez une URL YouTube et la transcription revient en quelques secondes. Pas d'app desktop, pas de gestion de fichier, pas d'attente pour qu'une longue vidéo se charge.",
           },
           {
-            title: 'Les sous-titres auto ne sont pas toujours dispo',
-            desc: "Les petites chaînes, les vidéos privées, les directs terminés ou les vidéos dans des langues moins courantes n'ont souvent pas de sous-titres ou des sous-titres machine de mauvaise qualité. Whisper fonctionne sur tous.",
+            title: 'Transcription Whisper fraîche en secours',
+            desc: "Si la vidéo n'a pas de sous-titres, chargez l'audio. Whisper large-v3 gère les accents, la musique et les noms propres mieux que les sous-titres auto YouTube — moins de mots hallucinés, ponctuation complète.",
           },
           {
-            title: 'Meilleure précision sur la musique et les accents',
-            desc: "Les sous-titres auto YouTube galèrent avec les interludes musicaux et l'anglais non natif. Whisper gère les deux mieux, avec moins de mots hallucinés et une meilleure couverture des accents.",
+            title: 'SRT propre, prêt à éditer',
+            desc: "Format SRT standard qui s'importe directement dans Premiere, DaVinci Resolve, Final Cut, CapCut. Pas de XML, pas d'horodatages bizarres, pas de nettoyage manuel.",
           },
           {
-            title: "Vous obtenez un SRT propre, pas un XML YouTube",
-            desc: "La piste de sous-titres YouTube se télécharge en XML ou VTT avec des horodatages bizarres. Notre SRT est standard, drop-in compatible avec n'importe quel éditeur vidéo.",
+            title: 'Résumé IA gratuit sur chaque transcription',
+            desc: 'Points clés et actions à mener en haut de chaque résultat, sans clic supplémentaire. Les concurrents facturent généralement 15-20 $/mois pour ça.',
           },
           {
-            title: 'Fonctionne sur des vidéos qui ne sont pas les vôtres',
-            desc: "Vous pouvez transcrire cours, interviews, podcasts sur YouTube pour usage personnel d'étude ou de recherche, sans avoir l'accès propriétaire de la chaîne (sous réserve du droit d'auteur et des conditions de YouTube, voir FAQ).",
+            title: 'Traduction en 28 langues',
+            desc: 'Un clic après la transcription. Les horodatages d\'origine sont conservés, donc le SRT traduit reste synchronisé avec l\'audio.',
+          },
+          {
+            title: 'Sans inscription, sans filigrane, sans limite de temps',
+            desc: 'Usage anonyme jusqu\'à 25 Mo. Inscrivez-vous gratuitement pour des fichiers de 60 Mo et un historique privé de vos transcriptions.',
           },
         ],
       }}

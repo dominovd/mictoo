@@ -40,16 +40,17 @@ export default function PtVideoToTextPage() {
   return (
     <LandingLayout
       defaultLanguage="pt"
+      enableYouTubeUrl
       badge="MP4 · MOV · WEBM · GRÁTIS"
       h1={<>Vídeo em texto<br /><span className="text-brand-600">Transcrição IA grátis de vídeo</span></>}
       subtitle="Transcrição IA grátis para qualquer arquivo de vídeo. Extraímos o áudio automaticamente. Sem conta, sem cobrança por minuto, sem e-mail."
       howItWorks={[
-        { icon: '🎬', title: 'Solte o vídeo', desc: 'MP4, MOV, WEBM, AVI ou qualquer container de vídeo comum. Screencasts, vlogs, exports de webinar, MP4s do Zoom. Arraste ou clique para escolher.' },
+        { icon: '🎬', title: 'Solte o vídeo ou cole uma URL do YouTube', desc: 'MP4, MOV, WEBM, AVI ou qualquer container de vídeo comum. Screencasts, vlogs, exports de webinar, MP4s do Zoom. Arraste ou clique para escolher. Novo: cole um link do YouTube em vez de subir e puxamos a transcrição em segundos, sem necessidade de download.' },
         { icon: '⚡', title: 'Extraímos o áudio, a IA transcreve', desc: 'Pegamos a trilha de áudio do vídeo e mandamos só ela para o Whisper large-v3. Não precisa converter para MP3 antes. Um vídeo de 30 minutos costuma ficar pronto em cerca de um minuto.' },
         { icon: '📋', title: 'Copie, baixe ou pegue legendas', desc: 'Baixe como TXT para notas, ou SRT para colocar como legenda num editor de vídeo. Corrija palavras erradas no navegador antes de exportar.' },
       ]}
       whyUse={{ title: 'Por que Mictoo para vídeo', bullets: [
-        { title: 'Upload direto, sem desvio pelo YouTube', desc: 'Muitos transcritores grátis pedem para você subir o vídeo como "não listado" no YouTube, esperar as legendas automáticas e copiar o texto. Isso é lento e dá legendas medianas. Pule.' },
+        { title: 'Cole uma URL do YouTube direto', desc: 'Pule o passo de download para vídeos do YouTube: solte o link no campo acima da área de upload e a transcrição volta em segundos. Para vídeos sem legendas, envie o arquivo de áudio e o Whisper resolve.' },
         { title: 'Extração de áudio é automática', desc: 'Você solta o MP4. Nós tiramos o áudio internamente e mandamos ao modelo de fala. Você não precisa rodar ffmpeg.' },
         { title: 'A saída funciona em editores de vídeo reais', desc: 'O SRT que geramos funciona no Premiere Pro, DaVinci Resolve, Final Cut, CapCut e YouTube Studio. Os timecodes são frame-accurate.' },
         { title: 'Arquivos de vídeo grandes? Comprima o áudio, não o vídeo', desc: 'Um vídeo de 200 MB costuma ser 195 MB de vídeo e 5 MB de áudio. Você não precisa comprimir tudo, só a trilha de áudio.' },

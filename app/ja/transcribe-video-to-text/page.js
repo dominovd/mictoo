@@ -40,16 +40,17 @@ export default function JaVideoToTextPage() {
   return (
     <LandingLayout
       defaultLanguage="ja"
+      enableYouTubeUrl
       badge="MP4 · MOV · WEBM · 無料"
       h1={<>動画をテキストに<br /><span className="text-brand-600">無料AI動画文字起こし</span></>}
       subtitle="任意の動画ファイルの無料AI文字起こし。音声を自動抽出します。アカウント不要、分単位課金なし、メール不要。"
       howItWorks={[
-        { icon: '🎬', title: '動画をドロップ', desc: 'MP4、MOV、WEBM、AVI、または任意の一般的な動画コンテナ。スクリーンレコーディング、Vログ、ウェビナーのエクスポート、ZoomのMP4。ドラッグするかクリックして選択。' },
+        { icon: '🎬', title: '動画をドロップ — またはYouTube URLを貼る', desc: 'MP4、MOV、WEBM、AVI、その他一般的な動画コンテナに対応。スクリーンレコーディング、Vログ、ウェビナーのエクスポート、ZoomのMP4。ドラッグするかクリックして選択。新機能: アップロードの代わりにYouTubeリンクを貼れば、ダウンロード不要で数秒で文字起こしを取得できます。' },
         { icon: '⚡', title: '音声を抽出してAIが文字起こし', desc: '動画から音声トラックを取り出して、それだけをWhisper large-v3に送ります。先にMP3に変換する必要はありません。30分の動画は通常約1分で完了。' },
         { icon: '📋', title: 'コピー、ダウンロード、字幕取得', desc: 'メモ用にTXT、または動画エディターに字幕として入れるためにSRTでダウンロード。エクスポート前に誤った単語をブラウザで修正。' },
       ]}
       whyUse={{ title: 'なぜMictooが動画に向いているか', bullets: [
-        { title: '直接アップロード、YouTube経由なし', desc: '多くの無料文字起こしツールは、動画を「限定公開」でYouTubeにアップロードして、自動字幕を待ってテキストをコピーするよう言います。遅くて中途半端な字幕が出ます。スキップしてください。' },
+        { title: 'YouTubeのURLを直接貼り付け', desc: 'YouTube動画ならダウンロード作業をスキップ。ドロップゾーン上のフィールドにリンクを貼れば、数秒で文字起こしが返ってきます。字幕がない動画は音声ファイルをアップロードすれば、Whisperが処理します。' },
         { title: '音声抽出は自動', desc: 'MP4をドロップ。内部で音声を取り出して音声モデルに送ります。自分でffmpegを実行する必要はありません。' },
         { title: '出力は本物の動画エディターで動作', desc: '生成するSRTはPremiere Pro、DaVinci Resolve、Final Cut、CapCut、YouTube Studioで動作します。タイムコードはフレーム精度。' },
         { title: '動画ファイルが大きい?動画ではなく音声を圧縮', desc: '200 MBの動画は通常195 MBの動画と5 MBの音声。全部を圧縮する必要はなく、音声トラックだけです。' },

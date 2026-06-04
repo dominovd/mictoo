@@ -52,43 +52,47 @@ export default function YouTubeToTextPage() {
       subtitle="Get a clean, accurate transcript from any YouTube video. Download the file, drop it here, AI does the rest. Better than YouTube auto-captions, with proper punctuation and timestamps."
       howItWorks={[
         {
-          icon: '⬇️',
-          title: 'Download the video or audio',
-          desc: 'Easiest way: a free desktop app like 4K Video Downloader or ClipGrab (Mac, Windows, Linux). Open the app, paste the YouTube link, pick "audio only" (M4A or MP3), hit download. Done in seconds. See the FAQ below for the legal side.',
+          icon: '🔗',
+          title: 'Paste a YouTube link',
+          desc: "Drop any YouTube URL into the field above. We pull the existing captions in a couple of seconds — no download, no waiting for Whisper to re-transcribe. Works for most public videos with auto-captions or creator-uploaded subtitles.",
         },
         {
           icon: '📂',
-          title: 'Drop the file',
-          desc: 'Drag the downloaded file into Mictoo. We handle MP4, M4A, MP3, WAV, FLAC, OGG, WEBM. The audio gets sent to Whisper large-v3.',
+          title: 'Or upload a file',
+          desc: "No captions on the video, private upload, or you just want fresh Whisper quality? Download the audio with a free desktop app (see our download guide below), drop it into the same page, and we'll run it through Whisper large-v3.",
         },
         {
           icon: '📋',
           title: 'Get the transcript',
-          desc: 'Read it in the browser, copy to clipboard, or download as TXT or SRT. The SRT works as YouTube subtitles, way better than auto-captions.',
+          desc: 'Read it in the browser, copy to clipboard, or export as TXT, SRT, VTT, or DOCX. Translate to 28 languages in one click. Free AI summary at the top.',
         },
       ]}
       whyUse={{
-        title: 'Why use Mictoo instead of YouTube auto-captions',
+        title: 'What you get on Mictoo',
         bullets: [
           {
-            title: 'Auto-captions miss punctuation and proper nouns',
-            desc: "YouTube's captions are stream-of-consciousness with no commas, no periods, and a tendency to mangle names. Whisper large-v3 gives you proper sentences, capitalization, and recognizable proper nouns.",
+            title: 'No download step needed',
+            desc: 'Paste a YouTube URL and the transcript comes back in seconds. No desktop app, no file management, no waiting for a long video to upload.',
           },
           {
-            title: 'Auto-captions are not always available',
-            desc: 'Smaller channels, private videos, livestreams that have ended, or videos in less common languages often have no captions or low-quality machine captions. Whisper works on all of them.',
+            title: 'Fresh Whisper transcription as fallback',
+            desc: "If the video has no captions, upload the audio. Whisper large-v3 handles accents, music, and proper nouns better than YouTube's auto-captions — fewer hallucinated words, full punctuation.",
           },
           {
-            title: 'Better accuracy on music and accents',
-            desc: 'YouTube auto-captions struggle with music interludes and non-native English. Whisper handles both better, with fewer hallucinated words and stronger accent coverage.',
+            title: 'Clean SRT, ready for editing',
+            desc: 'Standard SRT format that imports directly into Premiere, DaVinci Resolve, Final Cut, CapCut. No XML, no odd timestamps, no manual cleanup.',
           },
           {
-            title: 'You get a clean SRT, not a YouTube XML format',
-            desc: "YouTube's caption track downloads in XML or VTT format with odd timestamps. Our SRT is standard, drop-in compatible with any video editor.",
+            title: 'Free AI summary on every transcript',
+            desc: 'Key insights and action items at the top of every result, without an extra click. Competitors typically charge $15–20/month for this.',
           },
           {
-            title: 'Works on videos you do not own',
-            desc: "You can transcribe lectures, interviews, podcasts on YouTube for personal study or research use without needing channel-owner access (subject to copyright and YouTube's terms, see FAQ).",
+            title: 'Translate to 28 languages',
+            desc: 'One click after transcription. Original timestamps are preserved, so the translated SRT stays in sync with the audio.',
+          },
+          {
+            title: 'No signup, no watermark, no time limits',
+            desc: 'Anonymous use up to 25 MB. Sign up free for 60 MB files and a private history of your transcripts.',
           },
         ],
       }}

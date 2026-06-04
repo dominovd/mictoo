@@ -40,6 +40,7 @@ export default function EsYouTubeToTextPage() {
   return (
     <LandingLayout
       defaultLanguage="es"
+      enableYouTubeUrl
       badge="YouTube · SRT · GRATIS"
       h1={
         <>
@@ -51,43 +52,47 @@ export default function EsYouTubeToTextPage() {
       subtitle="Obtén una transcripción limpia y precisa de cualquier vídeo de YouTube. Descarga el archivo, súbelo aquí, la IA hace el resto. Mejor que los subtítulos automáticos, con puntuación correcta y marcas de tiempo."
       howItWorks={[
         {
-          icon: '⬇️',
-          title: 'Descarga el vídeo o el audio',
-          desc: 'Lo más fácil: una app de escritorio gratuita como 4K Video Downloader o ClipGrab (Mac, Windows, Linux). Abres la app, pegas el enlace de YouTube, eliges "solo audio" (M4A o MP3) y descargas. Listo en segundos. La parte legal está en el FAQ de abajo.',
+          icon: '🔗',
+          title: 'Pega un enlace de YouTube',
+          desc: 'Pega cualquier URL de YouTube en el campo de arriba. Sacamos los subtítulos existentes en un par de segundos, sin descarga ni espera a que Whisper vuelva a transcribir. Funciona con la mayoría de vídeos públicos con subtítulos automáticos o subidos por el creador.',
         },
         {
           icon: '📂',
-          title: 'Sube el archivo',
-          desc: 'Arrastra el archivo descargado a Mictoo. Aceptamos MP4, M4A, MP3, WAV, FLAC, OGG, WEBM. El audio va a Whisper large-v3.',
+          title: 'O sube un archivo',
+          desc: '¿El vídeo no tiene subtítulos, es una subida privada o quieres directamente la calidad de Whisper? Descarga el audio con una app de escritorio gratuita (mira nuestra guía de descarga abajo), súbelo en la misma página y lo pasamos por Whisper large-v3.',
         },
         {
           icon: '📋',
           title: 'Recibe la transcripción',
-          desc: 'Léela en el navegador, cópiala al portapapeles o descárgala como TXT o SRT. El SRT funciona como subtítulos de YouTube, mucho mejor que los automáticos.',
+          desc: 'Léela en el navegador, cópiala al portapapeles o expórtala como TXT, SRT, VTT o DOCX. Traduce a 28 idiomas en un clic. Resumen IA gratis arriba.',
         },
       ]}
       whyUse={{
-        title: 'Por qué usar Mictoo en lugar de los subtítulos automáticos',
+        title: 'Lo que recibes en Mictoo',
         bullets: [
           {
-            title: 'Los subtítulos automáticos se pierden puntuación y nombres propios',
-            desc: 'Los subtítulos de YouTube son flujo de conciencia sin comas, sin puntos y con tendencia a destrozar nombres. Whisper large-v3 te da frases completas con puntuación, mayúsculas y nombres reconocibles.',
+            title: 'Sin paso de descarga',
+            desc: 'Pega una URL de YouTube y la transcripción vuelve en segundos. Sin app de escritorio, sin gestión de archivos, sin esperar a que se suba un vídeo largo.',
           },
           {
-            title: 'Los subtítulos automáticos no siempre están',
-            desc: 'Canales pequeños, vídeos privados, directos terminados o vídeos en idiomas menos comunes muchas veces no tienen subtítulos o tienen subtítulos automáticos de mala calidad. Whisper funciona en todos.',
+            title: 'Transcripción fresca con Whisper como fallback',
+            desc: 'Si el vídeo no tiene subtítulos, sube el audio. Whisper large-v3 maneja acentos, música y nombres propios mejor que los subtítulos automáticos de YouTube, con menos palabras inventadas y puntuación completa.',
           },
           {
-            title: 'Mejor precisión con música y acentos',
-            desc: 'Los subtítulos automáticos sufren con los interludios musicales y el inglés no nativo. Whisper maneja ambos mejor, con menos palabras alucinadas y mejor cobertura de acentos.',
+            title: 'SRT limpio, listo para editar',
+            desc: 'Formato SRT estándar que se importa directamente en Premiere, DaVinci Resolve, Final Cut, CapCut. Sin XML, sin marcas de tiempo raras, sin limpieza manual.',
           },
           {
-            title: 'Obtienes un SRT limpio, no un XML de YouTube',
-            desc: 'La pista de subtítulos de YouTube se descarga en XML o VTT con marcas raras. Nuestro SRT es estándar, drop-in compatible con cualquier editor de vídeo.',
+            title: 'Resumen IA gratis en cada transcripción',
+            desc: 'Ideas clave y puntos de acción al inicio de cada resultado, sin un clic extra. Los competidores suelen cobrar 15–20 $/mes por esto.',
           },
           {
-            title: 'Funciona en vídeos que no son tuyos',
-            desc: 'Puedes transcribir clases, entrevistas, podcasts de YouTube para estudio personal o investigación, sin necesidad de ser el dueño del canal (sujeto a copyright y a las condiciones de YouTube, ver FAQ).',
+            title: 'Traduce a 28 idiomas',
+            desc: 'Un clic después de la transcripción. Se mantienen las marcas de tiempo originales, así el SRT traducido sigue sincronizado con el audio.',
+          },
+          {
+            title: 'Sin registro, sin marca de agua, sin límites de tiempo',
+            desc: 'Uso anónimo hasta 25 MB. Regístrate gratis para archivos de 60 MB y un historial privado de tus transcripciones.',
           },
         ],
       }}

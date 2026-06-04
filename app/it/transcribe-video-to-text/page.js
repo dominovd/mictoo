@@ -39,16 +39,17 @@ export default function ItVideoToTextPage() {
   return (
     <LandingLayout
       defaultLanguage="it"
+      enableYouTubeUrl
       badge="MP4 · MOV · WEBM · GRATIS"
       h1={<>Video in testo<br /><span className="text-brand-600">Trascrizione video IA gratuita</span></>}
       subtitle="Trascrizione IA gratuita per qualsiasi file video. Estraiamo l'audio automaticamente. Senza account, senza tariffa al minuto, senza email."
       howItWorks={[
-        { icon: '🎬', title: 'Rilascia il video', desc: 'MP4, MOV, WEBM, AVI o qualsiasi container video comune. Registrazioni schermo, vlog, export di webinar, MP4 di Zoom. Trascina o clicca per scegliere.' },
+        { icon: '🎬', title: 'Rilascia il video o incolla un URL YouTube', desc: 'MP4, MOV, WEBM, AVI o qualsiasi container video comune. Registrazioni schermo, vlog, export di webinar, MP4 di Zoom. Trascina o clicca per scegliere. Nuovo: incolla un link YouTube invece di caricare e tiriamo fuori la trascrizione in pochi secondi, senza download.' },
         { icon: '⚡', title: 'Estraiamo l\'audio, l\'IA trascrive', desc: 'Tiriamo fuori la traccia audio dal video e mandiamo solo quella a Whisper large-v3. Niente bisogno di convertire in MP3 prima. Un video di 30 minuti finisce in genere in circa un minuto.' },
         { icon: '📋', title: 'Copia, scarica o prendi i sottotitoli', desc: 'Scarica come TXT per le note, o come SRT per inserire come sottotitoli in un editor video. Modifica le parole sbagliate nel browser prima di esportare.' },
       ]}
       whyUse={{ title: 'Perché Mictoo per il video', bullets: [
-        { title: 'Upload diretto, niente giro per YouTube', desc: 'Molti trascrittori gratuiti ti dicono di caricare il video su YouTube come Non in elenco, aspettare i sottotitoli auto e copiare il testo. È lento e dà sottotitoli mediocri. Salta.' },
+        { title: 'Incolla un URL YouTube direttamente', desc: 'Salta il passo del download per i video YouTube: rilascia il link nel campo sopra l\'area di upload e la trascrizione torna in pochi secondi. Per i video senza sottotitoli, carica il file audio e Whisper se ne occupa.' },
         { title: 'Estrazione audio automatica', desc: 'Rilasci l\'MP4. Tiriamo fuori l\'audio internamente e lo mandiamo al modello. Non serve eseguire ffmpeg tu.' },
         { title: 'L\'output funziona in editor video veri', desc: 'L\'SRT che generiamo funziona in Premiere Pro, DaVinci Resolve, Final Cut, CapCut e YouTube Studio. I timecode sono precisi al frame.' },
         { title: 'File video più grandi? Comprimi l\'audio, non il video', desc: 'Un video di 200 MB è di solito 195 MB di video e 5 MB di audio. Non serve comprimere tutto, solo la traccia audio.' },

@@ -40,6 +40,7 @@ export default function EsVideoToTextPage() {
   return (
     <LandingLayout
       defaultLanguage="es"
+      enableYouTubeUrl
       badge="MP4 · MOV · WEBM · GRATIS"
       h1={
         <>
@@ -52,8 +53,8 @@ export default function EsVideoToTextPage() {
       howItWorks={[
         {
           icon: '🎬',
-          title: 'Sube el vídeo',
-          desc: 'MP4, MOV, WEBM, AVI o cualquier contenedor de vídeo común. Grabaciones de pantalla, vlogs, exports de webinars, MP4 de Zoom. Arrástralo o haz clic para elegir.',
+          title: 'Suelta el vídeo o pega una URL de YouTube',
+          desc: 'MP4, MOV, WEBM, AVI o cualquier contenedor de vídeo común. Grabaciones de pantalla, vlogs, exports de webinars, MP4 de Zoom. Arrástralo o haz clic para elegir. Nuevo: pega un enlace de YouTube en lugar de subir y sacamos la transcripción en segundos, sin necesidad de descarga.',
         },
         {
           icon: '⚡',
@@ -70,8 +71,8 @@ export default function EsVideoToTextPage() {
         title: 'Por qué Mictoo para vídeo',
         bullets: [
           {
-            title: 'Subida directa, sin rodeo por YouTube',
-            desc: 'Muchos transcriptores gratuitos te piden subir el vídeo a YouTube como No listado, esperar a los subtítulos automáticos y copiar el texto. Es lento y produce subtítulos mediocres. Sáltatelo.',
+            title: 'Pega una URL de YouTube directamente',
+            desc: 'Sáltate el paso de descarga para vídeos de YouTube: pega el enlace en el campo encima de la zona de subida y la transcripción vuelve en segundos. Para vídeos sin subtítulos, sube el archivo de audio y Whisper se encarga.',
           },
           {
             title: 'Extracción de audio automática',

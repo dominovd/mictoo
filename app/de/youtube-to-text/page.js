@@ -40,6 +40,7 @@ export default function DeYouTubeToTextPage() {
   return (
     <LandingLayout
       defaultLanguage="de"
+      enableYouTubeUrl
       badge="YouTube · SRT · KOSTENLOS"
       h1={
         <>
@@ -51,43 +52,47 @@ export default function DeYouTubeToTextPage() {
       subtitle="Holen Sie sich ein sauberes, präzises Transkript von jedem YouTube-Video. Datei herunterladen, hier ablegen, KI macht den Rest. Besser als YouTubes Auto-Untertitel, mit ordentlicher Zeichensetzung und Zeitstempeln."
       howItWorks={[
         {
-          icon: '⬇️',
-          title: 'Video oder Audio herunterladen',
-          desc: 'Am einfachsten: eine kostenlose Desktop-App wie 4K Video Downloader oder ClipGrab (Mac, Windows, Linux). App öffnen, YouTube-Link einfügen, „Nur Audio" wählen (M4A oder MP3), Download klicken. In Sekunden erledigt. Zur rechtlichen Seite siehe FAQ unten.',
+          icon: '🔗',
+          title: 'YouTube-Link einfügen',
+          desc: 'Fügen Sie eine beliebige YouTube-URL in das Feld oben ein. Wir holen die vorhandenen Untertitel in wenigen Sekunden — kein Download, kein Warten, bis Whisper neu transkribiert. Funktioniert bei den meisten öffentlichen Videos mit Auto-Untertiteln oder vom Ersteller hochgeladenen Untertiteln.',
         },
         {
           icon: '📂',
-          title: 'Datei ablegen',
-          desc: 'Ziehen Sie die heruntergeladene Datei in Mictoo. Wir nehmen MP4, M4A, MP3, WAV, FLAC, OGG, WEBM. Das Audio geht an Whisper large-v3.',
+          title: 'Oder Datei hochladen',
+          desc: 'Keine Untertitel auf dem Video, privater Upload, oder Sie wollen einfach frische Whisper-Qualität? Laden Sie das Audio mit einer kostenlosen Desktop-App herunter (siehe unseren Download-Guide unten), legen Sie es auf derselben Seite ab, und wir schicken es durch Whisper large-v3.',
         },
         {
           icon: '📋',
           title: 'Transkript holen',
-          desc: 'Im Browser lesen, in die Zwischenablage kopieren oder als TXT oder SRT herunterladen. Die SRT funktioniert als YouTube-Untertitel, weit besser als Auto-Untertitel.',
+          desc: 'Im Browser lesen, in die Zwischenablage kopieren oder als TXT, SRT, VTT oder DOCX exportieren. Mit einem Klick in 28 Sprachen übersetzen. Kostenlose KI-Zusammenfassung oben in jedem Ergebnis.',
         },
       ]}
       whyUse={{
-        title: 'Warum Mictoo statt YouTubes Auto-Untertitel',
+        title: 'Was Sie auf Mictoo bekommen',
         bullets: [
           {
-            title: 'Auto-Untertitel verfehlen Zeichensetzung und Eigennamen',
-            desc: 'YouTubes Untertitel sind Stream-of-Consciousness ohne Kommas, ohne Punkte und mit einer Tendenz, Namen zu verstümmeln. Whisper large-v3 gibt Ihnen vollständige Sätze mit Zeichensetzung, Großschreibung und erkennbaren Eigennamen.',
+            title: 'Kein Download-Schritt nötig',
+            desc: 'Fügen Sie eine YouTube-URL ein und das Transkript kommt in Sekunden zurück. Keine Desktop-App, keine Dateiverwaltung, kein Warten, bis ein langes Video hochgeladen ist.',
           },
           {
-            title: 'Auto-Untertitel sind nicht immer verfügbar',
-            desc: 'Kleinere Kanäle, private Videos, beendete Livestreams oder Videos in weniger verbreiteten Sprachen haben oft keine Untertitel oder schlechte maschinelle Untertitel. Whisper funktioniert auf allen.',
+            title: 'Frische Whisper-Transkription als Fallback',
+            desc: 'Wenn das Video keine Untertitel hat, laden Sie das Audio hoch. Whisper large-v3 bewältigt Akzente, Musik und Eigennamen besser als YouTubes Auto-Untertitel — weniger halluzinierte Wörter, vollständige Zeichensetzung.',
           },
           {
-            title: 'Bessere Genauigkeit bei Musik und Akzenten',
-            desc: 'YouTubes Auto-Untertitel kämpfen mit Musik-Interludes und nicht-muttersprachlichem Englisch. Whisper behandelt beides besser, mit weniger halluzinierten Wörtern und stärkerer Akzent-Abdeckung.',
+            title: 'Saubere SRT, bereit zur Bearbeitung',
+            desc: 'Standard-SRT-Format, das sich direkt in Premiere, DaVinci Resolve, Final Cut, CapCut importieren lässt. Kein XML, keine seltsamen Zeitstempel, keine manuelle Nachbereitung.',
           },
           {
-            title: 'Sie bekommen eine saubere SRT, kein YouTube-XML-Format',
-            desc: 'YouTubes Untertitel-Spur lädt sich in XML oder VTT mit seltsamen Zeitstempeln herunter. Unsere SRT ist Standard, drop-in kompatibel mit jedem Video-Editor.',
+            title: 'Kostenlose KI-Zusammenfassung auf jedem Transkript',
+            desc: 'Wichtige Erkenntnisse und Aufgaben oben in jedem Ergebnis, ohne extra Klick. Konkurrenten verlangen dafür meist 15-20 $/Monat.',
           },
           {
-            title: 'Funktioniert auf Videos, die nicht Ihnen gehören',
-            desc: 'Sie können Vorlesungen, Interviews, Podcasts auf YouTube für persönliches Studium oder Forschungszwecke transkribieren, ohne Kanal-Besitzer-Zugriff zu brauchen (vorbehaltlich Urheberrecht und YouTube-Bedingungen, siehe FAQ).',
+            title: 'Übersetzung in 28 Sprachen',
+            desc: 'Ein Klick nach der Transkription. Die Original-Zeitstempel bleiben erhalten, sodass die übersetzte SRT mit dem Audio synchron bleibt.',
+          },
+          {
+            title: 'Keine Anmeldung, kein Wasserzeichen, keine Zeitlimits',
+            desc: 'Anonyme Nutzung bis 25 MB. Kostenlos registrieren für 60-MB-Dateien und eine private Historie Ihrer Transkripte.',
           },
         ],
       }}

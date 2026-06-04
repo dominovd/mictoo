@@ -40,16 +40,17 @@ export default function KoVideoToTextPage() {
   return (
     <LandingLayout
       defaultLanguage="ko"
+      enableYouTubeUrl
       badge="MP4 · MOV · WEBM · 무료"
       h1={<>비디오를 텍스트로<br /><span className="text-brand-600">무료 AI 비디오 받아쓰기</span></>}
       subtitle="모든 비디오 파일을 위한 무료 AI 받아쓰기. 오디오를 자동 추출합니다. 계정 불필요, 분당 과금 없음, 이메일 불필요."
       howItWorks={[
-        { icon: '🎬', title: '비디오 드롭', desc: 'MP4, MOV, WEBM, AVI 또는 모든 일반 비디오 컨테이너. 스크린 녹화, 블로그, 웨비나 내보내기, Zoom MP4. 드래그하거나 클릭하여 선택.' },
+        { icon: '🎬', title: '비디오 드롭 — 또는 YouTube URL 붙여넣기', desc: 'MP4, MOV, WEBM, AVI 또는 모든 일반 비디오 컨테이너. 스크린 녹화, 블로그, 웨비나 내보내기, Zoom MP4. 드래그하거나 클릭하여 선택. 새로운 기능: 업로드 대신 YouTube 링크를 붙여넣으면 다운로드 없이 몇 초 만에 받아쓰기를 가져옵니다.' },
         { icon: '⚡', title: '오디오를 추출하고 AI가 받아쓰기', desc: '비디오에서 오디오 트랙을 꺼내서 그것만 Whisper large-v3로 보냅니다. 먼저 MP3로 변환할 필요 없음. 30분 비디오는 보통 약 1분에 완료.' },
         { icon: '📋', title: '복사, 다운로드 또는 자막 받기', desc: '메모용 TXT, 또는 비디오 편집기에 자막으로 넣기 위해 SRT로 다운로드. 내보내기 전에 잘못된 단어를 브라우저에서 수정.' },
       ]}
       whyUse={{ title: '비디오에 Mictoo를 사용하는 이유', bullets: [
-        { title: '직접 업로드, YouTube 우회 없음', desc: '많은 무료 받아쓰기 도구가 비디오를 "비공개"로 YouTube에 업로드하고, 자동 자막을 기다리고, 텍스트를 복사하라고 말합니다. 느리고 평범한 자막을 줍니다. 건너뛰세요.' },
+        { title: 'YouTube URL을 직접 붙여넣기', desc: 'YouTube 비디오의 다운로드 단계를 건너뛰세요 — 드롭 존 위의 입력란에 링크를 넣으면 받아쓰기가 몇 초 만에 돌아옵니다. 자막이 없는 비디오는 오디오 파일을 업로드하면 Whisper가 처리합니다.' },
         { title: '오디오 추출이 자동', desc: 'MP4를 드롭. 내부에서 오디오를 꺼내 음성 모델에 보냅니다. 스스로 ffmpeg을 실행할 필요 없음.' },
         { title: '출력이 실제 비디오 편집기에서 작동', desc: '생성하는 SRT는 Premiere Pro, DaVinci Resolve, Final Cut, CapCut, YouTube Studio에서 작동합니다. 타임코드는 프레임 정확.' },
         { title: '큰 비디오 파일? 비디오가 아닌 오디오를 압축', desc: '200 MB 비디오는 보통 195 MB 비디오와 5 MB 오디오. 전부 압축할 필요 없고, 오디오 트랙만.' },

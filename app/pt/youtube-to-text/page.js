@@ -40,20 +40,22 @@ export default function PtYouTubeToTextPage() {
   return (
     <LandingLayout
       defaultLanguage="pt"
+      enableYouTubeUrl
       badge="YouTube · SRT · GRÁTIS"
       h1={<>YouTube em texto<br /><span className="text-brand-600">Ferramenta grátis de transcrição do YouTube</span></>}
       subtitle="Pegue uma transcrição limpa e precisa de qualquer vídeo do YouTube. Baixe o arquivo, solte aqui, a IA faz o resto. Melhor que as legendas automáticas do YouTube, com pontuação adequada e timecode."
       howItWorks={[
-        { icon: '⬇️', title: 'Baixe o vídeo ou áudio', desc: 'Mais fácil: um app desktop grátis como 4K Video Downloader ou ClipGrab (Mac, Windows, Linux). Abre o app, cola o link do YouTube, escolhe "Só áudio" (M4A ou MP3), clica baixar. Pronto em segundos. Para o lado legal, veja o FAQ abaixo.' },
-        { icon: '📂', title: 'Solte o arquivo', desc: 'Arraste o arquivo baixado para o Mictoo. Aceitamos MP4, M4A, MP3, WAV, FLAC, OGG, WEBM. O áudio vai para o Whisper large-v3.' },
-        { icon: '📋', title: 'Pegue a transcrição', desc: 'Leia no navegador, copie para a área de transferência ou baixe como TXT ou SRT. O SRT funciona como legenda no YouTube, muito melhor que as automáticas.' },
+        { icon: '🔗', title: 'Cole um link do YouTube', desc: 'Solte qualquer URL do YouTube no campo acima. Puxamos as legendas existentes em alguns segundos, sem download e sem esperar o Whisper retranscrever. Funciona com a maioria dos vídeos públicos com legendas automáticas ou enviadas pelo criador.' },
+        { icon: '📂', title: 'Ou envie um arquivo', desc: 'O vídeo não tem legendas, é um upload privado ou você quer a qualidade do Whisper? Baixe o áudio com um app desktop grátis (veja nosso guia abaixo), solte na mesma página e passamos pelo Whisper large-v3.' },
+        { icon: '📋', title: 'Pegue a transcrição', desc: 'Leia no navegador, copie para a área de transferência ou exporte como TXT, SRT, VTT ou DOCX. Traduza para 28 idiomas em um clique. Resumo IA grátis no topo.' },
       ]}
-      whyUse={{ title: 'Por que Mictoo em vez das legendas automáticas do YouTube', bullets: [
-        { title: 'Legendas automáticas perdem pontuação e nomes próprios', desc: 'As legendas do YouTube são fluxo de consciência sem vírgulas, sem pontos finais e com tendência a estropiar nomes. O Whisper large-v3 te dá frases completas com pontuação, capitalização e nomes próprios reconhecíveis.' },
-        { title: 'Legendas automáticas nem sempre estão disponíveis', desc: 'Canais menores, vídeos privados, livestreams encerrados ou vídeos em idiomas menos comuns frequentemente não têm legendas ou têm legendas automáticas ruins. O Whisper funciona em todos.' },
-        { title: 'Melhor precisão com música e sotaques', desc: 'As legendas automáticas do YouTube sofrem com interlúdios musicais e inglês não nativo. O Whisper lida melhor com os dois, com menos palavras alucinadas e cobertura mais forte de sotaques.' },
-        { title: 'Você recebe um SRT limpo, não o formato XML do YouTube', desc: 'A faixa de legenda do YouTube baixa em XML ou VTT com timecodes esquisitos. Nosso SRT é padrão, drop-in compatível com qualquer editor de vídeo.' },
-        { title: 'Funciona em vídeos que não são seus', desc: 'Você pode transcrever aulas, entrevistas, podcasts no YouTube para estudo pessoal ou pesquisa sem precisar de acesso de dono do canal (sujeito a copyright e termos do YouTube, veja FAQ).' },
+      whyUse={{ title: 'O que você recebe no Mictoo', bullets: [
+        { title: 'Sem passo de download', desc: 'Cole uma URL do YouTube e a transcrição volta em segundos. Sem app desktop, sem gerenciar arquivos, sem esperar um vídeo longo subir.' },
+        { title: 'Transcrição fresca do Whisper como fallback', desc: 'Se o vídeo não tem legendas, envie o áudio. O Whisper large-v3 lida com sotaques, música e nomes próprios melhor que as legendas automáticas do YouTube, com menos palavras inventadas e pontuação completa.' },
+        { title: 'SRT limpo, pronto para edição', desc: 'Formato SRT padrão que importa direto no Premiere, DaVinci Resolve, Final Cut, CapCut. Sem XML, sem timecodes estranhos, sem limpeza manual.' },
+        { title: 'Resumo IA grátis em toda transcrição', desc: 'Pontos-chave e itens de ação no topo de cada resultado, sem um clique extra. Os concorrentes geralmente cobram 15–20 US$/mês por isso.' },
+        { title: 'Traduza para 28 idiomas', desc: 'Um clique depois da transcrição. Os timecodes originais são preservados, então o SRT traduzido continua sincronizado com o áudio.' },
+        { title: 'Sem cadastro, sem marca d\'água, sem limites de tempo', desc: 'Uso anônimo até 25 MB. Cadastre-se grátis para arquivos de 60 MB e histórico privado das suas transcrições.' },
       ]}}
       useCases={{ title: 'Para que as pessoas usam transcrições do YouTube', items: [
         { title: 'Estudar aulas e tutoriais longos', desc: 'Uma aula do MIT de 90 minutos é mais fácil de estudar com a versão em texto. Escaneia a parte que você quer, pula para o timecode no vídeo para a explicação ao vivo.' },

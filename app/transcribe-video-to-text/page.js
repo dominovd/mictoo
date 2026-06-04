@@ -53,8 +53,8 @@ export default function VideoToTextPage() {
       howItWorks={[
         {
           icon: '🎬',
-          title: 'Drop the video',
-          desc: 'MP4, MOV, WEBM, AVI, or any common video container. Screen recordings, vlogs, webinar exports, Zoom MP4s. Drag the file or click to browse.',
+          title: 'Drop the video — or paste a YouTube URL',
+          desc: "MP4, MOV, WEBM, AVI, or any common video container. Screen recordings, vlogs, webinar exports, Zoom MP4s. Drag the file or click to browse. New: paste a YouTube link instead of uploading and we'll pull the transcript in seconds, no download needed.",
         },
         {
           icon: '⚡',
@@ -71,8 +71,8 @@ export default function VideoToTextPage() {
         title: 'Why Mictoo for video',
         bullets: [
           {
-            title: 'Direct upload, no YouTube round trip',
-            desc: 'A lot of free transcribers tell you to upload your video to YouTube as Unlisted, wait for auto-captions, then copy the text. That is slow and gives you mediocre captions. Skip it.',
+            title: 'Paste a YouTube URL directly',
+            desc: "Skip the download step for YouTube videos — drop the link into the field above the drop zone and the transcript comes back in seconds. For videos without captions, upload the audio file and Whisper handles it.",
           },
           {
             title: 'Audio extraction is automatic',

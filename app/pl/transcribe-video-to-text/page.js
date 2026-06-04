@@ -40,16 +40,17 @@ export default function PlVideoToTextPage() {
   return (
     <LandingLayout
       defaultLanguage="pl"
+      enableYouTubeUrl
       badge="MP4 · MOV · WEBM · ZA DARMO"
       h1={<>Wideo na tekst<br /><span className="text-brand-600">Darmowa transkrypcja wideo AI</span></>}
       subtitle="Darmowa transkrypcja AI dla dowolnego pliku wideo. Wyodrębniamy audio automatycznie. Bez konta, bez opłaty za minutę, bez emaila."
       howItWorks={[
-        { icon: '🎬', title: 'Upuść wideo', desc: 'MP4, MOV, WEBM, AVI lub dowolny popularny kontener wideo. Screencasty, vlogi, eksporty webinarów, MP4 z Zooma. Przeciągnij lub kliknij, aby wybrać.' },
+        { icon: '🎬', title: 'Upuść wideo — albo wklej link YouTube', desc: 'MP4, MOV, WEBM, AVI lub dowolny popularny kontener wideo. Screencasty, vlogi, eksporty webinarów, MP4 z Zooma. Przeciągnij plik lub kliknij, aby wybrać. Nowość: wklej link YouTube zamiast uploadu, a my wyciągniemy transkrypcję w kilka sekund, bez pobierania.' },
         { icon: '⚡', title: 'Wyodrębniamy audio, AI transkrybuje', desc: 'Bierzemy ścieżkę dźwiękową z wideo i wysyłamy ją do Whisper large-v3. Nie trzeba konwertować na MP3. Wideo 30-minutowe jest zwykle gotowe w około minutę.' },
         { icon: '📋', title: 'Kopiuj, pobierz lub weź napisy', desc: 'Pobierz jako TXT do notatek lub jako SRT, aby wrzucić jako napisy do edytora wideo. Popraw błędne słowa w przeglądarce przed eksportem.' },
       ]}
       whyUse={{ title: 'Dlaczego Mictoo do wideo', bullets: [
-        { title: 'Upload bezpośredni, bez objazdu przez YouTube', desc: 'Wiele darmowych transkryptorów każe wgrać wideo jako "niepubliczne" na YouTube, poczekać na napisy automatyczne i skopiować tekst. To powolne i daje średnie napisy. Pomiń.' },
+        { title: 'Wklej link YouTube bezpośrednio', desc: 'Pomiń krok z pobieraniem dla filmów YouTube: wrzuć link w pole nad strefą upload i transkrypcja wraca w kilka sekund. Dla filmów bez napisów prześlij plik audio, a Whisper sobie z nim poradzi.' },
         { title: 'Wyciąganie audio jest automatyczne', desc: 'Upuszczasz MP4. Wewnętrznie wyciągamy audio i wysyłamy do modelu mowy. Nie musisz sam uruchamiać ffmpeg.' },
         { title: 'Wyjście działa w prawdziwych edytorach wideo', desc: 'SRT, które generujemy, działa w Premiere Pro, DaVinci Resolve, Final Cut, CapCut i YouTube Studio. Timecode jest frame-accurate.' },
         { title: 'Duże pliki wideo? Skompresuj audio, nie wideo', desc: 'Wideo 200 MB to zwykle 195 MB wideo i 5 MB audio. Nie musisz kompresować wszystkiego, tylko ścieżkę dźwiękową.' },

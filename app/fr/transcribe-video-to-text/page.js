@@ -40,6 +40,7 @@ export default function FrVideoToTextPage() {
   return (
     <LandingLayout
       defaultLanguage="fr"
+      enableYouTubeUrl
       badge="MP4 · MOV · WEBM · GRATUIT"
       h1={
         <>
@@ -52,8 +53,8 @@ export default function FrVideoToTextPage() {
       howItWorks={[
         {
           icon: '🎬',
-          title: 'Déposez la vidéo',
-          desc: "MP4, MOV, WEBM, AVI ou tout conteneur vidéo courant. Captures d'écran, vlogs, exports de webinaires, MP4 de Zoom. Glissez ou cliquez pour choisir.",
+          title: 'Déposez la vidéo — ou collez une URL YouTube',
+          desc: "MP4, MOV, WEBM, AVI ou tout conteneur vidéo courant. Captures d'écran, vlogs, exports de webinaires, MP4 de Zoom. Glissez le fichier ou cliquez pour choisir. Nouveau : collez un lien YouTube au lieu d'uploader et on récupère la transcription en quelques secondes, sans téléchargement.",
         },
         {
           icon: '⚡',
@@ -70,8 +71,8 @@ export default function FrVideoToTextPage() {
         title: 'Pourquoi Mictoo pour la vidéo',
         bullets: [
           {
-            title: 'Upload direct, pas de détour par YouTube',
-            desc: "Plein de transcripteurs gratuits vous disent d'uploader votre vidéo sur YouTube en non répertoriée, attendre les sous-titres auto et copier le texte. C'est lent et ça donne des sous-titres médiocres. Sautez ça.",
+            title: 'Collez une URL YouTube directement',
+            desc: "Sautez l'étape de téléchargement pour les vidéos YouTube — déposez le lien dans le champ au-dessus de la zone de dépôt et la transcription revient en quelques secondes. Pour les vidéos sans sous-titres, chargez le fichier audio et Whisper s'en occupe.",
           },
           {
             title: "L'extraction audio est automatique",

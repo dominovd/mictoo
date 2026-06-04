@@ -40,6 +40,7 @@ export default function DeVideoToTextPage() {
   return (
     <LandingLayout
       defaultLanguage="de"
+      enableYouTubeUrl
       badge="MP4 · MOV · WEBM · KOSTENLOS"
       h1={
         <>
@@ -52,8 +53,8 @@ export default function DeVideoToTextPage() {
       howItWorks={[
         {
           icon: '🎬',
-          title: 'Video ablegen',
-          desc: 'MP4, MOV, WEBM, AVI oder jeder gängige Videocontainer. Bildschirmaufnahmen, Vlogs, Webinar-Exporte, Zoom-MP4s. Reinziehen oder zum Auswählen klicken.',
+          title: 'Video ablegen — oder YouTube-URL einfügen',
+          desc: 'MP4, MOV, WEBM, AVI oder jeder gängige Videocontainer. Bildschirmaufnahmen, Vlogs, Webinar-Exporte, Zoom-MP4s. Datei reinziehen oder zum Auswählen klicken. Neu: YouTube-Link einfügen statt hochzuladen und wir holen das Transkript in Sekunden, ohne Download.',
         },
         {
           icon: '⚡',
@@ -70,8 +71,8 @@ export default function DeVideoToTextPage() {
         title: 'Warum Mictoo für Video',
         bullets: [
           {
-            title: 'Direkter Upload, kein Umweg über YouTube',
-            desc: 'Viele kostenlose Transkribierer sagen Ihnen, Sie sollen Ihr Video als „Nicht gelistet" auf YouTube hochladen, auf die Auto-Untertitel warten und den Text kopieren. Das ist langsam und liefert mittelmäßige Untertitel. Überspringen Sie es.',
+            title: 'YouTube-URL direkt einfügen',
+            desc: 'Sparen Sie sich den Download-Schritt für YouTube-Videos — legen Sie den Link in das Feld über der Ablagezone und das Transkript kommt in Sekunden zurück. Für Videos ohne Untertitel laden Sie die Audiodatei hoch und Whisper erledigt den Rest.',
           },
           {
             title: 'Audio-Extraktion ist automatisch',

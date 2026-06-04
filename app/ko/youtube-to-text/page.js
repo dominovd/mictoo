@@ -40,20 +40,22 @@ export default function KoYouTubeToTextPage() {
   return (
     <LandingLayout
       defaultLanguage="ko"
+      enableYouTubeUrl
       badge="YouTube · SRT · 무료"
       h1={<>YouTube를 텍스트로<br /><span className="text-brand-600">무료 YouTube 받아쓰기 도구</span></>}
       subtitle="모든 YouTube 비디오의 깨끗하고 정확한 받아쓰기를 얻으세요. 파일 다운로드, 여기에 드롭, AI가 나머지를 처리. YouTube 자동 자막보다 우수, 적절한 구두점과 타임코드 포함."
       howItWorks={[
-        { icon: '⬇️', title: '비디오나 오디오 다운로드', desc: '가장 쉬운 방법: 4K Video Downloader나 ClipGrab 같은 무료 데스크톱 앱(Mac, Windows, Linux). 앱을 열고 YouTube 링크를 붙여넣고 "오디오만"(M4A 또는 MP3)을 선택, 다운로드 클릭. 몇 초 만에 완료. 법적 측면은 아래 FAQ 참조.' },
-        { icon: '📂', title: '파일 드롭', desc: '다운로드한 파일을 Mictoo에 드래그. MP4, M4A, MP3, WAV, FLAC, OGG, WEBM 수락. 오디오는 Whisper large-v3로 갑니다.' },
-        { icon: '📋', title: '받아쓰기 받기', desc: '브라우저에서 읽고, 클립보드에 복사, 또는 TXT나 SRT로 다운로드. SRT는 YouTube 자막으로 작동하며 자동 자막보다 훨씬 좋습니다.' },
+        { icon: '🔗', title: 'YouTube 링크 붙여넣기', desc: '위의 입력란에 YouTube URL을 붙여넣으세요. 기존 자막을 몇 초 안에 가져옵니다 — 다운로드도, Whisper 재처리 대기도 없습니다. 자동 자막이나 제작자 업로드 자막이 있는 대부분의 공개 비디오에서 작동합니다.' },
+        { icon: '📂', title: '또는 파일 업로드', desc: '비디오에 자막이 없거나, 비공개 업로드이거나, 새로 Whisper 품질로 처리하고 싶으세요? 무료 데스크톱 앱(아래 다운로드 가이드 참조)으로 오디오를 받고, 같은 페이지에 드롭하면 Whisper large-v3로 처리합니다.' },
+        { icon: '📋', title: '받아쓰기 받기', desc: '브라우저에서 읽고, 클립보드에 복사, 또는 TXT, SRT, VTT, DOCX로 내보내기. 한 번 클릭으로 28개 언어로 번역. 모든 받아쓰기 상단에 무료 AI 요약 포함.' },
       ]}
-      whyUse={{ title: 'YouTube 자동 자막 대신 Mictoo를 사용하는 이유', bullets: [
-        { title: '자동 자막은 구두점과 고유명사를 놓침', desc: 'YouTube 자막은 쉼표 없고, 마침표 없으며, 이름을 망가뜨리는 경향이 있는 의식의 흐름. Whisper large-v3는 구두점, 대문자화, 인식 가능한 고유명사와 함께 완전한 문장을 제공합니다.' },
-        { title: '자동 자막은 항상 사용 가능하지 않음', desc: '작은 채널, 비공개 비디오, 종료된 라이브 스트림, 또는 덜 일반적인 언어의 비디오에는 자막이 없거나 기계 자막이 나쁜 경우가 많습니다. Whisper는 모두에서 작동.' },
-        { title: '음악과 억양에서 더 나은 정확도', desc: 'YouTube의 자동 자막은 음악 막간과 비원어민 영어에 고전합니다. Whisper는 둘 다 더 잘 처리하며, 환각 단어가 적고 억양 커버리지가 강합니다.' },
-        { title: '깨끗한 SRT를 얻습니다, YouTube XML 포맷이 아님', desc: 'YouTube의 자막 트랙은 이상한 타임스탬프와 함께 XML 또는 VTT로 다운로드. 우리의 SRT는 표준이고, 모든 비디오 에디터와 드롭인 호환.' },
-        { title: '소유하지 않은 비디오에서 작동', desc: '개인 학습이나 연구 목적으로 YouTube의 강의, 인터뷰, 팟캐스트를 받아쓸 수 있습니다, 채널 소유자 액세스 필요 없음(저작권과 YouTube 약관 적용, FAQ 참조).' },
+      whyUse={{ title: 'Mictoo에서 얻는 것', bullets: [
+        { title: '다운로드 단계 불필요', desc: 'YouTube URL을 붙여넣으면 받아쓰기가 몇 초 만에 돌아옵니다. 데스크톱 앱도, 파일 관리도, 긴 비디오 업로드 대기도 없습니다.' },
+        { title: '폴백으로 새 Whisper 받아쓰기', desc: '비디오에 자막이 없으면 오디오를 업로드하세요. Whisper large-v3는 억양, 음악, 고유명사를 YouTube 자동 자막보다 잘 처리합니다 — 환각 단어가 적고 구두점이 완전합니다.' },
+        { title: '편집 준비된 깨끗한 SRT', desc: 'Premiere, DaVinci Resolve, Final Cut, CapCut에 바로 임포트되는 표준 SRT 포맷. XML 없고, 이상한 타임스탬프 없고, 수동 정리 없음.' },
+        { title: '모든 받아쓰기에 무료 AI 요약', desc: '추가 클릭 없이 모든 결과 상단에 핵심 인사이트와 액션 아이템. 경쟁사는 보통 이 기능에 월 15-20달러를 청구합니다.' },
+        { title: '28개 언어로 번역', desc: '받아쓰기 후 한 번 클릭. 원본 타임스탬프가 유지되므로 번역된 SRT가 오디오와 동기화된 상태로 유지됩니다.' },
+        { title: '가입, 워터마크, 시간 제한 없음', desc: '25 MB까지 익명으로 사용. 60 MB 파일과 받아쓰기 비공개 히스토리를 위해 무료 가입.' },
       ]}}
       useCases={{ title: '사람들이 YouTube 받아쓰기를 사용하는 용도', items: [
         { title: '긴 강의와 튜토리얼 공부', desc: '90분 MIT 강의는 텍스트 버전으로 공부하기가 더 쉬움. 필요한 부분을 훑어보고, 라이브 설명을 위해 비디오의 타임코드로 점프.' },
