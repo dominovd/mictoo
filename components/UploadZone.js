@@ -651,6 +651,32 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [youtubeUrl, language])
 
+  // Auto-trigger fetch when the page is opened with a ?url= query param.
+  // Used by the "Get the full transcript" CTAs on /transcripts/{slug}
+  // summary pages — the user already gave consent by clicking the CTA,
+  // so the second click on "Get transcript" here is redundant. We pre-
+  // fill the input and fire the request once on mount. Guarded by a ref
+  // so React 18 strict-mode double-mounts don't trigger two fetches.
+  const autoFetchedRef = useRef(false)
+  useEffect(() => {
+    if (!enableYouTubeUrl || autoFetchedRef.current) return
+    if (typeof window === 'undefined') return
+    const params = new URLSearchParams(window.location.search)
+    const urlParam = params.get('url')
+    if (!urlParam) return
+    autoFetchedRef.current = true
+    setYoutubeUrl(urlParam)
+    // Defer to next tick so setYoutubeUrl is committed before the
+    // fetch reads `youtubeUrl` from its closure on the next call.
+    setTimeout(() => {
+      // Read youtubeUrl from state — but our callback captured the old
+      // value. Bypass by passing the URL through state and waiting one
+      // more tick before invoking the callback.
+      setTimeout(() => fetchYouTubeCaptions(), 0)
+    }, 0)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [enableYouTubeUrl])
+
   // Whenever a fresh File lands in state, mint a local object URL so the
   // result view can offer in-browser playback. We revoke the previous URL
   // (and on unmount) to avoid memory leaks. Anonymous/restored-from-snapshot

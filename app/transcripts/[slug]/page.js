@@ -62,8 +62,8 @@ export function generateMetadata({ params }) {
   const data = loadTranscript(params.slug)
   if (!data) return { title: 'Transcript not found | Mictoo' }
 
-  const author = data.author ? ` — ${data.author}` : ''
-  const title = `${data.title}${author} — Summary & Key Quotes | Mictoo`
+  const author = data.author ? ` · ${data.author}` : ''
+  const title = `${data.title}${author} · Summary & Key Quotes | Mictoo`
   // Description = the AI summary one-liner if present, fallback to notes.
   // We no longer use the speaker's own words for meta (used to be the
   // first 155 chars of transcript) — that was both a copyright concern
@@ -79,7 +79,7 @@ export function generateMetadata({ params }) {
     description,
     alternates: { canonical: url },
     openGraph: {
-      title: `${data.title}${author} — Summary`,
+      title: `${data.title}${author} · Summary`,
       description,
       url,
       siteName: 'Mictoo',
@@ -88,7 +88,7 @@ export function generateMetadata({ params }) {
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${data.title}${author} — Summary`,
+      title: `${data.title}${author} · Summary`,
       description,
       images: ['https://mictoo.com/opengraph-image'],
     },
@@ -159,7 +159,7 @@ function sourceAttribution(data) {
   if (data.category === 'ted-talks') {
     return {
       label: 'TED',
-      licenseNote: 'TED talks are licensed under CC BY-NC-ND 4.0. This page presents an original AI-generated summary with short attributed quotes for commentary purposes — fair-use territory in most jurisdictions.',
+      licenseNote: 'TED talks are licensed under CC BY-NC-ND 4.0. This page presents an original AI-generated summary with short attributed quotes for commentary purposes. That is fair-use territory in most jurisdictions.',
     }
   }
   return {
@@ -278,22 +278,41 @@ export default function TranscriptPage({ params }) {
         <p className="text-slate-600 leading-relaxed mb-6">{data.notes}</p>
       )}
 
-      {/* Watch-original button — comes first so people who want the real
-          thing don't get held up by our summary. Direct attribution per
-          CC BY-NC-ND requirements (and good practice for everything else). */}
-      <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      {/* Two-action card. The primary action ("Get the full transcript")
+          drives users into our /youtube-to-text tool with the URL pre-
+          filled. They get the actual text on demand and we don't republish
+          it as a static page (the copyright-safe distinction). The
+          secondary action is the unconditional "watch original" link
+          which keeps us square with CC BY attribution. */}
+      <div className="bg-gradient-to-br from-brand-50 to-white border border-brand-100 rounded-2xl p-5 mb-8 space-y-3">
         <div>
-          <p className="text-sm font-semibold text-slate-800">Watch the original on YouTube</p>
-          <p className="text-xs text-slate-500 mt-0.5">{attribution.label} · {duration || 'Full talk'}</p>
+          <p className="text-sm font-semibold text-slate-800">Get the full transcript of this video</p>
+          <p className="text-xs text-slate-600 mt-0.5">
+            Generated on demand by Mictoo. Free, with clickable timestamps, AI summary, and export to TXT, SRT, VTT, DOCX.
+          </p>
         </div>
-        <a
-          href={data.videoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm font-semibold px-4 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-100 transition-colors whitespace-nowrap text-center"
-        >
-          Open on YouTube ↗
-        </a>
+        <div className="flex flex-col sm:flex-row gap-2 sm:items-center">
+          <a
+            href={`/youtube-to-text?url=${encodeURIComponent(data.videoUrl)}`}
+            className="text-sm font-semibold px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors whitespace-nowrap text-center inline-flex items-center justify-center gap-1.5"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Get the full transcript →
+          </a>
+          <a
+            href={data.videoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-semibold px-4 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-100 transition-colors whitespace-nowrap text-center"
+          >
+            Watch on YouTube ↗
+          </a>
+        </div>
+        <p className="text-[11px] text-slate-400 pt-1">
+          {attribution.label} · {duration || 'Full talk'}
+        </p>
       </div>
 
       {/* AI summary block — our original paraphrase */}
@@ -301,7 +320,7 @@ export default function TranscriptPage({ params }) {
 
       {/* Key quotes — only renders when curated quotes are in the JSON.
           These are short attributed citations (one or two sentences each)
-          used to support commentary — covered by the right-to-quote
+          used to support commentary, covered by the right-to-quote
           exception in most jurisdictions, distinct from republishing
           the whole transcript. */}
       {quotes.length > 0 && (
@@ -333,7 +352,7 @@ export default function TranscriptPage({ params }) {
             Want a real transcript of your own video?
           </p>
           <p className="text-sm text-slate-600 mb-3">
-            Drop any audio or video file (MP3, MP4, M4A, WAV, OGG, WebM, FLAC — up to 25 MB), or paste a YouTube link.
+            Drop any audio or video file (MP3, MP4, M4A, WAV, OGG, WebM, FLAC, up to 25 MB), or paste a YouTube link.
             Free, no signup, with AI summary included. Whisper-quality transcription with timestamps and SRT export.
           </p>
           <a

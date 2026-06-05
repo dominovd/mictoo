@@ -65,7 +65,7 @@ async function summarize(text, title) {
         {
           role: 'system',
           content:
-            'You write concise, scannable summaries of long video transcripts for a transcription tool. Output strictly: a one-sentence summary (italics-worthy), then a "Key insights" bulleted list with 4-6 items, then a "Memorable quote" line if one stands out. No preamble, no emoji, no markdown headings. Match the speaker\'s register without quoting whole sentences verbatim.',
+            'You write concise, scannable summaries of long video transcripts for a transcription tool. Output strictly: a one-sentence summary (italics-worthy), then a "Key insights" bulleted list with 4-6 items, then a "Memorable quote" line if one stands out. No preamble, no emoji, no markdown headings. Match the speaker\'s register without quoting whole sentences verbatim. Never use em dashes (—) or en dashes (–) — substitute with commas, colons, or sentence breaks.',
         },
         {
           role: 'user',

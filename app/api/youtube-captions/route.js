@@ -1,8 +1,69 @@
 import { NextResponse } from 'next/server'
 import { createHash } from 'crypto'
-import { fetchTranscript } from '@/lib/yt-transcript-provider'
+import { fetchTranscript, extractYouTubeVideoId } from '@/lib/yt-transcript-provider'
 import { bumpYouTubeFetchCount } from '@/lib/stats'
 import { createClient as createSupabaseServerClient } from '@/lib/supabase/server'
+
+// ──────────────────────────────────────────────────────────────────────────
+// Transcript cache. Forever-TTL on Upstash KV: same video URL = same
+// transcript = no point asking transcriptapi twice. Massive cost saver
+// for the "Get full transcript" CTAs on /transcripts/{slug} pages, where
+// 100 visitors clicking the same Ken Robinson summary translates to 1
+// transcriptapi credit instead of 100.
+//
+// Cache also serves as a graceful degradation layer — if transcriptapi
+// goes down (or our key runs out of credit), already-cached videos
+// continue to work. The cost of a stale entry is near-zero because
+// transcripts of public videos don't change.
+//
+// Key shape: yt:transcript:<videoId>
+// Value: JSON-stringified TranscriptShape (see lib/yt-transcript-provider.js)
+const CACHE_KEY = (vid) => `yt:transcript:${vid}`
+
+let cacheRedisPromise = null
+async function getCacheRedis() {
+  if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
+    return null
+  }
+  if (!cacheRedisPromise) {
+    cacheRedisPromise = (async () => {
+      const { Redis } = await import('@upstash/redis')
+      return new Redis({
+        url: process.env.UPSTASH_REDIS_REST_URL,
+        token: process.env.UPSTASH_REDIS_REST_TOKEN,
+      })
+    })()
+  }
+  return cacheRedisPromise
+}
+
+async function getCachedTranscript(videoId) {
+  try {
+    const redis = await getCacheRedis()
+    if (!redis) return null
+    const cached = await redis.get(CACHE_KEY(videoId))
+    if (!cached) return null
+    // Upstash returns objects directly for JSON values stored via .set().
+    // Just in case (older entries written by other code), tolerate strings.
+    return typeof cached === 'string' ? JSON.parse(cached) : cached
+  } catch (err) {
+    console.error('[yt-cache] read failed', err?.message)
+    return null
+  }
+}
+
+async function setCachedTranscript(videoId, data) {
+  try {
+    const redis = await getCacheRedis()
+    if (!redis) return
+    // No expiry — transcripts of public videos don't change. If a video
+    // gets DMCA'd or removed from YouTube, we can manually invalidate
+    // with a one-off DEL command.
+    await redis.set(CACHE_KEY(videoId), JSON.stringify(data))
+  } catch (err) {
+    console.error('[yt-cache] write failed', err?.message)
+  }
+}
 
 export const runtime = 'nodejs'
 export const maxDuration = 30
@@ -116,6 +177,23 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Missing YouTube URL.' }, { status: 400 })
     }
 
+    // ── Cache check (before burning a transcriptapi credit) ──────────────
+    // Most "Get full transcript" CTAs from /transcripts/{slug} pages will
+    // hit this — those 12 videos are bootstrap-warmed via
+    // scripts/bootstrap-yt-cache.mjs, so the first user (and every
+    // subsequent user) gets an instant cache hit, 0 credits.
+    const cacheVideoId = extractYouTubeVideoId(url)
+    if (cacheVideoId) {
+      const cached = await getCachedTranscript(cacheVideoId)
+      if (cached?.segments?.length) {
+        bumpYouTubeFetchCount().catch(() => {})  // still count toward demand signal
+        return NextResponse.json({
+          ...cached,
+          fromCache: true,
+        })
+      }
+    }
+
     let result
     try {
       result = await fetchTranscript(url)
@@ -151,7 +229,7 @@ export async function POST(request) {
     // fetches count — failures and cache hits-as-failures don't bump.
     bumpYouTubeFetchCount().catch(() => {})
 
-    return NextResponse.json({
+    const payload = {
       videoId: result.videoId,
       title: result.title,
       author: result.author,
@@ -162,7 +240,14 @@ export async function POST(request) {
       segments: result.segments,
       text: result.text,
       provider: result.provider,
-    })
+    }
+
+    // Fire-and-forget cache write. If the cache write fails we still serve
+    // the user — they get their transcript, and the next visitor for the
+    // same video just pays another transcriptapi credit.
+    setCachedTranscript(result.videoId, payload).catch(() => {})
+
+    return NextResponse.json(payload)
   } catch (err) {
     console.error('youtube-captions route error:', err?.message || err)
     return NextResponse.json({ error: 'Server error.' }, { status: 500 })
