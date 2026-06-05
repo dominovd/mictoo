@@ -749,6 +749,28 @@ export async function POST(request) {
           })
           shouldDeleteBlob = false // worker needs it later
           console.warn(`[transcribe] enqueued jobId=${jobId} (groq 429)`)
+
+          // Event-driven worker kick: fire-and-forget so the queued job
+          // starts processing in seconds, not on the next cron tick. The
+          // Vercel Cron on /api/transcribe-worker was loosened from
+          // every-minute to every-2-min on 2026-06-05 to cut function
+          // invocations ~50% (1440 → 720/day). Without this kick, queued
+          // jobs would wait up to 2 min before starting; with it they
+          // start in ~1 sec. The cron remains the safety net for
+          // requeued/orphan jobs — worst-case retry chain wait is now
+          // MAX_ATTEMPTS=7 × 2 min = 14 min (was 7 min on */1 cron).
+          // Errors are swallowed — worst case the cron picks it up.
+          if (process.env.CRON_SECRET) {
+            const origin = request.headers.get('x-forwarded-host')
+              ? `https://${request.headers.get('x-forwarded-host')}`
+              : (process.env.NEXT_PUBLIC_SITE_URL || 'https://mictoo.com')
+            fetch(`${origin}/api/transcribe-worker`, {
+              headers: { Authorization: `Bearer ${process.env.CRON_SECRET}` },
+            }).catch((err) => {
+              console.warn('[transcribe] worker kick failed', err?.message)
+            })
+          }
+
           return NextResponse.json(
             { jobId, status: 'queued' },
             { status: 202 }

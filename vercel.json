@@ -6,7 +6,7 @@
     },
     {
       "path": "/api/transcribe-worker",
-      "schedule": "* * * * *"
+      "schedule": "*/2 * * * *"
     },
     {
       "path": "/api/cleanup-transcripts",

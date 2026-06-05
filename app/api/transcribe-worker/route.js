@@ -31,16 +31,22 @@ export const maxDuration = 300
 // the same underlying model (whisper-large-v3). Deepgram stays as the safety
 // net so the $200 starter credit becomes a real long-term buffer.
 
-// After 7 retries (~7 minutes user wait) we conclude Groq's quota is
-// genuinely exhausted, not a per-minute or per-hour spike. At that point we
-// fall through to the Deepgram → OpenAI chain.
+// After 7 retries we conclude Groq's quota is genuinely exhausted, not a
+// per-minute or per-hour spike. At that point we fall through to the
+// Replicate → Deepgram → OpenAI chain.
 //
 // Tuned up from 3 → 7 on 2026-05-18 after Deepgram billing showed the chain
 // was firing ~10×/hour during peak hours, burning the $200 starter credit at
 // ~$3.60/day (~$108/mo). Groq has multiple quota windows (per-minute, per-hour,
 // per-day) and the per-hour bucket refills in 5–10 min in many cases — extra
 // retries let us catch those refills instead of paying for fallback.
-// Cron tick is 1 min so MAX_ATTEMPTS=7 ≈ up to 7 min user wait in worst case.
+//
+// User-wait budget: cron tick was 1 min when MAX_ATTEMPTS=7 was tuned
+// (= 7 min worst case). Loosened to */2 on 2026-06-05 for cost reasons
+// (see /api/transcribe enqueue path comment); worst case is now ~14 min,
+// which still usually catches a Groq per-hour refill within the window.
+// Sync-path users with Groq-success see no change; only requeue-loop
+// users feel the wider cadence.
 const MAX_ATTEMPTS = 7
 // Only files ≤ 10 MB are allowed to use the OpenAI fallback. Larger files
 // rely on Deepgram (no size cap) or fail cleanly. The cap exists because a

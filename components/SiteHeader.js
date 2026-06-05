@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { detectLocaleFromPath, localized, t } from '@/lib/i18n'
 import { createClient } from '@/lib/supabase/client'
+import { LATEST_CHANGELOG_DATE } from '@/lib/changelog-meta-gen'
 import LanguageSwitcher from './LanguageSwitcher'
 
 export default function SiteHeader() {
@@ -19,28 +20,25 @@ export default function SiteHeader() {
   const [user, setUser] = useState(null)
   const [authLoaded, setAuthLoaded] = useState(false)
 
-  // Unread changelog indicator. Fetches the latest entry date from
-  // /api/changelog-meta and compares against localStorage. Renders a
+  // Unread changelog indicator. Compares the build-time-baked
+  // LATEST_CHANGELOG_DATE (regenerated on every deploy by
+  // scripts/gen-changelog-meta.mjs) against localStorage. Renders a
   // small red dot next to "What's new" until the user actually visits
   // /whats-new (that page writes the latest date into localStorage
   // before unmount). EN locale only — changelog is English-only for now.
+  //
+  // Was a fetch('/api/changelog-meta') call until 2026-06-05, which
+  // ran on every page load and was hitting ~1.1k function-invocations/
+  // day on Vercel for a value that changes once or twice a week. Baked
+  // into the bundle now: zero functions, zero fetches, zero cost.
   const [hasUnread, setHasUnread] = useState(false)
   useEffect(() => {
     if (locale !== 'en') return
-    // Don't show the indicator on the changelog page itself — they're
-    // about to mark it read anyway.
     if (pathname.startsWith('/whats-new')) return
-    let cancelled = false
-    fetch('/api/changelog-meta')
-      .then(r => r.ok ? r.json() : null)
-      .then(data => {
-        if (cancelled || !data?.latest) return
-        let lastSeen = null
-        try { lastSeen = localStorage.getItem('mictoo:changelog_lastSeen') } catch {}
-        if (!lastSeen || data.latest > lastSeen) setHasUnread(true)
-      })
-      .catch(() => { /* silent — indicator just won't render */ })
-    return () => { cancelled = true }
+    if (!LATEST_CHANGELOG_DATE) return
+    let lastSeen = null
+    try { lastSeen = localStorage.getItem('mictoo:changelog_lastSeen') } catch {}
+    if (!lastSeen || LATEST_CHANGELOG_DATE > lastSeen) setHasUnread(true)
   }, [locale, pathname])
 
   useEffect(() => {
