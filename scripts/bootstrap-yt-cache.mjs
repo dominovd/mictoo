@@ -7,8 +7,9 @@
 // very first user — zero transcriptapi credits consumed for those 12.
 //
 // Reads from git history:
-//   git show 01e8d81:data/transcripts/<slug>.json
-// (commit 01e8d81 is where the seed transcripts first landed in repo.)
+//   git show 11ec484:data/transcripts/<slug>.json
+// (commit 11ec484 is where the 12 seed transcripts were committed with
+// full segments. 01e8d81 was only the scaffold; c630e87 stripped them.)
 //
 // Usage:
 //   UPSTASH_REDIS_REST_URL=... UPSTASH_REDIS_REST_TOKEN=... \
@@ -17,8 +18,8 @@
 //   # Dry-run (don't write to KV, just report what would be cached):
 //   ... node scripts/bootstrap-yt-cache.mjs --dry
 //
-//   # Override the source commit (in case 01e8d81 gets re-pointed):
-//   ... node scripts/bootstrap-yt-cache.mjs --commit=01e8d81
+//   # Override the source commit (in case the default rolls forward):
+//   ... node scripts/bootstrap-yt-cache.mjs --commit=11ec484
 //
 // Idempotent — safe to re-run. Existing cache entries are overwritten
 // with the git-history version (which is fine — the upstream content
@@ -35,7 +36,7 @@ const REPO_ROOT = path.resolve(__dirname, '..')
 const args = process.argv.slice(2)
 const DRY = args.includes('--dry')
 const commitArg = args.find(a => a.startsWith('--commit='))
-const SOURCE_COMMIT = commitArg ? commitArg.split('=')[1] : '01e8d81'
+const SOURCE_COMMIT = commitArg ? commitArg.split('=')[1] : '11ec484'
 
 const CACHE_KEY = (vid) => `yt:transcript:${vid}`
 
