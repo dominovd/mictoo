@@ -40,6 +40,20 @@ const SOURCE_COMMIT = commitArg ? commitArg.split('=')[1] : '11ec484'
 
 const CACHE_KEY = (vid) => `yt:transcript:${vid}`
 
+// Slugs we explicitly removed from Wave 8 on 2026-06-05 because the
+// seed JSON in commit 11ec484 contains the wrong language (transcriptapi
+// returned translation tracks instead of English originals). The pages
+// for these slugs have been deleted from data/transcripts/, but the
+// files still exist in commit 11ec484 — so we explicitly skip them
+// here to prevent re-poisoning the cache on re-bootstrap.
+// See scripts/seed-videos.json _removed_2026_06_05 for context.
+const SKIP_SLUGS = new Set([
+  'ted-how-great-leaders-inspire-action-simon-sinek',
+  'ted-inside-mind-master-procrastinator-tim-urban',
+  'ted-looks-arent-everything-believe-me-im-a-model-cameron-russell',
+  'ted-the-happy-secret-to-better-work-shawn-achor',
+])
+
 // Discover which transcripts existed at SOURCE_COMMIT.
 function listSeedSlugs() {
   try {
@@ -112,6 +126,11 @@ async function main() {
   let fail = 0
 
   for (const slug of slugs) {
+    if (SKIP_SLUGS.has(slug)) {
+      console.log(`  - skip ${slug} (in SKIP_SLUGS — non-English in source)`)
+      skip++
+      continue
+    }
     const seed = loadFromGit(slug)
     if (!seed) { fail++; continue }
     if (!seed.segments?.length) {

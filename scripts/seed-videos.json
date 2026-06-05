@@ -1,5 +1,11 @@
 {
-  "_comment": "Wave 8 seed list — 30 famous YouTube videos pre-transcribed for SEO landing pages. Mix of TED Talks, long-form podcasts, and viral one-offs per 2026-06-04 decision. URL slug becomes the page path /transcripts/{slug}. Each entry: { videoId, slug, category, title (manual override, optional — provider title used if blank), notes (one-line context shown in the page intro) }. Keep this file as the source of truth for which videos are published; the build script reads it and writes data/transcripts/{slug}.json per entry.",
+  "_comment": "Wave 8 seed list — famous YouTube videos pre-transcribed for SEO landing pages. Mix of TED Talks, long-form podcasts, and viral one-offs per 2026-06-04 decision. URL slug becomes the page path /transcripts/{slug}. Each entry: { videoId, slug, category, title (manual override, optional — provider title used if blank), notes (one-line context shown in the page intro) }. Keep this file as the source of truth for which videos are published; the build script reads it and writes data/transcripts/{slug}.json per entry.",
+  "_removed_2026_06_05": [
+    "u4ZoJKF_VuA (ted-how-great-leaders-inspire-action-simon-sinek) — transcriptapi returned Arabic translation track",
+    "arj7oStGLkU (ted-inside-mind-master-procrastinator-tim-urban) — transcriptapi returned Arabic translation track",
+    "iCvmsMzlF7o (ted-looks-arent-everything-believe-me-im-a-model-cameron-russell) — transcriptapi returned Albanian translation track",
+    "RcGyVTAoXEU (ted-the-happy-secret-to-better-work-shawn-achor) — transcriptapi returned Albanian translation track. YouTube watch-page fetch from local Mac also fails (CAPTIONS_FETCH_FAILED on signed baseUrl). Can re-add when we find a verifiable English source."
+  ],
   "videos": [
     {
       "videoId": "iG9CE55wbtY",
@@ -16,32 +22,11 @@
       "notes": "Brené Brown's 2010 TEDxHouston talk on shame, courage, and connection. ~70M views."
     },
     {
-      "videoId": "u4ZoJKF_VuA",
-      "slug": "ted-how-great-leaders-inspire-action-simon-sinek",
-      "category": "ted-talks",
-      "title": "How Great Leaders Inspire Action — Simon Sinek",
-      "notes": "Simon Sinek's 'Start With Why' framework, 2009 TEDxPuget Sound. ~65M views."
-    },
-    {
-      "videoId": "arj7oStGLkU",
-      "slug": "ted-inside-mind-master-procrastinator-tim-urban",
-      "category": "ted-talks",
-      "title": "Inside the Mind of a Master Procrastinator — Tim Urban",
-      "notes": "Tim Urban's 2016 talk on procrastination, the Instant Gratification Monkey, and the Panic Monster. ~65M views."
-    },
-    {
       "videoId": "Ks-_Mh1QhMc",
       "slug": "ted-your-body-language-may-shape-who-you-are-amy-cuddy",
       "category": "ted-talks",
       "title": "Your Body Language May Shape Who You Are — Amy Cuddy",
       "notes": "Amy Cuddy's 2012 talk on power posing and the relationship between body language and confidence."
-    },
-    {
-      "videoId": "iCvmsMzlF7o",
-      "slug": "ted-looks-arent-everything-believe-me-im-a-model-cameron-russell",
-      "category": "ted-talks",
-      "title": "Looks Aren't Everything. Believe Me, I'm a Model — Cameron Russell",
-      "notes": "Cameron Russell's 2012 TEDxMidAtlantic talk on image, modeling, and what we judge people on."
     },
     {
       "videoId": "fLJsdqxnZb0",
@@ -56,13 +41,6 @@
       "category": "ted-talks",
       "title": "What Makes a Good Life? Lessons from the Longest Study on Happiness — Robert Waldinger",
       "notes": "Robert Waldinger summarizing 75 years of the Harvard Study of Adult Development. Relationships matter more than wealth or fame."
-    },
-    {
-      "videoId": "RcGyVTAoXEU",
-      "slug": "ted-the-happy-secret-to-better-work-shawn-achor",
-      "category": "ted-talks",
-      "title": "The Happy Secret to Better Work — Shawn Achor",
-      "notes": "Shawn Achor's 2011 TEDxBloomington talk on positive psychology and reversing the happiness-success formula."
     },
     {
       "videoId": "H14bBuluwB8",
