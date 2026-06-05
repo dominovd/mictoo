@@ -63,14 +63,15 @@ export function generateMetadata({ params }) {
   if (!data) return { title: 'Transcript not found | Mictoo' }
 
   const author = data.author ? ` — ${data.author}` : ''
-  const title = `${data.title}${author} — Full Transcript | Mictoo`
-  // Description = first 155 chars of transcript text. Real preview from
-  // the speaker's own words; tends to outperform hand-written meta for
-  // long-tail queries because it matches whatever the user is searching.
-  const previewText = (data.text || '').replace(/\s+/g, ' ').trim().slice(0, 155)
-  const description = previewText.length === 155
-    ? previewText.replace(/\s+\S*$/, '') + '...'
-    : previewText || `Full transcript of "${data.title}" with timestamps. Free, no signup.`
+  const title = `${data.title}${author} — Summary & Key Quotes | Mictoo`
+  // Description = the AI summary one-liner if present, fallback to notes.
+  // We no longer use the speaker's own words for meta (used to be the
+  // first 155 chars of transcript) — that was both a copyright concern
+  // and made every preview sound the same.
+  const oneLiner = (data.summary?.split('\n')[0] || '').replace(/^[*_]+|[*_]+$/g, '').trim()
+  const description = oneLiner.slice(0, 155) ||
+    data.notes?.slice(0, 155) ||
+    `AI summary and key quotes from "${data.title}". Watch the original or transcribe your own.`
 
   const url = `https://mictoo.com/transcripts/${data.slug}`
   return {
@@ -78,7 +79,7 @@ export function generateMetadata({ params }) {
     description,
     alternates: { canonical: url },
     openGraph: {
-      title: `${data.title}${author} — Full Transcript`,
+      title: `${data.title}${author} — Summary`,
       description,
       url,
       siteName: 'Mictoo',
@@ -87,7 +88,7 @@ export function generateMetadata({ params }) {
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${data.title}${author} — Full Transcript`,
+      title: `${data.title}${author} — Summary`,
       description,
       images: ['https://mictoo.com/opengraph-image'],
     },
@@ -131,20 +132,39 @@ function pickRelated(currentSlug, currentCategory, max = 3) {
 
 // JSON-LD VideoObject schema. Helps Google understand the page is about
 // a specific video, eligible for video-rich-result treatment in SERPs.
+// We don't emit the full transcript here — the page no longer hosts it
+// for copyright reasons (CC BY-NC-ND on TED, All Rights Reserved on
+// most podcasts). Schema describes our SUMMARY page about the talk,
+// not a reproduction of the talk itself.
 function videoJsonLd(data) {
   return {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
     name: data.title,
-    description: (data.summary?.split('\n')[0] || data.notes || `Full transcript of "${data.title}".`).replace(/^[*_]+|[*_]+$/g, ''),
+    description: (data.summary?.split('\n')[0] || data.notes || `Summary of "${data.title}".`).replace(/^[*_]+|[*_]+$/g, ''),
     thumbnailUrl: [`https://i.ytimg.com/vi/${data.videoId}/maxresdefault.jpg`],
     contentUrl: data.videoUrl,
     embedUrl: `https://www.youtube.com/embed/${data.videoId}`,
     uploadDate: data.builtAt,
     duration: data.durationSec ? `PT${Math.floor(data.durationSec / 60)}M${data.durationSec % 60}S` : undefined,
     inLanguage: data.language || 'en',
-    transcript: data.text,
     publisher: { '@type': 'Organization', name: 'Mictoo', url: 'https://mictoo.com' },
+  }
+}
+
+// Source label for the attribution box at the bottom. Determined from
+// the category — TED talks need the explicit CC BY-NC-ND mention, the
+// rest just need a clean "watch the original" pointer.
+function sourceAttribution(data) {
+  if (data.category === 'ted-talks') {
+    return {
+      label: 'TED',
+      licenseNote: 'TED talks are licensed under CC BY-NC-ND 4.0. This page presents an original AI-generated summary with short attributed quotes for commentary purposes — fair-use territory in most jurisdictions.',
+    }
+  }
+  return {
+    label: data.author || 'the original creator',
+    licenseNote: 'This page is an original summary with short attributed quotes for commentary. Full talk and all rights belong to the original creator.',
   }
 }
 
@@ -224,6 +244,8 @@ export default function TranscriptPage({ params }) {
 
   const duration = formatDuration(data.durationSec)
   const related = pickRelated(data.slug, data.category)
+  const attribution = sourceAttribution(data)
+  const quotes = Array.isArray(data.quotes) ? data.quotes : []
 
   return (
     <article className="max-w-3xl mx-auto px-4 py-12">
@@ -246,63 +268,73 @@ export default function TranscriptPage({ params }) {
         {data.title}
       </h1>
       <p className="text-sm text-slate-500 mb-6">
-        Full transcript
+        Summary &amp; key quotes
         {data.author && (<> · <span>{data.author}</span></>)}
         {duration && (<> · <span>{duration}</span></>)}
         {data.language && (<> · <span className="uppercase">{data.language}</span></>)}
       </p>
 
       {data.notes && (
-        <p className="text-slate-600 leading-relaxed mb-8">{data.notes}</p>
+        <p className="text-slate-600 leading-relaxed mb-6">{data.notes}</p>
       )}
 
-      {/* Top CTA — funnel into Mictoo before user reads the wall of text */}
-      <div className="bg-gradient-to-br from-brand-50 to-white border border-brand-100 rounded-2xl p-5 mb-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      {/* Watch-original button — comes first so people who want the real
+          thing don't get held up by our summary. Direct attribution per
+          CC BY-NC-ND requirements (and good practice for everything else). */}
+      <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <p className="text-sm font-semibold text-slate-800">Want a transcript like this for your own video?</p>
-          <p className="text-xs text-slate-600 mt-0.5">Free, no signup. Drag and drop an audio or video file — get text back in ~30 seconds.</p>
+          <p className="text-sm font-semibold text-slate-800">Watch the original on YouTube</p>
+          <p className="text-xs text-slate-500 mt-0.5">{attribution.label} · {duration || 'Full talk'}</p>
         </div>
         <a
-          href="/transcribe-video-to-text"
-          className="text-sm font-semibold px-4 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors whitespace-nowrap text-center"
+          href={data.videoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm font-semibold px-4 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-100 transition-colors whitespace-nowrap text-center"
         >
-          Transcribe yours →
+          Open on YouTube ↗
         </a>
       </div>
 
-      {/* AI summary block */}
+      {/* AI summary block — our original paraphrase */}
       {renderSummary(data.summary)}
 
-      {/* Transcript */}
-      <section className="mt-10">
-        <h2 className="text-lg font-semibold text-slate-800 mb-4">Transcript</h2>
-        <div className="space-y-2 text-slate-700 leading-relaxed text-[15px]">
-          {data.segments.map((seg, i) => (
-            <p key={i} className="flex gap-3">
-              <a
-                href={`${data.videoUrl}&t=${Math.floor(seg.start)}s`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-xs text-slate-400 hover:text-brand-600 pt-1 shrink-0 min-w-[3.5rem] no-underline"
-                title="Jump to this moment on YouTube"
-              >
-                {formatTimestamp(seg.start)}
-              </a>
-              <span className="flex-1">{seg.text}</span>
-            </p>
-          ))}
-        </div>
-      </section>
+      {/* Key quotes — only renders when curated quotes are in the JSON.
+          These are short attributed citations (one or two sentences each)
+          used to support commentary — covered by the right-to-quote
+          exception in most jurisdictions, distinct from republishing
+          the whole transcript. */}
+      {quotes.length > 0 && (
+        <section className="mt-8">
+          <h2 className="text-sm font-semibold text-slate-700 uppercase tracking-wide mb-4">Key quotes</h2>
+          <div className="space-y-4">
+            {quotes.map((q, i) => (
+              <blockquote key={i} className="border-l-2 border-brand-300 pl-4 py-1">
+                <p className="text-slate-700 italic leading-relaxed">&ldquo;{q.text}&rdquo;</p>
+                <a
+                  href={`${data.videoUrl}&t=${Math.floor(q.startSec || 0)}s`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-1.5 text-xs font-mono text-brand-600 hover:underline"
+                >
+                  {formatTimestamp(q.startSec || 0)} on YouTube ↗
+                </a>
+              </blockquote>
+            ))}
+          </div>
+        </section>
+      )}
 
-      {/* Bottom CTA — repeat after they've consumed the content */}
-      <div className="mt-12 border-t border-slate-200 pt-8">
-        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5">
+      {/* CTA — transcribe your own. Same as before but moved below the
+          summary instead of above (where the transcript wall used to be). */}
+      <div className="mt-10 border-t border-slate-200 pt-8">
+        <div className="bg-gradient-to-br from-brand-50 to-white border border-brand-100 rounded-2xl p-5">
           <p className="text-sm font-semibold text-slate-800 mb-2">
-            This transcript was made the same way Mictoo can transcribe yours.
+            Want a real transcript of your own video?
           </p>
           <p className="text-sm text-slate-600 mb-3">
-            Drop any audio or video file (MP3, MP4, M4A, WAV, OGG, WebM, FLAC — up to 25 MB),
-            get text back in ~30 seconds. Free, no signup, with AI summary included.
+            Drop any audio or video file (MP3, MP4, M4A, WAV, OGG, WebM, FLAC — up to 25 MB), or paste a YouTube link.
+            Free, no signup, with AI summary included. Whisper-quality transcription with timestamps and SRT export.
           </p>
           <a
             href="/transcribe-video-to-text"
@@ -313,11 +345,11 @@ export default function TranscriptPage({ params }) {
         </div>
       </div>
 
-      {/* Related transcripts */}
+      {/* Related summaries */}
       {related.length > 0 && (
         <section className="mt-12">
           <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-4">
-            More transcripts
+            More summaries
           </h2>
           <ul className="space-y-2">
             {related.map(r => (
@@ -335,14 +367,22 @@ export default function TranscriptPage({ params }) {
         </section>
       )}
 
-      {/* Attribution / original source link */}
-      <p className="text-xs text-slate-400 mt-12 pt-6 border-t border-slate-100">
-        Transcript generated from{' '}
-        <a href={data.videoUrl} target="_blank" rel="noopener noreferrer nofollow" className="underline hover:text-brand-600">
-          the original YouTube video
-        </a>.
-        Captions courtesy of YouTube/the original creator.
-      </p>
+      {/* Attribution / license note — important for CC BY-NC-ND content.
+          For TED talks we explicitly call out the license; for everything
+          else we still acknowledge the creator owns the work and we're
+          offering commentary not republication. */}
+      <div className="mt-12 pt-6 border-t border-slate-100 space-y-2">
+        <p className="text-xs text-slate-500">
+          <strong>Source:</strong>{' '}
+          {data.title} by {attribution.label}.{' '}
+          <a href={data.videoUrl} target="_blank" rel="noopener noreferrer" className="underline hover:text-brand-600">
+            Watch the original ↗
+          </a>
+        </p>
+        <p className="text-xs text-slate-400">
+          {attribution.licenseNote}
+        </p>
+      </div>
     </article>
   )
 }
