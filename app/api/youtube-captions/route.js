@@ -56,10 +56,25 @@ async function setCachedTranscript(videoId, data) {
   try {
     const redis = await getCacheRedis()
     if (!redis) return
-    // No expiry — transcripts of public videos don't change. If a video
-    // gets DMCA'd or removed from YouTube, we can manually invalidate
-    // with a one-off DEL command.
-    await redis.set(CACHE_KEY(videoId), JSON.stringify(data))
+    // NX = only set if key does NOT already exist. This is critical for
+    // the Wave 8 seed transcripts: scripts/bootstrap-yt-cache.mjs writes
+    // verified-English versions from git history into Upstash. Without
+    // NX, runtime fetches from transcriptapi (which has NO language
+    // parameter — they pick a track on their own) could overwrite our
+    // seed with whatever language transcriptapi happens to return.
+    // Concrete incident 2026-06-05: Tim Urban "Master Procrastinator"
+    // (English original) was overwritten with Arabic translation track
+    // because transcriptapi picked it from the available CC list.
+    //
+    // For non-seed videos (user-pasted URLs not in our 12 bootstrap
+    // entries), NX means first-write-wins — first user to fetch a video
+    // freezes whatever language transcriptapi returned for everyone
+    // after. That's acceptable: same video = same captions regardless
+    // of who pasted it, and a manual DEL is one Upstash CLI command if
+    // we ever need to refresh.
+    //
+    // No expiry — transcripts of public videos don't change.
+    await redis.set(CACHE_KEY(videoId), JSON.stringify(data), { nx: true })
   } catch (err) {
     console.error('[yt-cache] write failed', err?.message)
   }

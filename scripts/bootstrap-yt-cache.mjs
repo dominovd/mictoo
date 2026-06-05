@@ -125,6 +125,10 @@ async function main() {
       console.log(`  - would cache ${slug} → ${key} (${seed.segments.length} segments, ${(seed.text || '').length} chars)`)
     } else {
       try {
+        // Plain SET (no NX) — bootstrap is the source of truth for the
+        // 12 seed videos. Always overwrites whatever runtime may have
+        // written. Counterpart: route.js setCachedTranscript uses
+        // SET NX so runtime can never trample bootstrap data.
         await redis.set(key, JSON.stringify(payload))
         console.log(`  - cached ${slug} → ${key}`)
       } catch (e) {
