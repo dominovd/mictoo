@@ -73,7 +73,7 @@ export default function TeamsMeetingTranscriptionPage() {
         {
           icon: '📥',
           title: 'Download the recording from SharePoint or OneDrive',
-          desc: 'Private meeting: OneDrive > My Files > Recordings. Channel meeting: the SharePoint site for that channel, in the Recordings folder. Download the MP4 to your computer.',
+          desc: 'Private meeting: OneDrive › My Files › Recordings. Channel meeting: the SharePoint site for that channel, in the Recordings folder. Download the MP4 to your computer.',
         },
         {
           icon: '⚡',
@@ -145,7 +145,7 @@ export default function TeamsMeetingTranscriptionPage() {
         tips: [
           {
             title: 'Find the recording: OneDrive for private, SharePoint for channel',
-            desc: 'Meetings started in a chat or 1:1 save to the organiser OneDrive > My Files > Recordings. Channel meetings save to the SharePoint site backing that channel > Recordings folder. Permission to download follows OneDrive/SharePoint sharing rules.',
+            desc: 'Meetings started in a chat or 1:1 save to the organiser OneDrive › My Files › Recordings. Channel meetings save to the SharePoint site backing that channel › Recordings folder. Permission to download follows OneDrive/SharePoint sharing rules.',
           },
           {
             title: 'Extract audio if the MP4 is over 60 MB',
@@ -169,7 +169,7 @@ export default function TeamsMeetingTranscriptionPage() {
             now stores meeting recordings in OneDrive for Business or
             SharePoint, depending on the meeting type. Private meetings
             (a 1:1, group chat, or channel-less meeting) save to the
-            organiser OneDrive at My Files > Recordings. Channel
+            organiser OneDrive at My Files › Recordings. Channel
             meetings save to the SharePoint site that backs the channel,
             inside a Recordings folder created automatically by Teams.
           </p>
@@ -235,7 +235,7 @@ export default function TeamsMeetingTranscriptionPage() {
         },
         {
           q: 'Where do I find my Teams recording?',
-          a: 'Private meetings (1:1, group chat) save to OneDrive > My Files > Recordings. Channel meetings save to the SharePoint site backing that channel, inside a Recordings folder. The link is also in the meeting chat and the Teams Recordings tab.',
+          a: 'Private meetings (1:1, group chat) save to OneDrive › My Files › Recordings. Channel meetings save to the SharePoint site backing that channel, inside a Recordings folder. The link is also in the meeting chat and the Teams Recordings tab.',
         },
         {
           q: 'Does Mictoo support speaker labels like Microsoft 365?',

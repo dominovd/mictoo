@@ -70,7 +70,7 @@ export default function GoogleMeetTranscriptionPage() {
         {
           icon: '📥',
           title: 'Get the recording out of Drive',
-          desc: 'If Workspace recorded it, the MP4 is in My Drive > Meet Recordings, named with the meeting date and time. Right-click, Download. If you screen-recorded, the file is wherever your recorder saved it.',
+          desc: 'If Workspace recorded it, the MP4 is in My Drive › Meet Recordings, named with the meeting date and time. Right-click, Download. If you screen-recorded, the file is wherever your recorder saved it.',
         },
         {
           icon: '⚡',
@@ -174,7 +174,7 @@ export default function GoogleMeetTranscriptionPage() {
           <h3>Where Workspace recordings end up</h3>
           <p>
             When Meet records a meeting, the file lands in the host
-            Google Drive at My Drive > Meet Recordings, named with the
+            Google Drive at My Drive › Meet Recordings, named with the
             meeting subject and the start time. An email also goes to
             the organiser with a link. Workspace admins can configure
             domain-level retention policies and storage locations. The
@@ -220,7 +220,7 @@ export default function GoogleMeetTranscriptionPage() {
       faq={[
         {
           q: 'How do I get my Google Meet recording to transcribe?',
-          a: 'If you have a Workspace plan with recording enabled, the MP4 is in your Drive at My Drive > Meet Recordings. Download it, drop it onto this page. If you do not have recording enabled, use a screen recorder (QuickTime on Mac, Windows Game Bar, or OBS) during the meeting, save the MP4, drop it here.',
+          a: 'If you have a Workspace plan with recording enabled, the MP4 is in your Drive at My Drive › Meet Recordings. Download it, drop it onto this page. If you do not have recording enabled, use a screen recorder (QuickTime on Mac, Windows Game Bar, or OBS) during the meeting, save the MP4, drop it here.',
         },
         {
           q: 'Does Mictoo work with free Google Meet accounts?',

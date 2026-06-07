@@ -272,7 +272,7 @@ the subtitle generator workflow.`}</code></pre>
         },
         {
           q: 'Will the SRT import into Premiere or Final Cut?',
-          a: 'Yes. Both Premiere Pro and Final Cut Pro import SRT as a captions track. In Premiere: File > Import > select .srt. In Final Cut: drag the .srt onto the timeline. DaVinci Resolve and CapCut work similarly.',
+          a: 'Yes. Both Premiere Pro and Final Cut Pro import SRT as a captions track. In Premiere: File › Import › select .srt. In Final Cut: drag the .srt onto the timeline. DaVinci Resolve and CapCut work similarly.',
         },
         {
           q: 'Are the timestamps frame-accurate?',
