@@ -1,9 +1,9 @@
 import ComparisonLayout from '@/components/ComparisonLayout'
 
 export const metadata = {
-  title: 'TurboScribe Alternative: Free Whisper Transcription Without Signup | Mictoo',
+  title: 'TurboScribe Alternative: Same Whisper Engine, No 30-Min File Cap, No Daily Quota | Mictoo',
   description:
-    'A TurboScribe alternative that runs Whisper large-v3 without the signup. Drop a file, get a transcript with timestamps, AI summary, and exports. No account, no daily file caps to track.',
+    'TurboScribe Free caps you at 30 minutes per file and 3 files per day. Mictoo uses the same Whisper large-v3 engine with a single 60 MB per-file limit, no daily counter, no signup, and includes AI summary plus translation in the free tier.',
   alternates: {
     canonical: 'https://mictoo.com/turboscribe-alternative',
     languages: {
@@ -21,8 +21,8 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'TurboScribe Alternative: Whisper Transcription Without Signup | Mictoo',
-    description: 'Drop a file, get a Whisper transcript with timestamps, summary, exports. No account needed.',
+    title: 'TurboScribe Alternative: No Daily Quota, AI Summary Included | Mictoo',
+    description: 'Same Whisper large-v3, no 3-files-per-day cap, summary and translation included free.',
     url: 'https://mictoo.com/turboscribe-alternative',
     siteName: 'Mictoo',
     type: 'website',
@@ -30,8 +30,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'TurboScribe Alternative: Whisper Transcription Without Signup',
-    description: 'Drop a file, get a Whisper transcript with summary. No signup.',
+    title: 'TurboScribe Alternative: No Daily Quota',
+    description: 'Same Whisper. No 3 files/day limit. Summary and translation included.',
     images: ['https://mictoo.com/opengraph-image'],
   },
 }
@@ -39,198 +39,216 @@ export const metadata = {
 export default function TurboScribeAlternativePage() {
   return (
     <ComparisonLayout
-      badge="TurboScribe Alternative · No signup · Whisper large-v3"
+      badge="TurboScribe Alternative · Same Whisper · No daily quota · Summary included"
       h1="TurboScribe Alternative"
-      subtitle="A Whisper-based transcription tool with a simpler upload flow. No account to create, no daily file counter to watch, AI summary and translation built into the same page. Drop a file, get the text."
+      subtitle="TurboScribe and Mictoo both run Whisper large-v3. The split is the gate: TurboScribe Free is 3 files per day capped at 30 minutes each, with AI summary and translation behind the $20-30/mo Pro plan. Mictoo is one 60 MB cap per file, no daily counter, AI summary and translation included free."
       competitorName="TurboScribe"
 
       quickFit={{
         mictoo: [
-          'You want to transcribe one or two files without creating an account first',
-          'You want the AI summary and translation in the same workflow as the transcript',
-          'You prefer a single-file workflow over a batch queue',
-          'You want clean SRT, VTT, TXT, and DOCX exports out of the box',
-          'You only need transcription occasionally and would skip a monthly plan',
+          'You hit the 3-files-per-day cap on the TurboScribe free tier and do not want to pay monthly',
+          'You want AI summary and translation in the free tier, not as $20-30/mo Pro features',
+          'You transcribe in bursts (research day, podcast back-catalog session, conference recap) rather than spread evenly across the month',
+          'You want to use the tool without creating an account first',
+          'You want the same Whisper large-v3 accuracy without the subscription gate',
         ],
         competitor: [
-          'You batch-process dozens of files at once and need a queue manager',
-          'You want a dashboard with all your past transcriptions in one place',
-          'You need unlimited daily transcriptions and are comfortable with a paid plan',
-          'You already have TurboScribe in your workflow and it works for you',
-          'You want the specific TurboScribe interface and export features you are used to',
+          'You need transcripts longer than 60 MB per file (TurboScribe Pro raises the per-file limit higher)',
+          'You want a polished folder/library workflow with your transcripts organised inside the app',
+          'You need their specific exports (PDF in some plans, advanced formatting)',
+          'You prefer their UI / brand and use the tool often enough that $20-30/mo is reasonable',
+          'You depend on a TurboScribe feature Mictoo does not have (their specific bulk upload, team accounts, etc)',
         ],
       }}
 
       mainAngle={
         <article className="prose-content">
-          <h2>The angle: same Whisper model, lighter upload flow</h2>
+          <h2>The angle: same engine, different gate</h2>
           <p>
-            TurboScribe and Mictoo overlap closely. Both run on OpenAI
-            Whisper (the open-source speech recognition model). Both turn
-            audio and video into text with timestamps. Where the two
-            diverge is the workflow around the model.
+            TurboScribe and Mictoo are unusual among "alternative" pairings:
+            both use Whisper large-v3 as the transcription engine. The
+            audio comes back as the same quality text from either tool
+            for the same input file. The product difference is not
+            accuracy; it is what each does around the transcription and
+            where the paywall sits.
           </p>
           <p>
-            TurboScribe is built around a transcription dashboard you sign
-            into: a queue of files, daily and monthly caps tied to your
-            plan, a library of past transcriptions to browse. That suits
-            people running dozens of files a week through a stable process.
+            TurboScribe is freemium with sharp tier limits: Free
+            transcribes 3 files per day up to 30 minutes each, no AI
+            summary, limited export options. Pro at $20-30/mo unlocks
+            longer files, more files per day, AI summary, translation,
+            and additional export formats. The pitch is "try free, hit
+            the cap, upgrade for unlimited".
           </p>
           <p>
-            Mictoo is built around a single page. Drop a file, get the
-            transcript, summary, translation, and exports. No login, no
-            queue to manage, no library to navigate. If you transcribe one
-            or two files at a time and just want the text fast, this trade-
-            off works in your favour. If you batch-process a hundred files
-            a week, TurboScribe is the better tool.
+            Mictoo takes a different shape. One per-file limit (60 MB,
+            roughly 60 minutes of typical mono speech), no daily counter,
+            AI summary and translation included in the free tier, no
+            signup required. The trade-off: we have less polish in
+            things like a library workspace or premium export formats,
+            and we do not have a paid tier yet so there is no upgrade
+            path if you need larger files. For the common case (a few
+            recordings a day, want the transcript plus summary plus
+            optional translation), the free tiers compare differently:
+            Mictoo gives you more in the free slot, TurboScribe gives
+            you more in the paid slot.
           </p>
         </article>
       }
 
       rows={[
-        { label: 'Speech recognition engine', mictoo: 'Whisper large-v3 via Groq + fallbacks', them: 'Whisper-based' },
-        { label: 'Signup required before transcribing', mictoo: 'No', them: 'Yes' },
-        { label: 'Batch upload queue', mictoo: 'Single file at a time', them: 'Yes, built around it' },
-        { label: 'Dashboard of past transcripts', mictoo: 'Optional (sign in for history)', them: 'Yes' },
-        { label: 'AI summary alongside transcript', mictoo: 'Yes, included', them: 'Depending on plan' },
-        { label: 'Translation', mictoo: 'Yes, GPT-4o-mini, one click', them: 'Depending on plan' },
-        { label: 'SRT / VTT subtitle export', mictoo: 'Yes', them: 'Yes' },
-        { label: 'TXT and DOCX export', mictoo: 'Yes, one click', them: 'Yes' },
-        { label: 'Daily file or minute cap', mictoo: '60 MB per file, no daily cap', them: 'Depending on plan' },
-        { label: 'Translation included free', mictoo: 'Yes', them: 'Depending on plan' },
-        { label: 'Best suited for', mictoo: 'Occasional single-file workflow', them: 'Batch processing and dashboards' },
+        { label: 'Transcription engine', mictoo: 'Whisper large-v3', them: 'Whisper large-v3' },
+        { label: 'Free per-file limit', mictoo: '60 MB (~60 min mono)', them: '30 min per file' },
+        { label: 'Free daily file count', mictoo: 'Unlimited', them: '3 files/day' },
+        { label: 'AI summary in free tier', mictoo: 'Yes', them: 'No, Pro only' },
+        { label: 'Translation in free tier', mictoo: 'Yes, GPT-4o-mini', them: 'Limited / Pro only' },
+        { label: 'Signup required', mictoo: 'No (optional)', them: 'Yes' },
+        { label: 'SRT / VTT export', mictoo: 'Yes, free', them: 'Yes, varies by plan' },
+        { label: 'TXT / DOCX export', mictoo: 'Yes, free', them: 'Yes' },
+        { label: 'Transcript library / workspace', mictoo: 'Optional, after sign-in', them: 'Yes, included' },
+        { label: 'Chat with transcript (RAG)', mictoo: 'Yes, after sign-in', them: 'No' },
+        { label: 'YouTube URL transcription', mictoo: 'Yes, no upload needed', them: 'No' },
+        { label: 'Pro tier pricing', mictoo: 'Not yet launched', them: '$20-30/mo' },
       ]}
 
       whyMictoo={[
         {
-          icon: '🚀',
-          title: 'Try the tool in under 10 seconds',
-          desc: 'Land on the page, drag your file in, transcript starts. No account, no email verification, no plan picker. Useful when you arrived from a search result and just want to see if the tool works for your file before investing any setup time.',
+          icon: '🚫',
+          title: 'No 3-files-per-day cap',
+          desc: 'TurboScribe Free locks you out after 3 files per day. Mictoo has no daily file counter at all. Useful for the research sprint where you want to process 10 interviews back-to-back, or the back-catalog day where you transcribe a whole season of podcast episodes.',
         },
         {
-          icon: '🧠',
-          title: 'AI summary and translation in the same workflow',
-          desc: 'When transcription finishes, a summary appears alongside the transcript. Translate to another language with one click. No need to pick a plan that includes these features or hunt them down in a separate menu.',
+          icon: '🎁',
+          title: 'AI summary and translation included free',
+          desc: 'On TurboScribe these are Pro features ($20-30/mo). On Mictoo they appear automatically after every transcription, no plan to unlock. Useful especially for journalists, students, and content marketers who want the summary as a starting point for their write-up.',
         },
         {
-          icon: '🎯',
-          title: 'Single-file workflow that finishes fast',
-          desc: 'No queue to manage, no estimated wait time for a batch. Upload, wait roughly one minute, get the transcript. Designed for the case where you have one file and want the text now.',
+          icon: '👤',
+          title: 'No signup gate to try the tool',
+          desc: 'TurboScribe requires account creation before you can transcribe anything. Mictoo lets you drop a file and use everything anonymously. Sign in only if you want history and the chat-with-transcript feature. Useful when you just want to try the quality on one sample file.',
         },
         {
-          icon: '🛡️',
-          title: 'Audio never stored on our servers',
-          desc: 'Your file streams to the transcription provider, gets read once, gets dropped from memory. We do not save the audio to disk. The text transcript is only stored if you sign in and choose to add it to your history.',
+          icon: '💬',
+          title: 'Chat with transcript, YouTube URL, plus the basics',
+          desc: 'Mictoo includes a few features TurboScribe does not have: ask questions about the transcript content (RAG over the text), paste a YouTube URL to fetch the transcript without uploading, and a built-in audio player with click-to-jump timestamps. All free with sign-in.',
         },
       ]}
 
       whenBetter={{
-        title: 'When TurboScribe is the better fit',
+        title: 'When TurboScribe genuinely wins',
         items: [
-          'You batch-process many files at once (a content creator with a backlog of episodes, a research assistant with hours of interviews). A queue dashboard helps; Mictoo handles one file at a time.',
-          'You want a permanent dashboard listing every transcript you have ever produced, with search, tags, and re-download. TurboScribe maintains this; Mictoo only saves history if you sign in.',
-          'You are already a TurboScribe user with a workflow that works and a paid plan that fits your volume. Switching tools for the sake of it rarely pays off.',
-          'You need very large single files (multi-hour studio masters, full conference recordings) and prefer a tool with explicit per-plan caps rather than a 60 MB upload limit.',
+          'You need to transcribe files larger than 60 MB regularly and want a paid tier that raises the per-file cap. TurboScribe Pro handles longer single files; Mictoo does not yet offer a paid tier for that.',
+          'You want a polished transcript-library workspace where every file you transcribed is organised, searchable, and shareable. TurboScribe library feature is more developed than ours.',
+          'Your team has settled on TurboScribe and prefers consistency over feature differentiation. Tool migration has real costs (account setup, learning curve, link rot), and "good enough and already in use" beats "slightly different".',
+          'You depend on a TurboScribe-specific export format (some premium PDF or formatted-document templates) that we do not currently produce.',
         ],
       }}
 
       workflow={[
         {
-          title: 'Open Mictoo',
-          desc: 'Go to mictoo.com or any of the transcription pages. No signup screen, no plan picker. The upload zone is the first thing you see.',
+          title: 'Try with a real file, no signup',
+          desc: 'Drop one of your typical recordings (interview, podcast, lecture, meeting) into Mictoo. The transcript and AI summary appear in under a minute. You can decide if the quality and feature set match your needs before committing to anything.',
         },
         {
-          title: 'Drop your audio or video',
-          desc: 'Drag a file from your desktop into the upload area. We accept MP3, M4A, WAV, MP4, MOV, WebM, FLAC, OGG, AAC and most other common formats. Up to 60 MB per file.',
+          title: 'Compare with the same file on TurboScribe',
+          desc: 'If you already have TurboScribe, run the same file through both and compare. Whisper large-v3 produces near-identical text quality (it is the same model), so the comparison is really about features around it: summary, translation, daily caps, library.',
         },
         {
-          title: 'Wait under a minute',
-          desc: 'A 30-minute file usually finishes in 30-60 seconds. The transcript appears with clickable timestamps and an AI summary in the sidebar.',
+          title: 'Use Mictoo for your normal flow',
+          desc: 'Free tier handles a few files per day up to 60 MB each with summary and translation included. For files over 60 MB, downsample the audio with ffmpeg or split into chunks. No daily cap to track or upgrade prompt to dismiss.',
         },
         {
-          title: 'Copy or export',
-          desc: 'Download TXT, SRT, VTT, or DOCX. Or copy the cleaned text to clipboard. Translate to another language with one click if needed.',
+          title: 'Sign in for history, chat, batch use',
+          desc: 'Optional account adds: private history of your transcripts, chat-with-transcript (ask questions about the content), and the ability to revisit past transcripts. Stays free; no paid tier at the moment.',
         },
       ]}
 
       useCases={{
-        title: 'When people pick Mictoo over TurboScribe',
+        title: 'When the no-daily-cap, summary-included model fits',
         items: [
           {
-            title: 'One file, right now, no account',
-            desc: 'You arrived from a Google search with a single recording. You want to try the tool before deciding whether to commit. Mictoo gives you the transcript without any onboarding step.',
+            title: 'Research days with many interviews back-to-back',
+            desc: 'Qualitative researcher with 8 interviews to process. TurboScribe free cap of 3 files/day forces you to spread across 3 days or pay. Mictoo processes all 8 in one afternoon with no counter.',
           },
           {
-            title: 'Subtitles for a single video',
-            desc: 'You have one video that needs SRT or VTT subtitles. No need for a queue dashboard or a plan picker. Drop the file, download the subtitle file, done.',
+            title: 'Podcast back-catalog transcription session',
+            desc: 'You decided to add transcripts to every old episode (50 episodes). Mictoo: do them at your own pace, no daily limit. TurboScribe free: roughly 17 days at the 3/day cap, or upgrade.',
           },
           {
-            title: 'Summary plus transcript for a single meeting',
-            desc: 'You missed a meeting and have the recording. You want the transcript plus a summary of the action items, in one workflow, without paying for a plan tier just to unlock summarisation.',
+            title: 'Conference recap (a stack of session recordings)',
+            desc: 'You attended a 3-day conference and want transcripts of all the sessions you cared about (10-15 recordings). Mictoo handles them in one sitting; TurboScribe Free would gate you across a week or push you to upgrade.',
           },
           {
-            title: 'Multilingual file with translation needed',
-            desc: 'You have a foreign-language recording and need both the original transcript and a translation into English (or another language). Mictoo bundles both in the same free workflow.',
+            title: 'Student / academic with project bursts',
+            desc: 'Research papers and dissertation work come in bursts. Monthly subscription wastes money on quiet weeks. Free per-file with no caps fits the irregular pattern better.',
+          },
+          {
+            title: 'Quick one-off transcription without account creation',
+            desc: 'You have one interview to transcribe, today, and do not want to create an account. Drop into Mictoo anonymously, download the result, never sign up. TurboScribe requires the account before the file even uploads.',
+          },
+          {
+            title: 'Comparing transcription quality without committing',
+            desc: 'You are evaluating transcription tools for your workflow. The signup gate on most competitors slows the evaluation. Mictoo lets you actually compare quality on a real file first.',
           },
         ],
       }}
 
       faq={[
         {
-          q: 'Is Mictoo a good TurboScribe alternative?',
-          a: 'Yes, if you want a simpler single-file workflow without signup. Both tools use Whisper for the transcription engine, so the text quality is similar. Mictoo trades the batch queue and dashboard for a lighter flow. If batch processing dozens of files is your job, TurboScribe is the better fit.',
+          q: 'Do Mictoo and TurboScribe really use the same engine?',
+          a: 'Both run Whisper large-v3 (the OpenAI open-weight model) for transcription. For the same input file the transcript quality is essentially identical. The product difference is what each tool does around transcription: summary, translation, daily caps, library, signup gates, pricing model.',
         },
         {
-          q: 'What is the main difference between Mictoo and TurboScribe?',
-          a: 'TurboScribe is built around a transcription dashboard with a queue and a library of past files. Mictoo is built around a single page where you drop a file and get the text back. Same Whisper model, different surrounding workflow. Pick based on whether your volume justifies a dashboard.',
+          q: 'What is the catch with the Mictoo free tier?',
+          a: 'Per-file cap of 60 MB. Sufficient for about 60 minutes of mono speech at typical bitrates, 30 minutes of stereo at higher quality, or 15-ish minutes of CD-quality WAV. For files larger than 60 MB, downsample with ffmpeg or split into chunks (we have guides). There is no daily cap and no monthly minute cap.',
         },
         {
-          q: 'Does Mictoo use Whisper?',
-          a: 'Yes. We run Whisper large-v3 via Groq for the primary transcription path, with Replicate, Deepgram, and OpenAI as fallback providers for reliability. The model is the same one TurboScribe and most other modern transcription tools use under the hood.',
+          q: 'How does the AI summary compare?',
+          a: 'Both produce summaries from the transcribed text using a separate LLM call (Mictoo uses GPT-4o-mini for summarisation). The output quality depends mostly on the transcript quality, and since both use Whisper large-v3 the inputs are the same. Mictoo includes the summary on every free transcription; TurboScribe gates it behind Pro.',
         },
         {
-          q: 'Can I batch upload multiple files like TurboScribe?',
-          a: 'Not yet. Right now you transcribe one file at a time through the web interface. Batch upload via the API is on the roadmap for the future Pro tier. If batch processing is your main need, TurboScribe handles it well today.',
+          q: 'What about translation?',
+          a: 'Mictoo translation is one click after transcription, uses GPT-4o-mini, included free for any of 50+ target languages. TurboScribe translation is limited or gated to Pro depending on the source/target pair. If you frequently need translated transcripts, Mictoo free tier is more permissive.',
         },
         {
-          q: 'Can I upload audio and video files?',
-          a: 'Yes. MP3, M4A, WAV, FLAC, OGG, AAC, MP4, MOV, WebM, and most other common formats. For video files we strip the video track and transcribe just the audio. Free for files up to 60 MB.',
+          q: 'Is Mictoo missing anything TurboScribe has?',
+          a: 'A more polished folder/library workspace for organising past transcripts, some premium export formats (formatted PDFs, specific Word templates), and the option to pay for a Pro tier that raises the per-file limit. Mictoo Pro tier is not yet launched, so if your blocker is files over 60 MB regularly, TurboScribe Pro is the available option.',
         },
         {
-          q: 'Can I summarize the transcript?',
-          a: 'Yes. An AI summary appears alongside the transcript automatically as soon as transcription finishes, included in the free tier. No need to pick a plan that unlocks summarisation as a paid feature.',
+          q: 'Does Mictoo really not require an account?',
+          a: 'Right. The entire upload-transcribe-summarise-translate-export workflow works anonymously for files up to 60 MB. Sign in to add: history of your past transcripts, chat-with-transcript (ask questions about the content via RAG), persistence across devices. Everything else stays free without sign-in.',
         },
         {
-          q: 'Can I translate the transcript?',
-          a: 'Yes. After transcription finishes, pick a target language and click Translate. The translation is generated by GPT-4o-mini and appears alongside the original transcript, included in the free workflow.',
+          q: 'Can I paste a YouTube URL?',
+          a: 'Yes, Mictoo has a YouTube URL field on the upload zone. We fetch the existing captions from YouTube in a few seconds for most public videos. For videos with no captions or for fresh Whisper-quality transcription, download the audio yourself and upload the file. TurboScribe does not have direct YouTube URL support.',
         },
         {
-          q: 'Can I export subtitles?',
-          a: 'Yes. SRT and VTT formats with timestamps that align to your original recording. Drop them into your video editor or YouTube to add captions automatically.',
+          q: 'What is the chat-with-transcript feature?',
+          a: 'After transcription, you can ask questions about the content in natural language ("What did the speaker say about X?", "Summarise the section about Y"). Under the hood it is RAG over the transcript text using a separate LLM call. Available after sign-in. TurboScribe does not have an equivalent.',
         },
         {
-          q: 'Is Mictoo free to try?',
-          a: 'Yes. Files up to 60 MB transcribe for free without signup. No watermark on exports, no daily file count to track. Larger files and batch processing are on the roadmap for the future Pro tier.',
+          q: 'Can I export the same formats from both tools?',
+          a: 'For the basics, yes: TXT, SRT, VTT, DOCX work in both. TurboScribe Pro adds some premium formats (specific PDF layouts, formatted templates). For most use cases (drop into editor, paste into notes, upload as captions) the common formats are sufficient.',
         },
         {
-          q: 'Can I use Mictoo without an account?',
-          a: 'Yes for the core transcription, summary, translation, and export workflow. Signing in only adds saved history and the chat-with-transcript feature. Everything else works anonymously.',
+          q: 'Why no paid plan on Mictoo yet?',
+          a: 'We are still figuring out the right shape for one. Likely directions: larger per-file limit, batch upload, speaker diarisation (in development), priority queue. Until that ships, the free tier covers most cases for most users and the trade-off (60 MB per-file cap, no batch) is explicit. If those are blockers for your workflow, TurboScribe Pro is the available alternative.',
         },
       ]}
 
       cta={{
-        title: 'Transcribe a file without making an account',
-        text: 'Same Whisper model, lighter flow. Drop your file, get the transcript, summary, and exports in under a minute. No signup, no plan picker.',
-        button: 'Upload a file to try',
+        title: 'Same Whisper, no daily cap, summary included',
+        text: 'Try Mictoo on the same file you would use TurboScribe for. Drop the audio or video, see the transcript and AI summary in under a minute. No signup, no daily quota to count down.',
+        button: 'Try with a file',
       }}
 
       relatedLinks={[
         { href: '/otter-alternative', label: 'Otter alternative' },
-        { href: '/fireflies-alternative', label: 'Fireflies alternative' },
         { href: '/notta-alternative', label: 'Notta alternative' },
+        { href: '/fireflies-alternative', label: 'Fireflies alternative' },
         { href: '/descript-alternative', label: 'Descript alternative' },
         { href: '/transcribe-audio-to-text', label: 'Audio to text' },
-        { href: '/transcribe-video-to-text', label: 'Video to text' },
+        { href: '/youtube-to-text', label: 'YouTube to text' },
         { href: '/free-srt-generator', label: 'Free SRT generator' },
       ]}
     />

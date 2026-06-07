@@ -1,9 +1,9 @@
 import ComparisonLayout from '@/components/ComparisonLayout'
 
 export const metadata = {
-  title: 'Otter Alternative: Transcribe Recordings, Not Live Meeting Notes | Mictoo',
+  title: 'Otter Alternative: Transcribe Recordings Without an AI Bot in Your Meeting | Mictoo',
   description:
-    'Transcribe interviews, lectures, podcasts, and uploaded recordings without the live-meeting overhead. Drop the file, get a clean transcript with summary and exports.',
+    'Replace the Otter bot with self-recorded audio. No OtterPilot joining your calls, no per-seat workspace, no monthly subscription. Drop the recording you already have and get a clean transcript with summary.',
   alternates: {
     canonical: 'https://mictoo.com/otter-alternative',
     languages: {
@@ -21,8 +21,8 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'Otter Alternative: Recording Transcription Without Live-Meeting Overhead | Mictoo',
-    description: 'Transcribe interviews, lectures, podcasts, and uploaded recordings. Free, no signup.',
+    title: 'Otter Alternative: No Bot in Your Meeting, No Monthly Plan | Mictoo',
+    description: 'Skip the OtterPilot meeting bot. Self-record, upload, get the transcript. Free.',
     url: 'https://mictoo.com/otter-alternative',
     siteName: 'Mictoo',
     type: 'website',
@@ -30,8 +30,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Otter Alternative: Recording Transcription Without Live-Meeting Overhead',
-    description: 'Transcribe interviews, lectures, podcasts. Free, no signup.',
+    title: 'Otter Alternative: No Bot, No Per-Seat Plan',
+    description: 'Self-record your meeting, upload, get the transcript. Free.',
     images: ['https://mictoo.com/opengraph-image'],
   },
 }
@@ -39,190 +39,194 @@ export const metadata = {
 export default function OtterAlternativePage() {
   return (
     <ComparisonLayout
-      badge="Otter Alternative · No live notes · No subscription"
+      badge="Otter Alternative · No meeting bot · No per-seat plan"
       h1="Otter Alternative"
-      subtitle="A transcription tool for recordings you already have: interviews, lectures, podcasts, uploaded audio and video. No live meeting notes, no team highlights, no real-time word display. Just upload and get the text."
+      subtitle="No OtterPilot bot showing up as a visible participant in your client calls. No per-user monthly subscription for the whole team. Self-record the meeting (Zoom, Meet, Teams, OBS, QuickTime), drop the file, get the transcript with summary."
       competitorName="Otter"
 
       quickFit={{
         mictoo: [
-          'You transcribe interviews, lectures, podcasts, or uploaded recordings',
-          'You do not need live captions during a meeting',
-          'You want clean exports (TXT, SRT, VTT, DOCX) without a workspace',
-          'You are a journalist, researcher, student, or solo content creator',
-          'You want a tool you can use occasionally without a subscription',
+          'Your meeting has external participants (clients, candidates, partners) who notice every bot in the room',
+          'You record meetings yourself with Zoom / Teams / Meet built-in recording or a screen recorder',
+          'You only need the transcript AFTER the meeting, not live captions during it',
+          'You are a solo consultant, journalist, recruiter, or small team without a per-seat budget',
+          'You want one tool for meeting recordings AND uploaded interviews, lectures, podcasts',
         ],
         competitor: [
-          'You want live captions appearing in real time during your meeting',
-          'Your team takes collaborative live notes during calls',
-          'You rely on automatic meeting joining via Otter Assistant',
-          'You need team-wide search across all colleagues meeting transcripts',
-          'You use Otter highlights, comments, and live action items in workflow',
+          'You want OtterPilot to auto-join every meeting on your calendar with zero manual capture',
+          'Your team is large enough that per-seat pricing is amortised across many users',
+          'You need live captions on screen during meetings for accessibility or hearing accommodation',
+          'You use Otter Notes as the shared real-time meeting document everyone edits during the call',
+          'You depend on Otter integrations with Slack, Salesforce, HubSpot for downstream workflows',
         ],
       }}
 
       mainAngle={
         <article className="prose-content">
-          <h2>The angle: transcribe recordings, do not manage live meetings</h2>
+          <h2>The angle: skip the bot, transcribe the recording yourself</h2>
           <p>
-            Otter became popular because it transcribes meetings in real
-            time and turns them into shared notes a team can highlight and
-            comment on. That is a useful product if you spend your day in
-            meetings and need live collaborative notes.
+            Otter is built around OtterPilot, the assistant bot that
+            auto-joins your scheduled Zoom, Google Meet, or Teams meetings,
+            transcribes in real time, and produces a shared note. That model
+            works when the team is big, everyone uses Otter, and the bot
+            in the room is normal.
           </p>
           <p>
-            Most people who land on this page are looking for something
-            else. They have a recording: an interview, a recorded lecture, a
-            podcast episode, a finished Zoom call. They want a clean
-            transcript and maybe a summary. They do not need the live word
-            display, the meeting assistant joining calls, or the team
-            workspace of highlights and comments.
+            It breaks down in two specific situations. First, calls with
+            external participants (clients, candidates, vendors, journalists)
+            where a third-party bot listening to the conversation is a trust
+            issue or an awkward moment. Second, small teams or solo
+            operators where per-seat pricing for the whole org is not
+            justified by the actual transcription volume.
           </p>
           <p>
-            Mictoo handles that simpler case. Drop the recording in, get
-            the transcript and an AI summary back, export TXT, SRT, VTT, or
-            DOCX. No assistant, no live captions, no workspace setup. If
-            you need any of those, Otter still does them better; the rest
-            of this page explains exactly when to choose which.
+            Mictoo is the alternative for both. You record the meeting
+            yourself (most platforms have built-in cloud or local recording;
+            QuickTime, OBS, and Zoom local capture all work), then drop
+            the file. No bot ever joins the call, no participants ever see
+            "Otter has joined the meeting", no monthly per-seat bill.
+            Transcript and summary come back in under a minute. The same
+            tool also handles non-meeting recordings (interviews,
+            lectures, podcasts, voice memos), so you have one workflow
+            instead of two.
           </p>
         </article>
       }
 
       rows={[
-        { label: 'Transcribe uploaded recordings', mictoo: 'Yes, drag-and-drop', them: 'Yes' },
-        { label: 'Live captions during a meeting', mictoo: 'No', them: 'Yes, built around it' },
-        { label: 'Meeting assistant auto-joins calls', mictoo: 'No', them: 'Yes, depending on plan' },
+        { label: 'AI bot joins your meeting automatically', mictoo: 'No, never', them: 'Yes (OtterPilot)' },
+        { label: 'Transcript visible to external participants', mictoo: 'No', them: 'Yes, bot is a visible attendee' },
+        { label: 'Upload pre-recorded audio or video', mictoo: 'Yes, primary workflow', them: 'Yes, secondary feature' },
+        { label: 'Per-seat monthly subscription', mictoo: 'No, free per file', them: 'Yes' },
+        { label: 'Live captions during meeting', mictoo: 'No', them: 'Yes, core feature' },
+        { label: 'Shared workspace with team highlights', mictoo: 'No', them: 'Yes, OtterNotes' },
         { label: 'AI summary alongside transcript', mictoo: 'Yes, included', them: 'Yes, depending on plan' },
-        { label: 'Team workspace with shared notes', mictoo: 'No', them: 'Yes, core feature' },
-        { label: 'Highlights, comments, action items', mictoo: 'No', them: 'Yes' },
-        { label: 'SRT / VTT subtitle export', mictoo: 'Yes', them: 'Available depending on plan' },
-        { label: 'TXT and DOCX export', mictoo: 'Yes, one click', them: 'Available depending on plan' },
-        { label: 'Translation', mictoo: 'Yes, GPT-4o-mini', them: 'Depending on plan' },
-        { label: 'Signup required', mictoo: 'No', them: 'Yes' },
-        { label: 'Best suited for', mictoo: 'Recordings you already have', them: 'Live meeting workflows' },
+        { label: 'Slack / Salesforce / HubSpot integrations', mictoo: 'No', them: 'Yes, depending on plan' },
+        { label: 'SRT / VTT export for video captions', mictoo: 'Yes', them: 'Depending on plan' },
+        { label: 'Required: account / OAuth', mictoo: 'No (optional)', them: 'Yes' },
       ]}
 
       whyMictoo={[
         {
-          icon: '🎙️',
-          title: 'Built for recordings, not live meetings',
-          desc: 'You arrive with a file already in hand: interview MP3, lecture WAV, podcast bounce, Zoom recording. Drop it in, get the transcript back. No assistant to install, no calendar OAuth, no real-time pipeline to configure.',
-        },
-        {
-          icon: '📝',
-          title: 'AI summary and clean exports out of the box',
-          desc: 'Transcript and summary both appear automatically. Download TXT, SRT, VTT, or DOCX. Copy to clipboard. Paste into Notion, an article draft, an email, the Notes app. No workspace to file it inside.',
-        },
-        {
-          icon: '🌍',
-          title: '50+ languages and built-in translation',
-          desc: 'Auto-detect the language or set it manually. Translate the transcript into another language with one click. Useful for multilingual interviews, foreign-language lectures, or shipping content to a different market.',
+          icon: '🚫',
+          title: 'No bot, no awkward participant',
+          desc: 'External-facing calls (sales, client work, journalist interviews, candidate screens) get weird when "Otter has joined" pops up. Mictoo never joins your meeting. You record it yourself with whatever tool is already in your meeting platform, then upload.',
         },
         {
           icon: '💸',
-          title: 'Free for occasional use, no per-seat plan',
-          desc: 'Files up to 60 MB transcribe free, no signup. Useful for the journalist with one interview a week or the student with one lecture per course. No monthly subscription that goes unused on quiet days.',
+          title: 'No per-seat plan for the whole team',
+          desc: 'Otter charges per user per month, which adds up for a team that only occasionally needs transcripts. Mictoo is free per file under 60 MB. The marketing manager who transcribes one podcast a week and the recruiter who reviews one interview a month do not need their own seats.',
+        },
+        {
+          icon: '🎙️',
+          title: 'One tool for meetings AND non-meeting recordings',
+          desc: 'Otter is meeting-first. Mictoo handles meetings (Zoom recordings, Teams MP4s, Meet downloads) AND interviews, lectures, podcasts, voice memos, downloaded webinars. One upload page covers all your transcription cases.',
+        },
+        {
+          icon: '🔒',
+          title: 'Privacy: nothing persists by default',
+          desc: 'No workspace storing every meeting transcript indefinitely. You upload, get the transcript back, the audio is dropped. Sign in if you want history; stay anonymous if you do not.',
         },
       ]}
 
       whenBetter={{
-        title: 'When Otter is the better fit',
+        title: 'When Otter genuinely wins',
         items: [
-          'You need live captions appearing on screen while a meeting is happening, especially for accessibility or hearing-impaired participants.',
-          'Your team takes collaborative notes during meetings, highlighting key moments together in real time. That is what Otter Notes was built for.',
-          'You want Otter Assistant to join your meetings automatically, capture audio, and produce notes without any manual recording or upload step.',
-          'You need team-wide search across every meeting your colleagues have had, with permissions and sharing handled inside Otter.',
+          'Live captioning during the meeting itself, especially for accessibility or hearing-impaired participants who need real-time word display.',
+          'Teams that already operate inside Otter Notes as the shared meeting document, with everyone highlighting, commenting, and adding action items during the call.',
+          'Automation-heavy workflows where OtterPilot joins every calendar event and post-meeting summaries flow into Slack/Salesforce/HubSpot without manual upload.',
+          'Large orgs (20+ users) where per-seat pricing is justified by the team-wide search across every colleague meeting transcript and the centralised admin/permissions layer.',
         ],
       }}
 
       workflow={[
         {
-          title: 'Get your recording',
-          desc: 'Export from your recorder, your meeting platform (Zoom Cloud Recording, Teams, Google Meet), or your phone Voice Memos app.',
+          title: 'Self-record the meeting',
+          desc: 'Zoom: "Record to this Computer" or "Record to Cloud". Google Meet: requires Workspace plan with recording. Teams: meeting recording goes to OneDrive. No platform recording? Use QuickTime (Mac), Game Bar (Windows), or OBS for any meeting tool.',
         },
         {
-          title: 'Drop it into Mictoo',
-          desc: 'Drag the audio or video file onto the page. We accept MP3, M4A, WAV, MP4, MOV, WebM, FLAC, OGG, AAC and most other common formats.',
+          title: 'Download the recording locally',
+          desc: 'Zoom Cloud Recording: download MP4 from Zoom web portal. Teams: download from OneDrive/SharePoint. Google Meet: from Drive. Local recordings are already on your machine.',
         },
         {
-          title: 'Review the transcript and summary',
-          desc: 'Read in the browser, fix any wrong names inline, check the AI summary in the sidebar. Use the search box to find specific quotes.',
+          title: 'Drop into Mictoo',
+          desc: 'Drag the audio or video file onto the upload zone. We extract audio from video files automatically. Whisper large-v3 transcribes a 30-minute meeting in under a minute.',
         },
         {
-          title: 'Export or copy',
-          desc: 'Download TXT, SRT, VTT, or DOCX. Or copy the cleaned text to clipboard and paste into your CMS, article, or research notes.',
+          title: 'Export and share',
+          desc: 'Download TXT for notes, DOCX for a Word document, SRT/VTT if you want captions on the video version. Copy quotes for follow-ups. The AI summary becomes the recap email.',
         },
       ]}
 
       useCases={{
-        title: 'When people pick Mictoo over Otter',
+        title: 'Otter users who switched to Mictoo (the patterns)',
         items: [
           {
-            title: 'Interviews for an article',
-            desc: 'Journalists and researchers recording one or two interviews a week. Upload the recording, get the transcript plus summary, pull quotes for the piece. No meeting workspace needed.',
+            title: 'Client-facing consultants',
+            desc: 'Strategy / IT / freelance consultants on weekly client calls. The OtterPilot bot in the meeting was a trust friction with new clients. Self-record + upload to Mictoo keeps the workflow but removes the visible third party.',
           },
           {
-            title: 'Recorded lectures and seminars',
-            desc: 'Students recording lectures on iPhone or laptop, professors archiving their own course content. Transcribe each lecture to a searchable text version without a live-notes infrastructure.',
+            title: 'Recruiters running candidate screens',
+            desc: 'Recruiters interviewing candidates do not want "Otter has joined" appearing in a candidate-facing call. Self-record the Zoom, drop into Mictoo for the transcript that feeds candidate notes and feedback.',
           },
           {
-            title: 'Podcast episodes and show notes',
-            desc: 'Solo podcasters and small podcast teams. Upload the finished episode (or the raw recording before editing) and use the transcript plus summary as the basis for show notes and episode pages.',
+            title: 'Journalists conducting source interviews',
+            desc: 'Interview subjects often refuse to let a third-party bot record the conversation. Recording on your end (phone, laptop mic, Zoom local) and processing through Mictoo keeps the source comfortable.',
           },
           {
-            title: 'External webinar or panel recordings',
-            desc: 'You attended a webinar and have the recording. Transcribe it for personal notes, quotes, or to write a recap article. One-off use, no reason to onboard into a team workspace.',
+            title: 'Small teams without a per-seat budget',
+            desc: '2-5 person teams (early-stage startups, small agencies, research groups) where Otter per-seat pricing means most seats sit unused. Drop files into Mictoo as needed, no monthly bill.',
           },
         ],
       }}
 
       faq={[
         {
-          q: 'Is Mictoo a good Otter alternative?',
-          a: 'Yes, if you mainly transcribe recordings you already have rather than capturing live meetings. Mictoo focuses on uploading a file and getting a transcript, summary, and exports. If you need live captions or real-time team notes during meetings, Otter is built for that and Mictoo is not.',
+          q: 'Why would I pick Mictoo over Otter?',
+          a: 'You meet with external people (clients, candidates, vendors, sources) for whom a third-party AI bot in the room is awkward or a non-starter. Or you are small enough that Otter per-seat pricing for the whole team is wasteful. Or you also need to transcribe non-meeting content (interviews, lectures, podcasts) and want one tool for all of it.',
         },
         {
-          q: 'What is the main difference between Mictoo and Otter?',
-          a: 'Otter is built around live meeting transcription and collaborative notes during calls. Mictoo is post-meeting only: you upload a recording and get a transcript back. No assistant, no live captions, no team workspace. The choice depends on whether your audio is happening now or already finished.',
+          q: 'Does Mictoo have a bot like OtterPilot that joins meetings?',
+          a: 'No. We deliberately do not. Bots-in-meetings is exactly the pattern Otter dominates, and it has legitimate trade-offs (visibility to participants, consent friction, security review for enterprise). Mictoo is the alternative for people who want to avoid all that and just record + upload themselves.',
         },
         {
-          q: 'Does Mictoo create live meeting notes like Otter?',
-          a: 'No. Mictoo does not transcribe in real time during a meeting and does not produce shared live notes for a team to highlight. If that is your core need, Otter Notes does it well. Mictoo runs after the recording is finished.',
+          q: 'How do I record a meeting if Mictoo does not have a bot?',
+          a: 'Use the platform built-in recording: Zoom (Record button, local or cloud), Google Meet (Workspace plans only, in the More menu), Teams (Record meeting in the toolbar, file goes to OneDrive). For platforms without recording or when you want a backup, QuickTime on Mac, Xbox Game Bar on Windows, or OBS on any OS will capture audio from any meeting app.',
         },
         {
-          q: 'Can I upload audio and video files?',
-          a: 'Yes. MP3, M4A, WAV, FLAC, OGG, AAC, MP4, MOV, WebM, and most other common formats. For video files we strip the video track and transcribe just the audio. Free for files up to 60 MB.',
+          q: 'Will external participants know Mictoo is transcribing?',
+          a: 'No, because Mictoo never joins the meeting. The recording is done by you, with the tool you choose. Whether you tell participants you are recording follows your local laws (consent rules vary) and your professional norms, same as recording any conversation.',
         },
         {
-          q: 'Can I export subtitles for a recorded lecture or webinar?',
-          a: 'Yes. Both SRT and VTT formats with timestamps. Useful for adding captions to a YouTube upload, dropping into a video editor, or sharing as an accessible text alternative alongside the video.',
+          q: 'Does Mictoo do live captions during the meeting?',
+          a: 'No. We transcribe after the meeting is finished. If you need live captions for accessibility or for participants who need real-time word display, Otter live caption mode (or Zoom built-in live captions, Google Meet live captions, Teams live captions) is the right tool. These platforms all offer basic live captioning natively now.',
         },
         {
-          q: 'Can I summarize the transcript?',
-          a: 'Yes. The AI summary appears alongside the transcript automatically. Useful for pulling out the main points of a long lecture or interview, or generating show notes for a podcast episode.',
+          q: 'Can I get a meeting summary like Otter Meeting Summary?',
+          a: 'Yes. The AI summary appears alongside the transcript automatically after upload. Useful as the foundation for follow-up emails, recap notes, action-item extraction, and CRM entry. Same idea as Otter post-meeting summary, just generated after upload rather than during the call.',
         },
         {
-          q: 'Do I need to invite a meeting bot?',
-          a: 'No. Mictoo has no bot or meeting assistant. You record the call yourself with your meeting platform or any screen recorder, then upload the file. The trade-off is more manual capture; the upside is privacy and no third-party participant.',
+          q: 'How does Mictoo handle multi-speaker conversations?',
+          a: 'The transcript is continuous text. We do not currently distinguish speakers ("Speaker 1: ... Speaker 2: ..."). Speaker diarisation is on our Pro tier roadmap. For now, if speaker labels matter, you add them manually or use a tool that includes diarisation (Otter does it; Whisper itself does not without an external diarisation pass).',
         },
         {
-          q: 'Is Mictoo free to try?',
-          a: 'Yes. Files up to 60 MB transcribe for free without signup. No watermark on exports. Larger files are on the roadmap for the future Pro tier.',
+          q: 'What if I need integrations with Slack / Salesforce / HubSpot?',
+          a: 'Mictoo does not currently push transcripts into other tools automatically. Export TXT/DOCX, paste into your destination, or copy quotes for the CRM activity log. For sales/RevOps teams whose workflow depends on automatic CRM enrichment, Otter (or Fireflies, Gong) handles that integration better.',
         },
         {
-          q: 'Can I use Mictoo without an account?',
-          a: 'Yes for the core upload, transcribe, summarize, and export workflow. Signing in adds history and the chat-with-transcript feature. Everything else works anonymously.',
+          q: 'Does Mictoo handle video files like Zoom Cloud Recording MP4s?',
+          a: 'Yes. Upload the MP4 directly. We extract the audio track on our side and transcribe it. Same for Teams meeting recordings (MP4 in OneDrive), Meet recordings (MP4 in Drive), or any screen recorder output.',
         },
         {
-          q: 'Which tool should I choose for lectures and podcasts?',
-          a: 'Mictoo, in most cases. Lectures and podcasts are usually recorded and uploaded after the fact, which is what Mictoo is built for. Otter shines when the transcription happens during the live event, which is rarely the constraint for these formats.',
+          q: 'Is Mictoo really free without a per-seat plan?',
+          a: 'Yes, free for files up to 60 MB per upload, no signup, no daily limit, no watermark. A 60-minute Zoom meeting MP4 with typical compression is around 50 MB. For larger files, downsample the audio with ffmpeg or split into chunks. Pro tier (larger files, batch upload) is planned for later, not required for current use.',
         },
       ]}
 
       cta={{
-        title: 'Transcribe your next recording without the live-meeting overhead',
-        text: 'Upload an interview, lecture, podcast, or any audio file. Transcript and summary back in under a minute, no workspace setup.',
-        button: 'Upload a recording',
+        title: 'Skip the bot, transcribe the recording yourself',
+        text: 'Self-record your next meeting with built-in tools, drop the file here, get the transcript and summary back in under a minute. No bot in the room, no per-seat bill.',
+        button: 'Upload a meeting recording',
       }}
 
       relatedLinks={[
@@ -230,9 +234,9 @@ export default function OtterAlternativePage() {
         { href: '/notta-alternative', label: 'Notta alternative' },
         { href: '/descript-alternative', label: 'Descript alternative' },
         { href: '/turboscribe-alternative', label: 'TurboScribe alternative' },
+        { href: '/zoom-transcription', label: 'Zoom transcription' },
+        { href: '/teams-meeting-transcription', label: 'Teams transcription' },
         { href: '/interview-transcription', label: 'Interview transcription' },
-        { href: '/lecture-transcription', label: 'Lecture transcription' },
-        { href: '/podcast-transcription', label: 'Podcast transcription' },
       ]}
     />
   )
