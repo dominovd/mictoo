@@ -16,13 +16,13 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'MP3 to WAV — free online converter | Mictoo',
+  title: 'MP3 to WAV, free online converter | Mictoo',
   description:
     'Convert MP3 to WAV free online. Expand compressed MP3 into uncompressed 16-bit/44.1 kHz WAV for audio editing. No signup, no watermark.',
   alternates: { canonical: 'https://mictoo.com/mp3-to-wav', languages: LANGS },
 
   openGraph: {
-    title: "MP3 to WAV — free online converter | Mictoo",
+    title: "MP3 to WAV, free online converter | Mictoo",
     description: "Convert MP3 to WAV free online. Expand compressed MP3 into uncompressed 16-bit/44.1 kHz WAV for audio editing. No signup, no watermark.",
     url: "https://mictoo.com/mp3-to-wav",
     siteName: "Mictoo",
@@ -31,7 +31,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MP3 to WAV — free online converter | Mictoo",
+    title: "MP3 to WAV, free online converter | Mictoo",
     description: "Convert MP3 to WAV free online. Expand compressed MP3 into uncompressed 16-bit/44.1 kHz WAV for audio editing. No signup, no watermark.",
     images: ["https://mictoo.com/opengraph-image"],
   },
@@ -51,41 +51,99 @@ export default function Mp3ToWavPage() {
         { icon: '⬇️', title: 'Download the WAV', desc: 'The WAV file is about ten times larger than the MP3 because it is uncompressed. Wiped from our servers within the hour.' },
       ]}
       whyUse={{ title: 'Why convert MP3 to WAV', bullets: [
-        { title: 'Audio editors prefer WAV', desc: 'Audacity, Adobe Audition, Logic, Pro Tools — they all open MP3 but most operations (precise editing, applying effects, normalising) work better on WAV. Converting first avoids the slight quality loss of repeated MP3 encodes.' },
-        { title: 'No additional quality loss on edits', desc: 'Each MP3 re-encode degrades audio slightly. Convert to WAV, do your edits, export back to MP3 at the end — that single round-trip is the best you can do.' },
+        { title: 'Audio editors prefer WAV', desc: 'Audacity, Adobe Audition, Logic, Pro Tools, they all open MP3 but most operations (precise editing, applying effects, normalising) work better on WAV. Converting first avoids the slight quality loss of repeated MP3 encodes.' },
+        { title: 'No additional quality loss on edits', desc: 'Each MP3 re-encode degrades audio slightly. Convert to WAV, do your edits, export back to MP3 at the end, that single round-trip is the best you can do.' },
         { title: 'Required by some legacy hardware and software', desc: 'Some old CD burning software, samplers, and recording gear only read WAV. Conversion is the bridge.' },
         { title: 'Forensic and broadcast use', desc: 'Forensic audio analysis and broadcast workflows traditionally use WAV because the format is well-understood and uncompressed. MP3 is acceptable for source material but WAV is the working format.' },
         { title: 'No watermark, no upsell', desc: 'Just decoded audio in a WAV container. We add nothing.' },
       ]}}
       useCases={{ title: 'When you would convert MP3 to WAV', items: [
         { title: 'Editing audio in Audacity, Reaper, Logic', desc: 'Convert to WAV first, then apply effects, cut, normalise, mix. Re-export to MP3 at the end if you need a small distribution file.' },
-        { title: 'Mastering for vinyl or CD', desc: 'Vinyl cutting and CD pressing both want lossless audio. If your only source is MP3, converting to WAV gives the mastering engineer something they can work with — though the audio quality is bounded by the MP3 source.' },
+        { title: 'Mastering for vinyl or CD', desc: 'Vinyl cutting and CD pressing both want lossless audio. If your only source is MP3, converting to WAV gives the mastering engineer something they can work with, though the audio quality is bounded by the MP3 source.' },
         { title: 'Sample preparation for a sampler', desc: 'Hardware samplers (Akai, Korg) often want WAV files at specific bit depths and sample rates.' },
         { title: 'Voiceover work for a video', desc: 'Some video editors (DaVinci, Premiere) handle MP3 fine but show better waveforms and apply effects more cleanly on WAV.' },
         { title: 'Forensic or transcription analysis', desc: 'Some specialised analysis tools require WAV input.' },
       ]}}
       proTips={{ title: 'Tips for MP3 to WAV conversion', tips: [
-        { title: 'WAV will be 10x the size of the MP3', desc: 'A 5 MB MP3 expands to roughly 50 MB as 16-bit/44.1 kHz WAV. The conversion does not restore lost quality — it just gives you a workable format.' },
+        { title: 'WAV will be 10x the size of the MP3', desc: 'A 5 MB MP3 expands to roughly 50 MB as 16-bit/44.1 kHz WAV. The conversion does not restore lost quality, it just gives you a workable format.' },
         { title: 'WAV quality is capped by the MP3', desc: 'You cannot make a 128 kbps MP3 sound like a CD by converting to WAV. The WAV just makes the existing audio editable without further compression loss.' },
         { title: 'For higher fidelity, ask for the original', desc: 'If you are doing serious mastering or restoration, get the lossless original (WAV, FLAC, ALAC) from the source. MP3 → WAV is a workaround, not an upgrade.' },
         { title: 'Sample rate matters for hardware', desc: 'Most hardware wants 44.1 kHz (CD) or 48 kHz (video). Our converter always outputs 44.1. If you need 48, open the WAV in Audacity and resample.' },
-        { title: '24-bit WAV — use Audacity', desc: 'Our converter outputs 16-bit WAV. For 24-bit, open the resulting WAV in Audacity and re-export with 24-bit float. The extra bit depth gives editing headroom even though the source audio is just 16-bit equivalent.' },
-        { title: 'Mono in, mono out — saves space', desc: 'If your MP3 is mono, the WAV is mono too — half the size of a stereo conversion. We preserve the source channel layout.' },
+        { title: '24-bit WAV, use Audacity', desc: 'Our converter outputs 16-bit WAV. For 24-bit, open the resulting WAV in Audacity and re-export with 24-bit float. The extra bit depth gives editing headroom even though the source audio is just 16-bit equivalent.' },
+        { title: 'Mono in, mono out, saves space', desc: 'If your MP3 is mono, the WAV is mono too, half the size of a stereo conversion. We preserve the source channel layout.' },
       ]}}
       faq={[
         { q: 'Is MP3 to WAV conversion really free?', a: 'Yes. No account up to 25 MB, no watermark, no time limit.' },
         { q: 'Why is the WAV so much bigger than the MP3?', a: 'MP3 uses perceptual compression to throw away audio data your ears barely notice. WAV stores every sample at full precision. A typical MP3 is one-tenth the size of the WAV equivalent.' },
-        { q: 'Will the WAV sound better than the MP3?', a: 'No. The MP3 already lost data during its original encoding. WAV preserves the audio as-is — it does not restore quality.' },
+        { q: 'Will the WAV sound better than the MP3?', a: 'No. The MP3 already lost data during its original encoding. WAV preserves the audio as-is, it does not restore quality.' },
         { q: 'What WAV format do you output?', a: '16-bit PCM, 44.1 kHz, source channel layout preserved (mono in → mono out, stereo in → stereo out).' },
         { q: 'How long does it take?', a: 'Seconds. Decoding MP3 is fast.' },
-        { q: 'Can I get 24-bit or 32-bit float WAV?', a: 'Not from this converter. Open our 16-bit WAV in Audacity and re-export with the bit depth you want — the extra bits give editing headroom even if the source audio precision is bounded by the MP3.' },
+        { q: 'Can I get 24-bit or 32-bit float WAV?', a: 'Not from this converter. Open our 16-bit WAV in Audacity and re-export with the bit depth you want, the extra bits give editing headroom even if the source audio precision is bounded by the MP3.' },
         { q: 'Do you keep my files?', a: 'No. Upload deleted after conversion. Output purged within the hour.' },
         { q: 'Can I batch convert?', a: 'Not yet on the free tier. Open multiple browser tabs.' },
         { q: 'What about 48 kHz sample rate?', a: 'We output 44.1 kHz (CD rate). For 48 kHz (video work), resample the WAV in Audacity after conversion.' },
-        { q: 'Why bother converting at all?', a: 'Mostly for audio editing. Audacity, Pro Tools, Logic — they all work better on WAV than on MP3, especially for repeated edits.' },
+        { q: 'Why bother converting at all?', a: 'Mostly for audio editing. Audacity, Pro Tools, Logic, they all work better on WAV than on MP3, especially for repeated edits.' },
         { q: 'Will the conversion fail for some MP3s?', a: 'Rarely. ffmpeg decodes essentially every standard MP3. A genuinely corrupted file might fail; otherwise it is reliable.' },
         { q: 'Should I keep both files?', a: 'For editing, work in WAV. For distribution, keep the MP3 too. Once editing is done, re-export from WAV to a fresh MP3 at the end of the chain.' },
       ]}
+      deepDive={
+        <article className="prose-content">
+          <h2>MP3 to WAV does not give you the audio back</h2>
+          <p>
+            The conversion is reversible at the container level (you get
+            a WAV file out) but not at the audio level (the WAV cannot
+            contain information the MP3 already discarded). MP3
+            compression works by removing audio data the human ear
+            usually does not perceive. That data is gone the moment the
+            MP3 was created. Converting back to WAV just puts the
+            compressed-then-decompressed audio into an uncompressed
+            container.
+          </p>
+          <p>
+            That sounds disappointing but it is exactly what most use
+            cases need. The reason to convert MP3 to WAV is rarely
+            "recover quality" (impossible) and usually "make the file
+            work with a tool that prefers WAV".
+          </p>
+          <h3>The audio editing use case</h3>
+          <p>
+            Most DAWs (Logic, Pro Tools, Reaper, Ableton) work better
+            on WAV than MP3. Repeated edits, fades, and effects on MP3
+            in a DAW can introduce artifacts because of how the DAW
+            handles the compressed source under the hood. Converting
+            to WAV first gives the DAW uncompressed audio to work on.
+            The starting quality is still bounded by the MP3 source,
+            but the editing chain does not introduce further loss.
+          </p>
+          <h3>The hardware sampler and legacy software case</h3>
+          <p>
+            Older hardware samplers (Akai MPC, AKAI S-series, Roland
+            SP-404) and some legacy DAWs accept only WAV or AIFF.
+            Loading an MP3 directly is impossible. The MP3 to WAV
+            conversion is the workaround. The sample quality is no
+            better than the source MP3 was; you are just changing the
+            container so the device can load the file.
+          </p>
+          <h3>Why we default to 16-bit 44.1 kHz</h3>
+          <p>
+            CD-quality is the standard reference and works in every
+            audio tool. Higher bit depth (24, 32-bit float) does not
+            recover audio information from the MP3 source but does
+            give you headroom for processing. If you need 24-bit
+            output, open the WAV in Audacity and re-export at 24-bit
+            after our conversion.
+          </p>
+          <h3>If you actually want quality, find the lossless source</h3>
+          <p>
+            If your goal is the best possible audio for editing or
+            archival, the right approach is to find the lossless
+            original (FLAC, ALAC, or WAV) of the recording, not to
+            convert from MP3. Bandcamp, Qobuz, and Tidal sell lossless
+            downloads for most music. For voice content, ask the
+            original recording owner for the WAV master if it exists.
+          </p>
+        </article>
+      }
       relatedLinks={[
         { href: '/wav-to-mp3', label: 'WAV to MP3', desc: 'The reverse direction.' },
         { href: '/flac-to-mp3', label: 'FLAC to MP3', desc: 'Lossless FLAC to portable MP3.' },

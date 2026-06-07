@@ -16,13 +16,13 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'WEBM to MP3 — free online converter | Mictoo',
+  title: 'WEBM to MP3, free online converter | Mictoo',
   description:
     'Convert WEBM to MP3 free online. Pull MP3 audio out of any WEBM video or audio file in seconds. No signup, no watermark. Up to 25 MB.',
   alternates: { canonical: 'https://mictoo.com/webm-to-mp3', languages: LANGS },
 
   openGraph: {
-    title: "WEBM to MP3 — free online converter | Mictoo",
+    title: "WEBM to MP3, free online converter | Mictoo",
     description: "Convert WEBM to MP3 free online. Pull MP3 audio out of any WEBM video or audio file in seconds. No signup, no watermark. Up to 25 MB.",
     url: "https://mictoo.com/webm-to-mp3",
     siteName: "Mictoo",
@@ -31,7 +31,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "WEBM to MP3 — free online converter | Mictoo",
+    title: "WEBM to MP3, free online converter | Mictoo",
     description: "Convert WEBM to MP3 free online. Pull MP3 audio out of any WEBM video or audio file in seconds. No signup, no watermark. Up to 25 MB.",
     images: ["https://mictoo.com/opengraph-image"],
   },
@@ -65,16 +65,16 @@ export default function WebmToMp3Page() {
         { title: 'WebRTC call recordings', desc: 'Some video conferencing tools record to WEBM. Convert before sending to clients or storing in a CRM that expects MP3.' },
       ]}}
       proTips={{ title: 'Tips for clean WEBM to MP3 conversion', tips: [
-        { title: 'WEBM with VP9 video is fine — we ignore the video stream', desc: 'You can drop a video WEBM (VP9 + Opus) into the converter. We strip the video and keep only audio. The result is the same size as if you had given us audio-only.' },
+        { title: 'WEBM with VP9 video is fine, we ignore the video stream', desc: 'You can drop a video WEBM (VP9 + Opus) into the converter. We strip the video and keep only audio. The result is the same size as if you had given us audio-only.' },
         { title: 'Opus audio decodes losslessly inside ffmpeg', desc: 'There is no second-loss issue going Opus → MP3. The perceptual encoding of MP3 at 128 kbps is the only thing that affects the result, not the input being a lossy format.' },
         { title: 'For voice, mono is enough but we keep stereo', desc: 'Our converter preserves the source channel layout. If your WEBM is mono (typical for voice recordings), the MP3 is mono. We do not upmix.' },
         { title: 'If conversion fails, the WEBM is probably partial', desc: 'WEBM streams sometimes get cut off mid-recording, leaving the container half-broken. Open in VLC and re-export as a new WEBM, or in a video editor, then try again.' },
-        { title: 'For YouTube downloads, prefer M4A directly if your downloader supports it', desc: 'If you control the download, picking M4A (AAC inside an MP4 container) skips this whole step — M4A plays everywhere MP3 does. Use 4K Video Downloader\'s "M4A" format option.' },
+        { title: 'For YouTube downloads, prefer M4A directly if your downloader supports it', desc: 'If you control the download, picking M4A (AAC inside an MP4 container) skips this whole step, M4A plays everywhere MP3 does. Use 4K Video Downloader\'s "M4A" format option.' },
         { title: 'Encrypted WEBMs from DRM will fail', desc: 'Some streaming services use WEBM with DRM. ffmpeg cannot decrypt those, and neither do we. The original WEBM has to be unprotected.' },
       ]}}
       faq={[
         { q: 'Is WEBM to MP3 conversion really free?', a: 'Yes. No account up to 25 MB, no watermark, no time-limited "trial". Display ads on the marketing pages cover server cost.' },
-        { q: 'What is the maximum file size?', a: '25 MB anonymously, 60 MB with a free account. WEBM is efficient — 25 MB usually represents 20-40 minutes of audio.' },
+        { q: 'What is the maximum file size?', a: '25 MB anonymously, 60 MB with a free account. WEBM is efficient, 25 MB usually represents 20-40 minutes of audio.' },
         { q: 'Can I convert WEBM video to MP3?', a: 'Yes. We strip the video stream and output only the audio. The MP3 is the same size whether the source was video or audio-only WEBM.' },
         { q: 'Does the MP3 sound worse than the WEBM?', a: 'Theoretically, slightly. Opus at the same bitrate is better than MP3. At 128 kbps the difference is inaudible for nearly all listeners on nearly all material.' },
         { q: 'How long does it take?', a: 'Seconds. A 25 MB WEBM file converts in 3-10 seconds. Upload speed is the bottleneck.' },
@@ -86,10 +86,62 @@ export default function WebmToMp3Page() {
         { q: 'Will iPhone or iTunes play the output?', a: 'Yes. MP3 plays everywhere, including all Apple devices and software.' },
         { q: 'Why convert instead of just keeping WEBM?', a: 'WEBM is fine on Chrome and Firefox, but iOS, many car stereos, older Bluetooth speakers, and a lot of professional audio software do not handle it. MP3 is universal.' },
       ]}
+      deepDive={
+        <article className="prose-content">
+          <h2>WEBM is what your browser natively produces</h2>
+          <p>
+            WEBM is the file format Chrome and Firefox write when a web
+            app records audio or video using the MediaRecorder API. It
+            is also the default output of most browser-based screen
+            recorders, several Linux audio recording apps, and the
+            backup local file from tools like Loom and Riverside. The
+            audio codec inside is almost always Opus (modern) or Vorbis
+            (older), both excellent for voice.
+          </p>
+          <h3>The screen-recording WEBM problem</h3>
+          <p>
+            Most WEBM files in the wild are screen recordings with both
+            audio and video tracks. The file is large because of the
+            video portion (often 80-95% of the bytes). For listening on
+            a phone or sharing as an audio file, the video is dead
+            weight. This converter strips the video entirely and
+            re-encodes just the audio as MP3, dropping the file size
+            roughly 10x.
+          </p>
+          <h3>Why Opus inside WEBM transcribes and plays so well</h3>
+          <p>
+            Opus is the modern voice-and-music codec, designed for
+            real-time communication (Discord, WhatsApp, Telegram all
+            use Opus). At 64-96 kbps, it sounds better than MP3 at the
+            same bitrate, especially for voice. Going Opus to MP3
+            actually loses some audio quality (MP3 is the older,
+            less-efficient format), but for casual listening in a
+            phone or car the difference is invisible.
+          </p>
+          <h3>YouTube downloader output explained</h3>
+          <p>
+            Tools like yt-dlp often default to WEBM because YouTube
+            serves WEBM streams natively (VP9 video + Opus audio). When
+            you download a YouTube video for "later listening" and end
+            up with a .webm file, this page is the standard next step:
+            extract the audio, re-encode as MP3, drop on phone or in
+            car. Some downloaders have an audio-only mode that skips
+            the video portion entirely, which is faster and cleaner.
+          </p>
+          <h3>When to keep the WEBM, when to convert</h3>
+          <p>
+            Keep the WEBM if your destination is a web browser or
+            Android device (both play WEBM natively). Convert to MP3 if
+            you need iOS, an older car stereo, a Bluetooth speaker
+            without Opus support, a podcast app that does not handle
+            WEBM, or any platform asking for an audio file specifically.
+          </p>
+        </article>
+      }
       relatedLinks={[
         { href: '/mp4-to-mp3', label: 'MP4 to MP3', desc: 'Same idea, MP4 source instead of WEBM.' },
         { href: '/wav-to-mp3', label: 'WAV to MP3', desc: 'Lossless WAV down to portable MP3.' },
-        { href: '/webm-to-text', label: 'WEBM to text', desc: 'Skip the MP3 — go straight to a transcript.' },
+        { href: '/webm-to-text', label: 'WEBM to text', desc: 'Skip the MP3, go straight to a transcript.' },
         { href: '/how-to-compress-audio', label: 'Compress audio', desc: 'If the MP3 is still too big to share.' },
       ]}
     />

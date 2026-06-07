@@ -1,8 +1,9 @@
 import ComparisonLayout from '@/components/ComparisonLayout'
 
 export const metadata = {
-  title: 'Notta Alternative — Free Transcription Without Monthly Limits | Mictoo',
-  description: 'Notta caps free users at 120 minutes per month and limits each transcription to 3 minutes. Mictoo is free, no signup, no monthly minute quota — powered by OpenAI Whisper.',
+  title: 'Notta Alternative: Audio Transcription Without the Workspace Complexity | Mictoo',
+  description:
+    'A simpler Notta alternative for occasional transcription. Upload a file, get the transcript, summary, and exports. No team workspace, no integration setup, no monthly subscription.',
   alternates: {
     canonical: 'https://mictoo.com/notta-alternative',
     languages: {
@@ -19,72 +20,218 @@ export const metadata = {
       'x-default': 'https://mictoo.com/notta-alternative',
     },
   },
-
   openGraph: {
-    title: "Notta Alternative — Free Transcription Without Monthly Limits | Mictoo",
-    description: "Notta caps free users at 120 minutes per month and limits each transcription to 3 minutes. Mictoo is free, no signup, no monthly minute quota — powered by OpenAI Whisper.",
-    url: "https://mictoo.com/notta-alternative",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Notta Alternative: Audio Transcription Without Workspace Complexity | Mictoo',
+    description: 'Upload a file, get a transcript with summary and exports. No team workspace, no subscription.',
+    url: 'https://mictoo.com/notta-alternative',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Notta Alternative — Free Transcription Without Monthly Limits | Mictoo",
-    description: "Notta caps free users at 120 minutes per month and limits each transcription to 3 minutes. Mictoo is free, no signup, no monthly minute quota — powered by OpenAI Whisper.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Notta Alternative: Transcription Without Workspace Complexity',
+    description: 'Upload a file, get a transcript. No workspace, no subscription.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function NottaAlternativePage() {
   return (
     <ComparisonLayout
-      badge="Comparison · Notta · Free"
-      h1={<>Notta Alternative<br /><span className="text-brand-600">No 120-Minute Monthly Cap</span></>}
-      subtitle="Notta is a popular all-in-one transcription tool, but the free tier caps you at 120 minutes per month and 3 minutes per file. Mictoo has no monthly quota and a single per-file limit — for free, no signup."
+      badge="Notta Alternative · Occasional use · Multilingual"
+      h1="Notta Alternative"
+      subtitle="A focused transcription tool for the times you need a transcript without the team workspace, integrations setup, or monthly plan. Drop your audio or video file, get the text, summary, and exports."
       competitorName="Notta"
-      rows={[
-        { label: 'Free tier',            mictoo: 'No monthly cap, 25 MB per file', them: '120 min/month, 3 min per file' },
-        { label: 'Account required',     mictoo: 'No', them: 'Yes (email signup)' },
-        { label: 'Paid plans',            mictoo: 'Free',  them: '$9 – $25 / user / month' },
-        { label: 'Per-file duration',     mictoo: '~25 min (file size cap)', them: '3 min (free) / 5 h (paid)' },
-        { label: 'Live transcription',    mictoo: 'No',  them: 'Yes (Notta Bot in meetings)' },
-        { label: 'AI summary',            mictoo: 'Yes, free',     them: 'Yes (paid)' },
-        { label: 'Transcription model',   mictoo: 'OpenAI Whisper', them: 'Proprietary' },
-        { label: 'Speaker labels',        mictoo: 'Manual edit',   them: 'Automatic (paid)' },
-        { label: 'Languages',             mictoo: '50+',           them: '100+ (paid plans)' },
-      ]}
-      whyMictoo={[
-        { icon: '⏳', title: 'No 3-minute per-file limit', desc: 'Notta\'s 3-minute free limit per file is too short for a podcast, lecture, or interview. Mictoo handles full ~25-minute audio files for free.' },
-        { icon: '🆓', title: 'No monthly minute quota', desc: 'Notta tracks every minute against a 120-min/month free quota. Mictoo only caps individual file size — drop one file or several, no minute counting.' },
-        { icon: '✨', title: 'AI summary on the free tier', desc: 'Notta puts AI summaries on paid plans. Mictoo generates a summary with key points and action items free, every time.' },
-      ]}
-      whenToChoose={{
+
+      quickFit={{
         mictoo: [
-          'You need to transcribe files longer than 3 minutes for free',
-          'You don\'t want to hit a 120-minute monthly cap',
-          'You want AI summary without paying',
-          'You don\'t need automatic speaker diarization',
+          'You transcribe occasionally and do not want a monthly plan',
+          'You record in multiple languages and need clean exports per file',
+          'You want TXT, SRT, VTT, DOCX without learning a workspace',
+          'You work solo or in a tiny team without shared transcript libraries',
+          'You want translation built into the tool, no extra subscription',
         ],
-        them: [
-          'You need a Notta Bot to join your meetings live',
-          'You need automatic speaker labels',
-          'You want a CRM-integrated workflow',
-          'You\'re fine paying for unlimited features',
+        competitor: [
+          'You run a team that needs a shared workspace of transcripts and notes',
+          'You rely on Notta integrations (Salesforce, Slack, Notion) inside daily workflow',
+          'You want a productivity hub with meeting recording, summary, and task tracking together',
+          'You use the Notta browser extension or mobile recorder as your primary capture tool',
+          'You need centralised meeting analytics and team transcript sharing',
         ],
       }}
-      faq={[
-        { q: 'Is Mictoo really free with no minute quota?', a: 'Yes. The only limit is the per-file size (25 MB, which fits roughly 25 minutes at typical podcast bitrates). There\'s no monthly minute tracking and no file count limit.' },
-        { q: 'Why does Notta limit free users so heavily?', a: "Notta uses a freemium model where the free tier is intentionally limited to encourage paid upgrades. Mictoo's model is ad-supported, so the free tier is generous by design." },
-        { q: 'How does Mictoo make money if it\'s free?', a: "Display ads (Google AdSense), shown in the loading state while a file is being transcribed. The transcript itself and the upload area are ad-free." },
-        { q: 'Does Mictoo support live meeting transcription?', a: 'No — Mictoo works on recorded files only. For live capture, use your meeting platform\'s built-in captions (Zoom, Google Meet, Teams) and upload the recording to Mictoo afterwards for a polished transcript.' },
-        { q: 'What languages does Mictoo support?', a: 'OpenAI Whisper handles 50+ languages with automatic detection — English, Spanish, French, German, Russian, Ukrainian, Japanese, Chinese, Arabic, Hindi, Korean, and many more. No need to select the language unless auto-detection picks wrong.' },
+
+      mainAngle={
+        <article className="prose-content">
+          <h2>The angle: transcription without the productivity workspace</h2>
+          <p>
+            Notta has grown from a transcription tool into a meeting-and-
+            productivity workspace: recordings, notes, summaries, action
+            items, integrations, team sharing. That bundle is useful for
+            teams that meet often and want everything in one place.
+          </p>
+          <p>
+            For occasional transcription it is overkill. If you record one
+            interview a month, transcribe a couple of lectures per
+            semester, or process the odd podcast episode, you do not need
+            a team workspace, you need a fast file-to-text tool.
+          </p>
+          <p>
+            Mictoo is that simpler tool. Drop a file, get the transcript
+            and summary, export TXT, SRT, VTT, or DOCX, copy quotes
+            wherever you need them. Multilingual files transcribe with
+            auto-detection across 50+ languages, and translation into
+            another language is one click. No workspace setup, no
+            integrations to configure, no per-seat plan.
+          </p>
+        </article>
+      }
+
+      rows={[
+        { label: 'Upload audio and video files', mictoo: 'Yes, drag-and-drop', them: 'Yes' },
+        { label: 'Team workspace with shared transcripts', mictoo: 'No', them: 'Yes, built around it' },
+        { label: 'Mobile recorder and browser extension', mictoo: 'No', them: 'Yes' },
+        { label: 'AI summary alongside transcript', mictoo: 'Yes, included', them: 'Yes, depending on plan' },
+        { label: 'Translation into another language', mictoo: 'Yes, GPT-4o-mini, one click', them: 'Depending on plan' },
+        { label: 'Multilingual transcription auto-detect', mictoo: 'Yes, 50+ languages', them: 'Yes, multiple languages' },
+        { label: 'Integrations (Slack, Notion, Salesforce)', mictoo: 'No', them: 'Yes, depending on plan' },
+        { label: 'SRT / VTT subtitle export', mictoo: 'Yes', them: 'Available' },
+        { label: 'TXT and DOCX export', mictoo: 'Yes, one click', them: 'Available' },
+        { label: 'Signup required', mictoo: 'No', them: 'Yes' },
+        { label: 'Best suited for', mictoo: 'Occasional, multilingual, solo workflow', them: 'Team-wide meeting and productivity hub' },
       ]}
+
+      whyMictoo={[
+        {
+          icon: '📂',
+          title: 'No workspace to set up, no team to onboard',
+          desc: 'Drop a file, read the transcript, export. The whole interface fits on one page. Useful for the freelance researcher, the solo translator, the part-time podcast host who needs a transcript today and might not need one again for two weeks.',
+        },
+        {
+          icon: '🌐',
+          title: 'Multilingual auto-detect with one-click translation',
+          desc: 'Whisper large-v3 detects the language automatically across 50+ options, including dialects and code-switched audio. Once you have the transcript, translate it to a different language with one click using GPT-4o-mini. No extra plan needed.',
+        },
+        {
+          icon: '📄',
+          title: 'Useful exports for solo and small-team workflows',
+          desc: 'TXT for plain text, DOCX for a Word document, SRT and VTT for subtitles. Copy to clipboard if you just want to paste into Notion, Pages, an email, or a CMS. No integration to set up, no permission scope to negotiate with a team admin.',
+        },
+        {
+          icon: '🆓',
+          title: 'Free for occasional use',
+          desc: 'Files up to 60 MB transcribe free, no signup, no watermark on exports. Useful when you only need transcription a few times a month and a subscription would sit unused most days.',
+        },
+      ]}
+
+      whenBetter={{
+        title: 'When Notta is the better fit',
+        items: [
+          'Your team needs a shared workspace of transcripts, notes, and meeting recordings with permissions and sharing controls. Notta is built around that team layer.',
+          'You rely on the Notta mobile app and browser extension as your primary recording tools, not a desktop file upload.',
+          'You want Slack, Notion, Salesforce, and similar integrations pushing transcripts and action items into team tools automatically.',
+          'You attend meetings constantly and want one productivity hub for recording, transcription, summaries, and task tracking together.',
+        ],
+      }}
+
+      workflow={[
+        {
+          title: 'Get your recording',
+          desc: 'Export from your meeting platform (Zoom, Teams, Meet), your phone, your podcast recorder, or any source that produces an audio or video file.',
+        },
+        {
+          title: 'Drop it into Mictoo',
+          desc: 'Drag the file onto the page. We accept MP3, M4A, WAV, MP4, MOV, WebM, FLAC, OGG, AAC, and most other common audio and video formats.',
+        },
+        {
+          title: 'Review transcript, summary, translation',
+          desc: 'Read the transcript with timestamps. Check the AI summary in the sidebar. If you need a translation, click the language picker and pick the target.',
+        },
+        {
+          title: 'Export or copy',
+          desc: 'Download TXT, SRT, VTT, or DOCX. Or copy the cleaned text straight to clipboard. Drop into Notion, Notes, an email, or wherever the transcript belongs in your workflow.',
+        },
+      ]}
+
+      useCases={{
+        title: 'When people pick Mictoo over Notta',
+        items: [
+          {
+            title: 'Occasional transcription, no subscription',
+            desc: 'Freelancers, students, journalists, researchers who need a transcript a few times a month. Paying for a Notta plan for that volume rarely pays off, especially if the workspace features go unused.',
+          },
+          {
+            title: 'Multilingual files with translation',
+            desc: 'Content creators recording in one language and shipping to another. Mictoo auto-detects across 50+ languages and lets you translate the transcript with one click, no separate plan tier needed.',
+          },
+          {
+            title: 'One-off podcast or interview file',
+            desc: 'A podcaster transcribing a guest interview for show notes, a journalist working on a single profile piece. Single-file workflow, no team workspace to share results inside.',
+          },
+          {
+            title: 'Document or caption deliverable',
+            desc: 'You need a clean SRT for a video, a DOCX of an interview transcript for a client, or a TXT to feed into another tool. Mictoo gives you the export, no intermediate workspace document layer.',
+          },
+        ],
+      }}
+
+      faq={[
+        {
+          q: 'Is Mictoo a good Notta alternative?',
+          a: 'Yes, if your need is occasional transcription, multilingual files, or one-off exports. Mictoo strips the workspace layer Notta adds on top and just gives you the transcript, summary, and exports. If you specifically want a team workspace with integrations, Notta is built for that.',
+        },
+        {
+          q: 'What is the main difference between Mictoo and Notta?',
+          a: 'Notta is a meeting and productivity workspace where transcription is one part of the bundle. Mictoo is just the transcription tool: upload a file, get the text, copy or export. No notes layer, no team sharing, no integration setup. Smaller surface, simpler workflow.',
+        },
+        {
+          q: 'Is Mictoo a team workspace like Notta?',
+          a: 'No. Mictoo has no team workspace, no shared transcript library, no permission and sharing layer. If a team workspace is the reason you chose Notta, Mictoo will not replace that. Mictoo fits the solo or tiny-team use case where the workspace would sit unused.',
+        },
+        {
+          q: 'Can I upload audio and video files?',
+          a: 'Yes. MP3, M4A, WAV, FLAC, OGG, AAC, MP4, MOV, WebM, and most other common formats. For video files we strip the video track and transcribe just the audio. Free for files up to 60 MB.',
+        },
+        {
+          q: 'Can I translate the transcript into another language?',
+          a: 'Yes. After transcription finishes, pick the target language from the dropdown and click Translate. The translation is generated by GPT-4o-mini and appears alongside the original transcript. No extra plan tier or subscription needed.',
+        },
+        {
+          q: 'How many languages does Mictoo support?',
+          a: '50+ languages with automatic detection, powered by Whisper large-v3. Includes major European, Asian, and South American languages, plus several regional dialects. You can also set the language manually if auto-detect mis-fires on short clips.',
+        },
+        {
+          q: 'Can I summarize the transcript?',
+          a: 'Yes. The AI summary appears alongside the transcript automatically as soon as transcription finishes. Useful for pulling main points from interviews, lectures, podcasts, or long meeting recordings.',
+        },
+        {
+          q: 'Can I export subtitles?',
+          a: 'Yes. Both SRT and VTT formats with timestamps that align to your original recording. Drop them into your video editor, YouTube, or any subtitle workflow.',
+        },
+        {
+          q: 'Is Mictoo free to try?',
+          a: 'Yes. Files up to 60 MB transcribe for free, no signup, no watermark on exports. Larger files are on the roadmap for the future Pro tier.',
+        },
+        {
+          q: 'Which tool should I choose for occasional multilingual work?',
+          a: 'Mictoo, in most cases. Occasional use plus multilingual content is exactly the gap a workspace tool overserves. Notta works fine for it but you pay for the workspace layer you do not use. Mictoo is the right fit when transcription is the entire job.',
+        },
+      ]}
+
+      cta={{
+        title: 'Try Mictoo with your next recording',
+        text: 'Upload an audio or video file and see if Mictoo fits your workflow. No workspace setup, no monthly plan, just transcript and exports.',
+        button: 'Upload a file to try',
+      }}
+
       relatedLinks={[
-        { href: '/turboscribe-alternative', label: 'TurboScribe Alternative' },
-        { href: '/otter-alternative', label: 'Otter Alternative' },
-        { href: '/podcast-transcription', label: 'Podcast Transcription' },
-        { href: '/', label: 'Try Mictoo' },
+        { href: '/otter-alternative', label: 'Otter alternative' },
+        { href: '/fireflies-alternative', label: 'Fireflies alternative' },
+        { href: '/turboscribe-alternative', label: 'TurboScribe alternative' },
+        { href: '/descript-alternative', label: 'Descript alternative' },
+        { href: '/multilingual-transcription', label: 'Multilingual transcription' },
+        { href: '/transcribe-audio-to-text', label: 'Audio to text' },
+        { href: '/transcribe-video-to-text', label: 'Video to text' },
       ]}
     />
   )

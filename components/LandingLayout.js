@@ -5,17 +5,42 @@ import { t } from '@/lib/i18n'
 /**
  * Reusable layout for all landing pages.
  *
- * Legacy props (still supported for older pages that have not been migrated):
- *   - features: [{icon, title, desc}]  — 3-card horizontal grid
+ * Rendering order (top to bottom):
+ *   1. Hero (badge + h1 + subtitle)
+ *   2. Tool (UploadZone by default, custom `tool` prop overrides)
+ *   3. valueBlock , short prose, "why this page" in 2-4 paragraphs
+ *   4. howItWorks , 3-step process
+ *   5. whyUse     , 4-5 benefit cards
+ *   6. useCases   , grid of specific use-case cards
+ *   7. proTips    , practical recommendations (e.g. "Best WAV settings")
+ *   8. deepDive   , long-form technical/historical prose (page-specific)
+ *   9. comparison , format-vs-format comparison block
+ *  10. faq        , accordion + FAQ JSON-LD
+ *  11. epilogueSection, optional extra section above CTA
+ *  12. CTA + relatedLinks
  *
- * New props (for pages migrated to the long-form template):
+ * Legacy props (still supported for older pages that have not been migrated):
+ *   - features: [{icon, title, desc}] , 3-card horizontal grid
+ *
+ * Page-content props:
  *   - howItWorks: [{icon, title, desc}]
  *   - whyUse:     { title?, bullets: [{title, desc}] }
  *   - useCases:   { title?, items:   [{title, desc}] }
  *   - proTips:    { title?, tips:    [{title, desc}] }
  *
+ * Long-form unique-content slots (added 2026-06-05 in response to AdSense
+ * "Low-value content" rejection, see memory
+ * project_mictoo_adsense_rejection_2026_06_05). All optional JSX nodes:
+ *   - valueBlock       JSX rendered right after Tool, 2-4 short paragraphs.
+ *                       Tool-first orientation, not academic prose.
+ *   - deepDive         JSX rendered below proTips, technical depth for
+ *                       SEO uniqueness + E-E-A-T signals.
+ *   - comparison       JSX rendered between deepDive and FAQ. Use for
+ *                       "Format vs other formats" tables / card grids.
+ *   - epilogueSection  JSX rendered between FAQ and CTA. Free slot.
+ *
  * Always supported:
- *   - faq:          [{q, a}]            — rendered as <details> accordion + JSON-LD
+ *   - faq:          [{q, a}]           , rendered as <details> accordion + JSON-LD
  *   - relatedLinks: [{href, label, desc?}]
  */
 export default function LandingLayout({
@@ -37,8 +62,13 @@ export default function LandingLayout({
   // Show the "paste YouTube URL" input above the file drop zone. Off by
   // default; enable only on pages where YouTube URL ingestion is the
   // primary intent (/youtube-to-text, /transcribe-video-to-text). Backed
-  // by transcriptapi.com — see lib/yt-transcript-provider.js.
+  // by transcriptapi.com, see lib/yt-transcript-provider.js.
   enableYouTubeUrl = false,
+  // Long-form unique-content slots; see top-of-file comment for ordering.
+  valueBlock,
+  deepDive,
+  comparison,
+  epilogueSection,
 }) {
   const locale = defaultLanguage || 'en'
 
@@ -74,10 +104,18 @@ export default function LandingLayout({
         </div>
       </section>
 
-      {/* Hero tool — UploadZone by default, custom node if `tool` prop given */}
+      {/* Hero tool, UploadZone by default, custom node if `tool` prop given */}
       <section id="tool" className="max-w-2xl mx-auto px-4 -mt-6 pb-12 pt-10 scroll-mt-20">
         {tool || <UploadZone defaultLanguage={defaultLanguage} locale={locale} enableYouTubeUrl={enableYouTubeUrl} />}
       </section>
+
+      {/* Quick value block, short prose right after the tool to orient
+          users on what this page is for, before the structured sections. */}
+      {valueBlock && (
+        <section id="value" className="max-w-3xl mx-auto px-4 py-8 scroll-mt-20">
+          {valueBlock}
+        </section>
+      )}
 
       {/* How it works (new template) */}
       {howItWorks?.length > 0 && (
@@ -178,6 +216,24 @@ export default function LandingLayout({
         </section>
       )}
 
+      {/* Technical deep-dive, page-specific long-form prose, placed below
+          the practical sections so the page stays tool-first up top. */}
+      {deepDive && (
+        <section id="deep-dive" className="max-w-3xl mx-auto px-4 py-12 scroll-mt-20">
+          {deepDive}
+        </section>
+      )}
+
+      {/* Format comparison, small table or card grid that links to
+          sibling format pages. Helps users decide which page is right. */}
+      {comparison && (
+        <section id="comparison" className="bg-slate-50 border-y border-slate-100 py-12 px-4 scroll-mt-20">
+          <div className="max-w-4xl mx-auto">
+            {comparison}
+          </div>
+        </section>
+      )}
+
       {/* FAQ accordion */}
       {faq?.length > 0 && (
         <section id="faq" className="bg-white border-y border-slate-100 py-16 px-4 scroll-mt-20">
@@ -221,8 +277,17 @@ export default function LandingLayout({
         </section>
       )}
 
-      {/* CTA */}
-      {(howItWorks || whyUse || useCases || proTips) && (
+      {/* Epilogue section (page-specific), renders between FAQ and CTA */}
+      {epilogueSection && (
+        <section className="max-w-3xl mx-auto px-4 py-10">
+          {epilogueSection}
+        </section>
+      )}
+
+      {/* Default CTA — suppressed when the page provides its own
+          epilogueSection (which always doubles as a page-specific CTA),
+          so we don't show two back-to-back "back to uploader" blocks. */}
+      {!epilogueSection && (howItWorks || whyUse || useCases || proTips) && (
         <section className="max-w-2xl mx-auto px-4 py-12 text-center">
           <h2 className="text-xl font-semibold text-slate-800 mb-3">
             {t(locale, 'landing.ctaTitle')}
