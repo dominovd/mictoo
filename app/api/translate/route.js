@@ -4,7 +4,12 @@ import OpenAI from 'openai'
 import { createClient as createSupabaseServerClient } from '@/lib/supabase/server'
 
 export const runtime = 'nodejs'
-export const maxDuration = 60
+// Vercel Pro allows up to 300s (5 min). Long transcripts at MAX_CHARS used
+// to hit the 60s default and surface as 504 to the user (27 fails in the
+// 2026-06-05 → 2026-06-08 log). The parallel-chunked translation below
+// usually finishes in under 30s but the higher cap is a safety net against
+// upstream OpenAI slowness.
+export const maxDuration = 300
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
 
@@ -72,13 +77,53 @@ const LANG_NAMES = {
   el: 'Greek', hu: 'Hungarian', ro: 'Romanian', ms: 'Malay',
 }
 
-// Hard cap to keep one request well under the model's context window AND
-// under the maxDuration budget. ~32k characters ≈ 5000-8000 tokens of typical
-// transcript text, which translates comfortably in under 30s.
+// Hard cap on the whole transcript per request. ~32k characters ≈ 5000-8000
+// tokens of typical transcript text. We chunk this further on our side so
+// each OpenAI call sees a much smaller payload (see CHUNK_CHARS).
 const MAX_CHARS = 32_000
 // Per-segment text cap — guards against a single absurdly-long segment
 // derailing the JSON shape. Segments are typically 5-20 words.
 const MAX_SEG_TEXT = 2000
+// Each chunk sent to gpt-4o-mini. Smaller chunks → faster individual
+// responses, less risk of any single chunk approaching maxDuration. Aiming
+// for ~10-15s per chunk; whole transcript translates in parallel below.
+const CHUNK_CHARS = 8_000
+
+// Translate one batch of segments via OpenAI JSON mode and return them in
+// the same { i, text } shape. Throws on any provider error so Promise.all
+// up the stack can short-circuit.
+async function translateChunk(chunk, targetName, sourceName) {
+  const payload = chunk.map(s => ({ i: s.i, text: s.text }))
+  const prompt = `Translate the following transcript segments from ${sourceName} to ${targetName}.
+
+Rules:
+- Translate the text content faithfully but naturally; do not paraphrase or summarize.
+- Preserve the segmentation: return exactly one translated entry per input entry, keyed by the same "i" index.
+- Do not merge or split segments. Do not add commentary, prefixes, or quotation marks.
+- For proper nouns (names, brands, product names, place names), keep the original spelling.
+- If a segment is too short to translate meaningfully (e.g. a single filler word), return the closest equivalent in ${targetName}.
+
+Return strictly valid JSON of shape:
+{ "segments": [ { "i": 0, "text": "..." }, { "i": 1, "text": "..." }, ... ] }
+
+Input segments:
+${JSON.stringify(payload)}`
+
+  const completion = await openai.chat.completions.create({
+    model: 'gpt-4o-mini',
+    response_format: { type: 'json_object' },
+    messages: [
+      { role: 'system', content: `You are a precise translator that outputs only valid JSON. You translate transcript segments into ${targetName} while preserving structure and timing.` },
+      { role: 'user', content: prompt },
+    ],
+    temperature: 0.2,
+  })
+
+  const raw = completion.choices?.[0]?.message?.content ?? '{}'
+  const parsed = JSON.parse(raw)
+  const arr = Array.isArray(parsed?.segments) ? parsed.segments : []
+  return arr
+}
 
 export async function POST(request) {
   try {
@@ -189,51 +234,48 @@ export async function POST(request) {
       ? LANG_NAMES[sourceLangRaw]
       : 'the source language'
 
-    // Build a single JSON-mode prompt. We pass segments as an indexed array
-    // and require the model to return them in the same order with `i` and
-    // translated `text`. Timing fields (start/end) are reassembled from the
-    // original on our side — no need to ask the model to echo them.
-    const payload = cleaned.map(s => ({ i: s.i, text: s.text }))
-    const prompt = `Translate the following transcript segments from ${sourceName} to ${targetName}.
+    // Split into char-bounded chunks so each OpenAI call sees a much smaller
+    // payload (~CHUNK_CHARS each). This:
+    //   1. Keeps any single completion well under the maxDuration budget.
+    //   2. Lets us fan-out via Promise.all for total wall-time ≈ slowest chunk.
+    //   3. Reduces the blast radius of a transient OpenAI hiccup — we can
+    //      retry just the failed chunk instead of the whole transcript.
+    const chunks = []
+    let current = []
+    let currentChars = 0
+    for (const seg of cleaned) {
+      if (currentChars + seg.text.length > CHUNK_CHARS && current.length) {
+        chunks.push(current)
+        current = []
+        currentChars = 0
+      }
+      current.push(seg)
+      currentChars += seg.text.length
+    }
+    if (current.length) chunks.push(current)
 
-Rules:
-- Translate the text content faithfully but naturally; do not paraphrase or summarize.
-- Preserve the segmentation: return exactly one translated entry per input entry, keyed by the same "i" index.
-- Do not merge or split segments. Do not add commentary, prefixes, or quotation marks.
-- For proper nouns (names, brands, product names, place names), keep the original spelling.
-- If a segment is too short to translate meaningfully (e.g. a single filler word), return the closest equivalent in ${targetName}.
-
-Return strictly valid JSON of shape:
-{ "segments": [ { "i": 0, "text": "..." }, { "i": 1, "text": "..." }, ... ] }
-
-Input segments:
-${JSON.stringify(payload)}`
-
-    let completion
+    // Fire all chunks in parallel. gpt-4o-mini TPM limits are very high
+    // (millions of tokens per minute on paid accounts), so 4-8 parallel
+    // small calls are fine. Per-chunk retry on transient errors.
+    let translated
     try {
-      completion = await openai.chat.completions.create({
-        model: 'gpt-4o-mini',
-        response_format: { type: 'json_object' },
-        messages: [
-          { role: 'system', content: `You are a precise translator that outputs only valid JSON. You translate transcript segments into ${targetName} while preserving structure and timing.` },
-          { role: 'user', content: prompt },
-        ],
-        temperature: 0.2,
-      })
+      const results = await Promise.all(
+        chunks.map(async (chunk) => {
+          // One retry on transient failure (OpenAI 5xx, network blip).
+          try {
+            return await translateChunk(chunk, targetName, sourceName)
+          } catch (err) {
+            console.warn('translate chunk retry after:', err?.message || err)
+            return await translateChunk(chunk, targetName, sourceName)
+          }
+        })
+      )
+      translated = results.flat()
     } catch (err) {
       console.error('translate openai error:', err?.message || err)
       return NextResponse.json({ error: 'Translation failed. Please retry.' }, { status: 502 })
     }
-
-    const raw = completion.choices?.[0]?.message?.content ?? '{}'
-    let parsed
-    try {
-      parsed = JSON.parse(raw)
-    } catch {
-      return NextResponse.json({ error: 'Translation response was not valid JSON.' }, { status: 502 })
-    }
-    const translated = Array.isArray(parsed?.segments) ? parsed.segments : null
-    if (!translated || !translated.length) {
+    if (!translated.length) {
       return NextResponse.json({ error: 'Empty translation response.' }, { status: 502 })
     }
 
