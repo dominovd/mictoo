@@ -3,7 +3,11 @@ import OpenAI from 'openai'
 import { createClient as createSupabaseServerClient } from '@/lib/supabase/server'
 
 export const runtime = 'nodejs'
-export const maxDuration = 30
+// Bumped 30 → 120 after log analysis 2026-06-05 → 2026-06-08 showed 3× 504
+// at the old 30s cap. Summarisation via gpt-4o-mini on long transcripts can
+// take 20-40s on cold start; 120s gives plenty of headroom without going to
+// the 300 ceiling unnecessarily.
+export const maxDuration = 120
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
 

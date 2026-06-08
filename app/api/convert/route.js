@@ -7,9 +7,11 @@ import { randomBytes } from 'node:crypto'
 import { del, put } from '@vercel/blob'
 
 export const runtime = 'nodejs'
-// 60s default; conversion of a 25 MB audio file to MP3 is normally 5-15s,
-// but a WAV→MP3 on a long file can take longer. Buffer for cold starts too.
-export const maxDuration = 60
+// Vercel Pro allows up to 300s. Conversion of a 25 MB audio file to MP3 is
+// normally 5-15s, but a 60 MB MP4→MP3 or long lossless source can take
+// 60-120s on cold start. Log analysis 2026-06-05 → 2026-06-08 showed 6× 504
+// hits at the old 60s cap; bumping to 300 gives ffmpeg breathing room.
+export const maxDuration = 300
 
 // Supported targets and their ffmpeg arguments. Each entry maps the target
 // extension to the codec/bitrate/format chain that produces a portable,
