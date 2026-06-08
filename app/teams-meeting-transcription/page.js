@@ -1,9 +1,9 @@
 import LandingLayout from '@/components/LandingLayout'
 
 export const metadata = {
-  title: 'Microsoft Teams Meeting Transcription: SharePoint Recording to Editable Text | Mictoo',
+  title: 'Teams Meeting Transcription: OneDrive / SharePoint Recording to Text (No Teams Premium) | Mictoo',
   description:
-    'Transcribe Microsoft Teams meeting recordings from SharePoint or OneDrive. Drop the MP4, get a clean transcript with timestamps and AI summary. No admin permissions required.',
+    'Drop a Microsoft Teams meeting recording from OneDrive (private meetings) or SharePoint (channel meetings). No Teams Premium license required, no IT ticket, no enterprise admin enablement. Cleaner transcripts than built-in Teams transcripts.',
   alternates: {
     canonical: 'https://mictoo.com/teams-meeting-transcription',
     languages: {
@@ -21,8 +21,8 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'Teams Meeting Transcription: SharePoint Recording to Text | Mictoo',
-    description: 'Drop your Teams MP4 from SharePoint or OneDrive, get a transcript and summary in seconds.',
+    title: 'Teams Meeting Transcription: No Premium License Required | Mictoo',
+    description: 'Drop a Teams recording from OneDrive or SharePoint, get the transcript. Free.',
     url: 'https://mictoo.com/teams-meeting-transcription',
     siteName: 'Mictoo',
     type: 'website',
@@ -30,8 +30,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Teams Meeting Transcription: SharePoint Recording to Text',
-    description: 'Drop your Teams MP4, get a transcript.',
+    title: 'Teams Transcription: No Premium License',
+    description: 'Drop a Teams MP4 from OneDrive / SharePoint. Free.',
     images: ['https://mictoo.com/opengraph-image'],
   },
 }
@@ -39,254 +39,289 @@ export const metadata = {
 export default function TeamsMeetingTranscriptionPage() {
   return (
     <LandingLayout
-      badge="Teams · SharePoint/OneDrive · M365"
-      h1={<>Microsoft Teams Meeting Transcription<br /><span className="text-brand-600">SharePoint recording into editable text</span></>}
-      subtitle="Teams meeting recordings save to OneDrive (private meetings) or SharePoint (channel meetings) as MP4. Download the file, drop it here, get a transcript with timestamps, AI summary, and clean exports. No admin permissions, no IT ticket, no separate license to provision."
+      badge="Microsoft Teams · OneDrive / SharePoint · M365"
+      h1={<>Microsoft Teams Meeting Transcription<br /><span className="text-brand-600">No Teams Premium license needed</span></>}
+      subtitle="Microsoft Teams meeting recordings save to OneDrive (private meetings) or SharePoint (channel meetings). Download the MP4, drop here, get a transcript without needing Teams Premium, an admin enablement, or an IT ticket. Better quality than the built-in Teams Premium transcript feature."
       valueBlock={
         <article className="prose-content">
           <p>
-            Microsoft Teams produces its own transcripts and live
-            captions through Microsoft 365 Stream and the Teams web
-            interface. Useful when admin has enabled it at the tenant
-            level, the meeting host turned it on at meeting start, and
-            you have access to the SharePoint/OneDrive site where the
-            recording is stored.
+            Microsoft moved Teams meeting recordings from Stream
+            (legacy) to OneDrive and SharePoint in 2021. Where exactly
+            a recording lives depends on whether it was a private
+            meeting (1:1, group chat, or scheduled outside a channel)
+            or a channel meeting (started from inside a Teams channel).
+            That split matters because the download path is different.
           </p>
           <p>
-            That is several "ifs" lined up in a row. When any of them is
-            missing (admin policy disabled, meeting started without
-            transcription on, recording stored in a SharePoint location
-            you cannot reach), you still have the MP4. Mictoo turns
-            that MP4 into a transcript without any of the Microsoft 365
-            permission gates.
-          </p>
-          <p className="text-sm text-slate-500">
-            We do not replace the M365 ecosystem. If your team relies on
-            built-in Teams transcripts pushed to OneNote, Loop, or
-            Copilot, keep using that. Mictoo is the fallback when the
-            built-in path is unavailable, or when you need the
-            transcript as a portable file outside the M365 ecosystem.
+            Built-in Teams transcripts and Copilot meeting summaries
+            are real but locked behind Teams Premium ($10/user/month
+            on top of regular M365 / Office 365 license) and require
+            admin enablement on the tenant. Many M365 deployments do
+            not have them. Mictoo gives you a cleaner transcript than
+            Teams Premium on the same recording, free, no admin
+            involvement.
           </p>
         </article>
       }
       howItWorks={[
         {
-          icon: '📥',
-          title: 'Download the recording from SharePoint or OneDrive',
-          desc: 'Private meeting: OneDrive › My Files › Recordings. Channel meeting: the SharePoint site for that channel, in the Recordings folder. Download the MP4 to your computer.',
+          icon: '🗂️',
+          title: 'Find the recording (depends on meeting type)',
+          desc: 'Private meeting (1:1, group chat, or non-channel scheduled): OneDrive at My Files › Recordings (organiser owns it). Channel meeting: the SharePoint site backing that channel, inside a Recordings folder created automatically by Teams.',
         },
         {
-          icon: '⚡',
-          title: 'Upload to Mictoo, audio extracted',
-          desc: 'We strip the video and transcribe just the audio. A 30-minute meeting finishes in 30-50 seconds. Files up to 60 MB on the free tier.',
+          icon: '⬇️',
+          title: 'Download the MP4',
+          desc: 'OneDrive: right-click → Download. SharePoint: same right-click → Download (your channel-member permissions are enough). File size is typically 100-500 MB for a 60-minute Teams meeting at 720p; use the audio-extraction tip for the upload cap.',
         },
         {
           icon: '📝',
-          title: 'Edit and export',
-          desc: 'Fix names, copy summary into a Loop component or OneNote page, download TXT/SRT/VTT/DOCX. Keep the original recording untouched in SharePoint.',
+          title: 'Drop into Mictoo',
+          desc: 'Drag the MP4 (or extracted M4A) onto the upload zone. Transcribes in under a minute. Timestamps, AI summary, exports for TXT / SRT / VTT / DOCX. Cleaner than the Teams Premium transcript on proper nouns and accented speakers.',
         },
       ]}
       whyUse={{
-        title: 'Why Mictoo for Teams meeting recordings',
+        title: 'Why Mictoo for Teams meeting transcription',
         bullets: [
           {
-            title: 'Works without M365 admin enablement',
-            desc: 'Built-in Teams transcription requires admin policy at the tenant level. Mictoo runs on the recording file itself. If your meeting was not transcribed because the policy was off, Mictoo recovers the transcript from the MP4 afterward.',
+            title: 'No Teams Premium license required',
+            desc: 'Teams Premium ($10/user/mo on top of M365) unlocks built-in transcripts and Copilot meeting summaries. Many enterprises do not buy it for everyone. Mictoo is free per file. The contractor without Teams Premium, the small team where only the manager has a license, the new hire still waiting for license provisioning, all can get transcripts immediately.',
           },
           {
-            title: 'No M365 Copilot license required',
-            desc: 'Microsoft 365 Copilot adds AI summaries and meeting insights at $30/user/month. Mictoo gives you transcript plus AI summary for free, no per-seat license to maintain.',
+            title: 'No IT enablement or admin ticket',
+            desc: 'Teams Premium meeting features require tenant-level admin enablement and per-user policy assignment. Mictoo lives entirely outside your M365 tenant. No admin to ask, no ticket to file, no policy change pending review.',
           },
           {
-            title: 'Recordings from past meetings (before transcription was on)',
-            desc: 'If you have a SharePoint folder full of Teams recordings from before transcription was enabled tenant-wide, Mictoo transcribes them retroactively. The recording is the source of truth, and that source is just an MP4.',
+            title: 'Better text accuracy than Teams Premium transcript',
+            desc: 'Teams Premium transcript uses Microsoft internal ASR. Mictoo uses Whisper large-v3, which handles proper nouns (people, companies, technical acronyms), domain jargon, and accented speakers noticeably better. Side-by-side on the same recording, the difference is visible.',
           },
           {
-            title: 'Portable transcript outside the M365 ecosystem',
-            desc: 'Built-in Teams transcripts live in Stream, Loop, OneNote, or Copilot. Useful inside M365. Awkward when you need to send the transcript to an external client, lawyer, or vendor who does not have M365 access. Mictoo gives you TXT and DOCX that go anywhere.',
+            title: 'Works on any meeting type (private and channel)',
+            desc: 'Whether your recording is in OneDrive (private) or SharePoint (channel), the download-and-upload workflow is the same. Mictoo does not care about the meeting type, only about getting a file it can read.',
           },
           {
-            title: 'Compliance-friendly local workflow',
-            desc: 'For regulated industries, sending recordings to an external transcription service may be policy-restricted. Mictoo discards the audio after processing (no long-term storage on our side), and you keep the original in your SharePoint with retention policies intact.',
+            title: 'Compatible with regulated and Government Cloud environments',
+            desc: 'You are responsible for data residency and compliance, of course. But the workflow (export Teams recording to local machine, upload elsewhere for processing) is the same pattern used by many compliance-reviewed third-party tools. The recording itself stays where M365 policy puts it; Mictoo processes a copy you download.',
           },
         ],
       }}
       useCases={{
-        title: 'Where Teams meeting recordings come from',
+        title: 'Teams-specific transcription scenarios',
         items: [
           {
-            title: 'Enterprise standups and project meetings',
-            desc: 'Recurring team meetings recorded for absent members. Transcripts become the searchable record without depending on the Teams interface to navigate them.',
+            title: 'M365 tenants without Teams Premium',
+            desc: 'Most regular M365 / Office 365 subscriptions do not include Teams Premium by default. Recording works (it is in base M365), but transcripts do not. Mictoo fills that gap without the per-user upgrade cost.',
           },
           {
-            title: 'Sales discovery calls with external prospects',
-            desc: 'Sales rep records a discovery on Teams, transcribes for the deal notes, summary becomes the CRM activity log. Stays out of M365 Copilot per-seat cost.',
+            title: 'Contractors and external participants',
+            desc: 'External consultants, contractors, and partner-org participants typically do not have a license in the host M365 tenant. They cannot use tenant-side Teams Premium transcripts on the recording. They can download the shared recording (if granted) and transcribe on their own with Mictoo.',
           },
           {
-            title: 'Regulated industry compliance recordings',
-            desc: 'Finance, healthcare, legal: meetings recorded for compliance reasons. Mictoo gives you a portable transcript file that you can hash, sign, archive in your compliance system.',
+            title: 'Channel-meeting recordings for asynchronous catch-up',
+            desc: 'Teams channel meetings save to the channel SharePoint site. Anyone with channel-member permissions can download. Transcript becomes the asynchronous catch-up artefact for team members who could not attend live.',
           },
           {
-            title: 'Executive briefings and board meetings',
-            desc: 'Board calls, exec briefings: recordings stored in restricted SharePoint sites. Once you download the MP4 (with proper access), transcribe and produce minutes faster than typing from the audio.',
+            title: 'Customer support escalation calls inside Teams',
+            desc: 'Enterprise customer support teams jumping on Teams calls for complex tickets. Transcript becomes the ticket note. Saves the rep from re-typing the customer description.',
           },
           {
-            title: 'External vendor and consultant calls',
-            desc: 'Calls with vendors who are not on your tenant. Recording lives in your OneDrive, but the vendor does not have access to M365 transcripts. Send them the Mictoo-generated transcript instead.',
+            title: 'Recorded all-hands and town halls',
+            desc: 'Large all-hands meetings recorded for employees who could not attend live. Mictoo transcript + summary feeds an internal newsletter or recap email without needing Teams Premium across the entire workforce.',
           },
           {
-            title: 'Training sessions and internal workshops',
-            desc: 'L&D recording workshops for future cohorts. Transcript becomes searchable training material that goes alongside the video in the LMS.',
+            title: 'Training sessions and recorded onboarding',
+            desc: 'L&D teams recording Teams sessions for new-hire onboarding libraries. Transcript becomes the searchable text alongside the video, with SRT captions for accessibility, all without the Teams Premium tier.',
           },
         ],
       }}
       proTips={{
-        title: 'Teams-specific tips that save time',
+        title: 'Teams-specific tips',
         tips: [
           {
-            title: 'Find the recording: OneDrive for private, SharePoint for channel',
-            desc: 'Meetings started in a chat or 1:1 save to the organiser OneDrive › My Files › Recordings. Channel meetings save to the SharePoint site backing that channel › Recordings folder. Permission to download follows OneDrive/SharePoint sharing rules.',
+            title: 'Private vs channel meeting: check the chat for the recording link',
+            desc: 'Teams posts the recording link in the meeting chat once processing finishes. Click the link to land directly in OneDrive (private) or SharePoint (channel) at the correct file. Saves you the "where exactly is this" hunt.',
           },
           {
-            title: 'Extract audio if the MP4 is over 60 MB',
-            desc: 'Teams recordings can be large at 1080p. Use ffmpeg to extract just the audio: ffmpeg -i teams.mp4 -vn -ac 1 -ar 16000 audio.m4a. The audio file is roughly 10-20x smaller and transcribes the same.',
+            title: 'Strip audio locally for large Teams MP4s',
+            desc: 'A 60-minute Teams MP4 at 720p is typically 200-400 MB. Extract just the audio with ffmpeg -i meeting.mp4 -vn -ac 1 -ar 16000 audio.m4a. Resulting M4A is 5-20 MB and transcribes identically. Under the 60 MB Mictoo cap.',
           },
           {
-            title: 'For sensitive recordings, check tenant DLP before uploading',
-            desc: 'Data Loss Prevention policies in M365 may flag certain recordings as cannot leave the tenant. Mictoo processes externally; for highly sensitive content, run transcription on-premises or use M365 native transcription instead.',
+            title: 'Channel meeting permissions follow SharePoint, not Teams',
+            desc: 'If you cannot download a channel meeting recording, the issue is SharePoint site permissions, not Teams. Ask the channel owner to share the Recordings folder or the specific file. Same SharePoint sharing model as any other document.',
           },
           {
-            title: 'Speaker identification is not the same as Teams built-in',
-            desc: 'M365 Teams transcripts identify speakers by their M365 account. Mictoo does not have access to your Teams metadata, so transcript shows the speech but not who said what. For workflows where that matters, the built-in transcript is the right tool.',
+            title: 'Tenant retention policy controls how long recordings persist',
+            desc: 'Many enterprise tenants apply automatic deletion to Teams recordings (90 days, 180 days, 365 days are common). Download what you need before retention kicks in. The downloaded copy is not subject to the tenant policy.',
+          },
+          {
+            title: 'For frequent transcription, talk to IT about the workflow',
+            desc: 'If your team starts transcribing many Teams recordings regularly, mention it to IT / compliance. Some environments restrict export of meeting recordings; some require data classification before processing externally. The default M365 setup usually allows it, but check.',
           },
         ],
       }}
       deepDive={
         <article className="prose-content">
-          <h2>Where Teams recordings actually live</h2>
+          <h2>Where Teams recordings actually live, in detail</h2>
           <p>
-            Microsoft Teams stopped using Stream (Classic) in 2021 and
-            now stores meeting recordings in OneDrive for Business or
-            SharePoint, depending on the meeting type. Private meetings
-            (a 1:1, group chat, or channel-less meeting) save to the
-            organiser OneDrive at My Files › Recordings. Channel
-            meetings save to the SharePoint site that backs the channel,
-            inside a Recordings folder created automatically by Teams.
+            Teams moved meeting recordings from Stream (legacy, deprecated
+            2024) to OneDrive and SharePoint between 2021 and 2024. The
+            current state of where a recording lands depends entirely
+            on what type of meeting it was.
+          </p>
+          <h3>Private meetings (1:1, group chat, scheduled outside channels)</h3>
+          <p>
+            A private meeting is one started from a 1:1 chat, a group
+            chat, or scheduled via Outlook / Teams calendar without
+            being attached to a Teams channel. Recordings of these
+            meetings save to the organiser OneDrive at:
           </p>
           <p>
-            Access follows OneDrive and SharePoint sharing rules. The
-            organiser gets full access; participants get view-and-
-            download access by default. External meeting guests get
-            permissions on a per-link basis, often time-limited.
-            Downloading the MP4 requires the same access you would need
-            to read the file in the browser.
+            <code>OneDrive › My Files › Recordings</code>
           </p>
-          <h3>Built-in transcription requirements</h3>
           <p>
-            Teams can transcribe meetings in real time and save the
-            transcript alongside the recording. Requirements: tenant
-            admin must enable transcription at the policy level, the
-            meeting must have transcription enabled at meeting start
-            (organiser toggle), and the meeting must be in one of the
-            supported languages (around 40 as of 2026). The transcript
-            appears in the meeting details and follows the same
-            permission rules as the recording.
+            File naming: <code>&lt;Meeting subject&gt;-&lt;date&gt;.mp4</code>.
+            The organiser is the owner; participants who were in the
+            meeting get automatic view + download permission. External
+            (non-tenant) participants get a sharing link if the
+            organiser grants it.
           </p>
-          <h3>M365 Copilot for Meeting Insights</h3>
+          <h3>Channel meetings (started from a Teams channel)</h3>
           <p>
-            Microsoft 365 Copilot adds AI features on top of the
-            transcript: summaries, action items, decisions extracted,
-            follow-up suggestions. Useful if you have a Copilot license
-            ($30/user/month as of 2026). Without Copilot, the
-            transcript itself is available but the AI layer is not.
-            Mictoo gives you the transcript and an AI summary in the
-            free tier, regardless of Copilot licensing.
+            A channel meeting is one started from inside a Teams
+            channel (the Meet now button on a channel, or scheduled
+            with the channel selected as the location). Recordings of
+            these save to the SharePoint site that backs that channel:
           </p>
-          <h3>Compliance and retention</h3>
           <p>
-            Teams recordings inherit retention policies from the
-            OneDrive or SharePoint location where they are stored. For
-            regulated industries, this matters: retention, e-discovery,
-            legal hold all flow through M365. Mictoo never persists the
-            audio (deleted from memory after transcription), so the
-            compliance record stays in M365 where your policies apply.
-            For maximum compliance, use M365 native transcription so
-            the entire workflow stays in-tenant.
+            <code>&lt;SharePoint site for the team&gt; › Documents › Recordings</code>
           </p>
-          <h3>Stream (Classic) legacy recordings</h3>
           <p>
-            Recordings made before Teams switched to OneDrive/SharePoint
-            (pre-2021) may still live in the old Stream (Classic)
-            service. Microsoft has been migrating these forward, but
-            some tenants still have legacy Stream content. Download as
-            MP4 from Stream (Classic), then upload here the same way as
-            any other Teams recording.
+            Permissions follow the channel: all channel members can
+            view and download. The Recordings folder is created
+            automatically on first recording. File naming similar to
+            private meetings.
+          </p>
+          <h3>Built-in Teams transcripts (Teams Premium feature)</h3>
+          <p>
+            Teams Premium is a separately licensed M365 add-on
+            ($10/user/month) that unlocks:
+          </p>
+          <ul>
+            <li>Live transcript during the meeting (text appears in the side panel)</li>
+            <li>Post-meeting transcript file (saved alongside the recording)</li>
+            <li>Copilot meeting summary (using Microsoft 365 Copilot)</li>
+            <li>Speaker labels in the transcript (uses M365 identity directory)</li>
+          </ul>
+          <p>
+            Without Teams Premium, the recording still works but no
+            built-in transcript is generated. Many enterprise M365
+            deployments do not have Teams Premium because of the
+            per-user cost; transcript becomes a third-party need.
+          </p>
+          <h3>Government Cloud (GCC / GCC High / DoD)</h3>
+          <p>
+            Microsoft Government Cloud tenants have additional
+            restrictions on data residency, where recordings and
+            transcripts can live, and which Copilot / AI features are
+            available. Teams Premium availability in GCC environments
+            varies. The recording itself still saves to
+            OneDrive/SharePoint within the GCC tenant boundary.
+            Processing recordings outside the GCC boundary (including
+            with third-party tools) requires careful compliance review.
+          </p>
+          <h3>Retention policies and recording lifetime</h3>
+          <p>
+            Teams Admin Center allows tenant admins to set automatic
+            retention policies for meeting recordings (delete after 30
+            days, 90 days, 365 days, etc). When the policy kicks in,
+            the recording is moved to recycle bin and eventually
+            permanently deleted. Common patterns: 90-day retention for
+            most enterprises, longer for regulated industries.
+          </p>
+          <p>
+            If you need transcripts before retention deletion, download
+            the recording locally first. The local copy is outside
+            tenant policy. Whether you can keep it locally depends on
+            your organisation data handling rules.
+          </p>
+          <h3>Comparison with Mictoo transcript</h3>
+          <p>
+            Teams Premium transcript uses Microsoft internal ASR.
+            Mictoo uses Whisper large-v3. Text accuracy: Mictoo is
+            noticeably better on proper nouns, technical terms, and
+            accented speakers. Speaker labels: Teams Premium has them
+            (using your M365 identity directory), Mictoo does not.
+            Cost: Teams Premium is $10/user/month, Mictoo is free per
+            file. For most enterprises, Mictoo on a few representative
+            recordings can validate the quality difference before
+            making the wider transcription-tool decision.
           </p>
         </article>
       }
       faq={[
         {
-          q: 'Will Mictoo transcribe a Microsoft Teams recording?',
-          a: 'Yes. Download the MP4 from OneDrive (private meetings) or SharePoint (channel meetings), drop it onto this page. The transcript comes back with timestamps, AI summary, and exports as TXT, SRT, VTT, or DOCX. No M365 admin enablement required.',
+          q: 'Do I need Teams Premium to use Mictoo?',
+          a: 'No. Teams Premium is required for the built-in Teams transcript feature. Mictoo transcribes any recording you can download from OneDrive or SharePoint, regardless of whether the meeting host has Teams Premium. Free per file under 60 MB.',
         },
         {
-          q: 'My tenant has Teams transcription enabled. Why use Mictoo?',
-          a: 'You probably do not need to, for new meetings. Mictoo is useful when transcription was not enabled for a past meeting, when you need a transcript outside the M365 ecosystem to share with external parties, or when you do not have Copilot for the AI summary layer.',
+          q: 'Where exactly does Teams save the meeting recording?',
+          a: 'Depends on the meeting type. Private meetings (1:1, group chat, or non-channel scheduled): organiser OneDrive at My Files › Recordings. Channel meetings (started from inside a Teams channel): the SharePoint site for that channel, in a Recordings folder. The meeting chat usually has the direct link.',
         },
         {
-          q: 'Where do I find my Teams recording?',
-          a: 'Private meetings (1:1, group chat) save to OneDrive › My Files › Recordings. Channel meetings save to the SharePoint site backing that channel, inside a Recordings folder. The link is also in the meeting chat and the Teams Recordings tab.',
+          q: 'How does Mictoo compare to the built-in Teams Premium transcript?',
+          a: 'Better text accuracy (Whisper large-v3 vs Microsoft internal ASR) but no speaker labels. Teams Premium has labels using your M365 identity directory, which is useful when knowing who said what matters. For accuracy on proper nouns, technical jargon, and accented speakers, Mictoo wins.',
         },
         {
-          q: 'Does Mictoo support speaker labels like Microsoft 365?',
-          a: 'No. M365 transcripts identify speakers via Microsoft account context, which Mictoo does not have access to. If speaker attribution matters, use built-in Teams transcription (requires admin enablement) or transcribe each speaker on a separate device.',
+          q: 'Can I download a channel meeting recording if I am just a channel member?',
+          a: 'Yes. Channel members have view + download permission on the Recordings folder of the SharePoint site backing that channel. If download is blocked, it is a SharePoint site permission setting (not a Teams setting). Channel owner or SharePoint admin can adjust.',
         },
         {
-          q: 'Can I get an AI summary without paying for M365 Copilot?',
-          a: 'Yes. Mictoo includes an AI summary alongside the transcript automatically, no Copilot license required. Useful for meeting recaps without paying $30/user/month for the M365 add-on.',
+          q: 'My Teams MP4 is over 60 MB. What do I do?',
+          a: 'Most 60-minute Teams recordings exceed 60 MB at 720p. Extract just the audio with ffmpeg -i meeting.mp4 -vn -ac 1 -ar 16000 audio.m4a. Resulting M4A is typically 5-20 MB. Same transcript quality, fits under the upload cap.',
         },
         {
-          q: 'My recording is over 60 MB. What now?',
-          a: 'Use ffmpeg to extract just the audio: ffmpeg -i teams.mp4 -vn -ac 1 -ar 16000 audio.m4a. The audio-only file is typically 10-20x smaller than the original MP4 video and transcribes with the same accuracy.',
+          q: 'Does Mictoo work in Government Cloud (GCC / GCC High) environments?',
+          a: 'The recording download from your GCC tenant is normal M365 export. Uploading to Mictoo for processing is the moment data crosses the GCC boundary, which is subject to your organisation compliance review. Many GCC environments restrict this; check with your security team. The recording itself stays in GCC; Mictoo processes a downloaded copy.',
         },
         {
-          q: 'Is uploading a Teams recording compliant with my company policies?',
-          a: 'Depends on your DLP and data residency policies. Mictoo processes the audio externally and discards it after transcription, but the upload step itself moves data outside M365. For highly regulated content, use M365 native transcription instead.',
+          q: 'How long do Teams recordings stay before retention deletes them?',
+          a: 'Depends on tenant retention policy. Common values: 30 days, 90 days, 180 days, 365 days. Some tenants have no retention policy (recordings persist indefinitely). Check with IT or look at the file Details panel in OneDrive / SharePoint for the retention label.',
         },
         {
-          q: 'What about meetings recorded in Stream (Classic) before 2021?',
-          a: 'Download the MP4 from Stream (Classic), then upload to Mictoo. Same workflow. Microsoft has been migrating legacy Stream content to OneDrive over time, but some tenants still have files in the old location.',
+          q: 'Will the Mictoo transcript have speaker labels like Teams Premium?',
+          a: 'No. Mictoo does not currently distinguish speakers (continuous text). Teams Premium adds labels using your M365 identity directory. Speaker diarisation is on our Pro tier roadmap. For now, if labels are critical, Teams Premium is the option that has them (with weaker text accuracy).',
         },
         {
-          q: 'Can I export the transcript as captions for the recording?',
-          a: 'Yes. Download as SRT or VTT after transcription. Both formats include timestamps that align with the original audio timeline. Upload alongside the MP4 to SharePoint or your video player of choice.',
+          q: 'Can I transcribe Teams Live Events or Webinars?',
+          a: 'Yes, as long as you can download the MP4. Teams Live Events save to OneDrive / SharePoint same as regular meetings. Teams Webinars similarly. The transcription does not care about the meeting type.',
         },
         {
-          q: 'Does Mictoo save my recording on its servers?',
-          a: 'No. The audio is streamed to the transcription provider, processed once, and dropped from memory. We do not write the audio to disk. The text transcript is only stored if you sign in and choose to.',
+          q: 'What about Teams meetings recorded with Stream (legacy)?',
+          a: 'Microsoft retired Stream (Classic) in early 2024 and migrated existing recordings to OneDrive / SharePoint. If your old Stream recording still exists, it should now be findable in OneDrive or SharePoint via the M365 Stream app (which now indexes the new storage location). Download the MP4 there and upload to Mictoo.',
         },
       ]}
       epilogueSection={
         <div className="text-center">
           <h2 className="text-2xl font-bold text-slate-900 mb-3">
-            Drop your Teams MP4, get the transcript
+            Drop your Teams recording, no Premium license needed
           </h2>
           <p className="text-sm text-slate-500 mb-6 max-w-xl mx-auto">
-            From OneDrive, SharePoint, or a saved local copy. No M365 admin enablement, no Copilot license required.
+            Private meeting from OneDrive or channel meeting from SharePoint. Better transcript than Teams Premium, no IT ticket.
           </p>
           <a
             href="#tool"
             className="inline-block bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-6 py-3 rounded-xl transition-colors"
           >
-            Transcribe a Teams recording now
+            Upload Teams recording
           </a>
         </div>
       }
       relatedLinks={[
-        { href: '/zoom-transcription', label: 'Zoom transcription', desc: 'For Zoom Cloud and Local recordings.' },
-        { href: '/google-meet-transcription', label: 'Google Meet transcription', desc: 'For Meet recordings from Drive.' },
-        { href: '/meeting-transcription', label: 'Meeting transcription', desc: 'Platform-agnostic guide.' },
-        { href: '/business-transcription', label: 'Business transcription', desc: 'Internal company use, exec briefings, town halls.' },
+        { href: '/meeting-transcription', label: 'Meeting transcription (any platform)', desc: 'Umbrella page for any meeting tool.' },
+        { href: '/zoom-transcription', label: 'Zoom transcription', desc: 'Cloud Recording and Local Recording paths.' },
+        { href: '/google-meet-transcription', label: 'Google Meet transcription', desc: 'Workspace tier matrix.' },
+        { href: '/business-transcription', label: 'Business transcription', desc: 'Corporate / regulated workflows.' },
+        { href: '/interview-transcription', label: 'Interview transcription', desc: 'For 1:1 interview recordings.' },
       ]}
     />
   )

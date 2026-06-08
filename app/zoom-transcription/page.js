@@ -1,9 +1,9 @@
 import LandingLayout from '@/components/LandingLayout'
 
 export const metadata = {
-  title: 'Zoom Transcription: Turn Cloud and Local Recordings into Editable Text | Mictoo',
+  title: 'Zoom Transcription: Cloud Recording & Local MP4 to Text (Better than Zoom Pro Transcripts) | Mictoo',
   description:
-    'Drop your Zoom Cloud Recording or Local Recording MP4 and get a clean transcript with timestamps, summary, and exports. Works with or without Zoom AI Companion.',
+    'Drop a Zoom Cloud Recording MP4 or M4A audio-only download and get cleaner text than Zoom built-in transcripts. No Pro+ tier required, no AI Companion license, no cloud quota burned on transcription overhead.',
   alternates: {
     canonical: 'https://mictoo.com/zoom-transcription',
     languages: {
@@ -21,8 +21,8 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'Zoom Transcription: Cloud and Local Recordings | Mictoo',
-    description: 'Drop your Zoom recording and get a transcript with summary in under a minute.',
+    title: 'Zoom Transcription: Better than Zoom Built-In Transcripts | Mictoo',
+    description: 'Drop Zoom Cloud Recording MP4 or M4A. Cleaner than Zoom transcripts, no Pro tier required.',
     url: 'https://mictoo.com/zoom-transcription',
     siteName: 'Mictoo',
     type: 'website',
@@ -30,8 +30,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Zoom Transcription: Cloud and Local Recordings',
-    description: 'Drop your Zoom recording, get a transcript with summary.',
+    title: 'Zoom Transcription: No Pro Tier Required',
+    description: 'Better than Zoom built-in transcripts. Free.',
     images: ['https://mictoo.com/opengraph-image'],
   },
 }
@@ -39,252 +39,285 @@ export const metadata = {
 export default function ZoomTranscriptionPage() {
   return (
     <LandingLayout
-      badge="Zoom · MP4 · Cloud or Local Recording"
-      h1={<>Zoom Transcription<br /><span className="text-brand-600">From Cloud or Local recording to clean text</span></>}
-      subtitle="Drop a Zoom Cloud Recording MP4 or a Local Recording from your computer. The transcript comes back with timestamps you can click, an AI summary in the sidebar, and exports for TXT, SRT, VTT, and DOCX."
+      badge="Zoom · Cloud Recording / Local MP4 / M4A audio"
+      h1={<>Zoom Transcription<br /><span className="text-brand-600">Better than Zoom built-in transcripts</span></>}
+      subtitle="Drop a Zoom Cloud Recording MP4 (or the M4A audio-only download) and get a cleaner transcript than Zoom audio transcript feature, without needing a Pro+ license, AI Companion add-on, or cloud quota spent on transcription overhead."
       valueBlock={
         <article className="prose-content">
           <p>
-            Zoom records meetings in two places: the cloud (if your plan
-            allows it) and locally on the host computer. Either way, the
-            output is an MP4 with the meeting audio inside, plus a few
-            other files (chat log, gallery view video, audio-only M4A).
-            Drop any of them here and we will return the transcript.
+            Zoom has its own audio-transcript feature inside Cloud
+            Recording (Pro and higher) and a newer AI Companion that
+            generates summaries. They work, but the ASR underneath is
+            noticeably weaker than Whisper large-v3 for proper names,
+            technical jargon, and accented speakers, and both features
+            require specific paid tiers.
           </p>
           <p>
-            Zoom AI Companion does its own live transcription during the
-            meeting, but that transcript is locked inside the Zoom web
-            portal and limited to certain plans. If you need the
-            transcript as a portable file, want to feed it into your own
-            workflow, or recorded without AI Companion enabled, this
-            page is the simpler path.
-          </p>
-          <p className="text-sm text-slate-500">
-            Free for files up to 60 MB. A typical Zoom Cloud Recording
-            audio-only M4A of an hour-long meeting is around 25 MB.
-            Larger gallery-view video files may need splitting first; see
-            <a href="/how-to-compress-audio" className="text-brand-600 hover:underline ml-1">how to compress audio</a>.
+            Mictoo gives you the transcript on top of the recording
+            you already have, regardless of your Zoom plan. Free Zoom
+            account with Local Recording? Works. Pro account with
+            Cloud Recording but no AI Companion license? Works.
+            Recording that someone shared with you? Works. Drop the
+            MP4 or M4A, get the text in under a minute.
           </p>
         </article>
       }
       howItWorks={[
         {
-          icon: '📥',
-          title: 'Get the Zoom recording',
-          desc: 'Cloud recordings download from zoom.us/recording, local recordings live in the Zoom folder on your computer (Documents/Zoom/[meeting_id]). Audio-only M4A is the smallest and uploads fastest.',
+          icon: '☁️',
+          title: 'Get the recording (Cloud or Local)',
+          desc: 'Cloud Recording: zoom.us → Recordings → click the meeting → Download. You get both the MP4 (full video) and an M4A audio-only file. Local Recording: ~/Documents/Zoom/<date>/<meeting>/audio_only.m4a on Mac, Documents\\Zoom\\... on Windows.',
+        },
+        {
+          icon: '🎵',
+          title: 'Prefer M4A audio-only (10× smaller)',
+          desc: 'Zoom Cloud Recording exports an M4A audio-only file alongside the MP4. The M4A is roughly 10× smaller (60-minute meeting: ~25 MB vs ~300 MB MP4) and transcribes identically. Use the MP4 only if you need the video for something else.',
         },
         {
           icon: '⚡',
-          title: 'Transcribe with Whisper large-v3',
-          desc: 'We accept MP4 (video plus audio) and M4A (audio only). For video files we strip the video and transcribe just the audio. A 45-minute meeting usually finishes in 45-60 seconds.',
-        },
-        {
-          icon: '📝',
-          title: 'Edit, export, share',
-          desc: 'Fix wrong names inline. Download TXT for the plain text, SRT/VTT for captions on the recording, DOCX for a Word doc. Or copy the AI summary straight into a meeting recap email.',
+          title: 'Drop into Mictoo',
+          desc: 'Drag the M4A or MP4 onto the upload zone. A 30-minute Zoom meeting transcribes in 30-50 seconds with timestamps, AI summary, and exports for TXT, SRT, VTT, DOCX.',
         },
       ]}
       whyUse={{
-        title: 'Why use Mictoo for Zoom recordings',
+        title: 'Why Mictoo over Zoom built-in transcripts',
         bullets: [
           {
-            title: 'Works for any Zoom plan',
-            desc: 'Zoom AI Companion transcription requires specific paid plans (Pro, Business, Enterprise). Mictoo works with the recording itself, regardless of which Zoom plan produced it. Useful for one-off recordings, external accounts, or after a plan downgrade.',
+            title: 'Whisper large-v3 vs older Zoom ASR',
+            desc: 'Zoom audio transcripts use an older speech-recognition stack. Whisper large-v3 handles proper nouns (people, companies, products), technical jargon, and accented speakers noticeably better. The difference shows on the first real meeting you compare.',
           },
           {
-            title: 'Cloud Recording, Local Recording, audio-only, all accepted',
-            desc: 'Drop the MP4 gallery-view, the speaker-view, or the audio-only M4A from a Cloud Recording. Or the .mp4 from a Local Recording in your Documents/Zoom folder. We extract the audio track and transcribe the same way.',
+            title: 'No Zoom Pro+ tier required for transcription',
+            desc: 'Zoom audio transcript feature requires Pro, Business, or higher tier. Zoom AI Companion (for summaries) requires the AI Companion add-on license. Mictoo is free per file. Run it on recordings from any Zoom account, including Free.',
           },
           {
-            title: 'Portable transcript, not locked in a vendor portal',
-            desc: 'The transcript is yours to download as TXT, SRT, VTT, or DOCX. No Zoom account required to access it later, no portal to navigate, no per-seat license to maintain just to read meetings you already recorded.',
+            title: 'No cloud quota spent on transcription metadata',
+            desc: 'Zoom Cloud Recording storage is metered. Audio transcripts and AI summaries add to that storage budget on your Zoom account. Mictoo transcription happens entirely off Zoom, so your Zoom cloud quota goes to the recordings themselves, not transcription artefacts.',
           },
           {
-            title: 'AI summary built into the same workflow',
-            desc: 'Once the transcript finishes, an AI summary appears alongside. Useful for sending a meeting recap to people who could not attend, or for capturing the gist without reading the full hour of text.',
+            title: 'Works on shared / inherited recordings',
+            desc: 'Someone shared a Zoom Cloud Recording link with you. You can download the MP4 even on a Free account. Drop into Mictoo for the transcript. No need for the recording owner to enable transcripts on their account or to have a specific tier.',
           },
           {
-            title: 'No bot in the meeting',
-            desc: 'You record with Zoom built-in recording (Cloud or Local), then upload here afterward. No third-party assistant joining the call, no calendar OAuth, no participant added to the participant list.',
+            title: 'Same tool for Local Recording (no cloud at all)',
+            desc: 'Zoom Local Recording (the Record button → To this Computer option) saves directly to disk on any account tier including Free. Drop those files in the same way. No cloud step in the pipeline at all if you do not want one.',
           },
         ],
       }}
       useCases={{
-        title: 'Where Zoom recordings come from',
+        title: 'Zoom-specific transcription scenarios',
         items: [
           {
-            title: 'Sales discovery calls',
-            desc: 'Cloud Recording the external sales call, transcribing afterward to capture key quotes for the deal notes and the CRM. Faster than typing notes during the call.',
+            title: 'Client calls and consulting sessions',
+            desc: 'Recorded Zoom calls with clients. Transcript becomes the input for the follow-up email, project notes, and the deliverable doc. AI summary saves the "what did we agree on" recap step.',
           },
           {
-            title: 'Customer support escalations',
-            desc: 'Recording a support call so the engineering team can review the customer description verbatim, with the transcript as the searchable record.',
+            title: 'Recruiter and candidate screens',
+            desc: 'Zoom interviews recorded for the hiring team to review asynchronously. Transcript helps the next-stage interviewer prep without re-watching the full 45 minutes.',
           },
           {
-            title: 'User research interviews',
-            desc: 'UX researchers recording 30-60 minute user interviews on Zoom. Transcript becomes the source of pull quotes, themes, and journey insights without listening to the audio twice.',
+            title: 'Webinar recordings (Zoom Webinar product)',
+            desc: 'Recorded webinars from Zoom Webinar product. Transcript becomes the SEO-friendly text companion to the video replay. Summary feeds the recap blog post or email to non-attendees.',
           },
           {
-            title: 'Webinars and virtual events',
-            desc: 'Hosted a Zoom Webinar, want a transcript for show notes, accessibility, or content repurposing into a blog post. Drop the MP4, get the full text.',
+            title: 'Podcast guests recorded over Zoom',
+            desc: 'Many indie podcasts record on Zoom. The audio-only M4A from Cloud Recording (or Local Recording) becomes the input for both the episode edit and the transcript for show notes.',
           },
           {
-            title: 'All-hands meetings and town halls',
-            desc: 'Recording a company-wide meeting for people in other timezones. Transcript plus AI summary is faster to skim than watching the 60-minute replay.',
+            title: 'User research interviews on Zoom',
+            desc: 'PMs and researchers running customer interviews on Zoom. Transcript IS the research data. Drop into research repo with the recording link for source.',
           },
           {
-            title: 'External interviews and podcast recordings',
-            desc: 'Many podcasters use Zoom as their interview platform. The Cloud Recording is the source. Transcript becomes show notes and episode pages.',
+            title: 'Recorded meetings for team members who could not attend',
+            desc: 'Async-friendly culture: record the meeting, transcribe, share the summary + transcript link. Saves a 60-minute meeting watch for someone who just needs the highlights.',
           },
         ],
       }}
       proTips={{
-        title: 'Zoom-specific tips that save time',
+        title: 'Zoom-specific tips',
         tips: [
           {
-            title: 'Download the audio-only M4A, not the full video MP4',
-            desc: 'Zoom Cloud Recording produces multiple files. The audio-only M4A is roughly one-tenth the size of the gallery-view MP4. For transcription only, the audio file is faster to upload and the transcript quality is identical.',
+            title: 'Always download the M4A audio-only, not the MP4 video',
+            desc: 'Cloud Recording portal offers separate downloads: Shared Screen with Speaker View (MP4 video), Audio Only (M4A), Chat File (TXT). Pick Audio Only. The MP4 is 10× bigger and transcribes the same.',
           },
           {
-            title: 'For Local Recording, use Documents/Zoom path',
-            desc: 'Local Recordings save to ~/Documents/Zoom/ on Mac and Linux, Documents\\Zoom\\ on Windows, organised by date and meeting ID. The audio_only.m4a inside each meeting folder is what you want.',
+            title: 'For Local Recording, look in the audio_only.m4a file',
+            desc: 'Zoom Local Recording produces several files: zoom_0.mp4 (video), audio_only.m4a (audio), chat.txt (chat). Upload audio_only.m4a directly. Smaller, faster, same transcript.',
           },
           {
-            title: 'Enable speaker view recording for better speaker tracking',
-            desc: 'Speaker view recordings give clearer attribution in the transcript because there is typically less audio overlap when only one person at a time is foregrounded. Useful for interview and panel formats.',
+            title: 'Speaker view vs gallery view: no transcript difference',
+            desc: 'The video layout you choose (gallery, speaker, side-by-side) affects only the video. The audio track is identical. So the layout you recorded with does not change transcription quality.',
           },
           {
-            title: 'For 90+ minute meetings, split the recording first',
-            desc: 'Beyond 60 MB the upload fails. For long all-hands or workshop recordings, use Audacity or QuickTime to split the M4A into chunks under 60 MB each, transcribe each part separately, concatenate the resulting text.',
+            title: 'For multi-speaker meetings, expect continuous text',
+            desc: 'Mictoo does not currently distinguish speakers ("Speaker 1: ... Speaker 2: ..."). Zoom built-in transcript does add speaker labels but with lower text accuracy. Trade-off; for now, choose accuracy. Diarisation is on our Pro roadmap.',
+          },
+          {
+            title: 'Cloud Recording quota cleanup: keep raw, delete transcripts',
+            desc: 'If you keep your Zoom Cloud Recording but want to reduce quota, deleting the auto-generated audio transcript file inside the recording reduces storage. The MP4/M4A stays; the JSON transcript Zoom generated goes. Then run Mictoo on the audio for a better transcript on your side.',
           },
         ],
       }}
       deepDive={
         <article className="prose-content">
-          <h2>Zoom recording in plain terms</h2>
+          <h2>Zoom recording mechanics, in detail</h2>
           <p>
-            Zoom records meetings in two distinct ways. Cloud Recording
-            saves to Zoom servers and is available from zoom.us/recording
-            after the meeting ends (with a 5-30 minute processing delay).
-            Local Recording saves directly to the host computer in
-            real-time, no cloud upload required. Cloud is convenient and
-            shareable; Local is faster, free of cloud-storage quotas, and
-            works on free Zoom accounts.
+            Zoom has two recording modes with quite different file
+            outputs and storage paths. Understanding which one your
+            meeting used is the only friction step in getting the
+            recording to Mictoo.
           </p>
-          <h3>What files Zoom produces</h3>
+          <h3>Cloud Recording (Pro and higher)</h3>
           <p>
-            For each recording, Zoom writes several files. The main one
-            is the gallery-view MP4 (everyone visible). There is usually
-            a speaker-view MP4 (active speaker only), an audio-only M4A
-            (just the meeting audio), a chat log if the meeting had chat
-            messages, and sometimes individual per-participant audio
-            files. For transcription purposes, the audio-only M4A is the
-            best starting point: smallest file, fastest upload, identical
-            transcript quality to the gallery-view video.
+            When a meeting is recorded to Cloud, Zoom stores the
+            recording on its own servers under your account quota. To
+            download: log in to zoom.us, open Recordings in the left
+            menu, find the meeting (sorted by date), click the title,
+            and the file list appears. You will see:
           </p>
-          <h3>Where Local Recordings live on your computer</h3>
+          <ul>
+            <li><strong>Shared Screen with Speaker View / Gallery View</strong>: MP4 video, typically 100-500 MB per hour</li>
+            <li><strong>Audio Only</strong>: M4A file, typically 15-30 MB per hour</li>
+            <li><strong>Chat File</strong>: TXT of the in-meeting chat</li>
+            <li><strong>Closed Caption / Transcript</strong>: VTT or TXT if Zoom audio transcript is enabled on your account</li>
+            <li><strong>Audio Transcript</strong>: separate JSON if AI Companion summaries are enabled</li>
+          </ul>
           <p>
-            Mac and Linux: ~/Documents/Zoom/. Windows: Documents\Zoom\.
-            Inside, recordings are organised by date and meeting ID
-            (YYYY-MM-DD HH.MM.SS [Meeting Name] [Meeting ID]). Each
-            meeting folder contains the MP4 video, the audio_only.m4a,
-            and chat.txt if applicable. The audio_only.m4a is the file
-            you want.
+            For Mictoo, download the Audio Only M4A. It is by far the
+            smallest file and transcribes with identical quality.
           </p>
-          <h3>Zoom AI Companion vs Mictoo</h3>
+          <h3>Local Recording (any account, including Free)</h3>
           <p>
-            Zoom AI Companion is Zoom built-in AI feature, available on
-            Pro, Business, and Enterprise plans. It transcribes meetings
-            in real time during the call, produces a summary, and lives
-            inside the Zoom web portal. Useful if you want real-time
-            transcription embedded in Zoom workflow. Limitations: locked
-            to specific plans, transcript is in the Zoom portal not as a
-            portable file, and not available for recordings made before
-            you enabled it.
+            Free Zoom accounts can record locally to the host machine
+            with the Record button → Record on this Computer option.
+            File path:
+          </p>
+          <ul>
+            <li>Mac: <code>~/Documents/Zoom/&lt;date&gt; &lt;meeting-name&gt;/</code></li>
+            <li>Windows: <code>Documents\Zoom\&lt;date&gt; &lt;meeting-name&gt;\</code></li>
+            <li>Linux: <code>~/Documents/Zoom/&lt;date&gt; &lt;meeting-name&gt;/</code></li>
+          </ul>
+          <p>
+            Inside that folder: <code>zoom_0.mp4</code> (video),
+            <code>audio_only.m4a</code> (audio extracted), and
+            <code>chat.txt</code>. Upload the M4A directly.
+          </p>
+          <h3>Cloud Recording quota and what to delete</h3>
+          <p>
+            Zoom Cloud Recording storage is metered per tier (Pro: 5
+            GB; Business: 5 GB per user; Enterprise: 10 GB+ per user
+            depending on contract; unlimited cloud storage is an add-on).
+            When you hit quota, new recordings either replace old ones
+            or fail to save depending on settings.
           </p>
           <p>
-            Mictoo runs after the recording. You drop the MP4 or M4A in,
-            get the transcript and summary as portable files. Works on
-            any Zoom plan (including free), any recording (including ones
-            made before you knew about AI Companion), and you own the
-            output files directly without needing to log back into Zoom.
-            Different trade-offs, different use cases.
+            If quota matters: download the M4A, transcribe with
+            Mictoo, then either keep the M4A locally (no cloud quota)
+            or delete the entire Cloud Recording (it is now redundant
+            with your local copy + Mictoo transcript). The Zoom
+            auto-transcript JSON / VTT files inside the recording also
+            count toward quota; deleting them reduces footprint
+            without losing the recording itself.
           </p>
-          <h3>Privacy notes for Zoom recordings</h3>
+          <h3>Built-in Zoom audio transcript vs Whisper</h3>
           <p>
-            Recording any meeting requires consent from the participants
-            in many jurisdictions. Zoom announces recordings to all
-            attendees by default. For internal company meetings this is
-            usually a non-issue; for external client calls, sales
-            discovery, or candidate interviews, double-check your local
-            requirements before pressing record. Mictoo never sees your
-            file unless you upload it yourself.
+            Zoom audio transcript (the VTT inside Cloud Recording) is
+            generated by Zoom internal ASR pipeline. It includes
+            speaker labels (a meaningful advantage) but is noticeably
+            weaker than Whisper large-v3 on proper nouns, technical
+            terms, and accented speakers. For a quick scan with
+            speaker labels, the built-in transcript is fine. For
+            accuracy when the transcript is the actual deliverable
+            (article, citation, training material), Whisper output is
+            cleaner.
+          </p>
+          <h3>Zoom AI Companion summary vs Mictoo AI summary</h3>
+          <p>
+            Zoom AI Companion is a separately licensed add-on that
+            generates meeting summaries inside Zoom. The quality is
+            reasonable for the most common meeting shape (status
+            check-ins, project syncs). Mictoo AI summary runs over the
+            Whisper transcript and tends to be more detailed because
+            the underlying transcript is cleaner. The trade-off: Zoom
+            AI Companion appears inside your Zoom workflow
+            automatically; Mictoo requires the upload step.
+          </p>
+          <h3>Speaker layout and audio quality</h3>
+          <p>
+            The recording layout you picked (Speaker View, Gallery
+            View, side-by-side) affects the video composition only.
+            The audio track is the same across layouts. Audio quality
+            in Zoom is constrained by the original mic setup, network
+            conditions, and Zoom Original Sound for Musicians option
+            (which preserves higher-fidelity audio if enabled before
+            recording).
           </p>
         </article>
       }
       faq={[
         {
-          q: 'Will Mictoo transcribe a Zoom Cloud Recording?',
-          a: 'Yes. Download the recording from zoom.us/recording (the audio-only M4A is the smallest file and uploads fastest), drop it onto this page. The transcript comes back with timestamps, AI summary, and exports for TXT, SRT, VTT, or DOCX.',
+          q: 'Do I need Zoom Pro or higher to use Mictoo?',
+          a: 'No. Mictoo transcribes any recording you can download to your computer. Free Zoom with Local Recording works. Pro Zoom with Cloud Recording works. Recording shared with you also works (anyone can download a shared Cloud Recording even on a Free account).',
         },
         {
-          q: 'What about Zoom Local Recordings on my computer?',
-          a: 'Same workflow. Local Recordings live in Documents/Zoom on Mac/Linux/Windows. Each meeting folder contains an audio_only.m4a alongside the MP4 video. The M4A is the file you want for fastest transcription.',
+          q: 'Is Mictoo better than Zoom built-in audio transcript?',
+          a: 'On text accuracy, yes, noticeably. Zoom audio transcript uses older ASR; Mictoo uses Whisper large-v3. The difference shows on proper nouns, technical jargon, and accented speakers. The one thing Zoom built-in transcript has that Mictoo currently does not is speaker labels (diarisation). For us, that is on the Pro tier roadmap.',
         },
         {
-          q: 'Do I need to invite a bot to the Zoom meeting?',
-          a: 'No. Mictoo never joins meetings. You record with Zoom built-in Cloud Recording or Local Recording, then upload the file here afterward. No third-party participant in your call.',
+          q: 'Should I download MP4 or M4A from Cloud Recording?',
+          a: 'M4A. The M4A audio-only file is roughly 10x smaller than the MP4 (60-minute meeting: ~25 MB M4A vs ~300 MB MP4) and transcribes identically. Download MP4 only if you also need the video for something else (re-watching, captioning the video itself).',
         },
         {
-          q: 'My Zoom plan does not include AI Companion. Does this still work?',
-          a: 'Yes, fully. Mictoo works with the recording file itself, no Zoom AI Companion needed. Useful for free Zoom accounts, downgraded plans, or recordings made before AI Companion was enabled.',
+          q: 'Where does Zoom save Local Recording files?',
+          a: 'Mac: ~/Documents/Zoom/<date> <meeting-name>/. Windows: Documents\\Zoom\\<date> <meeting-name>\\. Linux: ~/Documents/Zoom/<date> <meeting-name>/. Inside that folder: audio_only.m4a is what you upload to Mictoo. zoom_0.mp4 is the video version (also works but bigger).',
         },
         {
-          q: 'Can I transcribe a recording from someone else (e.g. a guest sent me their MP4)?',
-          a: 'Yes. Mictoo does not care which Zoom account produced the recording. As long as you have the file and the right to transcribe it, drop it in. Useful when a meeting host shared their cloud recording with you.',
+          q: 'My Zoom meeting is over 60 MB. What do I do?',
+          a: 'You probably downloaded the MP4 instead of the M4A. Go back to zoom.us → Recordings → your meeting and grab the Audio Only file instead. If you only have the MP4, run ffmpeg -i meeting.mp4 -vn -ac 1 -ar 16000 audio.m4a to strip just the audio (file becomes ~10-25 MB).',
         },
         {
-          q: 'My recording is over 60 MB. What now?',
-          a: 'Use the audio-only M4A instead of the gallery-view MP4 (typically 10x smaller). For very long meetings, split the M4A in Audacity or QuickTime into chunks under 60 MB each, transcribe each part, concatenate the text. We will support larger files in the future Pro tier.',
+          q: 'Can I transcribe a Zoom meeting where I was a participant, not the host?',
+          a: 'Only if the host shared the Cloud Recording with you (download link) or you separately recorded locally on your machine (which requires host permission via Allow Participants to Record). Without one of those, you do not have the file.',
         },
         {
-          q: 'Will speaker names be in the transcript?',
-          a: 'Not automatically. Whisper does not identify speakers out of the box. If clear speaker attribution matters, look for the per-participant audio files in Cloud Recording (available on some plans), transcribe each separately, label by hand. Diarization is on the Pro tier roadmap.',
+          q: 'Does Mictoo affect my Zoom Cloud Recording storage quota?',
+          a: 'No. Mictoo transcription runs entirely off Zoom infrastructure. Nothing gets written back to your Zoom account. Your cloud quota only stores what Zoom itself produces (MP4, M4A, optional Zoom audio transcript, optional AI Companion summary).',
         },
         {
-          q: 'Can I get an AI summary of the meeting?',
-          a: 'Yes. The AI summary appears alongside the transcript automatically after transcription finishes. Useful for sending a recap to people who missed the meeting or pulling action items out of a long call.',
+          q: 'Can I get the AI summary like Zoom AI Companion?',
+          a: 'Yes. The AI summary appears alongside the transcript automatically. Works on any recording regardless of whether Zoom AI Companion is licensed on the meeting host account. Often more detailed than Zoom AI Companion summary because the underlying transcript (Whisper) is cleaner.',
         },
         {
-          q: 'Can I export the transcript as captions for the original recording?',
-          a: 'Yes. Download as SRT or VTT, both formats include timestamps that align with the original audio timeline. Drop into Zoom (paid plans support custom captions), YouTube, or your video editor of choice.',
+          q: 'What about Zoom Webinar product recordings?',
+          a: 'Same as regular Zoom Meeting recordings. The MP4 and M4A files come out of zoom.us Recordings the same way. Drop into Mictoo for the transcript. Useful for SEO-friendly text companion to your webinar replay page.',
         },
         {
-          q: 'Does Mictoo store my Zoom recording?',
-          a: 'No. The audio is streamed to the transcription provider, processed, and dropped from memory. We do not write the audio to disk. The text transcript is only stored if you sign in and choose to add it to your history.',
+          q: 'Does Mictoo work for non-English Zoom meetings?',
+          a: 'Yes. Whisper large-v3 supports 50+ languages with auto-detection. For meetings under 5 minutes or non-English content, set the language explicitly in the dropdown for cleaner first-pass detection. Translation to another language is one click after transcription.',
         },
       ]}
       epilogueSection={
         <div className="text-center">
           <h2 className="text-2xl font-bold text-slate-900 mb-3">
-            Upload your Zoom recording, get the transcript
+            Drop your Zoom recording, get the transcript
           </h2>
           <p className="text-sm text-slate-500 mb-6 max-w-xl mx-auto">
-            Cloud Recording M4A or MP4, Local Recording from your Documents/Zoom folder, audio-only or video. All work.
+            M4A audio-only from Cloud Recording, MP4 from Local Recording, or anything in between. Better quality than Zoom built-in transcripts.
           </p>
           <a
             href="#tool"
             className="inline-block bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-6 py-3 rounded-xl transition-colors"
           >
-            Transcribe a Zoom recording now
+            Upload Zoom recording
           </a>
         </div>
       }
       relatedLinks={[
-        { href: '/google-meet-transcription', label: 'Google Meet transcription', desc: 'For Meet recordings, Workspace context.' },
-        { href: '/teams-meeting-transcription', label: 'Teams transcription', desc: 'For Microsoft Teams recordings.' },
-        { href: '/meeting-transcription', label: 'Meeting transcription', desc: 'Platform-agnostic guide for any meeting recording.' },
-        { href: '/interview-transcription', label: 'Interview transcription', desc: 'For one-on-one recorded interviews.' },
+        { href: '/meeting-transcription', label: 'Meeting transcription (any platform)', desc: 'Umbrella page for any meeting tool.' },
+        { href: '/google-meet-transcription', label: 'Google Meet transcription', desc: 'Workspace tier matrix.' },
+        { href: '/teams-meeting-transcription', label: 'Teams transcription', desc: 'OneDrive / SharePoint paths.' },
+        { href: '/interview-transcription', label: 'Interview transcription', desc: 'For 1:1 interview recordings.' },
+        { href: '/webinar-transcription', label: 'Webinar transcription', desc: 'For one-to-many presentations.' },
       ]}
     />
   )

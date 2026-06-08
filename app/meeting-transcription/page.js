@@ -1,9 +1,9 @@
 import LandingLayout from '@/components/LandingLayout'
 
 export const metadata = {
-  title: 'Meeting Transcription: Any Platform, Any Recording, Free Online | Mictoo',
+  title: 'Meeting Transcription: One Page for Any Recorded Meeting | Mictoo',
   description:
-    'A platform-agnostic meeting transcription tool. Zoom, Teams, Meet, Webex, Loom, or a phone call recording, drop any meeting file and get a clean transcript with summary.',
+    'A platform-agnostic upload for any recorded meeting (Zoom, Teams, Meet, Webex, Loom, Riverside). Drop the file, get a transcript with timestamps, AI summary, and exports. Free, no signup.',
   alternates: {
     canonical: 'https://mictoo.com/meeting-transcription',
     languages: {
@@ -21,8 +21,8 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'Meeting Transcription: Any Platform | Mictoo',
-    description: 'Drop any meeting recording. Transcript and summary in under a minute.',
+    title: 'Meeting Transcription: Any Platform, Any Recording | Mictoo',
+    description: 'Drop any meeting recording, get a transcript. Free.',
     url: 'https://mictoo.com/meeting-transcription',
     siteName: 'Mictoo',
     type: 'website',
@@ -39,251 +39,251 @@ export const metadata = {
 export default function MeetingTranscriptionPage() {
   return (
     <LandingLayout
-      badge="Any platform · MP4/M4A/MP3 · Free"
-      h1={<>Meeting Transcription<br /><span className="text-brand-600">Any platform, any recording</span></>}
-      subtitle="A single page for any meeting recording, regardless of where it was made. Zoom, Teams, Meet, Webex, Loom, Riverside, or a screen capture from a phone call, drop the file and get a transcript with timestamps, summary, and exports."
+      badge="Any platform · Free · No signup"
+      h1={<>Meeting Transcription<br /><span className="text-brand-600">One upload page for any platform</span></>}
+      subtitle="The platform-agnostic entry point. Drop a recording from Zoom, Teams, Meet, Webex, Loom, Riverside, Whereby, or any screen capture and get a clean transcript with timestamps, AI summary, and exports. Or pick a platform-specific guide below for the download-and-upload mechanics."
       valueBlock={
         <article className="prose-content">
           <p>
-            Most meeting-transcription tools are built around one
-            platform: a Zoom bot, a Teams add-in, a Meet Workspace
-            feature. Useful if all your meetings live on one platform.
-            Awkward if your week includes a Zoom client call, a Teams
-            internal meeting, a Meet recording from a partner, and a
-            Loom from a vendor.
-          </p>
-          <p>
-            Mictoo does not care which platform produced the recording.
-            It takes audio and video files (MP4, M4A, MP3, WAV, WebM,
-            FLAC, OGG, AAC, MOV), extracts the audio if needed, and
-            returns a transcript. The same workflow regardless of the
-            source.
+            This is the umbrella page. If you already have a meeting
+            recording on disk and just want the transcript, drop the
+            file above. If you are stuck on the "where is my recording"
+            step, the platform guides below cover the exact path on
+            each major meeting tool.
           </p>
           <p className="text-sm text-slate-500">
-            Need platform-specific help? See <a href="/zoom-transcription" className="text-brand-600 hover:underline">Zoom</a>, <a href="/google-meet-transcription" className="text-brand-600 hover:underline">Google Meet</a>, or <a href="/teams-meeting-transcription" className="text-brand-600 hover:underline">Microsoft Teams</a> pages for download and workflow specifics.
+            Platform-specific guides:
+            <a href="/zoom-transcription" className="text-brand-600 hover:underline ml-1">Zoom</a>,
+            <a href="/google-meet-transcription" className="text-brand-600 hover:underline ml-1">Google Meet</a>,
+            <a href="/teams-meeting-transcription" className="text-brand-600 hover:underline ml-1">Microsoft Teams</a>,
+            <a href="/interview-transcription" className="text-brand-600 hover:underline ml-1">interview transcription</a>,
+            <a href="/business-transcription" className="text-brand-600 hover:underline ml-1">business / corporate transcription</a>.
           </p>
         </article>
       }
       howItWorks={[
         {
-          icon: '📥',
-          title: 'Get the recording, regardless of platform',
-          desc: 'Zoom Cloud or Local, Teams from OneDrive/SharePoint, Meet from Drive, Webex from your saved location, Loom download, any screen recorder output. We accept the file.',
+          icon: '📂',
+          title: 'Find your meeting recording',
+          desc: 'Zoom Cloud: zoom.us → Recordings. Zoom Local: ~/Documents/Zoom on most platforms. Google Meet: Drive › Meet Recordings. Teams: OneDrive › My Files › Recordings (private) or SharePoint (channel). Other platforms: check the recording / library section.',
         },
         {
-          icon: '⚡',
-          title: 'Whisper transcribes the audio',
-          desc: 'We strip video tracks from MP4/MOV/WebM and feed the audio to Whisper large-v3. A 45-minute meeting finishes in 45-60 seconds.',
+          icon: '⬆️',
+          title: 'Drop the file here',
+          desc: 'Drag the MP4, M4A, MP3, or whatever your platform produced. We accept all common audio and video formats and extract the audio track from videos automatically. Free for files up to 60 MB.',
         },
         {
           icon: '📝',
-          title: 'Edit and ship the transcript anywhere',
-          desc: 'Inline editing for wrong names. Export TXT, SRT, VTT, or DOCX. The AI summary appears alongside, ready to paste into a recap email or doc.',
+          title: 'Transcript, summary, exports',
+          desc: 'A 30-minute meeting finishes in under a minute. Timestamps you can click, AI summary in the sidebar, export TXT / SRT / VTT / DOCX. Translate the transcript with one click for cross-language recap.',
         },
       ]}
       whyUse={{
-        title: 'Why a platform-agnostic transcription tool helps',
+        title: 'Why a platform-agnostic upload helps',
         bullets: [
           {
-            title: 'One workflow regardless of source',
-            desc: 'You do not need to remember which transcription service handles Zoom vs Teams vs Meet. Same upload page, same export formats, same AI summary. Useful when your week crosses multiple platforms.',
+            title: 'Mixed-platform reality of modern teams',
+            desc: 'Your client uses Zoom, your manager runs Google Meet, the candidate insists on Teams, the podcast guest booked Riverside. One transcription tool that accepts files from all of them is less mental overhead than juggling each platform native transcription quirks.',
           },
           {
-            title: 'No platform-specific subscription',
-            desc: 'Zoom AI Companion, M365 Copilot, Workspace transcripts each require a plan tier or add-on at $10-30 per user per month. Mictoo gives you transcription for free, no per-platform license.',
+            title: 'Better than most built-in platform transcripts',
+            desc: 'Zoom audio transcript (paid), Meet auto-transcripts (Workspace AI add-on), Teams transcripts (Premium): all use older or weaker ASR than Whisper large-v3. Mictoo transcript is noticeably cleaner on proper nouns, accents, and technical jargon.',
           },
           {
-            title: 'Works for legacy recordings from any platform',
-            desc: 'Old Zoom Cloud Recordings, Teams meetings from before transcription was enabled, Webex sessions, Meet calls from free accounts: all transcribe the same way. The recording is the source of truth.',
+            title: 'No license / tier negotiation with IT',
+            desc: 'Most platform native transcripts require a specific seat tier, admin enablement, or AI add-on license. Mictoo is free per file. The contractor who is on the free tier of every meeting tool can still get a transcript.',
           },
           {
-            title: 'Portable exports, not locked in a vendor portal',
-            desc: 'Built-in transcription tools save to the vendor ecosystem (Zoom portal, Teams Stream, Drive Docs). Mictoo gives you TXT, SRT, VTT, DOCX files you can paste anywhere.',
+            title: 'Same workflow for meeting AND non-meeting content',
+            desc: 'Interviews, lectures, podcast episodes, voice memos, recorded webinars: same upload page, same exports. One tool covers all your transcription cases rather than fragmenting across each platform native transcript feature.',
           },
           {
-            title: 'No bot, no calendar OAuth, no participant added',
-            desc: 'You record the meeting yourself (with whatever platform built-in recording you have), then upload here afterward. No third-party assistant joining the call.',
+            title: 'AI summary and translation in the same view',
+            desc: 'Summary appears alongside the transcript automatically (good as the start of the recap email). Translate the transcript to any of 50+ languages with one click for cross-language teams.',
           },
         ],
       }}
       useCases={{
-        title: 'Real situations where platform-agnostic helps',
+        title: 'Common meeting-transcription scenarios',
         items: [
           {
-            title: 'External client uses a different platform',
-            desc: 'Your team is on Teams, the client wants to use Zoom or Meet. Record on whatever they prefer, transcribe here regardless. No need to set up transcription on each external platform.',
+            title: 'Client recap emails',
+            desc: 'Strategy or consulting calls where the deliverable is the post-call recap. Recording becomes the transcript, summary becomes the email draft, action items become the follow-up.',
           },
           {
-            title: 'Multi-platform week typical for consultants',
-            desc: 'Consultants and freelancers often have client meetings on every major platform. One transcription tool covers Zoom morning call, Teams afternoon workshop, Meet vendor sync. Less context-switching.',
+            title: 'User research session notes',
+            desc: 'Product or UX research calls where the transcript IS the data. Pull quotes for the research repo, tag themes, share with the team. Format-agnostic so each researcher can use whatever recording tool they prefer.',
           },
           {
-            title: 'Phone call recording from a screen recorder',
-            desc: 'A WhatsApp or FaceTime audio call, recorded with QuickTime or Audacity. Not a Zoom, not a Teams, not a Meet, but still a meeting recording. Transcribe here.',
+            title: 'Recruiter screen documentation',
+            desc: 'Candidate screens recorded with the platform of choice. Transcript feeds candidate notes and feedback to hiring managers; summary helps the next-stage interviewer prep.',
           },
           {
-            title: 'Webinar attended on Webex or another rare platform',
-            desc: 'Webex, GoToMeeting, BlueJeans, Riverside.fm, Squadcast: not the big three, but recordings still need transcribing. Whatever MP4 or M4A the platform produced, Mictoo handles it.',
+            title: 'All-hands and team meeting archives',
+            desc: 'Recorded internal meetings (all-hands, board calls, planning sessions). Transcript goes into the team wiki for asynchronous catch-up.',
           },
           {
-            title: 'Historical meetings before adopting platform-specific transcription',
-            desc: 'Years of past meetings in a folder somewhere. Backfilling transcripts retroactively without setting up tenant-wide policies in M365 or Workspace.',
+            title: 'Customer support escalation calls',
+            desc: 'Support reps occasionally jump on calls for complex issues. Transcript becomes the ticket note and the knowledge-base contribution.',
           },
           {
-            title: 'Cross-functional meetings with external attendees',
-            desc: 'Some attendees on M365, some on Workspace, some on personal accounts. Built-in transcripts may not cover external participants. Mictoo transcribes whatever audio you captured.',
+            title: 'Cross-language meetings with international clients',
+            desc: 'Source-language transcript plus one-click translation. Useful when the recap email needs to go to participants who do not speak the meeting language.',
           },
         ],
       }}
       proTips={{
-        title: 'Tips for handling any meeting recording',
+        title: 'Tips that apply to any meeting platform',
         tips: [
           {
-            title: 'Audio-only files are faster to upload',
-            desc: 'Most platforms offer audio-only export alongside video. Zoom Cloud Recording includes an audio_only.m4a. Teams and Meet require you to extract audio yourself with ffmpeg. Audio is 10-20x smaller than video for the same transcription.',
+            title: 'Prefer audio-only download when the platform offers it',
+            desc: 'Zoom Cloud Recording offers an M4A audio-only download alongside the MP4. Same for Riverside (separate audio tracks). Audio-only files are 5-10x smaller than the full video, upload faster, transcribe identically.',
           },
           {
-            title: 'For 60+ MB files, extract audio with ffmpeg first',
-            desc: 'One-liner: ffmpeg -i meeting.mp4 -vn -ac 1 -ar 16000 audio.m4a. Strips video, downsamples to 16 kHz mono. The audio file is small enough to upload and identical for transcription.',
+            title: 'If video is the only export, strip audio locally first for large files',
+            desc: 'A 60-minute 1080p MP4 from Zoom Cloud can be 300-500 MB. Run ffmpeg -i meeting.mp4 -vn -ac 1 -ar 16000 audio.m4a to strip just audio, file becomes ~25 MB. Same transcript quality, fits under 60 MB cap.',
           },
           {
-            title: 'Check the participant consent before uploading',
-            desc: 'Recording a meeting requires consent in many jurisdictions. Mictoo does not check this; we trust the upload. For external client calls and sensitive contexts, confirm you have the right to transcribe.',
+            title: 'For multi-speaker meetings, expect continuous text (no speaker labels)',
+            desc: 'Mictoo does not currently distinguish speakers ("Speaker 1: ... Speaker 2: ..."). For meetings where speaker labels matter (interviews, panels), add them manually post-transcription or wait for our Pro tier diarisation feature.',
           },
           {
-            title: 'Set the language manually for non-English meetings',
-            desc: 'Whisper auto-detects language but can mis-fire on the first few seconds of silence or non-speech intro. For non-English meetings, pick the language in the dropdown before uploading for cleaner detection.',
+            title: 'Multilingual meetings: set language to "auto-detect" or pick the majority language',
+            desc: 'For mixed-language meetings (e.g. English with German speakers occasionally), pick the majority language explicitly. Whisper handles occasional foreign words within a primarily English meeting well; switching languages mid-sentence can confuse it.',
           },
         ],
       }}
       deepDive={
         <article className="prose-content">
-          <h2>The platform-specific transcription landscape, briefly</h2>
+          <h2>Pick the right platform-specific guide</h2>
           <p>
-            Each major meeting platform has its own built-in
-            transcription offering, each with its own plan requirements,
-            language coverage, and export limitations. Knowing the
-            landscape helps you decide when to use built-in and when to
-            use a tool like Mictoo.
+            Each major meeting platform has its own recording quirks
+            (where files land, what audio quality, what builtin
+            transcript feature exists, what tier you need). Mictoo
+            transcription works the same regardless, but the
+            download-the-file step is platform-specific. Pick the guide
+            that matches the platform you used:
           </p>
-          <h3>Zoom</h3>
+          <h3>Zoom Meetings</h3>
           <p>
-            Zoom AI Companion provides live transcription on Pro,
-            Business, and Enterprise plans. Free Zoom has no
-            transcription. The transcript lives in the Zoom web portal.
-            For free Zoom users or anyone wanting a portable transcript,
-            Mictoo is the practical option.
-          </p>
-          <h3>Microsoft Teams</h3>
-          <p>
-            Teams transcription requires admin enablement at the tenant
-            level plus the meeting host turning it on at meeting start.
-            Transcripts go into Microsoft 365 Stream. M365 Copilot
-            ($30/user/month) adds AI summaries and meeting insights on
-            top. For tenants without Copilot or recordings from before
-            transcription was on, Mictoo covers the gap.
+            Cloud Recording (Pro and above) saves to zoom.us with both
+            MP4 and M4A audio-only files. Local Recording (any account)
+            saves to ~/Documents/Zoom. Built-in Zoom audio transcripts
+            require Pro+ and are weaker than Whisper. See our
+            <a href="/zoom-transcription" className="text-brand-600 hover:underline">Zoom transcription guide</a>
+            for download paths and Cloud Recording quota considerations.
           </p>
           <h3>Google Meet</h3>
           <p>
-            Meet recording is a Workspace feature (Business Standard
-            and up). Auto-transcripts as Google Docs are on Business
-            Plus and Enterprise. Free Meet has no recording and no
-            transcript. Workspace users get a transcript in Drive;
-            everyone else needs a tool like Mictoo plus a screen
-            recorder to capture the meeting.
+            Recording requires Workspace Business Standard or higher.
+            Free accounts have no recording (use third-party screen
+            recorder). Recorded MP4 lands in your Drive at My Drive ›
+            Meet Recordings. Workspace AI add-on includes built-in
+            transcripts (separately licensed). See the
+            <a href="/google-meet-transcription" className="text-brand-600 hover:underline">Google Meet transcription guide</a>
+            for tier matrix and free-account workarounds.
           </p>
-          <h3>Webex and others</h3>
+          <h3>Microsoft Teams</h3>
           <p>
-            Webex offers transcription on its higher-tier business
-            plans. GoToMeeting, BlueJeans (since shutdown), and other
-            smaller platforms have varying offerings. For any of these,
-            the recording (MP4 or audio-only) is what you start with;
-            Mictoo handles the rest the same way.
+            Recording saves to OneDrive (private meetings) or
+            SharePoint (channel meetings). Built-in Teams transcripts
+            require Teams Premium license. Channel meeting permissions
+            are governed by the SharePoint site. Government Cloud (GCC)
+            has additional limits. See the
+            <a href="/teams-meeting-transcription" className="text-brand-600 hover:underline">Teams transcription guide</a>
+            for storage paths, license tier matrix, and enterprise
+            compliance considerations.
           </p>
-          <h3>The async tools: Loom, Riverside, Riverfm</h3>
+          <h3>Other platforms (Webex, Loom, Riverside, Whereby, Around)</h3>
           <p>
-            Some async-video and remote-recording tools include
-            transcription as part of their paid plans. Riverside (since
-            renamed) bundles transcription with their recording
-            workflow. Loom includes auto-captioning on paid tiers. For
-            users on free tiers of these tools, the recording downloads
-            as MP4 or WebM, ready for Mictoo.
+            Webex Cloud Recording: webex.com › Recordings, downloads
+            as MP4 or M4A audio. Loom: shareable Loom URL with
+            download option in the share dialog. Riverside: studio
+            dashboard with separate audio tracks per participant
+            (high quality, useful for podcast workflows). Whereby:
+            local download from the meeting interface. Around: similar.
+            For all of these, the workflow is the same: download the
+            audio or video, drop here.
           </p>
-          <h3>Why a single tool helps across all of them</h3>
+          <h3>Use cases beyond meetings</h3>
           <p>
-            Every platform optimises for its own ecosystem. The
-            transcripts go to that platform default location, in that
-            platform format, accessible to that platform users. The
-            moment your workflow crosses a platform boundary (sending
-            a transcript to an external client, archiving across
-            platforms in one place, providing transcripts as a
-            deliverable), a platform-agnostic tool removes friction.
+            If your "meeting" is actually a different kind of recorded
+            conversation, the dedicated pages may fit better:
+            <a href="/interview-transcription" className="text-brand-600 hover:underline">interview transcription</a> (1:1
+            interviews for research or journalism),
+            <a href="/webinar-transcription" className="text-brand-600 hover:underline">webinar transcription</a> (one-to-many
+            presentations),
+            <a href="/lecture-transcription" className="text-brand-600 hover:underline">lecture transcription</a> (educational
+            content), or
+            <a href="/business-transcription" className="text-brand-600 hover:underline">business / corporate transcription</a>
+            (corporate compliance, board meetings, regulatory).
           </p>
         </article>
       }
       faq={[
         {
-          q: 'Which meeting platforms does Mictoo support?',
-          a: 'Any platform that produces an audio or video recording. Zoom, Teams, Meet, Webex, Loom, Riverside, GoToMeeting, BlueJeans (legacy archives), and screen recordings from QuickTime, OBS, Windows Game Bar, or any other recorder. The file is what matters, not the platform that made it.',
+          q: 'What meeting platforms does this page work with?',
+          a: 'All of them. We accept any audio or video file regardless of which platform produced it. Common: Zoom, Microsoft Teams, Google Meet, Cisco Webex, Loom, Riverside, Whereby, Around. Less common: GoToMeeting, BlueJeans (now Verizon), Jitsi, BigBlueButton. Free for files up to 60 MB.',
         },
         {
-          q: 'What file formats can I upload?',
-          a: 'MP4, MOV, WebM (video files, we strip the video and transcribe the audio), M4A, MP3, WAV, FLAC, OGG, AAC (audio files, transcribed directly). Up to 60 MB on the free tier.',
+          q: 'Should I use this umbrella page or a platform-specific one?',
+          a: 'Functionally identical for the actual transcription. The platform-specific pages have more detail on the download-from-platform step (where files land, what tier you need, common pitfalls). If you already have the file and just want the transcript, this page works fine.',
         },
         {
-          q: 'How is this different from using Zoom AI Companion or Teams transcription?',
-          a: 'Built-in transcription is tied to platform plans and works for new meetings on supported tiers. Mictoo works on the recording file regardless of platform, regardless of plan, and regardless of whether transcription was enabled at meeting start. Useful for cross-platform workflows and historical recordings.',
+          q: 'How is Mictoo better than my platform built-in transcript?',
+          a: 'Two ways. Quality: Whisper large-v3 is more accurate than the ASR most platforms use, especially on proper nouns, accents, and technical jargon. Cost: most built-in transcripts require a specific paid tier or AI add-on (Zoom Pro, Workspace AI, Teams Premium), while Mictoo is free per file.',
         },
         {
-          q: 'Do I need to grant access to my Zoom, Teams, or Google account?',
-          a: 'No. Mictoo never connects to your meeting platform account. You record the meeting using the platform built-in recording (or a screen recorder), download the file, upload here. No OAuth, no calendar sync, no participant added to your call.',
+          q: 'Does Mictoo identify who said what (speaker diarisation)?',
+          a: 'Not currently. The transcript is continuous text without "Speaker 1: ... Speaker 2: ..." prefixes. Speaker diarisation is on our Pro tier roadmap. For meetings where speaker labels are critical (interviews with named subjects, panels), add labels manually post-transcription or use a tool that includes diarisation natively.',
         },
         {
-          q: 'Can I get speaker labels in the transcript?',
-          a: 'Not automatically. Whisper does not identify speakers out of the box. For workflows where attribution matters, use the platform built-in transcription (Zoom AI Companion, Teams transcripts), which uses account context to label speakers. Diarization is on the Mictoo Pro tier roadmap.',
+          q: 'My meeting MP4 is larger than 60 MB. What do I do?',
+          a: 'Extract just the audio with ffmpeg -i meeting.mp4 -vn -ac 1 -ar 16000 audio.m4a. The resulting M4A is typically 5-15 MB for a 60-minute meeting. Or download the platform audio-only version if it offers one (Zoom Cloud Recording does, Riverside does, others vary).',
         },
         {
           q: 'Can I get an AI summary of the meeting?',
-          a: 'Yes. The AI summary appears alongside the transcript automatically after transcription finishes. Useful for meeting recaps without paying for M365 Copilot or Zoom AI Companion.',
+          a: 'Yes. The AI summary appears alongside the transcript automatically. Useful as the foundation for follow-up emails, recap notes, and action-item extraction. Mention this in your platform-specific guide of choice for details on how it compares to that platform built-in summary.',
         },
         {
-          q: 'My recording is over 60 MB. What now?',
-          a: 'Most video meeting recordings need audio extraction first. Use ffmpeg -i meeting.mp4 -vn -ac 1 -ar 16000 audio.m4a to drop the file size 10-20x with no transcript quality loss.',
+          q: 'Is my meeting recording private?',
+          a: 'Yes. The file streams to our transcription provider, gets processed once, and is dropped from memory. We never store the audio or video. The text transcript persists only if you are signed in and choose to save it to your history.',
         },
         {
-          q: 'Can I export captions for the recording?',
-          a: 'Yes. SRT and VTT formats with timestamps aligned to the original audio. Drop into YouTube, Vimeo, your video editor, or upload back to the meeting platform alongside the recording.',
+          q: 'Can I transcribe meetings in languages other than English?',
+          a: 'Yes. Whisper large-v3 supports 50+ languages with auto-detection. For meetings under 5 minutes or non-English content, set the language explicitly in the dropdown for cleaner first-pass detection.',
         },
         {
-          q: 'How long does a typical meeting transcription take?',
-          a: 'A 30-minute audio-only file finishes in 30-50 seconds. A 60-minute meeting finishes in 60-90 seconds. Upload speed is often the longer step for large files.',
+          q: 'Can I translate the meeting transcript?',
+          a: 'Yes. After transcription, pick a target language and click Translate. Useful for sending recap emails to participants in their preferred language, or for archiving cross-language meetings in a single working language.',
         },
         {
-          q: 'Does Mictoo store my meeting recording?',
-          a: 'No. The audio is streamed to the transcription provider, processed once, and dropped from memory. We do not write the audio to disk. The text transcript is only stored if you sign in and add it to your history.',
+          q: 'Does Mictoo work for meeting recordings on legacy platforms (Skype, GoToMeeting, etc)?',
+          a: 'Yes, as long as the platform exports an audio or video file. The transcription does not depend on the platform; we just need the recording. Legacy platforms that only stream and do not export are not supported.',
         },
       ]}
       epilogueSection={
         <div className="text-center">
           <h2 className="text-2xl font-bold text-slate-900 mb-3">
-            Drop your meeting recording, get the transcript
+            Drop any meeting recording, get the transcript
           </h2>
           <p className="text-sm text-slate-500 mb-6 max-w-xl mx-auto">
-            Zoom, Teams, Meet, Webex, Loom, or any screen-recorded call. Same workflow regardless of source.
+            Zoom, Meet, Teams, Webex, Loom, Riverside, screen capture. One upload page for all of them.
           </p>
           <a
             href="#tool"
             className="inline-block bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-6 py-3 rounded-xl transition-colors"
           >
-            Transcribe a meeting now
+            Upload meeting recording
           </a>
         </div>
       }
       relatedLinks={[
-        { href: '/zoom-transcription', label: 'Zoom transcription', desc: 'Zoom-specific Cloud and Local recording workflow.' },
-        { href: '/google-meet-transcription', label: 'Google Meet transcription', desc: 'Meet recording from Drive, Workspace context.' },
-        { href: '/teams-meeting-transcription', label: 'Teams transcription', desc: 'Teams recording from OneDrive/SharePoint.' },
-        { href: '/business-transcription', label: 'Business transcription', desc: 'For internal company meetings and exec briefings.' },
+        { href: '/zoom-transcription', label: 'Zoom transcription', desc: 'Cloud Recording quota, MP4 vs M4A download.' },
+        { href: '/google-meet-transcription', label: 'Google Meet transcription', desc: 'Workspace tier matrix, free-account workaround.' },
+        { href: '/teams-meeting-transcription', label: 'Teams transcription', desc: 'OneDrive vs SharePoint paths, enterprise compliance.' },
+        { href: '/interview-transcription', label: 'Interview transcription', desc: '1:1 interviews for research and journalism.' },
+        { href: '/business-transcription', label: 'Business transcription', desc: 'Corporate meetings, board calls, compliance.' },
       ]}
     />
   )
