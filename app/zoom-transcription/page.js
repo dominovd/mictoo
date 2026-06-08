@@ -66,7 +66,7 @@ export default function ZoomTranscriptionPage() {
         {
           icon: '☁️',
           title: 'Get the recording (Cloud or Local)',
-          desc: 'Cloud Recording: zoom.us → Recordings → click the meeting → Download. You get both the MP4 (full video) and an M4A audio-only file. Local Recording: ~/Documents/Zoom/<date>/<meeting>/audio_only.m4a on Mac, Documents\\Zoom\\... on Windows.',
+          desc: 'Cloud Recording: zoom.us → Recordings → click the meeting → Download. You get both the MP4 (full video) and an M4A audio-only file. Local Recording: under Documents/Zoom/ on Mac and Linux, Documents\\Zoom\\ on Windows. The audio file is named audio_only.m4a inside the meeting folder.',
         },
         {
           icon: '🎵',

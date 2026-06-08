@@ -128,9 +128,14 @@ export default function LandingLayout({
               {howItWorks.map(({ icon, title, desc }, i) => (
                 <div key={title} className="flex gap-4">
                   <div className="text-2xl flex-shrink-0">{icon || `${i + 1}.`}</div>
-                  <div>
-                    <h3 className="font-semibold text-slate-800 mb-1">{title}</h3>
-                    <p className="text-sm text-slate-500 leading-relaxed">{desc}</p>
+                  {/* min-w-0 lets the flex child shrink below its intrinsic
+                      content width so long unbreakable strings (file paths,
+                      URLs) wrap inside the column instead of overflowing
+                      into the next grid cell. break-words is the actual
+                      breaker that engages once the parent allows shrinking. */}
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-semibold text-slate-800 mb-1 break-words">{title}</h3>
+                    <p className="text-sm text-slate-500 leading-relaxed break-words">{desc}</p>
                   </div>
                 </div>
               ))}
@@ -206,9 +211,9 @@ export default function LandingLayout({
                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-50 text-brand-700 font-semibold text-sm flex items-center justify-center">
                   {i + 1}
                 </div>
-                <div>
-                  <h3 className="font-semibold text-slate-800 mb-1">{title}</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed">{desc}</p>
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-semibold text-slate-800 mb-1 break-words">{title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed break-words">{desc}</p>
                 </div>
               </li>
             ))}
