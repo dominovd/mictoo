@@ -218,9 +218,18 @@ export async function POST(request) {
       console.error('youtube-captions:', code, msg)
       // NO_CAPTIONS = soft fail. Surface to client with noCaptions:true so
       // the UI shows the "use the download guide" fallback instead of a
-      // generic error.
+      // generic error. The message is user-facing prose, not the raw
+      // upstream detail — most users don't need to know which provider
+      // returned the 404.
       if (code === 'NO_CAPTIONS') {
-        return NextResponse.json({ noCaptions: true, error: msg }, { status: 200 })
+        return NextResponse.json(
+          {
+            noCaptions: true,
+            error: 'This YouTube video has no captions available. Download the audio with a free tool (4K Video Downloader, ClipGrab, yt-dlp) and upload it here for full Whisper transcription.',
+            downloadGuideUrl: '/how-to-download-youtube-video',
+          },
+          { status: 200 }
+        )
       }
       if (code === 'BAD_URL') {
         return NextResponse.json({ error: msg }, { status: 400 })
