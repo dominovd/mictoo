@@ -1748,9 +1748,24 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
             {youtubeStatus === 'noCaptions' && (
               <p className="text-xs text-amber-700 mt-2">
                 {t(locale, 'youtube.noCaptions')}{' '}
-                <a href="/how-to-download-youtube-video" className="text-brand-600 hover:underline font-medium">
-                  {t(locale, 'youtube.downloadGuide')}
-                </a>
+                {/* Always show the locale-aware "upload audio above" CTA —
+                    it points at the same UploadZone the user is already on,
+                    so no navigation needed. */}
+                <span className="text-brand-600 font-medium">
+                  {t(locale, 'youtube.tryUploadInstead')}
+                </span>
+                {/* The download-YouTube-audio guide page only exists in EN,
+                    so only surface the link for EN visitors. Non-EN users
+                    get the primary "upload above" CTA above, which is the
+                    immediately actionable next step in any case. */}
+                {locale === 'en' && (
+                  <>
+                    {' · '}
+                    <a href="/how-to-download-youtube-video" className="text-brand-600 hover:underline font-medium">
+                      {t(locale, 'youtube.downloadGuide')}
+                    </a>
+                  </>
+                )}
               </p>
             )}
             {youtubeStatus === 'error' && (
