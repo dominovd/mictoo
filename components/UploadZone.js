@@ -4,6 +4,7 @@ import { useState, useRef, useCallback, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { upload } from '@vercel/blob/client'
 import { detectLocaleFromPath, localized, t, DICT } from '@/lib/i18n'
+import { sanitizeBlobFilename } from '@/lib/sanitize-filename'
 import { createClient } from '@/lib/supabase/client'
 import { toVTT } from '@/lib/exports/vtt'
 import { toJSON } from '@/lib/exports/json'
@@ -835,7 +836,12 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
       // is never in the path, so the 4.5 MB request-body limit is bypassed
       // entirely. /api/upload-token issues a short-lived, scoped client token
       // (audio/video MIME only, ≤25 MB, random suffix on the path).
-      const blob = await upload(f.name, f, {
+      //
+      // Filename is sanitized to ASCII before put() — @vercel/blob mis-handles
+      // non-ASCII names and produces a mojibake URL that 400s on later GET
+      // (observed in prod 2026-06-09 with a Chinese-named file). The original
+      // f.name stays in component state for the UI and download exports.
+      const blob = await upload(sanitizeBlobFilename(f.name), f, {
         access: 'public',
         handleUploadUrl: '/api/upload-token',
         contentType: f.type || 'audio/mpeg',

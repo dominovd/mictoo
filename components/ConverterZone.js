@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback } from 'react'
 import { upload } from '@vercel/blob/client'
+import { sanitizeBlobFilename } from '@/lib/sanitize-filename'
 
 // ConverterZone — drop file → upload → /api/convert → download.
 //
@@ -83,8 +84,10 @@ export default function ConverterZone({ from, to, labels }) {
 
     try {
       // Step 1: direct upload to Vercel Blob (browser → blob, no function
-      // in the middle, so we bypass the 4.5 MB body limit).
-      const blob = await upload(f.name, f, {
+      // in the middle, so we bypass the 4.5 MB body limit). Filename is
+      // sanitized to ASCII to avoid the @vercel/blob mojibake bug on
+      // non-ASCII names (see lib/sanitize-filename.js).
+      const blob = await upload(sanitizeBlobFilename(f.name), f, {
         access: 'public',
         handleUploadUrl: '/api/upload-token',
         contentType: f.type || sourceCfg.mimes[0],
