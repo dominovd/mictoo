@@ -86,8 +86,10 @@ export default function ConverterZone({ from, to, labels }) {
       // Step 1: direct upload to Vercel Blob (browser → blob, no function
       // in the middle, so we bypass the 4.5 MB body limit). Filename is
       // sanitized to ASCII to avoid the @vercel/blob mojibake bug on
-      // non-ASCII names (see lib/sanitize-filename.js).
-      const blob = await upload(sanitizeBlobFilename(f.name), f, {
+      // non-ASCII names. f.type is passed so sanitize can derive an
+      // extension when the user's filename has none (see
+      // lib/sanitize-filename.js).
+      const blob = await upload(sanitizeBlobFilename(f.name, f.type), f, {
         access: 'public',
         handleUploadUrl: '/api/upload-token',
         contentType: f.type || sourceCfg.mimes[0],

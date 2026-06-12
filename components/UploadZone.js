@@ -839,9 +839,13 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
       //
       // Filename is sanitized to ASCII before put() — @vercel/blob mis-handles
       // non-ASCII names and produces a mojibake URL that 400s on later GET
-      // (observed in prod 2026-06-09 with a Chinese-named file). The original
-      // f.name stays in component state for the UI and download exports.
-      const blob = await upload(sanitizeBlobFilename(f.name), f, {
+      // (observed in prod 2026-06-09 with a Chinese-named file). The MIME
+      // type is also passed so sanitize can derive an extension when the
+      // user's filename has none — Whisper rejects files with no recognized
+      // extension (observed in prod 2026-06-11 with "karine 2" / "interview
+      // bagagerie damien"). The original f.name stays in component state
+      // for the UI and download exports.
+      const blob = await upload(sanitizeBlobFilename(f.name, f.type), f, {
         access: 'public',
         handleUploadUrl: '/api/upload-token',
         contentType: f.type || 'audio/mpeg',
