@@ -13,6 +13,7 @@ import { headers } from 'next/headers'
 import { createClient } from '@/lib/supabase/server'
 import { detectLocaleFromPath, t, localized } from '@/lib/i18n'
 import AccountPreferences from '@/components/AccountPreferences'
+import AccountCredits from '@/components/AccountCredits'
 
 export const dynamic = 'force-dynamic'
 
@@ -113,6 +114,22 @@ export default async function AccountPage() {
             <strong className="text-slate-700">{t(locale, 'account.exportHeading')}</strong>{' '}
             {t(locale, 'account.exportBody')}
           </p>
+          <AccountCredits
+            labels={{
+              heading: t(locale, 'account.credits.heading'),
+              loading: t(locale, 'account.credits.loading'),
+              unavailable: t(locale, 'account.credits.unavailable'),
+              ofLimit: t(locale, 'account.credits.ofLimit'),
+              resetsIn: t(locale, 'account.credits.resetsIn'),
+              resetsDaily: t(locale, 'account.credits.resetsDaily'),
+              resetInMinutes: t(locale, 'account.credits.resetInMinutes'),
+              resetInHours: t(locale, 'account.credits.resetInHours'),
+              resetInHoursMinutes: t(locale, 'account.credits.resetInHoursMinutes'),
+              ruleNormal: t(locale, 'account.credits.ruleNormal'),
+              ruleBigFile: t(locale, 'account.credits.ruleBigFile'),
+              ruleVideo: t(locale, 'account.credits.ruleVideo'),
+            }}
+          />
           <div className="pt-2">
             <p className="font-semibold text-slate-700 mb-3">{t(locale, 'account.notifHeading')}</p>
             <AccountPreferences
