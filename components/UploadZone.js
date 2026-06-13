@@ -87,7 +87,20 @@ function getAudioDurationSec(file) {
 
 // Whisper language codes shown in the picker.
 // Labels (with flag) come from the i18n dictionary per UI locale.
-const PICKER_LANG_CODES = ['en', 'es', 'fr', 'de', 'pt', 'ru', 'it', 'nl', 'pl', 'tr', 'ja', 'ko', 'zh', 'ar', 'hi']
+// Speech-language picker codes. All supported by Whisper large-v3.
+// Sorted alphabetically by ISO code for predictable scanning. The user-
+// visible labels come from DICT[locale].languages[code]; names exist in
+// EN/FR/DE/ES/RU and the rest fall back to EN automatically.
+// Added 2026-06-13 after a user uploaded mixed Russian/Ukrainian audio
+// and Whisper auto-detect chose Russian, producing phonetic gibberish.
+// Letting users pick Ukrainian (uk) — and a wider set generally — gives
+// a clean escape hatch when auto-detect misfires on mixed speech.
+const PICKER_LANG_CODES = [
+  'ar', 'bg', 'bn', 'cs', 'da', 'de', 'el', 'en', 'es', 'fa',
+  'fi', 'fr', 'he', 'hi', 'hr', 'hu', 'id', 'it', 'ja', 'ko',
+  'ms', 'nl', 'no', 'pl', 'pt', 'ro', 'ru', 'sk', 'sv', 'ta',
+  'th', 'tr', 'uk', 'ur', 'vi', 'zh',
+]
 
 // Group Whisper segments into paragraphs based on pauses between segments
 // If gap between consecutive segments > PAUSE_THRESHOLD seconds → new paragraph
