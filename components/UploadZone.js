@@ -49,12 +49,14 @@ const AUTH_MAX_SIZE_BYTES = AUTH_MAX_SIZE_MB * 1024 * 1024
 // CHUNK_THRESHOLD_BYTES in /api/transcribe-multi.
 const BIG_FILE_THRESHOLD_BYTES = 60 * 1024 * 1024
 
-// Duration caps mirror the server's safety net in /api/transcribe. Probing
-// client-side gives the user instant feedback ("this file is 45 min long")
-// before a 23 MB upload they can't use anyway. Server still re-checks via
-// music-metadata after blob fetch, so a malicious client can't bypass.
+// Duration caps mirror the server's safety net in /api/transcribe and
+// /api/transcribe-multi. Probing client-side gives the user instant feedback
+// ("this file is 45 min long") before a 23 MB upload they can't use anyway.
+// Server still re-checks via music-metadata after blob fetch.
+// Authed cap is large enough to cover 3-chunk auto-split content
+// (~3 hours at typical podcast bitrates).
 const ANON_MAX_DURATION_SEC = 30 * 60
-const AUTH_MAX_DURATION_SEC = 60 * 60
+const AUTH_MAX_DURATION_SEC = 180 * 60
 
 // Read audio duration from a File using <audio>'s metadata-loaded event.
 // Returns seconds or null if the browser can't determine it (e.g. exotic
@@ -904,13 +906,17 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
     // safety net for those.
     const durationSec = await getAudioDurationSec(f)
     if (durationSec != null) {
-      const maxSec = authUser ? AUTH_MAX_DURATION_SEC : ANON_MAX_DURATION_SEC
+      // Same optimistic-when-not-loaded rule as the size check above:
+      // during the supabase.auth.getUser() hydration window, treat the
+      // user as authed for cap purposes. Server enforces the real cap.
+      const isAuthed = !authLoaded ? true : !!authUser
+      const maxSec = isAuthed ? AUTH_MAX_DURATION_SEC : ANON_MAX_DURATION_SEC
       if (durationSec > maxSec) {
         const minutes = Math.round(durationSec / 60)
         setError(
           t(
             locale,
-            authUser ? 'status.fileTooLongAuth' : 'status.fileTooLongAnon',
+            isAuthed ? 'status.fileTooLongAuth' : 'status.fileTooLongAnon',
             { minutes }
           )
         )
@@ -918,7 +924,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
         // CTA the rate-limit 429 path uses so the user sees a sign-in
         // button on the error screen. Pair it with the split-audio guide
         // so users have an actionable second option besides registering.
-        setErrorOffersSignIn(!authUser)
+        setErrorOffersSignIn(!isAuthed)
         setErrorHelpType('split')
         setState('error')
         return

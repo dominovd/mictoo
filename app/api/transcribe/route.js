@@ -490,7 +490,10 @@ export async function POST(request) {
     // codec) we let it through — the transcription will surface a clearer
     // error than "could not determine duration" would.
     const ANON_MAX_DURATION_SEC = 30 * 60
-    const AUTH_MAX_DURATION_SEC = 60 * 60
+    // Auth cap raised to 3 hours alongside the big-file auto-split feature.
+    // /api/transcribe-multi can process 3 × 60 MB chunks; at typical podcast
+    // bitrates that comfortably covers a 3-hour recording.
+    const AUTH_MAX_DURATION_SEC = 180 * 60
     const maxDurationSec = authUser ? AUTH_MAX_DURATION_SEC : ANON_MAX_DURATION_SEC
     let probedDurationSec = null
     // Container + codec also captured for success-path logging. Pattern we
