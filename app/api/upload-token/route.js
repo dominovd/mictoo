@@ -1,5 +1,6 @@
 import { handleUpload } from '@vercel/blob/client'
 import { NextResponse } from 'next/server'
+import { createClient as createSupabaseServerClient } from '@/lib/supabase/server'
 
 export const runtime = 'nodejs'
 
@@ -108,11 +109,18 @@ export async function POST(request) {
     }
   }
 
-  // Cap will become auth-aware (180 MB for authed users via auto-split)
-  // once the orchestrator in /api/transcribe ships. Keeping anon-tier
-  // cap for everyone until then so we don't accept files /api/transcribe
-  // can't handle.
-  const sizeCap = ANON_MAX_BYTES
+  // Auth-aware cap. Signed-in users get 180 MB because /api/transcribe-multi
+  // can auto-split anything >60 MB into 2-3 chunks (one daily credit each).
+  // Anon users stay at the 25 MB cap since they can't access the multi route.
+  let authedCap = false
+  try {
+    const supabase = createSupabaseServerClient()
+    const { data } = await supabase.auth.getUser()
+    authedCap = !!data?.user
+  } catch {
+    // Treat as anon on lookup failure.
+  }
+  const sizeCap = authedCap ? AUTH_MAX_BYTES : ANON_MAX_BYTES
 
   try {
     const jsonResponse = await handleUpload({

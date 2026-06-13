@@ -859,12 +859,22 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
       // ── Step 2: ask our route to transcribe the file at that URL ────────
       // The route fetches the blob server-side, sends to Whisper, and
       // del()s the blob in its finally block — we don't have to clean up.
+      //
+      // Files >60 MB go to /api/transcribe-multi which auto-splits into
+      // 2-3 chunks (authed users only; each chunk burns 1 daily credit).
+      // Smaller files keep the well-tested /api/transcribe path with the
+      // full provider chain.
       setProgress(50)
       ticker = setInterval(() => {
         setProgress(p => Math.min(p + Math.random() * 4, 92))
       }, 800)
 
-      const res = await fetch('/api/transcribe', {
+      const BIG_FILE_THRESHOLD = 60 * 1024 * 1024
+      const transcribeEndpoint = f.size > BIG_FILE_THRESHOLD
+        ? '/api/transcribe-multi'
+        : '/api/transcribe'
+
+      const res = await fetch(transcribeEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
