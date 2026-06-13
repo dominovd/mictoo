@@ -2,6 +2,12 @@
   "_comment": "Source of truth for the /whats-new page and the SiteHeader red-dot indicator. Entries are rendered newest-first by date. Each entry: { date (YYYY-MM-DD), title, body (plain text — paragraphs split on blank lines, inline links via markdown-style [label](url)), tags ([] of strings used as small labels). Add the newest entry at the TOP of the array so date sort isn't strictly required to look right while editing. Header's unread indicator compares localStorage 'mictoo:changelog_lastSeen' against entries[0].date.",
   "entries": [
     {
+      "date": "2026-06-13",
+      "title": "Bigger files via auto-split (registered users)",
+      "body": "Signed-in users can now upload files up to 180 MB. Files larger than 60 MB are auto-split into 2-3 chunks, transcribed in parallel, then stitched back into one transcript with continuous timestamps. Each chunk uses one of your daily transcript credits (visible as a 🪙 counter in the header).\n\nA confirmation dialog shows the credit cost before the file uploads, so you decide before committing. Heads up: chunk boundaries today are hard time cuts, so a word or two may be lost at the seam; silence-aware splits are on the way.\n\nSee your daily balance and limit rules on the [account page](/account).",
+      "tags": ["new", "feature"]
+    },
+    {
       "date": "2026-06-04",
       "title": "Chat with your transcript (sign-in required)",
       "body": "Ask questions about any transcript you've created and get answers cited with clickable timestamps that jump to that moment in the audio. Three suggested prompts get you started: \"Summarize the key points\", \"Pull out action items\", \"Find a memorable quote\". Or type your own.\n\nSign in is required for Chat — anonymous transcribing still works exactly the same. 10 questions per hour, 20 per day. Free, like everything else. [How to chat with your transcript →](/blog/how-to-chat-with-transcripts)",
