@@ -36,18 +36,18 @@ const ACCEPTED_TYPES = ['audio/mpeg', 'audio/mp4', 'audio/wav', 'audio/m4a', 'au
 // Vercel's 4.5 MB function body limit by uploading directly to Vercel Blob
 // from the browser (see processFile below), then passing the blob URL to
 // /api/transcribe. The function never has to ingest the file body itself.
-// Anon cap matches the upload-token route's ANON_MAX_BYTES.
+// All MB caps use DECIMAL megabytes (1,000,000 bytes) instead of binary
+// mebibytes (1,048,576) so the threshold matches what macOS Finder,
+// Windows Explorer, and iOS Files show users. Without this, a file
+// labelled "61.8 MB" in Finder was 58.95 MiB in our binary count and
+// fell under the 60 MiB threshold — confusing the user who thought it
+// should trigger the big-file modal. Server-side caps in upload-token,
+// transcribe, and transcribe-multi all share the same definition.
 const ANON_MAX_SIZE_MB = 25
-const ANON_MAX_SIZE_BYTES = ANON_MAX_SIZE_MB * 1024 * 1024
-// Authed users get a bigger ceiling because /api/transcribe-multi can
-// auto-split anything >60 MB into 2-3 chunks. Matches the upload-token
-// route's AUTH_MAX_BYTES.
+const ANON_MAX_SIZE_BYTES = ANON_MAX_SIZE_MB * 1000 * 1000
 const AUTH_MAX_SIZE_MB = 180
-const AUTH_MAX_SIZE_BYTES = AUTH_MAX_SIZE_MB * 1024 * 1024
-// Above this, an authed-user file is routed through /api/transcribe-multi
-// and burns 1 daily credit per 60 MB chunk. Must match the server's
-// CHUNK_THRESHOLD_BYTES in /api/transcribe-multi.
-const BIG_FILE_THRESHOLD_BYTES = 60 * 1024 * 1024
+const AUTH_MAX_SIZE_BYTES = AUTH_MAX_SIZE_MB * 1000 * 1000
+const BIG_FILE_THRESHOLD_BYTES = 60 * 1000 * 1000
 
 // Duration caps mirror the server's safety net in /api/transcribe and
 // /api/transcribe-multi. Probing client-side gives the user instant feedback

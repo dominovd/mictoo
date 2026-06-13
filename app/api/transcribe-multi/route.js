@@ -53,10 +53,10 @@ const groq = process.env.GROQ_API_KEY
     })
   : null
 
-// 60 MB per chunk = Groq's comfortable single-call ceiling. Big files split
-// into N chunks of at most this much; N capped at 3 by chunkCountForSize.
-const CHUNK_THRESHOLD_BYTES = 60 * 1024 * 1024
-const AUTH_MAX_BYTES = 180 * 1024 * 1024  // 3 × CHUNK_THRESHOLD
+// 60 MB per chunk = Groq's comfortable single-call ceiling. Decimal MB
+// (1,000,000) to match what users see; see UploadZone for unit rationale.
+const CHUNK_THRESHOLD_BYTES = 60 * 1000 * 1000
+const AUTH_MAX_BYTES = 180 * 1000 * 1000  // 3 × CHUNK_THRESHOLD
 const AUTH_DAILY_LIMIT = 7
 
 // Reuse the canonical blob-host check from /api/transcribe so a malicious

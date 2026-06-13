@@ -67,17 +67,15 @@ const ALLOWED_CONTENT_TYPES = [
   'application/octet-stream',
 ]
 
-// Anonymous cap. Was originally 25 MB ("OpenAI Whisper hard cap") which
-// became stale once Groq + Deepgram joined the chain. Marketing copy on
-// landing pages says 60 MB. We keep this at the older 25 MB until a separate
-// cleanup verifies the larger cap end-to-end.
-const ANON_MAX_BYTES = 25 * 1024 * 1024 // 25 MB
+// Anonymous cap. Decimal MB (1,000,000 bytes) matches what Finder /
+// Explorer show users — see UploadZone.js for the unit choice rationale.
+const ANON_MAX_BYTES = 25 * 1000 * 1000 // 25 MB
 
 // Signed-in cap. With the big-file auto-split feature, authed users can
 // upload up to 3 × 60 MB worth of audio. The server splits anything above
 // 60 MB into 2-3 chunks (each counted as 1 daily credit) before sending to
 // Whisper. See big-file-autosplit-prd-2026-06-12.md.
-const AUTH_MAX_BYTES = 180 * 1024 * 1024 // 180 MB
+const AUTH_MAX_BYTES = 180 * 1000 * 1000 // 180 MB
 
 export async function POST(request) {
   // ── handleUpload ──────────────────────────────────────────────────────────

@@ -321,12 +321,11 @@ function isOurBlobUrl(url) {
   }
 }
 
-// Per-file caps. Auth gets a bigger window because /api/transcribe-multi
-// handles anything >60 MB via auto-split; for files between 25 and 60 MB
-// authed users go through this single-file route. Anon stays at the old
-// 25 MB.
-const ANON_MAX_BYTES = 25 * 1024 * 1024
-const AUTH_MAX_BYTES = 60 * 1024 * 1024
+// Per-file caps. Decimal MB to match what users see in Finder/Explorer
+// (see UploadZone for the unit rationale). Auth gets up to 60 MB single-
+// file here; bigger files route to /api/transcribe-multi client-side.
+const ANON_MAX_BYTES = 25 * 1000 * 1000
+const AUTH_MAX_BYTES = 60 * 1000 * 1000
 
 export async function POST(request) {
   let blobUrl = null
