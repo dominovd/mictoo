@@ -795,10 +795,20 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
   }, [locale])
 
   const processFile = useCallback(async (f) => {
-    // Auth-aware size cap. Anon stays at the legacy 25 MB; authed users
-    // get up to AUTH_MAX_SIZE_BYTES (180 MB) and anything between
-    // ANON_MAX and BIG_FILE_THRESHOLD just routes to /api/transcribe-multi.
-    const sizeCapBytes = authUser ? AUTH_MAX_SIZE_BYTES : ANON_MAX_SIZE_BYTES
+    // Auth-aware size cap.
+    //   Anon stays at the legacy 25 MB.
+    //   Authed users get up to AUTH_MAX_SIZE_BYTES (180 MB) and anything
+    //     between ANON_MAX and BIG_FILE_THRESHOLD just routes to
+    //     /api/transcribe-multi.
+    //   Auth-state-not-loaded-yet (a moment after page load while
+    //     supabase.auth.getUser() is in flight): optimistically use the
+    //     AUTH cap. The server is the safety net — if the user is
+    //     actually anon, upload-token will 413 with the same message.
+    //     This avoids rejecting an authed user's file just because the
+    //     client hadn't finished hydrating.
+    const sizeCapBytes = !authLoaded
+      ? AUTH_MAX_SIZE_BYTES
+      : (authUser ? AUTH_MAX_SIZE_BYTES : ANON_MAX_SIZE_BYTES)
     if (f.size > sizeCapBytes) {
       const sizeStr = `${(f.size / (1024 * 1024)).toFixed(1)} MB`
       setError(t(locale, 'status.fileTooLargeDetailed', { size: sizeStr }))
@@ -812,7 +822,11 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
     // daily credits the file will use. The modal calls processFileConfirmed
     // (declared as a ref-stable function below) when the user clicks
     // Continue, or just cancels otherwise.
-    if (authUser && f.size > BIG_FILE_THRESHOLD_BYTES) {
+    //
+    // If auth isn't loaded yet, skip the modal — the file may belong to an
+    // anon user that the server will reject. Better than showing a credits
+    // modal that turns out to be wrong.
+    if (authLoaded && authUser && f.size > BIG_FILE_THRESHOLD_BYTES) {
       const isVideo = (f.type || '').startsWith('video/')
       // chunkCount is a client-side estimate by size — server may differ if
       // the file is a big MP4 with small audio (server extracts audio first
@@ -840,7 +854,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
     }
     // Normal-size file: run the original processFile body inline below.
     return processFileCore(f)
-  }, [locale, authUser])
+  }, [locale, authUser, authLoaded])
 
   // Run a credits-check + start the upload flow once the user has confirmed
   // a big file. Lives separately from processFile so processFile stays a
@@ -855,8 +869,12 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
 
   const processFileCore = useCallback(async (f) => {
     // Re-check sizes here too in case processFileCore is invoked outside
-    // processFile (defensive).
-    const sizeCapBytes = authUser ? AUTH_MAX_SIZE_BYTES : ANON_MAX_SIZE_BYTES
+    // processFile (defensive). Same optimistic-when-not-loaded rule as
+    // processFile, to handle a file restored from snapshot that runs
+    // before supabase.auth.getUser() returns.
+    const sizeCapBytes = !authLoaded
+      ? AUTH_MAX_SIZE_BYTES
+      : (authUser ? AUTH_MAX_SIZE_BYTES : ANON_MAX_SIZE_BYTES)
     if (f.size > sizeCapBytes) {
       const sizeStr = `${(f.size / (1024 * 1024)).toFixed(1)} MB`
       setError(t(locale, 'status.fileTooLargeDetailed', { size: sizeStr }))
