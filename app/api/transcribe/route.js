@@ -321,7 +321,12 @@ function isOurBlobUrl(url) {
   }
 }
 
-const MAX_BYTES = 25 * 1024 * 1024 // OpenAI Whisper hard cap
+// Per-file caps. Auth gets a bigger window because /api/transcribe-multi
+// handles anything >60 MB via auto-split; for files between 25 and 60 MB
+// authed users go through this single-file route. Anon stays at the old
+// 25 MB.
+const ANON_MAX_BYTES = 25 * 1024 * 1024
+const AUTH_MAX_BYTES = 60 * 1024 * 1024
 
 export async function POST(request) {
   let blobUrl = null
@@ -449,9 +454,14 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Invalid file reference.' }, { status: 400 })
     }
 
-    if (fileSize > MAX_BYTES) {
+    // Auth-aware single-file cap. Authed users get up to 60 MB here;
+    // anything larger should have been routed to /api/transcribe-multi
+    // client-side. Anon stays at 25 MB.
+    const sizeCap = authUser ? AUTH_MAX_BYTES : ANON_MAX_BYTES
+    const sizeCapMb = Math.round(sizeCap / 1024 / 1024)
+    if (fileSize > sizeCap) {
       return NextResponse.json(
-        { error: 'File too large. Maximum size is 25MB.' },
+        { error: `File too large. Maximum size is ${sizeCapMb}MB.` },
         { status: 413 }
       )
     }
@@ -467,11 +477,11 @@ export async function POST(request) {
     }
 
     const arrayBuffer = await blobRes.arrayBuffer()
-    if (arrayBuffer.byteLength > MAX_BYTES) {
+    if (arrayBuffer.byteLength > sizeCap) {
       // Defense in depth — Vercel Blob already enforces this at upload time,
       // but a manual upload via a hand-issued token could in theory dodge it.
       return NextResponse.json(
-        { error: 'File too large. Maximum size is 25MB.' },
+        { error: `File too large. Maximum size is ${sizeCapMb}MB.` },
         { status: 413 }
       )
     }
