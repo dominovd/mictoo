@@ -6,6 +6,7 @@ import { detectLocaleFromPath, localized, t } from '@/lib/i18n'
 import { createClient } from '@/lib/supabase/client'
 import { LATEST_CHANGELOG_DATE } from '@/lib/changelog-meta-gen'
 import LanguageSwitcher from './LanguageSwitcher'
+import CreditsWidget from './CreditsWidget'
 
 export default function SiteHeader() {
   const pathname = usePathname() || '/'
@@ -123,16 +124,18 @@ function AuthMenu({ authLoaded, user, pathname }) {
     )
   }
 
-  // Authenticated — "History" link + avatar/initial circle linking to /account.
-  // History is the more frequently-used destination for power users (re-export
-  // a past transcript), so we surface it as a sibling link rather than burying
-  // it inside /account.
+  // Authenticated — Credits widget + "History" link + avatar/initial circle.
+  // Credits sits leftmost so users see "🪙 5/7" before deciding to upload a
+  // big file. History is the more frequently-used destination for power
+  // users (re-export a past transcript), so we surface it as a sibling
+  // link rather than burying it inside /account.
   const meta = user.user_metadata || {}
   const avatarUrl = meta.avatar_url || meta.picture
   const initial = (meta.full_name || meta.name || user.email || '?').charAt(0).toUpperCase()
 
   return (
     <>
+      <CreditsWidget />
       <a href="/history" className="btn-ghost whitespace-nowrap hidden sm:inline-flex">History</a>
       <a
         href="/account"
