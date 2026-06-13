@@ -1,6 +1,5 @@
 import { handleUpload } from '@vercel/blob/client'
 import { NextResponse } from 'next/server'
-import { createClient as createSupabaseServerClient } from '@/lib/supabase/server'
 
 export const runtime = 'nodejs'
 
@@ -109,19 +108,11 @@ export async function POST(request) {
     }
   }
 
-  // Auth-aware size cap. Authed users get a bigger window because their
-  // big files get auto-split server-side into 60 MB chunks (one daily
-  // credit each). Anon users stay at the smaller cap because they can't
-  // split — Whisper sees the file whole.
-  let authedCap = false
-  try {
-    const supabase = createSupabaseServerClient()
-    const { data } = await supabase.auth.getUser()
-    authedCap = !!data?.user
-  } catch {
-    // Treat as anon on lookup failure.
-  }
-  const sizeCap = authedCap ? AUTH_MAX_BYTES : ANON_MAX_BYTES
+  // Cap will become auth-aware (180 MB for authed users via auto-split)
+  // once the orchestrator in /api/transcribe ships. Keeping anon-tier
+  // cap for everyone until then so we don't accept files /api/transcribe
+  // can't handle.
+  const sizeCap = ANON_MAX_BYTES
 
   try {
     const jsonResponse = await handleUpload({
