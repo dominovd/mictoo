@@ -36,8 +36,18 @@ const ACCEPTED_TYPES = ['audio/mpeg', 'audio/mp4', 'audio/wav', 'audio/m4a', 'au
 // Vercel's 4.5 MB function body limit by uploading directly to Vercel Blob
 // from the browser (see processFile below), then passing the blob URL to
 // /api/transcribe. The function never has to ingest the file body itself.
-const MAX_SIZE_MB = 25
-const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024
+// Anon cap matches the upload-token route's ANON_MAX_BYTES.
+const ANON_MAX_SIZE_MB = 25
+const ANON_MAX_SIZE_BYTES = ANON_MAX_SIZE_MB * 1024 * 1024
+// Authed users get a bigger ceiling because /api/transcribe-multi can
+// auto-split anything >60 MB into 2-3 chunks. Matches the upload-token
+// route's AUTH_MAX_BYTES.
+const AUTH_MAX_SIZE_MB = 180
+const AUTH_MAX_SIZE_BYTES = AUTH_MAX_SIZE_MB * 1024 * 1024
+// Above this, an authed-user file is routed through /api/transcribe-multi
+// and burns 1 daily credit per 60 MB chunk. Must match the server's
+// CHUNK_THRESHOLD_BYTES in /api/transcribe-multi.
+const BIG_FILE_THRESHOLD_BYTES = 60 * 1024 * 1024
 
 // Duration caps mirror the server's safety net in /api/transcribe. Probing
 // client-side gives the user instant feedback ("this file is 45 min long")
@@ -319,6 +329,17 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
   const [file, setFile] = useState(null)
   const [transcript, setTranscript] = useState('')
   const [segments, setSegments] = useState([])
+  // Big-file confirm modal — non-null shows the modal. Set by processFile
+  // when an authed user picks a file >60 MB; cleared on Continue/Cancel.
+  // Shape: { file: File, chunkCount: number, isVideo: boolean }
+  const [bigFileConfirm, setBigFileConfirm] = useState(null)
+  // failedChunks comes back from /api/transcribe-multi when one or more
+  // chunks failed during processing. Non-empty array triggers an amber
+  // banner above the transcript explaining the gap.
+  const [failedChunks, setFailedChunks] = useState([])
+  // Snapshot of credits at upload time so the modal can show
+  // "{n} of your {remaining}" without an extra round-trip.
+  const [creditsRemaining, setCreditsRemaining] = useState(null)
   // 'reader' = per-line timestamps + text (TranscriptReader, default when we
   // have segments). 'editor' = textarea — fallback when no segments, or when
   // the user wants to fix a typo before exporting.
@@ -774,7 +795,69 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
   }, [locale])
 
   const processFile = useCallback(async (f) => {
-    if (f.size > MAX_SIZE_BYTES) {
+    // Auth-aware size cap. Anon stays at the legacy 25 MB; authed users
+    // get up to AUTH_MAX_SIZE_BYTES (180 MB) and anything between
+    // ANON_MAX and BIG_FILE_THRESHOLD just routes to /api/transcribe-multi.
+    const sizeCapBytes = authUser ? AUTH_MAX_SIZE_BYTES : ANON_MAX_SIZE_BYTES
+    if (f.size > sizeCapBytes) {
+      const sizeStr = `${(f.size / (1024 * 1024)).toFixed(1)} MB`
+      setError(t(locale, 'status.fileTooLargeDetailed', { size: sizeStr }))
+      setErrorHelpType('compress')
+      setState('error')
+      return
+    }
+
+    // Big file path (authed users only — anon was rejected by sizeCap above).
+    // Show a confirm modal so the user knows ahead of time how many of their
+    // daily credits the file will use. The modal calls processFileConfirmed
+    // (declared as a ref-stable function below) when the user clicks
+    // Continue, or just cancels otherwise.
+    if (authUser && f.size > BIG_FILE_THRESHOLD_BYTES) {
+      const isVideo = (f.type || '').startsWith('video/')
+      // chunkCount is a client-side estimate by size — server may differ if
+      // the file is a big MP4 with small audio (server extracts audio first
+      // and counts by audio size). We show the estimate honestly.
+      const chunkCount = Math.min(3, Math.ceil(f.size / BIG_FILE_THRESHOLD_BYTES))
+      // Pre-fetch remaining credits so the modal can show
+      // "{n} of your {remaining}" without showing a loading state. If the
+      // fetch fails (Redis missing, network blip), show "—" — better than
+      // making the user wait or showing a fake number.
+      try {
+        const r = await fetch('/api/credits', { cache: 'no-store' })
+        if (r.ok) {
+          const j = await r.json()
+          setCreditsRemaining(
+            j?.available && Number.isFinite(j?.remaining) ? j.remaining : null
+          )
+        } else {
+          setCreditsRemaining(null)
+        }
+      } catch {
+        setCreditsRemaining(null)
+      }
+      setBigFileConfirm({ file: f, chunkCount, isVideo })
+      return
+    }
+    // Normal-size file: run the original processFile body inline below.
+    return processFileCore(f)
+  }, [locale, authUser])
+
+  // Run a credits-check + start the upload flow once the user has confirmed
+  // a big file. Lives separately from processFile so processFile stays a
+  // simple branch + the confirm-modal layer is uniform across sources
+  // (drag-drop, file picker, restore-from-storage).
+  const processFileConfirmed = useCallback(async () => {
+    const pending = bigFileConfirm
+    setBigFileConfirm(null)
+    if (!pending) return
+    return processFileCore(pending.file)
+  }, [bigFileConfirm])
+
+  const processFileCore = useCallback(async (f) => {
+    // Re-check sizes here too in case processFileCore is invoked outside
+    // processFile (defensive).
+    const sizeCapBytes = authUser ? AUTH_MAX_SIZE_BYTES : ANON_MAX_SIZE_BYTES
+    if (f.size > sizeCapBytes) {
       const sizeStr = `${(f.size / (1024 * 1024)).toFixed(1)} MB`
       setError(t(locale, 'status.fileTooLargeDetailed', { size: sizeStr }))
       setErrorHelpType('compress')
@@ -913,6 +996,14 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
       }
 
       setProgress(100)
+      // Surface chunk-level failures from /api/transcribe-multi so the result
+      // view can show the "some chunks failed" banner. Empty/missing for
+      // normal single-file transcribes (/api/transcribe).
+      if (Array.isArray(data.failedChunks) && data.failedChunks.length > 0) {
+        setFailedChunks(data.failedChunks)
+      } else {
+        setFailedChunks([])
+      }
       const segs = data.segments ?? []
       const finalText = segs.length > 0 ? toParagraphs(segs) : data.text
       const detectedLang = data.language || null
@@ -1231,6 +1322,31 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
 
     return (
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+        {/* Big-file partial-result banner — surfaces failedChunks from
+            /api/transcribe-multi so the user knows the transcript below
+            is missing audio from those time ranges. */}
+        {failedChunks.length > 0 && (
+          <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-5 flex items-start gap-3 text-sm">
+            <div className="flex-shrink-0 w-5 h-5 rounded-full bg-amber-500 text-white inline-flex items-center justify-center text-[11px] font-bold mt-0.5">!</div>
+            <div className="flex-1 leading-relaxed">
+              <p className="font-semibold text-amber-900 mb-1">
+                {t(locale, 'bigFile.failedBanner').split('.')[0]}
+              </p>
+              <p className="text-amber-800 text-xs">
+                {t(locale, 'bigFile.failedBanner').split('.').slice(1).join('.').trim()}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setFailedChunks([])}
+              className="flex-shrink-0 text-amber-500 hover:text-amber-700 text-lg leading-none"
+              aria-label="Dismiss"
+              title="Dismiss"
+            >
+              ×
+            </button>
+          </div>
+        )}
         {restoredFromSnapshot && (
           <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-5 flex items-start gap-3 text-sm">
             <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-500 text-white inline-flex items-center justify-center text-[11px] font-bold mt-0.5">✓</div>
@@ -1699,6 +1815,53 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
   // IDLE — main upload zone
   return (
     <div className="space-y-3">
+      {/* Big-file confirm modal — shown when an authed user picks a file
+          larger than 60 MB. Explains the credit cost before we commit
+          their daily quota. Audio files give a precise chunk count;
+          video files use a "1-3 credits" range because the actual count
+          depends on the audio length inside the container. */}
+      {bigFileConfirm && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 px-4"
+          onClick={() => setBigFileConfirm(null)}
+        >
+          <div
+            className="bg-white rounded-2xl border border-slate-200 shadow-xl max-w-md w-full p-6"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 className="text-base font-semibold text-slate-900 mb-3">
+              {t(locale, 'bigFile.modalTitle')}
+            </h3>
+            <p className="text-sm text-slate-600 leading-relaxed mb-5">
+              {(() => {
+                const remaining = creditsRemaining ?? '—'
+                const n = bigFileConfirm.chunkCount
+                const key = bigFileConfirm.isVideo ? 'bigFile.modalVideo' : 'bigFile.modalAudio'
+                return t(locale, key)
+                  .replace(/\{n\}/g, String(n))
+                  .replace(/\{remaining\}/g, String(remaining))
+              })()}
+            </p>
+            <div className="flex justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => setBigFileConfirm(null)}
+                className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-800 transition-colors"
+              >
+                {t(locale, 'bigFile.cancel')}
+              </button>
+              <button
+                type="button"
+                onClick={processFileConfirmed}
+                className="px-4 py-2 text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-lg transition-colors"
+              >
+                {t(locale, 'bigFile.confirm')}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Language selector */}
       <div className="flex items-center justify-end gap-2">
         <label htmlFor="lang-select" className="text-xs text-slate-400 font-medium">{t(locale, 'picker.label')}:</label>
