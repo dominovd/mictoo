@@ -989,8 +989,12 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
         setProgress(p => Math.min(p + Math.random() * 4, 92))
       }, 800)
 
-      const BIG_FILE_THRESHOLD = 60 * 1024 * 1024
-      const transcribeEndpoint = f.size > BIG_FILE_THRESHOLD
+      // Decimal MB to match the modal trigger (BIG_FILE_THRESHOLD_BYTES at the
+      // top of this file) AND the /api/transcribe AUTH_MAX_BYTES cap. Mixing
+      // 1024*1024 here would route a 61 MB file (61_000_000 bytes, modal
+      // shown) to /api/transcribe — which rejects with "Maximum size is 57MB"
+      // because the cap is 60_000_000 bytes (= 57.22 binary MB).
+      const transcribeEndpoint = f.size > BIG_FILE_THRESHOLD_BYTES
         ? '/api/transcribe-multi'
         : '/api/transcribe'
 

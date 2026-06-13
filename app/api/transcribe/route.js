@@ -457,7 +457,11 @@ export async function POST(request) {
     // anything larger should have been routed to /api/transcribe-multi
     // client-side. Anon stays at 25 MB.
     const sizeCap = authUser ? AUTH_MAX_BYTES : ANON_MAX_BYTES
-    const sizeCapMb = Math.round(sizeCap / 1024 / 1024)
+    // Decimal MB to match the cap (60 * 1000 * 1000 = "60 MB" not "57 MB").
+    // Caps are defined in decimal because Finder/Explorer show decimal MB
+    // and we don't want the error message to disagree with the user's file
+    // properties dialog.
+    const sizeCapMb = Math.round(sizeCap / 1000 / 1000)
     if (fileSize > sizeCap) {
       return NextResponse.json(
         { error: `File too large. Maximum size is ${sizeCapMb}MB.` },

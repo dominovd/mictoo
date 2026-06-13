@@ -176,7 +176,7 @@ export async function POST(request) {
     }
     if (fileSize > AUTH_MAX_BYTES) {
       return NextResponse.json(
-        { error: `File too large. Maximum size is ${AUTH_MAX_BYTES / 1024 / 1024} MB.` },
+        { error: `File too large. Maximum size is ${AUTH_MAX_BYTES / 1000 / 1000} MB.` },
         { status: 413 }
       )
     }
@@ -193,7 +193,7 @@ export async function POST(request) {
     const arrayBuffer = await blobRes.arrayBuffer()
     if (arrayBuffer.byteLength > AUTH_MAX_BYTES) {
       return NextResponse.json(
-        { error: `File too large. Maximum size is ${AUTH_MAX_BYTES / 1024 / 1024} MB.` },
+        { error: `File too large. Maximum size is ${AUTH_MAX_BYTES / 1000 / 1000} MB.` },
         { status: 413 }
       )
     }
