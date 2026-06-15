@@ -42,11 +42,47 @@ export default function DeDictationPage() {
       h1={<>Diktat zu Text<br /><span className="text-brand-600">Kostenlose Sprachdiktat-Transkription</span></>}
       subtitle="Nehmen Sie Ihre Gedanken auf, diktieren Sie ein Kapitel oder Notizen — laden Sie die Datei dann hier hoch und erhalten Sie eine genaue Texttranskription. Keine Anmeldung, keine App-Installation."
       defaultLanguage="de"
-      features={[
-        { icon: '📝', title: 'Für Autoren und Forscher', desc: 'Diktieren Sie ein Kapitel-Entwurf, eine Artikel-Gliederung oder Interview-Notizen. Mictoo verwandelt Ihre Stimme in Sekunden in sauberen, bearbeitbaren Text.' },
-        { icon: '👨‍⚕️', title: 'Für Ärzte und Anwälte', desc: 'Diktieren Sie Falldetails, Patientenzusammenfassungen oder Memos auf dem Handy und wandeln Sie sie für Ihre Akten in Text um. Dateien werden verarbeitet und sofort gelöscht.' },
-        { icon: '🌍', title: '50+ Sprachen', desc: 'Diktieren Sie auf Deutsch, Englisch, Spanisch, Französisch, Russisch, Japanisch und viele mehr. Sprache wird automatisch erkannt; bei Bedarf überschreibbar.' },
+      valueBlock={
+        <>
+          <p>
+            Aufgezeichnetes Diktat unterscheidet sich von Meetings: meist eine Stimme, längere Gedanken, Pausen und gelegentliche Selbstkorrekturen. Entscheidend ist ein gut editierbarer erster Entwurf.
+          </p>
+          <p>
+            Mictoo wandelt Diktate in strukturierten Text um, den Sie für Artikel, Notizen, Berichte oder Kapitel weiterbearbeiten können.
+          </p>
+        </>
+      }
+      howItWorks={[
+        { title: 'Natürlich aufnehmen', desc: 'Sprechen Sie in Telefon, Recorder oder Sprachmemo-App, auch offline.' },
+        { title: 'Audio hochladen', desc: 'Importieren Sie MP3, M4A, WAV oder ein anderes unterstütztes Format.' },
+        { title: 'Entwurf bearbeiten', desc: 'Absätze setzen, Wiederholungen entfernen und den finalen Text exportieren.' },
       ]}
+      whyUse={{
+        title: 'Warum Mictoo für Diktate',
+        bullets: [
+          'Sie können frei sprechen und später in Ruhe korrigieren.',
+          'Automatische Satzzeichen machen den Rohtext besser lesbar.',
+          'Gut für lange Gedanken, Akzente und Passagen, in denen Sie laut nachdenken.',
+          'Die Audiodatei bleibt verfügbar, falls Sie eine Formulierung prüfen möchten.',
+        ],
+      }}
+      useCases={{
+        title: 'Wann Diktat zu Text nützlich ist',
+        items: [
+          { title: 'Artikel und Newsletter', desc: 'Erfassen Sie die ganze Idee, bevor Sie am Text feilen.' },
+          { title: 'Nachfassnotizen', desc: 'Diktieren Sie direkt nach einem Gespräch die wichtigsten Punkte.' },
+          { title: 'Kapitel und Skripte', desc: 'Machen Sie aus einer gesprochenen Sitzung einen ersten Entwurf.' },
+          { title: 'Berufliche Notizen', desc: 'Erstellen Sie Beobachtungen, Protokolle oder Berichte ohne Kontextverlust.' },
+        ],
+      }}
+      proTips={{
+        title: 'Tipps für saubere Diktate',
+        tips: [
+          'In vollständigen Sätzen sprechen, damit der Text leichter zu bearbeiten ist.',
+          'Zwischen Abschnitten bewusst pausieren.',
+          'Wörter wie „Überschrift“ oder „neuer Punkt“ laut sagen, wenn Sie Struktur markieren möchten.',
+        ],
+      }}
       faq={[
         { q: 'Wie nehme ich Diktate auf meinem Handy auf?', a: 'iPhone: Voice-Memos-App — Export als .m4a. Android: integrierter Sprachrekorder oder Easy Voice Recorder — Export als .mp3 oder .m4a. Datei in Mictoo ablegen.' },
         { q: 'Ist Mictoo ein Echtzeit-Diktiertool?', a: 'Nein — Mictoo transkribiert bestehende Audiodateien. Für Echtzeit-Diktat (sprechen und Text erscheint) nutzen Sie die System-Diktatfunktion (macOS, Windows, iOS, Android). Mictoo eignet sich danach für die Aufbereitung längerer Aufnahmen.' },

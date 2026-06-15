@@ -42,11 +42,43 @@ export default function PlSermonPage() {
       h1={<>Transkrypcja kazań<br /><span className="text-brand-600">Darmowy generator transkryptów</span></>}
       subtitle="Przekształć nagrania kazań w czysty tekst w kilka sekund. Idealne do blogów kościelnych, przewodników do studium, postów na social media i uczynienia przesłania dostępnym dla niesłyszących."
       defaultLanguage="pl"
-      features={[
-        { icon: '📖', title: 'Wykorzystaj każde kazanie ponownie', desc: 'Przekształć kazanie w post na blog, rozważanie, newsletter, przewodnik do studium i cytaty gotowe na social media. Zwielokrotnij zasięg bez dodatkowej pracy.' },
-        { icon: '♿', title: 'Dostępność', desc: 'Oferuj transkrypcje, aby członkowie niesłyszący, niedosłyszący lub uczestniczący zdalnie mogli w pełni odebrać przesłanie.' },
-        { icon: '🌐', title: 'Wsparcie wielojęzyczne', desc: 'Działa dla polskiego, angielskiego, hiszpańskiego, portugalskiego, koreańskiego, francuskiego, rosyjskiego i ponad 45 innych języków. Idealne dla wielojęzycznych zborów.' },
+      valueBlock={
+        <>
+          <p>Transkrypcja kazania może stać się notatkami dla kościoła, napisami YouTube, materiałem dla małych grup, cytatami i przeszukiwalnym archiwum.</p>
+          <p>Mictoo pomaga zamienić audio lub wideo z nabożeństwa w edytowalny tekst do publikacji, korekty i ponownego użycia.</p>
+        </>
+      }
+      howItWorks={[
+        { title: 'Prześlij audio kazania', desc: 'Użyj MP3, WAV, M4A albo wideo wyeksportowanego z nabożeństwa.' },
+        { title: 'Otrzymaj szkic', desc: 'Mictoo generuje transkrypcję z timestampami do sprawdzenia fragmentów i nazw.' },
+        { title: 'Opublikuj lub wykorzystaj ponownie', desc: 'Eksportuj tekst na stronę, do notatek, napisów albo archiwum wewnętrznego.' },
       ]}
+      whyUse={{
+        title: 'Dlaczego transkrybować kazania',
+        bullets: [
+          { title: 'Dostępność', desc: 'Pomaga osobom, które wolą czytać albo potrzebują wsparcia tekstowego.' },
+          { title: 'Ponowne użycie treści', desc: 'Zamieniaj przesłania w posty, newslettery, rozważania lub cytaty.' },
+          { title: 'Przeszukiwalne archiwum', desc: 'Szybciej znajduj tematy, serie i odniesienia biblijne.' },
+          { title: 'Wsparcie zespołu media', desc: 'Ułatwia przygotowanie napisów i opisów do filmów.' },
+        ],
+      }}
+      useCases={{
+        title: 'Zastosowania dla kościołów',
+        items: [
+          { title: 'Strona kazania', desc: 'Opublikuj tekst obok audio lub wideo.' },
+          { title: 'Napisy YouTube', desc: 'Stwórz bazę do captions i ręcznej korekty.' },
+          { title: 'Materiał dla grup', desc: 'Wyciągaj pytania, główne punkty i cytaty.' },
+          { title: 'Serie kazań', desc: 'Szukaj powtarzających się tematów w miesiącach lub latach nagrań.' },
+        ],
+      }}
+      proTips={{
+        title: 'Wskazówki dla kazań',
+        tips: [
+          { title: 'Wyodrębnij audio z dużych filmów', desc: 'Przesłanie samej ścieżki głosu zwykle jest szybsze.' },
+          { title: 'Sprawdź nazwy biblijne', desc: 'Nazwy własne i odniesienia mogą wymagać korekty.' },
+          { title: 'Dziel długie konferencje', desc: 'Jeden plik na sesję ułatwia przegląd i publikację.' },
+        ],
+      }}
       faq={[
         { q: 'Jak przekształcić nagranie kazania w tekst?', a: 'Eksportuj nagranie z konsoli dźwiękowej kościoła, z feedu podcastów lub z YouTube jako MP3, MP4 lub M4A. Prześlij plik powyżej — Mictoo transkrybuje w kilka sekund.' },
         { q: 'Czy mogę transkrybować kazania z kanału YouTube naszego kościoła?', a: 'Tak. Dla swojego kanału: YouTube Studio → Treść → kliknij wideo → Pobierz. Prześlij plik do Mictoo. Dla zewnętrznych kanałów potrzebujesz pozwolenia — wiele służb udostępnia pobieranie audio przez feed podcastów.' },

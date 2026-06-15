@@ -42,11 +42,43 @@ export default function ItWavToTextPage() {
       h1={<>WAV in testo<br /><span className="text-brand-600">Trascrizione WAV gratis online</span></>}
       subtitle="Carica qualsiasi file audio WAV e ottieni una trascrizione testuale precisa in pochi secondi. Supporta tutte le registrazioni WAV — interviste, chiamate, lezioni, note vocali. Senza account."
       defaultLanguage="it"
-      features={[
-        { icon: '🎙️', title: 'Qualsiasi WAV', desc: 'WAV standard, PCM, broadcast WAV — qualsiasi formato WAV fino a 25 MB.' },
-        { icon: '⏱️', title: 'Timestamp inclusi', desc: 'Scarica la trascrizione come .txt o come file di sottotitoli .srt con timecode.' },
-        { icon: '🌍', title: '50+ lingue', desc: 'La lingua è rilevata automaticamente. Funziona con italiano, inglese, spagnolo, francese, tedesco, russo e molte altre.' },
+      valueBlock={
+        <>
+          <p>WAV è spesso audio non compresso da studi, registratori, DAW, interviste e archivi. La qualità è alta, ma i file possono essere grandi.</p>
+          <p>Mictoo trasforma WAV in una trascrizione modificabile e consente di esportare testo o sottotitoli senza digitare manualmente la registrazione.</p>
+        </>
+      }
+      howItWorks={[
+        { title: 'Carica il WAV', desc: 'Aggiungi un’intervista, una lezione, un podcast, un bounce DAW o una registrazione sul campo.' },
+        { title: 'L’IA trascrive la voce', desc: 'Mictoo elabora l’audio e crea testo con timestamp.' },
+        { title: 'Modifica ed esporta', desc: 'Copia il testo o scarica formati utili come TXT o SRT.' },
       ]}
+      whyUse={{
+        title: 'Perché Mictoo per WAV',
+        bullets: [
+          { title: 'Caricamento WAV diretto', desc: 'Evita conversioni per registrazioni da studio o registratore quando il file rientra nel limite.' },
+          { title: 'Utile per fonti professionali', desc: 'Funziona per interviste, podcast, lezioni, archivi e DAW.' },
+          { title: 'Timestamp per revisione', desc: 'Torna all’audio originale quando correggi citazioni o nomi.' },
+          { title: 'Guida per file grandi', desc: 'Puoi creare una copia mono più leggera se il WAV completo è troppo pesante.' },
+        ],
+      }}
+      useCases={{
+        title: 'Quando trascrivere WAV',
+        items: [
+          { title: 'Interviste', desc: 'Estrai citazioni e domande da registrazioni pulite.' },
+          { title: 'Podcast', desc: 'Crea show notes, captions e contenuti riutilizzabili.' },
+          { title: 'Lezioni e conferenze', desc: 'Trasforma sessioni lunghe in appunti ricercabili.' },
+          { title: 'Archivi', desc: 'Rendi consultabili registrazioni vecchie o istituzionali.' },
+        ],
+      }}
+      proTips={{
+        title: 'Consigli per WAV',
+        tips: [
+          { title: 'Usa una copia 16 kHz mono se pesa molto', desc: 'Per la voce, una copia di lavoro più leggera è spesso sufficiente.' },
+          { title: 'Taglia i silenzi', desc: 'Riduci dimensioni e tempo di revisione senza toccare il contenuto parlato.' },
+          { title: 'Conserva il WAV originale', desc: 'Mantieni il master e usa una versione compressa solo se devi caricare più velocemente.' },
+        ],
+      }}
       faq={[
         { q: 'Come converto un file WAV in testo?', a: 'Carica il tuo file WAV con lo strumento sopra. Mictoo lo trascrive automaticamente con l\'IA e mostra il testo in pochi secondi.' },
         { q: 'La conversione WAV-testo è gratis?', a: 'Sì, completamente gratis. Senza account. Carica i tuoi WAV — nessun tetto mensile, nessuna registrazione.' },

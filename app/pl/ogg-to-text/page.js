@@ -42,11 +42,43 @@ export default function PlOggToTextPage() {
       h1={<>OGG na tekst<br /><span className="text-brand-600">Darmowa transkrypcja OGG online</span></>}
       subtitle="Prześlij dowolny plik audio OGG i skonwertuj na tekst w kilka sekund. Obsługa OGG Vorbis i OGG Opus. Bez konta."
       defaultLanguage="pl"
-      features={[
-        { icon: '🎙️', title: 'OGG Vorbis i Opus', desc: 'Obsługa plików OGG z dowolnego źródła — dyktafony, przeglądarki, aplikacje komunikacyjne.' },
-        { icon: '🌍', title: '50+ języków', desc: 'Język wykrywany automatycznie. Działa dla polskiego, angielskiego, hiszpańskiego, francuskiego i innych.' },
-        { icon: '📄', title: 'Eksport .txt i .srt', desc: 'Pobierz jako prosty tekst lub jako plik SRT z timestampami.' },
+      valueBlock={
+        <>
+          <p>OGG to kontener: może zawierać audio Vorbis, Opus albo inne warianty. Często pojawia się w wiadomościach głosowych, narzędziach open source, eksportach z Linuksa i aplikacjach webowych.</p>
+          <p>Mictoo wyodrębnia ścieżkę audio, rozpoznaje kodek i tworzy czytelną transkrypcję z timestampami, bez wcześniejszej konwersji pliku.</p>
+        </>
+      }
+      howItWorks={[
+        { title: 'Prześlij plik OGG', desc: 'Dodaj .ogg lub .oga z Telegrama, przeglądarki, dyktafonu albo narzędzia Linux.' },
+        { title: 'Mictoo rozpoznaje kodek', desc: 'System czyta kontener i przetwarza właściwą ścieżkę Vorbis lub Opus.' },
+        { title: 'Pobierz tekst', desc: 'Skopiuj transkrypcję albo wyeksportuj TXT/SRT z timestampami.' },
       ]}
+      whyUse={{
+        title: 'Dlaczego Mictoo do OGG',
+        bullets: [
+          { title: 'Obsługa OGG i OGA', desc: 'Przydatne przy plikach, których wiele ogólnych narzędzi nadal nie przyjmuje.' },
+          { title: 'Bez wcześniejszej konwersji', desc: 'Nie musisz przechodzić przez MP3 tylko po to, by szybko dostać tekst.' },
+          { title: 'Praktyczne timestampy', desc: 'Wróć do wiadomości lub nagrania z jasnymi odniesieniami czasowymi.' },
+          { title: 'Dobre dla Opus z webu', desc: 'Sprawdza się przy audio z rozmów, przeglądarek i komunikatorów.' },
+        ],
+      }}
+      useCases={{
+        title: 'Kiedy transkrybować OGG',
+        items: [
+          { title: 'Wiadomości Telegram', desc: 'Zamień krótkie pliki .oga w notatki do przeszukania.' },
+          { title: 'Nagrania z Linuksa', desc: 'Transkrybuj capture z narzędzi audio open source.' },
+          { title: 'Rozmowy WebRTC', desc: 'Odzyskaj treść spotkań lub testów nagranych w Opus.' },
+          { title: 'Archiwa audio', desc: 'Uczyń stare OGG przeszukiwalnymi bez ponownego kodowania.' },
+        ],
+      }}
+      proTips={{
+        title: 'Wskazówki dla plików OGG',
+        tips: [
+          { title: 'Sprawdź także .oga', desc: 'Wiele wiadomości głosowych używa tego rozszerzenia przy podobnym typie audio.' },
+          { title: 'Wyodrębnij samo audio, jeśli plik jest ciężki', desc: 'Przy dużych nagraniach sama ścieżka głosu może przesłać się szybciej.' },
+          { title: 'Ustaw język przy krótkich klipach', desc: 'Automatyczne wykrywanie ma mniej kontekstu w kilkusekundowych wiadomościach.' },
+        ],
+      }}
       faq={[
         { q: 'Jak konwertuję OGG na tekst?', a: 'Prześlij plik OGG powyżej. Transkrypcja jest generowana automatycznie w kilka sekund.' },
         { q: 'Czy konwersja OGG na tekst jest darmowa?', a: 'Tak, całkowicie darmowa. Bez rejestracji i konta.' },

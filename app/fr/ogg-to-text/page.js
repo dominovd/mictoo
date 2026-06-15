@@ -16,12 +16,12 @@ const LANGS = {
 
 export const metadata = {
   title: 'OGG en texte — Transcription audio OGG gratuite en ligne | Mictoo',
-  description: "Convertissez gratuitement les fichiers audio OGG en texte en ligne. Déposez n'importe quel enregistrement OGG Vorbis et obtenez une transcription précise instantanément. Sans inscription.",
+  description: "Convertissez gratuitement les fichiers audio OGG en texte en ligne. Déposez n’importe quel enregistrement OGG Vorbis et obtenez une transcription précise instantanément. Sans inscription.",
   alternates: { canonical: 'https://mictoo.com/fr/ogg-to-text', languages: LANGS },
 
   openGraph: {
     title: "OGG en texte — Transcription audio OGG gratuite en ligne | Mictoo",
-    description: "Convertissez gratuitement les fichiers audio OGG en texte en ligne. Déposez n'importe quel enregistrement OGG Vorbis et obtenez une transcription précise instantanément. Sans inscription.",
+    description: "Convertissez gratuitement les fichiers audio OGG en texte en ligne. Déposez n’importe quel enregistrement OGG Vorbis et obtenez une transcription précise instantanément. Sans inscription.",
     url: "https://mictoo.com/fr/ogg-to-text",
     siteName: "Mictoo",
     type: "website",
@@ -30,7 +30,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "OGG en texte — Transcription audio OGG gratuite en ligne | Mictoo",
-    description: "Convertissez gratuitement les fichiers audio OGG en texte en ligne. Déposez n'importe quel enregistrement OGG Vorbis et obtenez une transcription précise instantanément. Sans inscription.",
+    description: "Convertissez gratuitement les fichiers audio OGG en texte en ligne. Déposez n’importe quel enregistrement OGG Vorbis et obtenez une transcription précise instantanément. Sans inscription.",
     images: ["https://mictoo.com/opengraph-image"],
   },
 }
@@ -40,13 +40,49 @@ export default function FrOggToTextPage() {
     <LandingLayout
       badge="OGG · Vorbis · Gratuit · Instantané"
       h1={<>OGG en texte<br /><span className="text-brand-600">Transcription OGG gratuite en ligne</span></>}
-      subtitle="Téléchargez n'importe quel fichier audio OGG et convertissez-le en texte en quelques secondes. Compatible OGG Vorbis et OGG Opus. Sans compte."
+      subtitle="Téléchargez n’importe quel fichier audio OGG et convertissez-le en texte en quelques secondes. Compatible OGG Vorbis et OGG Opus. Sans compte."
       defaultLanguage="fr"
-      features={[
-        { icon: '🎙️', title: 'OGG Vorbis & Opus', desc: 'Compatible avec les fichiers OGG de toutes sources — dictaphones, navigateurs web, applications de communication.' },
-        { icon: '🌍', title: '50+ langues', desc: 'Langue détectée automatiquement. Fonctionne pour le français, anglais, espagnol, allemand et plus.' },
-        { icon: '📄', title: 'Export .txt et .srt', desc: 'Téléchargez en texte simple ou en fichier de sous-titres SRT avec horodatages.' },
+      valueBlock={
+        <>
+          <p>
+            OGG est un conteneur: il peut contenir de l’audio Vorbis, Opus ou d’autres variantes. C’est fréquent dans les messages vocaux, les outils open source, les exports Linux et certaines applications web.
+          </p>
+          <p>
+            Mictoo extrait la piste audio, détecte le codec et produit une transcription lisible avec horodatages, sans vous demander de convertir d’abord le fichier.
+          </p>
+        </>
+      }
+      howItWorks={[
+        { title: 'Déposez le fichier OGG', desc: 'Ajoutez un .ogg ou .oga provenant d’un dictaphone, de Telegram, d’un navigateur ou d’un outil Linux.' },
+        { title: 'Détection du codec', desc: 'Mictoo analyse le conteneur et lit la piste Vorbis ou Opus appropriée.' },
+        { title: 'Téléchargez le texte', desc: 'Copiez la transcription ou exportez-la en TXT/SRT avec les repères temporels.' },
       ]}
+      whyUse={{
+        title: 'Pourquoi Mictoo pour OGG',
+        bullets: [
+          'Fonctionne avec les fichiers OGG/OGA que beaucoup d’outils grand public refusent encore.',
+          'Garde les horodatages utiles pour revenir au message vocal ou à l’enregistrement original.',
+          'Évite une conversion préalable vers MP3 qui peut faire perdre du temps et de la qualité.',
+          'Pratique pour les flux Opus issus du web, des appels ou des messageries.',
+        ],
+      }}
+      useCases={{
+        title: 'Quand transcrire un OGG',
+        items: [
+          { title: 'Messages vocaux Telegram', desc: 'Transformez des .oga courts en notes exploitables.' },
+          { title: 'Enregistrements Linux', desc: 'Transcrivez des captures produites par des outils audio open source.' },
+          { title: 'Appels WebRTC', desc: 'Récupérez le contenu de réunions ou tests navigateur enregistrés en Opus.' },
+          { title: 'Archives audio', desc: 'Rendez consultables de vieux fichiers OGG sans les réencoder.' },
+        ],
+      }}
+      proTips={{
+        title: 'Conseils pour les fichiers OGG',
+        tips: [
+          'Essayez aussi l’extension .oga: elle contient souvent le même type d’audio vocal.',
+          'Pour une vidéo WebM/OGG lourde, extrayez seulement la piste audio avant upload si nécessaire.',
+          'Sur de très courts messages, définissez la langue manuellement pour améliorer la ponctuation.',
+        ],
+      }}
       faq={[
         { q: 'Comment convertir OGG en texte ?', a: 'Téléchargez votre fichier OGG ci-dessus. La transcription est générée automatiquement en quelques secondes.' },
         { q: 'La conversion OGG en texte est-elle gratuite ?', a: 'Oui, entièrement gratuite. Sans inscription ni compte.' },

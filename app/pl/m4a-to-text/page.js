@@ -42,11 +42,43 @@ export default function PlM4AToTextPage() {
       h1={<>M4A na tekst<br /><span className="text-brand-600">Darmowa transkrypcja M4A online</span></>}
       subtitle="Konwertuj pliki audio M4A na tekst natychmiast. Idealne do Voice Memos iPhone, nagrań głosowych i plików podcastów. Bez konta."
       defaultLanguage="pl"
-      features={[
-        { icon: '📱', title: 'Voice Memos iPhone', desc: 'M4A to domyślny format dla Voice Memos i nagrań iPhone. Prześlij bezpośrednio i otrzymaj transkrypcję w kilka sekund.' },
-        { icon: '🎵', title: 'Każdy M4A', desc: 'Pliki M4A z dowolnego źródła — iPhone, Mac, cyfrowe rejestratory, aplikacje podcastowe — w pełni obsługiwane.' },
-        { icon: '📄', title: 'Eksport tekstu lub SRT', desc: 'Pobierz transkrypcję jako prosty .txt lub plik napisów .srt z timestampami.' },
+      valueBlock={
+        <>
+          <p>M4A to typowy kontener iPhone’a, Dyktafonu, GarageBand, Logic i wielu aplikacji do nagrywania. Zwykle przechowuje audio AAC albo ALAC.</p>
+          <p>Mictoo transkrybuje M4A bezpośrednio, więc nie trzeba konwertować notatek głosowych i nagrań mobilnych przed uzyskaniem tekstu.</p>
+        </>
+      }
+      howItWorks={[
+        { title: 'Prześlij M4A', desc: 'Dodaj notatkę głosową, wywiad albo eksport audio z Apple.' },
+        { title: 'Audio jest przetwarzane', desc: 'Mictoo czyta kontener i generuje edytowalną transkrypcję.' },
+        { title: 'Sprawdź i pobierz', desc: 'Popraw szczegóły i wyeksportuj tekst albo napisy.' },
       ]}
+      whyUse={{
+        title: 'Dlaczego Mictoo do M4A',
+        bullets: [
+          { title: 'Idealne do Dyktafonu iPhone', desc: 'Zamień nagrania z iPhone’a w tekst bez dodatkowych kroków.' },
+          { title: 'Mniejsze niż WAV', desc: 'M4A jest praktyczne przy przesyłaniu wywiadów i długich notatek.' },
+          { title: 'Zgodne z popularnymi źródłami', desc: 'Działa z audio mobilnym, podcastami i eksportami aplikacji.' },
+          { title: 'Niedestrukcyjnie', desc: 'Zachowaj oryginalne audio i pracuj tylko na transkrypcji.' },
+        ],
+      }}
+      useCases={{
+        title: 'Kiedy transkrybować M4A',
+        items: [
+          { title: 'Notatki głosowe iPhone', desc: 'Zamień pomysły, wywiady i przypomnienia w edytowalny tekst.' },
+          { title: 'GarageBand lub Logic', desc: 'Transkrybuj szkice, podcasty i wyeksportowane sesje.' },
+          { title: 'Nagrane rozmowy', desc: 'Uzyskaj notatki z rozmów zapisanych jako audio mobilne.' },
+          { title: 'Materiały do nauki', desc: 'Przekształć lekcje lub prywatne audiobooki w notatki.' },
+        ],
+      }}
+      proTips={{
+        title: 'Wskazówki dla M4A',
+        tips: [
+          { title: 'Przytnij długą ciszę', desc: 'Pliki przesyłają się i przeglądają lepiej bez pustych minut.' },
+          { title: 'Nie używaj Lossless z przyzwyczajenia', desc: 'Dla czystej mowy zwykły AAC często wystarcza do transkrypcji.' },
+          { title: 'Wybierz język przy mieszanym audio', desc: 'W krótkich lub dwujęzycznych nagraniach ręczny wybór języka pomaga.' },
+        ],
+      }}
       faq={[
         { q: 'Jak konwertuję M4A na tekst?', a: 'Prześlij plik M4A narzędziem powyżej. Transkrypcja jest generowana automatycznie i wyświetlana w kilka sekund.' },
         { q: 'Czy mogę transkrybować Voice Memos iPhone?', a: 'Tak. Voice Memos iPhone są zapisywane jako pliki M4A. Prześlij plik bezpośrednio z iPhone lub po przeniesieniu na komputer.' },

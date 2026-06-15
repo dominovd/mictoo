@@ -42,11 +42,43 @@ export default function ItWebmToTextPage() {
       h1={<>WEBM in testo<br /><span className="text-brand-600">Trascrizione WEBM gratis online</span></>}
       subtitle="Carica qualsiasi file audio o video WEBM e ottieni una trascrizione testuale precisa in pochi secondi. WEBM è comunemente usato da browser, registratori di schermo e strumenti di videocall. Senza account."
       defaultLanguage="it"
-      features={[
-        { icon: '🖥️', title: 'Browser e schermo', desc: 'WEBM è il formato predefinito per le registrazioni schermo di Chrome e Firefox, per i clip Loom e per le registrazioni WebRTC.' },
-        { icon: '🎬', title: 'WEBM audio e video', desc: 'Supporta sia WEBM solo audio sia WEBM video. L\'audio viene estratto automaticamente.' },
-        { icon: '📄', title: 'Export .txt e .srt', desc: 'Scarica la trascrizione come testo semplice o come file SRT con timestamp.' },
+      valueBlock={
+        <>
+          <p>WEBM arriva spesso da registrazioni del browser, screen recording, Loom, OBS o chiamate web. Può contenere video, ma per la trascrizione conta soprattutto la traccia vocale.</p>
+          <p>Mictoo estrae l’audio dal WEBM e lo converte in testo con timestamp, senza richiedere un render manuale in un altro formato.</p>
+        </>
+      }
+      howItWorks={[
+        { title: 'Carica il WEBM', desc: 'Aggiungi la registrazione da browser, schermo o chiamata.' },
+        { title: 'L’audio viene estratto', desc: 'Mictoo elabora la voce e genera una trascrizione modificabile.' },
+        { title: 'Esporta testo o sottotitoli', desc: 'Scarica TXT o SRT per note, documentazione o captions.' },
       ]}
+      whyUse={{
+        title: 'Perché Mictoo per WEBM',
+        bullets: [
+          { title: 'Meno passaggi tecnici', desc: 'Evita di aprire ffmpeg solo per estrarre l’audio da una registrazione web.' },
+          { title: 'Timestamp allineati', desc: 'I riferimenti temporali aiutano a tornare al punto esatto del video.' },
+          { title: 'Adatto a Opus', desc: 'WEBM usa spesso Opus, efficiente per la voce.' },
+          { title: 'Privacy pratica', desc: 'Trascrivi una registrazione locale senza pubblicarla su una piattaforma video.' },
+        ],
+      }}
+      useCases={{
+        title: 'Quando trascrivere WEBM',
+        items: [
+          { title: 'Registrazioni Loom', desc: 'Trasforma tutorial e demo in note o documentazione.' },
+          { title: 'Capture OBS', desc: 'Estrai testo da lezioni, webinar o test di prodotto.' },
+          { title: 'Riunioni nel browser', desc: 'Recupera decisioni e domande da registrazioni locali.' },
+          { title: 'QA e ricerca', desc: 'Trascrivi sessioni utente per rivedere citazioni e problemi.' },
+        ],
+      }}
+      proTips={{
+        title: 'Consigli per WEBM',
+        tips: [
+          { title: 'Estrai l’audio se il video è enorme', desc: 'Una traccia OPUS o M4A può caricarsi più velocemente del WEBM completo.' },
+          { title: 'Cura il microfono', desc: 'Una voce chiara migliora la trascrizione più della risoluzione video.' },
+          { title: 'Conserva il WEBM originale', desc: 'Usalo dopo per montare clip o verificare i timestamp.' },
+        ],
+      }}
       faq={[
         { q: 'Come converto WEBM in testo?', a: 'Carica il tuo file WEBM sopra. La trascrizione viene generata automaticamente in pochi secondi.' },
         { q: 'La conversione WEBM-testo è gratis?', a: 'Sì, completamente gratis. Nessun account o registrazione richiesti.' },

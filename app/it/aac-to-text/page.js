@@ -42,11 +42,43 @@ export default function ItAacToTextPage() {
       h1={<>AAC in testo<br /><span className="text-brand-600">Trascrizione AAC gratis online</span></>}
       subtitle="Carica il tuo file audio AAC e ottieni una trascrizione testuale precisa in pochi secondi. Funziona con .aac e .m4a (AAC dentro un contenitore MP4). Senza registrazione."
       defaultLanguage="it"
-      features={[
-        { icon: '🎧', title: 'Supporto nativo AAC', desc: 'AAC è il codec audio predefinito per dispositivi Apple, YouTube e la maggior parte dei servizi di streaming. Mictoo accetta .aac e .m4a direttamente senza conversione.' },
-        { icon: '🎯', title: 'Alta precisione', desc: 'AAC mantiene alta qualità con file piccoli — perfetto per la trascrizione IA. Le registrazioni chiare vengono trascritte tipicamente con 95%+ di precisione.' },
-        { icon: '📥', title: 'Modifica ed esporta', desc: 'Rivedi la trascrizione nel browser, correggi nomi e punteggiatura, poi scarica come .txt semplice o sottotitoli .srt.' },
+      valueBlock={
+        <>
+          <p>AAC è un codec audio, non sempre un formato di file visibile. Può apparire come .aac puro, dentro M4A/MP4 o in export video e podcast.</p>
+          <p>Mictoo ti permette di caricare questi file direttamente, trascrivere la voce ed esportare il risultato senza creare una copia WAV intermedia.</p>
+        </>
+      }
+      howItWorks={[
+        { title: 'Carica AAC o M4A', desc: 'Aggiungi un file .aac, .m4a o un media che usa audio AAC.' },
+        { title: 'La traccia viene elaborata', desc: 'Mictoo legge l’audio e prepara una trascrizione modificabile.' },
+        { title: 'Modifica ed esporta', desc: 'Correggi nomi o termini tecnici e scarica TXT o SRT.' },
       ]}
+      whyUse={{
+        title: 'Perché Mictoo per AAC',
+        bullets: [
+          { title: 'Caricamento diretto', desc: 'Non serve convertire in WAV o MP3 prima della trascrizione.' },
+          { title: 'Buono per voce compressa chiara', desc: 'AAC mantiene una voce comprensibile in file relativamente piccoli.' },
+          { title: 'Utile per sorgenti video', desc: 'Molti clip ed export mobili usano AAC internamente.' },
+          { title: 'Flusso non distruttivo', desc: 'Lavora da una copia o dal file originale senza modificarlo.' },
+        ],
+      }}
+      useCases={{
+        title: 'Usi comuni di AAC',
+        items: [
+          { title: 'Podcast e CDN', desc: 'Converti episodi o estratti audio codificati in AAC.' },
+          { title: 'Estratti YouTube o MP4', desc: 'Trascrivi la traccia vocale dopo aver separato l’audio.' },
+          { title: 'App mobili', desc: 'Elabora audio esportati da app che usano AAC di default.' },
+          { title: 'Registrazioni leggere', desc: 'Ottieni testo da file piccoli senza gonfiarli in WAV.' },
+        ],
+      }}
+      proTips={{
+        title: 'Consigli per AAC',
+        tips: [
+          { title: 'Non aumentare artificialmente il bitrate', desc: 'Non recupera dettagli persi e crea solo file più grandi.' },
+          { title: 'Usa M4A se un’app fallisce', desc: 'Alcuni strumenti gestiscono meglio il contenitore M4A rispetto al flusso .aac puro.' },
+          { title: 'Rivedi i nomi propri', desc: 'La compressione può influire su brand, nomi e termini tecnici.' },
+        ],
+      }}
       faq={[
         { q: 'Cos\'è un file AAC?', a: 'AAC (Advanced Audio Coding) è un formato di compressione audio lossy usato da iTunes, Apple Music, YouTube e dalla maggior parte delle app podcast. I file hanno estensione .aac o .m4a. AAC offre qualità migliore di MP3 allo stesso bitrate.' },
         { q: 'Qual è la differenza tra .aac e .m4a?', a: 'Entrambi contengono audio codificato in AAC. .aac è il flusso audio grezzo; .m4a lo avvolge in un contenitore MP4 (è così che iTunes e i Voice Memos iPhone lo salvano). Mictoo supporta entrambi direttamente.' },

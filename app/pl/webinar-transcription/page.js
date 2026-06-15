@@ -42,11 +42,43 @@ export default function PlWebinarPage() {
       h1={<>Transkrypcja webinarów<br /><span className="text-brand-600">Darmowy generator transkryptów</span></>}
       subtitle="Przekształć nagranie swojego webinaru w przeszukiwalną transkrypcję tekstową lub plik napisów SRT. Działa z Zoom, Webex, GoToWebinar i dowolnym eksportem MP4/MP3."
       defaultLanguage="pl"
-      features={[
-        { icon: '🎥', title: 'Każdy eksport platformy', desc: 'Zoom, Webex, GoToWebinar, Demio, Livestorm — wszystkie eksportują w MP4 lub M4A. Prześlij plik bezpośrednio, bez konwersji.' },
-        { icon: '📝', title: 'Wykorzystaj swój webinar ponownie', desc: 'Przekształć webinar w post na blog, posty na social media, newsletter i dokument follow-up dla uczestników.' },
-        { icon: '📺', title: 'SRT do powtórki on-demand', desc: 'Pobierz plik .srt i użyj jako napisów, gdy publikujesz powtórkę na YouTube, Vimeo lub swojej stronie.' },
+      valueBlock={
+        <>
+          <p>Webinar nie kończy się po zamknięciu pokoju. Nagranie może zasilić artykuły, dokumentację, follow-up sprzedażowy, bazę wiedzy i napisy.</p>
+          <p>Mictoo zamienia audio lub wideo z webinaru w edytowalny tekst do wykorzystania po wydarzeniu.</p>
+        </>
+      }
+      howItWorks={[
+        { title: 'Pobierz nagranie', desc: 'Wyeksportuj webinar z Zoom, Teams, Meet albo innej platformy.' },
+        { title: 'Prześlij plik', desc: 'Mictoo transkrybuje prezentację, demo i sekcję pytań.' },
+        { title: 'Wykorzystaj treść ponownie', desc: 'Twórz notatki, klipy, artykuły, napisy albo dokumentację wewnętrzną.' },
       ]}
+      whyUse={{
+        title: 'Dlaczego transkrybować webinary',
+        bullets: [
+          { title: 'Szybkie wyszukiwanie', desc: 'Znajduj pytania, obiekcje i tematy bez oglądania całego filmu.' },
+          { title: 'Treści po wydarzeniu', desc: 'Zamień sesję w podsumowanie, post lub email follow-up.' },
+          { title: 'Napisy', desc: 'Użyj transkrypcji jako podstawy captions i dostępności.' },
+          { title: 'Dokumentacja wewnętrzna', desc: 'Zapisuj dema, szkolenia i premiery jako tekst do przeszukania.' },
+        ],
+      }}
+      useCases={{
+        title: 'Zastosowania transkrypcji webinaru',
+        items: [
+          { title: 'Marketing', desc: 'Wyciągaj przekazy, pytania i klipy do kampanii.' },
+          { title: 'Szkolenie klientów', desc: 'Zamieniaj sesje edukacyjne w przewodniki krok po kroku.' },
+          { title: 'Q&A', desc: 'Wykorzystuj częste odpowiedzi w support i sprzedaży.' },
+          { title: 'Dema wewnętrzne', desc: 'Dokumentuj procesy i decyzje produktowe.' },
+        ],
+      }}
+      proTips={{
+        title: 'Wskazówki dla webinarów',
+        tips: [
+          { title: 'Rozdziel długie sesje', desc: 'Podziel keynote, demo i Q&A, żeby szybciej je przejrzeć.' },
+          { title: 'Sprawdź terminy marki', desc: 'Produkty, nazwy klientów i skróty często wymagają poprawek.' },
+          { title: 'Wyodrębnij audio z dużych MP4', desc: 'Ścieżka M4A lub MP3 może oszczędzić czas przesyłania.' },
+        ],
+      }}
       faq={[
         { q: 'Jak pobrać nagranie webinaru Zoom lub Webex?', a: 'W Zoom: portal web → Nagrania → kliknij webinar → Pobierz. W Webex: otwórz nagranie w Moje Nagrania → Pobierz. Oba eksportują domyślnie w MP4.' },
         { q: 'Czy mogę otrzymać transkrypcję, gdy webinar jest live?', a: 'Mictoo działa na nagranych plikach, nie na live stream. Dla napisów w czasie rzeczywistym użyj funkcji live captions platformy webinarowej, a następnie prześlij nagranie po zakończeniu, aby uzyskać dopracowaną transkrypcję.' },

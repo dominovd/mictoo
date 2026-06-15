@@ -42,11 +42,47 @@ export default function DeWavToTextPage() {
       h1={<>WAV zu Text<br /><span className="text-brand-600">Kostenlose WAV-Transkription online</span></>}
       subtitle="Laden Sie eine beliebige WAV-Audiodatei hoch und erhalten Sie in Sekunden eine genaue Texttranskription. Unterstützt alle WAV-Aufnahmen — Interviews, Anrufe, Vorlesungen, Sprachnotizen. Kein Konto nötig."
       defaultLanguage="de"
-      features={[
-        { icon: '🎙️', title: 'Jede WAV-Datei', desc: 'Standard-WAV, PCM, Broadcast-WAV — jedes WAV-Format bis 25 MB wird akzeptiert.' },
-        { icon: '⏱️', title: 'Zeitstempel inklusive', desc: 'Laden Sie die Transkription als .txt-Datei oder .srt-Untertiteldatei mit Zeitcodes herunter.' },
-        { icon: '🌍', title: '50+ Sprachen', desc: 'Sprache wird automatisch erkannt. Funktioniert für Deutsch, Englisch, Spanisch, Französisch, Russisch und viele mehr.' },
+      valueBlock={
+        <>
+          <p>
+            WAV ist unkomprimiertes oder kaum verarbeitetes Audio und kommt häufig aus Recordern, Studios, Interviews, Vorlesungen und Broadcast-Workflows. Die Dateien sind groß, aber oft sehr sauber.
+          </p>
+          <p>
+            Mictoo verarbeitet WAV direkt, inklusive PCM- und Broadcast-WAV-Dateien, damit Sie aus hochwertigen Quellen schnell Text und Untertitel erzeugen.
+          </p>
+        </>
+      }
+      howItWorks={[
+        { title: 'WAV-Datei hochladen', desc: 'Legen Sie PCM, Standard-WAV oder Broadcast-WAV aus Recorder, Studio oder Schnittprogramm ab.' },
+        { title: 'Sprache erkennen', desc: 'Mictoo dekodiert die Audiodaten und erstellt ein Transkript mit Zeitstempeln.' },
+        { title: 'Export wählen', desc: 'Nutzen Sie TXT für Notizen oder SRT für Untertitel und Video-Workflows.' },
       ]}
+      whyUse={{
+        title: 'Warum WAV direkt transkribieren',
+        bullets: [
+          'Unkomprimierte Sprache gibt der Erkennung eine saubere Ausgangsbasis.',
+          'Praktisch für Studio-, Feld- und Interviewaufnahmen ohne Formatwechsel.',
+          'Broadcast-WAV-Material lässt sich in Textform leichter archivieren und durchsuchen.',
+          'Bei schwierigen Stimmen lohnt sich die bessere Quelle gegenüber einem stark komprimierten MP3.',
+        ],
+      }}
+      useCases={{
+        title: 'Wann WAV zu Text passt',
+        items: [
+          { title: 'Interviews', desc: 'Transkribieren Sie Recorder-Dateien mit möglichst guter Sprachqualität.' },
+          { title: 'Podcast-Produktion', desc: 'Erstellen Sie Shownotes, Zitate und Untertitel aus WAV-Mastern.' },
+          { title: 'Vorlesungen', desc: 'Machen Sie lange Aufnahmen für Studierende durchsuchbar.' },
+          { title: 'Archive', desc: 'Verknüpfen Sie hochwertige Audiodateien mit lesbaren Texten.' },
+        ],
+      }}
+      proTips={{
+        title: 'Tipps für WAV-Dateien',
+        tips: [
+          'Für lange Aufnahmen eine 16-kHz-Mono-Arbeitskopie erstellen, wenn die Datei zu groß ist.',
+          'Stille am Anfang und Ende kürzen, bevor Sie sehr große Dateien hochladen.',
+          'Für reine Sprachnotizen kann ein temporäres MP3 reichen, aber das WAV-Original behalten.',
+        ],
+      }}
       faq={[
         { q: 'Wie wandle ich eine WAV-Datei in Text um?', a: 'Laden Sie Ihre WAV-Datei mit dem Tool oben hoch. Mictoo transkribiert sie automatisch per KI und zeigt den Text in Sekunden.' },
         { q: 'Ist die WAV-zu-Text-Konvertierung kostenlos?', a: 'Ja, vollständig kostenlos. Kein Konto erforderlich. Laden Sie Ihre WAV-Dateien hoch — kein Monatskontingent, keine Anmeldung.' },

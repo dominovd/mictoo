@@ -42,11 +42,47 @@ export default function DeFlacToTextPage() {
       h1={<>FLAC zu Text<br /><span className="text-brand-600">Kostenlose FLAC-Transkription online</span></>}
       subtitle="Laden Sie eine beliebige FLAC-Audiodatei hoch und wandeln Sie sie sofort in Text um. Die verlustfreie Qualität von FLAC sorgt für exzellente Transkriptionsgenauigkeit. Kein Konto nötig."
       defaultLanguage="de"
-      features={[
-        { icon: '🎵', title: 'Verlustfreie Audioqualität', desc: 'FLAC-Dateien bewahren die volle Audioqualität, was der KI-Transkription die höchstmögliche Genauigkeit ermöglicht.' },
-        { icon: '⚡', title: 'Sofortige Ergebnisse', desc: 'Die meisten FLAC-Dateien werden in unter 30 Sekunden transkribiert, unabhängig von Qualität oder Bittiefe.' },
-        { icon: '📄', title: '.txt- und .srt-Export', desc: 'Laden Sie die Transkription als einfachen Text oder als SRT-Untertiteldatei mit Zeitstempeln herunter.' },
+      valueBlock={
+        <>
+          <p>
+            FLAC komprimiert Audio verlustfrei: Es bewahrt die Details einer WAV-Datei, ist aber kleiner. Das eignet sich für Archive, Podcast-Master, Feldaufnahmen und hochwertige Sprachsammlungen.
+          </p>
+          <p>
+            Mictoo dekodiert FLAC direkt, damit die beste verfügbare Quelle für die Spracherkennung genutzt wird.
+          </p>
+        </>
+      }
+      howItWorks={[
+        { title: 'FLAC hochladen', desc: 'Nutzen Sie das Original oder eine kürzere Arbeitskopie der Aufnahme.' },
+        { title: 'Verlustfrei dekodieren', desc: 'Mictoo liest die Audiodaten in voller Qualität, bevor die Transkription startet.' },
+        { title: 'Korrigieren und exportieren', desc: 'Prüfen Sie Namen und Fachbegriffe, dann als Text oder Untertitel herunterladen.' },
       ]}
+      whyUse={{
+        title: 'Warum direkt aus FLAC transkribieren',
+        bullets: [
+          'Hilfreich bei leisen Stimmen, Akzenten und schwierigen Aufnahmen.',
+          'Kein MP3-Zwischenschritt, wenn die FLAC-Datei bereits sauber ist.',
+          'Passt zu Archiv- und Mastering-Workflows, in denen Qualität wichtig bleibt.',
+          'Das Original bleibt unverändert, während Sie mit dem Text arbeiten.',
+        ],
+      }}
+      useCases={{
+        title: 'Wann FLAC zu Text sinnvoll ist',
+        items: [
+          { title: 'Oral-History-Archive', desc: 'Transkribieren Sie Interviews mit bestmöglicher Audioquelle.' },
+          { title: 'CD-Rips und Master', desc: 'Nutzen Sie saubere Quellen für Notizen und Untertitel.' },
+          { title: 'Feldaufnahmen', desc: 'Verarbeiten Sie Stimmen mit Nebengeräuschen oder wechselnden Pegeln.' },
+          { title: 'Familienarchive', desc: 'Machen Sie ältere Zeugnisse und Erzählungen durchsuchbar.' },
+        ],
+      }}
+      proTips={{
+        title: 'Tipps für FLAC-Dateien',
+        tips: [
+          'Die FLAC-Kompressionsstufe ändert nicht die Qualität, nur Kodierzeit und Dateigröße.',
+          'Für sehr große Dateien besser eine Mono-16-kHz-Arbeitskopie erstellen als starkes MP3.',
+          'Nur in MP3 konvertieren, wenn die Upload-Größe deutlich reduziert werden muss.',
+        ],
+      }}
       faq={[
         { q: 'Wie wandle ich eine FLAC-Datei in Text um?', a: 'Laden Sie Ihre FLAC-Datei mit dem Tool oben hoch. Die KI transkribiert sie und zeigt den Text in Sekunden.' },
         { q: 'Wird FLAC genauer transkribiert als MP3?', a: 'Die verlustfreie Qualität von FLAC kann die Genauigkeit bei leisem oder komplexem Audio im Vergleich zu stark komprimierten Formaten leicht verbessern.' },

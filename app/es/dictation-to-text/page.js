@@ -42,11 +42,43 @@ export default function EsDictationPage() {
       h1={<>Dictado a texto<br /><span className="text-brand-600">Transcripción gratis de dictado por voz</span></>}
       subtitle="Graba tus ideas, dicta un capítulo o toma notas — luego sube el archivo aquí para obtener una transcripción precisa. Sin registro, sin app que instalar."
       defaultLanguage="es"
-      features={[
-        { icon: '📝', title: 'Para escritores e investigadores', desc: 'Dicta un borrador de capítulo, un esquema de artículo o notas de entrevista. Mictoo convierte tu voz en texto limpio y editable en segundos.' },
-        { icon: '👨‍⚕️', title: 'Para médicos y abogados', desc: 'Dicta notas de caso, resúmenes de pacientes o memos desde tu teléfono, y conviértelos en texto para tus registros. Los archivos se procesan y eliminan al instante.' },
-        { icon: '🌍', title: 'Más de 50 idiomas', desc: 'Dicta en español, inglés, francés, alemán, ruso, japonés y muchos más. El idioma se detecta automáticamente; lo puedes cambiar manualmente.' },
+      valueBlock={
+        <>
+          <p>La dictación grabada no se comporta igual que una reunión. Suele tener ideas largas, pausas, correcciones y frases que luego quieres convertir en borrador.</p>
+          <p>Mictoo te permite grabar primero, pensar sin presión y convertir después el audio en texto editable.</p>
+        </>
+      }
+      howItWorks={[
+        { title: 'Graba tu dictado', desc: 'Usa el móvil, una grabadora o cualquier app de voz.' },
+        { title: 'Sube el audio', desc: 'Mictoo lo transcribe y conserva una estructura fácil de revisar.' },
+        { title: 'Convierte en borrador', desc: 'Edita frases, títulos, listas y notas hasta dejar un texto publicable.' },
       ]}
+      whyUse={{
+        title: 'Por qué Mictoo para dictados',
+        bullets: [
+          { title: 'Sin presión en tiempo real', desc: 'Puedes hablar, pausar y retomar antes de editar.' },
+          { title: 'Bueno para ideas largas', desc: 'Convierte pensamientos completos en un borrador inicial.' },
+          { title: 'Útil con acentos e idiomas', desc: 'Selecciona el idioma cuando la detección automática no tenga suficiente contexto.' },
+          { title: 'Edición posterior sencilla', desc: 'Corrige puntuación, nombres y secciones en texto.' },
+        ],
+      }}
+      useCases={{
+        title: 'Qué dictar',
+        items: [
+          { title: 'Artículos', desc: 'Habla un esquema y conviértelo en primer borrador.' },
+          { title: 'Notas de llamadas', desc: 'Resume decisiones justo después de una conversación.' },
+          { title: 'Capítulos o ideas de libro', desc: 'Captura texto largo cuando escribir frena el ritmo.' },
+          { title: 'Notas profesionales', desc: 'Documenta visitas, tareas o reportes mientras están frescos.' },
+        ],
+      }}
+      proTips={{
+        title: 'Consejos para dictar mejor',
+        tips: [
+          { title: 'Habla en frases completas', desc: 'La puntuación y la edición salen mejor con ideas cerradas.' },
+          { title: 'Haz pausas entre secciones', desc: 'Luego será más fácil separar párrafos y títulos.' },
+          { title: 'Di los marcadores en voz alta', desc: 'Frases como “punto uno” o “nuevo apartado” ayudan al editar.' },
+        ],
+      }}
       faq={[
         { q: '¿Cómo grabo un dictado en mi móvil?', a: 'iPhone: usa la app Voice Memos — export en .m4a. Android: usa la grabadora integrada o Easy Voice Recorder — export en .mp3 o .m4a. Suelta el archivo en Mictoo.' },
         { q: '¿Mictoo es una herramienta de dictado en tiempo real?', a: 'No — Mictoo transcribe archivos de audio existentes. Para dictado en tiempo real (hablar y ver el texto aparecer) usa el dictado integrado de tu sistema (macOS, Windows, iOS, Android). Usa Mictoo después para limpiar grabaciones largas.' },

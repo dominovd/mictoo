@@ -42,11 +42,47 @@ export default function DeM4AToTextPage() {
       h1={<>M4A zu Text<br /><span className="text-brand-600">Kostenlose M4A-Transkription online</span></>}
       subtitle="M4A-Audiodateien sofort in Text umwandeln. Ideal für iPhone-Sprachmemos, Sprachaufnahmen und Podcast-Audiodateien. Kein Konto erforderlich."
       defaultLanguage="de"
-      features={[
-        { icon: '📱', title: 'iPhone-Sprachmemos', desc: 'M4A ist das Standardformat für iPhone-Sprachmemos und Aufnahmen. Direkt hochladen und in Sekunden eine Transkription erhalten.' },
-        { icon: '🎵', title: 'Jede M4A-Datei', desc: 'M4A-Dateien aus jeder Quelle — iPhone, Mac, digitale Rekorder, Podcast-Apps — werden vollständig unterstützt.' },
-        { icon: '📄', title: 'Text- oder SRT-Export', desc: 'Laden Sie die Transkription als einfache .txt-Datei oder .srt-Untertiteldatei mit Zeitstempeln herunter.' },
+      valueBlock={
+        <>
+          <p>
+            M4A ist das Standardformat vieler iPhone-Sprachmemos, Apple-Podcast-Downloads, GarageBand-Exporte und mobiler Aufnahme-Apps. Meist steckt darin eine effiziente AAC-Spur.
+          </p>
+          <p>
+            Mictoo akzeptiert M4A direkt. Sie können die Datei hochladen, ohne sie vorher in MP3 umzuwandeln.
+          </p>
+        </>
+      }
+      howItWorks={[
+        { title: 'M4A ablegen', desc: 'Importieren Sie ein iPhone-Sprachmemo, einen Apple-Export oder eine andere .m4a-Sprachaufnahme.' },
+        { title: 'Direkt dekodieren', desc: 'Mictoo liest AAC oder ALAC und bereitet die Transkription im Browser vor.' },
+        { title: 'Ergebnis exportieren', desc: 'Laden Sie Text, SRT oder eine Zusammenfassung für Ihren Workflow herunter.' },
       ]}
+      whyUse={{
+        title: 'Warum M4A praktisch ist',
+        bullets: [
+          'iPhone-Sprachmemos bleiben klein und liefern trotzdem klare Sprache.',
+          'Für moderne Aufnahmen ist keine MP3-Konvertierung nötig.',
+          'Funktioniert mit GarageBand, Logic, FaceTime und Notiz-App-Exporten.',
+          'Die Quelldatei bleibt erhalten, während Sie das Transkript bearbeiten.',
+        ],
+      }}
+      useCases={{
+        title: 'Typische M4A-Anwendungsfälle',
+        items: [
+          { title: 'iPhone-Sprachmemos', desc: 'Verwandeln Sie Ideen, Interviews oder Feldnotizen schnell in Text.' },
+          { title: 'Audio-Produktionsentwürfe', desc: 'Transkribieren Sie GarageBand- oder Logic-Rohmaterial vor dem Schnitt.' },
+          { title: 'Aufgezeichnete Kurse und Calls', desc: 'Finden Sie wichtige Stellen ohne vollständiges Anhören.' },
+          { title: 'Lernen und Hörmaterial', desc: 'Erstellen Sie Lernnotizen aus gesprochenen Inhalten.' },
+        ],
+      }}
+      proTips={{
+        title: 'Tipps für M4A',
+        tips: [
+          'Lange Stille vor dem Upload schneiden, besonders bei Voice-Memos.',
+          'Lossless ist für reine Sprachtranskription meistens unnötig.',
+          'Bei mehrsprachigen Dateien die erkannte Sprache vor dem finalen Export prüfen.',
+        ],
+      }}
       faq={[
         { q: 'Wie wandle ich M4A in Text um?', a: 'Laden Sie Ihre M4A-Datei mit dem Tool oben hoch. Die Transkription wird automatisch erzeugt und in Sekunden angezeigt.' },
         { q: 'Kann ich iPhone-Sprachmemos transkribieren?', a: 'Ja. iPhone-Sprachmemos werden als M4A-Dateien gespeichert. Laden Sie die Datei direkt vom iPhone hoch oder nach Übertragung auf den Computer.' },

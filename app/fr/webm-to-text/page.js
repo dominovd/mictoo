@@ -16,12 +16,12 @@ const LANGS = {
 
 export const metadata = {
   title: 'WEBM en texte — Transcription WEBM gratuite en ligne | Mictoo',
-  description: "Convertissez les fichiers audio et vidéo WEBM en texte gratuitement en ligne. Déposez n'importe quel enregistrement WEBM et obtenez une transcription précise instantanément. Sans inscription.",
+  description: "Convertissez les fichiers audio et vidéo WEBM en texte gratuitement en ligne. Déposez n’importe quel enregistrement WEBM et obtenez une transcription précise instantanément. Sans inscription.",
   alternates: { canonical: 'https://mictoo.com/fr/webm-to-text', languages: LANGS },
 
   openGraph: {
     title: "WEBM en texte — Transcription WEBM gratuite en ligne | Mictoo",
-    description: "Convertissez les fichiers audio et vidéo WEBM en texte gratuitement en ligne. Déposez n'importe quel enregistrement WEBM et obtenez une transcription précise instantanément. Sans inscription.",
+    description: "Convertissez les fichiers audio et vidéo WEBM en texte gratuitement en ligne. Déposez n’importe quel enregistrement WEBM et obtenez une transcription précise instantanément. Sans inscription.",
     url: "https://mictoo.com/fr/webm-to-text",
     siteName: "Mictoo",
     type: "website",
@@ -30,7 +30,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "WEBM en texte — Transcription WEBM gratuite en ligne | Mictoo",
-    description: "Convertissez les fichiers audio et vidéo WEBM en texte gratuitement en ligne. Déposez n'importe quel enregistrement WEBM et obtenez une transcription précise instantanément. Sans inscription.",
+    description: "Convertissez les fichiers audio et vidéo WEBM en texte gratuitement en ligne. Déposez n’importe quel enregistrement WEBM et obtenez une transcription précise instantanément. Sans inscription.",
     images: ["https://mictoo.com/opengraph-image"],
   },
 }
@@ -40,13 +40,49 @@ export default function FrWebmToTextPage() {
     <LandingLayout
       badge="WEBM · Enregistrements navigateur · Gratuit"
       h1={<>WEBM en texte<br /><span className="text-brand-600">Transcription WEBM gratuite en ligne</span></>}
-      subtitle="Téléchargez n'importe quel fichier audio ou vidéo WEBM et obtenez une transcription précise en quelques secondes. WEBM est couramment utilisé par les navigateurs, enregistreurs d'écran et outils d'appels vidéo. Sans compte."
+      subtitle="Téléchargez n’importe quel fichier audio ou vidéo WEBM et obtenez une transcription précise en quelques secondes. WEBM est couramment utilisé par les navigateurs, enregistreurs d’écran et outils d’appels vidéo. Sans compte."
       defaultLanguage="fr"
-      features={[
-        { icon: '🖥️', title: 'Navigateur et écran', desc: 'WEBM est le format par défaut des captures d\'écran Chrome et Firefox, des clips Loom et des enregistrements WebRTC.' },
-        { icon: '🎬', title: 'WEBM audio et vidéo', desc: 'Compatible avec les WEBM audio et vidéo. L\'audio est extrait automatiquement.' },
-        { icon: '📄', title: 'Export .txt et .srt', desc: 'Téléchargez la transcription en texte simple ou en fichier de sous-titres SRT avec horodatages.' },
+      valueBlock={
+        <>
+          <p>
+            WEBM est très courant pour les enregistrements de navigateur: captures d’écran, clips Loom, exports OBS, appels WebRTC ou vidéos téléchargées depuis des outils web.
+          </p>
+          <p>
+            Mictoo extrait la piste audio du fichier WEBM, la transcrit et permet d’exporter le résultat en texte ou en sous-titres synchronisés.
+          </p>
+        </>
+      }
+      howItWorks={[
+        { title: 'Importez le WEBM', desc: 'Ajoutez une vidéo ou un fichier audio WEBM directement depuis votre navigateur.' },
+        { title: 'Extraction audio', desc: 'Mictoo isole la piste vocale, même si le fichier contient aussi de la vidéo.' },
+        { title: 'Export texte ou SRT', desc: 'Utilisez la transcription pour vos notes, votre base de connaissances ou vos sous-titres.' },
       ]}
+      whyUse={{
+        title: 'Pourquoi transcrire WEBM avec Mictoo',
+        bullets: [
+          'Pas besoin de convertir manuellement la vidéo en MP3 avant d’obtenir le texte.',
+          'Les horodatages restent alignés avec la vidéo d’origine, utile pour créer des sous-titres.',
+          'Les enregistrements Opus issus du navigateur sont traités directement.',
+          'Vous pouvez garder le fichier vidéo source pour le montage et exporter seulement le texte nécessaire.',
+        ],
+      }}
+      useCases={{
+        title: 'Cas d’usage WEBM',
+        items: [
+          { title: 'Captures Loom ou navigateur', desc: 'Transformez une démo enregistrée en résumé ou documentation.' },
+          { title: 'Enregistrements OBS', desc: 'Transcrivez des tutoriels, formations ou revues produit.' },
+          { title: 'Appels sauvegardés localement', desc: 'Récupérez les décisions et questions sans relire toute la vidéo.' },
+          { title: 'Clips de support', desc: 'Convertissez une explication vidéo en article d’aide.' },
+        ],
+      }}
+      proTips={{
+        title: 'Conseils pour les WEBM',
+        tips: [
+          'Si le fichier dépasse la limite, extrayez l’audio avec ffmpeg avant de l’envoyer.',
+          'Placez le micro près de la personne qui parle: la vidéo nette ne compense pas un son distant.',
+          'Conservez le WEBM original si vous devez ensuite synchroniser les sous-titres dans un éditeur vidéo.',
+        ],
+      }}
       faq={[
         { q: 'Comment convertir WEBM en texte ?', a: 'Téléchargez votre fichier WEBM ci-dessus. La transcription est générée automatiquement et affichée en quelques secondes.' },
         { q: 'La conversion WEBM en texte est-elle gratuite ?', a: 'Oui, entièrement gratuite. Sans compte ni inscription.' },

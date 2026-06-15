@@ -42,11 +42,43 @@ export default function EsSermonPage() {
       h1={<>Transcripción de sermones<br /><span className="text-brand-600">Generador gratis de transcript</span></>}
       subtitle="Convierte las grabaciones de sermones en texto limpio en segundos. Ideal para blogs de iglesia, guías de estudio, posts en redes y para hacer accesibles tus mensajes a personas con discapacidad auditiva."
       defaultLanguage="es"
-      features={[
-        { icon: '📖', title: 'Reutiliza cada sermón', desc: 'Convierte un sermón en post de blog, devocional, newsletter, guía de estudio y citas listas para redes. Multiplica tu alcance sin trabajo extra.' },
-        { icon: '♿', title: 'Accesibilidad', desc: 'Ofrece transcripciones para que miembros sordos, con dificultades auditivas o asistiendo en remoto puedan involucrarse plenamente con el mensaje.' },
-        { icon: '🌐', title: 'Multilingüe', desc: 'Funciona en español, inglés, portugués, coreano, francés, ruso y más de 45 idiomas. Perfecto para congregaciones multilingües.' },
+      valueBlock={
+        <>
+          <p>Una predicación transcrita puede convertirse en notas para la iglesia, subtítulos de YouTube, material para grupos pequeños, citas y un archivo buscable.</p>
+          <p>Mictoo ayuda a transformar audio o vídeo del servicio en texto editable para publicar, revisar y reutilizar.</p>
+        </>
+      }
+      howItWorks={[
+        { title: 'Sube el audio del sermón', desc: 'Usa el MP3, WAV, M4A o vídeo exportado del servicio.' },
+        { title: 'Obtén un borrador', desc: 'Mictoo genera una transcripción con timestamps para revisar pasajes y nombres.' },
+        { title: 'Publica o reutiliza', desc: 'Exporta texto para web, notas, subtítulos o archivo interno.' },
       ]}
+      whyUse={{
+        title: 'Por qué transcribir sermones',
+        bullets: [
+          { title: 'Accesibilidad', desc: 'Ayuda a personas que prefieren leer o necesitan apoyo escrito.' },
+          { title: 'Reutilización de contenido', desc: 'Convierte mensajes en posts, boletines, devocionales o citas.' },
+          { title: 'Archivo buscable', desc: 'Encuentra temas, series y referencias bíblicas más rápido.' },
+          { title: 'Apoyo al equipo de medios', desc: 'Facilita subtítulos y descripciones para vídeos.' },
+        ],
+      }}
+      useCases={{
+        title: 'Usos para iglesias',
+        items: [
+          { title: 'Página del sermón', desc: 'Publica el texto junto al audio o vídeo.' },
+          { title: 'Subtítulos de YouTube', desc: 'Crea una base para captions y revisión manual.' },
+          { title: 'Material de grupo', desc: 'Extrae preguntas, puntos principales y citas.' },
+          { title: 'Series predicadas', desc: 'Busca temas repetidos en meses o años de mensajes.' },
+        ],
+      }}
+      proTips={{
+        title: 'Consejos para sermones',
+        tips: [
+          { title: 'Extrae audio de vídeos grandes', desc: 'Subir solo la pista de voz suele ser más rápido.' },
+          { title: 'Revisa nombres bíblicos', desc: 'Los nombres propios y referencias pueden necesitar corrección.' },
+          { title: 'Divide conferencias largas', desc: 'Un archivo por sesión facilita revisión y publicación.' },
+        ],
+      }}
       faq={[
         { q: '¿Cómo paso la grabación de un sermón a texto?', a: 'Exporta la grabación desde la mesa de sonido de tu iglesia, tu feed de podcast o YouTube como MP3, MP4 o M4A. Suelta el archivo arriba — Mictoo lo transcribe en segundos.' },
         { q: '¿Puedo transcribir sermones del canal de YouTube de mi iglesia?', a: 'Sí. Para tu propio canal: YouTube Studio → Contenido → clic en el vídeo → Descargar. Suelta el archivo en Mictoo. Para canales externos necesitas permiso — muchos ministerios comparten descargas de audio a través de su feed de podcast.' },

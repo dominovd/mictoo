@@ -42,11 +42,47 @@ export default function DeWebinarPage() {
       h1={<>Webinar-Transkription<br /><span className="text-brand-600">Kostenloser Transkript-Generator</span></>}
       subtitle="Verwandeln Sie Ihre Webinar-Aufzeichnung in eine durchsuchbare Texttranskription oder SRT-Untertiteldatei. Funktioniert mit Zoom, Webex, GoToWebinar und jedem MP4/MP3-Export."
       defaultLanguage="de"
-      features={[
-        { icon: '🎥', title: 'Jeder Plattform-Export', desc: 'Zoom, Webex, GoToWebinar, Demio, Livestorm — alle exportieren als MP4 oder M4A. Datei direkt ablegen, keine Konvertierung nötig.' },
-        { icon: '📝', title: 'Webinar mehrfach verwerten', desc: 'Verwandeln Sie ein Webinar in einen Blogartikel, Social-Posts, einen Newsletter und ein Follow-up-Dokument für Teilnehmer.' },
-        { icon: '📺', title: 'SRT für On-Demand-Replays', desc: 'Laden Sie die .srt-Datei herunter und nutzen Sie sie als Untertitel, wenn Sie das Replay auf YouTube, Vimeo oder Ihrer Website veröffentlichen.' },
+      valueBlock={
+        <>
+          <p>
+            Ein Webinar enthält oft mehr als nur ein Replay: Kundenfragen, Einwände, Produktdemos, Content-Ideen und Trainingsmaterial. Als Transkript wird all das durchsuchbar und wiederverwendbar.
+          </p>
+          <p>
+            Mictoo wandelt Webinar-Aufzeichnungen in Text, Untertitel und Arbeitsnotizen für Marketing, Support, Sales oder interne Dokumentation um.
+          </p>
+        </>
+      }
+      howItWorks={[
+        { title: 'Replay exportieren', desc: 'Laden Sie die Aufnahme aus Zoom, Webex, Teams, Meet oder Ihrer Webinar-Plattform herunter.' },
+        { title: 'In Mictoo hochladen', desc: 'Importieren Sie Audio oder Video und lassen Sie die Transkription erstellen.' },
+        { title: 'Inhalte wiederverwenden', desc: 'Nutzen Sie den Text für Artikel, Knowledge Base, Zusammenfassungen oder Untertitel.' },
       ]}
+      whyUse={{
+        title: 'Warum Webinare transkribieren',
+        bullets: [
+          'Fragen, Einwände und Antworten finden, ohne das ganze Video anzusehen.',
+          'Post-Event-Inhalte schneller erstellen: Blogposts, Follow-up-Mails, FAQ und Clips.',
+          'Untertitel verbessern die Zugänglichkeit des Replays.',
+          'Teams aus Sales, Produkt und Support erhalten eine verwertbare Zusammenfassung.',
+        ],
+      }}
+      useCases={{
+        title: 'Webinar-Anwendungsfälle',
+        items: [
+          { title: 'Marketing-Webinare', desc: 'Aus einer Session werden Artikel, LinkedIn-Posts oder E-Mail-Sequenzen.' },
+          { title: 'Kundentraining', desc: 'Dokumentation aus Demos und Erklärungen erzeugen.' },
+          { title: 'Q&A-Auswertung', desc: 'Häufige Fragen für FAQ und Produktseiten herausziehen.' },
+          { title: 'Interne Demos', desc: 'Entscheidungen und Feedback dauerhaft auffindbar machen.' },
+        ],
+      }}
+      proTips={{
+        title: 'Tipps für Webinare',
+        tips: [
+          'Bei großen MP4-Dateien vor dem Upload die Audiospur extrahieren.',
+          'Lange Sessions in Präsentation und Q&A aufteilen, damit die Korrektur schneller geht.',
+          'Markennamen, Produktfeatures und Sprecher vor Veröffentlichung prüfen.',
+        ],
+      }}
       faq={[
         { q: 'Wie lade ich meine Zoom- oder Webex-Webinar-Aufzeichnung herunter?', a: 'In Zoom: Web-Portal öffnen → Aufzeichnungen → das Webinar anklicken → Herunterladen. In Webex: Aufzeichnung in "Meine Aufzeichnungen" öffnen → Herunterladen. Beide exportieren standardmäßig als MP4.' },
         { q: 'Kann ich ein Transkript erhalten, während das Webinar läuft?', a: 'Mictoo arbeitet auf aufgezeichneten Dateien, nicht auf Live-Audio-Streams. Für Echtzeit-Untertitel nutzen Sie die Live-Captions-Funktion Ihrer Webinar-Plattform und laden danach die Aufzeichnung für ein sauberes Transkript hoch.' },

@@ -42,11 +42,47 @@ export default function DeSermonPage() {
       h1={<>Predigt-Transkription<br /><span className="text-brand-600">Kostenloser Predigt-Transkript-Generator</span></>}
       subtitle="Verwandeln Sie Predigtaufzeichnungen in Sekunden in sauberen Text. Ideal für Kirchenblogs, Studienunterlagen, Social-Posts und um Botschaften für Hörgeschädigte zugänglich zu machen."
       defaultLanguage="de"
-      features={[
-        { icon: '📖', title: 'Jede Predigt mehrfach nutzen', desc: 'Verwandeln Sie eine Predigt in Blogartikel, Andacht, Newsletter, Studienleitfaden und zitierbare Social-Posts. Vervielfachen Sie Ihre Reichweite ohne Mehraufwand.' },
-        { icon: '♿', title: 'Barrierefreiheit', desc: 'Stellen Sie Transkripte bereit, damit gehörlose, schwerhörige oder online teilnehmende Gemeindemitglieder die Botschaft vollständig erfassen können.' },
-        { icon: '🌐', title: 'Mehrsprachiger Support', desc: 'Funktioniert für Deutsch, Englisch, Spanisch, Portugiesisch, Koreanisch, Französisch, Russisch und 45+ weitere Sprachen. Perfekt für mehrsprachige Gemeinden.' },
+      valueBlock={
+        <>
+          <p>
+            Eine Predigt kann mehr sein als eine Sonntagsaufnahme: Website-Artikel, YouTube-Untertitel, Kleingruppenmaterial, Zitate, Archivsuche oder Grundlage für das Medienteam.
+          </p>
+          <p>
+            Mictoo verwandelt Predigt-Audio oder -Video in wiederverwendbaren Text mit Zeitstempeln und Exporten für Veröffentlichung und Archiv.
+          </p>
+        </>
+      }
+      howItWorks={[
+        { title: 'Aufnahme hochladen', desc: 'Importieren Sie Audio aus dem Mischpult, MP3, M4A oder ein exportiertes Video.' },
+        { title: 'Entwurf erhalten', desc: 'Mictoo erstellt ein Transkript, das das Team prüfen und korrigieren kann.' },
+        { title: 'Veröffentlichen oder archivieren', desc: 'Exportieren Sie Text, SRT oder Zusammenfassung für Website, YouTube und interne Notizen.' },
       ]}
+      whyUse={{
+        title: 'Warum Predigten transkribieren',
+        bullets: [
+          'Bessere Zugänglichkeit für Menschen, die lesen möchten oder Untertitel benötigen.',
+          'Schnelleres Wiederverwenden für Website, Newsletter und Social Media.',
+          'Predigtreihen werden nach Thema, Bibelstelle oder Zitat durchsuchbar.',
+          'Entlastet Medien-Teams bei Untertiteln, Zusammenfassungen und Archivpflege.',
+        ],
+      }}
+      useCases={{
+        title: 'Häufige Einsatzbereiche',
+        items: [
+          { title: 'Predigtseite', desc: 'Veröffentlichen Sie den Volltext zusammen mit Audio oder Video.' },
+          { title: 'YouTube-Untertitel', desc: 'Nutzen Sie SRT-Dateien für barriereärmere Videos.' },
+          { title: 'Kleingruppen', desc: 'Erstellen Sie Fragen und Auszüge aus der Predigt.' },
+          { title: 'Durchsuchbares Archiv', desc: 'Finden Sie alte Predigten nach Thema, Vers oder Serie.' },
+        ],
+      }}
+      proTips={{
+        title: 'Tipps für Predigtaufnahmen',
+        tips: [
+          'Bei Videodateien zuerst Audio extrahieren, wenn die Datei sehr groß ist.',
+          'Biblische Namen, Orte und Zitate nach der Transkription besonders prüfen.',
+          'Konferenzen besser nach Session oder Sprecher aufteilen.',
+        ],
+      }}
       faq={[
         { q: 'Wie bekomme ich eine Predigtaufnahme als Text?', a: 'Exportieren Sie die Aufnahme aus dem Mischpult Ihrer Gemeinde, vom Podcast-Feed oder von YouTube als MP3, MP4 oder M4A. Datei oben ablegen — Mictoo transkribiert in Sekunden.' },
         { q: 'Kann ich Predigten vom YouTube-Kanal unserer Gemeinde transkribieren?', a: 'Ja. Für Ihren eigenen Kanal: YouTube Studio → Inhalt → Video anklicken → Herunterladen. Datei in Mictoo ablegen. Für externe Kanäle benötigen Sie die Erlaubnis — viele Dienste teilen Audio-Downloads über ihren Podcast-Feed.' },
