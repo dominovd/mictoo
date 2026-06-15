@@ -42,11 +42,43 @@ export default function JaAacToTextPage() {
       h1={<>AACをテキストに<br /><span className="text-brand-600">オンラインAAC無料文字起こし</span></>}
       subtitle="AAC音声ファイルをアップロードして、数秒で正確なテキスト文字起こしを取得。.aacと.m4a(MP4コンテナ内のAAC)に対応。登録不要。"
       defaultLanguage="ja"
-      features={[
-        { icon: '🎧', title: 'AACネイティブサポート', desc: 'AACはAppleデバイス、YouTube、ほとんどのストリーミングサービスのデフォルト音声コーデックです。Mictooは.aacと.m4aを変換なしで直接受け入れます。' },
-        { icon: '🎯', title: '高精度', desc: 'AACは小さなファイルサイズで高品質を保ちます — AI文字起こしに最適。クリアな録音は通常95%以上の精度で文字起こしされます。' },
-        { icon: '📥', title: '編集とエクスポート', desc: 'ブラウザで文字起こしを確認し、名前と句読点を修正してから、プレーン.txtまたは.srt字幕としてダウンロード。' },
+      valueBlock={
+        <article className="prose-content">
+          <p>AACはiPhone、YouTube抽出音声、配信プラットフォームでよく使われる圧縮音声コーデックです。生の.aacファイルもあれば、M4AやMP4の中に入っているAACもあります。このページは、変換前のAAC音声をそのまま文字起こししたいときのためのものです。</p>
+          <p>MictooはAACのヘッダーとプロファイルを読み取り、文字起こし用にデコードします。音質を上げる目的でWAVへ再変換しても、元の情報は増えません。直接アップロードする方が速く、劣化も増えません。</p>
+        </article>
+      }
+      howItWorks={[
+        { icon: '🎧', title: 'AACファイルをアップロード', desc: '生の.aac、またはAAC音声を含む録音を選びます。' },
+        { icon: '🔎', title: '形式を検出', desc: 'ADTS/ADIFなどの違いを確認し、音声として読める形へ変換します。' },
+        { icon: '📄', title: 'テキストを保存', desc: '文字起こしを確認し、TXT、SRT、VTT、DOCXで書き出せます。' },
       ]}
+      whyUse={{
+        title: 'AAC文字起こしにMictooを使う理由',
+        bullets: [
+          { title: '生AACをそのまま処理', desc: '一部の編集アプリや配信システムは、M4Aではなく.aacだけを書き出します。Mictooはそのまま受け取れます。' },
+          { title: 'コンテナとの違いを吸収', desc: 'AACはコーデック、M4AやMP4はコンテナです。どちらに入っていても音声を取り出して処理します。' },
+          { title: '再エンコードを避けられる', desc: 'WAVやMP3に変換してから入れると時間がかかり、場合によっては劣化が増えます。' },
+          { title: '動画由来の音声に強い', desc: 'YouTube、スマホ動画、配信アーカイブから抽出したAAC音声のメモ化に向いています。' },
+        ],
+      }}
+      useCases={{
+        title: 'AACを文字起こしする場面',
+        items: [
+          { title: 'ポッドキャストCDNの音声', desc: '配信用にAACで保存されたエピソードを原稿や引用にできます。' },
+          { title: '動画から抜き出した音声', desc: 'MP4やYouTube素材から抽出したAACを、先に文章化して編集できます。' },
+          { title: 'モバイルアプリの音声', desc: 'ゲーム、学習アプリ、ボイスメモ系アプリの書き出しにAACが使われることがあります。' },
+          { title: '放送・収録アーカイブ', desc: '古い素材や納品データがAACだけで残っている場合でも、内容検索用のテキストを作れます。' },
+        ],
+      }}
+      proTips={{
+        title: 'AACアップロードのコツ',
+        tips: [
+          { title: 'ビットレートを上げ直さない', desc: '64kbpsのAACを320kbpsにしても音声情報は増えません。元ファイルを使う方が自然です。' },
+          { title: '再生できない場合はM4Aに包む', desc: 'まれに生AACを受け取らないアプリがあります。Mictooには直接入れられますが、共有用にはM4Aが扱いやすいです。' },
+          { title: '短いクリップは言語を指定', desc: '短い広告音声や効果音混じりの素材では、言語を手動選択すると安定します。' },
+        ],
+      }}
       faq={[
         { q: 'AACファイルとは?', a: 'AAC(Advanced Audio Coding)はiTunes、Apple Music、YouTube、ほとんどのポッドキャストアプリで使われる損失圧縮音声フォーマットです。ファイルは.aacまたは.m4a拡張子を持ちます。AACは同じビットレートでMP3より優れた品質を提供します。' },
         { q: '.aacと.m4aの違いは?', a: 'どちらもAACエンコードされた音声を含みます。.aacは生の音声ストリーム、.m4aはMP4コンテナでラップされています(iTunesとiPhoneボイスメモが保存する方法)。Mictooは両方を直接サポートします。' },

@@ -39,10 +39,11 @@ export const metadata = {
 export default function GermanAudioTranscriptionPage() {
   return (
     <LandingLayout
-      badge="Deutsch · Hochdeutsch + dialects · Free"
+      badge="German · Hochdeutsch + dialects · Free"
       h1={<>German Audio Transcription<br /><span className="text-brand-600">Compound words and regional varieties handled</span></>}
       subtitle="Drop a German audio file and get a transcript that correctly assembles compound words (Donaudampfschiffahrtsgesellschaft), respects separable verb syntax, and handles regional varieties from Hochdeutsch to Schweizerdeutsch and Austrian German."
-      defaultLanguage="de"
+      defaultLanguage="en"
+      transcriptionLanguage="de"
       valueBlock={
         <article className="prose-content">
           <p>
@@ -62,10 +63,10 @@ export default function GermanAudioTranscriptionPage() {
             become text.
           </p>
           <p className="text-sm text-slate-500">
-            Set the language to German (Deutsch) in the dropdown for
-            cleanest results. For audio in Swiss German (Schweizerdeutsch)
-            or thick Austrian dialect, accuracy is lower than for
-            standard Hochdeutsch and may need more editing.
+            The upload form is pre-set to German (Deutsch) for cleanest
+            results. For audio in Swiss German (Schweizerdeutsch) or thick
+            Austrian dialect, accuracy is lower than for standard Hochdeutsch
+            and may need more editing.
           </p>
         </article>
       }
@@ -73,7 +74,7 @@ export default function GermanAudioTranscriptionPage() {
         {
           icon: '🎙️',
           title: 'Upload your German audio',
-          desc: 'MP3, M4A, WAV, FLAC, MP4, MOV, WebM. We strip video and feed audio to Whisper. Free for files up to 60 MB (about an hour of mono speech).',
+          desc: 'MP3, M4A, WAV, FLAC, MP4, MOV, WebM. We strip video and feed audio to Whisper. Anonymous uploads accept files up to 25 MB and 30 minutes.',
         },
         {
           icon: '⚡',
@@ -274,7 +275,7 @@ export default function GermanAudioTranscriptionPage() {
         },
         {
           q: 'How long can my German audio file be?',
-          a: 'Free tier accepts files up to 60 MB. For German speech at typical podcast bitrates that is roughly 50-60 minutes of mono audio. For longer files, downsample to 16 kHz mono with ffmpeg (-ac 1 -ar 16000) or split into multiple files and transcribe each separately.',
+          a: 'Anonymous uploads accept files up to 25 MB and 30 minutes. For longer files, sign in for the longer duration limit, downsample to 16 kHz mono with ffmpeg (-ac 1 -ar 16000), or split into multiple files and transcribe each separately.',
         },
         {
           q: 'Can I get SRT subtitles for a German video?',

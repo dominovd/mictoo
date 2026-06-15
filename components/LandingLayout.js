@@ -55,6 +55,7 @@ export default function LandingLayout({
   faq,
   relatedLinks,
   defaultLanguage = '',
+  transcriptionLanguage,
   // Optional override for the hero tool. Pages can pass a custom node here
   // (e.g. <ConverterZone />) and the default <UploadZone /> won't render.
   // Default: undefined → UploadZone (transcription pages).
@@ -71,6 +72,7 @@ export default function LandingLayout({
   epilogueSection,
 }) {
   const locale = defaultLanguage || 'en'
+  const uploadLanguage = transcriptionLanguage ?? defaultLanguage
 
   // FAQ JSON-LD schema for Google rich results
   const faqSchema = faq?.length > 0 ? {
@@ -106,7 +108,7 @@ export default function LandingLayout({
 
       {/* Hero tool, UploadZone by default, custom node if `tool` prop given */}
       <section id="tool" className="max-w-2xl mx-auto px-4 -mt-6 pb-12 pt-10 scroll-mt-20">
-        {tool || <UploadZone defaultLanguage={defaultLanguage} locale={locale} enableYouTubeUrl={enableYouTubeUrl} />}
+        {tool || <UploadZone defaultLanguage={uploadLanguage} locale={locale} enableYouTubeUrl={enableYouTubeUrl} />}
       </section>
 
       {/* Quick value block, short prose right after the tool to orient
@@ -205,9 +207,9 @@ export default function LandingLayout({
           <h2 className="text-2xl font-bold text-slate-900 mb-8 text-center">
             {proTips.title || t(locale, 'landing.proTipsTitle')}
           </h2>
-          <ol className="space-y-5 list-none counter-reset-tips">
+          <div className="space-y-5">
             {proTips.tips.map(({ title, desc }, i) => (
-              <li key={title} className="flex gap-4">
+              <div key={title} className="flex gap-4">
                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-50 text-brand-700 font-semibold text-sm flex items-center justify-center">
                   {i + 1}
                 </div>
@@ -215,9 +217,9 @@ export default function LandingLayout({
                   <h3 className="font-semibold text-slate-800 mb-1 break-words">{title}</h3>
                   <p className="text-sm text-slate-600 leading-relaxed break-words">{desc}</p>
                 </div>
-              </li>
+              </div>
             ))}
-          </ol>
+          </div>
         </section>
       )}
 

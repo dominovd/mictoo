@@ -39,10 +39,11 @@ export const metadata = {
 export default function FrenchSpeechToTextPage() {
   return (
     <LandingLayout
-      badge="Français · Whisper large-v3 · Free"
+      badge="French · Whisper large-v3 · Free"
       h1={<>French Speech to Text<br /><span className="text-brand-600">Liaisons, accents, and Quebec French</span></>}
       subtitle="Drop a French audio file (Hexagonal, Quebec, Belgian, Swiss, or African French) and get a clean transcript with proper handling of liaisons, élisions, nasal vowels, and accent marks. No language picker hunting, no surprise spelling."
-      defaultLanguage="fr"
+      defaultLanguage="en"
+      transcriptionLanguage="fr"
       valueBlock={
         <article className="prose-content">
           <p>
@@ -62,11 +63,10 @@ export default function FrenchSpeechToTextPage() {
             content that needs to become text.
           </p>
           <p className="text-sm text-slate-500">
-            Set the language to French in the dropdown above the upload
-            zone for the cleanest first attempt. Auto-detect works for
-            files longer than 30 seconds, but explicit French picker is
-            more reliable for short clips or files that open with music
-            or silence.
+            The upload form is pre-set to French for the cleanest first
+            attempt. Auto-detect works for files longer than 30 seconds,
+            but explicit French selection is more reliable for short clips
+            or files that open with music or silence.
           </p>
         </article>
       }
@@ -74,7 +74,7 @@ export default function FrenchSpeechToTextPage() {
         {
           icon: '🎙️',
           title: 'Upload your French audio',
-          desc: 'MP3, M4A, WAV, FLAC, video files with audio. We strip video and feed audio to Whisper. Free for files up to 60 MB, which covers about 60 minutes of mono speech.',
+          desc: 'MP3, M4A, WAV, FLAC, video files with audio. We strip video and feed audio to Whisper. Anonymous uploads accept files up to 25 MB and 30 minutes.',
         },
         {
           icon: '⚡',
@@ -267,7 +267,7 @@ export default function FrenchSpeechToTextPage() {
         },
         {
           q: 'How long can my French audio file be?',
-          a: 'Free tier accepts files up to 60 MB. For French speech at typical podcast bitrates that is roughly 50-60 minutes of mono audio. For longer recordings, use ffmpeg to downsample (-ac 1 -ar 16000) or split the file in two and transcribe each part separately.',
+          a: 'Anonymous uploads accept files up to 25 MB and 30 minutes. For longer recordings, sign in for the longer duration limit, downsample to 16 kHz mono with ffmpeg (-ac 1 -ar 16000), or split the file in two and transcribe each part separately.',
         },
         {
           q: 'Can I get SRT subtitles for a French video?',

@@ -39,10 +39,11 @@ export const metadata = {
 export default function SpanishAudioToTextPage() {
   return (
     <LandingLayout
-      badge="Español · 600M speakers · Free"
+      badge="Spanish · 600M speakers · Free"
       h1={<>Spanish Audio to Text<br /><span className="text-brand-600">Across every regional variety</span></>}
       subtitle="Drop a Spanish audio file from Mexico, Spain, Argentina, Colombia, Puerto Rico, Chile, anywhere Spanish is spoken, and get a clean transcript that respects regional vocabulary, seseo or distinción, and voseo or ustedeo as the speaker actually used them."
-      defaultLanguage="es"
+      defaultLanguage="en"
+      transcriptionLanguage="es"
       valueBlock={
         <article className="prose-content">
           <p>
@@ -62,7 +63,7 @@ export default function SpanishAudioToTextPage() {
             and businesses operating in any Spanish-speaking market.
           </p>
           <p className="text-sm text-slate-500">
-            Pick Spanish in the language dropdown for fastest detection.
+            The upload form is pre-set to Spanish for fastest detection.
             Whisper does not force the transcript into one regional
             standard; it follows what the speaker said, so a Mexican
             speaker stays Mexican in the transcript, an Argentine stays
@@ -74,7 +75,7 @@ export default function SpanishAudioToTextPage() {
         {
           icon: '🎙️',
           title: 'Upload your Spanish audio',
-          desc: 'MP3, M4A, WAV, FLAC, video files (MP4/MOV/WebM). We strip video and feed the audio to Whisper. Files up to 60 MB on the free tier.',
+          desc: 'MP3, M4A, WAV, FLAC, video files (MP4/MOV/WebM). We strip video and feed the audio to Whisper. Anonymous uploads accept files up to 25 MB and 30 minutes.',
         },
         {
           icon: '⚡',
@@ -267,7 +268,7 @@ export default function SpanishAudioToTextPage() {
         },
         {
           q: 'How long can my Spanish audio file be?',
-          a: 'Free tier accepts files up to 60 MB. For Spanish speech at typical podcast bitrates that is roughly 50-60 minutes of mono audio. For longer recordings, downsample to 16 kHz mono with ffmpeg or split into multiple files and transcribe separately.',
+          a: 'Anonymous uploads accept files up to 25 MB and 30 minutes. For longer recordings, sign in for the longer duration limit, downsample to 16 kHz mono with ffmpeg, or split into multiple files and transcribe separately.',
         },
         {
           q: 'Is my Spanish audio file stored anywhere?',

@@ -42,11 +42,44 @@ export default function JaOggToTextPage() {
       h1={<>OGGをテキストに<br /><span className="text-brand-600">オンラインOGG無料文字起こし</span></>}
       subtitle="任意のOGG音声ファイルをアップロードして、数秒でテキストに変換。OGG VorbisとOGG Opusに対応。アカウント不要。"
       defaultLanguage="ja"
-      features={[
-        { icon: '🎙️', title: 'OGG VorbisとOpus', desc: '任意のソースからのOGGファイルに対応 — レコーダー、ブラウザ、メッセージングアプリ。' },
-        { icon: '🌍', title: '50以上の言語', desc: '言語は自動検出。日本語、英語、中国語、韓国語、スペイン語、フランス語などに対応。' },
-        { icon: '📄', title: '.txtと.srtエクスポート', desc: 'プレーンテキストとして、またはタイムスタンプ付きSRTファイルとしてダウンロード。' },
+      valueBlock={
+        <article className="prose-content">
+          <p>OGGは単一の音声コーデックではなく、Vorbis、Opus、場合によってはFLACを入れられるコンテナです。Telegramの音声メッセージは.ogaで保存されることが多く、中身はOpusです。Mictooは拡張子だけで判断せず、ファイルの中身を見てデコードします。</p>
+          <p>Linuxの録音アプリ、WebRTC通話、オープンソース系の音声素材でも、そのままアップロードできます。MP3へ変換してから入れる必要はありません。</p>
+          <p>60 MBまで無料。TelegramのOpus音声は非常に小さいため、長めのボイスメモでも上限に収まりやすい形式です。</p>
+        </article>
+      }
+      howItWorks={[
+        { icon: '🐧', title: 'OGG、OGA、Opusをアップロード', desc: 'Vorbis、Opus、FLAC入りOGGに対応します。.ogg、.oga、.opusのどれでも、実際のコーデックを検出します。' },
+        { icon: '🎤', title: '音声を取り出して文字起こし', desc: 'サーバー側でOGGコンテナから音声を取り出し、Whisperに渡せる形へデコードします。' },
+        { icon: '💬', title: '編集して書き出し', desc: '結果を画面で確認し、名前や専門用語を直して、TXT、SRT、VTT、DOCXで保存できます。' },
       ]}
+      whyUse={{
+        title: 'OGGや.ogaにMictooを使う理由',
+        bullets: [
+          { title: 'Telegram音声を直接扱える', desc: 'Telegram DesktopやWebから保存した音声メッセージは.ogaになることがよくあります。名前を.oggに変えたり、MP3へ変換したりせず、そのまま使えます。' },
+          { title: 'VorbisとOpusの違いを気にしなくてよい', desc: '古いOGGはVorbis、最近の音声メモや通話はOpusが多いです。Mictooは中身を検出して適切に処理します。' },
+          { title: '小さなファイルでも聞き取りやすい', desc: 'Opusは低ビットレートの音声に強い形式です。Telegramの短いボイスメモでも、話し声が明瞭なら十分に文字起こしできます。' },
+          { title: 'Linuxとブラウザ録音に合う', desc: 'GNOMEやKDEの録音、WebRTC系の録音、オープンソースの音声素材など、OGGが自然に出てくるワークフローに向いています。' },
+        ],
+      }}
+      useCases={{
+        title: 'OGGファイルがよく出てくる場面',
+        items: [
+          { title: 'Telegramの長いボイスメモ', desc: '仕事の相談、家族のメッセージ、グループ内の説明をテキストで残したいときに便利です。' },
+          { title: 'Linuxデスクトップ録音', desc: 'Linuxの録音アプリはOGGやOpusを選ぶことがあります。研究メモやポッドキャスト素材を直接処理できます。' },
+          { title: 'ブラウザ通話のバックアップ', desc: 'WebRTCベースの通話録音はOpusを使うことが多く、後から議事録化しやすい形式です。' },
+          { title: 'アーカイブ音声や発音サンプル', desc: 'Wikipediaや教育資料のOGG音声を、検索しやすいテキストに変換できます。' },
+        ],
+      }}
+      proTips={{
+        title: 'OGG文字起こしのコツ',
+        tips: [
+          { title: '.ogaを無理にリネームしない', desc: '.ogaも音声専用のOGG拡張子です。Mictooではそのままアップロードできます。' },
+          { title: 'TelegramはDesktopかWebから保存する', desc: 'モバイルアプリでは音声ファイルとして取り出しにくい場合があります。DesktopやWebの右クリック保存が確実です。' },
+          { title: '短い音声は言語を手動指定する', desc: '数秒のメッセージでは自動判定が迷うことがあります。日本語なら日本語を選ぶと安定します。' },
+        ],
+      }}
       faq={[
         { q: 'OGGをテキストに変換するには?', a: '上記にOGGファイルをアップロードしてください。文字起こしは数秒で自動的に生成されます。' },
         { q: 'OGGからテキストへの変換は無料ですか?', a: 'はい、完全に無料です。登録もアカウントも不要です。' },
