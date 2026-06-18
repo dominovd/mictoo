@@ -148,6 +148,30 @@ function SectionEyebrow({ children }) {
   )
 }
 
+// One format card in the Section 7 hub-and-spoke grid. Receives full
+// literal Tailwind color classes (sky-50 / sky-600 etc) so the JIT can
+// pick them up, plus an md:col-start / md:row-start string for desktop
+// placement around the central hub. On mobile the gridPosition is
+// ignored (mobile uses normal grid flow).
+function FormatCard({ colorClasses, gridPosition = '', name, kind, icon }) {
+  return (
+    <div
+      className={
+        'bg-white border border-slate-200 rounded-2xl p-4 flex items-center gap-3 hover:shadow-md transition-shadow ' +
+        gridPosition
+      }
+    >
+      <div className={'w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ' + colorClasses}>
+        {icon}
+      </div>
+      <div className="min-w-0">
+        <div className="text-base font-bold text-slate-800 leading-tight">{name}</div>
+        <div className="text-xs text-slate-500 mt-0.5">{kind}</div>
+      </div>
+    </div>
+  )
+}
+
 export default function InterviewTranscriptionPage() {
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -737,55 +761,204 @@ export default function InterviewTranscriptionPage() {
       </section>
 
       {/* ─────────────── SECTION 7: SUPPORTED FORMATS ─────────────── */}
+      {/*
+        Modeled on format.png. Hub-and-spoke layout on md+ screens:
+        6 colored format cards (MP3/MP4 top row, WAV/MOV middle row,
+        M4A/AAC bottom row) flank a central "Upload Your Recording"
+        circle in the middle cell. On mobile this collapses to a flat
+        2-column grid (hub disappears, cards stack naturally).
+
+        Each format gets its own theme color (sky/purple/emerald/rose/
+        amber/indigo) with an inline SVG icon hinting at the format.
+
+        Tailwind JIT note: color utilities are written as full literal
+        strings inside the card list to keep them detectable at build.
+      */}
       <section className="bg-white py-16 px-4 border-b border-slate-100">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="text-center">
             <SectionEyebrow>Supported formats</SectionEyebrow>
             <h2 className="mt-4 text-3xl font-bold text-slate-900">Supported Audio and Video Formats</h2>
             <p className="mt-3 text-slate-600 max-w-2xl mx-auto">
-              Mictoo supports common interview recording formats. Upload recordings from voice recorders, smartphones, online meetings, video interviews, and other recording sources.
+              Mictoo AI supports all popular audio and video formats for interview transcription.
             </p>
           </div>
 
-          <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
-            {[
-              { name: 'MP3',  kind: 'Audio' },
-              { name: 'WAV',  kind: 'Audio' },
-              { name: 'M4A',  kind: 'Audio' },
-              { name: 'AAC',  kind: 'Audio' },
-              { name: 'MP4',  kind: 'Video' },
-              { name: 'MOV',  kind: 'Video' },
-              { name: 'WebM', kind: 'Video' },
-              { name: 'OGG',  kind: 'Audio' },
-              { name: 'FLAC', kind: 'Audio' },
-              { name: 'MKV',  kind: 'Video' },
-              { name: 'AVI',  kind: 'Video' },
-              { name: 'OPUS', kind: 'Audio' },
-            ].map(({ name, kind }) => (
-              <div
-                key={name}
-                className="bg-white border border-slate-200 rounded-xl px-3 py-3 text-center hover:border-brand-400 transition-colors"
-              >
-                <div className="text-sm font-semibold text-slate-800">{name}</div>
-                <div className="text-xs text-slate-400 mt-0.5">{kind}</div>
+          {/* Hub-and-spoke grid (md+) — 3 columns x 3 rows with the hub
+              in the middle cell. Mobile (< md) drops the explicit grid
+              placement so cards flow as a normal 2-column grid. */}
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-3 md:grid-rows-3 gap-4 max-w-3xl mx-auto">
+            {/* MP3 — top-left, sky */}
+            <FormatCard
+              colorClasses="bg-sky-50 text-sky-600"
+              gridPosition="md:col-start-1 md:row-start-1"
+              name="MP3"
+              kind="Audio File"
+              icon={
+                /* music note */
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                  <path d="M9 18V5l10-2v13" />
+                  <circle cx="6" cy="18" r="3" />
+                  <circle cx="16" cy="16" r="3" />
+                </svg>
+              }
+            />
+
+            {/* MP4 — top-right, purple */}
+            <FormatCard
+              colorClasses="bg-purple-50 text-purple-600"
+              gridPosition="md:col-start-3 md:row-start-1"
+              name="MP4"
+              kind="Video File"
+              icon={
+                /* video camera */
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                  <rect x="2" y="6" width="14" height="12" rx="2" />
+                  <path d="M22 8l-6 4 6 4z" />
+                </svg>
+              }
+            />
+
+            {/* WAV — middle-left, emerald */}
+            <FormatCard
+              colorClasses="bg-emerald-50 text-emerald-600"
+              gridPosition="md:col-start-1 md:row-start-2"
+              name="WAV"
+              kind="Audio File"
+              icon={
+                /* waveform */
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                  <path d="M3 12h2M19 12h2M7 8v8M11 5v14M15 8v8" />
+                </svg>
+              }
+            />
+
+            {/* HUB — middle-center, brand */}
+            <div className="hidden md:flex md:col-start-2 md:row-start-2 items-center justify-center">
+              <div className="w-full bg-gradient-to-br from-brand-50 to-white border-2 border-brand-200 rounded-2xl p-5 text-center shadow-sm">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-100 text-brand-600">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                    <path d="M17 18a4 4 0 1 0-1-7.87A6 6 0 0 0 5 11a4 4 0 0 0 0 8h12z" />
+                    <path d="M12 11v6m-3-3l3-3 3 3" />
+                  </svg>
+                </div>
+                <div className="mt-3 text-sm font-bold text-slate-800">Upload Your Recording</div>
+                <div className="text-xs text-slate-500 mt-1">Audio or video files</div>
               </div>
-            ))}
+            </div>
+
+            {/* MOV — middle-right, rose */}
+            <FormatCard
+              colorClasses="bg-rose-50 text-rose-600"
+              gridPosition="md:col-start-3 md:row-start-2"
+              name="MOV"
+              kind="Video File"
+              icon={
+                /* film strip */
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                  <rect x="3" y="4" width="18" height="16" rx="2" />
+                  <path d="M3 9h4M3 15h4M17 9h4M17 15h4M9 4v16" />
+                </svg>
+              }
+            />
+
+            {/* M4A — bottom-left, amber */}
+            <FormatCard
+              colorClasses="bg-amber-50 text-amber-600"
+              gridPosition="md:col-start-1 md:row-start-3"
+              name="M4A"
+              kind="Audio File"
+              icon={
+                /* microphone */
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                  <rect x="9" y="2" width="6" height="12" rx="3" />
+                  <path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3M8 22h8" />
+                </svg>
+              }
+            />
+
+            {/* AAC — bottom-right, indigo */}
+            <FormatCard
+              colorClasses="bg-indigo-50 text-indigo-600"
+              gridPosition="md:col-start-3 md:row-start-3"
+              name="AAC"
+              kind="Audio File"
+              icon={
+                /* audio bars */
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                  <path d="M5 10v4M9 6v12M13 8v8M17 4v16M21 11v2" />
+                </svg>
+              }
+            />
           </div>
 
-          <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-2xl mx-auto text-center text-xs text-slate-500">
-            {[
-              { icon: '📱', label: 'Phone recordings' },
-              { icon: '💻', label: 'Computer recordings' },
-              { icon: '🎙', label: 'Field recorders' },
-              { icon: '📹', label: 'Video calls' },
-              { icon: '☁',  label: 'Cloud sources' },
-              { icon: '🎧', label: 'Headset interviews' },
-            ].map(({ icon, label }) => (
-              <div key={label} className="bg-slate-50 border border-slate-100 rounded-lg px-3 py-3">
-                <div className="text-lg">{icon}</div>
-                <div className="mt-1">{label}</div>
+          {/* Bottom plate: "High quality. Any format. Any device." with device row */}
+          <div className="mt-10 max-w-4xl mx-auto bg-brand-50/50 border border-brand-100 rounded-2xl px-5 py-4 flex items-center justify-between gap-4 flex-wrap">
+            <div className="flex items-center gap-3 text-sm">
+              <div className="w-10 h-10 rounded-xl bg-white border border-brand-100 flex items-center justify-center text-brand-600 flex-shrink-0">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                  <path d="M9 12l2 2 4-4" />
+                  <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" />
+                </svg>
               </div>
-            ))}
+              <div>
+                <div className="font-semibold text-slate-800">High quality. Any format. Any device.</div>
+                <div className="text-xs text-slate-500 mt-0.5">Upload interviews recorded on any device or platform. Mictoo AI delivers accurate transcripts every time.</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 text-xs text-slate-500">
+              {[
+                {
+                  label: 'Phone',
+                  icon: (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                      <rect x="7" y="2" width="10" height="20" rx="2" />
+                      <path d="M11 18h2" />
+                    </svg>
+                  ),
+                },
+                {
+                  label: 'Computer',
+                  icon: (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                      <rect x="2" y="4" width="20" height="13" rx="2" />
+                      <path d="M8 21h8M12 17v4" />
+                    </svg>
+                  ),
+                },
+                {
+                  label: 'Recorder',
+                  icon: (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                      <rect x="9" y="2" width="6" height="12" rx="3" />
+                      <path d="M5 10v2a7 7 0 0 0 14 0v-2" />
+                    </svg>
+                  ),
+                },
+                {
+                  label: 'Camera',
+                  icon: (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                      <path d="M23 7l-7 5 7 5z" />
+                      <rect x="1" y="5" width="15" height="14" rx="2" />
+                    </svg>
+                  ),
+                },
+                {
+                  label: 'Cloud',
+                  icon: (
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                      <path d="M18 19a4 4 0 1 0-1-7.87A6 6 0 0 0 6 12a4 4 0 0 0 0 8z" />
+                    </svg>
+                  ),
+                },
+              ].map(({ label, icon }) => (
+                <div key={label} className="flex flex-col items-center gap-1">
+                  <span className="text-slate-400">{icon}</span>
+                  <span>{label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
