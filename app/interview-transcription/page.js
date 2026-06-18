@@ -53,6 +53,20 @@ export const metadata = {
   },
 }
 
+// Sample transcript shown in Section 4 ("Interview Transcript Example"). Keeps
+// the page self-explanatory: a visitor sees what they will get before they
+// click the upload button.
+const SAMPLE_TRANSCRIPT = [
+  { ts: '00:00:02', speaker: 'Interviewer', text: 'Can you tell me about your experience working remotely?' },
+  { ts: '00:00:06', speaker: 'Candidate',   text: "I've been working remotely for over three years and collaborated with distributed teams across different time zones." },
+  { ts: '00:00:18', speaker: 'Interviewer', text: 'What challenges did you face?' },
+  { ts: '00:00:21', speaker: 'Candidate',   text: 'Communication and scheduling were the biggest ones initially. It took time to establish clear processes and expectations.' },
+  { ts: '00:00:34', speaker: 'Interviewer', text: 'How do you stay productive while working from home?' },
+  { ts: '00:00:38', speaker: 'Candidate',   text: 'A structured schedule, daily goals, and use of collaboration tools to stay organized and aligned with the team.' },
+  { ts: '00:00:52', speaker: 'Interviewer', text: 'What tools do you find most helpful?' },
+  { ts: '00:00:55', speaker: 'Candidate',   text: 'Slack for communication, Notion for documentation, and Google Drive for file sharing. These tools help keep everything in one place.' },
+]
+
 const FAQ = [
   {
     q: 'Is this really a free interview transcription tool?',
@@ -299,23 +313,46 @@ export default function InterviewTranscriptionPage() {
       </section>
 
       {/* ─────────────── SECTION 4: TRANSCRIPT EXAMPLE ─────────────── */}
-      {/*
-        Reference illustration replaces the entire JSX block per design
-        direction. The image itself contains the "Interview Transcript
-        Example" heading and the sample dialogue. We keep an offscreen H2
-        for the heading hierarchy and a descriptive alt text for SEO.
-      */}
       <section className="bg-slate-50 py-16 px-4 border-b border-slate-100">
         <div className="max-w-4xl mx-auto">
-          <h2 className="sr-only">Interview Transcript Example</h2>
-          <img
-            src="/interview/transcript_example.webp"
-            alt="Interview transcript example produced by Mictoo: timestamps, speaker labels (Interviewer, Candidate), automatic punctuation, and export buttons for DOCX, PDF, and TXT"
-            width={1536}
-            height={1024}
-            loading="lazy"
-            className="w-full h-auto rounded-2xl"
-          />
+          <div className="text-center">
+            <SectionEyebrow>Sample</SectionEyebrow>
+            <h2 className="mt-4 text-3xl font-bold text-slate-900">Interview Transcript Example</h2>
+            <p className="mt-3 text-slate-600 max-w-2xl mx-auto">
+              Below is an interview transcript sample produced by Mictoo. Same formatting you get after a real upload: per-segment timestamps, speaker turns, automatic punctuation.
+            </p>
+          </div>
+
+          <div className="mt-8 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+            <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-slate-100 bg-slate-50">
+              <div className="flex items-center gap-2 text-xs font-semibold text-slate-600">
+                <span className="inline-block w-2 h-2 rounded-full bg-brand-500" />
+                Example AI-generated transcript
+              </div>
+              <div className="text-xs text-slate-400">Interview · 18:42 · English</div>
+            </div>
+            <div className="divide-y divide-slate-100">
+              {SAMPLE_TRANSCRIPT.map((line) => (
+                <div key={line.ts} className="grid grid-cols-[auto_auto_1fr] gap-3 px-5 py-3 text-sm">
+                  <span className="font-mono text-xs text-slate-400 mt-0.5">{line.ts}</span>
+                  <span className="text-xs font-semibold text-brand-700 mt-0.5 whitespace-nowrap">{line.speaker}:</span>
+                  <span className="text-slate-700 leading-relaxed">{line.text}</span>
+                </div>
+              ))}
+            </div>
+            <div className="px-5 py-3 text-xs text-slate-400 bg-slate-50 border-t border-slate-100 flex items-center justify-between flex-wrap gap-2">
+              <span>In the real tool you can edit any line, then export to DOCX, PDF, SRT, or TXT.</span>
+              <div className="flex gap-1.5">
+                {['DOCX', 'PDF', 'TXT', 'SRT'].map((f) => (
+                  <span key={f} className="text-xs font-semibold text-brand-700 bg-brand-50 px-2 py-0.5 rounded">{f}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <p className="mt-6 text-slate-600 text-center max-w-2xl mx-auto leading-relaxed">
+            Interview transcripts help transform recorded conversations into searchable and editable text. Researchers, recruiters, journalists, and students use transcripts to analyze interviews, review responses, and organize information.
+          </p>
         </div>
       </section>
 
