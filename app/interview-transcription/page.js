@@ -357,63 +357,164 @@ export default function InterviewTranscriptionPage() {
       </section>
 
       {/* ─────────────── SECTION 5: USE CASES ─────────────── */}
+      {/*
+        Four colored cards (sky / emerald / purple / amber) modeled on
+        use_case.png. Each card gets a top accent border in its theme
+        color, a centered icon-on-tinted-square, a centered title in the
+        same darker shade, the description below, and a bullet list with
+        matching colored dots.
+
+        Inline SVG icons match the reference style: outline strokes, flat
+        illustration. We avoid an icon library to keep dependencies thin.
+
+        IMPORTANT: Tailwind JIT scans classes statically, so every color
+        utility must appear as a full literal class string in the source.
+        That is why each card has its own pre-baked classes instead of a
+        dynamic builder.
+      */}
       <section className="bg-white py-16 px-4 border-b border-slate-100">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center">
             <SectionEyebrow>Use cases</SectionEyebrow>
             <h2 className="mt-4 text-3xl font-bold text-slate-900">Perfect for Every Interview Scenario</h2>
             <p className="mt-3 text-slate-600 max-w-2xl mx-auto">
-              Whether you are conducting research, hiring candidates, recording podcasts, or gathering customer feedback, interview transcription helps you save time and keep accurate records.
+              Mictoo AI helps you transcribe all types of interview conversations with accuracy and speed.
             </p>
           </div>
 
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {[
-              {
-                icon: '💼',
-                title: 'Job Interviews',
-                desc: 'Review candidate answers and maintain accurate hiring records. Easier than passing around a video; easier to compare answers side by side.',
-                bullets: ['Candidate interviews', 'Recruitment screening', 'Hiring notes'],
-              },
-              {
-                icon: '🎓',
-                title: 'Research Interviews',
-                desc: 'Capture and transcribe research conversations for academic and qualitative studies. Coded directly in NVivo, Atlas.ti, MAXQDA.',
-                bullets: ['Academic research', 'Qualitative analysis', 'User interviews'],
-              },
-              {
-                icon: '🎙️',
-                title: 'Podcast Interviews',
-                desc: 'Turn your podcast guest conversations into accurate, editable text for show notes, blog posts, and pull-quote graphics.',
-                bullets: ['Guest interviews', 'Show notes', 'Content repurposing'],
-              },
-              {
-                icon: '📰',
-                title: 'Journalism Interviews',
-                desc: 'Transcribe interviews for news articles, reporting, and fact-checking. Searchable records make verification much faster.',
-                bullets: ['News reporting', 'Quotes extraction', 'Fact checking'],
-              },
-            ].map(({ icon, title, desc, bullets }) => (
-              <div key={title} className="bg-white border border-slate-200 rounded-2xl p-5 hover:border-brand-400 hover:shadow-sm transition-all">
-                <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl">
-                  {icon}
+            {/* Job Interviews — sky */}
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
+              <div className="h-1 bg-sky-400" />
+              <div className="p-6 text-center">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-sky-50 text-sky-600">
+                  {/* briefcase */}
+                  <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                    <rect x="3" y="7" width="18" height="13" rx="2" />
+                    <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                    <path d="M3 12h18" />
+                  </svg>
                 </div>
-                <h3 className="mt-4 font-semibold text-slate-900">{title}</h3>
-                <p className="mt-2 text-sm text-slate-600 leading-relaxed">{desc}</p>
-                <ul className="mt-4 space-y-1.5 text-xs text-slate-500">
-                  {bullets.map((b) => (
+                <h3 className="mt-4 font-semibold text-sky-700">Job Interviews</h3>
+                <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                  Transcribe candidate interviews and hiring conversations with clarity and precision.
+                </p>
+                <ul className="mt-5 space-y-2 text-xs text-slate-500 text-left">
+                  {['Candidate interviews', 'Recruitment screening', 'Hiring notes'].map((b) => (
                     <li key={b} className="flex items-center gap-2">
-                      <span className="w-1 h-1 bg-brand-500 rounded-full" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
                       {b}
                     </li>
                   ))}
                 </ul>
               </div>
-            ))}
+            </div>
+
+            {/* Research Interviews — emerald */}
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
+              <div className="h-1 bg-emerald-400" />
+              <div className="p-6 text-center">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600">
+                  {/* graduation cap */}
+                  <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                    <path d="M2 9l10-5 10 5-10 5L2 9z" />
+                    <path d="M6 11v4c0 1.5 2.7 3 6 3s6-1.5 6-3v-4" />
+                    <path d="M22 9v5" />
+                  </svg>
+                </div>
+                <h3 className="mt-4 font-semibold text-emerald-700">Research Interviews</h3>
+                <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                  Capture and transcribe research conversations for academic and qualitative studies.
+                </p>
+                <ul className="mt-5 space-y-2 text-xs text-slate-500 text-left">
+                  {['Academic research', 'Qualitative analysis', 'User interviews'].map((b) => (
+                    <li key={b} className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Podcast Interviews — purple */}
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
+              <div className="h-1 bg-purple-400" />
+              <div className="p-6 text-center">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-purple-50 text-purple-600">
+                  {/* microphone */}
+                  <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                    <rect x="9" y="2" width="6" height="12" rx="3" />
+                    <path d="M5 10v2a7 7 0 0 0 14 0v-2" />
+                    <path d="M12 19v3" />
+                    <path d="M8 22h8" />
+                  </svg>
+                </div>
+                <h3 className="mt-4 font-semibold text-purple-700">Podcast Interviews</h3>
+                <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                  Turn your podcast guest conversations into accurate transcripts and show notes.
+                </p>
+                <ul className="mt-5 space-y-2 text-xs text-slate-500 text-left">
+                  {['Guest interviews', 'Show notes', 'Content repurposing'].map((b) => (
+                    <li key={b} className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Journalism Interviews — amber */}
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
+              <div className="h-1 bg-amber-400" />
+              <div className="p-6 text-center">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-amber-50 text-amber-600">
+                  {/* newspaper */}
+                  <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                    <path d="M4 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4z" />
+                    <path d="M20 8h2v10a2 2 0 0 1-2 2" />
+                    <path d="M8 8h6M8 12h6M8 16h6" />
+                  </svg>
+                </div>
+                <h3 className="mt-4 font-semibold text-amber-700">Journalism Interviews</h3>
+                <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                  Transcribe interviews for news articles, reporting, and fact-checking.
+                </p>
+                <ul className="mt-5 space-y-2 text-xs text-slate-500 text-left">
+                  {['News reporting', 'Quotes extraction', 'Fact checking'].map((b) => (
+                    <li key={b} className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
 
-          <div className="mt-8 bg-brand-50/60 border border-brand-100 rounded-xl px-5 py-4 text-sm text-slate-600 text-center">
-            Any interview, any format. Mictoo supports audio and video files from Zoom, Google Meet, phone calls, and in-person interviews.
+          {/* Footer plate — "Any interview, any format" with format chips */}
+          <div className="mt-8 bg-brand-50/50 border border-brand-100 rounded-2xl px-5 py-4 flex items-center justify-between gap-4 flex-wrap">
+            <div className="flex items-center gap-3 text-sm text-slate-600">
+              <div className="w-10 h-10 rounded-xl bg-white border border-brand-100 flex items-center justify-center text-brand-600">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                  <path d="M9 12l2 2 4-4" />
+                  <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" />
+                </svg>
+              </div>
+              <div>
+                <div className="font-semibold text-slate-800">Any interview, any format</div>
+                <div className="text-xs text-slate-500 mt-0.5">Mictoo supports audio and video files from Zoom, Google Meet, phone calls, and in-person interviews.</div>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-2 text-xs">
+              {['MP3', 'WAV', 'MP4', 'M4A'].map((f) => (
+                <span key={f} className="px-2.5 py-1 bg-white border border-brand-100 text-brand-700 font-semibold rounded-md">
+                  {f}
+                </span>
+              ))}
+              <span className="px-2.5 py-1 text-slate-400 italic">and more</span>
+            </div>
           </div>
         </div>
       </section>
