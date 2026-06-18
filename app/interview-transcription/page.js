@@ -148,30 +148,6 @@ function SectionEyebrow({ children }) {
   )
 }
 
-// One format card in the Section 7 hub-and-spoke grid. Receives full
-// literal Tailwind color classes (sky-50 / sky-600 etc) so the JIT can
-// pick them up, plus an md:col-start / md:row-start string for desktop
-// placement around the central hub. On mobile the gridPosition is
-// ignored (mobile uses normal grid flow).
-function FormatCard({ colorClasses, gridPosition = '', name, kind, icon }) {
-  return (
-    <div
-      className={
-        'bg-white border border-slate-200 rounded-2xl p-4 flex items-center gap-3 hover:shadow-md transition-shadow ' +
-        gridPosition
-      }
-    >
-      <div className={'w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ' + colorClasses}>
-        {icon}
-      </div>
-      <div className="min-w-0">
-        <div className="text-base font-bold text-slate-800 leading-tight">{name}</div>
-        <div className="text-xs text-slate-500 mt-0.5">{kind}</div>
-      </div>
-    </div>
-  )
-}
-
 export default function InterviewTranscriptionPage() {
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -784,111 +760,19 @@ export default function InterviewTranscriptionPage() {
             </p>
           </div>
 
-          {/* Hub-and-spoke grid (md+) — 3 columns x 3 rows with the hub
-              in the middle cell. Mobile (< md) drops the explicit grid
-              placement so cards flow as a normal 2-column grid. */}
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-3 md:grid-rows-3 gap-4 max-w-3xl mx-auto">
-            {/* MP3 — top-left, sky */}
-            <FormatCard
-              colorClasses="bg-sky-50 text-sky-600"
-              gridPosition="md:col-start-1 md:row-start-1"
-              name="MP3"
-              kind="Audio File"
-              icon={
-                /* music note */
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-                  <path d="M9 18V5l10-2v13" />
-                  <circle cx="6" cy="18" r="3" />
-                  <circle cx="16" cy="16" r="3" />
-                </svg>
-              }
-            />
-
-            {/* MP4 — top-right, purple */}
-            <FormatCard
-              colorClasses="bg-purple-50 text-purple-600"
-              gridPosition="md:col-start-3 md:row-start-1"
-              name="MP4"
-              kind="Video File"
-              icon={
-                /* video camera */
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-                  <rect x="2" y="6" width="14" height="12" rx="2" />
-                  <path d="M22 8l-6 4 6 4z" />
-                </svg>
-              }
-            />
-
-            {/* WAV — middle-left, emerald */}
-            <FormatCard
-              colorClasses="bg-emerald-50 text-emerald-600"
-              gridPosition="md:col-start-1 md:row-start-2"
-              name="WAV"
-              kind="Audio File"
-              icon={
-                /* waveform */
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-                  <path d="M3 12h2M19 12h2M7 8v8M11 5v14M15 8v8" />
-                </svg>
-              }
-            />
-
-            {/* HUB — middle-center, brand */}
-            <div className="hidden md:flex md:col-start-2 md:row-start-2 items-center justify-center">
-              <div className="w-full bg-gradient-to-br from-brand-50 to-white border-2 border-brand-200 rounded-2xl p-5 text-center shadow-sm">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-100 text-brand-600">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-                    <path d="M17 18a4 4 0 1 0-1-7.87A6 6 0 0 0 5 11a4 4 0 0 0 0 8h12z" />
-                    <path d="M12 11v6m-3-3l3-3 3 3" />
-                  </svg>
-                </div>
-                <div className="mt-3 text-sm font-bold text-slate-800">Upload Your Recording</div>
-                <div className="text-xs text-slate-500 mt-1">Audio or video files</div>
-              </div>
-            </div>
-
-            {/* MOV — middle-right, rose */}
-            <FormatCard
-              colorClasses="bg-rose-50 text-rose-600"
-              gridPosition="md:col-start-3 md:row-start-2"
-              name="MOV"
-              kind="Video File"
-              icon={
-                /* film strip */
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-                  <rect x="3" y="4" width="18" height="16" rx="2" />
-                  <path d="M3 9h4M3 15h4M17 9h4M17 15h4M9 4v16" />
-                </svg>
-              }
-            />
-
-            {/* M4A — bottom-left, amber */}
-            <FormatCard
-              colorClasses="bg-amber-50 text-amber-600"
-              gridPosition="md:col-start-1 md:row-start-3"
-              name="M4A"
-              kind="Audio File"
-              icon={
-                /* microphone */
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-                  <rect x="9" y="2" width="6" height="12" rx="3" />
-                  <path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3M8 22h8" />
-                </svg>
-              }
-            />
-
-            {/* AAC — bottom-right, indigo */}
-            <FormatCard
-              colorClasses="bg-indigo-50 text-indigo-600"
-              gridPosition="md:col-start-3 md:row-start-3"
-              name="AAC"
-              kind="Audio File"
-              icon={
-                /* audio bars */
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-                  <path d="M5 10v4M9 6v12M13 8v8M17 4v16M21 11v2" />
-                </svg>
-              }
+          {/* Hub-and-spoke illustration from format.png — replaces the
+              earlier JSX grid. The reference has dashed connector lines
+              between each format and the central upload hub, which is
+              hard to recreate in pure CSS. Using the image keeps the
+              visual exactly on-brand. */}
+          <div className="mt-10 max-w-4xl mx-auto">
+            <img
+              src="/interview/format.webp"
+              alt="Mictoo supports MP3, WAV, M4A, AAC audio files and MP4, MOV video files — upload any popular format and get an accurate interview transcript"
+              width={1414}
+              height={681}
+              loading="lazy"
+              className="w-full h-auto"
             />
           </div>
 
