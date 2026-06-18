@@ -1,9 +1,24 @@
-import LandingLayout from '@/components/LandingLayout'
+// /interview-transcription
+//
+// Long-form landing page for the "free interview transcription" SEO cluster.
+// Hand-built layout (does NOT use LandingLayout) so the design can follow the
+// reference mockups in /Downloads/mictoo/Interview Transcription/. The page
+// drives traffic to the main app via CTA buttons that scroll to the homepage
+// uploader. No UploadZone is embedded here on purpose.
+//
+// SEO keywords woven into prose (in order of priority):
+//   free interview transcription, interview transcription tool,
+//   interview transcription software, AI interview transcription,
+//   transcribe interviews online, interview transcript example,
+//   interview transcript sample, speech to text interview,
+//   convert interview recording to text, free interview transcript generator.
+
+import Link from 'next/link'
 
 export const metadata = {
-  title: 'Interview Transcription — Free Interview Transcript Generator | Mictoo',
+  title: 'Free Interview Transcription Tool: Convert Interviews to Text Online | Mictoo',
   description:
-    'Free interview transcription with AI. Drop your interview recording (MP3, M4A, MP4, WAV) and get a clean, timestamped transcript in seconds. Built for journalists and researchers.',
+    'Transcribe interviews for free with AI. Upload audio or video recordings and get accurate interview transcripts in minutes. Supports MP3, WAV, M4A, MP4, MOV, and more.',
   alternates: {
     canonical: 'https://mictoo.com/interview-transcription',
     languages: {
@@ -20,195 +35,649 @@ export const metadata = {
       'x-default': 'https://mictoo.com/interview-transcription',
     },
   },
-
   openGraph: {
-    title: "Interview Transcription — Free Interview Transcript Generator | Mictoo",
-    description: "Free interview transcription with AI. Drop your interview recording (MP3, M4A, MP4, WAV) and get a clean, timestamped transcript in seconds. Built for journalists and researchers.",
-    url: "https://mictoo.com/interview-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Free Interview Transcription Tool | Mictoo',
+    description:
+      'Free interview transcription with AI. Upload audio or video, get a clean transcript in minutes. Works for journalism, research, podcasts, and hiring.',
+    url: 'https://mictoo.com/interview-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Interview Transcription — Free Interview Transcript Generator | Mictoo",
-    description: "Free interview transcription with AI. Drop your interview recording (MP3, M4A, MP4, WAV) and get a clean, timestamped transcript in seconds. Built for journalists and researchers.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Free Interview Transcription Tool',
+    description:
+      'AI interview transcription. Upload audio or video, get a transcript in minutes. Free.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function InterviewTranscriptionPage() {
+// Sample transcript shown in Section 4 ("Interview Transcript Example"). Keeps
+// the page self-explanatory: a visitor sees what they will get before they
+// click the upload button.
+const SAMPLE_TRANSCRIPT = [
+  { ts: '00:00:02', speaker: 'Interviewer', text: 'Can you tell me about your experience working remotely?' },
+  { ts: '00:00:06', speaker: 'Candidate',   text: "I've been working remotely for over three years and collaborated with distributed teams across different time zones." },
+  { ts: '00:00:18', speaker: 'Interviewer', text: 'What challenges did you face?' },
+  { ts: '00:00:21', speaker: 'Candidate',   text: 'Communication and scheduling were the biggest ones initially. It took time to establish clear processes and expectations.' },
+  { ts: '00:00:34', speaker: 'Interviewer', text: 'How do you stay productive while working from home?' },
+  { ts: '00:00:38', speaker: 'Candidate',   text: 'A structured schedule, daily goals, and use of collaboration tools to stay organized and aligned with the team.' },
+  { ts: '00:00:52', speaker: 'Interviewer', text: 'What tools do you find most helpful?' },
+  { ts: '00:00:55', speaker: 'Candidate',   text: 'Slack for communication, Notion for documentation, and Google Drive for file sharing. These tools help keep everything in one place.' },
+]
+
+const FAQ = [
+  {
+    q: 'Is this really a free interview transcription tool?',
+    a: 'Yes. Free transcription up to 60 MB per file with no signup, and registered users (also free) can upload up to 180 MB. There is no per-minute fee and no credit card. We make the service sustainable through optional Pro features, not by charging for the basic transcription.',
+  },
+  {
+    q: 'How accurate is AI interview transcription compared to a human typist?',
+    a: 'On a clean 2-person interview with decent microphones, Whisper large-v3 typically lands at 90 to 95 percent accuracy on the first pass. A human typist costs $1 to $3 per minute and adds 24 to 48 hours of turnaround. For most journalism, research, and hiring use cases, the AI transcript plus a quick review of the quotes you plan to publish is the right tradeoff.',
+  },
+  {
+    q: 'Can I see an interview transcript example before I upload?',
+    a: 'Yes. There is a sample interview transcript in the "Interview Transcript Example" section above, with the same formatting Mictoo produces: timestamps every few seconds, speaker turns, automatic punctuation. Your transcript will look the same once processing finishes.',
+  },
+  {
+    q: 'Can I transcribe an interview in another language?',
+    a: 'Yes, over 50 languages. Pick the language in the upload form for short clips or for interviews that start with English chit-chat before switching to the main language. Auto-detect works for longer interviews where the main language is clearly dominant.',
+  },
+  {
+    q: 'My interview is 90 minutes. Can the tool handle that?',
+    a: 'Yes, if you have a free account. Registered users can upload files up to 180 MB; longer interviews are auto-split into chunks and merged into a single transcript. For anonymous users, split the recording into 60-minute parts before uploading (the natural break is usually a topic shift or a pause).',
+  },
+  {
+    q: 'Will I get speaker labels automatically?',
+    a: 'Not yet. Whisper, the speech recognition engine, does not perform speaker diarization out of the box. For a 2-speaker interview, adding "Interviewer:" and "Source:" labels manually takes around 5 minutes per 30-minute interview. We are evaluating a diarization add-on for the Pro tier.',
+  },
+  {
+    q: 'Can I convert an interview recording from my phone to text?',
+    a: 'Yes. iPhone Voice Memos save as M4A, Android voice recorders save as M4A or MP3, and both upload directly. AirDrop or email the file to your computer, then drop it on the uploader. The same workflow works for recordings made inside Zoom, Google Meet, or Microsoft Teams.',
+  },
+  {
+    q: 'Do I need to install interview transcription software on my computer?',
+    a: 'No. Mictoo runs entirely in the browser. You upload the file from any device (Mac, Windows, Linux, iOS, Android), the transcription happens on our servers, and the transcript comes back to your browser. Nothing to install, nothing to update.',
+  },
+  {
+    q: 'How long does AI interview transcription take?',
+    a: 'Roughly 1 to 2 percent of the audio length. A 30-minute interview finishes in around 60 seconds. A 90-minute interview takes 2 to 3 minutes.',
+  },
+  {
+    q: 'Is the audio stored after transcription?',
+    a: 'No. Your file streams to the speech-to-text engine, gets processed, and is then deleted from our servers. We do not retain the audio and do not train any model on your recordings. For sensitive source material or interviews under NDA, this matters.',
+  },
+]
+
+// CTA button used in hero, between sections, and at the bottom of the page.
+// Always links to the homepage uploader (the actual tool lives at /).
+function CtaButton({ children = 'Start Transcribing for Free', className = '' }) {
   return (
-    <LandingLayout
-      badge="Journalism · Research · Free"
-      h1={
-        <>
-          Interview Transcription
-          <br />
-          <span className="text-brand-600">Free Interview Transcripts</span>
-        </>
+    <Link
+      href="/#tool"
+      className={
+        'inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3.5 rounded-xl shadow-sm transition-colors ' +
+        className
       }
-      subtitle="Turn any interview recording into clean, citable text. For journalists, researchers, podcasters, hiring teams. No signup, no per-minute fee, no email required."
-      howItWorks={[
-        {
-          icon: '🎙️',
-          title: 'Drop the interview audio',
-          desc: 'MP3 from a voice recorder, M4A from a phone, MP4 from a video call, WAV from a field recorder. All work.',
-        },
-        {
-          icon: '⚡',
-          title: 'AI transcribes it',
-          desc: 'Whisper large-v3 reads the audio. A 30-minute interview usually finishes in about a minute.',
-        },
-        {
-          icon: '📋',
-          title: 'Read, edit, export',
-          desc: 'Browse the transcript with timestamps. Fix any wrong names or jargon inline. Download as TXT for notes, SRT for video, or copy to your coding software.',
-        },
-      ]}
-      whyUse={{
-        title: 'Why Mictoo for interview transcription',
-        bullets: [
-          {
-            title: 'Whisper handles interviews well',
-            desc: 'Single recordings with two voices and clear back-and-forth are the cleanest case for speech recognition. Most interviews come out at 90 to 95 percent accuracy on the first pass.',
-          },
-          {
-            title: 'Timestamps for citation and quote sourcing',
-            desc: 'Every line in the SRT export has a timestamp. When you need to verify a quote or jump back to a specific moment in the recording, the timestamp tells you exactly where.',
-          },
-          {
-            title: 'No per-interview cost',
-            desc: 'Some transcription services charge per-minute or per-interview. We do not. Transcribe one or fifty, the price is the same (free).',
-          },
-          {
-            title: '50+ languages, including bilingual interviews',
-            desc: 'Cross-language interviews are common in research and journalism. Whisper handles code-switching better than most services.',
-          },
-          {
-            title: 'Privacy and source protection',
-            desc: 'The file streams to the transcription provider and is discarded. We do not retain the audio. For sensitive source material, this matters.',
-          },
-          {
-            title: 'Free AI summary with key takeaways',
-            desc: 'After every interview transcript we generate a GPT-powered summary with key points and action items. Useful for skimming a 60-minute interview before drafting. Competitors typically put the same feature behind a 15-20 dollar a month plan.',
-          },
-        ],
-      }}
-      useCases={{
-        title: 'Who uses interview transcripts',
-        items: [
-          {
-            title: 'Journalism and feature writing',
-            desc: 'Reporters transcribe their interviews to quote accurately and to skim long conversations for the most useful material. A 60-minute interview often becomes 3 to 5 key quotes for the published piece.',
-          },
-          {
-            title: 'Qualitative research and academic studies',
-            desc: 'Researchers transcribe semi-structured interviews to code and analyze in tools like NVivo, Atlas.ti, or MAXQDA. The transcript is the dataset.',
-          },
-          {
-            title: 'Podcasting interviews',
-            desc: 'Show hosts transcribe guest interviews for show notes, episode blog posts, and quote graphics for social media. The audio reaches one audience; the text reaches a different one through search.',
-          },
-          {
-            title: 'Hiring and candidate screening',
-            desc: 'Recruiters and hiring managers transcribe interviews to share with the team. Easier than a video for cross-time-zone reviewers. Easier to compare notes when everyone has the same text.',
-          },
-          {
-            title: 'User research and customer interviews',
-            desc: 'Product teams transcribe customer conversations to find patterns. The transcript goes into the research repository (Dovetail, Marvin, or a shared Notion).',
-          },
-        ],
-      }}
-      proTips={{
-        title: 'Pro tips for interview transcription',
-        tips: [
-          {
-            title: 'Use a real microphone, even for the phone interview',
-            desc: 'A lavalier or USB mic for the in-person interviewee, and a decent headset for the interviewer on the phone. Quality of the recording is the biggest single factor in transcript accuracy.',
-          },
-          {
-            title: 'Record in a quiet space',
-            desc: 'Coffee shop interviews look great on camera and transcribe poorly. Background music and chatter degrade accuracy more than people expect.',
-          },
-          {
-            title: 'For two-speaker interviews, transcribe the whole recording then add speaker labels manually',
-            desc: 'Whisper does not do speaker diarization. For a clean back-and-forth interview, adding "Interviewer:" and "Source:" labels takes about 5 minutes per 30-minute interview.',
-          },
-          {
-            title: 'If you have separate audio tracks, transcribe each separately',
-            desc: 'Then you get clean attribution without any guesswork. Some research-grade recorders capture two mics into two channels of one stereo file. You can split that into two mono files first.',
-          },
-          {
-            title: 'Save the transcript with the date and source name',
-            desc: 'A transcript file called 2026-05-24-jane-smith.txt is easier to find six months later than transcript-final-v2.txt.',
-          },
-          {
-            title: 'Edit the first 50 lines for accuracy, leave the rest as-is',
-            desc: 'People skim transcripts. The first part matters most. Past that, fix only the quotes you plan to use.',
-          },
-          {
-            title: 'Set the language manually if the interview is not in English',
-            desc: 'Auto-detect works for most files, but a 5-second false-start at the beginning can mislead it. Picking the language explicitly is more reliable.',
-          },
-        ],
-      }}
-      faq={[
-        {
-          q: 'Is this accurate enough for journalism quotes?',
-          a: 'For verbatim quoting, you should always verify against the audio. Whisper gets 90 to 95 percent of words right on clean interview audio. The 5 to 10 percent it misses often includes names, technical terms, and overlapping speech. Use the SRT timestamps to jump back to the recording for any quote you want to publish.',
-        },
-        {
-          q: 'Will I get speaker labels?',
-          a: 'Not automatically. You add them based on the conversation flow. For a 2-speaker interview this is fast. For panels or focus groups, plan extra time or upload each speaker track separately if you have them.',
-        },
-        {
-          q: 'Can I transcribe an interview in another language?',
-          a: 'Yes, 50+ languages with auto-detect. For interviews under 5 minutes or non-English interviews that start with English chit-chat, pick the language manually.',
-        },
-        {
-          q: 'My interview is 90 minutes. What do I do?',
-          a: 'Split it into chunks under our 60-minute cap. The natural break is wherever the conversation pauses (mid-interview coffee, topic change).',
-        },
-        {
-          q: 'How accurate are technical terms and proper nouns?',
-          a: 'Less accurate than common vocabulary. Whisper does not know your source company name, the medical term they used, or the specific software they referenced. Expect to fix these manually. The rest of the transcript will be solid.',
-        },
-        {
-          q: 'Is the audio stored?',
-          a: 'No. The file streams to the transcription provider (Groq, with OpenAI as backup), gets processed, then is discarded. We do not retain the audio on our servers.',
-        },
-        {
-          q: 'Is this compliant with research ethics policies?',
-          a: 'Most IRB-approved research protocols require knowing where audio is processed. Our providers process in the US. We do not retain. For specific IRB compliance, document the workflow and check with your IRB. For maximum control, use a local Whisper installation on your own machine instead.',
-        },
-        {
-          q: 'Can I import the transcript into NVivo, Atlas.ti, or Dedoose?',
-          a: 'Yes. Download as TXT and import into your qualitative analysis tool. The transcript is plain text, no special format needed.',
-        },
-        {
-          q: 'How long does transcription take?',
-          a: 'About 1 to 2 percent of the audio length. A 30-minute interview finishes in around 60 seconds.',
-        },
-        {
-          q: 'What if the interview has poor audio quality?',
-          a: 'Run it through a denoise tool first (Audacity Noise Reduction or Adobe Podcast Enhance). Then upload the cleaned version. Better input gives noticeably better output.',
-        },
-        {
-          q: 'Can I transcribe an interview that I recorded on my phone?',
-          a: 'Yes. iPhone Voice Memos save as M4A, Android voice recorders usually save as M4A or MP3. Both work. AirDrop or email the file to your computer, then upload here.',
-        },
-        {
-          q: 'Will the timestamps in the SRT match the original recording exactly?',
-          a: 'Yes, to the millisecond. The SRT timestamps reflect the actual time in the audio file. They work for jumping back to a specific moment in any audio or video player.',
-        },
-      ]}
-      relatedLinks={[
-        { href: '/podcast-transcription', label: 'Podcast Transcription', desc: 'For podcast interviews and host conversations.' },
-        { href: '/timestamped-transcription', label: 'Timestamped Transcription', desc: 'For word-level or sentence-level timestamps.' },
-        { href: '/voice-memo-to-text', label: 'Voice Memo to Text', desc: 'For phone-recorded interviews.' },
-        { href: '/business-transcription', label: 'Business Transcription', desc: 'For sales calls, customer calls, focus groups.' },
-      ]}
-    />
+    >
+      <span>{children}</span>
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+      </svg>
+    </Link>
+  )
+}
+
+function Bullet({ children }) {
+  return (
+    <li className="flex items-start gap-3 text-slate-700">
+      <svg className="w-5 h-5 flex-shrink-0 text-brand-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+      </svg>
+      <span className="text-sm leading-relaxed">{children}</span>
+    </li>
+  )
+}
+
+function SectionEyebrow({ children }) {
+  return (
+    <span className="inline-block bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide">
+      {children}
+    </span>
+  )
+}
+
+export default function InterviewTranscriptionPage() {
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQ.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  }
+
+  return (
+    <>
+      {/* ─────────────── HERO ─────────────── */}
+      <section className="bg-gradient-to-b from-brand-50/40 to-white border-b border-slate-100 py-20 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <SectionEyebrow>AI · Free · No signup · 50+ languages</SectionEyebrow>
+          <h1 className="mt-5 text-4xl sm:text-5xl font-bold text-slate-900 leading-tight">
+            Free Interview Transcription Tool
+          </h1>
+          <p className="mt-5 text-lg text-slate-600 leading-relaxed">
+            Convert interviews into accurate, searchable transcripts in minutes. Upload your audio or video recording and let AI turn speech into text automatically.
+          </p>
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <CtaButton />
+          </div>
+          <p className="mt-4 text-sm text-slate-500">
+            No installation required. Upload your recording and get a transcript online.
+          </p>
+        </div>
+
+        {/* Quick trust strip */}
+        <div className="mt-12 max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 text-center text-xs text-slate-500">
+          <div className="bg-white border border-slate-200 rounded-xl px-3 py-3">
+            <div className="font-semibold text-slate-800 text-sm">Whisper large-v3</div>
+            <div className="mt-0.5">Same model paid services use</div>
+          </div>
+          <div className="bg-white border border-slate-200 rounded-xl px-3 py-3">
+            <div className="font-semibold text-slate-800 text-sm">~1 min per 30 min</div>
+            <div className="mt-0.5">Typical processing time</div>
+          </div>
+          <div className="bg-white border border-slate-200 rounded-xl px-3 py-3">
+            <div className="font-semibold text-slate-800 text-sm">50+ languages</div>
+            <div className="mt-0.5">Including bilingual interviews</div>
+          </div>
+          <div className="bg-white border border-slate-200 rounded-xl px-3 py-3">
+            <div className="font-semibold text-slate-800 text-sm">No retention</div>
+            <div className="mt-0.5">Audio deleted after processing</div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── SECTION 1: UPLOAD ─────────────── */}
+      <section className="bg-white py-16 px-4 border-b border-slate-100">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <SectionEyebrow>Step 1</SectionEyebrow>
+            <h2 className="mt-4 text-3xl font-bold text-slate-900">
+              Upload Your Interview Recording
+            </h2>
+            <p className="mt-4 text-slate-600 leading-relaxed">
+              Upload audio or video interviews directly from your device. Mictoo supports popular recording formats and helps you transcribe interviews without manual typing. Drag the file in, or click to browse.
+            </p>
+            <ul className="mt-6 space-y-3">
+              <Bullet>Upload audio or video files</Bullet>
+              <Bullet>Supports popular recording formats</Bullet>
+              <Bullet>Simple drag-and-drop interface</Bullet>
+              <Bullet>Start transcription in seconds</Bullet>
+            </ul>
+          </div>
+
+          {/* Visual mock: drop zone */}
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+            <div className="border-2 border-dashed border-brand-300 rounded-xl py-10 text-center bg-white">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-50 text-brand-600 text-2xl">
+                ⬆
+              </div>
+              <div className="mt-3 font-semibold text-slate-800">Drag and drop your file here</div>
+              <div className="text-xs text-slate-500 mt-1">or click to browse</div>
+              <div className="mt-4 flex flex-wrap justify-center gap-2 text-xs">
+                {['MP3', 'WAV', 'M4A', 'MP4'].map((f) => (
+                  <span key={f} className="px-2.5 py-1 bg-brand-50 text-brand-700 font-semibold rounded-md">
+                    {f}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="mt-3 text-xs text-slate-400 text-center">
+              Secure upload. Your files are private and protected.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── SECTION 2: AI TRANSCRIPTION ─────────────── */}
+      <section className="bg-slate-50 py-16 px-4 border-b border-slate-100">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+          {/* Visual mock: progress bars */}
+          <div className="order-2 md:order-1 bg-white border border-slate-200 rounded-2xl p-6">
+            <div className="font-semibold text-slate-800">Transcribing your interview…</div>
+            <div className="text-xs text-slate-500 mt-0.5">This may take a few moments</div>
+            <div className="mt-6 space-y-5">
+              {[
+                { label: 'Analyzing speech', pct: 78 },
+                { label: 'Generating transcript', pct: 52 },
+                { label: 'Adding punctuation', pct: 24 },
+              ].map(({ label, pct }) => (
+                <div key={label}>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-slate-700 font-medium">{label}</span>
+                    <span className="text-slate-500">{pct}%</span>
+                  </div>
+                  <div className="mt-1.5 h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-brand-500" style={{ width: pct + '%' }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 flex items-center gap-2 text-xs text-slate-500 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2">
+              <span className="text-brand-600">🔒</span>
+              Your data is secure. Files are streamed to the engine and deleted after processing.
+            </div>
+          </div>
+
+          <div className="order-1 md:order-2">
+            <SectionEyebrow>Step 2</SectionEyebrow>
+            <h2 className="mt-4 text-3xl font-bold text-slate-900">
+              AI-Powered Interview Transcription
+            </h2>
+            <p className="mt-4 text-slate-600 leading-relaxed">
+              Once your recording is uploaded, Mictoo automatically converts speech to text. The AI analyzes the audio, generates a transcript, and formats it into readable text with timestamps and paragraph breaks.
+            </p>
+            <ul className="mt-6 space-y-3">
+              <Bullet>Automatic speech-to-text conversion</Bullet>
+              <Bullet>Fast interview transcription with Whisper large-v3</Bullet>
+              <Bullet>Automatic punctuation and paragraph breaks</Bullet>
+              <Bullet>Readable transcript formatting with timestamps</Bullet>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── SECTION 3: EXPORT ─────────────── */}
+      <section className="bg-white py-16 px-4 border-b border-slate-100">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <SectionEyebrow>Step 3</SectionEyebrow>
+            <h2 className="mt-4 text-3xl font-bold text-slate-900">
+              Export Your Transcript
+            </h2>
+            <p className="mt-4 text-slate-600 leading-relaxed">
+              Download, edit, and share your transcript once processing is complete. Mictoo gives you multiple export formats so the transcript fits whatever you do next, from quoting in an article to importing into qualitative research software.
+            </p>
+            <ul className="mt-6 space-y-3">
+              <Bullet>Export transcripts in DOCX, PDF, TXT, and SRT</Bullet>
+              <Bullet>Copy transcript text in one click</Bullet>
+              <Bullet>Use transcripts for research, hiring, journalism, and documentation</Bullet>
+              <Bullet>Easy in-browser editing and review before export</Bullet>
+            </ul>
+          </div>
+
+          {/* Visual mock: export options */}
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+            <div className="font-semibold text-slate-800">Choose a format</div>
+            <div className="mt-4 space-y-2">
+              {[
+                { ext: 'DOCX', desc: 'Microsoft Word Document', highlight: true },
+                { ext: 'PDF',  desc: 'Portable Document Format' },
+                { ext: 'TXT',  desc: 'Plain Text File' },
+                { ext: 'SRT',  desc: 'Subtitle / Caption File' },
+              ].map(({ ext, desc, highlight }) => (
+                <div
+                  key={ext}
+                  className={
+                    'flex items-center justify-between px-3 py-3 rounded-lg border ' +
+                    (highlight
+                      ? 'border-brand-400 bg-brand-50/40'
+                      : 'border-slate-200 bg-white')
+                  }
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-md bg-brand-50 text-brand-700 font-semibold text-xs flex items-center justify-center">
+                      {ext}
+                    </div>
+                    <div>
+                      <div className="text-sm font-semibold text-slate-800">{ext}</div>
+                      <div className="text-xs text-slate-500">{desc}</div>
+                    </div>
+                  </div>
+                  {highlight && (
+                    <span className="w-4 h-4 rounded-full border-2 border-brand-500 bg-white relative">
+                      <span className="absolute inset-1 rounded-full bg-brand-500" />
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className="mt-5 w-full bg-brand-600 text-white text-center font-semibold py-3 rounded-lg">
+              ⬇ Export Transcript
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── SECTION 4: TRANSCRIPT EXAMPLE ─────────────── */}
+      <section className="bg-slate-50 py-16 px-4 border-b border-slate-100">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center">
+            <SectionEyebrow>Sample</SectionEyebrow>
+            <h2 className="mt-4 text-3xl font-bold text-slate-900">Interview Transcript Example</h2>
+            <p className="mt-3 text-slate-600 max-w-2xl mx-auto">
+              Below is an interview transcript sample produced by Mictoo. Same formatting you get after a real upload: per-segment timestamps, speaker turns, automatic punctuation.
+            </p>
+          </div>
+
+          <div className="mt-8 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+            <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-slate-100 bg-slate-50">
+              <div className="flex items-center gap-2 text-xs font-semibold text-slate-600">
+                <span className="inline-block w-2 h-2 rounded-full bg-brand-500" />
+                Example AI-generated transcript
+              </div>
+              <div className="text-xs text-slate-400">Interview · 18:42 · English</div>
+            </div>
+            <div className="divide-y divide-slate-100">
+              {SAMPLE_TRANSCRIPT.map((line) => (
+                <div key={line.ts} className="grid grid-cols-[auto_auto_1fr] gap-3 px-5 py-3 text-sm">
+                  <span className="font-mono text-xs text-slate-400 mt-0.5">{line.ts}</span>
+                  <span className="text-xs font-semibold text-brand-700 mt-0.5 whitespace-nowrap">{line.speaker}:</span>
+                  <span className="text-slate-700 leading-relaxed">{line.text}</span>
+                </div>
+              ))}
+            </div>
+            <div className="px-5 py-3 text-xs text-slate-400 bg-slate-50 border-t border-slate-100 flex items-center justify-between flex-wrap gap-2">
+              <span>In the real tool you can edit any line, then export to DOCX, PDF, SRT, or TXT.</span>
+              <div className="flex gap-1.5">
+                {['DOCX', 'PDF', 'TXT', 'SRT'].map((f) => (
+                  <span key={f} className="text-xs font-semibold text-brand-700 bg-brand-50 px-2 py-0.5 rounded">{f}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <p className="mt-6 text-slate-600 text-center max-w-2xl mx-auto leading-relaxed">
+            Interview transcripts help transform recorded conversations into searchable and editable text. Researchers, recruiters, journalists, and students use transcripts to analyze interviews, review responses, and organize information.
+          </p>
+        </div>
+      </section>
+
+      {/* ─────────────── SECTION 5: USE CASES ─────────────── */}
+      <section className="bg-white py-16 px-4 border-b border-slate-100">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center">
+            <SectionEyebrow>Use cases</SectionEyebrow>
+            <h2 className="mt-4 text-3xl font-bold text-slate-900">Perfect for Every Interview Scenario</h2>
+            <p className="mt-3 text-slate-600 max-w-2xl mx-auto">
+              Whether you are conducting research, hiring candidates, recording podcasts, or gathering customer feedback, interview transcription helps you save time and keep accurate records.
+            </p>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              {
+                icon: '💼',
+                title: 'Job Interviews',
+                desc: 'Review candidate answers and maintain accurate hiring records. Easier than passing around a video; easier to compare answers side by side.',
+                bullets: ['Candidate interviews', 'Recruitment screening', 'Hiring notes'],
+              },
+              {
+                icon: '🎓',
+                title: 'Research Interviews',
+                desc: 'Capture and transcribe research conversations for academic and qualitative studies. Coded directly in NVivo, Atlas.ti, MAXQDA.',
+                bullets: ['Academic research', 'Qualitative analysis', 'User interviews'],
+              },
+              {
+                icon: '🎙️',
+                title: 'Podcast Interviews',
+                desc: 'Turn your podcast guest conversations into accurate, editable text for show notes, blog posts, and pull-quote graphics.',
+                bullets: ['Guest interviews', 'Show notes', 'Content repurposing'],
+              },
+              {
+                icon: '📰',
+                title: 'Journalism Interviews',
+                desc: 'Transcribe interviews for news articles, reporting, and fact-checking. Searchable records make verification much faster.',
+                bullets: ['News reporting', 'Quotes extraction', 'Fact checking'],
+              },
+            ].map(({ icon, title, desc, bullets }) => (
+              <div key={title} className="bg-white border border-slate-200 rounded-2xl p-5 hover:border-brand-400 hover:shadow-sm transition-all">
+                <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl">
+                  {icon}
+                </div>
+                <h3 className="mt-4 font-semibold text-slate-900">{title}</h3>
+                <p className="mt-2 text-sm text-slate-600 leading-relaxed">{desc}</p>
+                <ul className="mt-4 space-y-1.5 text-xs text-slate-500">
+                  {bullets.map((b) => (
+                    <li key={b} className="flex items-center gap-2">
+                      <span className="w-1 h-1 bg-brand-500 rounded-full" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 bg-brand-50/60 border border-brand-100 rounded-xl px-5 py-4 text-sm text-slate-600 text-center">
+            Any interview, any format. Mictoo supports audio and video files from Zoom, Google Meet, phone calls, and in-person interviews.
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── SECTION 6: AI vs MANUAL ─────────────── */}
+      <section className="bg-slate-50 py-16 px-4 border-b border-slate-100">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center">
+            <SectionEyebrow>Save time</SectionEyebrow>
+            <h2 className="mt-4 text-3xl font-bold text-slate-900">Save Hours of Manual Transcription</h2>
+            <p className="mt-3 text-slate-600 max-w-2xl mx-auto">
+              Manual transcription requires listening, pausing, typing, formatting, and proofreading. AI interview transcription dramatically reduces the time required to convert interview recordings to text.
+            </p>
+          </div>
+
+          <div className="mt-10 grid md:grid-cols-2 gap-5">
+            {/* Manual */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-6">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center text-xl">📝</div>
+                <div>
+                  <div className="text-xs font-semibold text-slate-400 uppercase tracking-wide">Manual transcription</div>
+                  <div className="text-sm text-slate-500">The old way</div>
+                </div>
+              </div>
+              <ul className="mt-4 space-y-3 text-sm text-slate-600">
+                <li className="flex items-start gap-2"><span className="text-slate-400 mt-0.5">›</span> Listen and replay the recording</li>
+                <li className="flex items-start gap-2"><span className="text-slate-400 mt-0.5">›</span> Type every word manually</li>
+                <li className="flex items-start gap-2"><span className="text-slate-400 mt-0.5">›</span> Format the transcript (timestamps, paragraphs, speakers)</li>
+                <li className="flex items-start gap-2"><span className="text-slate-400 mt-0.5">›</span> Proofread the entire text</li>
+              </ul>
+              <div className="mt-6 inline-flex items-center gap-2 bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-full">
+                <span>⏱</span> Takes 2 to 4 hours for a 1-hour interview
+              </div>
+            </div>
+
+            {/* AI */}
+            <div className="bg-white border-2 border-brand-400 rounded-2xl p-6 shadow-sm relative">
+              <span className="absolute top-4 right-4 text-xs font-semibold text-brand-700 bg-brand-50 px-2 py-0.5 rounded">
+                Recommended
+              </span>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center text-xl">⚡</div>
+                <div>
+                  <div className="text-xs font-semibold text-brand-700 uppercase tracking-wide">Mictoo AI Transcription</div>
+                  <div className="text-sm text-slate-500">The smart way</div>
+                </div>
+              </div>
+              <ul className="mt-4 space-y-3 text-sm text-slate-600">
+                <Bullet>Upload your file (drag and drop or click to browse)</Bullet>
+                <Bullet>AI transcribes the audio with Whisper-quality accuracy</Bullet>
+                <Bullet>Export and share in DOCX, PDF, TXT, or SRT</Bullet>
+              </ul>
+              <div className="mt-6 inline-flex items-center gap-2 bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1.5 rounded-full">
+                <span>⚡</span> Takes 1 to 2 minutes for a 1-hour interview
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto text-center">
+            {[
+              { stat: '95%', label: 'Of your time saved', desc: 'Focus on what matters, not on typing' },
+              { stat: '5 to 10 min', label: 'Average wait time', desc: 'Vs. 2 to 4 hours for a 1-hour interview' },
+              { stat: '90% faster', label: 'Save hours every week', desc: 'Multiply across an interview-heavy project' },
+            ].map(({ stat, label, desc }) => (
+              <div key={label} className="bg-white border border-slate-200 rounded-xl px-4 py-4">
+                <div className="text-2xl font-bold text-brand-600">{stat}</div>
+                <div className="text-sm font-semibold text-slate-800 mt-1">{label}</div>
+                <div className="text-xs text-slate-500 mt-1">{desc}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <CtaButton>Start Free Transcription</CtaButton>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── SECTION 7: SUPPORTED FORMATS ─────────────── */}
+      <section className="bg-white py-16 px-4 border-b border-slate-100">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center">
+            <SectionEyebrow>Supported formats</SectionEyebrow>
+            <h2 className="mt-4 text-3xl font-bold text-slate-900">Supported Audio and Video Formats</h2>
+            <p className="mt-3 text-slate-600 max-w-2xl mx-auto">
+              Mictoo supports common interview recording formats. Upload recordings from voice recorders, smartphones, online meetings, video interviews, and other recording sources.
+            </p>
+          </div>
+
+          <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+            {[
+              { name: 'MP3',  kind: 'Audio' },
+              { name: 'WAV',  kind: 'Audio' },
+              { name: 'M4A',  kind: 'Audio' },
+              { name: 'AAC',  kind: 'Audio' },
+              { name: 'MP4',  kind: 'Video' },
+              { name: 'MOV',  kind: 'Video' },
+              { name: 'WebM', kind: 'Video' },
+              { name: 'OGG',  kind: 'Audio' },
+              { name: 'FLAC', kind: 'Audio' },
+              { name: 'MKV',  kind: 'Video' },
+              { name: 'AVI',  kind: 'Video' },
+              { name: 'OPUS', kind: 'Audio' },
+            ].map(({ name, kind }) => (
+              <div
+                key={name}
+                className="bg-white border border-slate-200 rounded-xl px-3 py-3 text-center hover:border-brand-400 transition-colors"
+              >
+                <div className="text-sm font-semibold text-slate-800">{name}</div>
+                <div className="text-xs text-slate-400 mt-0.5">{kind}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-2xl mx-auto text-center text-xs text-slate-500">
+            {[
+              { icon: '📱', label: 'Phone recordings' },
+              { icon: '💻', label: 'Computer recordings' },
+              { icon: '🎙', label: 'Field recorders' },
+              { icon: '📹', label: 'Video calls' },
+              { icon: '☁',  label: 'Cloud sources' },
+              { icon: '🎧', label: 'Headset interviews' },
+            ].map(({ icon, label }) => (
+              <div key={label} className="bg-slate-50 border border-slate-100 rounded-lg px-3 py-3">
+                <div className="text-lg">{icon}</div>
+                <div className="mt-1">{label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── SECTION 8: FAQ ─────────────── */}
+      <section className="bg-slate-50 py-16 px-4 border-b border-slate-100">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center">
+            <SectionEyebrow>FAQ</SectionEyebrow>
+            <h2 className="mt-4 text-3xl font-bold text-slate-900">Frequently Asked Questions</h2>
+            <p className="mt-3 text-slate-600">
+              Everything you might want to know about Mictoo as a free interview transcript generator.
+            </p>
+          </div>
+
+          <div className="mt-10 space-y-3">
+            {FAQ.map(({ q, a }, i) => (
+              <details
+                key={q}
+                className="group bg-white border border-slate-200 rounded-xl overflow-hidden open:shadow-sm"
+                {...(i === 0 ? { open: true } : {})}
+              >
+                <summary className="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-3 font-semibold text-slate-800 hover:bg-slate-50 transition-colors">
+                  <span>{q}</span>
+                  <svg
+                    className="w-4 h-4 flex-shrink-0 text-slate-400 transition-transform group-open:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-5 pb-5 text-sm text-slate-600 leading-relaxed">
+                  <p>{a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+          />
+        </div>
+      </section>
+
+      {/* ─────────────── BOTTOM CTA ─────────────── */}
+      <section className="bg-white py-20 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
+            Ready to Transcribe Your Interview?
+          </h2>
+          <p className="mt-3 text-slate-600">
+            Upload your recording and get an accurate transcript in minutes.
+          </p>
+
+          <div className="mt-8 flex items-center justify-center gap-3 sm:gap-6 text-xs text-slate-500">
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-12 h-12 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center text-xl">🎙</div>
+              <span>Recording</span>
+            </div>
+            <span className="text-slate-300">→</span>
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-12 h-12 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center text-xl">⚡</div>
+              <span>Mictoo AI</span>
+            </div>
+            <span className="text-slate-300">→</span>
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-12 h-12 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center text-xl">📄</div>
+              <span>Transcript</span>
+            </div>
+          </div>
+
+          <div className="mt-10">
+            <CtaButton />
+          </div>
+          <p className="mt-4 text-xs text-slate-500">No signup required</p>
+
+          <div className="mt-10 pt-8 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <Link href="/podcast-transcription" className="bg-slate-50 hover:bg-slate-100 rounded-xl px-4 py-3 transition-colors">
+              <div className="font-semibold text-slate-800">Podcast Transcription</div>
+              <div className="text-slate-500 mt-0.5">For guest interview shows.</div>
+            </Link>
+            <Link href="/zoom-transcription" className="bg-slate-50 hover:bg-slate-100 rounded-xl px-4 py-3 transition-colors">
+              <div className="font-semibold text-slate-800">Zoom Transcription</div>
+              <div className="text-slate-500 mt-0.5">For interviews recorded in Zoom.</div>
+            </Link>
+            <Link href="/voice-memo-to-text" className="bg-slate-50 hover:bg-slate-100 rounded-xl px-4 py-3 transition-colors">
+              <div className="font-semibold text-slate-800">Voice Memo to Text</div>
+              <div className="text-slate-500 mt-0.5">For phone-recorded interviews.</div>
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
   )
 }
