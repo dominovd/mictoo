@@ -520,70 +520,212 @@ export default function InterviewTranscriptionPage() {
       </section>
 
       {/* ─────────────── SECTION 6: AI vs MANUAL ─────────────── */}
+      {/*
+        Modeled on AI vs Manual.png. Side-by-side cards with a circular
+        "VS" badge between them on desktop. Each row has its own outline
+        icon to match the reference flat-illustration style. Bullet text
+        is exactly as supplied in the user brief — icons are decoration,
+        the bullet text is the content.
+
+        Manual side (4 bullets — user brief):
+          Listen and replay recordings
+          Type every word manually
+          Format transcript
+          Proofread text
+
+        AI side (3 bullets — user brief):
+          Upload recording
+          Generate transcript automatically
+          Export and share
+      */}
       <section className="bg-slate-50 py-16 px-4 border-b border-slate-100">
         <div className="max-w-5xl mx-auto">
           <div className="text-center">
             <SectionEyebrow>Save time</SectionEyebrow>
             <h2 className="mt-4 text-3xl font-bold text-slate-900">Save Hours of Manual Transcription</h2>
             <p className="mt-3 text-slate-600 max-w-2xl mx-auto">
-              Manual transcription requires listening, pausing, typing, formatting, and proofreading. AI interview transcription dramatically reduces the time required to convert interview recordings to text.
+              Manual transcription requires listening, pausing, typing, formatting, and proofreading. AI interview transcription dramatically reduces the time required to convert interviews into text.
             </p>
           </div>
 
-          <div className="mt-10 grid md:grid-cols-2 gap-5">
-            {/* Manual */}
+          <div className="mt-12 relative grid md:grid-cols-2 gap-5 md:gap-10">
+            {/* VS badge — centered between the two cards on desktop */}
+            <div
+              className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white border-2 border-slate-200 items-center justify-center text-xs font-bold text-slate-600 shadow-sm"
+              aria-hidden="true"
+            >
+              VS
+            </div>
+
+            {/* Manual card */}
             <div className="bg-white border border-slate-200 rounded-2xl p-6">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center text-xl">📝</div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-500 flex items-center justify-center">
+                  {/* document with lines */}
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <path d="M14 2v6h6" />
+                    <path d="M8 13h8M8 17h6" />
+                  </svg>
+                </div>
                 <div>
-                  <div className="text-xs font-semibold text-slate-400 uppercase tracking-wide">Manual transcription</div>
-                  <div className="text-sm text-slate-500">The old way</div>
+                  <div className="text-base font-semibold text-slate-800">Manual Transcription</div>
+                  <div className="text-xs text-slate-500">The old way</div>
                 </div>
               </div>
-              <ul className="mt-4 space-y-3 text-sm text-slate-600">
-                <li className="flex items-start gap-2"><span className="text-slate-400 mt-0.5">›</span> Listen and replay the recording</li>
-                <li className="flex items-start gap-2"><span className="text-slate-400 mt-0.5">›</span> Type every word manually</li>
-                <li className="flex items-start gap-2"><span className="text-slate-400 mt-0.5">›</span> Format the transcript (timestamps, paragraphs, speakers)</li>
-                <li className="flex items-start gap-2"><span className="text-slate-400 mt-0.5">›</span> Proofread the entire text</li>
+
+              <ul className="mt-5 space-y-3">
+                {[
+                  {
+                    text: 'Listen and replay recordings',
+                    // headphones
+                    icon: (
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                        <path d="M3 12a9 9 0 0 1 18 0" />
+                        <path d="M3 12v4a2 2 0 0 0 2 2h2v-6H5a2 2 0 0 0-2 2z" />
+                        <path d="M21 12v4a2 2 0 0 1-2 2h-2v-6h2a2 2 0 0 1 2 2z" />
+                      </svg>
+                    ),
+                  },
+                  {
+                    text: 'Type every word manually',
+                    // keyboard
+                    icon: (
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                        <rect x="2" y="6" width="20" height="12" rx="2" />
+                        <path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M6 14h12" />
+                      </svg>
+                    ),
+                  },
+                  {
+                    text: 'Format transcript',
+                    // align-left
+                    icon: (
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                        <path d="M3 6h18M3 12h12M3 18h15" />
+                      </svg>
+                    ),
+                  },
+                  {
+                    text: 'Proofread text',
+                    // clipboard-check
+                    icon: (
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                        <rect x="8" y="3" width="8" height="4" rx="1" />
+                        <path d="M16 5h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2" />
+                        <path d="M9 14l2 2 4-4" />
+                      </svg>
+                    ),
+                  },
+                ].map(({ text, icon }) => (
+                  <li key={text} className="flex items-center gap-3 text-sm text-slate-700">
+                    <span className="w-7 h-7 rounded-lg bg-slate-100 text-slate-500 flex items-center justify-center flex-shrink-0">
+                      {icon}
+                    </span>
+                    {text}
+                  </li>
+                ))}
               </ul>
-              <div className="mt-6 inline-flex items-center gap-2 bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-full">
-                <span>⏱</span> Takes 2 to 4 hours for a 1-hour interview
+
+              <div className="mt-6 flex items-center justify-between gap-3 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
+                <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 uppercase tracking-wide">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 7v5l3 2" />
+                  </svg>
+                  Takes
+                </div>
+                <div className="text-sm font-semibold text-slate-700">2 to 4 hours</div>
+                <div className="text-xs text-slate-400">for a 1-hour interview</div>
               </div>
             </div>
 
-            {/* AI */}
+            {/* AI card */}
             <div className="bg-white border-2 border-brand-400 rounded-2xl p-6 shadow-sm relative">
-              <span className="absolute top-4 right-4 text-xs font-semibold text-brand-700 bg-brand-50 px-2 py-0.5 rounded">
-                Recommended
+              <span className="absolute -top-3 left-6 text-[10px] font-bold tracking-wider text-white bg-brand-600 px-2 py-1 rounded">
+                RECOMMENDED
               </span>
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center text-xl">⚡</div>
+
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center">
+                  {/* AI sparkles */}
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                    <path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5z" />
+                    <path d="M19 14l.8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8z" />
+                  </svg>
+                </div>
                 <div>
-                  <div className="text-xs font-semibold text-brand-700 uppercase tracking-wide">Mictoo AI Transcription</div>
-                  <div className="text-sm text-slate-500">The smart way</div>
+                  <div className="text-base font-semibold text-brand-700">AI Interview Transcription</div>
+                  <div className="text-xs text-slate-500">The smart way</div>
                 </div>
               </div>
-              <ul className="mt-4 space-y-3 text-sm text-slate-600">
-                <Bullet>Upload your file (drag and drop or click to browse)</Bullet>
-                <Bullet>AI transcribes the audio with Whisper-quality accuracy</Bullet>
-                <Bullet>Export and share in DOCX, PDF, TXT, or SRT</Bullet>
+
+              <ul className="mt-5 space-y-3">
+                {[
+                  {
+                    text: 'Upload recording',
+                    // cloud-up
+                    icon: (
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                        <path d="M17 18a4 4 0 1 0-1-7.87A6 6 0 0 0 5 11a4 4 0 0 0 0 8h12z" />
+                        <path d="M12 11v6m-3-3l3-3 3 3" />
+                      </svg>
+                    ),
+                  },
+                  {
+                    text: 'Generate transcript automatically',
+                    // sparkles wand
+                    icon: (
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                        <path d="M5 3v4M3 5h4M19 17v4M17 19h4M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" />
+                      </svg>
+                    ),
+                  },
+                  {
+                    text: 'Export and share',
+                    // share / arrow up
+                    icon: (
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                        <path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7" />
+                        <path d="M16 6l-4-4-4 4M12 2v13" />
+                      </svg>
+                    ),
+                  },
+                ].map(({ text, icon }) => (
+                  <li key={text} className="flex items-center gap-3 text-sm text-slate-700">
+                    <span className="w-7 h-7 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center flex-shrink-0">
+                      {icon}
+                    </span>
+                    {text}
+                  </li>
+                ))}
               </ul>
-              <div className="mt-6 inline-flex items-center gap-2 bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1.5 rounded-full">
-                <span>⚡</span> Takes 1 to 2 minutes for a 1-hour interview
+
+              <div className="mt-6 flex items-center justify-between gap-3 bg-brand-50 border border-brand-100 rounded-xl px-4 py-3">
+                <div className="flex items-center gap-2 text-xs font-semibold text-brand-700 uppercase tracking-wide">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path d="M13 2L3 14h7l-1 8 10-12h-7z" />
+                  </svg>
+                  Takes
+                </div>
+                <div className="text-sm font-semibold text-brand-700">1 to 2 minutes</div>
+                <div className="text-xs text-slate-500">for a 1-hour interview</div>
               </div>
             </div>
           </div>
 
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto text-center">
+          {/* Stat cards */}
+          <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-4xl mx-auto">
             {[
-              { stat: '95%', label: 'Of your time saved', desc: 'Focus on what matters, not on typing' },
-              { stat: '5 to 10 min', label: 'Average wait time', desc: 'Vs. 2 to 4 hours for a 1-hour interview' },
-              { stat: '90% faster', label: 'Save hours every week', desc: 'Multiply across an interview-heavy project' },
-            ].map(({ stat, label, desc }) => (
-              <div key={label} className="bg-white border border-slate-200 rounded-xl px-4 py-4">
-                <div className="text-2xl font-bold text-brand-600">{stat}</div>
-                <div className="text-sm font-semibold text-slate-800 mt-1">{label}</div>
-                <div className="text-xs text-slate-500 mt-1">{desc}</div>
+              { stat: 'Save up to 95%', label: 'Of your time', desc: 'Focus on what matters, not on typing' },
+              { stat: '2 to 4 hours',   label: 'Manual transcription', desc: 'For a 1-hour interview' },
+              { stat: '5 to 10 min',    label: 'With Mictoo AI', desc: 'Same 1-hour interview, done' },
+              { stat: '90% faster',     label: 'Every week', desc: 'Save hours across many interviews' },
+            ].map(({ stat, label, desc }, i) => (
+              <div key={label} className="bg-white border border-slate-200 rounded-xl px-4 py-4 text-center">
+                <div className={'text-base font-bold ' + (i === 2 ? 'text-brand-600' : 'text-slate-800')}>{stat}</div>
+                <div className="text-xs font-semibold text-slate-700 mt-1">{label}</div>
+                <div className="text-[11px] text-slate-400 mt-1 leading-snug">{desc}</div>
               </div>
             ))}
           </div>
