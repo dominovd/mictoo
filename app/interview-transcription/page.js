@@ -171,16 +171,11 @@ export default function InterviewTranscriptionPage() {
           <p className="mt-5 text-lg text-slate-600 leading-relaxed">
             Convert interviews into accurate, searchable transcripts in minutes. Upload your audio or video recording and let AI turn speech into text automatically.
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <CtaButton />
-          </div>
-          <p className="mt-4 text-sm text-slate-500">
-            No installation required. Upload your recording and get a transcript online.
-          </p>
         </div>
 
-        {/* Hero illustration */}
-        <div className="mt-12 max-w-4xl mx-auto">
+        {/* Hero illustration — placed above the CTA so visitors see the
+            product visually before they decide to click. */}
+        <div className="mt-10 max-w-4xl mx-auto">
           <img
             src="/interview/hero.webp"
             alt="Interview recording flowing through Mictoo AI speech recognition into a finished interview transcript"
@@ -192,6 +187,15 @@ export default function InterviewTranscriptionPage() {
             // the LCP candidate.
             fetchPriority="high"
           />
+        </div>
+
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <CtaButton />
+          </div>
+          <p className="mt-4 text-sm text-slate-500">
+            No installation required. Upload your recording and get a transcript online.
+          </p>
         </div>
 
         {/* Quick trust strip */}
