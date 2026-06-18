@@ -769,8 +769,8 @@ export default function InterviewTranscriptionPage() {
             <img
               src="/interview/format.webp"
               alt="Mictoo supports MP3, WAV, M4A, AAC audio files and MP4, MOV video files — upload any popular format and get an accurate interview transcript"
-              width={1414}
-              height={681}
+              width={1536}
+              height={1024}
               loading="lazy"
               className="w-full h-auto"
             />
