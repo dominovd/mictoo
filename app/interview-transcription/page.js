@@ -179,6 +179,21 @@ export default function InterviewTranscriptionPage() {
           </p>
         </div>
 
+        {/* Hero illustration */}
+        <div className="mt-12 max-w-4xl mx-auto">
+          <img
+            src="/interview/hero.webp"
+            alt="Interview recording flowing through Mictoo AI speech recognition into a finished interview transcript"
+            width={1695}
+            height={928}
+            className="w-full h-auto rounded-2xl"
+            // Hero image — load eagerly so the picture is in the viewport when
+            // the page renders. fetchpriority hints to the browser this is
+            // the LCP candidate.
+            fetchPriority="high"
+          />
+        </div>
+
         {/* Quick trust strip */}
         <div className="mt-12 max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 text-center text-xs text-slate-500">
           <div className="bg-white border border-slate-200 rounded-xl px-3 py-3">
@@ -219,58 +234,30 @@ export default function InterviewTranscriptionPage() {
             </ul>
           </div>
 
-          {/* Visual mock: drop zone */}
-          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6">
-            <div className="border-2 border-dashed border-brand-300 rounded-xl py-10 text-center bg-white">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-50 text-brand-600 text-2xl">
-                ⬆
-              </div>
-              <div className="mt-3 font-semibold text-slate-800">Drag and drop your file here</div>
-              <div className="text-xs text-slate-500 mt-1">or click to browse</div>
-              <div className="mt-4 flex flex-wrap justify-center gap-2 text-xs">
-                {['MP3', 'WAV', 'M4A', 'MP4'].map((f) => (
-                  <span key={f} className="px-2.5 py-1 bg-brand-50 text-brand-700 font-semibold rounded-md">
-                    {f}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="mt-3 text-xs text-slate-400 text-center">
-              Secure upload. Your files are private and protected.
-            </div>
-          </div>
+          {/* Illustration: drag-and-drop upload */}
+          <img
+            src="/interview/step_1.webp"
+            alt="Drag and drop interview file into Mictoo, showing supported MP3, WAV, M4A and MP4 formats"
+            width={1536}
+            height={1024}
+            loading="lazy"
+            className="w-full h-auto rounded-2xl"
+          />
         </div>
       </section>
 
       {/* ─────────────── SECTION 2: AI TRANSCRIPTION ─────────────── */}
       <section className="bg-slate-50 py-16 px-4 border-b border-slate-100">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-          {/* Visual mock: progress bars */}
-          <div className="order-2 md:order-1 bg-white border border-slate-200 rounded-2xl p-6">
-            <div className="font-semibold text-slate-800">Transcribing your interview…</div>
-            <div className="text-xs text-slate-500 mt-0.5">This may take a few moments</div>
-            <div className="mt-6 space-y-5">
-              {[
-                { label: 'Analyzing speech', pct: 78 },
-                { label: 'Generating transcript', pct: 52 },
-                { label: 'Adding punctuation', pct: 24 },
-              ].map(({ label, pct }) => (
-                <div key={label}>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-700 font-medium">{label}</span>
-                    <span className="text-slate-500">{pct}%</span>
-                  </div>
-                  <div className="mt-1.5 h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-brand-500" style={{ width: pct + '%' }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-6 flex items-center gap-2 text-xs text-slate-500 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2">
-              <span className="text-brand-600">🔒</span>
-              Your data is secure. Files are streamed to the engine and deleted after processing.
-            </div>
-          </div>
+          {/* Illustration: AI transcription in progress */}
+          <img
+            src="/interview/step_2.webp"
+            alt="Mictoo AI transcribing an interview: analyzing speech, generating transcript, adding punctuation"
+            width={1536}
+            height={1024}
+            loading="lazy"
+            className="order-2 md:order-1 w-full h-auto rounded-2xl"
+          />
 
           <div className="order-1 md:order-2">
             <SectionEyebrow>Step 2</SectionEyebrow>
@@ -309,46 +296,15 @@ export default function InterviewTranscriptionPage() {
             </ul>
           </div>
 
-          {/* Visual mock: export options */}
-          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6">
-            <div className="font-semibold text-slate-800">Choose a format</div>
-            <div className="mt-4 space-y-2">
-              {[
-                { ext: 'DOCX', desc: 'Microsoft Word Document', highlight: true },
-                { ext: 'PDF',  desc: 'Portable Document Format' },
-                { ext: 'TXT',  desc: 'Plain Text File' },
-                { ext: 'SRT',  desc: 'Subtitle / Caption File' },
-              ].map(({ ext, desc, highlight }) => (
-                <div
-                  key={ext}
-                  className={
-                    'flex items-center justify-between px-3 py-3 rounded-lg border ' +
-                    (highlight
-                      ? 'border-brand-400 bg-brand-50/40'
-                      : 'border-slate-200 bg-white')
-                  }
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-md bg-brand-50 text-brand-700 font-semibold text-xs flex items-center justify-center">
-                      {ext}
-                    </div>
-                    <div>
-                      <div className="text-sm font-semibold text-slate-800">{ext}</div>
-                      <div className="text-xs text-slate-500">{desc}</div>
-                    </div>
-                  </div>
-                  {highlight && (
-                    <span className="w-4 h-4 rounded-full border-2 border-brand-500 bg-white relative">
-                      <span className="absolute inset-1 rounded-full bg-brand-500" />
-                    </span>
-                  )}
-                </div>
-              ))}
-            </div>
-            <div className="mt-5 w-full bg-brand-600 text-white text-center font-semibold py-3 rounded-lg">
-              ⬇ Export Transcript
-            </div>
-          </div>
+          {/* Illustration: interview transcript preview with export options */}
+          <img
+            src="/interview/step_3.webp"
+            alt="Interview transcript preview with timestamps, speaker labels, and export options (DOCX, TXT, PDF)"
+            width={1536}
+            height={1024}
+            loading="lazy"
+            className="w-full h-auto rounded-2xl"
+          />
         </div>
       </section>
 
