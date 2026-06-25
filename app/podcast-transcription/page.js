@@ -283,79 +283,89 @@ Corrections:
             Same engine, different prep depending on how your episode was recorded. Pick the row that matches your setup.
           </p>
 
-          <div className="bg-white border border-slate-200 rounded-2xl overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500 border-b border-slate-200">
-                <tr>
-                  <th className="text-left font-semibold px-4 py-3 whitespace-nowrap">Setup</th>
-                  <th className="text-left font-semibold px-4 py-3">Upload strategy</th>
-                  <th className="text-left font-semibold px-4 py-3 whitespace-nowrap">Language setting</th>
-                  <th className="text-left font-semibold px-4 py-3">Cleanup priority</th>
-                  <th className="text-left font-semibold px-4 py-3 whitespace-nowrap">Export format</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100 text-slate-700">
-                {[
-                  {
-                    setup: 'Solo podcast',
-                    upload: 'Single MP3, mono 64 to 96 kbps. Trim music intro if you have a fixed cold open.',
-                    lang: 'Set explicitly',
-                    cleanup: 'Names, brands, sponsors, intro hook',
-                    fmt: 'TXT for blog, SRT for YouTube',
-                  },
-                  {
-                    setup: 'Remote interview, single mixed track',
-                    upload: 'One MP3 of the final mix from Zoom, Google Meet, or your recording app.',
-                    lang: 'Set explicitly',
-                    cleanup: 'Add Host / Guest labels manually, fix proper nouns',
-                    fmt: 'SRT for YouTube, TXT for show notes',
-                  },
-                  {
-                    setup: 'Remote interview, separate tracks',
-                    upload: 'Upload each speaker track on its own (Riverside, SquadCast, Zencastr exports). Merge with labels at the end.',
-                    lang: 'Set explicitly per track',
-                    cleanup: 'Per-speaker proofread, much less crosstalk to untangle',
-                    fmt: 'Two TXTs merged with [Host] / [Guest] tags',
-                  },
-                  {
-                    setup: 'Panel podcast (3 or more speakers)',
-                    upload: 'Use isolated mic tracks when available. Otherwise the mixed track and expect more cleanup.',
-                    lang: 'Set explicitly',
-                    cleanup: 'Speaker order notes by timestamp, not full per-line labels',
-                    fmt: 'Verbatim TXT plus a chapter list of key timestamps',
-                  },
-                  {
-                    setup: 'Bilingual or code-switching episode',
-                    upload: 'Single mixed file. Splitting hurts when the switch happens mid-sentence.',
-                    lang: 'Auto-detect (Whisper follows the switches)',
-                    cleanup: 'Spelling of foreign terms, mid-sentence language transitions',
-                    fmt: 'TXT with a glossary at the top of the document',
-                  },
-                  {
-                    setup: 'Video podcast',
-                    upload: 'Upload the MP4 directly. We extract the audio track server-side, no need to demux yourself.',
-                    lang: 'Set explicitly if the intro is silent or musical',
-                    cleanup: 'Same as audio, plus verify timing alignment for subtitles',
-                    fmt: 'SRT for YouTube or Vimeo, MP4 stays untouched',
-                  },
-                  {
-                    setup: 'Long back catalog batch',
-                    upload: 'One episode at a time. Let the queue handle it, no need to babysit.',
-                    lang: 'Match each episode language',
-                    cleanup: 'Skip unless you plan to republish that specific episode',
-                    fmt: 'TXT only, archived in your CMS or Notion',
-                  },
-                ].map((row) => (
-                  <tr key={row.setup} className="hover:bg-slate-50">
-                    <td className="px-4 py-4 font-semibold text-slate-900 align-top whitespace-nowrap">{row.setup}</td>
-                    <td className="px-4 py-4 align-top leading-relaxed">{row.upload}</td>
-                    <td className="px-4 py-4 align-top whitespace-nowrap text-slate-600">{row.lang}</td>
-                    <td className="px-4 py-4 align-top leading-relaxed text-slate-600">{row.cleanup}</td>
-                    <td className="px-4 py-4 align-top text-slate-600">{row.fmt}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          {/* Card layout per setup. We previously tried a real table
+              with 5 columns but LandingLayout wraps comparison in a
+              max-w-4xl container (896 px), and 5 cells become squished
+              one-word-per-line. Cards work at every viewport, no
+              horizontal scroll, and the 4 labeled stats inside each
+              card are still structured enough for AI extraction. */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              {
+                setup: 'Solo podcast',
+                upload: 'Single MP3, mono 64-96 kbps',
+                lang: 'Set explicitly',
+                cleanup: 'Names, brands, sponsors',
+                fmt: 'TXT, SRT',
+              },
+              {
+                setup: 'Remote interview, mixed track',
+                upload: 'One mixed MP3 from Zoom or Meet',
+                lang: 'Set explicitly',
+                cleanup: 'Add Host / Guest labels, fix proper nouns',
+                fmt: 'SRT for YouTube, TXT for show notes',
+              },
+              {
+                setup: 'Remote interview, separate tracks',
+                upload: 'Each speaker track on its own (Riverside, SquadCast, Zencastr)',
+                lang: 'Per track',
+                cleanup: 'Per-speaker proofread, almost no crosstalk to untangle',
+                fmt: 'Two TXTs merged with [Host] / [Guest] tags',
+              },
+              {
+                setup: 'Panel (3 or more speakers)',
+                upload: 'Isolated mics if available, otherwise mixed track',
+                lang: 'Set explicitly',
+                cleanup: 'Speaker order notes by timestamp, not per line',
+                fmt: 'Verbatim TXT + chapter timestamps',
+              },
+              {
+                setup: 'Bilingual or code-switching',
+                upload: 'Single mixed file (do not split mid-sentence)',
+                lang: 'Auto-detect',
+                cleanup: 'Foreign terms, mid-sentence transitions',
+                fmt: 'TXT with glossary at the top',
+              },
+              {
+                setup: 'Video podcast',
+                upload: 'MP4 directly, we extract the audio track',
+                lang: 'Set explicitly',
+                cleanup: 'Verify subtitle timing alignment',
+                fmt: 'SRT for YouTube or Vimeo',
+              },
+              {
+                setup: 'Long back catalog batch',
+                upload: 'One episode at a time, queue handles it',
+                lang: 'Match each episode language',
+                cleanup: 'Skip unless republishing that episode',
+                fmt: 'TXT only, archive in CMS or Notion',
+              },
+            ].map(({ setup, upload, lang, cleanup, fmt }) => (
+              <div
+                key={setup}
+                className="bg-white border border-slate-200 rounded-2xl p-5 hover:border-brand-400 hover:shadow-sm transition-all"
+              >
+                <h3 className="font-semibold text-slate-900 mb-4">{setup}</h3>
+                <dl className="space-y-3 text-sm">
+                  <div className="grid grid-cols-[auto_1fr] gap-x-3 items-baseline">
+                    <dt className="text-xs font-semibold text-brand-700 uppercase tracking-wide">Upload</dt>
+                    <dd className="text-slate-700">{upload}</dd>
+                  </div>
+                  <div className="grid grid-cols-[auto_1fr] gap-x-3 items-baseline">
+                    <dt className="text-xs font-semibold text-brand-700 uppercase tracking-wide">Language</dt>
+                    <dd className="text-slate-700">{lang}</dd>
+                  </div>
+                  <div className="grid grid-cols-[auto_1fr] gap-x-3 items-baseline">
+                    <dt className="text-xs font-semibold text-brand-700 uppercase tracking-wide">Cleanup</dt>
+                    <dd className="text-slate-700">{cleanup}</dd>
+                  </div>
+                  <div className="grid grid-cols-[auto_1fr] gap-x-3 items-baseline">
+                    <dt className="text-xs font-semibold text-brand-700 uppercase tracking-wide">Export</dt>
+                    <dd className="text-slate-700">{fmt}</dd>
+                  </div>
+                </dl>
+              </div>
+            ))}
           </div>
 
           <p className="text-xs text-slate-400 text-center mt-4">
