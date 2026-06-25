@@ -49,6 +49,52 @@ export default function PodcastTranscriptionPage() {
         </>
       }
       subtitle="Turn any episode into clean text. Drop your MP3, MP4, or M4A file and get a transcript in seconds. No account, no per-minute fee."
+      valueBlock={
+        // Direct-answer cards — short, opinionated, one fact per card.
+        // Format chosen for AI Overview / Perplexity / LLM citation: each
+        // card is a complete sentence that can be lifted verbatim into an
+        // answer. Keep them factual recommendations, not marketing copy.
+        <div>
+          <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wide text-center mb-5">
+            Quick answers
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {[
+              {
+                q: 'Best format',
+                a: 'MP3 or M4A, mono, 64 to 96 kbps. Voice does not need stereo, and that bitrate fits a 60-minute episode under the 60 MB upload cap.',
+              },
+              {
+                q: 'Best export',
+                a: 'SRT for video and YouTube captions. TXT for blog posts and show notes. Both come from one transcription, you pick at download.',
+              },
+              {
+                q: 'Best workflow for remote interviews',
+                a: 'Transcribe each speaker track separately when your recorder gave you isolated mics (Riverside, SquadCast, Zencastr). Cleaner attribution, fewer crosstalk errors.',
+              },
+              {
+                q: 'Best cleanup priority',
+                a: 'Names, links, sponsors, quoted lines, and the first 10 lines. Past that, ship it. Readers skim the rest.',
+              },
+              {
+                q: 'For 2-hour episodes',
+                a: 'Compress to mono MP3 at 64 kbps before upload, or split the episode into two parts at a natural break. Either approach keeps you inside the file-size limit.',
+              },
+              {
+                q: 'For bilingual episodes',
+                a: 'Leave the language picker on Auto-detect. Whisper handles English to Spanish code-switching mid-sentence without needing to split the file.',
+              },
+            ].map(({ q, a }) => (
+              <div key={q} className="bg-white border border-slate-200 rounded-xl p-4">
+                <div className="text-xs font-semibold text-brand-700 uppercase tracking-wide mb-1.5">
+                  {q}
+                </div>
+                <p className="text-sm text-slate-700 leading-relaxed">{a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      }
       howItWorks={[
         {
           icon: '📂',
@@ -149,6 +195,174 @@ export default function PodcastTranscriptionPage() {
           },
         ],
       }}
+      deepDive={
+        // Citeable structured template for podcast transcripts.
+        // Pre-formatted block keeps the structure visible verbatim, and
+        // the surrounding prose explains clean-read vs verbatim choice,
+        // which is the actual editorial decision after the transcript
+        // arrives. Aimed at AI Overview pull-quotes and creator queries
+        // like "podcast transcript template" / "how to format a podcast
+        // transcript for publishing".
+        <div>
+          <h2 className="text-2xl font-bold text-slate-900 mb-3 text-center">
+            Podcast transcript template
+          </h2>
+          <p className="text-slate-600 max-w-2xl mx-auto text-center mb-6">
+            A reusable structure that works for solo episodes, interviews, and panels. Copy it into your show-notes editor and fill the bracketed fields as your transcript loads.
+          </p>
+
+          <div className="bg-slate-900 text-slate-100 rounded-2xl p-5 sm:p-6 overflow-x-auto">
+            <pre className="text-xs sm:text-sm font-mono leading-relaxed whitespace-pre"><code>{`Episode title:    [episode number and title]
+Guest:            [name + one-line bio, omit for solo episodes]
+Published:        [YYYY-MM-DD]
+Duration:         [hh:mm:ss]
+Language:         [English / Spanish / bilingual / ...]
+
+Summary:
+[2 to 3 sentences. What the episode is about. Who it is for.]
+
+Key topics:
+- [topic 1]
+- [topic 2]
+- [topic 3]
+
+Chapters:
+[00:00]  Cold open
+[02:15]  Introduction
+[05:40]  [topic 1]
+[18:20]  [topic 2]
+[42:05]  Closing thoughts
+
+Transcript:
+[00:00]  Host:   [transcribed line]
+[00:42]  Guest:  [transcribed line]
+[01:15]  Host:   [transcribed line]
+...
+
+Links mentioned:
+- [link 1]
+- [link 2]
+
+Corrections:
+[date]: [what was fixed]`}</code></pre>
+          </div>
+
+          <div className="mt-8 grid sm:grid-cols-2 gap-5">
+            <div className="bg-white border border-slate-200 rounded-xl p-5">
+              <div className="text-xs font-semibold text-brand-700 uppercase tracking-wide mb-2">
+                Clean-read transcript
+              </div>
+              <h3 className="font-semibold text-slate-800 mb-2">When to use it</h3>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Public show-notes pages, blog repurposing, marketing pull-quotes, accessibility transcript links. Strip filler words (um, ah, like), tighten false starts, fix grammar where the meaning is clear. Reads like an article, not a court transcript. Most podcasts publish this version.
+              </p>
+            </div>
+            <div className="bg-white border border-slate-200 rounded-xl p-5">
+              <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">
+                Verbatim transcript
+              </div>
+              <h3 className="font-semibold text-slate-800 mb-2">When to use it</h3>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Research interviews, legal-adjacent recordings, qualitative coding work, when a guest cares about quote precision. Every utterance preserved, including pauses, restarts, and disfluencies. Slower to read but defensible if someone later disputes what was said.
+              </p>
+            </div>
+          </div>
+        </div>
+      }
+      comparison={
+        // Decision table by recording setup. Citeable per-row recipe for
+        // common podcast configurations. Designed to be the answer when
+        // a creator searches "how to transcribe a remote podcast" or
+        // similar setup-specific queries. Mobile fallback: native
+        // horizontal scroll inside the rounded container.
+        <div>
+          <h2 className="text-2xl font-bold text-slate-900 mb-3 text-center">
+            Best workflow by podcast setup
+          </h2>
+          <p className="text-slate-600 max-w-2xl mx-auto text-center mb-8">
+            Same engine, different prep depending on how your episode was recorded. Pick the row that matches your setup.
+          </p>
+
+          <div className="bg-white border border-slate-200 rounded-2xl overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500 border-b border-slate-200">
+                <tr>
+                  <th className="text-left font-semibold px-4 py-3 whitespace-nowrap">Setup</th>
+                  <th className="text-left font-semibold px-4 py-3">Upload strategy</th>
+                  <th className="text-left font-semibold px-4 py-3 whitespace-nowrap">Language setting</th>
+                  <th className="text-left font-semibold px-4 py-3">Cleanup priority</th>
+                  <th className="text-left font-semibold px-4 py-3 whitespace-nowrap">Export format</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 text-slate-700">
+                {[
+                  {
+                    setup: 'Solo podcast',
+                    upload: 'Single MP3, mono 64 to 96 kbps. Trim music intro if you have a fixed cold open.',
+                    lang: 'Set explicitly',
+                    cleanup: 'Names, brands, sponsors, intro hook',
+                    fmt: 'TXT for blog, SRT for YouTube',
+                  },
+                  {
+                    setup: 'Remote interview, single mixed track',
+                    upload: 'One MP3 of the final mix from Zoom, Google Meet, or your recording app.',
+                    lang: 'Set explicitly',
+                    cleanup: 'Add Host / Guest labels manually, fix proper nouns',
+                    fmt: 'SRT for YouTube, TXT for show notes',
+                  },
+                  {
+                    setup: 'Remote interview, separate tracks',
+                    upload: 'Upload each speaker track on its own (Riverside, SquadCast, Zencastr exports). Merge with labels at the end.',
+                    lang: 'Set explicitly per track',
+                    cleanup: 'Per-speaker proofread, much less crosstalk to untangle',
+                    fmt: 'Two TXTs merged with [Host] / [Guest] tags',
+                  },
+                  {
+                    setup: 'Panel podcast (3 or more speakers)',
+                    upload: 'Use isolated mic tracks when available. Otherwise the mixed track and expect more cleanup.',
+                    lang: 'Set explicitly',
+                    cleanup: 'Speaker order notes by timestamp, not full per-line labels',
+                    fmt: 'Verbatim TXT plus a chapter list of key timestamps',
+                  },
+                  {
+                    setup: 'Bilingual or code-switching episode',
+                    upload: 'Single mixed file. Splitting hurts when the switch happens mid-sentence.',
+                    lang: 'Auto-detect (Whisper follows the switches)',
+                    cleanup: 'Spelling of foreign terms, mid-sentence language transitions',
+                    fmt: 'TXT with a glossary at the top of the document',
+                  },
+                  {
+                    setup: 'Video podcast',
+                    upload: 'Upload the MP4 directly. We extract the audio track server-side, no need to demux yourself.',
+                    lang: 'Set explicitly if the intro is silent or musical',
+                    cleanup: 'Same as audio, plus verify timing alignment for subtitles',
+                    fmt: 'SRT for YouTube or Vimeo, MP4 stays untouched',
+                  },
+                  {
+                    setup: 'Long back catalog batch',
+                    upload: 'One episode at a time. Let the queue handle it, no need to babysit.',
+                    lang: 'Match each episode language',
+                    cleanup: 'Skip unless you plan to republish that specific episode',
+                    fmt: 'TXT only, archived in your CMS or Notion',
+                  },
+                ].map((row) => (
+                  <tr key={row.setup} className="hover:bg-slate-50">
+                    <td className="px-4 py-4 font-semibold text-slate-900 align-top whitespace-nowrap">{row.setup}</td>
+                    <td className="px-4 py-4 align-top leading-relaxed">{row.upload}</td>
+                    <td className="px-4 py-4 align-top whitespace-nowrap text-slate-600">{row.lang}</td>
+                    <td className="px-4 py-4 align-top leading-relaxed text-slate-600">{row.cleanup}</td>
+                    <td className="px-4 py-4 align-top text-slate-600">{row.fmt}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p className="text-xs text-slate-400 text-center mt-4">
+            Cap reference: 25 MB free, 60 MB after sign-in. Episodes longer than 60 minutes are auto-split and merged into one transcript for registered users.
+          </p>
+        </div>
+      }
       faq={[
         {
           q: 'Can I transcribe a 2-hour episode?',
