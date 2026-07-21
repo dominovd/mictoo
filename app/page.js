@@ -626,45 +626,66 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ────────────────── BOTTOM CTA PLATE ────────────────── */}
-      <section className="max-w-5xl mx-auto px-4 py-10">
-        <div className="relative bg-gradient-to-r from-brand-600 to-brand-500 rounded-2xl overflow-hidden shadow-md">
-          {/* Waveform accent left */}
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 hidden sm:flex items-end gap-0.5 h-10 opacity-60">
-            {Array.from({ length: 26 }).map((_, i) => {
-              const h = 6 + ((i * 13) % 24)
+      {/* ────────────────── BOTTOM CTA PLATE ──────────────────
+        Redesigned: dropped the middle waveform badge (was a third
+        waveform on top of the two side accents — too repetitive),
+        replaced with an AI-sparkles badge, added a trust-chip row
+        under the tagline, and made the CTA button larger with a
+        right-arrow so it reads as an action, not a static link.
+        Softer side-waveform accents so the copy has more contrast.
+      */}
+      <section className="max-w-5xl mx-auto px-4 py-12">
+        <div className="relative bg-gradient-to-r from-brand-600 via-brand-500 to-brand-600 rounded-3xl overflow-hidden shadow-lg shadow-brand-500/20">
+          {/* Waveform accent left — softer opacity so the copy leads */}
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 hidden sm:flex items-end gap-0.5 h-14 opacity-25 pointer-events-none">
+            {Array.from({ length: 28 }).map((_, i) => {
+              const h = 6 + ((i * 13) % 32)
               return <div key={i} className="w-0.5 rounded-sm bg-white" style={{ height: h + 'px' }} />
             })}
           </div>
           {/* Waveform accent right */}
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden sm:flex items-end gap-0.5 h-10 opacity-60">
-            {Array.from({ length: 26 }).map((_, i) => {
-              const h = 6 + ((i * 11) % 24)
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden sm:flex items-end gap-0.5 h-14 opacity-25 pointer-events-none">
+            {Array.from({ length: 28 }).map((_, i) => {
+              const h = 6 + ((i * 11) % 32)
               return <div key={i} className="w-0.5 rounded-sm bg-white" style={{ height: h + 'px' }} />
             })}
           </div>
+          {/* Subtle radial glow behind the button */}
+          <div className="absolute right-24 top-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-white/10 blur-3xl pointer-events-none hidden md:block" />
 
-          <div className="relative flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 py-8 px-6 text-center sm:text-left">
-            {/* Waveform badge (center-left on desktop, top on mobile) */}
-            <div className="w-12 h-12 rounded-full bg-white/15 backdrop-blur flex items-center justify-center text-white flex-shrink-0">
-              <span className="w-6 h-6">{Icons.waveform}</span>
+          <div className="relative flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 py-10 px-6 md:px-10 text-center md:text-left">
+            {/* AI badge — sparkles instead of a third waveform */}
+            <div className="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur border border-white/20 flex items-center justify-center text-white flex-shrink-0">
+              <span className="w-7 h-7">{Icons.sparkles}</span>
             </div>
 
-            <div className="min-w-0">
-              <div className="font-bold text-white text-lg leading-tight">
+            <div className="min-w-0 flex-1 max-w-lg">
+              <div className="font-bold text-white text-xl md:text-2xl leading-tight">
                 Transcribe your first file, free
               </div>
-              <div className="text-sm text-white/80 mt-0.5">
-                No signup. No limits. Just drop your file and get started.
+              <div className="text-sm text-white/85 mt-1.5">
+                Drop your audio or video and get an accurate transcript in seconds.
+              </div>
+              {/* Trust chips — three reasons to trust the CTA */}
+              <div className="mt-3 flex flex-wrap items-center justify-center md:justify-start gap-x-4 gap-y-1 text-[11px] text-white/80">
+                <span className="inline-flex items-center gap-1">
+                  <span className="w-3 h-3">{Icons.check}</span> No signup
+                </span>
+                <span className="inline-flex items-center gap-1">
+                  <span className="w-3 h-3">{Icons.check}</span> No credit card
+                </span>
+                <span className="inline-flex items-center gap-1">
+                  <span className="w-3 h-3">{Icons.check}</span> 50+ languages
+                </span>
               </div>
             </div>
 
             <a
               href="#tool"
-              className="inline-flex items-center gap-2 bg-white text-brand-700 font-semibold text-sm px-5 py-3 rounded-xl hover:bg-brand-50 transition-colors flex-shrink-0"
+              className="inline-flex items-center gap-2 bg-white text-brand-700 font-bold text-sm md:text-base px-6 py-3.5 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex-shrink-0 group"
             >
-              <span className="w-4 h-4">{Icons.upload}</span>
-              <span>Upload a file</span>
+              <span>Start Transcribing</span>
+              <span className="w-4 h-4 group-hover:translate-x-0.5 transition-transform">{Icons.arrowRight}</span>
             </a>
           </div>
         </div>
