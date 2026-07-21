@@ -209,9 +209,17 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      {/* ────────────────── HERO ────────────────── */}
-      <section className="bg-gradient-to-b from-brand-50/30 to-white border-b border-slate-100 py-16 px-4 text-center">
-        <div className="max-w-3xl mx-auto">
+      {/* ────────────────── HERO + UPLOAD ──────────────────
+        Single continuous section so the subtle background gradient wraps
+        from the H1 all the way down through the Language selector and
+        drop zone. Before this change the Language selector was floating
+        on plain white with the gray background starting only below it —
+        felt disconnected. Now everything sits inside one soft-slate
+        container and the white drop-zone card stands out cleanly against
+        the surrounding tone.
+      */}
+      <section className="bg-gradient-to-b from-brand-50/30 via-slate-50/70 to-slate-50 border-b border-slate-100 pt-16 pb-16 px-4">
+        <div className="max-w-3xl mx-auto text-center">
           <span className="inline-block bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1 rounded-full mb-5 uppercase tracking-wide">
             Free AI transcription · No signup
           </span>
@@ -237,11 +245,12 @@ export default function Home() {
             <span><span className="font-semibold text-slate-800">13,000+</span> transcripts created</span>
           </div>
         </div>
-      </section>
 
-      {/* ────────────────── UPLOAD TOOL ────────────────── */}
-      <section id="tool" className="max-w-2xl mx-auto px-4 -mt-4 pb-16 scroll-mt-20">
-        <UploadZone />
+        {/* Upload tool sits inside the same section so the background
+            wraps the Language selector too. */}
+        <div id="tool" className="max-w-2xl mx-auto mt-10 scroll-mt-20">
+          <UploadZone />
+        </div>
       </section>
 
       {/* ────────────────── TOOL GRID ────────────────── */}
