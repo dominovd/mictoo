@@ -1,5 +1,6 @@
 import UploadZone from '@/components/UploadZone'
-import TrustRow from '@/components/TrustRow'
+import HeroChips from '@/components/HeroChips'
+import HeroCounter from '@/components/HeroCounter'
 import { t } from '@/lib/i18n'
 
 /**
@@ -90,25 +91,40 @@ export default function LandingLayout({
 
   return (
     <>
-      {/* Hero */}
-      <section className="bg-white border-b border-slate-100 py-16 px-4 text-center">
-        <div className="max-w-2xl mx-auto">
+      {/* Hero + tool — one continuous tinted section matching the
+          homepage. Same gradient (brand-50/40 → slate-100/60 →
+          slate-100) so the Language selector inside UploadZone sits
+          on the same background as the H1 above it, and the white
+          drop-zone card lifts cleanly against the tinted surround.
+          Replaced the old TrustRow (small gray inline text) with
+          HeroChips (4 icon-labeled chips: Free / Private / 50+
+          languages / AI summary) plus a HeroCounter below — same
+          pattern used by the homepage since Wave 197. */}
+      <section className="bg-gradient-to-b from-brand-50/40 via-slate-100/60 to-slate-100 pt-16 pb-16 px-4">
+        <div className="max-w-3xl mx-auto text-center">
           {badge && (
-            <span className="inline-block bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">
+            <span className="inline-block bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1 rounded-full mb-5 uppercase tracking-wide">
               {badge}
             </span>
           )}
-          <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4 leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-5 leading-tight">
             {h1}
           </h1>
-          <p className="text-lg text-slate-500 mb-0">{subtitle}</p>
-          <TrustRow locale={locale} />
-        </div>
-      </section>
+          <p className="text-lg text-slate-600 mb-7 max-w-2xl mx-auto">{subtitle}</p>
 
-      {/* Hero tool, UploadZone by default, custom node if `tool` prop given */}
-      <section id="tool" className="max-w-2xl mx-auto px-4 -mt-6 pb-12 pt-10 scroll-mt-20">
-        {tool || <UploadZone defaultLanguage={uploadLanguage} locale={locale} enableYouTubeUrl={enableYouTubeUrl} />}
+          <div className="mb-5">
+            <HeroChips />
+          </div>
+
+          <HeroCounter />
+        </div>
+
+        {/* Hero tool, UploadZone by default, custom node if `tool` prop
+            given. Inside the same section so the Language selector
+            inherits the tinted background. */}
+        <div id="tool" className="max-w-2xl mx-auto mt-10 scroll-mt-20">
+          {tool || <UploadZone defaultLanguage={uploadLanguage} locale={locale} enableYouTubeUrl={enableYouTubeUrl} />}
+        </div>
       </section>
 
       {/* Quick value block, short prose right after the tool to orient

@@ -18,6 +18,7 @@
 
 import Image from 'next/image'
 import UploadZone from '@/components/UploadZone'
+import HeroChips from '@/components/HeroChips'
 import HeroCounter from '@/components/HeroCounter'
 
 // ── Page-level metadata & canonical ─────────────────────────────────────────
@@ -233,12 +234,11 @@ export default function Home() {
             Accurate transcripts in seconds. Upload MP3, MP4, WAV, and more. No account required.
           </p>
 
-          {/* Trust chips */}
-          <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 mb-5">
-            <TrustChip icon={Icons.gift}     label="Free" />
-            <TrustChip icon={Icons.shield}   label="Private" />
-            <TrustChip icon={Icons.globe}    label="50+ languages" />
-            <TrustChip icon={Icons.sparkles} label="AI summary" />
+          {/* Trust chips — shared component so LandingLayout hero matches
+              this one exactly (single source of truth, updates propagate
+              site-wide). */}
+          <div className="mb-5">
+            <HeroChips />
           </div>
 
           {/* Live counter from /api/stats (Supabase transcripts table).
@@ -486,7 +486,7 @@ export default function Home() {
                   </div>
                 </td>
                 {[
-                  { yes: true, label: 'Unlimited' },
+                  { yes: true, label: 'Free to use' },
                   { yes: true, label: 'No account' },
                   { yes: true, label: 'Included' },
                   { yes: true, label: '50+ languages' },
@@ -558,43 +558,6 @@ export default function Home() {
         <p className="text-xs text-slate-400 text-center mt-4">
           Snapshot only. Pricing pages change; see the linked comparison for current numbers.
         </p>
-      </section>
-
-      {/* ────────────────── SEARCHABLE TEXT PROSE + PILL LINKS ────────────────── */}
-      <section className="bg-white border-y border-slate-100 py-16 px-4">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">
-            Turn audio and video into searchable text
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6 text-slate-600 leading-relaxed">
-            <p>
-              Mictoo converts your audio and video into accurate, readable transcripts. Even search, edit, and share. Turn conversations into insights and never miss an important detail again.
-            </p>
-            <p>
-              From interviews to lectures, meetings to podcasts, Mictoo helps you save time, improve accessibility, and repurpose your content with ease.
-            </p>
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-2">
-            {[
-              { href: '/transcribe-audio-to-text',  label: 'Audio to Text' },
-              { href: '/transcribe-video-to-text',  label: 'Video to Text' },
-              { href: '/meeting-transcription',     label: 'Meeting Transcription' },
-              { href: '/podcast-transcription',     label: 'Podcast Transcription' },
-              { href: '/timestamped-transcription', label: 'AI Summary' },
-              { href: '/multilingual-transcription',label: 'Translate' },
-            ].map(({ href, label }) => (
-              <a
-                key={href}
-                href={href}
-                className="inline-flex items-center gap-2 bg-white border border-slate-200 rounded-xl px-4 py-2 text-sm font-semibold text-slate-700 hover:border-brand-400 hover:text-brand-700 transition-colors"
-              >
-                <span>{label}</span>
-                <span className="w-3.5 h-3.5 text-slate-400">{Icons.arrowRight}</span>
-              </a>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* ────────────────── FAQ ────────────────── */}
