@@ -17,6 +17,7 @@
 // once we validate this one in prod.
 
 import UploadZone from '@/components/UploadZone'
+import HeroCounter from '@/components/HeroCounter'
 
 // ── Page-level metadata & canonical ─────────────────────────────────────────
 export const metadata = {
@@ -218,7 +219,7 @@ export default function Home() {
         container and the white drop-zone card stands out cleanly against
         the surrounding tone.
       */}
-      <section className="bg-gradient-to-b from-brand-50/40 via-slate-100/60 to-slate-100 border-b border-slate-200 pt-16 pb-16 px-4">
+      <section className="bg-gradient-to-b from-brand-50/40 via-slate-100/60 to-slate-100 pt-16 pb-16 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <span className="inline-block bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1 rounded-full mb-5 uppercase tracking-wide">
             Free AI transcription · No signup
@@ -239,11 +240,12 @@ export default function Home() {
             <TrustChip icon={Icons.sparkles} label="AI summary" />
           </div>
 
-          {/* Counter */}
-          <div className="inline-flex items-center gap-2 text-sm text-slate-500">
-            <span className="w-5 h-5 text-brand-500">{Icons.trending}</span>
-            <span><span className="font-semibold text-slate-800">13,000+</span> transcripts created</span>
-          </div>
+          {/* Live counter from /api/stats (Supabase transcripts table).
+              Rounded down to the nearest 500 with a + suffix, so it reads
+              as a milestone rather than an exact number. Hides itself if
+              the API is down or the count is below the visibility
+              threshold. See components/HeroCounter.js. */}
+          <HeroCounter />
         </div>
 
         {/* Upload tool sits inside the same section so the background
@@ -253,29 +255,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ────────────────── TOOL GRID ────────────────── */}
-      <section className="max-w-6xl mx-auto px-4 pb-16">
-        <h2 className="text-2xl font-bold text-slate-900 mb-8">Convert any file to text</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-          {[
-            { href: '/transcribe-mp3-to-text',   label: 'MP3 to Text',        icon: Icons.music },
-            { href: '/transcribe-video-to-text', label: 'Video to Text',      icon: Icons.video },
-            { href: '/wav-to-text',              label: 'WAV to Text',        icon: Icons.waveform },
-            { href: '/meeting-transcription',    label: 'Meeting Transcription', icon: Icons.users },
-            { href: '/podcast-transcription',    label: 'Podcast Transcription', icon: Icons.mic },
-            { href: '/voice-memo-to-text',       label: 'Voice Memo to Text', icon: Icons.editPen },
-          ].map(({ href, label, icon }) => (
-            <a
-              key={href}
-              href={href}
-              className="bg-white border border-slate-200 rounded-2xl p-4 text-center hover:border-brand-400 hover:shadow-sm transition-all group"
-            >
-              <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-brand-50 text-brand-600 mb-3 group-hover:bg-brand-100 transition-colors">
-                <span className="w-6 h-6">{icon}</span>
-              </div>
-              <div className="text-sm font-semibold text-slate-800 leading-tight">{label}</div>
-            </a>
-          ))}
+      {/* ────────────────── TOOL GRID ──────────────────
+        Wrapped in the same slate-100 tint as the hero + upload section
+        above so the top of the page reads as one cohesive intro block
+        (hero + upload + "here are all the tools we have"). The seam
+        against the following "How Mictoo works" section (bg-white) is
+        where the intro area ends and the deeper content begins.
+      */}
+      <section className="bg-slate-100 border-b border-slate-200 pb-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold text-slate-900 mb-8">Convert any file to text</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            {[
+              { href: '/transcribe-mp3-to-text',   label: 'MP3 to Text',        icon: Icons.music },
+              { href: '/transcribe-video-to-text', label: 'Video to Text',      icon: Icons.video },
+              { href: '/wav-to-text',              label: 'WAV to Text',        icon: Icons.waveform },
+              { href: '/meeting-transcription',    label: 'Meeting Transcription', icon: Icons.users },
+              { href: '/podcast-transcription',    label: 'Podcast Transcription', icon: Icons.mic },
+              { href: '/voice-memo-to-text',       label: 'Voice Memo to Text', icon: Icons.editPen },
+            ].map(({ href, label, icon }) => (
+              <a
+                key={href}
+                href={href}
+                className="bg-white border border-slate-200 rounded-2xl p-4 text-center hover:border-brand-400 hover:shadow-sm transition-all group"
+              >
+                <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-brand-50 text-brand-600 mb-3 group-hover:bg-brand-100 transition-colors">
+                  <span className="w-6 h-6">{icon}</span>
+                </div>
+                <div className="text-sm font-semibold text-slate-800 leading-tight">{label}</div>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
