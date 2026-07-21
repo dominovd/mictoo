@@ -16,6 +16,7 @@
 // use the previous layout; they will be ported via scripts/translate-page.mjs
 // once we validate this one in prod.
 
+import Image from 'next/image'
 import UploadZone from '@/components/UploadZone'
 import HeroCounter from '@/components/HeroCounter'
 
@@ -332,102 +333,15 @@ export default function Home() {
               ))}
             </ol>
 
-            {/* Live result preview (static JSX mock) */}
-            <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
-              {/* Header row */}
-              <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100 bg-slate-50">
-                <div className="flex items-center gap-2 text-sm">
-                  <span className="w-4 h-4 text-brand-600">{Icons.video}</span>
-                  <span className="font-semibold text-slate-800">Interview.mp4</span>
-                  <span className="text-slate-400 text-xs">·</span>
-                  <span className="text-xs text-emerald-600 font-medium">Completed in 18s</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <button className="text-xs bg-white border border-slate-200 rounded-lg px-2.5 py-1 text-slate-600 font-medium">Translate ▾</button>
-                  <button className="text-xs bg-brand-600 text-white rounded-lg px-2.5 py-1 font-medium">Download ↓</button>
-                </div>
-              </div>
-
-              {/* Tab bar */}
-              <div className="flex items-center gap-4 px-4 pt-3 text-xs border-b border-slate-100">
-                <button className="pb-2 font-semibold text-brand-700 border-b-2 border-brand-600">Transcript</button>
-                <button className="pb-2 text-slate-500">AI Summary</button>
-                <button className="pb-2 text-slate-500">Notes</button>
-              </div>
-
-              {/* Body: transcript lines + summary panel */}
-              <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] divide-y md:divide-y-0 md:divide-x divide-slate-100">
-                {/* Transcript */}
-                <div className="p-4 space-y-3 text-sm">
-                  {[
-                    { t: '00:00:00', role: 'Interviewer', line: 'Can you tell us about your journey into filmmaking?' },
-                    { t: '00:00:07', role: 'Guest',       line: 'It started as a hobby in college. I loved storytelling and visual arts.' },
-                    { t: '00:00:15', role: 'Interviewer', line: 'What inspires your creative process?' },
-                    { t: '00:00:24', role: 'Guest',       line: 'People and real life moments. I observe and translate them into stories.' },
-                  ].map((row, i) => (
-                    <div key={i} className="grid grid-cols-[auto_1fr] gap-3 items-start">
-                      <div className="flex flex-col items-center gap-1 pt-0.5">
-                        <button className="w-5 h-5 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center">
-                          <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z" /></svg>
-                        </button>
-                        <span className="font-mono text-[10px] text-slate-400 whitespace-nowrap">{row.t}</span>
-                      </div>
-                      <div>
-                        <div className="text-[11px] font-semibold text-brand-700 mb-0.5">{row.role}:</div>
-                        <div className="text-slate-700 leading-snug">{row.line}</div>
-                      </div>
-                    </div>
-                  ))}
-                  {/* Waveform + time */}
-                  <div className="pt-3 mt-2 border-t border-slate-100">
-                    <div className="flex items-end gap-0.5 h-6">
-                      {Array.from({ length: 60 }).map((_, i) => {
-                        // Deterministic pseudo-waveform so SSR matches client
-                        const h = 4 + ((i * 17) % 18)
-                        return <div key={i} className="w-0.5 rounded-sm bg-brand-300" style={{ height: h + 'px' }} />
-                      })}
-                    </div>
-                    <div className="flex justify-between text-[10px] font-mono text-slate-400 mt-1">
-                      <span>00:00:00</span>
-                      <span>12:45</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* AI Summary panel */}
-                <div className="p-4 bg-slate-50/50">
-                  <div className="flex items-center gap-1.5 mb-3">
-                    <span className="w-4 h-4 text-brand-600">{Icons.sparkles}</span>
-                    <div className="text-sm font-semibold text-slate-800">AI Summary</div>
-                  </div>
-                  <ul className="space-y-2 text-xs text-slate-600 leading-relaxed">
-                    <li className="flex gap-2">
-                      <span className="w-1 h-1 mt-1.5 rounded-full bg-brand-500 flex-shrink-0" />
-                      The guest discovered filmmaking in college as a hobby.
-                    </li>
-                    <li className="flex gap-2">
-                      <span className="w-1 h-1 mt-1.5 rounded-full bg-brand-500 flex-shrink-0" />
-                      Storytelling and visual arts sparked their passion.
-                    </li>
-                    <li className="flex gap-2">
-                      <span className="w-1 h-1 mt-1.5 rounded-full bg-brand-500 flex-shrink-0" />
-                      Real life moments and people inspire their creative process.
-                    </li>
-                  </ul>
-
-                  <div className="mt-4">
-                    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Key topics</div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {['Filmmaking journey', 'Inspiration', 'Storytelling'].map((tag) => (
-                        <span key={tag} className="text-[10px] font-semibold text-brand-700 bg-brand-50 px-2 py-0.5 rounded">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {/* Product result preview */}
+            <Image
+              src="/how-mictoo-works-interview.webp"
+              alt="Mictoo transcript workspace showing an English transcript with timestamps and translation controls"
+              width={1127}
+              height={1395}
+              sizes="(max-width: 1024px) 100vw, 512px"
+              className="w-full max-w-lg h-auto justify-self-center lg:-mt-[72px] rounded-2xl border border-slate-200 shadow-sm"
+            />
           </div>
         </div>
       </section>
@@ -525,19 +439,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ────────────────── COMPARISON TABLE ────────────────── */}
-      {/*
-        Structure:
-          - 4 feature columns: Free / No signup / Summary / Translation
-          - Row 1 (mictoo, brand-highlighted): checkmark + short affirmation
-            in each cell.
-          - Row 2 (Other tools): the drawback that generic alternatives have.
-        Kept intentionally short: this is a snapshot, not the full comparison
-        — those live on the alternative pages linked from the "Switching from
-        another tool?" block below.
+      {/* ────────────────── COMPARISON + COMPETITOR CARDS ──────────────────
+        Two blocks merged into one section:
+          1. Top: the "mictoo vs Others" feature table (4 columns:
+             Free / No signup / Summary / Translation)
+          2. Bottom: 5 competitor cards, each with a one-line
+             differentiator + arrow, linking to the per-tool
+             /X-alternative page (kept from the previous
+             "Switching from another tool?" section that lived
+             below the prose block).
+        Same section wrapper, one visual story, and both value
+        props (snapshot + per-tool deep dive) preserved.
       */}
       <section className="max-w-6xl mx-auto px-4 py-16">
-        <h2 className="text-2xl font-bold text-slate-900 mb-8">Free transcription without the subscription</h2>
+        <h2 className="text-2xl font-bold text-slate-900 mb-3">Free transcription without the subscription</h2>
+        <p className="text-slate-600 mb-8 max-w-2xl">
+          At a glance versus generic alternatives, plus a feature-by-feature comparison against each tool below.
+        </p>
 
         <div className="bg-white border border-slate-200 rounded-2xl overflow-x-auto">
           <table className="w-full text-sm min-w-[720px] border-collapse">
@@ -599,9 +517,43 @@ export default function Home() {
           </table>
         </div>
 
-        <p className="text-xs text-slate-400 text-center mt-4">
-          Snapshot comparison. Feature-by-feature details for each tool live on the alternative pages.
-        </p>
+        {/* Competitor cards — merged from the former "Switching from another
+            tool?" block. Each card links to the per-tool alternative page.
+            Short differentiator on the card explains why someone might be on
+            that tool today, so the click intent is specific. */}
+        <div className="mt-10">
+          <div className="flex items-baseline justify-between mb-4 flex-wrap gap-2">
+            <h3 className="text-base font-semibold text-slate-800">
+              Compare mictoo against a specific tool
+            </h3>
+            <span className="text-xs text-slate-400">
+              Feature-by-feature, pricing notes, honest tradeoffs.
+            </span>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {[
+              { name: 'Descript',    href: '/descript-alternative',    tag: 'Editor-first workflow' },
+              { name: 'Fireflies',   href: '/fireflies-alternative',   tag: 'Meeting bot recorder' },
+              { name: 'TurboScribe', href: '/turboscribe-alternative', tag: 'Casual transcription' },
+              { name: 'Otter',       href: '/otter-alternative',       tag: 'Live meeting notes' },
+              { name: 'Notta',       href: '/notta-alternative',       tag: 'Multi-language focus' },
+            ].map(({ name, href, tag }) => (
+              <a
+                key={href}
+                href={href}
+                className="group bg-white border border-slate-200 rounded-2xl p-4 hover:border-brand-400 hover:shadow-sm transition-all"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="text-sm font-bold text-slate-900">vs {name}</div>
+                  <span className="w-4 h-4 text-slate-300 group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all">
+                    {Icons.arrowRight}
+                  </span>
+                </div>
+                <div className="text-xs text-slate-500 mt-1">{tag}</div>
+              </a>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ────────────────── SEARCHABLE TEXT PROSE + PILL LINKS ────────────────── */}
@@ -638,29 +590,6 @@ export default function Home() {
               </a>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ────────────────── ALTERNATIVE PAGES (kept from previous home) ────────────────── */}
-      <section className="max-w-4xl mx-auto px-4 py-14">
-        <h2 className="text-lg font-semibold text-slate-800 text-center mb-4">
-          Switching from another tool?
-        </h2>
-        <p className="text-center text-slate-500 text-sm mb-8">
-          Feature-by-feature comparisons, pricing notes, and honest tradeoffs.
-        </p>
-        <div className="flex flex-wrap justify-center gap-3">
-          {[
-            ['Descript',    '/descript-alternative'],
-            ['Fireflies',   '/fireflies-alternative'],
-            ['TurboScribe', '/turboscribe-alternative'],
-            ['Otter',       '/otter-alternative'],
-            ['Notta',       '/notta-alternative'],
-          ].map(([name, href]) => (
-            <a key={href} href={href} className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-medium text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">
-              vs {name}
-            </a>
-          ))}
         </div>
       </section>
 
