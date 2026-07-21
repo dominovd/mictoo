@@ -218,7 +218,7 @@ export default function Home() {
         container and the white drop-zone card stands out cleanly against
         the surrounding tone.
       */}
-      <section className="bg-gradient-to-b from-brand-50/30 via-slate-50/70 to-slate-50 border-b border-slate-100 pt-16 pb-16 px-4">
+      <section className="bg-gradient-to-b from-brand-50/40 via-slate-100/60 to-slate-100 border-b border-slate-200 pt-16 pb-16 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <span className="inline-block bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1 rounded-full mb-5 uppercase tracking-wide">
             Free AI transcription · No signup

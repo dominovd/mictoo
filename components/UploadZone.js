@@ -2017,10 +2017,11 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
         onDragLeave={() => setState('idle')}
         onClick={() => fileRef.current?.click()}
         className={`
-          bg-white rounded-2xl border-2 border-dashed shadow-sm p-10 text-center cursor-pointer transition-all
+          bg-white rounded-2xl border-2 border-dashed p-10 text-center cursor-pointer transition-all
+          shadow-lg shadow-slate-400/15
           ${state === 'dragging'
-            ? 'border-brand-500 bg-brand-50 scale-[1.01]'
-            : 'border-slate-200 hover:border-brand-400 hover:bg-brand-50/40'}
+            ? 'border-brand-500 bg-brand-50 scale-[1.01] shadow-brand-500/20'
+            : 'border-slate-200 hover:border-brand-400 hover:bg-brand-50/40 hover:shadow-xl hover:shadow-brand-500/15'}
         `}
       >
         <input
