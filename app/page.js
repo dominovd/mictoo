@@ -439,41 +439,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ────────────────── COMPARISON + COMPETITOR CARDS ──────────────────
-        Two blocks merged into one section:
-          1. Top: the "mictoo vs Others" feature table (4 columns:
-             Free / No signup / Summary / Translation)
-          2. Bottom: 5 competitor cards, each with a one-line
-             differentiator + arrow, linking to the per-tool
-             /X-alternative page (kept from the previous
-             "Switching from another tool?" section that lived
-             below the prose block).
-        Same section wrapper, one visual story, and both value
-        props (snapshot + per-tool deep dive) preserved.
+      {/* ────────────────── UNIFIED COMPARISON TABLE ──────────────────
+        Single table where every named competitor gets its own row and
+        the whole row is a link to that tool's /X-alternative page.
+        Structure:
+          - 4 feature columns: Free / No signup / Summary / Translation
+          - Row 1: mictoo (brand-highlighted) with ✓ badges per cell
+          - Rows 2-6: Descript / Fireflies / TurboScribe / Otter / Notta
+                      each row is clickable → their alternative page
+                      Cells use compact honest labels; detailed pricing
+                      claims live on the per-tool comparison pages.
+        Cell copy stays deliberately conservative on specific numbers so
+        the table doesn't go out of date every time a competitor changes
+        their free tier. Real numbers are on each linked page.
       */}
       <section className="max-w-6xl mx-auto px-4 py-16">
         <h2 className="text-2xl font-bold text-slate-900 mb-3">Free transcription without the subscription</h2>
         <p className="text-slate-600 mb-8 max-w-2xl">
-          At a glance versus generic alternatives, plus a feature-by-feature comparison against each tool below.
+          How mictoo stacks up against the tools people usually consider. Click any row for a full feature-by-feature comparison.
         </p>
 
         <div className="bg-white border border-slate-200 rounded-2xl overflow-x-auto">
-          <table className="w-full text-sm min-w-[720px] border-collapse">
+          <table className="w-full text-sm min-w-[820px] border-collapse">
             <thead>
               <tr>
-                <th className="text-left px-5 py-4 w-48"></th>
-                <th className="text-center px-5 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">Free</th>
-                <th className="text-center px-5 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">No signup</th>
-                <th className="text-center px-5 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">Summary</th>
-                <th className="text-center px-5 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">Translation</th>
+                <th className="text-left px-5 py-4 w-56"></th>
+                <th className="text-center px-4 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">Free</th>
+                <th className="text-center px-4 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">No signup</th>
+                <th className="text-center px-4 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">AI Summary</th>
+                <th className="text-center px-4 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">Translation</th>
               </tr>
             </thead>
             <tbody>
-              {/* Mictoo row — brand-highlighted background across all cells */}
-              <tr className="bg-gradient-to-r from-brand-50 to-brand-50/50">
-                <td className="px-5 py-6 border-t border-slate-100">
-                  <div className="inline-flex items-center gap-2">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              {/* Mictoo row — brand-highlighted, not clickable (it's the reference) */}
+              <tr className="bg-gradient-to-r from-brand-50 to-brand-50/40">
+                <td className="px-5 py-5 border-t border-slate-100 align-middle">
+                  <div className="inline-flex items-center gap-2.5">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <rect width="24" height="24" rx="6" fill="#0284c7" />
                       <path d="M8 8v8M12 6v12M16 10v4" stroke="white" strokeWidth="2" strokeLinecap="round" />
                     </svg>
@@ -484,76 +486,78 @@ export default function Home() {
                   </div>
                 </td>
                 {[
-                  '100% free to use',
-                  'Start transcribing immediately',
-                  'AI summary included',
-                  'Translate transcripts to 50+ languages',
-                ].map((label) => (
-                  <td key={label} className="text-center px-5 py-6 border-t border-slate-100 align-middle">
-                    <div className="inline-flex flex-col items-center gap-2">
+                  { yes: true, label: 'Unlimited' },
+                  { yes: true, label: 'No account' },
+                  { yes: true, label: 'Included' },
+                  { yes: true, label: '50+ languages' },
+                ].map(({ label }, i) => (
+                  <td key={i} className="text-center px-4 py-5 border-t border-slate-100 align-middle">
+                    <div className="inline-flex flex-col items-center gap-1.5">
                       <span className="w-6 h-6 rounded-full bg-brand-600 text-white flex items-center justify-center">
                         <span className="w-3.5 h-3.5">{Icons.check}</span>
                       </span>
-                      <span className="text-[11px] text-slate-600 leading-snug max-w-[10rem]">{label}</span>
+                      <span className="text-[11px] text-slate-600 leading-snug">{label}</span>
                     </div>
                   </td>
                 ))}
               </tr>
-              {/* Other tools row */}
-              <tr>
-                <td className="px-5 py-5 border-t border-slate-100 text-sm font-semibold text-slate-500">Other tools</td>
-                {[
-                  'Limited free tier',
-                  'Sign up required',
-                  'Not included',
-                  'Limited languages',
-                ].map((label) => (
-                  <td key={label} className="text-center px-5 py-5 border-t border-slate-100 text-xs text-slate-500">
-                    {label}
+
+              {/* Competitor rows — one per tool, whole row is a link. */}
+              {[
+                {
+                  name: 'Descript',    href: '/descript-alternative',    tag: 'Editor-first workflow',
+                  cells: ['Limited tier',    'Signup required', 'Paid add-on',   'Limited'],
+                },
+                {
+                  name: 'Fireflies',   href: '/fireflies-alternative',   tag: 'Meeting bot recorder',
+                  cells: ['Limited tier',    'Signup required', 'Pro tier',      'Limited'],
+                },
+                {
+                  name: 'TurboScribe', href: '/turboscribe-alternative', tag: 'Casual transcription',
+                  cells: ['Daily cap',        'Signup required', 'Not included',  'Limited'],
+                },
+                {
+                  name: 'Otter',       href: '/otter-alternative',       tag: 'Live meeting notes',
+                  cells: ['Monthly cap',      'Signup required', 'Pro tier',      'Limited'],
+                },
+                {
+                  name: 'Notta',       href: '/notta-alternative',       tag: 'Multi-language focus',
+                  cells: ['Monthly cap',      'Signup required', 'Pro tier',      'Broad'],
+                },
+              ].map(({ name, href, tag, cells }) => (
+                <tr key={href} className="group hover:bg-slate-50 transition-colors">
+                  <td className="border-t border-slate-100 align-middle p-0">
+                    <a href={href} className="flex items-center justify-between gap-3 px-5 py-4">
+                      <div>
+                        <div className="font-semibold text-slate-800">vs {name}</div>
+                        <div className="text-[11px] text-slate-500 mt-0.5">{tag}</div>
+                      </div>
+                      <span className="w-4 h-4 text-slate-300 group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all">
+                        {Icons.arrowRight}
+                      </span>
+                    </a>
                   </td>
-                ))}
-              </tr>
+                  {cells.map((label, i) => (
+                    <td key={i} className="border-t border-slate-100 align-middle p-0">
+                      <a
+                        href={href}
+                        className="block text-center px-4 py-4 text-xs text-slate-500"
+                        aria-hidden="true"
+                        tabIndex={-1}
+                      >
+                        {label}
+                      </a>
+                    </td>
+                  ))}
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
 
-        {/* Competitor cards — merged from the former "Switching from another
-            tool?" block. Each card links to the per-tool alternative page.
-            Short differentiator on the card explains why someone might be on
-            that tool today, so the click intent is specific. */}
-        <div className="mt-10">
-          <div className="flex items-baseline justify-between mb-4 flex-wrap gap-2">
-            <h3 className="text-base font-semibold text-slate-800">
-              Compare mictoo against a specific tool
-            </h3>
-            <span className="text-xs text-slate-400">
-              Feature-by-feature, pricing notes, honest tradeoffs.
-            </span>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-            {[
-              { name: 'Descript',    href: '/descript-alternative',    tag: 'Editor-first workflow' },
-              { name: 'Fireflies',   href: '/fireflies-alternative',   tag: 'Meeting bot recorder' },
-              { name: 'TurboScribe', href: '/turboscribe-alternative', tag: 'Casual transcription' },
-              { name: 'Otter',       href: '/otter-alternative',       tag: 'Live meeting notes' },
-              { name: 'Notta',       href: '/notta-alternative',       tag: 'Multi-language focus' },
-            ].map(({ name, href, tag }) => (
-              <a
-                key={href}
-                href={href}
-                className="group bg-white border border-slate-200 rounded-2xl p-4 hover:border-brand-400 hover:shadow-sm transition-all"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="text-sm font-bold text-slate-900">vs {name}</div>
-                  <span className="w-4 h-4 text-slate-300 group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all">
-                    {Icons.arrowRight}
-                  </span>
-                </div>
-                <div className="text-xs text-slate-500 mt-1">{tag}</div>
-              </a>
-            ))}
-          </div>
-        </div>
+        <p className="text-xs text-slate-400 text-center mt-4">
+          Snapshot only. Pricing pages change; see the linked comparison for current numbers.
+        </p>
       </section>
 
       {/* ────────────────── SEARCHABLE TEXT PROSE + PILL LINKS ────────────────── */}
@@ -636,21 +640,10 @@ export default function Home() {
       */}
       <section className="max-w-5xl mx-auto px-4 py-12">
         <div className="relative bg-gradient-to-r from-brand-600 via-brand-500 to-brand-600 rounded-3xl overflow-hidden shadow-lg shadow-brand-500/20">
-          {/* Waveform accent left — softer opacity so the copy leads */}
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 hidden sm:flex items-end gap-0.5 h-14 opacity-25 pointer-events-none">
-            {Array.from({ length: 28 }).map((_, i) => {
-              const h = 6 + ((i * 13) % 32)
-              return <div key={i} className="w-0.5 rounded-sm bg-white" style={{ height: h + 'px' }} />
-            })}
-          </div>
-          {/* Waveform accent right */}
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden sm:flex items-end gap-0.5 h-14 opacity-25 pointer-events-none">
-            {Array.from({ length: 28 }).map((_, i) => {
-              const h = 6 + ((i * 11) % 32)
-              return <div key={i} className="w-0.5 rounded-sm bg-white" style={{ height: h + 'px' }} />
-            })}
-          </div>
-          {/* Subtle radial glow behind the button */}
+          {/* Subtle radial glow behind the button — soft focus, no
+              waveform accents (removed per user request; the plate reads
+              cleaner without them and the sparkles badge alone carries
+              the "AI transcription" cue). */}
           <div className="absolute right-24 top-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-white/10 blur-3xl pointer-events-none hidden md:block" />
 
           <div className="relative flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 py-10 px-6 md:px-10 text-center md:text-left">
@@ -661,7 +654,7 @@ export default function Home() {
 
             <div className="min-w-0 flex-1 max-w-lg">
               <div className="font-bold text-white text-xl md:text-2xl leading-tight">
-                Transcribe your first file, free
+                Transcribe your file, free
               </div>
               <div className="text-sm text-white/85 mt-1.5">
                 Drop your audio or video and get an accurate transcript in seconds.
