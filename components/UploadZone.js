@@ -491,6 +491,25 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
 
   const fileRef = useRef(null)
 
+  // Download dropdown open/close. Consolidates the previous horizontal row
+  // of 7-10 individual export buttons (Copy / .txt / .txt-timestamped /
+  // .srt / .docx / .pdf / .vtt / .json / All-Summary-Transcript filter)
+  // into one compact "Download" menu. Click-outside closes it via the
+  // useEffect below the state block.
+  const [downloadMenuOpen, setDownloadMenuOpen] = useState(false)
+  const downloadMenuRef = useRef(null)
+
+  useEffect(() => {
+    if (!downloadMenuOpen) return
+    function onDown(e) {
+      if (downloadMenuRef.current && !downloadMenuRef.current.contains(e.target)) {
+        setDownloadMenuOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', onDown)
+    return () => document.removeEventListener('mousedown', onDown)
+  }, [downloadMenuOpen])
+
   // ── Result persistence across sign-in round-trip ────────────────────────
   // When an anonymous user clicks an auth-gated export button (.docx, .pdf,
   // .vtt, .json), we redirect to /sign-in. Without this, after the auth flow
@@ -1427,123 +1446,193 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
               </p>
             )}
           </div>
+          {/*
+            Wave 1: single Download dropdown replaces the previous horizontal
+            row of 7-10 individual export buttons plus the export-scope
+            filter. Same functionality, way less visual clutter. Click any
+            format inside the menu to trigger the download and auto-close.
+            The click-outside effect near `downloadMenuOpen` state handles
+            dismissal when the user clicks anywhere else on the page.
+          */}
           <div className="flex items-center gap-2 flex-wrap">
-            <button onClick={copy} className="btn-ghost">
-              {copied ? (
-                <><CheckIcon className="w-4 h-4 text-green-500" /> {t(locale, 'result.copied')}</>
-              ) : (
-                <><CopyIcon className="w-4 h-4" /> {t(locale, 'result.copy')}</>
+            <div className="relative" ref={downloadMenuRef}>
+              <button
+                type="button"
+                onClick={() => setDownloadMenuOpen((v) => !v)}
+                className="inline-flex items-center gap-1.5 bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors shadow-sm"
+                aria-haspopup="menu"
+                aria-expanded={downloadMenuOpen}
+              >
+                <DownloadIcon className="w-4 h-4" />
+                {t(locale, 'result.downloadMenu')}
+                <svg className={`w-3.5 h-3.5 transition-transform ${downloadMenuOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {downloadMenuOpen && (
+                <div
+                  role="menu"
+                  className="absolute right-0 top-full mt-2 w-72 bg-white border border-slate-200 rounded-xl shadow-xl overflow-hidden z-30"
+                >
+                  {/* Copy row */}
+                  <button
+                    type="button"
+                    onClick={() => { copy(); setDownloadMenuOpen(false) }}
+                    className="w-full flex items-center gap-3 px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
+                  >
+                    {copied ? (
+                      <><CheckIcon className="w-4 h-4 text-green-500" /> {t(locale, 'result.copied')}</>
+                    ) : (
+                      <><CopyIcon className="w-4 h-4 text-slate-500" /> {t(locale, 'result.copy')}</>
+                    )}
+                  </button>
+
+                  {/* Export scope selector — only when summary or translation exists */}
+                  {((summaryStatus === 'done' && summaryData) || translatedSegments) && (
+                    <>
+                      <div className="border-t border-slate-100" />
+                      <div className="px-4 py-3">
+                        <div className="text-[10px] font-semibold uppercase tracking-wide text-slate-400 mb-2">
+                          Include
+                        </div>
+                        <div className="inline-flex items-center gap-0 bg-slate-100 rounded-lg p-0.5 text-xs w-full">
+                          <button
+                            type="button"
+                            onClick={() => setExportContent('all')}
+                            className={`flex-1 px-2 py-1 rounded-md transition-colors ${exportContent === 'all' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500'}`}
+                          >
+                            All
+                          </button>
+                          {summaryStatus === 'done' && summaryData && (
+                            <button
+                              type="button"
+                              onClick={() => setExportContent('summary')}
+                              className={`flex-1 px-2 py-1 rounded-md transition-colors ${exportContent === 'summary' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500'}`}
+                            >
+                              Summary
+                            </button>
+                          )}
+                          <button
+                            type="button"
+                            onClick={() => setExportContent('transcript')}
+                            className={`flex-1 px-2 py-1 rounded-md transition-colors ${exportContent === 'transcript' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500'}`}
+                          >
+                            Transcript
+                          </button>
+                          {translatedSegments && (
+                            <button
+                              type="button"
+                              onClick={() => setExportContent('translation')}
+                              className={`flex-1 px-2 py-1 rounded-md transition-colors ${exportContent === 'translation' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500'}`}
+                              title={`Export the ${(DICT[locale]?.languages?.[translateLang] ?? DICT.en.languages[translateLang] ?? translateLang.toUpperCase())} translation`}
+                            >
+                              {(DICT[locale]?.languages?.[translateLang] ?? DICT.en.languages[translateLang] ?? translateLang.toUpperCase()).slice(0, 8)}
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    </>
+                  )}
+
+                  <div className="border-t border-slate-100" />
+
+                  {/* Free formats */}
+                  <div className="px-2 py-2">
+                    <div className="text-[10px] font-semibold uppercase tracking-wide text-slate-400 px-2 pt-1 pb-1.5">
+                      Free
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => { downloadTxt(); setDownloadMenuOpen(false) }}
+                      className="w-full flex items-center gap-3 px-2 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md transition-colors"
+                    >
+                      <DownloadIcon className="w-4 h-4 text-slate-500" />
+                      <span>.txt</span>
+                      <span className="ml-auto text-[10px] text-slate-400">Plain text</span>
+                    </button>
+                    {hasSRT && (
+                      <button
+                        type="button"
+                        onClick={() => { downloadTimestampedTxt(); setDownloadMenuOpen(false) }}
+                        className="w-full flex items-center gap-3 px-2 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md transition-colors"
+                      >
+                        <ClockIcon className="w-4 h-4 text-slate-500" />
+                        <span>.txt</span>
+                        <span className="ml-auto text-[10px] text-slate-400">With timestamps</span>
+                      </button>
+                    )}
+                    {hasSRT && (
+                      <button
+                        type="button"
+                        onClick={() => { downloadSRT(); setDownloadMenuOpen(false) }}
+                        className="w-full flex items-center gap-3 px-2 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md transition-colors"
+                      >
+                        <SubtitleIcon className="w-4 h-4 text-slate-500" />
+                        <span>.srt</span>
+                        <span className="ml-auto text-[10px] text-slate-400">Subtitles</span>
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="border-t border-slate-100" />
+
+                  {/* Pro / auth-gated formats */}
+                  <div className="px-2 py-2">
+                    <div className="flex items-center justify-between px-2 pt-1 pb-1.5">
+                      <span className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
+                        {authUser ? 'Registered' : 'Sign in to unlock'}
+                      </span>
+                      {!authUser && (
+                        <LockIcon className="w-3 h-3 text-slate-400" />
+                      )}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => { downloadDOCX(); setDownloadMenuOpen(false) }}
+                      className="w-full flex items-center gap-3 px-2 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md transition-colors"
+                    >
+                      <DocIcon className="w-4 h-4 text-slate-500" />
+                      <span>.docx</span>
+                      <span className="ml-auto text-[10px] text-slate-400">Word document</span>
+                    </button>
+                    {hasSRT && (
+                      <button
+                        type="button"
+                        onClick={() => { downloadPDF(); setDownloadMenuOpen(false) }}
+                        className="w-full flex items-center gap-3 px-2 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md transition-colors"
+                      >
+                        <PdfIcon className="w-4 h-4 text-slate-500" />
+                        <span>.pdf</span>
+                        <span className="ml-auto text-[10px] text-slate-400">Portable doc</span>
+                      </button>
+                    )}
+                    {hasSRT && (
+                      <button
+                        type="button"
+                        onClick={() => { downloadVTT(); setDownloadMenuOpen(false) }}
+                        className="w-full flex items-center gap-3 px-2 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md transition-colors"
+                      >
+                        <SubtitleIcon className="w-4 h-4 text-slate-500" />
+                        <span>.vtt</span>
+                        <span className="ml-auto text-[10px] text-slate-400">Web captions</span>
+                      </button>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => { downloadJSON(); setDownloadMenuOpen(false) }}
+                      className="w-full flex items-center gap-3 px-2 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md transition-colors"
+                    >
+                      <CodeIcon className="w-4 h-4 text-slate-500" />
+                      <span>.json</span>
+                      <span className="ml-auto text-[10px] text-slate-400">Raw data</span>
+                    </button>
+                  </div>
+                </div>
               )}
-            </button>
-            <button onClick={downloadTxt} className="btn-ghost">
-              <DownloadIcon className="w-4 h-4" /> .txt
-            </button>
-            {hasSRT && (
-              <button
-                onClick={downloadTimestampedTxt}
-                className="btn-ghost"
-                title={t(locale, 'result.timestampedHint')}
-                aria-label={t(locale, 'result.timestampedHint')}
-              >
-                <ClockIcon className="w-4 h-4" /> .txt
-              </button>
-            )}
-            {hasSRT && (
-              <button onClick={downloadSRT} className="btn-ghost">
-                <SubtitleIcon className="w-4 h-4" /> .srt
-              </button>
-            )}
+            </div>
 
-            {/* Export-content toggle. Shown whenever there's something to
-                pick between (summary or translation present). All download
-                buttons (Copy/.txt/.srt/timestamped-.txt/DOCX/PDF/VTT/JSON)
-                honour this — when 'translation' is selected the file uses
-                the translated text and the filename gets a .{lang} suffix. */}
-            {((summaryStatus === 'done' && summaryData) || translatedSegments) && (
-              <div className="inline-flex items-center gap-0 bg-slate-100 rounded-lg p-0.5 text-xs">
-                <button
-                  type="button"
-                  onClick={() => setExportContent('all')}
-                  className={`px-2.5 py-1 rounded-md transition-colors ${exportContent === 'all' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
-                  title="Export the original transcript together with the AI summary"
-                >
-                  All
-                </button>
-                {summaryStatus === 'done' && summaryData && (
-                  <button
-                    type="button"
-                    onClick={() => setExportContent('summary')}
-                    className={`px-2.5 py-1 rounded-md transition-colors ${exportContent === 'summary' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
-                    title="Export only the AI summary"
-                  >
-                    Summary
-                  </button>
-                )}
-                <button
-                  type="button"
-                  onClick={() => setExportContent('transcript')}
-                  className={`px-2.5 py-1 rounded-md transition-colors ${exportContent === 'transcript' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
-                  title="Export only the original transcript"
-                >
-                  Transcript
-                </button>
-                {translatedSegments && (
-                  <button
-                    type="button"
-                    onClick={() => setExportContent('translation')}
-                    className={`px-2.5 py-1 rounded-md transition-colors ${exportContent === 'translation' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
-                    title={`Export the ${(DICT[locale]?.languages?.[translateLang] ?? DICT.en.languages[translateLang] ?? translateLang.toUpperCase())} translation`}
-                  >
-                    {DICT[locale]?.languages?.[translateLang] ?? DICT.en.languages[translateLang] ?? translateLang.toUpperCase()}
-                  </button>
-                )}
-              </div>
-            )}
-
-            {/* Auth-gated formats. We always render the buttons so anonymous
-                users see they exist — clicking just sends them to /sign-in. */}
-            <button
-              onClick={downloadDOCX}
-              className="btn-ghost"
-              title={authUser ? 'Export as Word document' : 'Sign in to export as Word'}
-              aria-label="Export as Word"
-            >
-              {!authUser && <LockIcon className="w-3 h-3 text-slate-400" />}
-              <DocIcon className="w-4 h-4" /> .docx
-            </button>
-            {hasSRT && (
-              <button
-                onClick={downloadPDF}
-                className="btn-ghost"
-                title={authUser ? 'Export as PDF' : 'Sign in to export as PDF'}
-                aria-label="Export as PDF"
-              >
-                {!authUser && <LockIcon className="w-3 h-3 text-slate-400" />}
-                <PdfIcon className="w-4 h-4" /> .pdf
-              </button>
-            )}
-            {hasSRT && (
-              <button
-                onClick={downloadVTT}
-                className="btn-ghost"
-                title={authUser ? 'Export as WebVTT subtitles' : 'Sign in to export as VTT'}
-                aria-label="Export as VTT"
-              >
-                {!authUser && <LockIcon className="w-3 h-3 text-slate-400" />}
-                <SubtitleIcon className="w-4 h-4" /> .vtt
-              </button>
-            )}
-            <button
-              onClick={downloadJSON}
-              className="btn-ghost"
-              title={authUser ? 'Export as JSON' : 'Sign in to export as JSON'}
-              aria-label="Export as JSON"
-            >
-              {!authUser && <LockIcon className="w-3 h-3 text-slate-400" />}
-              <CodeIcon className="w-4 h-4" /> .json
-            </button>
-
-            <button onClick={reset} className="btn-primary">
+            <button onClick={reset} className="btn-ghost">
               {t(locale, 'result.newFile')}
             </button>
           </div>
