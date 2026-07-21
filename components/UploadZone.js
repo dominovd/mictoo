@@ -499,6 +499,16 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
   const [downloadMenuOpen, setDownloadMenuOpen] = useState(false)
   const downloadMenuRef = useRef(null)
 
+  // Result view tabs: 'transcript' | 'summary' | 'chat'. Before Wave 2 the
+  // three panels rendered as a linear stack (Summary card → Chat card →
+  // Transcript) so users had to scroll past the summary to reach the
+  // transcript, and Chat was almost hidden below the fold. Tabs let each
+  // panel take the full column width and reduce vertical clutter.
+  //
+  // The AI Summary tab auto-appears once summarization starts, and Chat is
+  // only visible when we have real Whisper segments (RAG needs them).
+  const [resultTab, setResultTab] = useState('transcript')
+
   useEffect(() => {
     if (!downloadMenuOpen) return
     function onDown(e) {
@@ -1637,22 +1647,62 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
             </button>
           </div>
         </div>
-        <SummaryCard
-          locale={locale}
-          status={summaryStatus}
-          data={summaryData}
-          error={summaryError}
-          onRetry={() => generateSummary(transcript, spokenLanguage, transcriptId)}
-        />
+        {/* Result tabs — Wave 2. Transcript is the default and always
+            visible; AI Summary appears once summarization has started;
+            Chat appears when we have Whisper segments (RAG needs them).
+            Underlined-active-tab style matches the tabs shown in the
+            homepage live-preview mockup. */}
+        <div className="flex items-center gap-1 border-b border-slate-200 mb-4">
+          {(() => {
+            const tabs = [
+              { key: 'transcript', label: t(locale, 'result.tabTranscript') },
+              (summaryStatus !== 'idle' || summaryData) && {
+                key: 'summary',
+                label: t(locale, 'result.tabSummary'),
+                loading: summaryStatus === 'loading',
+              },
+              hasSRT && { key: 'chat', label: t(locale, 'result.tabChat') },
+            ].filter(Boolean)
+            return tabs.map(({ key, label, loading }) => {
+              const active = resultTab === key
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => setResultTab(key)}
+                  className={
+                    'relative px-4 py-2.5 -mb-px text-sm font-semibold transition-colors ' +
+                    (active
+                      ? 'text-brand-700 border-b-2 border-brand-600'
+                      : 'text-slate-500 border-b-2 border-transparent hover:text-slate-700')
+                  }
+                >
+                  {label}
+                  {loading && (
+                    <span className="inline-block ml-2 w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse" aria-hidden="true" />
+                  )}
+                </button>
+              )
+            })
+          })()}
+        </div>
+
+        {resultTab === 'summary' && (
+          <SummaryCard
+            locale={locale}
+            status={summaryStatus}
+            data={summaryData}
+            error={summaryError}
+            onRetry={() => generateSummary(transcript, spokenLanguage, transcriptId)}
+          />
+        )}
 
         {/* Chat with transcript — RAG over the current transcript via
             /api/chat. Auth-required: anonymous visitors see a locked
             teaser, logged-in visitors get the full collapse-to-expand
             chat panel. Only renders when we have real Whisper segments
-            (the RAG retrieval needs them); falls back to nothing
-            otherwise so the result view stays clean for the rare
-            no-segments case. */}
-        {hasSRT && (
+            (the RAG retrieval needs them). */}
+        {resultTab === 'chat' && hasSRT && (
           <ChatPanel
             segments={segments}
             onSeek={(s) => {
@@ -1671,6 +1721,11 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
             locale={locale}
           />
         )}
+
+        {/* Transcript tab (default). Everything below stays as before —
+            Reader/Editor toggle, Translate row, audio player, search bar,
+            TranscriptReader or Editor textarea, and the bottom hint. */}
+        {resultTab === 'transcript' && <>
 
         {/* Reader / Editor toggle. The Reader view (per-line timestamp + text
             rows from Whisper segments) is the default when we have segments —
@@ -1896,6 +1951,8 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
               ? t(locale, 'result.editingTranslation', { lang: DICT[locale]?.languages?.[translateLang] ?? DICT.en.languages[translateLang] ?? translateLang.toUpperCase() })
               : t(locale, 'result.editHint') + (hasSRT ? t(locale, 'result.srtHint') : '')}
         </p>
+
+        </>}
       </div>
     )
   }
