@@ -278,74 +278,114 @@ export default function TranscribeAudioToTextPage() {
               ))}
             </ol>
 
-            {/* Live preview mockup — mirrors the homepage version */}
+            {/* Live preview mockup — matches the real transcript-view block
+                (Wave 3 header, Reader/Editor toggle, native-style audio
+                player, search input, per-line timestamped list, footer
+                hint). Static English content so it makes sense as a
+                marketing demo. */}
             <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
-              <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100 bg-slate-50">
-                <div className="flex items-center gap-2 text-sm">
-                  <span className="w-4 h-4 text-brand-600">{Icons.file}</span>
-                  <span className="font-semibold text-slate-800">Interview.mp3</span>
-                  <span className="text-slate-400 text-xs">·</span>
-                  <span className="text-xs text-emerald-600 font-medium">Completed in 18s</span>
+              {/* Header — file icon + name + Completed + word count | Translate | Download | New file */}
+              <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100 gap-3 flex-wrap">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center">
+                    <span className="w-4 h-4">{Icons.file}</span>
+                  </span>
+                  <div className="min-w-0">
+                    <div className="font-semibold text-slate-800 text-sm truncate">interview-notes.mp3</div>
+                    <div className="text-[11px] text-slate-400 mt-0.5 flex items-center gap-1.5">
+                      <span className="inline-flex items-center gap-1 text-emerald-600 font-medium">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                          <path d="M5 13l4 4L19 7" />
+                        </svg>
+                        Completed
+                      </span>
+                      <span className="text-slate-300">·</span>
+                      <span>180 words</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <button className="text-xs bg-white border border-slate-200 rounded-lg px-2.5 py-1 text-slate-600 font-medium">Translate ▾</button>
-                  <button className="text-xs bg-brand-600 text-white rounded-lg px-2.5 py-1 font-medium">Download ↓</button>
+                <div className="flex items-center gap-1.5 flex-shrink-0">
+                  <button className="inline-flex items-center gap-1 text-xs bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-700 font-medium">
+                    <svg className="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                      <path d="M5 8l6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6" />
+                    </svg>
+                    Translate
+                    <span className="text-slate-400">▾</span>
+                  </button>
+                  <button className="inline-flex items-center gap-1 text-xs bg-brand-600 text-white rounded-lg px-2.5 py-1.5 font-semibold">
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                    </svg>
+                    Download
+                    <span>▾</span>
+                  </button>
+                  <button className="text-xs text-slate-500 hover:text-slate-700 px-2 py-1.5">↑ New</button>
                 </div>
               </div>
-              <div className="flex items-center gap-4 px-4 pt-3 text-xs border-b border-slate-100">
-                <button className="pb-2 font-semibold text-brand-700 border-b-2 border-brand-600">Transcript</button>
-                <button className="pb-2 text-slate-500">AI Summary</button>
-                <button className="pb-2 text-slate-500">Chat</button>
+
+              {/* Tabs */}
+              <div className="flex items-center gap-4 px-5 pt-3 text-xs border-b border-slate-100">
+                <button className="pb-2.5 font-semibold text-brand-700 border-b-2 border-brand-600">Transcript</button>
+                <button className="pb-2.5 text-slate-500">AI Summary</button>
+                <button className="pb-2.5 text-slate-500">Chat</button>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] divide-y md:divide-y-0 md:divide-x divide-slate-100">
-                <div className="p-4 space-y-3 text-sm">
-                  {/* No speaker labels — Mictoo does not perform diarization
-                      yet, so the mockup shows the real per-line output:
-                      just timestamp + transcribed text. */}
+
+              {/* Reader / Editor toggle */}
+              <div className="px-5 pt-4">
+                <div className="inline-flex items-center gap-0 bg-slate-100 rounded-lg p-0.5 text-xs">
+                  <button className="px-3 py-1 rounded-md bg-white text-slate-800 shadow-sm font-medium">Reader</button>
+                  <button className="px-3 py-1 rounded-md text-slate-500">Editor</button>
+                </div>
+              </div>
+
+              {/* Native-style audio player mock */}
+              <div className="px-5 pt-3">
+                <div className="flex items-center gap-3 bg-slate-100 rounded-full px-3 py-2 text-slate-600 text-xs">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                  <span className="font-mono">0:00 / 1:39</span>
+                  <div className="flex-1 h-1 rounded-full bg-slate-300/70 relative">
+                    <div className="absolute inset-y-0 left-0 w-0 bg-brand-500 rounded-full" />
+                  </div>
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4z" /></svg>
+                  <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.5" /><circle cx="12" cy="12" r="1.5" /><circle cx="12" cy="19" r="1.5" /></svg>
+                </div>
+              </div>
+
+              {/* Search transcript input */}
+              <div className="px-5 pt-3">
+                <div className="relative">
+                  <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="7" /><path d="M21 21l-4.35-4.35" />
+                  </svg>
+                  <div className="text-xs text-slate-400 border border-slate-200 rounded-lg pl-8 pr-3 py-2 bg-white">Search transcript…</div>
+                </div>
+              </div>
+
+              {/* Per-line timestamped list */}
+              <div className="px-5 pt-3">
+                <div className="border border-slate-200 rounded-xl overflow-hidden divide-y divide-slate-100 bg-white">
                   {[
-                    { t: '00:00:00', line: 'Can you tell us about your journey into filmmaking?' },
-                    { t: '00:00:07', line: 'It started as a hobby in college. I loved storytelling and visual arts.' },
-                    { t: '00:00:15', line: 'What inspires your creative process?' },
-                    { t: '00:00:24', line: 'People and real life moments. I observe and translate them into stories.' },
+                    { t: '0:00',  line: 'Hi, thanks for making time today. Let us start simple.' },
+                    { t: '0:07',  line: 'I started making short films back in college as a hobby.' },
+                    { t: '0:15',  line: 'What draws you to a story before you commit to it?' },
+                    { t: '0:24',  line: 'Real people, real moments. I observe first, script later.' },
+                    { t: '0:34',  line: 'How do you keep the crew energy up on long shoots?' },
+                    { t: '0:42',  line: 'Small rituals. Coffee at call time, a walk before magic hour.' },
+                    { t: '0:54',  line: 'What advice would you give someone starting out?' },
+                    { t: '1:02',  line: 'Watch a lot. Then shoot even more. Nothing beats reps.' },
                   ].map((row, i) => (
-                    <div key={i} className="grid grid-cols-[auto_1fr] gap-3 items-start">
-                      <span className="font-mono text-[10px] text-brand-600 font-semibold mt-1 whitespace-nowrap">{row.t}</span>
+                    <div key={i} className="grid grid-cols-[auto_1fr] gap-4 px-4 py-2.5 items-start text-sm hover:bg-slate-50">
+                      <span className="font-mono text-xs text-brand-600 font-semibold pt-0.5 whitespace-nowrap">{row.t}</span>
                       <span className="text-slate-700 leading-snug">{row.line}</span>
                     </div>
                   ))}
-                  <div className="pt-3 mt-2 border-t border-slate-100">
-                    <div className="flex items-end gap-0.5 h-6">
-                      {Array.from({ length: 60 }).map((_, i) => {
-                        const h = 4 + ((i * 17) % 18)
-                        return <div key={i} className="w-0.5 rounded-sm bg-brand-300" style={{ height: h + 'px' }} />
-                      })}
-                    </div>
-                    <div className="flex justify-between text-[10px] font-mono text-slate-400 mt-1">
-                      <span>00:00:00</span>
-                      <span>12:45</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-4 bg-slate-50/50">
-                  <div className="flex items-center gap-1.5 mb-3">
-                    <span className="w-4 h-4 text-brand-600">{Icons.sparkles}</span>
-                    <div className="text-sm font-semibold text-slate-800">AI Summary</div>
-                  </div>
-                  <ul className="space-y-2 text-xs text-slate-600 leading-relaxed">
-                    <li className="flex gap-2"><span className="w-1 h-1 mt-1.5 rounded-full bg-brand-500 flex-shrink-0" />The guest discovered filmmaking in college as a hobby.</li>
-                    <li className="flex gap-2"><span className="w-1 h-1 mt-1.5 rounded-full bg-brand-500 flex-shrink-0" />Storytelling and visual arts sparked their passion.</li>
-                    <li className="flex gap-2"><span className="w-1 h-1 mt-1.5 rounded-full bg-brand-500 flex-shrink-0" />Real life moments and people inspire their creative process.</li>
-                  </ul>
-                  <div className="mt-4">
-                    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Export</div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {['TXT', 'SRT', 'VTT', 'DOCX'].map((f) => (
-                        <span key={f} className="text-[10px] font-semibold text-brand-700 bg-brand-50 px-2 py-0.5 rounded">{f}</span>
-                      ))}
-                    </div>
-                  </div>
                 </div>
               </div>
+
+              {/* Footer hint */}
+              <p className="text-[11px] text-slate-400 px-5 py-3">
+                Cleaner per-line layout with timestamps. Best for reading.
+              </p>
             </div>
           </div>
         </div>
