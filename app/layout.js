@@ -3,6 +3,7 @@ import { Analytics } from '@vercel/analytics/react'
 import SiteHeader from '@/components/SiteHeader'
 import SiteFooter from '@/components/SiteFooter'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
+import HtmlLangEffect from '@/components/HtmlLangEffect'
 
 export const metadata = {
   title: 'Mictoo — Free AI Audio & Video Transcription Online',
@@ -45,12 +46,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID
 
-  // NOTE: <html lang="en"> is a safe default; localized locale pages override it
-  // visually for users via the LanguageSwitcher and via per-page metadata
-  // (canonical + hreflang). Setting lang dynamically would require turning the
-  // root layout into a client component or using a middleware-driven approach;
-  // both add complexity without measurable SEO benefit because Google relies on
-  // canonical + hreflang, not on <html lang>, to assign locale.
+  // <html lang="en"> is a static default so the app router can still
+  // pre-render all 480+ pages as static content (using headers() in this
+  // root layout would force every page into dynamic server-render mode
+  // and 8x Vercel invocations). HtmlLangEffect patches the DOM on the
+  // client with the URL-derived locale, so screen readers and Google's
+  // JS rendering pipeline see the correct value. Crawler correctness on
+  // the raw HTML (no JS) is provided by canonical + hreflang metadata
+  // already present on every localized page.
   return (
     <html lang="en">
       <head>
@@ -63,6 +66,7 @@ export default function RootLayout({ children }) {
         )}
       </head>
       <body className="min-h-screen flex flex-col">
+        <HtmlLangEffect />
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <Analytics />
