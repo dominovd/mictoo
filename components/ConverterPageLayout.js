@@ -73,13 +73,16 @@ const TOOLS_NAV = [
   { slug: 'mp3-to-wav',                icon: 'refresh' },
 ]
 
-// Default 4-chip trust row.
-const DEFAULT_CHIPS = [
-  { label: 'Free',         icon: 'gift' },
-  { label: 'Auto-deleted', icon: 'shield' },
-  { label: 'No signup',    icon: 'user' },
-  { label: 'No watermark', icon: 'drop' },
-]
+// Default 4-chip trust row — labels resolved via layouts.converterZone.chip*
+// so each locale gets its own copy. Icons stay constant.
+function defaultChips(locale) {
+  return [
+    { label: t(locale, 'layouts.converterZone.chipFree'),         icon: 'gift' },
+    { label: t(locale, 'layouts.converterZone.chipAutoDeleted'),  icon: 'shield' },
+    { label: t(locale, 'layouts.converterZone.chipNoSignup'),     icon: 'user' },
+    { label: t(locale, 'layouts.converterZone.chipNoWatermark'),  icon: 'drop' },
+  ]
+}
 
 function Eyebrow({ children }) {
   return (
@@ -163,7 +166,23 @@ export default function ConverterPageLayout({
   moreTools = [],        // [{href, label}]
 }) {
   const isConverter = mode === 'converter'
-  const trustChips = chips || DEFAULT_CHIPS
+  const trustChips = chips || defaultChips(locale)
+
+  // Labels for ConverterZone drop area — locale-aware, with {from}/{to}/{size}
+  // interpolated per-page so the model can say ".mp4 only" or ".{{to}}".
+  const zoneLabels = {
+    dropPrimary:    t(locale, 'layouts.converterZone.dropPrimary',    { from: from || 'audio' }),
+    dropSecondary:  t(locale, 'layouts.converterZone.dropSecondary'),
+    browseButton:   t(locale, 'layouts.converterZone.browseButton'),
+    sizeHint:       t(locale, 'layouts.converterZone.sizeHint',       { size: 25, from: from || 'audio' }),
+    uploading:      t(locale, 'layouts.converterZone.uploading'),
+    converting:     t(locale, 'layouts.converterZone.converting',     { to: to || 'output' }),
+    doneTitle:      t(locale, 'layouts.converterZone.doneTitle'),
+    downloadButton: t(locale, 'layouts.converterZone.downloadButton', { to: to || 'file' }),
+    newFileButton:  t(locale, 'layouts.converterZone.newFileButton'),
+    errorTitle:     t(locale, 'layouts.converterZone.errorTitle'),
+    tryAgain:       t(locale, 'layouts.converterZone.tryAgain'),
+  }
 
   const faqSchema = faq?.length > 0 ? {
     '@context': 'https://schema.org',
@@ -201,9 +220,9 @@ export default function ConverterPageLayout({
 
         <div id="tool" className="max-w-3xl mx-auto mt-8 scroll-mt-20">
           {isConverter ? (
-            <ConverterZone from={from} to={to} />
+            <ConverterZone from={from} to={to} labels={zoneLabels} />
           ) : (
-            <UploadZone />
+            <UploadZone locale={locale} />
           )}
         </div>
 

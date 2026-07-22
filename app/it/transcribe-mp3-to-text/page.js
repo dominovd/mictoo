@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import FormatPageLayout from '@/components/FormatPageLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/transcribe-mp3-to-text',
@@ -15,80 +15,176 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'MP3 in testo — trascrizione MP3 gratuita con IA | Mictoo',
-  description: 'Convertitore gratuito MP3 in testo. Carica qualsiasi MP3 e ottieni una trascrizione IA in pochi secondi. Funziona con podcast, interviste, lezioni. Oltre 50 lingue, senza registrazione.',
-  alternates: { canonical: 'https://mictoo.com/it/transcribe-mp3-to-text', languages: LANGS },
-
+  title: 'MP3 a Testo: Trascrizione MP3 Online Gratuita per Podcast e Registrazioni Vocali | Mictoo',
+  description:
+    'Trascrivi file audio MP3 con timestamp, riepilogo AI e esportazioni. Ottimizzato per podcast, note vocali e audio scaricati. Carica il tuo MP3, ottieni il testo in pochi secondi.',
+  alternates: {
+    canonical: 'https://mictoo.com/it/transcribe-mp3-to-text',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "MP3 in testo — trascrizione MP3 gratuita con IA | Mictoo",
-    description: "Convertitore gratuito MP3 in testo. Carica qualsiasi MP3 e ottieni una trascrizione IA in pochi secondi. Funziona con podcast, interviste, lezioni. Oltre 50 lingue, senza registrazione.",
-    url: "https://mictoo.com/it/transcribe-mp3-to-text",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'MP3 a Testo: Trascrizione MP3 Online Gratuita | Mictoo',
+    description: 'Carica il tuo podcast MP3 o registrazione vocale, ottieni una trascrizione con riepilogo in pochi secondi.',
+    url: 'https://mictoo.com/it/transcribe-mp3-to-text',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "MP3 in testo — trascrizione MP3 gratuita con IA | Mictoo",
-    description: "Convertitore gratuito MP3 in testo. Carica qualsiasi MP3 e ottieni una trascrizione IA in pochi secondi. Funziona con podcast, interviste, lezioni. Oltre 50 lingue, senza registrazione.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'MP3 a Testo: Trascrizione MP3 Online Gratuita',
+    description: 'Carica il tuo MP3, ottieni una trascrizione.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function ItMp3ToTextPage() {
+export default function ItTranscribeMp3ToTextPage() {
   return (
-    <LandingLayout
-      defaultLanguage="it"
-      badge="MP3 · GRATIS · SENZA REGISTRAZIONE"
-      h1={<>MP3 in testo<br /><span className="text-brand-600">Trascrizione MP3 gratuita</span></>}
-      subtitle="Trascrizione IA gratuita per qualsiasi MP3. Rilascia il file, ottieni il testo in pochi secondi. Senza account, senza tariffa al minuto, senza email."
-      howItWorks={[
-        { icon: '📂', title: 'Rilascia l\'MP3', desc: 'Qualsiasi MP3 funziona. Download di podcast, export di memo vocale, rip audio, file di voce generata da IA. Trascina o clicca per scegliere.' },
-        { icon: '⚡', title: 'L\'IA trascrive', desc: 'Whisper large-v3 legge l\'MP3 e converte la voce in testo. Un podcast tipico da 30 minuti finisce in circa un minuto. Un memo vocale da 5 minuti in circa 15 secondi.' },
-        { icon: '📋', title: 'Copia, scarica o modifica', desc: 'Leggilo nel browser, copia negli appunti o scarica come TXT o SRT. Correggi le parole sbagliate inline prima di esportare.' },
+    <FormatPageLayout
+      locale="it"
+      badge="MP3 · Adatto ai podcast · Gratuito"
+      h1First="MP3 a Testo"
+      h1Second="Per podcast, note vocali e interviste"
+      subtitle="L’MP3 è un formato comune per podcast e registrazioni vocali. Carica il tuo episodio, nota vocale o intervista scaricata e ottieni una trascrizione con timestamp, riepilogo AI ed esportazioni pulite per le note dello show."
+      highlightFormat="mp3"
+      previewFileName="podcast-episode.mp3"
+      previewWordCount={182}
+      previewDurationLabel="28:14"
+      previewLines={[
+        { t: '0:00',  line: 'Ben tornati allo show. Oggi parliamo dello stato del podcasting indipendente nel 2026.' },
+        { t: '0:07',  line: 'Il mio ospite ha condotto uno show settimanale per otto anni senza mai saltare un episodio.' },
+        { t: '0:14',  line: 'Grazie per avermi invitato. È incredibile pensare che abbiamo iniziato quando tutti dicevano che l’audio era già saturo.' },
+        { t: '0:22',  line: 'Iniziamo da qui. Cosa era diverso nel lanciare un podcast nel 2018 rispetto ad ora?' },
+        { t: '0:30',  line: 'La distribuzione era più difficile, ma il pubblico era più paziente.' },
+        { t: '0:37',  line: 'Oggi gli strumenti sono fantastici, trascrizione in pochi secondi, riepiloghi AI per le note dello show, ma l’attenzione è più scarsa.' },
+        { t: '0:47',  line: 'Questo è un buon collegamento. Qual è il tuo flusso di lavoro per le note dello show ora che le trascrizioni sono praticamente gratuite?' },
+        { t: '0:55',  line: 'Esporto l’MP3, lo carico in uno strumento di trascrizione e utilizzo il riepilogo AI come prima bozza delle note.' },
       ]}
-      whyUse={{ title: 'Perché Mictoo per MP3', bullets: [
-        { title: 'Whisper large-v3, non un modello sfoltito per i gratuiti', desc: 'Non gestiamo un modello più piccolo "per utenti free" e uno più grosso per i paganti. Stesso modello, stessa precisione, ogni file.' },
-        { title: 'Specificità MP3 gestite bene', desc: 'MP3 è lossy, e alcuni strumenti si strozzano su file molto compressi (32 kbps, mono, sample rate basso). Whisper li gestisce senza lamentele. Abbiamo visto trascrizioni leggibili da MP3 di telefonate a 24 kbps.' },
-        { title: 'Nessuna conversione di file richiesta', desc: 'Alcuni strumenti "MP3 in testo" vogliono WAV in segreto e ri-codificano il tuo MP3 prima. Noi mandiamo l\'MP3 direttamente al modello. Più veloce, senza la perdita di una seconda codifica.' },
-        { title: 'Nessun contatore al minuto', desc: 'Alcuni concorrenti ti danno 60 minuti gratis al mese, poi addebitano 25 centesimi al minuto. Noi siamo finanziati dalla pubblicità, senza limite di minuti. Trascrivi un file o cento.' },
-        { title: 'Privacy di default', desc: 'L\'MP3 va al provider di voce, viene trascritto, poi scartato. Non scriviamo mai il tuo audio su disco dalla nostra parte.' },
-      ]}}
-      useCases={{ title: 'A cosa serve la gente "MP3 in testo"', items: [
-        { title: 'Episodi di podcast', desc: 'Trascina l\'MP3 dal tuo hosting podcast (Anchor, Buzzsprout, Transistor) e ottieni il testo per show notes, riuso in blog o accessibilità.' },
-        { title: 'Registrazioni di telefonate', desc: 'MP3 è l\'export standard della maggior parte delle app di registrazione chiamate. Trascrivi per scorrere velocemente una chiamata lunga e trovare la parte che conta.' },
-        { title: 'Memo vocali esportati dal telefono', desc: 'I Memo Vocali iPhone sono M4A di default, ma se ne hai inviato uno via AirDrop come MP3 o usato un\'app Android che salva in MP3, questo è il tuo strumento.' },
-        { title: 'Estratti di audiolibri o rip di lezioni', desc: 'Per studiare, avere il testo accanto all\'audio raddoppia la memorizzazione. Resta solo dal lato giusto del copyright.' },
-        { title: 'Voci IA e output TTS', desc: 'Se hai generato voce con ElevenLabs, OpenAI TTS, Murf o qualsiasi altro strumento di sintesi, potresti volere una trascrizione pulita di ritorno per lavoro su sottotitoli o allineamento.' },
-      ]}}
-      proTips={{ title: 'Consigli per la trascrizione MP3', tips: [
-        { title: 'Bitrate costante meglio di variabile per Whisper', desc: 'MP3 VBR (variable bitrate) può confondere alcuni decoder audio in casi limite. Se controlli l\'export, scegli CBR a 64 o 96 kbps mono. Meno lavoro per il modello.' },
-        { title: '64 kbps mono è il punto dolce per voce in MP3', desc: 'Più alto è spreco per la voce. Un episodio da 60 minuti a 64 kbps mono è circa 28 MB. Sta comodo nel tier gratuito da 25 MB, o comodamente nel tier da 60 MB con login.' },
-        { title: 'Se l\'MP3 è enorme (oltre 60 MB), ri-codifica prima di dividere', desc: 'Dividere e poi trascrivere due file è più lavoro che ri-codificare una volta a bitrate più basso. ffmpeg: ffmpeg -i big.mp3 -ac 1 -b:a 64k small.mp3. Un originale di 200 MB scende a 25-40 MB.' },
-        { title: 'Togli i metadati ID3 se il file è al limite', desc: 'I tag ID3 (cover, testi, ecc.) possono aggiungere diversi MB a un MP3. Se sei 1-2 MB sopra il limite, togliere i tag con ffmpeg -i in.mp3 -map_metadata -1 -c:a copy out.mp3 può bastare.' },
-        { title: 'Codifica MP3 cattiva di vecchi convertitori causa gap silenziosi', desc: 'Se la trascrizione salta sezioni, l\'MP3 potrebbe avere effettivi gap silenziosi da un encoder buggato. Ri-codifica dalla sorgente se ce l\'hai, o usa Find Silence di Audacity per confermare.' },
-        { title: 'Per MP3 di telefonate (8 kHz mono), aspettati precisione leggermente più bassa', desc: 'L\'audio telefonico perde le alte frequenze, il che ti costa qualche punto di precisione. Resta leggibile, pianifica solo più pulizia su nomi e numeri.' },
-      ]}}
+      whyTitle="Perché scegliere Mictoo per la trascrizione MP3"
+      whyCards={[
+        {
+          icon: 'mic',
+          title: 'Creato per podcast e voce',
+          desc: 'L’MP3 è ciò che le reti di podcast distribuiscono e le app vocali esportano. Ottimizzato per contenuti vocali con timestamp pronti per le note dello show e i sottotitoli.',
+        },
+        {
+          icon: 'gear',
+          title: 'Impostazioni MP3 comuni accettate',
+          desc: 'Bitrate costante o variabile, mono o stereo. La chiarezza del parlato è la cosa più importante; bitrate molto bassi e artefatti di compressione udibili possono ridurre l’accuratezza.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Riepilogo AI per le note dello show',
+          desc: 'Un riepilogo appare automaticamente accanto alla trascrizione. Una solida prima bozza per le note degli episodi, descrizioni e riepiloghi ottimizzati per SEO.',
+        },
+        {
+          icon: 'globe',
+          title: 'SRT, VTT e oltre 50 lingue',
+          desc: 'Esporta SRT o VTT per la versione video su YouTube dell’episodio. Traduci in spagnolo, francese, tedesco e oltre 45 altre lingue con un clic.',
+        },
+      ]}
+      scenariosTitle="Quando l’MP3 a testo è la scelta giusta"
+      scenarios={[
+        {
+          icon: 'mic',
+          title: 'Note degli episodi del podcast',
+          desc: 'Hai caricato l’episodio, caricato sul tuo host. Carica lo stesso MP3 qui per la trascrizione e il riepilogo AI che diventeranno le note dello show.',
+        },
+        {
+          icon: 'layers',
+          title: 'Archivio di podcast',
+          desc: 'Anni di episodi già pubblicati senza trascrizioni. Processali uno alla volta per riempire l’archivio e rendere ogni episodio ricercabile.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Nota vocale in documento',
+          desc: 'Note vocali registrate sul tuo telefono (molte app esportano MP3). Trasforma idee confuse in testo ricercabile e modificabile per la tua app di note.',
+        },
+        {
+          icon: 'clip',
+          title: 'Interviste scaricate',
+          desc: 'Intervista di podcast che vuoi citare in un articolo, MP3 di conferenza che vuoi menzionare, lezione scaricata che vuoi studiare.',
+        },
+        {
+          icon: 'book',
+          title: 'Capitoli di audiolibri',
+          desc: 'Capitolo di audiolibro MP3 che vuoi come testo stampato per prendere appunti. Grandi file di audiolibri spesso superano i 60 MB e devono essere divisi prima.',
+        },
+        {
+          icon: 'video',
+          title: 'Audio YouTube-to-MP3',
+          desc: 'Gli estrattori audio di YouTube spesso producono MP3 per compatibilità. Carica il file estratto per una trascrizione pulita con timestamp.',
+        },
+      ]}
+      technicalTitle="Cosa conta in un MP3"
+      technicalIntro="Le impostazioni MP3 influenzano la dimensione del file e possono influenzare l’intelligibilità agli estremi. Questi dettagli ti aiutano a decidere se caricare il file così com’è o creare prima una copia audio più piccola."
+      technicalFacts={[
+        {
+          icon: 'waveform',
+          title: 'Bitrate e chiarezza',
+          desc: 'Il parlato a un bitrate moderato è solitamente adatto. Bitrate estremamente bassi, clipping o forti artefatti possono nascondere consonanti e nomi.',
+        },
+        {
+          icon: 'gear',
+          title: 'CBR e VBR',
+          desc: 'Sia i file MP3 a bitrate costante che variabile possono essere caricati; i timestamp seguono la timeline audio decodificata.',
+        },
+        {
+          icon: 'clip',
+          title: 'I tag ID3 rimangono separati',
+          desc: 'Artista, titolo, copertina e metadati dei capitoli non vengono inseriti nella trascrizione. Tieni quei metadati nel tuo sistema di pubblicazione.',
+        },
+        {
+          icon: 'cloud',
+          title: 'Episodi lunghi',
+          desc: 'Se un episodio supera il limite di caricamento, esporta una copia audio mono a un bitrate inferiore o dividilo in un punto naturale.',
+        },
+      ]}
       faq={[
-        { q: 'MP3 è il formato migliore per la trascrizione?', a: 'Per la maggior parte degli utenti, sì. MP3 è piccolo, supportato ovunque, e la precisione con Whisper è essenzialmente identica a WAV o FLAC. Usa lossless (WAV, FLAC) solo se hai bisogno dell\'audio anche per editing dopo.' },
-        { q: 'Quali bitrate MP3 funzionano meglio?', a: 'Qualsiasi da 32 kbps mono a 320 kbps stereo. Per la voce, 64-96 kbps mono è il punto dolce pratico. Più alto non migliora la trascrizione, più basso inizia a perdere intelligibilità per il modello.' },
-        { q: 'Il mio MP3 supera i 60 MB. E ora?', a: 'Due opzioni. Ri-codificare a bitrate più basso (64 kbps mono divide la maggior parte degli MP3 per 4 o più), o dividere il file in pezzi sotto i 60 MB. Abbiamo guide per entrambi.' },
-        { q: 'Quanto ci mette a trascrivere un MP3?', a: 'Circa l\'1-2% della durata audio. Un MP3 da 60 minuti finisce in circa 60 secondi. Uno da 10 minuti in 10-20 secondi. L\'upload di rete è di solito l\'attesa più lunga.' },
-        { q: 'Il mio MP3 verrà salvato o condiviso?', a: 'No. Il file va al nostro provider di voce (Groq, con OpenAI come backup), viene trascritto, poi scartato. Non lo scriviamo sui nostri server, e i provider che usiamo non si addestrano sui dati API.' },
-        { q: 'Posso caricare più MP3 in batch?', a: 'Non in un click per ora. Adesso trascrivi un file alla volta. L\'upload batch è nella roadmap per il piano Pro a pagamento.' },
-        { q: 'Quali lingue supportate?', a: 'Oltre 50 lingue. Il rilevamento automatico gestisce la maggior parte dei casi. Per file sotto i 5 minuti o file che iniziano con musica o silenzio, scegli la lingua manualmente.' },
-        { q: 'Posso ottenere timecode da un MP3?', a: 'Sì. Scarica come SRT (file sottotitoli) e ottieni timecode ogni pochi secondi. Oppure usa la nostra pagina Trascrizione con timecode per granularità a livello di parola.' },
-        { q: 'Mictoo funziona con MP3 di podcast con marker di capitoli?', a: 'Estraiamo l\'audio e ignoriamo i metadati dei capitoli. Ottieni la trascrizione completa come un documento. Se vuoi trascrizioni allineate ai capitoli, dividi l\'MP3 ai confini dei capitoli prima.' },
-        { q: 'La trascrizione del mio MP3 avrà etichette dei parlanti?', a: 'Non automaticamente. Whisper non fa diarizzazione di default. Se servono etichette, carica la traccia di ogni parlante separatamente (se le hai) e etichettale tu.' },
-        { q: 'Posso trascrivere un MP3 di voce generata da IA?', a: 'Sì. L\'audio TTS (ElevenLabs, OpenAI, Murf, ecc.) di solito si trascrive più pulito della voce umana perché non c\'è rumore di fondo o esitazione.' },
-        { q: 'Il mio MP3 è in una lingua rara. Funzionerà?', a: 'Se Whisper supporta la lingua, sì. Il modello copre oltre 50 lingue con buona precisione e supporto base per molte altre. Prova. Se il risultato è inutilizzabile, la lingua è probabilmente fuori dai dati di training.' },
+        {
+          q: 'Mictoo trascrive qualsiasi file MP3?',
+          a: 'Mictoo accetta file MP3 comuni con bitrate costante o variabile, audio mono o stereo. File danneggiati, varianti non supportate o registrazioni con gravi artefatti di compressione potrebbero necessitare di un nuovo export. Il limite è di 60 MB quando si è registrati e 25 MB in modo anonimo.',
+        },
+        {
+          q: 'Il bitrate MP3 influisce sulla qualità della trascrizione?',
+          a: 'La chiarezza della registrazione è più importante di un bitrate elevato, ma il bitrate non è irrilevante. Una registrazione vocale pulita a un bitrate moderato è solitamente adatta; compressione aggressiva, clipping o bitrate molto bassi possono rimuovere dettagli del parlato e ridurre l’accuratezza.',
+        },
+        {
+          q: 'Il mio MP3 del podcast è oltre 60 MB. Cosa faccio ora?',
+          a: 'Crea una copia audio mono più piccola con ffmpeg: ffmpeg -i podcast.mp3 -b:a 64k -ac 1 output.mp3. Controlla il risultato per artefatti udibili prima di caricare, o dividi l’episodio in un punto naturale.',
+        },
+        {
+          q: 'Posso ottenere un riepilogo AI dell’episodio?',
+          a: 'Sì. Il riepilogo AI appare automaticamente accanto alla trascrizione dopo che la trascrizione è completata. È una solida prima bozza per le note del podcast, descrizioni degli episodi e riepiloghi ottimizzati per SEO.',
+        },
+        {
+          q: 'Posso scaricare sottotitoli SRT per la versione YouTube?',
+          a: 'Sì. Esporta come SRT o VTT dopo la trascrizione. Entrambi i formati includono timestamp allineati alla timeline originale dell’MP3. Carica nel tuo upload su YouTube o nel tuo editor video per i sottotitoli.',
+        },
+        {
+          q: 'Mictoo trascrive file MP3 non in inglese?',
+          a: 'Sì. Whisper large-v3 supporta oltre 50 lingue con auto-rilevamento. Per MP3 brevi o contenuti non in inglese, imposta esplicitamente la lingua nel menu a discesa per una rilevazione più pulita al primo passaggio.',
+        },
+        {
+          q: 'Posso tradurre la trascrizione in un’altra lingua?',
+          a: 'Sì. Dopo che la trascrizione è completata, scegli una lingua di destinazione e fai clic su Traduci. La traduzione è generata da GPT-4o-mini e appare accanto alla trascrizione originale.',
+        },
+        {
+          q: 'Il mio file MP3 sarà salvato sui vostri server?',
+          a: 'No. L’MP3 viene trasmesso al fornitore di trascrizione, elaborato una sola volta e rimosso dalla memoria. Non scriviamo mai l’audio su disco. La trascrizione testuale è memorizzata solo se accedi e scegli di aggiungerla alla tua cronologia.',
+        },
+        {
+          q: 'I metadati ID3 (artista, titolo, album) appariranno nella trascrizione?',
+          a: 'No. La trascrizione è testo semplice senza metadati MP3. I tag ID3 vengono ignorati durante la trascrizione. Se hai bisogno che la trascrizione sia abbinata ai metadati dell’episodio, mantieni quella mappatura nel tuo sistema di archiviazione.',
+        },
+        {
+          q: 'Quanto tempo ci vuole per una trascrizione MP3?',
+          a: 'Un MP3 di podcast di 30 minuti di solito finisce in 30-50 secondi dall’inizio alla fine. File più grandi vicino al limite di caricamento impiegano 60-90 secondi. La velocità di caricamento è spesso il passaggio più lungo del processo.',
+        },
       ]}
-      relatedLinks={[
-        { href: '/it/transcribe-audio-to-text', label: 'Audio in testo', desc: 'Per formati non-MP3 (WAV, M4A, FLAC, OGG).' },
-        { href: '/it/podcast-transcription', label: 'Trascrizione podcast', desc: 'Stesso motore, consigli specifici per podcast.' },
-        { href: '/it/free-srt-generator', label: 'Generatore SRT', desc: 'Quando servono sottotitoli per video, non solo testo.' },
-        { href: '/it/how-to-compress-audio', label: 'Come comprimere l\'audio', desc: 'Quando l\'MP3 è troppo grande.' },
-      ]}
+      ctaHeadline="Carica il tuo MP3, scrivi note dello show più velocemente"
+      ctaSubtitle="Episodio di podcast, nota vocale, intervista scaricata, capitolo di audiolibro. Ottieni il testo e il riepilogo in pochi secondi."
+      ctaButton="Carica MP3 per trascrivere"
     />
   )
 }
