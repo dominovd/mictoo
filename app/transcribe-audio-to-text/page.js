@@ -282,8 +282,10 @@ export default function TranscribeAudioToTextPage() {
                 (Wave 3 header, Reader/Editor toggle, native-style audio
                 player, search input, per-line timestamped list, footer
                 hint). Static English content so it makes sense as a
-                marketing demo. */}
-            <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+                marketing demo. lg:-mt-[72px] pulls the mockup up so its
+                top edge aligns with the H2 baseline on desktop, matching
+                the same treatment the homepage uses. */}
+            <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden lg:-mt-[72px]">
               {/* Header — file icon + name + Completed + word count | Translate | Download | New file */}
               <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100 gap-3 flex-wrap">
                 <div className="flex items-center gap-2.5 min-w-0">
