@@ -48,11 +48,27 @@ const LOCALES = {
 }
 
 const WAVES = {
+  // Format landings on FormatPageLayout (7 pages — mp3 already piloted by hand)
+  formats: ['transcribe-video-to-text', 'wav-to-text', 'm4a-to-text', 'flac-to-text', 'ogg-to-text', 'webm-to-text', 'aac-to-text'],
+
+  // Use-case landings on UseCaseLayout (13 pages, includes youtube-to-text)
+  usecases: ['meeting-transcription', 'zoom-transcription', 'google-meet-transcription', 'teams-meeting-transcription',
+             'interview-transcription', 'lecture-transcription', 'business-transcription',
+             'webinar-transcription', 'sermon-transcription', 'dictation-to-text',
+             'podcast-transcription', 'voice-memo-to-text', 'youtube-to-text'],
+
+  // Tool landings on ConverterPageLayout (11 pages)
+  tools: ['mp4-to-mp3', 'wav-to-mp3', 'webm-to-mp3', 'flac-to-mp3', 'aac-to-mp3', 'wma-to-mp3', 'm4a-to-mp3',
+          'mp3-to-m4a', 'mp3-to-wav', 'free-srt-generator', 'timestamped-transcription'],
+
+  // Language landings on LanguagePageLayout (4 pages)
+  languages: ['french-speech-to-text', 'spanish-audio-to-text', 'german-audio-transcription', 'multilingual-transcription'],
+
+  // Legacy wave names kept for reverse compat with old runs
   wave4: ['wav-to-text', 'm4a-to-text', 'flac-to-text', 'ogg-to-text', 'webm-to-text', 'aac-to-text'],
   alternatives: ['descript-alternative', 'fireflies-alternative', 'otter-alternative', 'notta-alternative', 'turboscribe-alternative'],
   converters: ['aac-to-mp3', 'wma-to-mp3', 'm4a-to-mp3', 'flac-to-mp3', 'wav-to-mp3', 'webm-to-mp3', 'mp4-to-mp3', 'mp3-to-wav', 'mp3-to-m4a'],
   meetings: ['zoom-transcription', 'google-meet-transcription', 'teams-meeting-transcription', 'meeting-transcription', 'business-transcription'],
-  languages: ['french-speech-to-text', 'spanish-audio-to-text', 'german-audio-transcription'],
   generic: ['transcribe-audio-to-text', 'transcribe-mp3-to-text', 'transcribe-video-to-text', 'free-srt-generator', 'youtube-to-text'],
 }
 
@@ -106,6 +122,16 @@ URL REWRITING RULES:
 
 COMPONENT NAME:
 - The export default function name should be prefixed with ${camelCase(localeCode)} (e.g. function WavToTextPage → function ${camelCase(localeCode)}WavToTextPage)
+
+LOCALE PROP (required for new-shell layouts):
+- If the source uses FormatPageLayout, UseCaseLayout, ConverterPageLayout, or LanguagePageLayout, you MUST add locale="${localeCode}" as the first prop (before any existing prop). Example:
+    <FormatPageLayout
+      locale="${localeCode}"
+      badge="…"
+      ...
+    />
+  This tells the layout to render its internal chrome (tabs, sidebar labels, FAQ header, table headers, More-tools cards) in ${localeName}.
+- Do NOT add locale prop to LandingLayout or ComparisonLayout (they use their own defaultLanguage prop, which stays untouched).
 
 LANGS CONST:
 - If the source has hreflang URLs inline in alternates.languages, refactor them into a LANGS const at the top of the file (above metadata) following this template:
@@ -200,9 +226,17 @@ async function translateOne(slug, localeCode) {
   console.log(`  ✓ ${(cleaned.length / 1024).toFixed(1)} KB out in ${dt}s (${inTok}/${outTok} tok)`)
 
   // VALIDATION 1: structural sanity
-  const checks = ['import LandingLayout', 'import ComparisonLayout', 'export default function']
+  const checks = ['import LandingLayout', 'import ComparisonLayout',
+                  'import FormatPageLayout', 'import UseCaseLayout',
+                  'import ConverterPageLayout', 'import LanguagePageLayout',
+                  'export default function']
   if (!checks.some(c => cleaned.includes(c))) {
     console.warn(`  ⚠ Output may be missing structural elements: ${dstPath}`)
+  }
+  // VALIDATION 1b: locale prop presence when new-shell layout is used
+  const usesNewShell = /FormatPageLayout|UseCaseLayout|ConverterPageLayout|LanguagePageLayout/.test(cleaned)
+  if (usesNewShell && !cleaned.includes(`locale="${localeCode}"`)) {
+    console.warn(`  ⚠ Missing locale="${localeCode}" on new-shell layout: ${dstPath}`)
   }
   // VALIDATION 2: style rule (em/en dash)
   if (/—|–/.test(cleaned)) {
