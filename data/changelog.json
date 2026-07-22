@@ -1,6 +1,50 @@
 {
-  "_comment": "Source of truth for the /whats-new page and the SiteHeader red-dot indicator. Entries are rendered newest-first by date. Each entry: { date (YYYY-MM-DD), title, body (plain text — paragraphs split on blank lines, inline links via markdown-style [label](url)), tags ([] of strings used as small labels). Add the newest entry at the TOP of the array so date sort isn't strictly required to look right while editing. Header's unread indicator compares localStorage 'mictoo:changelog_lastSeen' against entries[0].date.",
+  "_comment": "Source of truth for the /whats-new page and the SiteHeader red-dot indicator. Entries are rendered newest-first by date. Each entry: { date (YYYY-MM-DD), title, body (plain text — paragraphs split on blank lines, inline links via markdown-style [label](url)), tags ([] of strings used as small labels). Optional: translations: { fr: {title, body}, de: {...}, ... } — per-locale title+body override; the localized /whats-new page picks the right locale and falls back to top-level English if missing. Add the newest entry at the TOP of the array so date sort isn't strictly required to look right while editing. Header's unread indicator compares localStorage 'mictoo:changelog_lastSeen' against entries[0].date.",
   "entries": [
+    {
+      "date": "2026-07-22",
+      "title": "Full localization across all 10 languages",
+      "body": "Mictoo now speaks all 10 supported languages end to end, not just the marketing pages. Trust chips, sidebar navigation, the converter drop zone, and the transcript download menu are all localized. Homepage previews and metadata (og:locale, JSON-LD inLanguage, correct html lang) match each locale for better SEO and screen reader accuracy. Storage limit and translation language counts are updated site-wide (180 MB per file, 36 target languages).",
+      "tags": ["i18n"],
+      "translations": {
+        "fr": {
+          "title": "Localisation complète dans les 10 langues",
+          "body": "Mictoo parle désormais couramment les 10 langues prises en charge, pas seulement sur les pages marketing. Les chips de confiance, la navigation latérale, la zone de dépôt du convertisseur et le menu de téléchargement de la transcription sont tous localisés. Les aperçus de la page d'accueil et les métadonnées (og:locale, inLanguage dans JSON-LD, html lang correct) correspondent à chaque langue pour un meilleur SEO et une précision accrue pour les lecteurs d'écran. Les limites de stockage et le nombre de langues de traduction sont mis à jour sur tout le site (180 Mo par fichier, 36 langues cibles)."
+        },
+        "de": {
+          "title": "Vollständige Lokalisierung in allen 10 Sprachen",
+          "body": "Mictoo spricht jetzt alle 10 unterstützten Sprachen durchgängig, nicht nur auf den Marketing-Seiten. Trust-Chips, Seitenleisten-Navigation, die Konverter-Ablagezone und das Download-Menü der Transkription sind vollständig lokalisiert. Homepage-Vorschauen und Metadaten (og:locale, inLanguage im JSON-LD, korrektes html lang) passen zu jeder Sprache für besseres SEO und genauere Screenreader-Ausgabe. Speichergrenze und Anzahl der Übersetzungssprachen sind sitewide aktualisiert (180 MB pro Datei, 36 Zielsprachen)."
+        },
+        "es": {
+          "title": "Localización completa en los 10 idiomas",
+          "body": "Mictoo ahora habla los 10 idiomas admitidos de extremo a extremo, no solo en las páginas de marketing. Los chips de confianza, la navegación lateral, la zona de arrastre del convertidor y el menú de descarga de la transcripción están todos localizados. Las vistas previas de la página de inicio y los metadatos (og:locale, inLanguage en JSON-LD, html lang correcto) coinciden con cada idioma para mejorar el SEO y la precisión del lector de pantalla. Los límites de almacenamiento y el número de idiomas de traducción se han actualizado en todo el sitio (180 MB por archivo, 36 idiomas de destino)."
+        },
+        "ru": {
+          "title": "Полная локализация на всех 10 языках",
+          "body": "Mictoo теперь свободно говорит на всех 10 поддерживаемых языках, не только на маркетинговых страницах. Trust-чипы, сайдбар-навигация, drop-зона конвертера и меню загрузки транскрипта — всё локализовано. Превью главной и метаданные (og:locale, inLanguage в JSON-LD, корректный html lang) соответствуют локали для лучшего SEO и корректной работы скринридеров. Лимиты хранения и количество языков перевода обновлены по всему сайту (180 МБ на файл, 36 целевых языков)."
+        },
+        "it": {
+          "title": "Localizzazione completa in tutte le 10 lingue",
+          "body": "Mictoo ora parla tutte e 10 le lingue supportate da capo a piedi, non solo sulle pagine marketing. Chips di fiducia, navigazione laterale, zona di rilascio del convertitore e menu di download della trascrizione sono tutti localizzati. Le anteprime della homepage e i metadati (og:locale, inLanguage nel JSON-LD, html lang corretto) corrispondono a ogni lingua per un migliore SEO e maggiore precisione dei lettori di schermo. I limiti di archiviazione e il numero di lingue di traduzione sono aggiornati in tutto il sito (180 MB per file, 36 lingue di destinazione)."
+        },
+        "pt": {
+          "title": "Localização completa nos 10 idiomas",
+          "body": "Mictoo agora fala todos os 10 idiomas suportados de ponta a ponta, não apenas nas páginas de marketing. Chips de confiança, navegação lateral, zona de soltar do conversor e menu de download da transcrição estão todos localizados. As pré-visualizações da página inicial e os metadados (og:locale, inLanguage no JSON-LD, html lang correto) correspondem a cada idioma para melhor SEO e maior precisão dos leitores de tela. Os limites de armazenamento e o número de idiomas de tradução foram atualizados em todo o site (180 MB por arquivo, 36 idiomas de destino)."
+        },
+        "pl": {
+          "title": "Pełna lokalizacja we wszystkich 10 językach",
+          "body": "Mictoo mówi teraz płynnie we wszystkich 10 obsługiwanych językach, nie tylko na stronach marketingowych. Chips zaufania, nawigacja boczna, strefa upuszczania konwertera oraz menu pobierania transkrypcji są w pełni zlokalizowane. Podglądy strony głównej i metadane (og:locale, inLanguage w JSON-LD, poprawny html lang) odpowiadają każdemu językowi dla lepszego SEO i dokładniejszego działania czytników ekranu. Limity magazynu i liczba języków tłumaczenia zostały zaktualizowane w całej witrynie (180 MB na plik, 36 języków docelowych)."
+        },
+        "ja": {
+          "title": "10 言語すべてで完全ローカライズ",
+          "body": "Mictoo はマーケティングページだけでなく、サポートするすべての 10 言語で最初から最後まで対応します。トラストチップ、サイドバーナビゲーション、コンバーターのドロップゾーン、文字起こしのダウンロードメニューはすべてローカライズされました。ホームページのプレビューとメタデータ（og:locale、JSON-LD の inLanguage、正しい html lang）が各ロケールに一致し、SEO とスクリーンリーダーの精度が向上しました。ストレージ制限と翻訳言語数がサイト全体で更新されました（1 ファイルあたり 180 MB、36 の対象言語）。"
+        },
+        "ko": {
+          "title": "10개 언어 전체 완전 현지화",
+          "body": "Mictoo가 이제 마케팅 페이지뿐만 아니라 지원되는 10개 언어 전체에서 처음부터 끝까지 작동합니다. 신뢰 칩, 사이드바 탐색, 변환기 드롭 영역, 전사 다운로드 메뉴가 모두 현지화되었습니다. 홈페이지 미리보기와 메타데이터(og:locale, JSON-LD의 inLanguage, 올바른 html lang)가 각 로케일과 일치하여 SEO와 스크린 리더 정확도가 향상되었습니다. 저장 용량 제한과 번역 언어 수가 사이트 전체에서 업데이트되었습니다(파일당 180MB, 36개 대상 언어)."
+        }
+      }
+    },
     {
       "date": "2026-06-13",
       "title": "Bigger files via auto-split (registered users)",
