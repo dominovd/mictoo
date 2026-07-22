@@ -23,6 +23,9 @@ import HeroCounter from '@/components/HeroCounter'
 
 // ── Page-level metadata & canonical ─────────────────────────────────────────
 export const metadata = {
+  title: '音声・動画を無料で文字起こしするAIツール | Mictoo',
+  description:
+    '音声や動画をAIで無料文字起こし。登録不要で、MP3、MP4、WAV、M4Aなどの形式と50以上の言語に対応しています。',
   alternates: {
     canonical: 'https://mictoo.com/ja',
     languages: {
@@ -39,13 +42,28 @@ export const metadata = {
       'x-default': 'https://mictoo.com',
     },
   },
+  openGraph: {
+    title: '音声・動画を無料でAI文字起こし | Mictoo',
+    description: '音声または動画をアップロードすると、数秒で高精度な文字起こしを取得できます。',
+    url: 'https://mictoo.com/ja',
+    siteName: 'Mictoo',
+    locale: 'ja_JP',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630, alt: 'Mictoo — 無料AI文字起こし' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '無料AI文字起こし | Mictoo',
+    description: '音声や動画をアップロードして、数秒でテキストを取得できます。',
+    images: ['https://mictoo.com/opengraph-image'],
+  },
 }
 
 // ── FAQ data (shared between UI and JSON-LD) ─────────────────────────────────
 const FAQ = [
   {
     q: 'Mictooは本当に無料ですか？',
-    a: 'はい。Mictooは25MBまでのファイルに対して完全に無料です。アカウントもクレジットカードも不要で、隠れた料金もありません。サインインしたユーザーは、ファイルごとに60MBの制限と、1日あたり7回の無料転写が可能ですが、支払いは必要ありません。',
+    a: 'はい。Mictooは25MBまでのファイルを無料で文字起こしできます。アカウントやクレジットカードは不要で、隠れた料金もありません。ログインすると180MBまでのファイルを処理でき、1日7回まで無料で文字起こしできます。',
   },
   {
     q: '転写の精度はどれくらいですか？',
@@ -61,7 +79,7 @@ const FAQ = [
   },
   {
     q: '最大ファイルサイズはどれくらいですか？',
-    a: '匿名で最大25MB、無料サインイン後は60MBです。180MBまでの大きなファイルは自動的に分割され、登録ユーザーのために1つの転写にマージされます。',
+    a: 'アカウントなしでは最大25MB、無料登録後は最大180MBです。大きなファイルは自動的に分割され、結果は1つの文字起こしにまとめられます。',
   },
   {
     q: 'Mictooはどのファイル形式をサポートしていますか？',
@@ -77,7 +95,7 @@ const FAQ = [
   },
   {
     q: 'アカウントを作成する必要がありますか？',
-    a: 'いいえ。25MBまでのファイルについては、アカウントなしで転写できます。無料アカウントを作成すると、より大きなファイル（ファイルごとに最大60MB、180MBは自動分割）、履歴、AI要約、28言語への翻訳、転写とのチャットが利用可能になります。',
+    a: 'いいえ。25MBまでのファイルはアカウントなしで文字起こしできます。無料アカウントでは180MBまでのファイル、履歴、AI要約、36言語への翻訳、文字起こしとのチャットを利用できます。',
   },
   {
     q: 'Mictooはどの技術を使用していますか？',
@@ -89,6 +107,7 @@ const FAQ = [
 const webAppSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
+  inLanguage: 'ja-JP',
   name: 'Mictoo',
   url: 'https://mictoo.com/ja',
   description:
@@ -104,7 +123,7 @@ const webAppSchema = {
     'アカウント不要',
     '無料で使用可能',
     '転写のAI生成要約',
-    '転写を28言語に翻訳',
+    '文字起こしを36言語に翻訳',
     '転写とチャット',
     'MP3、MP4、WAV、M4A、OGG、WEBM、FLAC、AACをサポート',
   ],
@@ -113,6 +132,7 @@ const webAppSchema = {
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  inLanguage: 'ja-JP',
   mainEntity: FAQ.map(({ q, a }) => ({
     '@type': 'Question',
     name: q,
@@ -335,10 +355,10 @@ export default function JaHome() {
 
             {/* Product result preview */}
             <Image
-              src="/how-mictoo-works-interview.webp"
-              alt="Mictooの転写作業スペース、タイムスタンプと翻訳コントロールを含む英語の転写を表示"
+              src="/how-mictoo-works-interview-ja.webp"
+              alt="タイムスタンプと翻訳機能を備えた日本語インタビュー文字起こしのMictooプレビュー"
               width={1127}
-              height={1395}
+              height={1396}
               sizes="(max-width: 1024px) 100vw, 512px"
               className="w-full max-w-lg h-auto justify-self-center lg:-mt-[72px] rounded-2xl border border-slate-200 shadow-sm"
             />

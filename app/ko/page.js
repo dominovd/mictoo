@@ -23,6 +23,9 @@ import HeroCounter from '@/components/HeroCounter'
 
 // ── Page-level metadata & canonical ─────────────────────────────────────────
 export const metadata = {
+  title: '오디오·비디오 무료 AI 텍스트 변환 | Mictoo',
+  description:
+    '가입 없이 오디오와 비디오를 무료로 텍스트로 변환하세요. MP3, MP4, WAV, M4A 및 50개 이상의 언어를 지원합니다.',
   alternates: {
     canonical: 'https://mictoo.com/ko',
     languages: {
@@ -39,15 +42,28 @@ export const metadata = {
       'x-default': 'https://mictoo.com',
     },
   },
-  title: "무료 AI 오디오 및 비디오 텍스트 전사 ,  Mictoo",
-  description: "Mictoo는 무료로 오디오 및 비디오를 텍스트로 전사합니다. 가입이 필요 없습니다. 50개 이상의 언어를 지원합니다.",
+  openGraph: {
+    title: '오디오·비디오 무료 AI 텍스트 변환 | Mictoo',
+    description: '오디오 또는 비디오를 업로드하면 몇 초 안에 정확한 텍스트를 받을 수 있습니다.',
+    url: 'https://mictoo.com/ko',
+    siteName: 'Mictoo',
+    locale: 'ko_KR',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630, alt: 'Mictoo — 무료 AI 텍스트 변환' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '무료 AI 텍스트 변환 | Mictoo',
+    description: '오디오나 비디오를 업로드하고 몇 초 안에 텍스트를 받아보세요.',
+    images: ['https://mictoo.com/opengraph-image'],
+  },
 }
 
 // ── FAQ data (shared between UI and JSON-LD) ─────────────────────────────────
 const FAQ = [
   {
     q: 'Mictoo는 정말 무료인가요?',
-    a: '네. Mictoo는 25MB까지의 파일에 대해 완전히 무료입니다. 계정, 신용카드, 숨겨진 수수료가 없습니다. 로그인한 사용자는 파일당 60MB의 더 높은 한도와 하루 7개의 무료 전사를 받을 수 있으며, 여전히 결제가 필요하지 않습니다.',
+    a: '네. Mictoo는 25MB까지의 파일을 무료로 변환합니다. 계정이나 신용카드가 필요 없으며 숨겨진 요금도 없습니다. 로그인하면 180MB까지의 파일을 처리하고 하루 7회 무료로 텍스트를 변환할 수 있습니다.',
   },
   {
     q: '전사 정확도는 얼마나 되나요?',
@@ -63,7 +79,7 @@ const FAQ = [
   },
   {
     q: '최대 파일 크기는 얼마인가요?',
-    a: '익명으로는 최대 25MB, 무료 로그인 후 60MB입니다. 등록된 사용자는 최대 180MB의 더 큰 파일을 자동으로 분할하여 단일 전사로 병합합니다.',
+    a: '계정 없이 최대 25MB, 무료 가입 후 최대 180MB까지 처리할 수 있습니다. 큰 파일은 자동으로 나뉘며 결과는 하나의 텍스트로 합쳐집니다.',
   },
   {
     q: 'Mictoo는 어떤 파일 형식을 지원하나요?',
@@ -79,7 +95,7 @@ const FAQ = [
   },
   {
     q: '계정을 만들어야 하나요?',
-    a: '아니요. 25MB까지의 파일은 계정 없이 전사할 수 있습니다. 무료 계정을 만들면 더 큰 파일(파일당 최대 60MB, 자동 분할을 통해 180MB), 기록, AI 요약, 28개 언어로 번역 및 전사와 채팅할 수 있습니다.',
+    a: '아니요. 25MB까지의 파일은 계정 없이 텍스트로 변환할 수 있습니다. 무료 계정에서는 180MB까지의 파일, 기록, AI 요약, 36개 언어 번역 및 변환된 텍스트와의 채팅을 이용할 수 있습니다.',
   },
   {
     q: 'Mictoo는 어떤 기술로 작동하나요?',
@@ -91,6 +107,7 @@ const FAQ = [
 const webAppSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
+  inLanguage: 'ko-KR',
   name: 'Mictoo',
   url: 'https://mictoo.com/ko',
   description:
@@ -106,7 +123,7 @@ const webAppSchema = {
     '계정 필요 없음',
     '무료로 사용',
     '전사의 AI 생성 요약',
-    '전사를 28개 언어로 번역',
+    '변환된 텍스트를 36개 언어로 번역',
     '전사와 채팅',
     'MP3, MP4, WAV, M4A, OGG, WEBM, FLAC, AAC 지원',
   ],
@@ -115,6 +132,7 @@ const webAppSchema = {
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  inLanguage: 'ko-KR',
   mainEntity: FAQ.map(({ q, a }) => ({
     '@type': 'Question',
     name: q,
@@ -337,10 +355,10 @@ export default function KoHome() {
 
             {/* Product result preview */}
             <Image
-              src="/how-mictoo-works-interview.webp"
-              alt="Mictoo 전사 작업 공간, 타임스탬프 및 번역 컨트롤이 있는 영어 전사"
+              src="/how-mictoo-works-interview-ko.webp"
+              alt="타임스탬프와 번역 기능이 포함된 한국어 인터뷰 텍스트의 Mictoo 미리보기"
               width={1127}
-              height={1395}
+              height={1396}
               sizes="(max-width: 1024px) 100vw, 512px"
               className="w-full max-w-lg h-auto justify-self-center lg:-mt-[72px] rounded-2xl border border-slate-200 shadow-sm"
             />

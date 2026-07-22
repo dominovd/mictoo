@@ -23,6 +23,9 @@ import HeroCounter from '@/components/HeroCounter'
 
 // ── Page-level metadata & canonical ─────────────────────────────────────────
 export const metadata = {
+  title: 'Audio und Video kostenlos mit KI transkribieren | Mictoo',
+  description:
+    'Transkribieren Sie Audio und Video kostenlos in Text. Keine Anmeldung erforderlich. Unterstützt MP3, MP4, WAV, M4A und mehr als 50 Sprachen.',
   alternates: {
     canonical: 'https://mictoo.com/de',
     languages: {
@@ -39,13 +42,28 @@ export const metadata = {
       'x-default': 'https://mictoo.com',
     },
   },
+  openGraph: {
+    title: 'Kostenlose KI-Transkription für Audio und Video | Mictoo',
+    description: 'Laden Sie Audio oder Video hoch und erhalten Sie in wenigen Sekunden ein präzises Transkript.',
+    url: 'https://mictoo.com/de',
+    siteName: 'Mictoo',
+    locale: 'de_DE',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630, alt: 'Mictoo – kostenlose KI-Transkription' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Kostenlose KI-Transkription | Mictoo',
+    description: 'Audio oder Video hochladen und in wenigen Sekunden ein Transkript erhalten.',
+    images: ['https://mictoo.com/opengraph-image'],
+  },
 }
 
 // ── FAQ data (shared between UI and JSON-LD) ─────────────────────────────────
 const FAQ = [
   {
     q: 'Ist Mictoo wirklich kostenlos?',
-    a: 'Ja. Mictoo ist völlig kostenlos für Dateien bis zu 25 MB. Kein Konto, keine Kreditkarte, keine versteckten Gebühren. Angemeldete Benutzer erhalten ein höheres Limit von 60 MB pro Datei und 7 kostenlose Transkriptionen pro Tag, immer noch ohne Zahlung erforderlich.',
+    a: 'Ja. Mictoo ist für Dateien bis zu 25 MB kostenlos. Kein Konto, keine Kreditkarte, keine versteckten Gebühren. Angemeldete Benutzer können Dateien bis zu 180 MB verarbeiten und erhalten 7 kostenlose Transkriptionen pro Tag.',
   },
   {
     q: 'Wie genau ist die Transkription?',
@@ -61,7 +79,7 @@ const FAQ = [
   },
   {
     q: 'Was ist die maximale Dateigröße?',
-    a: 'Bis zu 25 MB anonym, 60 MB nach einer kostenlosen Anmeldung. Größere Dateien bis zu 180 MB werden automatisch in Teile aufgeteilt und zu einem einzigen Transkript für registrierte Benutzer zusammengeführt.',
+    a: 'Ohne Konto sind Dateien bis zu 25 MB möglich, nach der kostenlosen Anmeldung bis zu 180 MB. Große Dateien werden automatisch aufgeteilt und anschließend zu einem Transkript zusammengeführt.',
   },
   {
     q: 'Welche Dateiformate unterstützt Mictoo?',
@@ -77,7 +95,7 @@ const FAQ = [
   },
   {
     q: 'Muss ich ein Konto erstellen?',
-    a: 'Nein. Für Dateien bis zu 25 MB können Sie ohne Konto transkribieren. Ein kostenloses Konto schaltet größere Dateien (bis zu 60 MB pro Datei, 180 MB durch automatische Aufteilung), Verlauf, KI-Zusammenfassung, Übersetzung in 28 Sprachen und Chat mit Ihrem Transkript frei.',
+    a: 'Nein. Dateien bis zu 25 MB können Sie ohne Konto transkribieren. Ein kostenloses Konto schaltet Dateien bis zu 180 MB, den Verlauf, die KI-Zusammenfassung, Übersetzungen in 36 Sprachen und den Chat mit Ihrem Transkript frei.',
   },
   {
     q: 'Welche Technologie treibt Mictoo an?',
@@ -89,6 +107,7 @@ const FAQ = [
 const webAppSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
+  inLanguage: 'de-DE',
   name: 'Mictoo',
   url: 'https://mictoo.com/de',
   description:
@@ -104,7 +123,7 @@ const webAppSchema = {
     'Kein Konto erforderlich',
     'Kostenlos zu nutzen',
     'KI-generierte Zusammenfassung des Transkripts',
-    'Übersetzen Sie das Transkript in 28 Sprachen',
+    'Übersetzen Sie das Transkript in 36 Sprachen',
     'Chatten Sie mit dem Transkript',
     'Unterstützt MP3, MP4, WAV, M4A, OGG, WEBM, FLAC, AAC',
   ],
@@ -113,6 +132,7 @@ const webAppSchema = {
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  inLanguage: 'de-DE',
   mainEntity: FAQ.map(({ q, a }) => ({
     '@type': 'Question',
     name: q,
@@ -335,10 +355,10 @@ export default function DeHome() {
 
             {/* Product result preview */}
             <Image
-              src="/how-mictoo-works-interview.webp"
-              alt="Mictoo-Transkript-Arbeitsbereich zeigt ein englisches Transkript mit Zeitstempeln und Übersetzungssteuerungen"
+              src="/how-mictoo-works-interview-de.webp"
+              alt="Mictoo-Vorschau eines auf Deutsch transkribierten Interviews mit Zeitstempeln und Übersetzungsfunktionen"
               width={1127}
-              height={1395}
+              height={1396}
               sizes="(max-width: 1024px) 100vw, 512px"
               className="w-full max-w-lg h-auto justify-self-center lg:-mt-[72px] rounded-2xl border border-slate-200 shadow-sm"
             />
@@ -363,7 +383,7 @@ export default function DeHome() {
             },
             {
               icon: Icons.lock,
-              title: 'Privat von Design',
+              title: 'Datenschutz von Anfang an',
               desc: 'Dateien werden sicher verarbeitet und niemals auf unseren Servern gespeichert. Kein Training mit Ihren Audiodaten.',
             },
             {

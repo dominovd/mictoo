@@ -38,6 +38,7 @@ export const metadata = {
     description: 'Déposez un fichier audio ou vidéo et obtenez la transcription en quelques secondes.',
     url: 'https://mictoo.com/fr',
     siteName: 'Mictoo',
+    locale: 'fr_FR',
     type: 'website',
     images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630, alt: 'Mictoo — Transcription Audio & Vidéo Gratuite' }],
   },
@@ -53,7 +54,7 @@ export const metadata = {
 const FAQ = [
   {
     q: 'Mictoo est-il vraiment gratuit ?',
-    a: 'Oui. Mictoo est totalement gratuit pour les fichiers jusqu’à 25 Mo. Sans compte, sans carte bancaire, sans frais cachés. Les utilisateurs connectés bénéficient d’une limite plus élevée de 60 Mo par fichier et de 7 transcriptions gratuites par jour, toujours sans paiement.',
+    a: 'Oui. Mictoo est totalement gratuit pour les fichiers jusqu’à 25 Mo. Sans compte, sans carte bancaire, sans frais cachés. Les utilisateurs connectés peuvent traiter des fichiers jusqu’à 180 Mo et disposent de 7 transcriptions gratuites par jour, toujours sans paiement.',
   },
   {
     q: 'Quelle est la précision de la transcription ?',
@@ -69,7 +70,7 @@ const FAQ = [
   },
   {
     q: 'Quelle est la taille maximale de fichier ?',
-    a: 'Jusqu’à 25 Mo en anonyme, 60 Mo après une inscription gratuite. Les fichiers plus volumineux, jusqu’à 180 Mo, sont automatiquement découpés et fusionnés en une seule transcription pour les utilisateurs inscrits.',
+    a: 'Jusqu’à 25 Mo sans compte et jusqu’à 180 Mo après une inscription gratuite. Les fichiers volumineux sont automatiquement découpés puis réunis en une seule transcription.',
   },
   {
     q: 'Quels formats Mictoo prend-il en charge ?',
@@ -85,7 +86,7 @@ const FAQ = [
   },
   {
     q: 'Dois-je créer un compte ?',
-    a: 'Non. Pour les fichiers jusqu’à 25 Mo, la transcription est possible sans compte. Un compte gratuit débloque les fichiers plus volumineux (jusqu’à 60 Mo par fichier, 180 Mo via l’auto-découpage), l’historique, le résumé IA, la traduction en 28 langues et le chat avec la transcription.',
+    a: 'Non. Pour les fichiers jusqu’à 25 Mo, la transcription est possible sans compte. Un compte gratuit débloque les fichiers jusqu’à 180 Mo, l’historique, le résumé IA, la traduction en 36 langues et le chat avec la transcription.',
   },
   {
     q: 'Sur quelle technologie repose Mictoo ?',
@@ -97,6 +98,7 @@ const FAQ = [
 const webAppSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
+  inLanguage: 'fr-FR',
   name: 'Mictoo',
   url: 'https://mictoo.com/fr',
   description:
@@ -112,7 +114,7 @@ const webAppSchema = {
     'Sans compte',
     'Gratuit',
     'Résumé IA de la transcription',
-    'Traduire la transcription vers 28 langues',
+    'Traduire la transcription vers 36 langues',
     'Chat avec la transcription',
     'MP3, MP4, WAV, M4A, OGG, WEBM, FLAC, AAC',
   ],
@@ -121,6 +123,7 @@ const webAppSchema = {
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  inLanguage: 'fr-FR',
   mainEntity: FAQ.map(({ q, a }) => ({
     '@type': 'Question',
     name: q,
@@ -303,10 +306,10 @@ export default function FrenchHome() {
             </ol>
 
             <Image
-              src="/how-mictoo-works-interview.webp"
-              alt="Espace de travail Mictoo affichant une transcription avec horodatages et options de traduction"
+              src="/how-mictoo-works-interview-fr.webp"
+              alt="Aperçu Mictoo d’une interview transcrite en français avec horodatages et commandes de traduction"
               width={1127}
-              height={1395}
+              height={1396}
               sizes="(max-width: 1024px) 100vw, 512px"
               className="w-full max-w-lg h-auto justify-self-center lg:-mt-[72px] rounded-2xl border border-slate-200 shadow-sm"
             />

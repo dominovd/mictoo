@@ -23,6 +23,9 @@ import HeroCounter from '@/components/HeroCounter'
 
 // ── Page-level metadata & canonical ─────────────────────────────────────────
 export const metadata = {
+  title: 'Бесплатная расшифровка аудио и видео в текст | Mictoo',
+  description:
+    'Расшифровывайте аудио и видео в текст бесплатно, без регистрации. Поддерживаются MP3, MP4, WAV, M4A и более 50 языков.',
   alternates: {
     canonical: 'https://mictoo.com/ru',
     languages: {
@@ -39,13 +42,28 @@ export const metadata = {
       'x-default': 'https://mictoo.com',
     },
   },
+  openGraph: {
+    title: 'Бесплатная расшифровка аудио и видео с ИИ | Mictoo',
+    description: 'Загрузите аудио или видео и получите точную расшифровку за несколько секунд.',
+    url: 'https://mictoo.com/ru',
+    siteName: 'Mictoo',
+    locale: 'ru_RU',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630, alt: 'Mictoo — бесплатная расшифровка с ИИ' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Бесплатная расшифровка с ИИ | Mictoo',
+    description: 'Загрузите аудио или видео и получите текст за несколько секунд.',
+    images: ['https://mictoo.com/opengraph-image'],
+  },
 }
 
 // ── FAQ data (shared between UI and JSON-LD) ─────────────────────────────────
 const FAQ = [
   {
     q: 'Действительно ли Mictoo бесплатен?',
-    a: 'Да. Mictoo полностью бесплатен для файлов размером до 25 МБ. Без регистрации, без кредитной карты, без скрытых платежей. Зарегистрированные пользователи получают лимит в 60 МБ на файл и 7 бесплатных транскрипций в день, все еще без необходимости оплаты.',
+    a: 'Да. Mictoo бесплатно обрабатывает файлы размером до 25 МБ без регистрации, банковской карты и скрытых платежей. Авторизованные пользователи могут загружать файлы до 180 МБ и получают 7 бесплатных расшифровок в день.',
   },
   {
     q: 'Насколько точна транскрипция?',
@@ -61,7 +79,7 @@ const FAQ = [
   },
   {
     q: 'Каков максимальный размер файла?',
-    a: 'До 25 МБ анонимно, 60 МБ после бесплатной регистрации. Более крупные файлы до 180 МБ автоматически разбиваются на части и объединяются в один транскрипт для зарегистрированных пользователей.',
+    a: 'До 25 МБ без аккаунта и до 180 МБ после бесплатной регистрации. Большие файлы автоматически разбиваются на части, а результат объединяется в одну расшифровку.',
   },
   {
     q: 'Какие форматы файлов поддерживает Mictoo?',
@@ -77,7 +95,7 @@ const FAQ = [
   },
   {
     q: 'Нужно ли создавать аккаунт?',
-    a: 'Нет. Для файлов размером до 25 МБ вы можете транскрибировать без аккаунта. Бесплатный аккаунт открывает доступ к большим файлам (до 60 МБ на файл, 180 МБ через автоматическое деление), истории, AI-сводке, переводу на 28 языков и чату с вашим транскриптом.',
+    a: 'Нет. Файлы размером до 25 МБ можно расшифровывать без аккаунта. Бесплатный аккаунт открывает доступ к файлам до 180 МБ, истории, резюме с ИИ, переводу на 36 языков и чату с расшифровкой.',
   },
   {
     q: 'На какой технологии основан Mictoo?',
@@ -89,6 +107,7 @@ const FAQ = [
 const webAppSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
+  inLanguage: 'ru-RU',
   name: 'Mictoo',
   url: 'https://mictoo.com/ru',
   description:
@@ -103,8 +122,8 @@ const webAppSchema = {
     'Поддерживает более 50 языков',
     'Не требуется аккаунт',
     'Бесплатно в использовании',
-    'AI-сводка транскрипта',
-    'Перевод транскрипта на 28 языков',
+    'Резюме расшифровки с ИИ',
+    'Перевод расшифровки на 36 языков',
     'Чат с транскриптом',
     'Поддерживает MP3, MP4, WAV, M4A, OGG, WEBM, FLAC, AAC',
   ],
@@ -113,6 +132,7 @@ const webAppSchema = {
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  inLanguage: 'ru-RU',
   mainEntity: FAQ.map(({ q, a }) => ({
     '@type': 'Question',
     name: q,
@@ -224,10 +244,10 @@ export default function RuHome() {
       <section className="bg-gradient-to-b from-brand-50/40 via-slate-100/60 to-slate-100 pt-16 pb-16 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <span className="inline-block bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1 rounded-full mb-5 uppercase tracking-wide">
-            Бесплатная AI транскрипция · Без регистрации
+            Бесплатная расшифровка с ИИ · Без регистрации
           </span>
           <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-5 leading-tight">
-            Бесплатная AI аудио и видео<br />
+            Бесплатная расшифровка аудио и видео с ИИ<br />
             <span className="text-brand-600">транскрипция в текст</span>
           </h1>
           <p className="text-lg text-slate-600 mb-7 max-w-2xl mx-auto">
@@ -308,7 +328,7 @@ export default function RuHome() {
                 {
                   step: 2,
                   icon: Icons.sparkles,
-                  title: 'AI транскрибирует',
+                  title: 'ИИ расшифровывает',
                   desc: 'Whisper large-v3 преобразует речь в текст с высокой точностью и автоматической пунктуацией.',
                 },
                 {
@@ -335,10 +355,10 @@ export default function RuHome() {
 
             {/* Product result preview */}
             <Image
-              src="/how-mictoo-works-interview.webp"
-              alt="Рабочая область транскрипции Mictoo с английским транскриптом и временными метками и контролем перевода"
+              src="/how-mictoo-works-interview-ru.webp"
+              alt="Пример расшифровки интервью на русском языке в Mictoo с таймкодами и переводом"
               width={1127}
-              height={1395}
+              height={1396}
               sizes="(max-width: 1024px) 100vw, 512px"
               className="w-full max-w-lg h-auto justify-self-center lg:-mt-[72px] rounded-2xl border border-slate-200 shadow-sm"
             />
@@ -466,7 +486,7 @@ export default function RuHome() {
                 <th className="text-left px-5 py-4 w-56"></th>
                 <th className="text-center px-4 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">Бесплатно</th>
                 <th className="text-center px-4 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">Без регистрации</th>
-                <th className="text-center px-4 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">AI Сводка</th>
+                <th className="text-center px-4 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">Резюме с ИИ</th>
                 <th className="text-center px-4 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">Перевод</th>
               </tr>
             </thead>

@@ -241,6 +241,7 @@ export default function UseCaseLayout({
   const faqSchema = faq?.length > 0 ? {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
+    inLanguage: locale === 'pt' ? 'pt-BR' : locale,
     mainEntity: faq.map(({ q, a }) => ({
       '@type': 'Question',
       name: q,

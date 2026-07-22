@@ -23,6 +23,9 @@ import HeroCounter from '@/components/HeroCounter'
 
 // ── Page-level metadata & canonical ─────────────────────────────────────────
 export const metadata = {
+  title: 'Bezpłatna transkrypcja audio i wideo z AI | Mictoo',
+  description:
+    'Transkrybuj audio i wideo na tekst bezpłatnie i bez rejestracji. Obsługa MP3, MP4, WAV, M4A oraz ponad 50 języków.',
   alternates: {
     canonical: 'https://mictoo.com/pl',
     languages: {
@@ -39,13 +42,28 @@ export const metadata = {
       'x-default': 'https://mictoo.com',
     },
   },
+  openGraph: {
+    title: 'Bezpłatna transkrypcja audio i wideo z AI | Mictoo',
+    description: 'Prześlij plik audio lub wideo i otrzymaj dokładną transkrypcję w kilka sekund.',
+    url: 'https://mictoo.com/pl',
+    siteName: 'Mictoo',
+    locale: 'pl_PL',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630, alt: 'Mictoo — bezpłatna transkrypcja z AI' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Bezpłatna transkrypcja z AI | Mictoo',
+    description: 'Prześlij audio lub wideo i otrzymaj tekst w kilka sekund.',
+    images: ['https://mictoo.com/opengraph-image'],
+  },
 }
 
 // ── FAQ data (shared between UI and JSON-LD) ─────────────────────────────────
 const FAQ = [
   {
     q: 'Czy Mictoo jest naprawdę darmowe?',
-    a: 'Tak. Mictoo jest całkowicie darmowe dla plików do 25 MB. Nie ma potrzeby zakupu, nie ma ukrytych opłat. Zarejestrowani użytkownicy mają wyższy limit 60 MB na plik i 7 darmowych transkrypcji dziennie, nadal bez konieczności płatności.',
+    a: 'Tak. Mictoo jest bezpłatne dla plików do 25 MB. Nie wymaga konta ani karty płatniczej i nie ma ukrytych opłat. Zalogowani użytkownicy mogą przetwarzać pliki do 180 MB i mają 7 bezpłatnych transkrypcji dziennie.',
   },
   {
     q: 'Jak dokładna jest transkrypcja?',
@@ -61,7 +79,7 @@ const FAQ = [
   },
   {
     q: 'Jaki jest maksymalny rozmiar pliku?',
-    a: 'Do 25 MB anonimowo, 60 MB po darmowej rejestracji. Większe pliki do 180 MB są automatycznie dzielone na kawałki i scalane w jedną transkrypcję dla zarejestrowanych użytkowników.',
+    a: 'Do 25 MB bez konta i do 180 MB po bezpłatnej rejestracji. Duże pliki są automatycznie dzielone, a wynik łączony w jedną transkrypcję.',
   },
   {
     q: 'Jakie formaty plików wspiera Mictoo?',
@@ -77,7 +95,7 @@ const FAQ = [
   },
   {
     q: 'Czy muszę zakładać konto?',
-    a: 'Nie. Dla plików do 25 MB można transkrybować bez konta. Darmowe konto odblokowuje większe pliki (do 60 MB na plik, 180 MB przez automatyczne dzielenie), historię, podsumowanie AI, tłumaczenie na 28 języków i czat z transkryptem.',
+    a: 'Nie. Pliki do 25 MB można transkrybować bez konta. Bezpłatne konto umożliwia przetwarzanie plików do 180 MB oraz udostępnia historię, podsumowanie AI, tłumaczenie na 36 języków i czat z transkrypcją.',
   },
   {
     q: 'Jaką technologię wykorzystuje Mictoo?',
@@ -89,6 +107,7 @@ const FAQ = [
 const webAppSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
+  inLanguage: 'pl-PL',
   name: 'Mictoo',
   url: 'https://mictoo.com/pl',
   description:
@@ -104,7 +123,7 @@ const webAppSchema = {
     'Nie wymaga konta',
     'Darmowe w użyciu',
     'Podsumowanie transkryptu generowane przez AI',
-    'Tłumacz transkrypt na 28 języków',
+    'Tłumacz transkrypcję na 36 języków',
     'Czat z transkryptem',
     'Obsługuje MP3, MP4, WAV, M4A, OGG, WEBM, FLAC, AAC',
   ],
@@ -113,6 +132,7 @@ const webAppSchema = {
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  inLanguage: 'pl-PL',
   mainEntity: FAQ.map(({ q, a }) => ({
     '@type': 'Question',
     name: q,
@@ -314,7 +334,7 @@ export default function PlHome() {
                 {
                   step: 3,
                   icon: Icons.editPen,
-                  title: 'Przeglądaj i eksportuj',
+                  title: 'Sprawdź i wyeksportuj',
                   desc: 'Edytuj, podsumowuj, tłumacz i pobierz swój transkrypt jako TXT, DOCX, PDF lub SRT.',
                 },
               ].map(({ step, icon, title, desc }) => (
@@ -335,10 +355,10 @@ export default function PlHome() {
 
             {/* Product result preview */}
             <Image
-              src="/how-mictoo-works-interview.webp"
-              alt="Miejsce pracy transkryptu Mictoo pokazujące angielski transkrypt z znacznikami czasu i kontrolami tłumaczenia"
+              src="/how-mictoo-works-interview-pl.webp"
+              alt="Podgląd Mictoo z wywiadem przepisanym po polsku, znacznikami czasu i tłumaczeniem"
               width={1127}
-              height={1395}
+              height={1396}
               sizes="(max-width: 1024px) 100vw, 512px"
               className="w-full max-w-lg h-auto justify-self-center lg:-mt-[72px] rounded-2xl border border-slate-200 shadow-sm"
             />

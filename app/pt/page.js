@@ -23,6 +23,9 @@ import HeroCounter from '@/components/HeroCounter'
 
 // ── Page-level metadata & canonical ─────────────────────────────────────────
 export const metadata = {
+  title: 'Transcrição gratuita de áudio e vídeo com IA | Mictoo',
+  description:
+    'Transcreva áudio e vídeo em texto gratuitamente, sem cadastro. Compatível com MP3, MP4, WAV, M4A e mais de 50 idiomas.',
   alternates: {
     canonical: 'https://mictoo.com/pt',
     languages: {
@@ -39,13 +42,28 @@ export const metadata = {
       'x-default': 'https://mictoo.com',
     },
   },
+  openGraph: {
+    title: 'Transcrição gratuita de áudio e vídeo com IA | Mictoo',
+    description: 'Envie um arquivo de áudio ou vídeo e receba uma transcrição precisa em poucos segundos.',
+    url: 'https://mictoo.com/pt',
+    siteName: 'Mictoo',
+    locale: 'pt_BR',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630, alt: 'Mictoo — transcrição gratuita com IA' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Transcrição gratuita com IA | Mictoo',
+    description: 'Envie áudio ou vídeo e receba o texto em poucos segundos.',
+    images: ['https://mictoo.com/opengraph-image'],
+  },
 }
 
 // ── FAQ data (shared between UI and JSON-LD) ─────────────────────────────────
 const FAQ = [
   {
     q: 'O Mictoo é realmente gratuito?',
-    a: 'Sim. O Mictoo é completamente gratuito para arquivos de até 25 MB. Sem conta, sem cartão de crédito, sem taxas ocultas. Usuários registrados têm um limite maior de 60 MB por arquivo e 7 transcrições gratuitas por dia, ainda sem pagamento necessário.',
+    a: 'Sim. O Mictoo é gratuito para arquivos de até 25 MB. Sem conta, cartão de crédito ou taxas ocultas. Usuários cadastrados podem processar arquivos de até 180 MB e têm 7 transcrições gratuitas por dia.',
   },
   {
     q: 'Qual é a precisão da transcrição?',
@@ -61,7 +79,7 @@ const FAQ = [
   },
   {
     q: 'Qual é o tamanho máximo do arquivo?',
-    a: 'Até 25 MB anonimamente, 60 MB após um registro gratuito. Arquivos maiores de até 180 MB são automaticamente divididos em partes e mesclados em uma única transcrição para usuários registrados.',
+    a: 'Até 25 MB sem conta e até 180 MB após o cadastro gratuito. Arquivos grandes são divididos automaticamente e depois reunidos em uma única transcrição.',
   },
   {
     q: 'Quais formatos de arquivo o Mictoo suporta?',
@@ -77,7 +95,7 @@ const FAQ = [
   },
   {
     q: 'Preciso criar uma conta?',
-    a: 'Não. Para arquivos de até 25 MB, você pode transcrever sem uma conta. Uma conta gratuita desbloqueia arquivos maiores (até 60 MB por arquivo, 180 MB via divisão automática), histórico, resumo de IA, tradução para 28 idiomas e chat com sua transcrição.',
+    a: 'Não. Você pode transcrever arquivos de até 25 MB sem conta. Uma conta gratuita permite arquivos de até 180 MB e libera histórico, resumo com IA, tradução para 36 idiomas e chat com a transcrição.',
   },
   {
     q: 'Que tecnologia alimenta o Mictoo?',
@@ -89,6 +107,7 @@ const FAQ = [
 const webAppSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
+  inLanguage: 'pt-BR',
   name: 'Mictoo',
   url: 'https://mictoo.com/pt',
   description:
@@ -104,7 +123,7 @@ const webAppSchema = {
     'Sem conta necessária',
     'Gratuito para usar',
     'Resumo gerado por IA da transcrição',
-    'Traduzir a transcrição para 28 idiomas',
+    'Traduzir a transcrição para 36 idiomas',
     'Chat com a transcrição',
     'Suporta MP3, MP4, WAV, M4A, OGG, WEBM, FLAC, AAC',
   ],
@@ -113,6 +132,7 @@ const webAppSchema = {
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  inLanguage: 'pt-BR',
   mainEntity: FAQ.map(({ q, a }) => ({
     '@type': 'Question',
     name: q,
@@ -231,7 +251,7 @@ export default function PtHome() {
             <span className="text-brand-600">para Texto</span>
           </h1>
           <p className="text-lg text-slate-600 mb-7 max-w-2xl mx-auto">
-            Transcrições precisas em segundos. Faça upload de MP3, MP4, WAV e mais. Sem conta necessária.
+            Transcrições precisas em segundos. Envie MP3, MP4, WAV e outros formatos. Não é preciso criar uma conta.
           </p>
 
           {/* Trust chips ,  shared component so LandingLayout hero matches
@@ -302,7 +322,7 @@ export default function PtHome() {
                 {
                   step: 1,
                   icon: Icons.upload,
-                  title: 'Faça upload do seu arquivo',
+                  title: 'Envie seu arquivo',
                   desc: 'Arraste e solte ou escolha um arquivo de áudio ou vídeo. MP3, MP4, WAV, M4A e mais.',
                 },
                 {
@@ -335,10 +355,10 @@ export default function PtHome() {
 
             {/* Product result preview */}
             <Image
-              src="/how-mictoo-works-interview.webp"
-              alt="Espaço de trabalho do Mictoo mostrando uma transcrição em inglês com marcas de tempo e controles de tradução"
+              src="/how-mictoo-works-interview-pt.webp"
+              alt="Prévia do Mictoo de uma entrevista transcrita em português com marcações de tempo e tradução"
               width={1127}
-              height={1395}
+              height={1396}
               sizes="(max-width: 1024px) 100vw, 512px"
               className="w-full max-w-lg h-auto justify-self-center lg:-mt-[72px] rounded-2xl border border-slate-200 shadow-sm"
             />

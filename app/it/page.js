@@ -23,6 +23,9 @@ import HeroCounter from '@/components/HeroCounter'
 
 // ── Page-level metadata & canonical ─────────────────────────────────────────
 export const metadata = {
+  title: 'Trascrizione gratuita di audio e video con IA | Mictoo',
+  description:
+    'Trascrivi gratuitamente audio e video in testo, senza registrazione. Supporta MP3, MP4, WAV, M4A e oltre 50 lingue.',
   alternates: {
     canonical: 'https://mictoo.com/it',
     languages: {
@@ -39,13 +42,28 @@ export const metadata = {
       'x-default': 'https://mictoo.com',
     },
   },
+  openGraph: {
+    title: 'Trascrizione gratuita di audio e video con IA | Mictoo',
+    description: 'Carica un file audio o video e ottieni una trascrizione accurata in pochi secondi.',
+    url: 'https://mictoo.com/it',
+    siteName: 'Mictoo',
+    locale: 'it_IT',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630, alt: 'Mictoo – trascrizione gratuita con IA' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Trascrizione gratuita con IA | Mictoo',
+    description: 'Carica audio o video e ottieni il testo in pochi secondi.',
+    images: ['https://mictoo.com/opengraph-image'],
+  },
 }
 
 // ── FAQ data (shared between UI and JSON-LD) ─────────────────────────────────
 const FAQ = [
   {
     q: 'Mictoo è davvero gratuito?',
-    a: 'Sì. Mictoo è completamente gratuito per file fino a 25 MB. Nessun account, nessuna carta di credito, nessun costo nascosto. Gli utenti registrati ottengono un limite di 60 MB per file e 7 trascrizioni gratuite al giorno, sempre senza pagamento richiesto.',
+    a: 'Sì. Mictoo è gratuito per file fino a 25 MB. Nessun account, nessuna carta di credito e nessun costo nascosto. Gli utenti registrati possono elaborare file fino a 180 MB e hanno 7 trascrizioni gratuite al giorno.',
   },
   {
     q: 'Quanto è precisa la trascrizione?',
@@ -61,7 +79,7 @@ const FAQ = [
   },
   {
     q: 'Qual è la dimensione massima del file?',
-    a: 'Fino a 25 MB in modo anonimo, 60 MB dopo una registrazione gratuita. File più grandi fino a 180 MB vengono suddivisi automaticamente in parti e uniti in una singola trascrizione per gli utenti registrati.',
+    a: 'Fino a 25 MB senza account e fino a 180 MB dopo la registrazione gratuita. I file di grandi dimensioni vengono suddivisi automaticamente e poi riuniti in un’unica trascrizione.',
   },
   {
     q: 'Quali formati di file supporta Mictoo?',
@@ -77,7 +95,7 @@ const FAQ = [
   },
   {
     q: 'Devo creare un account?',
-    a: 'No. Per file fino a 25 MB, puoi trascrivere senza un account. Un account gratuito sblocca file più grandi (fino a 60 MB per file, 180 MB tramite suddivisione automatica), cronologia, riepilogo AI, traduzione in 28 lingue e chat con la tua trascrizione.',
+    a: 'No. Puoi trascrivere file fino a 25 MB senza account. Un account gratuito consente file fino a 180 MB e sblocca cronologia, riepilogo con IA, traduzione in 36 lingue e chat con la trascrizione.',
   },
   {
     q: 'Quale tecnologia alimenta Mictoo?',
@@ -89,6 +107,7 @@ const FAQ = [
 const webAppSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
+  inLanguage: 'it-IT',
   name: 'Mictoo',
   url: 'https://mictoo.com/it',
   description:
@@ -103,8 +122,8 @@ const webAppSchema = {
     'Supporta oltre 50 lingue',
     'Nessun account richiesto',
     'Gratuito da usare',
-    'Riepilogo della trascrizione generato dall\'AI',
-    'Traduci la trascrizione in 28 lingue',
+    'Riepilogo della trascrizione generato dall\'IA',
+    'Traduci la trascrizione in 36 lingue',
     'Chatta con la trascrizione',
     'Supporta MP3, MP4, WAV, M4A, OGG, WEBM, FLAC, AAC',
   ],
@@ -113,6 +132,7 @@ const webAppSchema = {
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  inLanguage: 'it-IT',
   mainEntity: FAQ.map(({ q, a }) => ({
     '@type': 'Question',
     name: q,
@@ -224,10 +244,10 @@ export default function ItHome() {
       <section className="bg-gradient-to-b from-brand-50/40 via-slate-100/60 to-slate-100 pt-16 pb-16 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <span className="inline-block bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1 rounded-full mb-5 uppercase tracking-wide">
-            Trascrizione AI gratuita · Nessuna registrazione
+            Trascrizione IA gratuita · Nessuna registrazione
           </span>
           <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-5 leading-tight">
-            Trascrizione Audio &amp; Video AI<br />
+            Trascrizione audio e video con IA<br />
             <span className="text-brand-600">in Testo</span>
           </h1>
           <p className="text-lg text-slate-600 mb-7 max-w-2xl mx-auto">
@@ -308,7 +328,7 @@ export default function ItHome() {
                 {
                   step: 2,
                   icon: Icons.sparkles,
-                  title: 'L\'AI trascrive',
+                  title: 'L\'IA trascrive',
                   desc: 'Whisper large-v3 converte il parlato in testo con alta precisione e punteggiatura automatica.',
                 },
                 {
@@ -335,10 +355,10 @@ export default function ItHome() {
 
             {/* Product result preview */}
             <Image
-              src="/how-mictoo-works-interview.webp"
-              alt="Workspace di trascrizione Mictoo che mostra una trascrizione in inglese con timestamp e controlli di traduzione"
+              src="/how-mictoo-works-interview-it.webp"
+              alt="Anteprima Mictoo di un’intervista trascritta in italiano con timestamp e comandi di traduzione"
               width={1127}
-              height={1395}
+              height={1396}
               sizes="(max-width: 1024px) 100vw, 512px"
               className="w-full max-w-lg h-auto justify-self-center lg:-mt-[72px] rounded-2xl border border-slate-200 shadow-sm"
             />
@@ -466,7 +486,7 @@ export default function ItHome() {
                 <th className="text-left px-5 py-4 w-56"></th>
                 <th className="text-center px-4 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">Gratuito</th>
                 <th className="text-center px-4 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">Nessuna registrazione</th>
-                <th className="text-center px-4 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">Riepilogo AI</th>
+                <th className="text-center px-4 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">Riepilogo IA</th>
                 <th className="text-center px-4 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">Traduzione</th>
               </tr>
             </thead>

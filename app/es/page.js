@@ -24,6 +24,9 @@ import HeroCounter from '@/components/HeroCounter'
 
 // ── Metadata de nivel de página & canónica ─────────────────────────────────────────
 export const metadata = {
+  title: 'Transcripción gratuita de audio y video con IA | Mictoo',
+  description:
+    'Transcribe audio y video a texto gratis y sin registro. Compatible con MP3, MP4, WAV, M4A y más de 50 idiomas.',
   alternates: {
     canonical: 'https://mictoo.com/es',
     languages: {
@@ -40,15 +43,28 @@ export const metadata = {
       'x-default': 'https://mictoo.com',
     },
   },
-  title: 'Transcripción de audio y video gratuita con IA a texto ,  Mictoo',
-  description: 'Transcripción de audio y video en línea gratuita, impulsada por OpenAI Whisper. No se requiere registro. Soporta más de 50 idiomas.',
+  openGraph: {
+    title: 'Transcripción gratuita de audio y video con IA | Mictoo',
+    description: 'Sube un archivo de audio o video y obtén una transcripción precisa en segundos.',
+    url: 'https://mictoo.com/es',
+    siteName: 'Mictoo',
+    locale: 'es_ES',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630, alt: 'Mictoo — transcripción gratuita con IA' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Transcripción gratuita con IA | Mictoo',
+    description: 'Sube audio o video y obtén el texto en segundos.',
+    images: ['https://mictoo.com/opengraph-image'],
+  },
 }
 
 // ── Datos de FAQ (compartidos entre UI y JSON-LD) ─────────────────────────────────
 const FAQ = [
   {
     q: '¿Es Mictoo realmente gratis?',
-    a: 'Sí. Mictoo es completamente gratis para archivos de hasta 25 MB. Sin cuenta, sin tarjeta de crédito, sin tarifas ocultas. Los usuarios registrados obtienen un límite de 60 MB por archivo y 7 transcripciones gratuitas por día, aún sin pago requerido.',
+    a: 'Sí. Mictoo es gratis para archivos de hasta 25 MB. Sin cuenta, sin tarjeta de crédito y sin cargos ocultos. Los usuarios registrados pueden procesar archivos de hasta 180 MB y disponen de 7 transcripciones gratuitas al día.',
   },
   {
     q: '¿Qué tan precisa es la transcripción?',
@@ -64,7 +80,7 @@ const FAQ = [
   },
   {
     q: '¿Cuál es el tamaño máximo de archivo?',
-    a: 'Hasta 25 MB de forma anónima, 60 MB después de un registro gratuito. Archivos más grandes de hasta 180 MB se dividen automáticamente en fragmentos y se combinan en una sola transcripción para usuarios registrados.',
+    a: 'Hasta 25 MB sin cuenta y hasta 180 MB después de registrarte gratis. Los archivos grandes se dividen automáticamente y después se combinan en una sola transcripción.',
   },
   {
     q: '¿Qué formatos de archivo admite Mictoo?',
@@ -80,7 +96,7 @@ const FAQ = [
   },
   {
     q: '¿Necesito crear una cuenta?',
-    a: 'No. Para archivos de hasta 25 MB, puedes transcribir sin una cuenta. Una cuenta gratuita desbloquea archivos más grandes (hasta 60 MB por archivo, 180 MB a través de la división automática), historial, resumen de IA, traducción a 28 idiomas y chat con tu transcripción.',
+    a: 'No. Puedes transcribir archivos de hasta 25 MB sin una cuenta. Una cuenta gratuita permite procesar archivos de hasta 180 MB y desbloquea el historial, el resumen con IA, la traducción a 36 idiomas y el chat con tu transcripción.',
   },
   {
     q: '¿Qué tecnología impulsa Mictoo?',
@@ -92,6 +108,7 @@ const FAQ = [
 const webAppSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
+  inLanguage: 'es-ES',
   name: 'Mictoo',
   url: 'https://mictoo.com/es',
   description:
@@ -107,7 +124,7 @@ const webAppSchema = {
     'No se requiere cuenta',
     'Gratis para usar',
     'Resumen de la transcripción generado por IA',
-    'Traducir la transcripción a 28 idiomas',
+    'Traducir la transcripción a 36 idiomas',
     'Chatear con la transcripción',
     'Soporta MP3, MP4, WAV, M4A, OGG, WEBM, FLAC, AAC',
   ],
@@ -116,6 +133,7 @@ const webAppSchema = {
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  inLanguage: 'es-ES',
   mainEntity: FAQ.map(({ q, a }) => ({
     '@type': 'Question',
     name: q,
@@ -337,10 +355,10 @@ export default function EsHome() {
 
             {/* Vista previa del resultado del producto */}
             <Image
-              src="/how-mictoo-works-interview.webp"
-              alt="Espacio de trabajo de transcripción de Mictoo mostrando una transcripción en inglés con marcas de tiempo y controles de traducción"
+              src="/how-mictoo-works-interview-es.webp"
+              alt="Vista previa de Mictoo de una entrevista transcrita en español con marcas de tiempo y controles de traducción"
               width={1127}
-              height={1395}
+              height={1396}
               sizes="(max-width: 1024px) 100vw, 512px"
               className="w-full max-w-lg h-auto justify-self-center lg:-mt-[72px] rounded-2xl border border-slate-200 shadow-sm"
             />
