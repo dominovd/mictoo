@@ -63,20 +63,22 @@ const Icons = {
 }
 
 // USE CASES sidebar — always-visible list.
+// href stripped of leading slash serves as the i18n key under
+// layouts.useCase.nav.<slug> so labels localize per-locale.
 const USE_CASE_NAV = [
-  { href: '/interview-transcription',      icon: 'chat',     label: 'Interview Transcription' },
-  { href: '/podcast-transcription',        icon: 'headset',  label: 'Podcast Transcription' },
-  { href: '/lecture-transcription',        icon: 'book',     label: 'Lecture Transcription' },
-  { href: '/business-transcription',       icon: 'briefcase',label: 'Business Transcription' },
-  { href: '/meeting-transcription',        icon: 'users',    label: 'Meeting Transcription' },
-  { href: '/zoom-transcription',           icon: 'video',    label: 'Zoom Transcription' },
-  { href: '/google-meet-transcription',    icon: 'video',    label: 'Google Meet Transcription' },
-  { href: '/teams-meeting-transcription',  icon: 'video',    label: 'Teams Meeting Transcription' },
-  { href: '/voice-memo-to-text',           icon: 'mic',      label: 'Voice Memo to Text' },
-  { href: '/webinar-transcription',        icon: 'monitor',  label: 'Webinar Transcription' },
-  { href: '/sermon-transcription',         icon: 'church',   label: 'Sermon Transcription' },
-  { href: '/dictation-to-text',            icon: 'editPen',  label: 'Dictation to Text' },
-  { href: '/youtube-to-text',              icon: 'youtube',  label: 'YouTube to Text' },
+  { slug: 'interview-transcription',      icon: 'chat' },
+  { slug: 'podcast-transcription',        icon: 'headset' },
+  { slug: 'lecture-transcription',        icon: 'book' },
+  { slug: 'business-transcription',       icon: 'briefcase' },
+  { slug: 'meeting-transcription',        icon: 'users' },
+  { slug: 'zoom-transcription',           icon: 'video' },
+  { slug: 'google-meet-transcription',    icon: 'video' },
+  { slug: 'teams-meeting-transcription',  icon: 'video' },
+  { slug: 'voice-memo-to-text',           icon: 'mic' },
+  { slug: 'webinar-transcription',        icon: 'monitor' },
+  { slug: 'sermon-transcription',         icon: 'church' },
+  { slug: 'dictation-to-text',            icon: 'editPen' },
+  { slug: 'youtube-to-text',              icon: 'youtube' },
 ]
 
 function Eyebrow({ children }) {
@@ -266,10 +268,10 @@ export default function UseCaseLayout({
           <p className="mt-5 text-lg text-slate-600 max-w-2xl mx-auto">{subtitle}</p>
 
           <div className="mt-6 mb-5">
-            <HeroChips />
+            <HeroChips locale={locale} />
           </div>
 
-          <HeroCounter />
+          <HeroCounter locale={locale} />
         </div>
 
         <div id="tool" className="max-w-2xl mx-auto mt-10 scroll-mt-20">
@@ -548,11 +550,13 @@ export default function UseCaseLayout({
               </div>
               <nav className="space-y-1">
                 {USE_CASE_NAV.map((item) => {
-                  const isCurrent = item.href === currentHref
+                  const href = (locale === 'en' ? '' : `/${locale}`) + '/' + item.slug
+                  const isCurrent = ('/' + item.slug) === currentHref || href === currentHref
+                  const label = t(locale, `layouts.useCase.nav.${item.slug}`)
                   return (
                     <Link
-                      key={item.href}
-                      href={item.href}
+                      key={item.slug}
+                      href={href}
                       className={
                         'group flex items-start gap-2.5 rounded-lg px-3 py-2 text-sm transition-colors ' +
                         (isCurrent
@@ -563,7 +567,7 @@ export default function UseCaseLayout({
                       <span className={'w-4 h-4 mt-0.5 flex-shrink-0 ' + (isCurrent ? 'text-brand-600' : 'text-slate-400')}>
                         {Icons[item.icon] || Icons.file}
                       </span>
-                      <span className="leading-tight">{item.label}</span>
+                      <span className="leading-tight">{label}</span>
                     </Link>
                   )
                 })}

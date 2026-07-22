@@ -7,20 +7,23 @@
 // number reads as a marketing-friendly milestone rather than a raw exact
 // number. At 4,813 you see "4,500+"; at 13,247 you see "13,000+".
 //
-// Hides itself entirely if:
-//   - The API is down or returns bad data
-//   - The count is below VISIBILITY_THRESHOLD (avoids showing "500+" while
-//     we're still ramping up traction)
-//
-// Pairs with the SSR-rendered heading above. If the counter fails to render,
-// the hero layout stays clean because this component just returns null.
+// Localization: takes a `locale` prop; suffix "transcripts created" comes
+// from layouts.hero.transcriptsCreated. Number formatting uses the locale's
+// Intl.NumberFormat conventions.
 
 import { useEffect, useState } from 'react'
+import { t } from '@/lib/i18n'
 
 const VISIBILITY_THRESHOLD = 1000
 const ROUND_TO = 500
 
-export default function HeroCounter() {
+// Map our short locale codes to BCP-47 tags for Intl.NumberFormat
+const BCP47 = {
+  en: 'en', fr: 'fr', de: 'de', es: 'es', ru: 'ru',
+  it: 'it', pt: 'pt', pl: 'pl', ja: 'ja', ko: 'ko',
+}
+
+export default function HeroCounter({ locale = 'en' }) {
   const [count, setCount] = useState(null)
 
   useEffect(() => {
@@ -42,7 +45,8 @@ export default function HeroCounter() {
   if (count == null || count < VISIBILITY_THRESHOLD) return null
 
   const rounded = Math.floor(count / ROUND_TO) * ROUND_TO
-  const formatted = new Intl.NumberFormat('en').format(rounded)
+  const formatted = new Intl.NumberFormat(BCP47[locale] || 'en').format(rounded)
+  const suffix = t(locale, 'layouts.hero.transcriptsCreated')
 
   return (
     <div className="inline-flex items-center gap-2 text-sm text-slate-500">
@@ -53,7 +57,7 @@ export default function HeroCounter() {
         </svg>
       </span>
       <span>
-        <span className="font-semibold text-slate-800">{formatted}+</span> transcripts created
+        <span className="font-semibold text-slate-800">{formatted}+</span> {suffix}
       </span>
     </div>
   )

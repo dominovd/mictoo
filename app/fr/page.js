@@ -221,10 +221,10 @@ export default function FrenchHome() {
           </p>
 
           <div className="mb-5">
-            <HeroChips />
+            <HeroChips locale="fr" />
           </div>
 
-          <HeroCounter />
+          <HeroCounter locale="fr" />
         </div>
 
         <div id="tool" className="max-w-2xl mx-auto mt-10 scroll-mt-20">

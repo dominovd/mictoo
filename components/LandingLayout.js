@@ -113,10 +113,10 @@ export default function LandingLayout({
           <p className="text-lg text-slate-600 mb-7 max-w-2xl mx-auto">{subtitle}</p>
 
           <div className="mb-5">
-            <HeroChips />
+            <HeroChips locale={locale} />
           </div>
 
-          <HeroCounter />
+          <HeroCounter locale={locale} />
         </div>
 
         {/* Hero tool, UploadZone by default, custom node if `tool` prop

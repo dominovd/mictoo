@@ -58,19 +58,19 @@ const Icons = {
   cap:      <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9zM5 13.2v3.3l7 3.8 7-3.8v-3.3l-7 3.8z" /></svg>,
 }
 
-// TOOLS sidebar — sync with SiteFooter.js Tools column.
+// TOOLS sidebar — labels resolved via layouts.converter.nav.<slug>
 const TOOLS_NAV = [
-  { href: '/free-srt-generator',        icon: 'captions', label: 'SRT Generator' },
-  { href: '/timestamped-transcription', icon: 'clock',    label: 'Timestamped Transcript' },
-  { href: '/mp4-to-mp3',                icon: 'refresh',  label: 'MP4 to MP3' },
-  { href: '/wav-to-mp3',                icon: 'refresh',  label: 'WAV to MP3' },
-  { href: '/webm-to-mp3',               icon: 'refresh',  label: 'WEBM to MP3' },
-  { href: '/flac-to-mp3',               icon: 'refresh',  label: 'FLAC to MP3' },
-  { href: '/aac-to-mp3',                icon: 'refresh',  label: 'AAC to MP3' },
-  { href: '/wma-to-mp3',                icon: 'refresh',  label: 'WMA to MP3' },
-  { href: '/m4a-to-mp3',                icon: 'refresh',  label: 'M4A to MP3' },
-  { href: '/mp3-to-m4a',                icon: 'refresh',  label: 'MP3 to M4A' },
-  { href: '/mp3-to-wav',                icon: 'refresh',  label: 'MP3 to WAV' },
+  { slug: 'free-srt-generator',        icon: 'captions' },
+  { slug: 'timestamped-transcription', icon: 'clock' },
+  { slug: 'mp4-to-mp3',                icon: 'refresh' },
+  { slug: 'wav-to-mp3',                icon: 'refresh' },
+  { slug: 'webm-to-mp3',               icon: 'refresh' },
+  { slug: 'flac-to-mp3',               icon: 'refresh' },
+  { slug: 'aac-to-mp3',                icon: 'refresh' },
+  { slug: 'wma-to-mp3',                icon: 'refresh' },
+  { slug: 'm4a-to-mp3',                icon: 'refresh' },
+  { slug: 'mp3-to-m4a',                icon: 'refresh' },
+  { slug: 'mp3-to-wav',                icon: 'refresh' },
 ]
 
 // Default 4-chip trust row.
@@ -508,11 +508,13 @@ export default function ConverterPageLayout({
               </div>
               <nav className="space-y-1">
                 {TOOLS_NAV.map((item) => {
-                  const isCurrent = item.href === currentHref
+                  const href = (locale === 'en' ? '' : `/${locale}`) + '/' + item.slug
+                  const isCurrent = ('/' + item.slug) === currentHref || href === currentHref
+                  const label = t(locale, `layouts.converter.nav.${item.slug}`)
                   return (
                     <Link
-                      key={item.href}
-                      href={item.href}
+                      key={item.slug}
+                      href={href}
                       className={
                         'group flex items-start gap-2.5 rounded-lg px-3 py-2 text-sm transition-colors ' +
                         (isCurrent
@@ -523,7 +525,7 @@ export default function ConverterPageLayout({
                       <span className={'w-4 h-4 mt-0.5 flex-shrink-0 ' + (isCurrent ? 'text-amber-600' : 'text-slate-400')}>
                         {Icons[item.icon] || Icons.file}
                       </span>
-                      <span className="leading-tight">{item.label}</span>
+                      <span className="leading-tight">{label}</span>
                     </Link>
                   )
                 })}

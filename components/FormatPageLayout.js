@@ -153,10 +153,10 @@ export default function FormatPageLayout({
           <p className="mt-5 text-lg text-slate-600 max-w-2xl mx-auto">{subtitle}</p>
 
           <div className="mt-6 mb-5">
-            <HeroChips />
+            <HeroChips locale={locale} />
           </div>
 
-          <HeroCounter />
+          <HeroCounter locale={locale} />
         </div>
 
         <div id="tool" className="max-w-2xl mx-auto mt-10 scroll-mt-20">
