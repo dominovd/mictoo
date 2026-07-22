@@ -1534,7 +1534,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
                     className="absolute right-0 top-full mt-2 w-64 bg-white border border-slate-200 rounded-xl shadow-xl overflow-hidden z-30 p-3"
                   >
                     <div className="text-[10px] font-semibold uppercase tracking-wide text-slate-400 mb-2">
-                      Translate transcript into
+                      {t(locale, 'result.dl.translateInto')}
                     </div>
                     <select
                       value={translateTarget}
@@ -1560,7 +1560,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
                       <>
                         <div className="border-t border-slate-100 my-3" />
                         <div className="text-xs text-slate-600 mb-2">
-                          Showing: <span className="font-semibold text-slate-800">{DICT[locale]?.languages?.[translateLang] ?? DICT.en.languages[translateLang] ?? translateLang.toUpperCase()}</span>
+                          {t(locale, 'result.dl.showing')} <span className="font-semibold text-slate-800">{DICT[locale]?.languages?.[translateLang] ?? DICT.en.languages[translateLang] ?? translateLang.toUpperCase()}</span>
                         </div>
                         <button
                           type="button"
@@ -1623,7 +1623,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
                       <div className="border-t border-slate-100" />
                       <div className="px-4 py-3">
                         <div className="text-[10px] font-semibold uppercase tracking-wide text-slate-400 mb-2">
-                          Include
+                          {t(locale, 'result.dl.include')}
                         </div>
                         <div className="inline-flex items-center gap-0 bg-slate-100 rounded-lg p-0.5 text-xs w-full">
                           <button
@@ -1631,7 +1631,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
                             onClick={() => setExportContent('all')}
                             className={`flex-1 px-2 py-1 rounded-md transition-colors ${exportContent === 'all' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500'}`}
                           >
-                            All
+                            {t(locale, 'result.dl.all')}
                           </button>
                           {summaryStatus === 'done' && summaryData && (
                             <button
@@ -1639,7 +1639,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
                               onClick={() => setExportContent('summary')}
                               className={`flex-1 px-2 py-1 rounded-md transition-colors ${exportContent === 'summary' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500'}`}
                             >
-                              Summary
+                              {t(locale, 'result.dl.summary')}
                             </button>
                           )}
                           <button
@@ -1647,7 +1647,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
                             onClick={() => setExportContent('transcript')}
                             className={`flex-1 px-2 py-1 rounded-md transition-colors ${exportContent === 'transcript' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500'}`}
                           >
-                            Transcript
+                            {t(locale, 'result.dl.transcript')}
                           </button>
                           {translatedSegments && (
                             <button
@@ -1669,7 +1669,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
                   {/* Free formats */}
                   <div className="px-2 py-2">
                     <div className="text-[10px] font-semibold uppercase tracking-wide text-slate-400 px-2 pt-1 pb-1.5">
-                      Free
+                      {t(locale, 'result.dl.free')}
                     </div>
                     <button
                       type="button"
@@ -1678,7 +1678,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
                     >
                       <DownloadIcon className="w-4 h-4 text-slate-500" />
                       <span>.txt</span>
-                      <span className="ml-auto text-[10px] text-slate-400">Plain text</span>
+                      <span className="ml-auto text-[10px] text-slate-400">{t(locale, 'result.dl.plainText')}</span>
                     </button>
                     {hasSRT && (
                       <button
@@ -1688,7 +1688,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
                       >
                         <ClockIcon className="w-4 h-4 text-slate-500" />
                         <span>.txt</span>
-                        <span className="ml-auto text-[10px] text-slate-400">With timestamps</span>
+                        <span className="ml-auto text-[10px] text-slate-400">{t(locale, 'result.dl.withTimestamps')}</span>
                       </button>
                     )}
                     {hasSRT && (
@@ -1699,7 +1699,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
                       >
                         <SubtitleIcon className="w-4 h-4 text-slate-500" />
                         <span>.srt</span>
-                        <span className="ml-auto text-[10px] text-slate-400">Subtitles</span>
+                        <span className="ml-auto text-[10px] text-slate-400">{t(locale, 'result.dl.subtitles')}</span>
                       </button>
                     )}
                   </div>
@@ -1710,7 +1710,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
                   <div className="px-2 py-2">
                     <div className="flex items-center justify-between px-2 pt-1 pb-1.5">
                       <span className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
-                        {authUser ? 'Registered' : 'Sign in to unlock'}
+                        {authUser ? t(locale, 'result.dl.registered') : t(locale, 'result.dl.signInToUnlock')}
                       </span>
                       {!authUser && (
                         <LockIcon className="w-3 h-3 text-slate-400" />
@@ -1723,7 +1723,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
                     >
                       <DocIcon className="w-4 h-4 text-slate-500" />
                       <span>.docx</span>
-                      <span className="ml-auto text-[10px] text-slate-400">Word document</span>
+                      <span className="ml-auto text-[10px] text-slate-400">{t(locale, 'result.dl.wordDoc')}</span>
                     </button>
                     {hasSRT && (
                       <button
@@ -1733,7 +1733,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
                       >
                         <PdfIcon className="w-4 h-4 text-slate-500" />
                         <span>.pdf</span>
-                        <span className="ml-auto text-[10px] text-slate-400">Portable doc</span>
+                        <span className="ml-auto text-[10px] text-slate-400">{t(locale, 'result.dl.portableDoc')}</span>
                       </button>
                     )}
                     {hasSRT && (
@@ -1744,7 +1744,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
                       >
                         <SubtitleIcon className="w-4 h-4 text-slate-500" />
                         <span>.vtt</span>
-                        <span className="ml-auto text-[10px] text-slate-400">Web captions</span>
+                        <span className="ml-auto text-[10px] text-slate-400">{t(locale, 'result.dl.webCaptions')}</span>
                       </button>
                     )}
                     <button
@@ -1754,7 +1754,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
                     >
                       <CodeIcon className="w-4 h-4 text-slate-500" />
                       <span>.json</span>
-                      <span className="ml-auto text-[10px] text-slate-400">Raw data</span>
+                      <span className="ml-auto text-[10px] text-slate-400">{t(locale, 'result.dl.rawData')}</span>
                     </button>
                   </div>
                 </div>
