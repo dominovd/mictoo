@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import ConverterPageLayout from '@/components/ConverterPageLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/free-srt-generator',
@@ -15,200 +15,84 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Générateur SRT — créez des fichiers de sous-titres SRT en ligne | Mictoo',
+  title: 'Générateur de SRT gratuit : Créez des fichiers de sous-titres SRT en ligne à partir d’audio ou de vidéo | Mictoo',
   description:
-    "Générateur de sous-titres SRT gratuit. Chargez votre fichier audio ou vidéo et obtenez un .srt propre avec horodatages en quelques secondes. Marche avec YouTube, Premiere, DaVinci, CapCut.",
-  alternates: { canonical: 'https://mictoo.com/fr/free-srt-generator', languages: LANGS },
-
+    'Générez des fichiers de sous-titres SRT propres à partir de n’importe quel audio ou vidéo. Horodatages de qualité Whisper, prêts pour YouTube, Premiere, Final Cut, DaVinci Resolve, CapCut. Gratuit, sans inscription.',
+  alternates: {
+    canonical: 'https://mictoo.com/fr/free-srt-generator',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Générateur SRT — créez des fichiers de sous-titres SRT en ligne | Mictoo",
-    description: "Générateur de sous-titres SRT gratuit. Chargez votre fichier audio ou vidéo et obtenez un .srt propre avec horodatages en quelques secondes. Marche avec YouTube, Premiere, DaVinci, CapCut.",
-    url: "https://mictoo.com/fr/free-srt-generator",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Générateur de SRT gratuit | Mictoo',
+    description: 'Générez des fichiers de sous-titres SRT à partir d’audio ou de vidéo. Prêt pour YouTube, Premiere, Final Cut.',
+    url: 'https://mictoo.com/fr/free-srt-generator',
+    siteName: 'Mictoo', type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Générateur SRT — créez des fichiers de sous-titres SRT en ligne | Mictoo",
-    description: "Générateur de sous-titres SRT gratuit. Chargez votre fichier audio ou vidéo et obtenez un .srt propre avec horodatages en quelques secondes. Marche avec YouTube, Premiere, DaVinci, CapCut.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Générateur de SRT gratuit',
+    description: 'Sous-titres SRT de qualité Whisper à partir d’audio ou de vidéo.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function FrSrtPage() {
+export default function FrFreeSrtGeneratorPage() {
   return (
-    <LandingLayout
-      defaultLanguage="fr"
-      enableYouTubeUrl
-      badge="SRT · Sous-titres · Gratuit"
-      h1={
-        <>
-          Générateur SRT
-          <br />
-          <span className="text-brand-600">Sous-titres IA depuis n'importe quel audio ou vidéo</span>
-        </>
-      }
-      subtitle="Générez des fichiers de sous-titres depuis n'importe quel audio ou vidéo. Récupérez un .srt propre avec des horodatages précis en quelques secondes. Drop-in pour YouTube, Premiere, DaVinci Resolve, CapCut, Final Cut."
-      howItWorks={[
-        {
-          icon: '📂',
-          title: "Déposez l'audio ou la vidéo",
-          desc: "MP3, M4A, MP4, MOV, WAV, FLAC, OGG, WEBM, AAC. L'audio est extrait de la vidéo automatiquement.",
-        },
-        {
-          icon: '⚡',
-          title: "L'IA transcrit et aligne",
-          desc: "Whisper large-v3 transcrit l'audio et génère des horodatages pour chaque ligne. Une vidéo de 10 minutes prend en général 15 secondes. Une de 30 minutes, environ une minute.",
-        },
-        {
-          icon: '💾',
-          title: 'Téléchargez le .srt',
-          desc: "Cliquez « Télécharger SRT ». Le fichier est au format standard, drop-in compatible avec tout grand éditeur vidéo et YouTube Studio.",
-        },
+    <ConverterPageLayout
+      locale="fr"
+      mode="upload" currentHref="/fr/free-srt-generator"
+      badge="SRT · Audio ou vidéo · Gratuit"
+      h1First="Générateur de SRT gratuit"
+      h1Second="Sous-titres de qualité Whisper à partir de n’importe quel audio ou vidéo"
+      subtitle="Téléchargez un audio ou une vidéo, obtenez un fichier de sous-titres SRT prêt pour YouTube, Premiere, Final Cut, DaVinci Resolve ou CapCut. Pas d’inscription, pas de frais par minute."
+      stepsTitle="Comment fonctionne la génération de SRT"
+      steps={[
+        { icon: 'upload',   title: 'Déposez l’audio ou la vidéo', desc: 'MP3, MP4, WAV, M4A, WEBM, FLAC et plus. Jusqu’à 25 MB anonymement, 180 MB connecté.' },
+        { icon: 'waveform', title: 'Whisper transcrit', desc: 'Whisper large-v3 produit des horodatages par segment alignés à l’audio original.' },
+        { icon: 'download', title: 'Téléchargez le SRT',        desc: 'Exports SRT et VTT inclus. Intégrez dans votre éditeur vidéo ou téléchargez sur YouTube.' },
       ]}
-      whyUse={{
-        title: 'Pourquoi ce générateur SRT',
-        bullets: [
-          {
-            title: "Les horodatages Whisper large-v3 sont précis à l'image",
-            desc: "Les horodatages sont en millisecondes, ce qui est plus précis que n'importe quelle fréquence d'images courante. Ils s'alignent correctement à 24, 25, 29.97, 30, 50 et 60 fps sans ajustement d'offset.",
-          },
-          {
-            title: 'Gratuit, sans compteur à la minute',
-            desc: "Transcrivez 10 minutes ou 60. Même prix (gratuit). Pas de gate « passez à Pro » après le premier fichier.",
-          },
-          {
-            title: 'Plus de 50 langues',
-            desc: "Générez des sous-titres pour du contenu dans toute langue majeure. Utile pour les chaînes YouTube internationales et les pistes de sous-titres traduits.",
-          },
-          {
-            title: 'Format .srt standard',
-            desc: "Pas d'extensions propriétaires, pas d'encodage bizarre. Marche dans Premiere Pro, DaVinci Resolve, Final Cut, CapCut, Kapwing, Descript, YouTube Studio, VLC, MPV.",
-          },
-          {
-            title: "Aucun fichier n'est conservé",
-            desc: "L'audio va au prestataire de transcription et est jeté après traitement. On ne garde pas votre vidéo.",
-          },
-        ],
-      }}
-      useCases={{
-        title: 'À quoi servent les fichiers SRT',
-        items: [
-          {
-            title: 'Uploads YouTube',
-            desc: "Remplacez les sous-titres auto YouTube par un .srt propre. Meilleure ponctuation, moins d'erreurs, meilleure accessibilité pour les spectateurs malentendants. Bonus : la recherche YouTube indexe plus fiablement les sous-titres uploadés que les auto-générés.",
-          },
-          {
-            title: 'Sous-titres pour vidéo sociale (TikTok, Reels, Shorts)',
-            desc: 'Générez le .srt ici, importez dans CapCut ou Premiere, stylisez les sous-titres comme vous voulez, et incrustez-les dans la vidéo. La plupart des spectateurs regardent sans son, donc les sous-titres ne sont plus optionnels.',
-          },
-          {
-            title: "Sous-titrage pour l'accessibilité",
-            desc: "Enregistrements de conférences, vidéos de formation interne, cours en ligne. Les sous-titres les rendent utilisables pour les spectateurs sourds et malentendants, et pour quiconque dans un environnement bruyant.",
-          },
-          {
-            title: 'Pipeline de traduction',
-            desc: 'Générez le .srt dans la langue source, collez-le dans DeepL ou ChatGPT pour traduire, sauvegardez en .srt dans la langue cible. Résultat : sous-titres de qualité doublage dans une autre langue sans payer une traduction humaine.',
-          },
-          {
-            title: 'Montage vidéo dans les délais',
-            desc: "Quand vous avez besoin de sous-titres hier et que vous ne pouvez pas attendre un transcripteur humain, les sous-titres IA sont assez bons pour la première coupe. Polissez après.",
-          },
-        ],
-      }}
-      proTips={{
-        title: 'Astuces pour générer du SRT',
-        tips: [
-          {
-            title: 'Pour les longues vidéos, générez le .srt en morceaux de 10 minutes et concaténez',
-            desc: "Plus facile de corriger des horodatages faux au milieu si une dérive se produit. La plupart des éditeurs vous laissent importer plusieurs .srt et les recoller.",
-          },
-          {
-            title: "L'upload audio seul est plus rapide que l'upload vidéo pour le même contenu",
-            desc: "Extrayez l'audio en premier : ffmpeg -i video.mp4 -vn -ac 1 -b:a 64k audio.mp3. Le .srt que vous recevez fonctionne contre la vidéo originale, puisque les horodatages sont les horodatages.",
-          },
-          {
-            title: 'Incrustez les sous-titres seulement après le montage',
-            desc: "Si vous incrustez les sous-titres dans la vidéo avant les coupes, vous devrez les refaire au coupage. Incrustez à la fin, quand la vidéo est verrouillée.",
-          },
-          {
-            title: 'Gardez la longueur de ligne du .srt gérable',
-            desc: "Whisper produit parfois de longs sous-titres sur une seule ligne pour les longues phrases. La plupart des éditeurs vous laissent découper les longues lignes automatiquement, ou vous pouvez découper manuellement pour une meilleure lisibilité.",
-          },
-          {
-            title: 'Pour les vidéos multilingues, générez le .srt une langue à la fois',
-            desc: 'Si votre vidéo a des sections en anglais et en français, générez le .srt de chaque section séparément (en fixant la langue manuellement à chaque fois), puis fusionnez en un seul .srt.',
-          },
-          {
-            title: 'Éditez le .srt dans un éditeur de texte, pas un éditeur vidéo',
-            desc: "Un .srt, c'est juste du texte avec des horodatages. Ouvrez dans VS Code, Notepad++ ou BBEdit pour corriger les coquilles vite. Réimportez dans l'éditeur vidéo quand vous avez fini.",
-          },
-          {
-            title: 'Pour TikTok et Reels, raccourcissez les sous-titres à une courte ligne par sous-titre, à la main',
-            desc: "Les phrases naturelles de Whisper sont plus longues que le style punchy de TikTok. Éditez le .srt pour coller au style de la plateforme.",
-          },
-        ],
-      }}
+      whyTitle="Pourquoi utiliser Mictoo pour la génération de SRT ?"
+      whyCards={[
+        { icon: 'target',   title: 'Sous-titres multilingues précis', desc: 'Whisper large-v3 ajoute de la ponctuation et gère de nombreuses langues, accents et types d’enregistrements.' },
+        { icon: 'captions', title: 'SRT + VTT inclus',                desc: 'Les deux formats de sous-titres sont générés automatiquement. VTT pour les lecteurs web, SRT pour les éditeurs.' },
+        { icon: 'lock',     title: 'Fichiers supprimés après',               desc: 'L’audio téléchargé est supprimé après transcription ; la transcription persiste uniquement sur les comptes connectés.' },
+        { icon: 'shield',   title: 'Pas de filigrane ni de tag',               desc: 'SRT propre sans introduction de marque ou tag "Fait avec X".' },
+      ]}
+      scenariosTitle="Quand la génération de SRT est utile"
+      scenarios={[
+        { icon: 'video',      title: 'Sous-titres pour téléchargement YouTube' },
+        { icon: 'editPen',    title: 'Importation dans Premiere / DaVinci' },
+        { icon: 'headphones', title: 'Version vidéo de podcast' },
+        { icon: 'mail',       title: 'Copie pour révision client' },
+        { icon: 'archive',    title: 'Archive d’accessibilité' },
+        { icon: 'target',     title: 'Sous-titres en langue étrangère' },
+      ]}
+      tipsTitle="Conseils pour des sous-titres plus clairs"
+      tips={[
+        'Pour les fichiers de plus de 25 MB, connectez-vous pour des téléchargements auto-split jusqu’à 180 MB.',
+        'Définissez la langue explicitement pour le contenu non anglais ou technique.',
+        'Vérifiez les noms et les termes inhabituels en mode Éditeur avant l’exportation.',
+        'Traduisez d’abord la transcription, puis exportez le SRT pour les sous-titres étrangers.',
+      ]}
+      processTitle="Que se passe-t-il pendant la génération"
+      processSteps={['Audio / vidéo', 'Transcription Whisper', 'Export SRT + VTT']}
       faq={[
-        {
-          q: "Qu'est-ce qu'un fichier SRT ?",
-          a: 'SRT (SubRip Subtitle) est le format de sous-titres le plus courant. Texte simple avec horodatages et texte du sous-titre. Tout grand lecteur vidéo ou éditeur lit le .srt.',
-        },
-        {
-          q: 'Comment générer un fichier SRT depuis une vidéo ?',
-          a: "Chargez la vidéo ici. On extrait l'audio, on transcrit, on génère le .srt. Cliquez « Télécharger SRT » quand c'est prêt.",
-        },
-        {
-          q: 'Comment ajouter des sous-titres SRT à une vidéo YouTube ?',
-          a: "Dans YouTube Studio, ouvrez votre vidéo, allez dans Sous-titres, cliquez Ajouter une langue, chargez le fichier .srt. YouTube l'utilisera comme sous-titres officiels pour cette langue.",
-        },
-        {
-          q: 'Le fichier SRT marche dans Premiere Pro et DaVinci Resolve ?',
-          a: 'Oui. Dans Premiere, File, Import, sélectionnez le .srt. Dans DaVinci, glissez le .srt dans le bin du projet. Les deux le traitent comme une piste de sous-titres que vous pouvez encore éditer sur la timeline.',
-        },
-        {
-          q: 'Ça marche dans CapCut et Final Cut ?',
-          a: 'Oui. CapCut : tapez Captions, Import SRT. Final Cut : File, Import, Captions, sélectionnez le .srt. Les deux placent les sous-titres sur la timeline aux bons moments.',
-        },
-        {
-          q: 'Le générateur SRT est-il vraiment gratuit ?',
-          a: "Oui. Pas de tarif par fichier, pas de compteur à la minute, pas d'email pour les fichiers sous 25 Mo. Les fichiers entre 25 Mo et 60 Mo demandent un compte gratuit.",
-        },
-        {
-          q: 'Quelle est la taille maximale du fichier ?',
-          a: '25 Mo sans compte, 60 Mo avec compte gratuit.',
-        },
-        {
-          q: 'Puis-je générer du SRT depuis des fichiers audio (MP3, WAV) ?',
-          a: "Oui. Déposez le fichier audio directement. On génère le .srt avec horodatages comme s'il s'agissait d'audio vidéo. Utile pour ajouter des sous-titres quand vous synchroniserez l'audio sur des images ou des slides après.",
-        },
-        {
-          q: 'Les horodatages vont-ils dériver sur une longue vidéo ?',
-          a: "Les horodatages Whisper sont alignés sur l'audio réel, donc la dérive est rare. Pour les fichiers très longs (60 minutes), une dérive sous-seconde sur les derniers sous-titres peut arriver. Si vous la repérez, corrigez les sous-titres affectés à la main.",
-        },
-        {
-          q: 'Puis-je éditer les sous-titres avant de télécharger ?',
-          a: 'Oui. Après la transcription, corrigez les mots faux dans la vue de résultat, puis téléchargez le .srt avec vos éditions.',
-        },
-        {
-          q: 'Quelles langues le générateur SRT supporte-t-il ?',
-          a: "Plus de 50 langues avec détection automatique. Pour les vidéos plus courtes ou le contenu non anglais, choisissez la langue manuellement pour des résultats plus fiables.",
-        },
-        {
-          q: "L'audio est-il stocké ?",
-          a: "Non. Le fichier va à notre prestataire de transcription, est traité, puis jeté. On ne garde ni l'audio ni le .srt généré.",
-        },
-        {
-          q: "Puis-je générer le SRT dans une langue différente de l'audio ?",
-          a: 'Pas directement. Générez le .srt dans la langue source, puis traduisez le texte du .srt avec DeepL ou ChatGPT. Les horodatages restent les mêmes, seul le texte change.',
-        },
+        { q: 'Le générateur de SRT est-il gratuit ?', a: 'Oui. Jusqu’à 25 MB anonymement ou 180 MB lorsque connecté. Pas de filigrane sur le SRT et pas de frais par minute.' },
+        { q: 'Quels formats de sous-titres puis-je obtenir ?', a: 'SRT et VTT sont tous deux inclus. TXT (texte brut) et DOCX sont également disponibles. Les utilisateurs connectés obtiennent en plus PDF et JSON.' },
+        { q: 'Quelle est la précision des horodatages ?', a: 'Whisper large-v3 fournit des horodatages par segment alignés à l’audio original. Assez précis pour les sous-titres YouTube et la plupart des cas d’utilisation en montage vidéo.' },
+        { q: 'Identifiez-vous les intervenants (diarisation) ?', a: 'Pas encore. Sous-titres continus avec horodatages mais sans étiquettes de locuteur. La diarisation est sur la feuille de route Pro.' },
+        { q: 'Mictoo transcrit-il l’audio non anglais ?', a: 'Oui. Whisper large-v3 prend en charge plus de 50 langues avec détection automatique. Définissez la langue explicitement pour de meilleurs résultats.' },
+        { q: 'Les enregistrements sont-ils conservés sur vos serveurs ?', a: 'Non. L’audio est transmis au fournisseur de transcription, traité une fois, puis supprimé. Les transcriptions persistent uniquement sur les comptes connectés.' },
       ]}
-      relatedLinks={[
-        { href: '/fr/transcribe-video-to-text', label: 'Vidéo en texte', desc: 'Même moteur, calé pour la sortie texte simple.' },
-        { href: '/fr/timestamped-transcription', label: 'Transcription horodatée', desc: 'Pour des horodatages par phrase ou par mot dans d\'autres formats.' },
-        { href: '/fr/youtube-to-text', label: 'YouTube en texte', desc: 'Pour remplacer les sous-titres auto YouTube.' },
-        { href: '/fr/transcribe-audio-to-text', label: 'Audio en texte', desc: 'Pour la transcription audio pure.' },
+      ctaHeadline="Générez des sous-titres SRT à partir de tout enregistrement"
+      ctaSubtitle="YouTube, Premiere, Final Cut, DaVinci, CapCut. Horodatages de qualité Whisper."
+      ctaButton="Téléchargez audio ou vidéo"
+      moreTools={[
+        { href: '/fr/timestamped-transcription', label: 'Transcription horodatée' },
+        { href: '/fr/youtube-to-text',           label: 'YouTube vers texte' },
+        { href: '/fr/transcribe-video-to-text',  label: 'Vidéo vers texte' },
+        { href: '/fr/transcribe-audio-to-text',  label: 'Audio vers texte' },
       ]}
     />
   )

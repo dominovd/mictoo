@@ -1,5 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
-import ConverterZone from '@/components/ConverterZone'
+import ConverterPageLayout from '@/components/ConverterPageLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/wav-to-mp3',
@@ -16,81 +15,91 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'WAV vers MP3 — convertisseur en ligne gratuit | Mictoo',
+  title: 'WAV vers MP3, convertisseur en ligne gratuit | Mictoo',
   description:
-    "Convertissez WAV en MP3 gratuitement en ligne. Réduisez les fichiers WAV sans perte en MP3 portables à 128 kbps en quelques secondes. Sans inscription, sans filigrane. Jusqu'à 25 Mo.",
+    'Convertissez WAV en MP3 gratuitement en ligne. Réduisez les fichiers WAV sans perte à un MP3 portable de 128 kbps en quelques secondes. Pas d’inscription, pas de filigrane. Jusqu’à 25 Mo.',
   alternates: { canonical: 'https://mictoo.com/fr/wav-to-mp3', languages: LANGS },
-
   openGraph: {
-    title: "WAV vers MP3 — convertisseur en ligne gratuit | Mictoo",
-    description: "Convertissez WAV en MP3 gratuitement en ligne. Réduisez les fichiers WAV sans perte en MP3 portables à 128 kbps en quelques secondes. Sans inscription, sans filigrane. Jusqu'à 25 Mo.",
-    url: "https://mictoo.com/fr/wav-to-mp3",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'WAV vers MP3, convertisseur en ligne gratuit | Mictoo',
+    description: 'Réduisez les WAV sans perte à un MP3 portable de 128 kbps. Pas d’inscription.',
+    url: 'https://mictoo.com/fr/wav-to-mp3',
+    siteName: 'Mictoo', type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "WAV vers MP3 — convertisseur en ligne gratuit | Mictoo",
-    description: "Convertissez WAV en MP3 gratuitement en ligne. Réduisez les fichiers WAV sans perte en MP3 portables à 128 kbps en quelques secondes. Sans inscription, sans filigrane. Jusqu'à 25 Mo.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'WAV vers MP3, convertisseur en ligne gratuit',
+    description: 'Réduisez WAV en MP3 portable.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function FrWavToMp3Page() {
   return (
-    <LandingLayout
-      defaultLanguage="fr"
-      badge="WAV → MP3 · Gratuit · Sans inscription"
-      h1={<>WAV vers MP3<br /><span className="text-brand-600">Convertisseur en ligne gratuit</span></>}
-      subtitle="Déposez un fichier WAV. Récupérez un MP3 compact dix fois plus léger, son quasi-identique pour la voix parlée ou l&apos;écoute courante. Sans filigrane, sans email."
-      tool={<ConverterZone from="wav" to="mp3" />}
-      howItWorks={[
-        { icon: '📂', title: 'Déposez le WAV', desc: "Glissez n'importe quel WAV (16-bit, 24-bit, mono, stéréo) dans la zone. Les fichiers jusqu'à 25 Mo passent de manière anonyme, 60 Mo avec inscription." },
-        { icon: '⚡', title: 'Nous ré-encodons en MP3', desc: "ffmpeg côté serveur, débit constant 128 kbps, 44.1 kHz, stéréo. Un WAV de 25 Mo (environ 2 minutes en 24-bit/96 kHz, ou 5 minutes en 16-bit/44.1) se termine en quelques secondes." },
-        { icon: '⬇️', title: 'Téléchargez le MP3', desc: "Le résultat porte le nom d'origine avec .mp3 à la place. L'envoi comme le résultat sont supprimés de nos serveurs en moins d'une heure." },
+    <ConverterPageLayout
+      locale="fr"
+      mode="converter" from="wav" to="mp3" currentHref="/fr/wav-to-mp3"
+      badge="WAV → MP3 · Gratuit · Pas d’inscription"
+      h1First="WAV vers MP3"
+      h1Second="Convertisseur en ligne gratuit"
+      subtitle="Déposez un fichier WAV non compressé et obtenez un petit MP3 portable en quelques secondes. Pas de filigrane, pas d’email, pas d’attente."
+      outputFormat="MP3" outputQuality="128 kbps" outputAudio="Stéréo"
+      stepsTitle="Comment fonctionne la conversion WAV vers MP3"
+      steps={[
+        { icon: 'upload',   title: 'Déposez le WAV',         desc: 'Téléchargez un fichier WAV jusqu’à 25 Mo. Aucun compte n’est requis.' },
+        { icon: 'waveform', title: 'Nous encodons en MP3',      desc: 'ffmpeg encode en MP3 stéréo à 128 kbps à 44,1 kHz. Un WAV de 25 Mo se termine en environ 10 secondes.' },
+        { icon: 'download', title: 'Téléchargez le MP3',     desc: 'Obtenez un MP3 de 128 kbps plus petit avec le nom de fichier d’origine.' },
       ]}
-      whyUse={{ title: 'Pourquoi convertir WAV vers MP3', bullets: [
-        { title: 'Les fichiers WAV sont énormes', desc: "Un WAV 16-bit/44.1 kHz de 5 minutes pèse environ 50 Mo. Le même audio en MP3 à 128 kbps fait 5 Mo. Pour envoyer par email, uploader sur un hébergeur de podcast, ou ranger sur un téléphone, le MP3 est le bon format." },
-        { title: 'Le MP3 se lit partout', desc: "Le WAV passe sur ordinateur mais reste capricieux sur les vieux autoradios, certains haut-parleurs Bluetooth, et beaucoup de lecteurs web. Le MP3 fonctionne simplement." },
-        { title: "La perte de qualité à 128 kbps est inaudible pour la plupart des écoutes", desc: "Vous ne ferez pas la différence entre un MP3 à 128 kbps et le WAV original sauf si vous masterisez de la musique sur des moniteurs de studio. Pour la voix, le podcast ou l'écoute courante, c'est le compromis évident." },
-        { title: 'Sans filigrane, sans popups', desc: "Le MP3 est juste votre audio ré-encodé. Nous n'ajoutons pas d'intro disant \"Converti par...\" et nous n'affichons pas de fausse popup d'attente de 30 secondes." },
-        { title: 'Vie privée par défaut', desc: "Les WAV issus d'un enregistrement de terrain peuvent être sensibles. Le fichier arrive sur Vercel Blob, est converti, puis effacé. Nous ne le regardons pas, nous ne le gardons pas." },
-      ]}}
-      useCases={{ title: 'Quand convertir WAV vers MP3', items: [
-        { title: 'Enregistrement de terrain vers extrait prêt à envoyer', desc: "Un Zoom H1n ou enregistreur similaire sauvegarde en WAV par défaut. Convertissez en MP3 avant de partager avec un producteur, journaliste ou transcripteur." },
-        { title: "Export studio vers écoute mobile", desc: "Audacity, Reaper, Logic, ils exportent tous en WAV par défaut. Exportez le mix brut en MP3 pour le partager avec des collaborateurs ou l'écouter en déplacement." },
-        { title: 'Préparation de podcast', desc: "La plupart des hébergeurs de podcasts (Anchor, Buzzsprout, Transistor) acceptent le WAV mais recommandent le MP3 parce que l'upload est plus rapide et la bande passante moins chère." },
-        { title: 'Nettoyage de mémo vocal', desc: "Si votre téléphone ou enregistreur a sauvegardé en WAV, convertissez en MP3 avant de ranger dans vos archives Notion ou Notes. Cela économise du stockage à peu de frais." },
-        { title: 'Pipeline de nettoyage audio', desc: "Vous avez enregistré en WAV pour le montage, fait vos retouches, et vous voulez maintenant un MP3 plus léger pour la distribution. C'est la dernière étape." },
-      ]}}
-      proTips={{ title: 'Conseils pour une conversion WAV vers MP3 propre', tips: [
-        { title: 'Le WAV 24-bit se convertit comme le 16-bit', desc: "Le MP3 ne préserve pas la profondeur de bits au-delà de ce dont le codage perceptif a besoin. Un WAV 24-bit ne vous apporte aucun avantage audible par rapport au 16-bit une fois ré-encodé en MP3 à 128 kbps." },
-        { title: 'Si le WAV dépasse 25 Mo, coupez-le avant', desc: "Ouvrez dans Audacity (gratuit) ou QuickTime, coupez la partie utile, exportez en WAV plus léger, puis convertissez. Ou connectez-vous pour la limite de 60 Mo." },
-        { title: 'Mono en entrée, mono en sortie', desc: "Si votre WAV source est en mono (typique pour les enregistrements vocaux), le MP3 obtenu sera aussi en mono. Un MP3 mono à 128 kbps est largement suffisant, mais notre convertisseur standardise à 128 par simplicité." },
-        { title: "Pour le mastering ou l'archivage, n'utilisez pas le MP3", desc: "Si vous gardez le fichier comme copie maître pour un futur remastering, restez en WAV (ou FLAC). Le MP3 est un format de distribution, pas d'archivage." },
-        { title: '320 kbps ou VBR ? Ouvrez le MP3 dans Audacity ensuite', desc: "Nous exportons en débit constant 128 kbps. Pour un débit supérieur ou VBR, prenez le MP3 vers Audacity et ré-exportez. La perte de qualité d'un encodage supplémentaire est faible." },
-        { title: 'Les WAV à en-têtes bizarres échouent en silence', desc: "Certains fichiers BWF (broadcast WAV) ont des en-têtes que ffmpeg ne lit pas. Ouvrez-les dans Audacity, sauvegardez en WAV standard, puis ressayez." },
-      ]}}
+      previewInputName="studio-bounce.wav"
+      previewInputSize="120 Mo · 00:12:34 · 16 bits / 44,1 kHz"
+      previewOutputName="studio-bounce.mp3"
+      previewOutputSize="00:12:34 · 128 kbps · 11,5 Mo"
+      whyTitle="Pourquoi utiliser Mictoo pour WAV vers MP3 ?"
+      whyCards={[
+        { icon: 'target',   title: 'Un travail bien fait',      desc: 'Juste la conversion. Pas de popup de newsletter, pas de barre de progression fausse.' },
+        { icon: 'fileAudio',title: 'Sortie beaucoup plus petite',    desc: 'Les fichiers WAV PCM non compressés deviennent souvent 8 à 12 fois plus petits à 128 kbps. Le ratio exact dépend de la source.' },
+        { icon: 'lock',     title: 'Fichiers supprimés après',    desc: 'Votre téléchargement est supprimé une fois la conversion terminée ; le MP3 est purgé dans l’heure.' },
+        { icon: 'shield',   title: 'Pas de filigrane ni de tag',    desc: 'Pas d’introduction de marque, pas de métadonnées injectées. Juste l’audio, ré-encodé.' },
+      ]}
+      scenariosTitle="Quand WAV vers MP3 est utile"
+      scenarios={[
+        { icon: 'headphones', title: 'Studio bounce pour téléphone' },
+        { icon: 'mail',       title: 'Envoyer un fichier plus petit par email' },
+        { icon: 'archive',    title: 'Archiver à une taille plus petite' },
+        { icon: 'editPen',    title: 'Préparer pour la transcription' },
+        { icon: 'waveform',   title: 'Importation de bibliothèque musicale' },
+        { icon: 'video',      title: 'Voix off pour vidéo' },
+      ]}
+      tipsTitle="Conseils pour un WAV vers MP3 propre"
+      tips={[
+        '128 kbps est transparent pour la plupart des écoutes.',
+        'Si le WAV dépasse 25 Mo, coupez-le ou compressez-le avant de le télécharger.',
+        'Le WAV multicanal est réduit à stéréo.',
+        'Pour une préservation sans perte, gardez le WAV comme copie d’archive.',
+      ]}
+      processTitle="Que se passe-t-il pendant la conversion"
+      processSteps={['Conteneur WAV', 'Décode PCM', 'Encodage MP3']}
+      compareTitle="WAV vs MP3"
+      compareRows={[
+        { fmt: 'WAV', contains: 'Non', size: 'Grand (~10 Mo/min)', best: 'Montage, archivage, studio' },
+        { fmt: 'MP3', contains: 'Non', size: 'Petit (~1 Mo/min)',  best: 'Partage, lecture, écoute' },
+      ]}
       faq={[
-        { q: 'La conversion WAV vers MP3 est-elle vraiment gratuite ?', a: "Oui. Pas de compte requis jusqu'à 25 Mo, pas de limite de temps, pas de filigrane sur la sortie. Les publicités d'affichage sur les pages éditoriales paient le serveur." },
-        { q: 'Quelle est la taille maximale de fichier ?', a: "25 Mo en anonyme, 60 Mo avec un compte gratuit. Un WAV de 25 Mo représente environ 5 minutes en 16-bit/44.1 kHz stéréo, ou environ 2 minutes en 24-bit/96 kHz." },
-        { q: 'Combien de temps cela prend-il ?', a: "Quelques secondes. La conversion elle-même va bien plus vite que le temps réel : un WAV de 25 Mo se termine en 3 à 8 secondes. La vitesse d'upload est le goulot." },
-        { q: 'Quelle qualité MP3 produisez-vous ?', a: "128 kbps en débit constant, 44.1 kHz, respect du nombre de canaux source (mono en entrée → mono en sortie, stéréo en entrée → stéréo en sortie). C'est le réglage universel \"assez bon pour tout\"." },
-        { q: 'Conservez-vous mes fichiers ?', a: "Non. L'envoi est supprimé juste après la conversion. Le résultat est purgé en moins d'une heure par notre cron de nettoyage. Sauvegardez-le en local." },
-        { q: 'Le MP3 sonnera-t-il différemment du WAV ?', a: "Sur la plupart des systèmes de lecture et la plupart des contenus, non. Au mastering sur des moniteurs de studio avec des oreilles fraîches, peut-être, mais à ce stade vous n'utiliseriez pas un convertisseur web." },
-        { q: 'Puis-je avoir un débit supérieur (256 ou 320 kbps) ?', a: "Pas directement ici. Prenez notre MP3 à 128 kbps vers Audacity et ré-exportez au débit voulu. Le double encodage ajoute une perte audible négligeable." },
-        { q: 'Et le FLAC à la place du MP3 ?', a: "Le FLAC est une compression sans perte : moitié de la taille du WAV, aucune perte de qualité. Pour l'archivage c'est le meilleur choix. Nous ne produisons pas de FLAC depuis ce convertisseur, mais notre page /flac-to-mp3 gère l'autre direction." },
-        { q: 'Mon WAV est en 32-bit float. Va-t-il se convertir ?', a: "Oui. ffmpeg gère le WAV 32-bit float sans souci. La sortie MP3 est la même quelle que soit la profondeur de bits en entrée." },
-        { q: "Pourquoi de l'audio mono devient un MP3 stéréo ?", a: "Nous conservons la configuration de canaux source. Un WAV mono donne un MP3 mono. Un WAV stéréo donne un MP3 stéréo. Nous ne faisons pas de upmix ni de downmix." },
-        { q: 'Cela marche-t-il pour la musique ou juste pour la voix ?', a: "Les deux. Un MP3 à 128 kbps est un léger compromis perceptif pour la musique, correct pour l'écoute en voiture, le casque en environnement bruyant, l'écoute courante. Pour de l'écoute musicale critique, gardez le WAV ou utilisez du FLAC." },
-        { q: 'Puis-je convertir par lots ?', a: "Pas encore. Un fichier à la fois sur le palier gratuit. Le lot est prévu pour une future formule Pro." },
+        { q: 'Le convertisseur WAV vers MP3 est-il gratuit ?', a: 'Oui. Aucun compte n’est nécessaire pour des fichiers jusqu’à 25 Mo, et la sortie n’a pas de filigrane.' },
+        { q: 'La conversion réduit-elle la qualité audio ?', a: 'Légèrement. MP3 à 128 kbps est un format avec perte mais la baisse de qualité est inaudible pour la voix et la lecture musicale typique. Gardez votre WAV comme master.' },
+        { q: 'Les fichiers téléchargés sont-ils stockés ?', a: 'Non. Votre WAV atterrit sur le stockage Vercel Blob juste le temps de convertir, puis il est supprimé. Le MP3 est purgé dans l’heure.' },
+        { q: 'Puis-je convertir un grand WAV ?', a: 'La limite de téléchargement actuelle est de 25 Mo. Pour un fichier plus grand, coupez-le ou exportez une copie mono ou à un taux d’échantillonnage inférieur avant de télécharger.' },
+        { q: 'Cela fonctionne-t-il sur mobile ?', a: 'Oui. Les téléchargements fonctionnent depuis iOS Safari et Android Chrome.' },
       ]}
-      relatedLinks={[
-        { href: '/fr/mp4-to-mp3', label: 'MP4 vers MP3', desc: "Extrayez l'audio MP3 d'un fichier vidéo." },
-        { href: '/fr/flac-to-mp3', label: 'FLAC vers MP3', desc: 'Convertissez du FLAC sans perte en MP3 portable.' },
-        { href: '/fr/mp3-to-wav', label: 'MP3 vers WAV', desc: "La direction inverse, WAV non compressé depuis un MP3." },
-        { href: '/fr/transcribe-audio-to-text', label: 'Audio vers texte', desc: "Besoin des mots et pas de l'audio ? Passez le MP3 et transcrivez directement." },
+      ctaHeadline="Convertissez votre WAV en MP3 maintenant"
+      ctaSubtitle="Déposez votre WAV et obtenez un MP3 portable en quelques secondes. Pas d’inscription. Pas de filigrane."
+      ctaButton="Choisissez un fichier WAV"
+      moreTools={[
+        { href: '/fr/mp4-to-mp3',  label: 'MP4 vers MP3' },
+        { href: '/fr/webm-to-mp3', label: 'WEBM vers MP3' },
+        { href: '/fr/flac-to-mp3', label: 'FLAC vers MP3' },
+        { href: '/fr/mp3-to-wav',  label: 'MP3 vers WAV' },
+        { href: '/fr/wav-to-text', label: 'WAV vers Texte' },
       ]}
     />
   )

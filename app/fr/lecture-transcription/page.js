@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/lecture-transcription',
@@ -15,195 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Transcription de cours — générateur gratuit de transcriptions | Mictoo',
+  title: 'Transcription de cours et séminaires | Mictoo',
   description:
-    "Transcription gratuite de cours. Chargez l'enregistrement d'un cours, d'une conférence universitaire ou d'un séminaire (MP3, M4A, MP4) et obtenez du texte propre en quelques secondes. Conçu pour les étudiants.",
-  alternates: { canonical: 'https://mictoo.com/fr/lecture-transcription', languages: LANGS },
-
+    'Téléchargez un cours, une conférence ou un séminaire enregistré et obtenez un texte consultable, des horodatages, un résumé AI et des fichiers d’exportation.',
+  alternates: {
+    canonical: 'https://mictoo.com/fr/lecture-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Transcription de cours — générateur gratuit de transcriptions | Mictoo",
-    description: "Transcription gratuite de cours. Chargez l'enregistrement d'un cours, d'une conférence universitaire ou d'un séminaire (MP3, M4A, MP4) et obtenez du texte propre en quelques secondes. Conçu pour les étudiants.",
-    url: "https://mictoo.com/fr/lecture-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Transcription de cours : Générateur de transcriptions gratuit | Mictoo',
+    description: 'Téléchargez votre cours ou séminaire enregistré et obtenez un texte propre en quelques secondes.',
+    url: 'https://mictoo.com/fr/lecture-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Transcription de cours — générateur gratuit de transcriptions | Mictoo",
-    description: "Transcription gratuite de cours. Chargez l'enregistrement d'un cours, d'une conférence universitaire ou d'un séminaire (MP3, M4A, MP4) et obtenez du texte propre en quelques secondes. Conçu pour les étudiants.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Transcription de cours : Générateur gratuit',
+    description: 'Téléchargez l’enregistrement de votre cours ou séminaire.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function FrLecturePage() {
+export default function FrLectureTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="fr"
-      badge="Étudiants · Universitaires · Gratuit"
-      h1={
-        <>
-          Transcription de cours
-          <br />
-          <span className="text-brand-600">Outil gratuit de transcription de cours</span>
-        </>
-      }
-      subtitle="Transformez n'importe quel cours enregistré en texte propre pour réviser. Université, cours en ligne, conférence, formation pro. Sans inscription, sans tarif à la minute."
-      howItWorks={[
+    <UseCaseLayout
+      locale="fr"
+      badge="Étudiants · Académiques · Gratuit"
+      h1First="Transcription de cours"
+      h1Second="Transcriptions gratuites pour les cours et séminaires"
+      subtitle="Téléchargez votre conférence enregistrée depuis Zoom, Panopto, YouTube, Kaltura ou votre téléphone. Obtenez une transcription consultable avec des horodatages prête pour des notes d’étude, des révisions et des citations."
+      currentHref="/fr/lecture-transcription"
+
+      platforms={[
+        { name: 'Zoom',      iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/fr/zoom-transcription' },
+        { name: 'YouTube',   iconKey: 'videoCameraFill', brandBg: '#FF0000' },
+        { name: 'Panopto',   iconKey: 'cap',             brandBg: '#014A96' },
+        { name: 'Kaltura',   iconKey: 'cap',             brandBg: '#FA6425' },
+        { name: 'Camtasia',  iconKey: 'videoCameraFill', brandBg: '#00A651' },
+        { name: 'Voice Memo',iconKey: 'mic',             brandBg: '#F97316', href: '/fr/voice-memo-to-text' },
+      ]}
+
+      howItWorksTitle="Comment fonctionne la transcription de cours"
+      steps={[
         {
-          icon: '🎓',
-          title: "Déposez l'audio ou la vidéo du cours",
-          desc: "MP3 d'un dictaphone, M4A d'un téléphone, MP4 d'un cours sur Zoom ou d'une capture d'écran d'un cours en ligne. WAV d'un enregistreur de recherche. Tout marche.",
+          icon: 'folder',
+          title: 'Exporter la conférence',
+          desc: 'Téléchargez depuis Panopto/Kaltura, enregistrez depuis le cloud Zoom ou enregistrez sur votre téléphone pendant le cours.',
         },
         {
-          icon: '⚡',
-          title: "L'IA transcrit",
-          desc: "Whisper large-v3 lit l'audio. Un cours de 60 minutes finit en environ une minute.",
+          icon: 'upload',
+          title: 'Déposez le fichier ici',
+          desc: 'MP3, MP4, M4A, WAV, MOV fonctionnent tous. Les longues conférences sont automatiquement divisées lorsque vous êtes connecté.',
         },
         {
-          icon: '📋',
-          title: 'Récupérez la transcription',
-          desc: "Lisez-la, copiez-la dans vos notes ou téléchargez-la en TXT ou SRT. Corrigez les termes techniques dans l'éditeur avant l'export.",
+          icon: 'editPen',
+          title: 'Notes, résumé, citations',
+          desc: 'Transcription consultable avec horodatages, résumé AI, DOCX pour les notes d’étude. Discutez avec la transcription pour vous préparer aux examens.',
         },
       ]}
-      whyUse={{
-        title: 'Pourquoi Mictoo pour les cours',
-        bullets: [
-          {
-            title: 'Le long format, ça passe',
-            desc: "Jusqu'à 60 minutes par fichier une fois connecté (gratuit). Pour un cours de 90 minutes, découpez en deux morceaux de 45. La transcription est concaténable.",
-          },
-          {
-            title: 'Gère le vocabulaire technique mieux que la plupart',
-            desc: "Whisper a été entraîné sur une énorme variété d'audio incluant des cours académiques. Latin, jargon technique, termes mathématiques, fragments de code sortent souvent plus propres qu'on s'y attend.",
-          },
-          {
-            title: 'Pas de coût par cours',
-            desc: "Pour les étudiants, payer la transcription par cours, c'est du gâchis. Gratuit sans compteur à la minute signifie que vous pouvez transcrire chaque cours d'un semestre.",
-          },
-          {
-            title: 'Confidentialité et droits',
-            desc: "Le fichier va au prestataire de transcription et est jeté. On ne garde pas l'audio. Utile quand vous transcrivez du matériel qui vous appartient (vos enregistrements) mais que vous ne voulez pas charger sur un service de stockage tiers.",
-          },
-          {
-            title: 'Plus de 50 langues',
-            desc: "Étudiants internationaux et cours en ligne dans des langues non anglaises, tout marche. La détection automatique gère la plupart des cas.",
-          },
-        ],
-      }}
-      useCases={{
-        title: 'À quoi servent les transcriptions de cours pour étudiants et universitaires',
-        items: [
-          {
-            title: 'Notes de cours cherchables',
-            desc: "Déposez la transcription dans Notion, Obsidian ou un doc Word. Ctrl+F sur n'importe quel terme que le prof a mentionné. Mieux que scruter un fichier audio de 90 minutes.",
-          },
-          {
-            title: 'Révision pour les examens',
-            desc: "Survolez la transcription en relisant vos notes manuscrites. Attrape ce que vous avez raté pendant le cours en direct.",
-          },
-          {
-            title: 'Traduire des cours pour les non-natifs',
-            desc: "Transcrivez dans la langue source, puis passez par DeepL ou ChatGPT pour traduire. Utile pour les étudiants qui suivent un cours dans leur deuxième langue.",
-          },
-          {
-            title: 'Accessibilité pour étudiants sourds ou malentendants',
-            desc: "Une transcription ou un fichier SRT donne le même contenu dans une autre modalité. Certaines universités l'imposent pour le contenu de cours enregistré.",
-          },
-          {
-            title: 'Création de flashcards et matériel de révision',
-            desc: "Les transcriptions alimentent des cartes Anki, des docs de résumé ou des outils de révision assistés par IA.",
-          },
-        ],
-      }}
-      proTips={{
-        title: 'Astuces pour transcrire des cours',
-        tips: [
-          {
-            title: 'Asseyez-vous près du prof pour les cours en présentiel',
-            desc: "Enregistrer du fond de la salle à travers le bruit ambiant produit une transcription pleine de trous. Téléphone au premier rang, écran vers le bas, capte une voix propre.",
-          },
-          {
-            title: 'Utilisez un dictaphone dédié pour les longs cours',
-            desc: "Les enregistrements téléphone ont un auto-leveling agressif et de la réduction de bruit qui nuisent à la transcription. Un Zoom H1n ou enregistreur entry-level similaire donne un audio bien plus propre pour environ 80 euros.",
-          },
-          {
-            title: "Pour les cours en ligne, enregistrez l'audio système directement",
-            desc: "OBS Studio sur Windows ou Mac peut enregistrer l'audio du cours direct depuis le système. Plus propre que la capture par le micro du laptop.",
-          },
-          {
-            title: 'Fixez la langue manuellement',
-            desc: "La détection automatique est en général juste mais peut être troublée par un warmup du prof dans une autre langue. Choisissez la langue du cours explicitement dans le menu.",
-          },
-          {
-            title: "Coupez les 5 premières minutes si ce sont des annonces administratives",
-            desc: "« Vous avez fait les devoirs ? Vous avez lu le chapitre 3 ? » ne sert pas à la transcription. Coupez dans Audacity avant l'upload pour économiser le budget taille.",
-          },
-          {
-            title: "Pour les cours STEM avec équations, la transcription capte les maths parlées, pas les équations",
-            desc: "Les expressions mathématiques écrites au tableau ne sont pas dans l'audio, donc pas dans la transcription. Il faut quand même les capter à part (photos du tableau, captures des slides).",
-          },
-          {
-            title: "Ré-écoutez l'enregistrement en lisant la transcription à la première relecture",
-            desc: "C'est le meilleur moyen de corriger les termes spécifiques au prof et les références d'équations. Une fois nettoyée, la transcription se tient toute seule.",
-          },
-        ],
-      }}
+
+      exampleTitle="Exemple de transcription de cours"
+      exampleFileName="intro-microeconomics-lecture-08.mp4"
+      exampleDurationLabel="47:32"
+      exampleLines={[
+        { t: '0:00',  line: 'D’accord. La semaine dernière, nous avons terminé avec le concept de surplus du consommateur. Aujourd’hui, nous allons approfondir cela avec le surplus du producteur.' },
+        { t: '0:11',  line: 'Le surplus du producteur est la différence entre ce qu’un producteur accepterait pour un bien et ce qu’il reçoit réellement.' },
+        { t: '0:23',  line: 'Ensemble, le surplus du consommateur et le surplus du producteur nous donnent le bien-être total sur un marché avant d’introduire des taxes ou des contrôles de prix.' },
+        { t: '0:35',  line: 'Maintenant, pourquoi ce concept est-il important en pratique ? Parce qu’il nous permet d’évaluer si une politique améliore ou détériore un marché.' },
+        { t: '0:47',  line: 'Considérez une taxe par unité. Elle déplace la courbe d’offre vers le haut du montant de la taxe, et les deux surplus diminuent.' },
+        { t: '0:58',  line: 'L’écart qui apparaît entre ce que les acheteurs paient et ce que les vendeurs reçoivent est ce que nous appelons une perte sèche.' },
+        { t: '1:08',  line: 'Veuillez ouvrir le cahier à la page trente et un, et travaillons ensemble sur un exemple numérique.' },
+      ]}
+      summaryPoints={[
+        'Récapitulatif : surplus du consommateur de la conférence précédente.',
+        'Nouveau concept : surplus du producteur et bien-être total.',
+        'Appliqué à l’analyse fiscale.',
+        'Perte sèche illustrée numériquement.',
+      ]}
+      actionItems={[
+        'Revoir la page 31 du cahier',
+        'Pratiquer le calcul de la perte sèche',
+        'Lire le chapitre 4 avant jeudi',
+      ]}
+
+      whyTitle="Pourquoi choisir Mictoo pour la transcription de cours"
+      whyCards={[
+        {
+          icon: 'search',
+          title: 'Consultable dans la transcription',
+          desc: 'Ctrl-F n’importe quel concept de la conférence de 45 minutes en une seconde. Mieux que de faire défiler la vidéo.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Résumé AI pour les notes de révision',
+          desc: 'Le résumé est un bon point de départ pour la révision. Éliminez ce que vous savez déjà, conservez ce que vous avez manqué.',
+        },
+        {
+          icon: 'chat',
+          title: 'Discutez avec la conférence',
+          desc: 'Posez des questions sur le matériel pour vous préparer aux examens. Les réponses de style RAG citent l’horodatage exact.',
+        },
+        {
+          icon: 'globe',
+          title: 'Traduire pour les étudiants non natifs',
+          desc: 'Conférence en anglais mais vous étudiez en portugais ? Traduction en un clic vers 50+ langues.',
+        },
+      ]}
+
+      scenariosTitle="Scénarios de cours courants"
+      scenarios={[
+        { icon: 'book',      title: 'Cours universitaire' },
+        { icon: 'cap' ,      title: 'Cours en ligne' },
+        { icon: 'search',    title: 'Révision d’examen' },
+        { icon: 'editPen',   title: 'Notes d’étude' },
+        { icon: 'globe',     title: 'Étudiant non natif' },
+        { icon: 'headset',   title: 'Séminaire enregistré' },
+      ]}
+
+      tipsTitle="Conseils pour des transcriptions de cours plus claires"
+      tips={[
+        'Asseyez-vous près de l’avant et utilisez votre téléphone comme microphone de secours.',
+        'Les longues conférences de plus de 60 Mo sont automatiquement divisées lorsque vous êtes connecté.',
+        'Définissez la langue explicitement pour le contenu technique ou non anglais.',
+        'Utilisez le chat pour poser des questions de suivi après la transcription.',
+      ]}
+
+      guidesTitle="Outils d’apprentissage associés"
+      guides={[
+        { href: '/fr/zoom-transcription',        icon: 'video', title: 'Conférence Zoom',      desc: 'Téléchargement d’enregistrement cloud' },
+        { href: '/fr/youtube-to-text',           icon: 'video', title: 'Conférence YouTube',   desc: 'Collez l’URL ou téléchargez' },
+        { href: '/fr/voice-memo-to-text',        icon: 'mic',   title: 'Enregistrement téléphonique',   desc: 'Mémos vocaux iPhone en classe' },
+        { href: '/fr/timestamped-transcription', icon: 'file',  title: 'Notes horodatées', desc: 'Exports alignés dans le temps' },
+      ]}
+
       faq={[
         {
-          q: 'Est-ce assez précis pour les travaux universitaires ?',
-          a: "Pour la plupart du contenu de cours, oui. Whisper large-v3 produit 90 à 95 % de précision sur de l'audio de cours propre. Les termes techniques et noms propres demandent souvent du nettoyage. Utilisez la transcription comme notes, pas comme source canonique pour citer.",
+          q: 'Puis-je transcrire un enregistrement de cours Zoom ?',
+          a: 'Oui. Téléchargez le MP4 ou M4A de l’enregistrement cloud et déposez-le ici. Consultez le guide Zoom pour le chemin de téléchargement exact.',
         },
         {
-          q: "Mon cours est dans une langue autre que l'anglais. Ça va marcher ?",
-          a: "Oui. Whisper supporte plus de 50 langues avec une bonne précision dans les grandes langues et un support de base pour beaucoup d'autres. Choisissez la langue manuellement dans le menu pour de meilleurs résultats.",
+          q: 'Ma conférence fait plus de 60 Mo. Que faire ?',
+          a: 'Connectez-vous pour activer la division automatique (jusqu’à environ 3 heures). Ou réduisez à 64 kbps mono MP3 avec ffmpeg pour une réduction de taille de 5x.',
         },
         {
-          q: 'Mon cours fait 90 minutes. Que faire ?',
-          a: 'Découpez-le. Notre plafond est de 60 minutes par fichier. Coupez en deux morceaux de 45 à un point de pause naturel (la pause de mi-cours ou une transition de sujet).',
+          q: 'Mictoo transcrit-il des conférences non anglaises ?',
+          a: 'Oui. Whisper large-v3 prend en charge 50+ langues. Définissez la langue explicitement pour le vocabulaire technique ou les accents prononcés.',
         },
         {
-          q: 'Est-ce légal de transcrire des cours ?',
-          a: "Pour un usage personnel d'étude, généralement oui dans la plupart des juridictions, tant que vous avez légalement accès à l'enregistrement. Pour la redistribution (publication de la transcription en ligne, vente de supports de révision), il faut l'autorisation du conférencier ou de l'institution. Certaines universités ont des politiques explicites sur l'enregistrement et la transcription des cours. Vérifiez la vôtre.",
+          q: 'Puis-je rechercher dans la transcription ?',
+          a: 'Oui. La vue lecteur inclut une boîte de recherche avec le nombre de correspondances et la mise en surbrillance. Ctrl-F votre terme et naviguez entre les résultats.',
         },
         {
-          q: "Puis-je transcrire un cours vidéo de Coursera, edX ou Khan Academy ?",
-          a: "Oui, si vous pouvez télécharger le fichier vidéo. Certaines plateformes autorisent le téléchargement pour visionnage hors ligne (vous obtenez un MP4). Chargez-le ici. Pour les plateformes qui ne le permettent pas, vérifiez leurs conditions avant de scraper.",
+          q: 'Puis-je poser des questions sur le matériel de la conférence ?',
+          a: 'Oui. Discuter avec la transcription vous permet de poser des questions comme "expliquez la perte sèche" ou "quelles pages le professeur a-t-il mentionnées". Les réponses citent les horodatages.',
         },
         {
-          q: 'La transcription inclura-t-elle le contenu des slides ?',
-          a: "Non. On transcrit uniquement l'audio. Si le prof lit les slides à voix haute, ce texte sera dans la transcription. Si les slides ont du texte à l'écran que le prof n'a pas lu, ça n'y sera pas. Combinez avec des captures des slides pour des notes complètes.",
+          q: 'Puis-je exporter les notes de cours au format DOCX ou PDF ?',
+          a: 'Oui. DOCX pour tout le monde, PDF et JSON pour les utilisateurs connectés. TXT est toujours disponible.',
         },
         {
-          q: 'Quelle précision pour les termes techniques et le jargon ?',
-          a: "Moins précis que le vocabulaire courant. Pour les termes médicaux en latin, les symboles maths avancés, les acronymes de niche, comptez sur des corrections à la main. Le flow général du cours sera solide.",
-        },
-        {
-          q: 'Puis-je exporter la transcription vers mon app de prise de notes ?',
-          a: "Oui. Téléchargez en TXT et collez dans Notion, Obsidian, OneNote, Bear ou tout outil qui supporte le texte. Le SRT marche dans les lecteurs vidéo si vous voulez des sous-titres à côté de l'enregistrement.",
-        },
-        {
-          q: "L'audio de mon cours est-il stocké ?",
-          a: "Non. Le fichier va à notre prestataire de transcription, est traité, puis jeté. On ne garde pas l'audio.",
-        },
-        {
-          q: 'Combien de temps prend la transcription d\'un cours ?',
-          a: "Environ 1 à 2 % de la durée audio. Un cours de 60 minutes finit en environ 60 secondes. L'upload est en général l'attente la plus longue.",
-        },
-        {
-          q: 'Puis-je avoir des horodatages pour revenir à des moments précis ?',
-          a: "Oui. Téléchargez en SRT. Chaque ligne a un horodatage aligné sur l'audio original. Utile pour revenir à un point précis pendant la préparation d'examen.",
-        },
-        {
-          q: 'Et si le cours a un Q&A à la fin ?',
-          a: "Le Q&A se transcrit comme le cours principal. Les questions du public sortent parfois moins clairement (les membres du public sont en général plus loin du micro), mais la réponse du prof devrait être propre. Ajoutez une section « Q&A » dans vos notes.",
+          q: 'Les enregistrements de cours sont-ils conservés sur vos serveurs ?',
+          a: 'Non. Les flux audio sont envoyés au fournisseur de transcription, traités une fois, puis supprimés. Les transcriptions ne sont sauvegardées que si vous êtes connecté.',
         },
       ]}
+
+      ctaHeadline="Transformez les conférences en notes d’étude"
+      ctaSubtitle="Transcription consultable, résumé AI, discussion avec le matériel. Gratuit par conférence."
+      ctaButton="Téléchargez une conférence"
+
       relatedLinks={[
-        { href: '/fr/transcribe-audio-to-text', label: 'Audio en texte', desc: 'Pour les fichiers audio génériques.' },
-        { href: '/fr/transcribe-video-to-text', label: 'Vidéo en texte', desc: 'Pour les cours vidéo (MP4, MOV).' },
-        { href: '/fr/timestamped-transcription', label: 'Transcription horodatée', desc: 'Pour revenir à des moments précis.' },
-        { href: '/fr/how-to-split-audio', label: "Comment découper l'audio", desc: 'Pour les cours de plus de 60 minutes.' },
+        { href: '/fr/webinar-transcription',     label: 'Transcription de webinaire' },
+        { href: '/fr/sermon-transcription',      label: 'Transcription de sermon' },
+        { href: '/fr/voice-memo-to-text',        label: 'Mémos vocaux en texte' },
+        { href: '/fr/interview-transcription',   label: 'Transcription d’entretien' },
+        { href: '/fr/meeting-transcription',     label: 'Transcription de réunion' },
       ]}
     />
   )
