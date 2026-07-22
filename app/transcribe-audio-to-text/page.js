@@ -11,14 +11,13 @@
 //   3. "How it works" — 3 steps + live transcript preview (same JSX
 //      mockup as the homepage)
 //   4. "Why one audio-to-text tool is better" — 4 benefit cards
-//   5. Flow diagram: Any audio file → mictoo → Clean transcript
-//   6. "When this page is the right fit" — 6 scenario cards
-//   7. "Audio quality matters more than file format" — 3 quality tiers
-//   8. "How Mictoo detects your format" — magic-bytes explanation
-//   9. "Supported audio formats" — 4-column table
-//  10. FAQ (1 column, per user request)
-//  11. Bottom CTA plate
-//  12. More transcription tools — 4 cards
+//   5. "When this page is the right fit" — 6 scenario cards
+//   6. "Audio quality matters more than file format" — 3 quality tiers
+//   7. "How Mictoo detects your format" — magic-bytes explanation
+//   8. "Supported audio formats" — 4-column table
+//   9. FAQ (1 column, per user request)
+//  10. Bottom CTA plate
+//  11. More transcription tools — 4 cards
 //
 // Adapted to real mictoo:
 //   - File caps: 25 MB anon / 60 MB signed-in / 180 MB auto-split
@@ -189,7 +188,7 @@ export default function TranscribeAudioToTextPage() {
         <div className="max-w-3xl mx-auto text-center">
           <Eyebrow>Any audio format · Free · No signup</Eyebrow>
           <h1 className="mt-5 text-4xl sm:text-5xl font-bold text-slate-900 leading-tight">
-            Audio to Text
+            Audio to Text{' '}
             <br />
             <span className="text-brand-600">One page for any audio format</span>
           </h1>
@@ -428,80 +427,6 @@ export default function TranscribeAudioToTextPage() {
                 <p className="text-sm text-slate-600 leading-relaxed">{desc}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ────────────────── FLOW DIAGRAM ────────────────── */}
-      <section className="bg-slate-50 py-16 px-4 border-b border-slate-100">
-        <div className="max-w-5xl mx-auto">
-          <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-10">
-            <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)] gap-6 md:gap-4 items-center">
-              {/* Left: format icons cluster */}
-              <div>
-                <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide text-center mb-3">Any audio file</div>
-                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4">
-                  <div className="grid grid-cols-4 gap-2 text-[10px] font-bold text-brand-700">
-                    {['MP3', 'M4A', 'WAV', 'FLAC', 'OGG', 'AAC', 'WebM', '+'].map((label) => (
-                      <div key={label} className="bg-white border border-slate-200 rounded-md py-1.5 text-center">
-                        {label}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="text-[10px] text-slate-400 text-center mt-2">and more</div>
-                </div>
-              </div>
-
-              {/* Arrow */}
-              <div className="text-slate-300 flex justify-center rotate-90 md:rotate-0">
-                <span className="w-6 h-6">{Icons.arrowRight}</span>
-              </div>
-
-              {/* Middle: mictoo processing */}
-              <div>
-                <div className="text-xs font-semibold text-brand-700 uppercase tracking-wide text-center mb-3">Mictoo</div>
-                <div className="bg-gradient-to-br from-brand-50 to-brand-100/40 border border-brand-200 rounded-2xl p-4 text-center">
-                  <div className="inline-flex items-center gap-2 mb-2">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                      <rect width="24" height="24" rx="6" fill="#0284c7" />
-                      <path d="M8 8v8M12 6v12M16 10v4" stroke="white" strokeWidth="2" strokeLinecap="round" />
-                    </svg>
-                    <span className="font-bold text-slate-900">mictoo</span>
-                  </div>
-                  <div className="flex items-end gap-0.5 h-6 justify-center">
-                    {Array.from({ length: 24 }).map((_, i) => {
-                      const h = 4 + ((i * 13) % 18)
-                      return <div key={i} className="w-0.5 rounded-sm bg-brand-500" style={{ height: h + 'px' }} />
-                    })}
-                  </div>
-                  <div className="text-[10px] text-brand-700 font-medium mt-2">AI processing</div>
-                </div>
-              </div>
-
-              {/* Arrow */}
-              <div className="text-slate-300 flex justify-center rotate-90 md:rotate-0">
-                <span className="w-6 h-6">{Icons.arrowRight}</span>
-              </div>
-
-              {/* Right: clean transcript */}
-              <div>
-                <div className="text-xs font-semibold text-emerald-700 uppercase tracking-wide text-center mb-3">Result</div>
-                <div className="bg-white border border-slate-200 rounded-2xl p-4 text-center">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 mb-2 relative">
-                    <span className="w-6 h-6">{Icons.file}</span>
-                    <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center">
-                      <span className="w-2.5 h-2.5">{Icons.check}</span>
-                    </span>
-                  </div>
-                  <div className="text-sm font-semibold text-slate-900">Clean transcript</div>
-                  <div className="space-y-1 mt-2">
-                    {[70, 90, 50].map((w, i) => (
-                      <div key={i} className="h-1 rounded-full bg-slate-100 mx-auto" style={{ width: w + '%' }} />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>

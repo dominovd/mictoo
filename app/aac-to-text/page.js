@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import FormatPageLayout from '@/components/FormatPageLayout'
 
 export const metadata = {
   title: 'AAC to Text: Raw AAC and ADTS Audio Transcription | Mictoo',
@@ -38,314 +38,150 @@ export const metadata = {
 
 export default function AacToTextPage() {
   return (
-    <LandingLayout
+    <FormatPageLayout
       badge="AAC · ADTS · Raw codec stream"
-      h1={
-        <>
-          AAC to Text
-          <br />
-          <span className="text-brand-600">Raw AAC streams transcribed cleanly</span>
-        </>
-      }
-      subtitle="Drop a .aac file from a podcast CDN, a broadcast archive, or a ripped iPhone export. We handle ADTS and ADIF stream formats and return an editable transcript with timestamps."
-      valueBlock={
-        <article className="prose-content">
-          <p>
-            AAC is the audio codec that quietly powers most modern audio:
-            YouTube, Apple Music, podcasts on most networks, broadcast
-            radio archives, iPhone Voice Memos at lossy quality. Usually
-            AAC lives inside a container like M4A or MP4. But sometimes you
-            get a raw .aac file with no container at all, which is what
-            this page is for.
-          </p>
-          <p>
-            Drop the raw .aac in. We detect whether it is an ADTS stream
-            (the streamable format, most common) or ADIF (the file-only
-            format, very rare), decode it, and run it through Whisper. The
-            transcript comes back in seconds with timestamps and exports
-            for TXT, SRT, VTT, or DOCX.
-          </p>
-          <p className="text-sm text-slate-500">
-            For AAC inside an M4A container (most iPhone Voice Memos), use
-            the <a href="/m4a-to-text" className="text-brand-600 hover:underline">M4A to Text</a> page instead, it has more iPhone-specific guidance.
-          </p>
-        </article>
-      }
-      howItWorks={[
+      h1First="AAC to Text"
+      h1Second="Raw ADTS streams, broadcast archives, ripped audio"
+      subtitle="Raw .aac files often come from broadcast streams, radio captures, and extracted media tracks. Drop the file and Mictoo inspects its structure before transcribing the spoken audio with Whisper large-v3."
+      highlightFormat="aac"
+      previewFileName="broadcast-audio.aac"
+      previewWordCount={142}
+      previewDurationLabel="9:44"
+      previewLines={[
+        { t: '0:00',  line: 'You are listening to the morning show. It is seven fifteen and we are back with our lead story.' },
+        { t: '0:08',  line: 'Overnight the city council passed the new transit expansion after almost three years of debate.' },
+        { t: '0:17',  line: 'The plan will add two new light-rail lines and extend the existing one by roughly eight miles.' },
+        { t: '0:27',  line: 'To break down what this means for daily commuters we are joined in the studio by our transit reporter.' },
+        { t: '0:37',  line: 'Thanks for having me. The headline is that the eastbound corridor finally gets a rail option after twenty years.' },
+        { t: '0:47',  line: 'For anyone who currently drives that stretch during rush hour, this is genuinely transformative.' },
+        { t: '0:56',  line: 'Construction starts next spring and the first new line is expected to open in twenty twenty-nine.' },
+        { t: '1:06',  line: 'The council estimates that roughly forty thousand daily riders will use the new segments once they open.' },
+      ]}
+      whyTitle="Why Mictoo for AAC transcription"
+      whyCards={[
         {
-          icon: '📡',
-          title: 'Upload your .aac file',
-          desc: 'Raw AAC, usually in ADTS stream format. Common sources: podcast CDN downloads, broadcast radio archives, ripped audio from FaceTime or iPhone, YouTube audio extracts.',
+          icon: 'waveform',
+          title: 'Raw ADTS handled natively',
+          desc: 'Most raw .aac files are ADTS-framed (Audio Data Transport Stream). We detect the sync word 0xFFF and hand the stream to Whisper.',
         },
         {
-          icon: '🔍',
-          title: 'We detect ADTS or ADIF',
-          desc: 'The two AAC stream wrappers. ADTS (Audio Data Transport Stream) is what almost all real-world .aac files use. ADIF (Audio Data Interchange Format) is older and rarer. We handle both.',
+          icon: 'gear',
+          title: 'ADIF and LATM also supported',
+          desc: 'Less common ADIF (Audio Data Interchange Format) and LATM framings also work. No manual repackaging or ffmpeg step needed.',
         },
         {
-          icon: '📝',
-          title: 'Edit and export the transcript',
-          desc: 'Fix words inline, then download TXT, SRT, VTT, or DOCX. Or copy directly to clipboard for pasting into a document or email.',
+          icon: 'clip',
+          title: 'No container required',
+          desc: 'AAC usually lives inside M4A or MP4, but sometimes the raw stream lands on your disk. Mictoo accepts either without asking.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'AI summary for archive segments',
+          desc: 'Broadcast segment, radio archive clip, or streaming dump. The AI summary lets you triage archives faster.',
         },
       ]}
-      whyUse={{
-        title: 'Why use Mictoo for raw AAC files',
-        bullets: [
-          {
-            title: 'Raw .aac without a container is supported',
-            desc: 'Most online transcribers expect a container (MP3, M4A, WAV). If you got a bare .aac file from a podcast CDN or a broadcast archive, they reject it. We accept the raw stream directly, ADTS or ADIF.',
-          },
-          {
-            title: 'AAC-LC, HE-AAC, HE-AAC v2 all work',
-            desc: 'AAC-LC (Low Complexity, the standard profile, used by everyone) decodes natively. HE-AAC (High Efficiency, used by some broadcasters) and HE-AAC v2 (with parametric stereo, used at very low bitrates) both decode too. You do not specify which profile.',
-          },
-          {
-            title: 'Bitrate from 32 kbps up to 320 kbps',
-            desc: 'Podcast networks usually ship AAC at 64 to 128 kbps. Apple Music uses 256 kbps. Broadcast archives can be down to 32 kbps. All of these transcribe cleanly. Below 32 kbps quality starts to hurt the model.',
-          },
-          {
-            title: 'The decode step is automatic',
-            desc: 'Whisper does not read AAC directly. Our backend decodes the AAC stream into raw audio before passing to Whisper. Adds a fraction of a second to processing, you do not see the step.',
-          },
-          {
-            title: 'Source file stays untouched',
-            desc: 'We read your AAC once, decode it, transcribe it, then drop the audio from memory. We never write anything back to your file or store it on our servers.',
-          },
-        ],
-      }}
-      useCases={{
-        title: 'Where raw .aac files come from',
-        items: [
-          {
-            title: 'Podcast network CDN downloads',
-            desc: 'Some podcast hosts ship the raw .aac stream rather than wrapping in MP3 or M4A, especially when the priority is the smallest possible file. Useful for transcribing for show notes or quoting in articles.',
-          },
-          {
-            title: 'Broadcast radio archives',
-            desc: 'Some BBC, NPR, and public-radio archives offer downloads as raw AAC for efficiency. Lower bitrates (32-64 kbps) than typical music distribution, but plenty for spoken-word transcription.',
-          },
-          {
-            title: 'YouTube audio-only extracts',
-            desc: 'When tools like yt-dlp extract audio from a YouTube video without re-encoding, the result is sometimes a raw .aac file (because YouTube serves AAC streams for many videos). Drop it here for the transcript.',
-          },
-          {
-            title: 'iPhone audio rips outside an M4A',
-            desc: 'Some screen-recorder and audio-rip tools produce raw .aac instead of wrapping in M4A. Common from older third-party iPhone audio capture apps.',
-          },
-          {
-            title: 'In-flight entertainment audio captures',
-            desc: 'Some airline entertainment systems stream AAC audio over their networks. People capturing audio from in-flight talks or audiobook material sometimes end up with raw .aac files.',
-          },
-          {
-            title: 'Game and app voice line exports',
-            desc: 'Mobile games and apps often ship voice lines as raw AAC streams to save space and licensing. Modders and accessibility researchers occasionally need transcripts of these.',
-          },
-        ],
-      }}
-      proTips={{
-        title: 'Working with raw AAC',
-        tips: [
-          {
-            title: 'If a player refuses your .aac, the file is probably ADIF (rare)',
-            desc: 'Most players expect ADTS and silently fail on ADIF. Mictoo accepts both, so for transcription you do not need to worry. If you also need to play the file in a stubborn player, convert with ffmpeg: ffmpeg -i input.aac -c:a copy -f adts output.aac (which keeps the same codec but ensures ADTS framing).',
-            },
-          {
-            title: 'For long broadcast archives at very low bitrate, expect some accuracy loss',
-            desc: 'Below 32 kbps mono, AAC starts to compromise voice clarity. Whisper still tries but accuracy drops noticeably. If you have control over the source, re-encode at 64 kbps or higher before transcribing.',
-          },
-          {
-            title: 'Convert to M4A if you also need to keep the file long-term',
-            desc: 'Raw .aac files are awkward to manage on macOS and Windows (poor player support, no metadata). Wrap in M4A with ffmpeg: ffmpeg -i input.aac -c:a copy output.m4a (no re-encoding). The M4A is the same audio with a friendlier container.',
-          },
-          {
-            title: 'Set the language manually for short clips',
-            desc: 'Whisper auto-detect can mis-fire on clips under five minutes, especially with silence at the start. Pick the language explicitly in the dropdown for short broadcast clips or voice lines.',
-          },
-        ],
-      }}
-      deepDive={
-        <article className="prose-content">
-          <h2>AAC is a codec, not a format</h2>
-          <p>
-            "What format is this file" gets confusing with AAC because AAC
-            is just a codec, not a container. The codec compresses audio.
-            The container packages compressed audio with metadata and
-            timing information so a player knows how to navigate it. In
-            most cases, AAC audio lives inside an M4A or MP4 container,
-            which has all the metadata and seekability features modern
-            players expect.
-          </p>
-          <p>
-            A raw .aac file has no container. It is just the bare codec
-            output, sometimes wrapped in a minimal framing layer called
-            ADTS that lets players sync to the start of any frame. Useful
-            for streaming (each frame is independent and self-describing),
-            inconvenient for offline use (no metadata, no chapter markers,
-            no quick seek to a timestamp).
-          </p>
-          <h3>ADTS vs ADIF, briefly</h3>
-          <p>
-            ADTS (Audio Data Transport Stream) is the framing used for
-            streamable AAC. Each AAC frame has a small header that lets a
-            decoder lock on at any point in the stream, which is why ADTS
-            is used for broadcast and HTTP streaming. Almost every raw
-            .aac file in the wild is ADTS. ADIF (Audio Data Interchange
-            Format) is the file-only alternative with a single header at
-            the start and no per-frame sync, which makes it slightly
-            smaller but unusable for streaming. ADIF is now rare; you
-            mostly see it in legacy archives.
-          </p>
-          <h3>AAC-LC, HE-AAC, HE-AAC v2</h3>
-          <p>
-            AAC comes in profiles tuned for different bitrates. AAC-LC (Low
-            Complexity) is the workhorse, used at 64 kbps and up for most
-            modern audio. HE-AAC (High Efficiency) adds Spectral Band
-            Replication to make low bitrates sound better, used in some
-            broadcast and streaming contexts at 32 to 64 kbps. HE-AAC v2
-            adds Parametric Stereo for ultra-low bitrates, used by digital
-            radio and some podcast distribution at 24 to 48 kbps. Mictoo
-            decodes all three transparently, you do not pick a profile.
-          </p>
-          <h3>Why podcasts mostly use MP3, not AAC</h3>
-          <p>
-            AAC is technically better than MP3 at the same bitrate, yet
-            most podcast networks still distribute MP3. The reason is
-            historical compatibility: every podcast app on every device
-            from 2005 onward plays MP3. AAC support is universal now too,
-            but the install base of legacy MP3-only podcatchers was
-            enough to keep MP3 as the safe choice. Networks that picked
-            AAC tend to be newer and more closely tied to the Apple
-            ecosystem.
-          </p>
-        </article>
-      }
-      comparison={
-        <>
-          <h2 className="text-2xl font-bold text-slate-900 mb-3 text-center">
-            AAC vs related audio formats
-          </h2>
-          <p className="text-sm text-slate-500 text-center mb-8">
-            AAC the codec lives inside several containers. Pick the page
-            that matches your actual file.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="bg-white border border-slate-200 rounded-xl p-5">
-              <h3 className="font-semibold text-slate-900 mb-3">.aac (raw)</h3>
-              <dl className="text-sm text-slate-600 space-y-2">
-                <div><dt className="text-slate-500 text-xs uppercase tracking-wide">Container</dt><dd>None (ADTS or ADIF)</dd></div>
-                <div><dt className="text-slate-500 text-xs uppercase tracking-wide">Typical source</dt><dd>Podcast CDN, broadcast, rip</dd></div>
-                <div><dt className="text-slate-500 text-xs uppercase tracking-wide">Metadata support</dt><dd>None</dd></div>
-                <div><dt className="text-slate-500 text-xs uppercase tracking-wide">For transcription</dt><dd>Direct (this page)</dd></div>
-              </dl>
-            </div>
-            <div className="bg-white border border-slate-200 rounded-xl p-5">
-              <h3 className="font-semibold text-slate-900 mb-3">
-                <a href="/m4a-to-text" className="hover:text-brand-600">M4A →</a>
-              </h3>
-              <dl className="text-sm text-slate-600 space-y-2">
-                <div><dt className="text-slate-500 text-xs uppercase tracking-wide">Container</dt><dd>MP4 (audio-only)</dd></div>
-                <div><dt className="text-slate-500 text-xs uppercase tracking-wide">Typical source</dt><dd>iPhone Voice Memos, GarageBand</dd></div>
-                <div><dt className="text-slate-500 text-xs uppercase tracking-wide">Metadata support</dt><dd>Full (title, artist, chapters)</dd></div>
-                <div><dt className="text-slate-500 text-xs uppercase tracking-wide">For transcription</dt><dd>Use M4A page</dd></div>
-              </dl>
-            </div>
-            <div className="bg-white border border-slate-200 rounded-xl p-5">
-              <h3 className="font-semibold text-slate-900 mb-3">
-                <a href="/transcribe-mp3-to-text" className="hover:text-brand-600">MP3 →</a>
-              </h3>
-              <dl className="text-sm text-slate-600 space-y-2">
-                <div><dt className="text-slate-500 text-xs uppercase tracking-wide">Container</dt><dd>None (codec only)</dd></div>
-                <div><dt className="text-slate-500 text-xs uppercase tracking-wide">Typical source</dt><dd>Most podcasts, web audio</dd></div>
-                <div><dt className="text-slate-500 text-xs uppercase tracking-wide">Metadata support</dt><dd>ID3 tags</dd></div>
-                <div><dt className="text-slate-500 text-xs uppercase tracking-wide">For transcription</dt><dd>Use MP3 page</dd></div>
-              </dl>
-            </div>
-            <div className="bg-white border border-slate-200 rounded-xl p-5">
-              <h3 className="font-semibold text-slate-900 mb-3">
-                <a href="/ogg-to-text" className="hover:text-brand-600">OGG (Opus) →</a>
-              </h3>
-              <dl className="text-sm text-slate-600 space-y-2">
-                <div><dt className="text-slate-500 text-xs uppercase tracking-wide">Container</dt><dd>OGG</dd></div>
-                <div><dt className="text-slate-500 text-xs uppercase tracking-wide">Typical source</dt><dd>Telegram voice, Linux apps</dd></div>
-                <div><dt className="text-slate-500 text-xs uppercase tracking-wide">Metadata support</dt><dd>Vorbis comments</dd></div>
-                <div><dt className="text-slate-500 text-xs uppercase tracking-wide">For transcription</dt><dd>Use OGG page</dd></div>
-              </dl>
-            </div>
-          </div>
-        </>
-      }
+      scenariosTitle="When AAC to text is the right fit"
+      scenarios={[
+        {
+          icon: 'briefcase',
+          title: 'Broadcast radio archive',
+          desc: 'Segment recorded off HLS or Icecast stream that ships as raw AAC. Transcript makes the archive searchable.',
+        },
+        {
+          icon: 'video',
+          title: 'HLS livestream capture',
+          desc: 'YouTube Live, Twitch, or radio HLS stream captured as an .aac chunk sequence. Drop the file, get the text.',
+        },
+        {
+          icon: 'mic',
+          title: 'Ripped iPhone audio',
+          desc: 'Audio extracted from an iPhone recording or shared file that lost its M4A container and came out as raw AAC.',
+        },
+        {
+          icon: 'gear',
+          title: 'Streaming service export',
+          desc: 'Podcast platform or streaming app that provides raw AAC downloads. Skip the conversion and drop the file directly.',
+        },
+        {
+          icon: 'users',
+          title: 'Broadcast interview',
+          desc: 'Radio-hosted interview archived as raw AAC. Transcript is the citation-ready copy for articles or shows.',
+        },
+        {
+          icon: 'editPen',
+          title: 'FFmpeg intermediate output',
+          desc: 'You extracted the audio track with ffmpeg -c:a copy and got a .aac. Drop it here instead of re-muxing to M4A first.',
+        },
+      ]}
+      technicalTitle="Raw AAC compared with M4A"
+      technicalIntro="AAC is an audio codec. A file ending in .aac is often a raw framed stream, while M4A usually wraps AAC audio in an MP4 container with seeking and metadata."
+      technicalFacts={[
+        {
+          icon: 'waveform',
+          title: 'ADTS is common',
+          desc: 'Raw AAC is commonly stored as ADTS frames, especially when audio has been extracted from a stream or broadcast workflow.',
+        },
+        {
+          icon: 'layers',
+          title: 'M4A adds a container',
+          desc: 'M4A can carry the same AAC codec with timing, indexing, and metadata supplied by an MP4-based container.',
+        },
+        {
+          icon: 'search',
+          title: 'Extension is only a clue',
+          desc: 'The file structure is inspected during processing, so a misleading extension does not become transcript text.',
+        },
+        {
+          icon: 'briefcase',
+          title: 'Broadcast workflows',
+          desc: 'Raw AAC often appears after HLS capture or audio extraction. Keep the original source reference for archival context.',
+        },
+      ]}
       faq={[
         {
-          q: 'Will a raw .aac file from a podcast CDN work?',
-          a: 'Yes. Most podcast CDN .aac files are ADTS streams. Drop the file in directly, we decode the ADTS framing and transcribe the audio inside. No conversion to MP3 or M4A first.',
+          q: 'What kind of AAC files does Mictoo accept?',
+          a: 'Raw AAC in ADTS framing (most common), ADIF, and LATM framings. We detect the sync word server-side and hand the stream to Whisper. AAC inside M4A (see the M4A page) also works but is a different intake path.',
         },
         {
           q: 'What is the difference between .aac and .m4a?',
-          a: '.aac is the raw codec stream with no container around it. .m4a is the same AAC audio wrapped in an MP4 container, which adds metadata support (title, artist, chapters) and easier player compatibility. For transcription, both decode to the same audio. We have separate pages for each because the user-side workflows differ.',
+          a: '.aac is typically a raw ADTS bitstream: AAC frames with tiny 7-byte headers, no container. .m4a is AAC audio wrapped in an MP4 container with metadata and seek indexing. Both use the AAC codec, but the file structure differs.',
         },
         {
-          q: 'Do you support HE-AAC and HE-AAC v2?',
-          a: 'Yes. Both High Efficiency AAC profiles decode automatically. You do not specify the profile when uploading. HE-AAC v2 with parametric stereo (used at very low bitrates by digital radio) also works.',
+          q: 'My AAC file is over 60 MB. What now?',
+          a: 'AAC at typical broadcast bitrates (128 kbps) is around 1 MB per minute, so 60 MB is roughly a one-hour recording. If you are signed in, we auto-split up to about 3 hours. Otherwise, downsample: ffmpeg -i in.aac -b:a 64k -ac 1 out.aac.',
         },
         {
-          q: 'My .aac file is from a YouTube audio extract. Does it work?',
-          a: 'Yes. Tools like yt-dlp can extract YouTube audio as raw AAC without re-encoding. The result is usually an ADTS stream. Drop it in here as-is, no conversion needed.',
+          q: 'Does raw AAC produce worse transcripts than M4A?',
+          a: 'No. The audio stream is identical; only the container differs. Whisper resamples to 16 kHz mono internally either way. Accuracy depends on the underlying recording quality, not on whether it is ADTS-framed or MP4-wrapped.',
         },
         {
-          q: 'What is ADTS vs ADIF?',
-          a: 'Two different ways to wrap raw AAC. ADTS (Audio Data Transport Stream) puts a small header on every AAC frame so a player can lock onto the stream at any point, used for broadcast and streaming. ADIF (Audio Data Interchange Format) has a single header at the start of the file, rarer today. We handle both.',
+          q: 'Does Mictoo transcribe non-English AAC?',
+          a: 'Yes. Whisper large-v3 supports 50+ languages with auto-detection. For unusual accents or short broadcast clips, set the language explicitly for cleaner first-pass results.',
         },
         {
-          q: 'Why does my .aac not play in iTunes / Apple Music?',
-          a: 'iTunes and Music expect AAC inside an M4A container, not a raw .aac stream. The fix is to wrap in M4A: ffmpeg -i input.aac -c:a copy output.m4a. This is a container change without re-encoding, takes a second. For transcription you do not need this step, we accept raw .aac directly.',
+          q: 'Can I get SRT captions for the broadcast clip?',
+          a: 'Yes. Download SRT or VTT after transcription. Timestamps align to the original AAC stream timeline for use in video editors, accessibility overlays, or archival indexing.',
         },
         {
-          q: 'Will broadcast radio archives at very low bitrate transcribe well?',
-          a: 'Reasonably. At 32 kbps mono and above, accuracy is good. Below 32 kbps the AAC encoder starts removing too much of the high-frequency consonant information Whisper uses, and accuracy drops noticeably. Most modern archives are 64 kbps or above.',
+          q: 'Is my AAC file kept on your servers?',
+          a: 'No. The audio streams to the transcription provider, gets processed once, and is dropped from memory. We never write it to disk. Transcripts are only stored if you sign in and save to history.',
         },
         {
-          q: 'Can I get timestamps from a raw .aac file?',
-          a: 'Yes. Download as SRT or VTT for timestamps, or JSON for word-level alignment. Even though raw .aac has no native timing metadata, our decoder reconstructs the timeline based on sample positions, so timestamps are accurate against the audio.',
+          q: 'Can I translate the transcript to another language?',
+          a: 'Yes. After transcription, pick a target language and click Translate. Translation runs on GPT-4o-mini and appears alongside the original.',
         },
         {
-          q: 'Will my .aac file be saved on your servers?',
-          a: 'No. The audio streams through to the transcription provider, gets decoded once for inference, and is dropped from memory after the response. We do not write the audio to disk. The text transcript is only stored if you sign in and choose to save it to your history.',
+          q: 'What if the file has a .aac extension but is actually M4A?',
+          a: 'We inspect the magic bytes, not the extension. If the file starts with ftyp (M4A/MP4 signature), we treat it as M4A. If it starts with ADTS sync bytes, we treat it as raw AAC. Either way, transcription works.',
         },
         {
-          q: 'Can I transcribe a .aac file in another language?',
-          a: 'Yes, over 50 languages with auto-detect. Pick the language manually in the dropdown for short clips (under five minutes) where auto-detect sometimes mis-fires on silence or non-speech intros.',
-        },
-        {
-          q: 'What about ALAC (Apple Lossless)? Same as AAC?',
-          a: 'No, despite the similar name. ALAC is a lossless codec, AAC is lossy. ALAC always lives inside an M4A container, never as a raw .alac. If your file has ALAC audio, use the M4A page.',
-        },
-        {
-          q: 'My .aac file has no metadata (artist, title). Is that normal?',
-          a: 'Yes, completely. Raw .aac streams have no metadata layer, that is one of the reasons people wrap in M4A. If you need title or artist info, wrap in M4A first (ffmpeg one-liner above) and add tags in iTunes, MusicBrainz Picard, or another tagging tool.',
+          q: 'How long does an AAC transcription take?',
+          a: 'A 10-minute AAC typically finishes in 15-30 seconds end to end. Larger files near the upload cap take 45-80 seconds. Upload speed is often the longer step.',
         },
       ]}
-      epilogueSection={
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-slate-900 mb-3">
-            Upload your raw .aac, get the transcript
-          </h2>
-          <p className="text-sm text-slate-500 mb-6 max-w-xl mx-auto">
-            Podcast CDN downloads, broadcast archives, YouTube audio extracts, iPhone rips. Free up to 60 MB.
-          </p>
-          <a
-            href="#tool"
-            className="inline-block bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-6 py-3 rounded-xl transition-colors"
-          >
-            Transcribe an AAC now
-          </a>
-        </div>
-      }
-      relatedLinks={[
-        { href: '/m4a-to-text', label: 'M4A to Text', desc: 'For AAC wrapped in an MP4 container (iPhone Voice Memos).' },
-        { href: '/transcribe-mp3-to-text', label: 'MP3 to Text', desc: 'For MP3 files (most podcasts and general audio).' },
-        { href: '/transcribe-audio-to-text', label: 'Audio to Text', desc: 'Format-agnostic if you are unsure what your file is.' },
-        { href: '/how-to-compress-audio', label: 'How to Compress Audio', desc: 'If your AAC stream is too big for direct upload.' },
-      ]}
+      ctaHeadline="Drop your raw AAC and get the transcript"
+      ctaSubtitle="ADTS, ADIF, and LATM framings. Broadcast archives, HLS captures, ripped audio."
+      ctaButton="Upload AAC to transcribe"
     />
   )
 }
