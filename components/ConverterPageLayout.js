@@ -410,8 +410,8 @@ export default function ConverterPageLayout({
                       </div>
                       <p className="text-[11px] text-slate-500 text-center mt-4 leading-snug">
                         {isConverter
-                          ? `We extract the audio from your ${from?.toUpperCase()} and encode it as ${to?.toUpperCase()}.`
-                          : 'We transcribe your audio or video and return timestamped text for review and export.'}
+                          ? t(locale, 'layouts.converter.processCaption', { from: from?.toUpperCase() || '', to: to?.toUpperCase() || '' })
+                          : t(locale, 'layouts.converter.processCaptionUpload')}
                       </p>
                     </div>
                   </div>
@@ -427,10 +427,10 @@ export default function ConverterPageLayout({
                   <table className="w-full text-sm min-w-[520px]">
                     <thead>
                       <tr className="border-b border-slate-100 bg-slate-50">
-                        <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">File type</th>
-                        <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Contains video</th>
-                        <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Typical size</th>
-                        <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Best use</th>
+                        <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">{t(locale, 'layouts.converter.tableFileType')}</th>
+                        <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">{t(locale, 'layouts.converter.tableContainsVideo')}</th>
+                        <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">{t(locale, 'layouts.converter.tableSize')}</th>
+                        <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">{t(locale, 'layouts.converter.tableBestUse')}</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">

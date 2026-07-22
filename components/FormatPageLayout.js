@@ -89,7 +89,7 @@ export default function FormatPageLayout({
 
   // Related formats
   highlightFormat = null,
-  relatedFormatsTitle = 'Other audio formats you can transcribe',
+  relatedFormatsTitle,
   relatedFormats = FORMAT_CARDS,
 
   // Live preview mockup content
