@@ -1,7 +1,7 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 export const metadata = {
-  title: 'Lecture Transcription — Free Lecture Transcript Generator | Mictoo',
+  title: 'Lecture Transcription: Free Lecture Transcript Generator | Mictoo',
   description:
     'Free lecture transcription. Upload your recorded class, university lecture, or seminar (MP3, M4A, MP4) and get clean text in seconds. Built for students.',
   alternates: {
@@ -20,194 +20,174 @@ export const metadata = {
       'x-default': 'https://mictoo.com/lecture-transcription',
     },
   },
-
   openGraph: {
-    title: "Lecture Transcription — Free Lecture Transcript Generator | Mictoo",
-    description: "Free lecture transcription. Upload your recorded class, university lecture, or seminar (MP3, M4A, MP4) and get clean text in seconds. Built for students.",
-    url: "https://mictoo.com/lecture-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Lecture Transcription: Free Transcript Generator | Mictoo',
+    description: 'Upload your recorded class or seminar and get clean text in seconds.',
+    url: 'https://mictoo.com/lecture-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Lecture Transcription — Free Lecture Transcript Generator | Mictoo",
-    description: "Free lecture transcription. Upload your recorded class, university lecture, or seminar (MP3, M4A, MP4) and get clean text in seconds. Built for students.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Lecture Transcription: Free Generator',
+    description: 'Upload your class or seminar recording.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function LectureTranscriptionPage() {
   return (
-    <LandingLayout
+    <UseCaseLayout
       badge="Students · Academics · Free"
-      h1={
-        <>
-          Lecture Transcription
-          <br />
-          <span className="text-brand-600">Free Lecture Transcript Tool</span>
-        </>
-      }
-      subtitle="Turn any recorded lecture into clean text for studying. University, online course, conference talk, professional training. No signup, no per-minute fee."
-      howItWorks={[
+      h1First="Lecture Transcription"
+      h1Second="Free transcripts for classes and seminars"
+      subtitle="Upload your recorded lecture from Zoom, Panopto, YouTube, Kaltura, or your phone. Get a searchable transcript with timestamps ready for study notes, revision, and citation."
+      currentHref="/lecture-transcription"
+
+      platforms={[
+        { name: 'Zoom',      iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/zoom-transcription' },
+        { name: 'YouTube',   iconKey: 'videoCameraFill', brandBg: '#FF0000' },
+        { name: 'Panopto',   iconKey: 'cap',             brandBg: '#014A96' },
+        { name: 'Kaltura',   iconKey: 'cap',             brandBg: '#FA6425' },
+        { name: 'Camtasia',  iconKey: 'videoCameraFill', brandBg: '#00A651' },
+        { name: 'Voice Memo',iconKey: 'mic',             brandBg: '#F97316', href: '/voice-memo-to-text' },
+      ]}
+
+      howItWorksTitle="How lecture transcription works"
+      steps={[
         {
-          icon: '🎓',
-          title: 'Drop the lecture audio or video',
-          desc: 'MP3 from a voice recorder, M4A from your phone, MP4 from a Zoom class or screen-captured online lecture. WAV from a research recorder. All work.',
+          icon: 'folder',
+          title: 'Export the lecture',
+          desc: 'Download from Panopto/Kaltura, save from Zoom cloud, or record on your phone during class.',
         },
         {
-          icon: '⚡',
-          title: 'AI transcribes it',
-          desc: 'Whisper large-v3 reads the audio. A 60-minute lecture finishes in about a minute.',
+          icon: 'upload',
+          title: 'Drop the file here',
+          desc: 'MP3, MP4, M4A, WAV, MOV all work. Long lectures are auto-split when signed in.',
         },
         {
-          icon: '📋',
-          title: 'Get the transcript',
-          desc: 'Read it, copy it into your notes, or download as TXT or SRT. Fix any wrong technical terms inline before exporting.',
+          icon: 'editPen',
+          title: 'Notes, summary, citations',
+          desc: 'Searchable timestamped transcript, AI summary, DOCX for study notes. Chat with the transcript to prep for exams.',
         },
       ]}
-      whyUse={{
-        title: 'Why Mictoo for lectures',
-        bullets: [
-          {
-            title: 'Long-form is fine',
-            desc: 'Up to 60 minutes per file once you sign in (free). For a 90-minute lecture, split into two 45-minute chunks. The transcript is concatenable.',
-          },
-          {
-            title: 'Handles technical vocabulary better than most',
-            desc: 'Whisper was trained on a huge variety of audio including academic lectures. Latin, technical jargon, math terms, code snippets often come out cleaner than expected.',
-          },
-          {
-            title: 'No per-lecture cost',
-            desc: 'For students, paying for transcription per class is wasteful. Free with no minute meter means you can transcribe every lecture in a semester.',
-          },
-          {
-            title: 'Privacy and copyright',
-            desc: 'The file streams to our transcription provider and is discarded. We do not retain the audio. Useful when you are transcribing material you own (your recordings) but do not want to upload to a third-party storage service.',
-          },
-          {
-            title: '50+ languages',
-            desc: 'International students and online courses in non-English languages all work. Auto-detect handles most cases.',
-          },
-          {
-            title: 'Free AI summary — study aid built in',
-            desc: 'After every lecture transcript we generate a GPT summary with key points. Cuts a 60-minute lecture down to a one-screen study aid you can scan before an exam. The same feature competitors typically gate behind a 15-20 dollar a month plan.',
-          },
-        ],
-      }}
-      useCases={{
-        title: 'What students and academics use lecture transcripts for',
-        items: [
-          {
-            title: 'Searchable study notes',
-            desc: 'Drop the transcript into Notion, Obsidian, or a Word doc. Ctrl+F any term the professor mentioned. Better than scrubbing a 90-minute audio file.',
-          },
-          {
-            title: 'Revising for exams',
-            desc: 'Skim the transcript while reviewing your handwritten notes. Catches things you missed during the live class.',
-          },
-          {
-            title: 'Translating lectures for non-native speakers',
-            desc: 'Transcribe in the source language, then run through DeepL or ChatGPT for translation. Useful for students taking courses in their second language.',
-          },
-          {
-            title: 'Accessibility for hearing-impaired students',
-            desc: 'A transcript or SRT file gives the same content in a different modality. Some universities mandate this for recorded course content.',
-          },
-          {
-            title: 'Building flashcards and study materials',
-            desc: 'Transcripts feed into Anki cards, summary documents, or AI-assisted study tools.',
-          },
-        ],
-      }}
-      proTips={{
-        title: 'Pro tips for lecture transcription',
-        tips: [
-          {
-            title: 'Sit close to the professor for in-person lectures',
-            desc: 'Recording from the back row through ambient room noise produces a transcript with a lot of holes. Phone in the front row, screen down, captures clean speech.',
-          },
-          {
-            title: 'Use a dedicated voice recorder for long classes',
-            desc: 'Phone recordings have aggressive auto-leveling and noise reduction that hurt transcription. A Zoom H1n or similar entry-level recorder gives much cleaner audio for 80 dollars.',
-          },
-          {
-            title: 'For online lectures, record system audio directly',
-            desc: 'OBS Studio on Windows or Mac can record the lecture audio straight from the system. Cleaner than capturing through your laptop mic.',
-          },
-          {
-            title: 'Set the language manually',
-            desc: 'Auto-detect is usually right but can be confused by professor warm-up chit-chat in another language. Pick the lecture language explicitly from the dropdown.',
-          },
-          {
-            title: 'Strip the first 5 minutes if it is admin announcements',
-            desc: 'Did you finish the homework? Did you read chapter 3? Not useful for the transcript. Trim in Audacity before upload to save your file-size budget.',
-          },
-          {
-            title: 'For STEM lectures with equations, the transcript captures spoken math, not the equations',
-            desc: 'Mathematical expressions written on the board are not in the audio, so they will not be in the transcript. You still need to capture those separately (photos of the board, screenshots of slides).',
-          },
-          {
-            title: 'Re-listen to the recording while reading the transcript for the first review',
-            desc: 'This is the best way to fix professor-specific terms and equation references. Once cleaned, the transcript stands on its own.',
-          },
-        ],
-      }}
+
+      exampleTitle="Example lecture transcript"
+      exampleFileName="intro-microeconomics-lecture-08.mp4"
+      exampleDurationLabel="47:32"
+      exampleLines={[
+        { t: '0:00',  line: 'All right. Last week we finished with the concept of consumer surplus. Today we build on that with producer surplus.' },
+        { t: '0:11',  line: 'Producer surplus is the difference between what a producer would accept for a good and what they actually receive.' },
+        { t: '0:23',  line: 'Together, consumer plus producer surplus gives us total welfare in a market before we introduce taxes or price controls.' },
+        { t: '0:35',  line: 'Now, why do we care about this concept practically? Because it lets us evaluate whether policy makes a market better or worse off.' },
+        { t: '0:47',  line: 'Consider a per-unit tax. It shifts the supply curve upward by the tax amount, and both surpluses shrink.' },
+        { t: '0:58',  line: 'The gap that appears between what buyers pay and what sellers receive is what we call deadweight loss.' },
+        { t: '1:08',  line: 'Please open the workbook to page thirty-one, and let us work through a numerical example together.' },
+      ]}
+      summaryPoints={[
+        'Recap: consumer surplus from previous lecture.',
+        'New concept: producer surplus and total welfare.',
+        'Applied to taxation analysis.',
+        'Deadweight loss illustrated numerically.',
+      ]}
+      actionItems={[
+        'Review workbook page 31',
+        'Practice deadweight loss calc',
+        'Read chapter 4 before Thursday',
+      ]}
+
+      whyTitle="Why Mictoo for lecture transcription"
+      whyCards={[
+        {
+          icon: 'search',
+          title: 'Searchable inside the transcript',
+          desc: 'Ctrl-F any concept from the whole 45-minute lecture in a second. Better than scrubbing through video.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'AI summary for revision notes',
+          desc: 'The summary is a solid revision starting point. Trim what you already know, keep what you missed.',
+        },
+        {
+          icon: 'chat',
+          title: 'Chat with the lecture',
+          desc: 'Ask questions about the material to prep for exams. RAG-style answers cite the exact timestamp.',
+        },
+        {
+          icon: 'globe',
+          title: 'Translate for non-native students',
+          desc: 'Lecture in English but you study in Portuguese? One-click translation to 50+ languages.',
+        },
+      ]}
+
+      scenariosTitle="Common lecture scenarios"
+      scenarios={[
+        { icon: 'book',      title: 'University class' },
+        { icon: 'cap' ,      title: 'Online course' },
+        { icon: 'search',    title: 'Exam revision' },
+        { icon: 'editPen',   title: 'Study notes' },
+        { icon: 'globe',     title: 'Non-native student' },
+        { icon: 'headset',   title: 'Recorded seminar' },
+      ]}
+
+      tipsTitle="Tips for cleaner lecture transcripts"
+      tips={[
+        'Sit close to the front and use your phone as a backup mic.',
+        'Long lectures over 60 MB auto-split when you sign in.',
+        'Set the language explicitly for technical or non-English content.',
+        'Use Chat to ask follow-up questions after transcription.',
+      ]}
+
+      guidesTitle="Related learning tools"
+      guides={[
+        { href: '/zoom-transcription',        icon: 'video', title: 'Zoom lecture',      desc: 'Cloud Recording download' },
+        { href: '/youtube-to-text',           icon: 'video', title: 'YouTube lecture',   desc: 'Paste URL or upload' },
+        { href: '/voice-memo-to-text',        icon: 'mic',   title: 'Phone recording',   desc: 'iPhone Voice Memo in class' },
+        { href: '/timestamped-transcription', icon: 'file',  title: 'Timestamped notes', desc: 'Time-aligned exports' },
+      ]}
+
       faq={[
         {
-          q: 'Is this accurate enough for university coursework?',
-          a: 'For most lecture content, yes. Whisper large-v3 produces 90 to 95 percent accuracy on clean lecture audio. Technical terms and proper nouns often need cleanup. Use the transcript as study notes, not as the canonical source for citations.',
+          q: 'Can I transcribe a Zoom class recording?',
+          a: 'Yes. Download the Cloud Recording MP4 or M4A and drop here. See the Zoom guide for the exact download path.',
         },
         {
-          q: 'My lecture is in a non-English language. Will it work?',
-          a: 'Yes. Whisper supports 50+ languages with strong accuracy in major languages and basic support for many more. Pick the language manually from the dropdown for best results.',
+          q: 'My lecture is over 60 MB. What now?',
+          a: 'Sign in to enable auto-split (up to about 3 hours). Or downsample to 64 kbps mono MP3 with ffmpeg for a 5x size reduction.',
         },
         {
-          q: 'My lecture is 90 minutes. What do I do?',
-          a: 'Split it. Our cap is 60 minutes per file. Cut into two 45-minute chunks at a natural break point (the mid-lecture pause or topic transition).',
+          q: 'Does Mictoo transcribe non-English lectures?',
+          a: 'Yes. Whisper large-v3 supports 50+ languages. Set the language explicitly for technical vocabulary or heavy accents.',
         },
         {
-          q: 'Is it legal to transcribe lectures?',
-          a: 'For personal study use, generally yes in most jurisdictions, as long as you legally have access to the recording. For redistribution (publishing the transcript online, selling study materials), you need the lecturer or institution permission. Some universities have explicit policies on recording and transcribing lectures. Check yours.',
+          q: 'Can I search inside the transcript?',
+          a: 'Yes. Reader view includes a search box with match count and highlighting. Ctrl-F your term and jump between hits.',
         },
         {
-          q: 'Can I transcribe a video lecture from Coursera, edX, or Khan Academy?',
-          a: 'Yes, if you can download the video file. Some platforms allow downloads for offline viewing (you get an MP4). Drop it here. For platforms that do not allow downloads, check their terms before scraping.',
+          q: 'Can I ask questions about the lecture material?',
+          a: 'Yes. Chat with transcript lets you ask "explain deadweight loss" or "what pages did the professor mention". Answers cite timestamps.',
         },
         {
-          q: 'Will the transcript include slide content?',
-          a: 'No. We only transcribe the audio. If the professor reads slides aloud, that text will be in the transcript. If slides have on-screen text the professor did not read, that is not in the transcript. Combine with screenshots of the slides for full notes.',
+          q: 'Can I export lecture notes as DOCX or PDF?',
+          a: 'Yes. DOCX for anyone, PDF and JSON for signed-in users. TXT is always available.',
         },
         {
-          q: 'How accurate are technical terms and jargon?',
-          a: 'Less accurate than common vocabulary. For Latin medical terms, advanced math symbols, niche acronyms, expect to fix them manually. The general flow of the lecture will be solid.',
-        },
-        {
-          q: 'Can I export the transcript to my note-taking app?',
-          a: 'Yes. Download as TXT and paste into Notion, Obsidian, OneNote, Bear, or any text-friendly tool. SRT works in video players if you want subtitles alongside the recording.',
-        },
-        {
-          q: 'Is my lecture audio stored?',
-          a: 'No. The file streams to our transcription provider, gets processed, then is discarded. We do not retain the audio.',
-        },
-        {
-          q: 'How long does a lecture take to transcribe?',
-          a: 'About 1 to 2 percent of the audio length. A 60-minute lecture finishes in around 60 seconds. Upload time is usually the longer wait.',
-        },
-        {
-          q: 'Can I get timestamps for jumping back to specific moments?',
-          a: 'Yes. Download as SRT. Each line has a timestamp aligned to the original audio. Useful for going back to verify a specific point during exam prep.',
-        },
-        {
-          q: 'What if the lecture has student Q&A at the end?',
-          a: 'Q&A transcribes the same way as the main lecture. Audience questions sometimes come out less clearly (audience members are usually further from the mic), but the professor response should be clean. Add a "Q&A" section break in your notes.',
+          q: 'Are lecture recordings kept on your servers?',
+          a: 'No. Audio streams to the transcription provider, gets processed once, and is dropped. Transcripts are only saved if you sign in.',
         },
       ]}
+
+      ctaHeadline="Turn lectures into study notes"
+      ctaSubtitle="Searchable transcript, AI summary, chat with the material. Free per lecture."
+      ctaButton="Upload a lecture"
+
       relatedLinks={[
-        { href: '/transcribe-audio-to-text', label: 'Audio to Text', desc: 'For general audio files.' },
-        { href: '/transcribe-video-to-text', label: 'Video to Text', desc: 'For video lectures (MP4, MOV).' },
-        { href: '/timestamped-transcription', label: 'Timestamped Transcription', desc: 'For jumping back to specific moments.' },
-        { href: '/how-to-split-audio', label: 'How to Split Audio', desc: 'For lectures over 60 minutes.' },
+        { href: '/webinar-transcription',     label: 'Webinar Transcription' },
+        { href: '/sermon-transcription',      label: 'Sermon Transcription' },
+        { href: '/voice-memo-to-text',        label: 'Voice Memo to Text' },
+        { href: '/interview-transcription',   label: 'Interview Transcription' },
+        { href: '/meeting-transcription',     label: 'Meeting Transcription' },
       ]}
     />
   )

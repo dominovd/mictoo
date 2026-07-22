@@ -1,7 +1,7 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 export const metadata = {
-  title: 'Sermon Transcription — Free Transcript Generator for Sermons | Mictoo',
+  title: 'Sermon Transcription: Free Transcript Generator for Sermons | Mictoo',
   description:
     'Free sermon transcription. Upload your service recording (MP3, MP4, M4A, WAV) and get a clean AI transcript in seconds. Built for churches, pastors, and study notes.',
   alternates: {
@@ -20,186 +20,174 @@ export const metadata = {
       'x-default': 'https://mictoo.com/sermon-transcription',
     },
   },
-
   openGraph: {
-    title: "Sermon Transcription — Free Transcript Generator for Sermons | Mictoo",
-    description: "Free sermon transcription. Upload your service recording (MP3, MP4, M4A, WAV) and get a clean AI transcript in seconds. Built for churches, pastors, and study notes.",
-    url: "https://mictoo.com/sermon-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Sermon Transcription: Free | Mictoo',
+    description: 'Upload your service recording, get a clean transcript.',
+    url: 'https://mictoo.com/sermon-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Sermon Transcription — Free Transcript Generator for Sermons | Mictoo",
-    description: "Free sermon transcription. Upload your service recording (MP3, MP4, M4A, WAV) and get a clean AI transcript in seconds. Built for churches, pastors, and study notes.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Sermon Transcription',
+    description: 'Free transcripts for churches and study.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function SermonTranscriptionPage() {
   return (
-    <LandingLayout
+    <UseCaseLayout
       badge="Churches · Pastors · Study · Free"
-      h1={
-        <>
-          Sermon Transcription
-          <br />
-          <span className="text-brand-600">Free Sermon to Text</span>
-        </>
-      }
-      subtitle="Turn any sermon recording into clean text. For church blogs, study notes, accessibility, and translation. No signup, no per-minute fee."
-      howItWorks={[
+      h1First="Sermon Transcription"
+      h1Second="Free transcript for services and study"
+      subtitle="Drop a Sunday service recording, weeknight teaching, or Bible study session. Get a clean transcript with timestamps for the church website, study notes, and podcast episode notes."
+      currentHref="/sermon-transcription"
+
+      platforms={[
+        { name: 'SermonAudio',   iconKey: 'broadcast', brandBg: '#B91C1C' },
+        { name: 'ProPresenter',  iconKey: 'monitor',   brandBg: '#0EA5E9' },
+        { name: 'YouTube Live',  iconKey: 'broadcast', brandBg: '#FF0000' },
+        { name: 'Facebook Live', iconKey: 'broadcast', brandBg: '#1877F2' },
+        { name: 'Zoom',          iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/zoom-transcription' },
+        { name: 'Church stream', iconKey: 'broadcast', brandBg: '#6B21A8' },
+      ]}
+
+      howItWorksTitle="How sermon transcription works"
+      steps={[
         {
-          icon: '⛪',
-          title: 'Drop the sermon recording',
-          desc: 'MP3 from a church mixer, MP4 from a livestream archive, M4A from a phone recording, WAV from a board recorder. All work.',
+          icon: 'folder',
+          title: 'Export the service recording',
+          desc: 'Sunday livestream MP4, sanctuary sound-board WAV, or the podcast MP3 you already publish.',
         },
         {
-          icon: '⚡',
-          title: 'AI transcribes it',
-          desc: 'Whisper large-v3 reads the audio. A 30-minute sermon finishes in around a minute. A 45-minute sermon under 90 seconds.',
+          icon: 'upload',
+          title: 'Drop the file here',
+          desc: 'MP3, MP4, WAV, M4A all work. Long services benefit from signed-in auto-split.',
         },
         {
-          icon: '📋',
-          title: 'Get the transcript',
-          desc: 'Read it, copy it, or download as TXT or SRT. Paste into your church blog, study guide, or printed program.',
+          icon: 'editPen',
+          title: 'Transcript for the website',
+          desc: 'Clean text ready for the church website, study notes, podcast description, and searchable archive.',
         },
       ]}
-      whyUse={{
-        title: 'Why Mictoo for sermons',
-        bullets: [
-          {
-            title: 'Long-form sermons fit',
-            desc: 'Up to 60 minutes per file when you sign in (free). Most sermons are 25 to 45 minutes, well within the cap.',
-          },
-          {
-            title: 'Multi-language services work',
-            desc: 'For churches serving immigrant or international communities, sermons sometimes switch between two languages or include passages in the original (Hebrew, Greek, Latin). Whisper handles code-switching and supports 50+ languages.',
-          },
-          {
-            title: 'Music intros are handled',
-            desc: 'Most services start with worship music before the sermon. Whisper voice activity detection tags music as silence rather than inventing words. The transcript starts cleanly when the spoken sermon begins.',
-          },
-          {
-            title: 'Free, suitable for nonprofit budgets',
-            desc: 'Churches often have small budgets for tech. Mictoo is free, no monthly subscription, no per-minute charge. Transcribe every Sunday service without affecting the bookkeeping.',
-          },
-          {
-            title: 'Privacy by default',
-            desc: 'The sermon audio streams to the transcription provider and is discarded. Useful for churches that want a transcript without the recording sitting on a third-party server.',
-          },
-        ],
-      }}
-      useCases={{
-        title: 'What people do with sermon transcripts',
-        items: [
-          {
-            title: 'Church blog and weekly newsletter',
-            desc: 'Turn the sermon into a written devotion for the next week. Members who missed the service can read it. SEO bonus: text content helps your church website rank for sermon topics.',
-          },
-          {
-            title: 'Study guides and small group materials',
-            desc: 'Pull discussion questions from the transcript. Reference specific quotes from the sermon in next week study guide. Faster than typing notes during the live sermon.',
-          },
-          {
-            title: 'Accessibility for deaf and hard-of-hearing members',
-            desc: 'A transcript or SRT subtitle file makes the sermon accessible to members who cannot hear or hear well. Some churches share the transcript via email after each service.',
-          },
-          {
-            title: 'Translation for multilingual congregations',
-            desc: 'Transcribe in the source language, then run through DeepL or ChatGPT to translate. Useful for sharing English sermons with Spanish or Korean-speaking members, or vice versa.',
-          },
-          {
-            title: 'Archive and sermon library',
-            desc: 'Years of recorded sermons become searchable when transcribed. Members and the pastor can find past references to specific Bible passages or topics by searching the text.',
-          },
-        ],
-      }}
-      proTips={{
-        title: 'Pro tips for sermon transcription',
-        tips: [
-          {
-            title: 'Record from the soundboard, not from a phone in the congregation',
-            desc: 'A direct line from the church soundboard gives you clean speech without congregation noise, music bleed, or echo. Most churches with a mixer can run a stereo line into a recorder or laptop.',
-          },
-          {
-            title: 'Trim the worship music before upload',
-            desc: 'A 60-minute service is often 15 minutes of worship music, 30 minutes of sermon, 15 minutes of announcements and closing. Trim out the music sections in Audacity to save your file-size budget and avoid Whisper hallucinations during music.',
-          },
-          {
-            title: 'Pick the language manually for non-English services',
-            desc: 'Auto-detect samples the first few seconds. If your service opens with a hymn in Latin or Hebrew, detection might fall back to the wrong language. Pick the spoken language explicitly.',
-          },
-          {
-            title: 'Names of Bible figures and theological terms often need cleanup',
-            desc: 'Whisper handles common Bible names (Jesus, Moses, David) well. Less common names (Habakkuk, Shadrach, Meshach) and theological vocabulary (eschatology, justification) sometimes get mangled. Plan for 5 to 10 minutes of cleanup per transcript.',
-          },
-          {
-            title: 'For congregational responses and call-and-response, expect imperfect capture',
-            desc: 'When the congregation responds together, Whisper sometimes drops their part or transcribes it loosely. The pastor part remains accurate.',
-          },
-          {
-            title: 'For sermons over 60 minutes, split at a natural transition',
-            desc: 'Long teaching series sermons might exceed our 60-minute cap. Split at the prayer transition or topic change. Concatenate the transcripts after.',
-          },
-        ],
-      }}
+
+      exampleTitle="Example sermon transcript"
+      exampleFileName="sunday-service-jan-14.mp3"
+      exampleDurationLabel="38:56"
+      exampleLines={[
+        { t: '0:00',  line: 'Good morning church. Please turn with me to the Gospel of Matthew, chapter five, verse three.' },
+        { t: '0:12',  line: 'This morning we begin a new series on what Jesus called the blessed life, the Beatitudes.' },
+        { t: '0:24',  line: 'Blessed are the poor in spirit, for theirs is the kingdom of heaven. That is our text this week.' },
+        { t: '0:38',  line: 'The word Jesus uses here for blessed does not mean happy in a shallow, circumstantial sense.' },
+        { t: '0:51',  line: 'It means deeply, fundamentally content because of your relationship with God, regardless of circumstance.' },
+        { t: '1:04',  line: 'And to be poor in spirit is not about material poverty. It is a posture of dependence on God.' },
+        { t: '1:18',  line: 'It is knowing that whatever you build, whatever you accomplish, ultimately rests on grace, not on merit.' },
+      ]}
+      summaryPoints={[
+        'New series on the Beatitudes (Matthew 5).',
+        'Focus: "Blessed are the poor in spirit."',
+        'Blessed = deep contentment through relationship with God.',
+        'Poor in spirit = posture of dependence, not material poverty.',
+      ]}
+      actionItems={[
+        'Post transcript to church website',
+        'Cut 60-second clip for social',
+        'Include in weekly study guide',
+      ]}
+
+      whyTitle="Why Mictoo for sermon transcription"
+      whyCards={[
+        {
+          icon: 'search',
+          title: 'Searchable sermon archive',
+          desc: 'Publish transcripts on the church site. Congregants find teaching by topic or verse, months or years later.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Study notes and small-group guides',
+          desc: 'AI summary is the starting point for the weekly study guide or small-group discussion questions.',
+        },
+        {
+          icon: 'clip',
+          title: 'Captions for the livestream replay',
+          desc: 'SRT for the YouTube or Facebook video version. Accessibility for the hard-of-hearing members.',
+        },
+        {
+          icon: 'globe',
+          title: 'Translate for multilingual congregations',
+          desc: 'Sermon in English but part of the congregation prefers Spanish or Korean. One-click translation.',
+        },
+      ]}
+
+      scenariosTitle="Common sermon scenarios"
+      scenarios={[
+        { icon: 'church',    title: 'Sunday service' },
+        { icon: 'book',      title: 'Bible study' },
+        { icon: 'chat',      title: 'Small group' },
+        { icon: 'sparkles',  title: 'Devotional' },
+        { icon: 'globe',     title: 'Missions' },
+        { icon: 'headset',   title: 'Podcast' },
+      ]}
+
+      tipsTitle="Tips for sermon recordings"
+      tips={[
+        'Sound-board WAV or M4A gives cleaner input than room mic.',
+        'For long services over 60 MB, sign in for auto-split.',
+        'For congregations with heavy scriptural terms, review key words.',
+        'Include the sermon title in the file name for archive ordering.',
+      ]}
+
+      guidesTitle="Related tools"
+      guides={[
+        { href: '/transcribe-mp3-to-text',    icon: 'file',  title: 'MP3 format',        desc: 'Podcast-friendly export' },
+        { href: '/wav-to-text',               icon: 'file',  title: 'WAV format',        desc: 'Sound-board recording' },
+        { href: '/lecture-transcription',     icon: 'book',  title: 'Lecture / study',   desc: 'Teaching-heavy content' },
+        { href: '/free-srt-generator',        icon: 'file',  title: 'SRT captions',      desc: 'Livestream replay' },
+      ]}
+
       faq={[
         {
-          q: 'How accurate is sermon transcription?',
-          a: 'For clean soundboard audio with a single pastor speaking, 90 to 95 percent. For services with congregational singing or response, accuracy on those sections drops to 70 to 80 percent. Pastor sermon portion remains the strongest.',
+          q: 'Can I transcribe a Sunday livestream recording?',
+          a: 'Yes. Download the MP4 from YouTube Live, Facebook Live, or your church-stream provider and drop it here. Video is auto-demuxed server-side.',
         },
         {
-          q: 'Will Bible quotes come through accurately?',
-          a: 'Common verses recited from memory come through well. Pastoral expansion on the verse (the actual sermon) is the most accurate part. For exact verse quotes, you may want to cross-reference against your preferred translation rather than trust the transcript.',
+          q: 'Does Mictoo handle scriptural references and theological terms accurately?',
+          a: 'Whisper large-v3 handles common English scripture and theological vocabulary well. For unusual proper nouns (older transliterations, specific translation terms), review after transcription.',
         },
         {
-          q: 'My sermon is over 60 minutes. What do I do?',
-          a: 'Split at a natural break (prayer, topic transition, congregational response section). Transcribe each chunk, concatenate the text afterwards. See our splitting guide.',
+          q: 'Is Mictoo free for churches?',
+          a: 'Yes. Free per file up to the size cap. No church-specific tier or license.',
         },
         {
-          q: 'My sermon is in Spanish, Korean, or another language. Will it work?',
-          a: 'Yes. Whisper supports 50+ languages with strong accuracy in major languages. Pick the language manually from the dropdown for best results.',
+          q: 'My service recording is over 60 MB. What now?',
+          a: 'Sign in for auto-split (up to about 3 hours). Or downsample: ffmpeg -i service.mp3 -b:a 64k -ac 1 out.mp3. Same accuracy, 3-5x smaller.',
         },
         {
-          q: 'Can I transcribe sermons from a livestream archive (YouTube, Facebook)?',
-          a: 'Yes, if you can download the recording from the platform. For YouTube archives, see our YouTube to Text page for download instructions. Facebook livestream archives can be downloaded with similar tools.',
+          q: 'Can I get captions for the livestream replay?',
+          a: 'Yes. Download SRT or VTT after transcription. Timestamps align to the original recording for YouTube, Facebook, or your video hosting.',
         },
         {
-          q: 'Will my sermon recording be stored on your servers?',
-          a: 'No. The file streams to our transcription provider, gets processed, then is discarded. We do not retain the audio.',
+          q: 'Can I translate the sermon for the missions team?',
+          a: 'Yes. Pick a target language and click Translate. Useful for multilingual congregations, missions, and diaspora ministry.',
         },
         {
-          q: 'Can I edit the transcript before downloading?',
-          a: 'Yes. Fix any mangled Bible names or theological terms inline in the result view, then download as TXT or SRT.',
-        },
-        {
-          q: 'Is there a per-sermon charge?',
-          a: 'No charges. Transcription is free with no per-minute meter. We are funded by display ads.',
-        },
-        {
-          q: 'Will the transcript include music lyrics from hymns sung during the service?',
-          a: 'Whisper attempts to transcribe sung lyrics, but the accuracy is much lower than for spoken word. For accurate hymn lyrics, use the songbook reference rather than the transcript.',
-        },
-        {
-          q: 'Can I get timestamps for jumping back to specific moments?',
-          a: 'Yes. Download as SRT and you get timestamps. Useful for sermon study materials that reference specific points in the audio.',
-        },
-        {
-          q: 'How does this compare to dedicated sermon transcription services?',
-          a: 'Dedicated services (Rev Sermon, Sermonary) charge per minute and offer human-edited transcripts. Mictoo is AI, free, and good enough for blog posts, study notes, and accessibility. For court-grade verbatim transcripts, hire a human.',
-        },
-        {
-          q: 'Can I batch transcribe a year of sermons at once?',
-          a: 'Not in one click yet. Right now you transcribe one file at a time. Batch upload is on the roadmap for the future Pro tier. For now, transcribing one sermon a week is manageable.',
+          q: 'Are recordings kept on your servers?',
+          a: 'No. The audio streams to the transcription provider, gets processed once, and is dropped. Only the transcript persists on signed-in accounts.',
         },
       ]}
+
+      ctaHeadline="Turn every sermon into a searchable resource"
+      ctaSubtitle="Transcript for the website, captions for the replay, notes for study groups."
+      ctaButton="Upload a sermon"
+
       relatedLinks={[
-        { href: '/lecture-transcription', label: 'Lecture Transcription', desc: 'For educational long-form audio with similar characteristics.' },
-        { href: '/webinar-transcription', label: 'Webinar Transcription', desc: 'For long-form events with Q&A.' },
-        { href: '/transcribe-audio-to-text', label: 'Audio to Text', desc: 'Generic audio transcription for any format.' },
-        { href: '/multilingual-transcription', label: 'Multilingual Transcription', desc: 'For services with multi-language sections.' },
+        { href: '/lecture-transcription',     label: 'Lecture Transcription' },
+        { href: '/podcast-transcription',     label: 'Podcast Transcription' },
+        { href: '/webinar-transcription',     label: 'Webinar Transcription' },
+        { href: '/free-srt-generator',        label: 'Free SRT Generator' },
+        { href: '/interview-transcription',   label: 'Interview Transcription' },
       ]}
     />
   )

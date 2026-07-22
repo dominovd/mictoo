@@ -1,7 +1,7 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 export const metadata = {
-  title: 'Dictation to Text — Free Voice Dictation Transcription | Mictoo',
+  title: 'Dictation to Text: Free Voice Dictation Transcription | Mictoo',
   description:
     'Free dictation to text. Record a draft by voice, drop the file, get clean text. Built for writers, professionals, and anyone who thinks faster than they type.',
   alternates: {
@@ -20,190 +20,170 @@ export const metadata = {
       'x-default': 'https://mictoo.com/dictation-to-text',
     },
   },
-
   openGraph: {
-    title: "Dictation to Text — Free Voice Dictation Transcription | Mictoo",
-    description: "Free dictation to text. Record a draft by voice, drop the file, get clean text. Built for writers, professionals, and anyone who thinks faster than they type.",
-    url: "https://mictoo.com/dictation-to-text",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Dictation to Text: Free | Mictoo',
+    description: 'Record a draft by voice, drop the file, get clean text.',
+    url: 'https://mictoo.com/dictation-to-text',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Dictation to Text — Free Voice Dictation Transcription | Mictoo",
-    description: "Free dictation to text. Record a draft by voice, drop the file, get clean text. Built for writers, professionals, and anyone who thinks faster than they type.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Dictation to Text',
+    description: 'Voice-first writing for professionals.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function DictationToTextPage() {
   return (
-    <LandingLayout
+    <UseCaseLayout
       badge="Writers · Professionals · Free"
-      h1={
-        <>
-          Dictation to Text
-          <br />
-          <span className="text-brand-600">Free Voice Dictation Transcription</span>
-        </>
-      }
-      subtitle="Speak your draft, get clean text. For writers, lawyers, doctors, founders. Anyone who thinks faster by talking than by typing. No signup."
-      howItWorks={[
+      h1First="Dictation to Text"
+      h1Second="Voice-first writing for anyone who thinks faster than they type"
+      subtitle="Record a draft with your phone, laptop, or any voice recorder. Drop the file. Get clean, punctuated text ready to paste into your editor. Better accuracy than built-in phone dictation for long-form content."
+      currentHref="/dictation-to-text"
+
+      platforms={[
+        { name: 'iPhone',       iconKey: 'mic',       brandBg: '#0F172A' },
+        { name: 'Google Rec',   iconKey: 'mic',       brandBg: '#4285F4' },
+        { name: 'Windows Rec',  iconKey: 'mic',       brandBg: '#0078D4' },
+        { name: 'QuickTime',    iconKey: 'videoCameraFill', brandBg: '#374151' },
+        { name: 'Audacity',     iconKey: 'soundwave', brandBg: '#0B60D6' },
+        { name: 'Dragon',       iconKey: 'mic',       brandBg: '#DC2626' },
+      ]}
+
+      howItWorksTitle="How dictation to text works"
+      steps={[
         {
-          icon: '🎤',
-          title: 'Record your dictation',
-          desc: 'Use your phone (iPhone Voice Memos, Android voice recorder), a desktop mic, or any voice recording app. M4A or MP3 are the easiest formats.',
+          icon: 'folder',
+          title: 'Record your draft',
+          desc: 'Any recorder: phone Voice Memo, laptop Voice Recorder, or a dedicated dictation app.',
         },
         {
-          icon: '⚡',
-          title: 'Drop the file',
-          desc: 'Whisper large-v3 reads the audio. A 5-minute dictation finishes in around 10 seconds. A 20-minute dictation under 30 seconds.',
+          icon: 'upload',
+          title: 'Drop the file here',
+          desc: 'M4A (iPhone), MP3 (Android), WAV (recorder). Free up to 25 MB anonymously, 60 MB signed in.',
         },
         {
-          icon: '📋',
-          title: 'Edit and ship',
-          desc: 'Read the transcript, copy into your writing tool (Notion, Google Docs, Word), polish the dictated draft into final text.',
+          icon: 'editPen',
+          title: 'Clean text, ready to paste',
+          desc: 'Automatic punctuation, sentence breaks, and formatting. Switch to Editor mode for tweaks before export.',
         },
       ]}
-      whyUse={{
-        title: 'Why Mictoo for dictation',
-        bullets: [
-          {
-            title: 'Punctuation comes back automatically',
-            desc: 'Whisper adds commas, periods, and paragraph breaks based on your speaking cadence. You do not have to say "comma" or "period" out loud (although you can if you want to be explicit).',
-          },
-          {
-            title: 'Long-form dictation is fine',
-            desc: 'Up to 60 minutes per file when you sign in (free). For a typical blog post draft, you might dictate for 10 to 20 minutes. Plenty of room.',
-          },
-          {
-            title: 'Handles your accent',
-            desc: 'Whisper large-v3 was trained on 680,000 hours of multilingual audio. Non-native English accents, regional accents, and bilingual dictation all work better than iOS or macOS built-in dictation.',
-          },
-          {
-            title: 'No real-time pressure',
-            desc: 'iOS and macOS dictation transcribe as you speak, which can be distracting. Mictoo transcribes after you finish recording, so you can speak freely and edit later.',
-          },
-          {
-            title: 'Privacy',
-            desc: 'Your dictation streams to the transcription provider, gets processed, and is discarded. Useful for personal or confidential drafts you do not want sitting on a third-party server forever.',
-          },
-        ],
-      }}
-      useCases={{
-        title: 'What people dictate',
-        items: [
-          {
-            title: 'Blog posts and articles',
-            desc: 'A 1500-word blog post takes 10 to 15 minutes to dictate. Polishing the transcript takes another 30 minutes. Often faster than typing the whole thing from scratch.',
-          },
-          {
-            title: 'Emails and messages on the go',
-            desc: 'Long emails that would be painful to type on a phone become easy to dictate. Walk while you talk, transcribe later, edit and send.',
-          },
-          {
-            title: 'Meeting and call notes',
-            desc: 'After a call, summarize the key points by talking to your phone. Transcribe later for searchable notes.',
-          },
-          {
-            title: 'Book chapters and long-form writing',
-            desc: 'Some authors draft entire books by dictation. Each chapter is a separate file. The transcript is the rough draft for editing.',
-          },
-          {
-            title: 'Doctor and lawyer notes',
-            desc: 'Clinical notes, case observations, legal briefings dictated on the way back to the office. The transcript becomes the basis for the formal write-up. Note: for HIPAA or attorney-client privileged dictation, use a local transcription tool, not a cloud service.',
-          },
-        ],
-      }}
-      proTips={{
-        title: 'Pro tips for dictation transcription',
-        tips: [
-          {
-            title: 'Speak in complete sentences',
-            desc: 'Whisper produces better punctuation when you speak in complete sentences with natural pauses at sentence boundaries. Trailing off mid-thought confuses the punctuation model.',
-          },
-          {
-            title: 'Pause briefly between paragraphs',
-            desc: 'A pause of 1 to 2 seconds signals a paragraph break to Whisper. Useful for keeping structure in long dictations.',
-          },
-          {
-            title: 'For lists and structure, say "first ... second ... third"',
-            desc: 'Whisper will preserve the words but not auto-format as a list. You can find-replace afterwards in your text editor to convert into bullet points or numbered lists.',
-          },
-          {
-            title: 'For technical writing, expect to fix domain terms manually',
-            desc: 'Whisper does not know your specific product names, internal acronyms, or niche vocabulary. Plan for 5 to 10 percent cleanup time on technical content.',
-          },
-          {
-            title: 'Use a real mic for long dictations',
-            desc: 'A USB headset or even a wired earbuds mic gives a noticeably cleaner transcript than laptop built-in mics. Whisper handles less-than-perfect audio, but cleaner input is always better.',
-          },
-          {
-            title: 'Record in a quiet environment',
-            desc: 'Background music, TV in another room, kids playing, traffic noise. All hurt transcription accuracy. A quiet 5-minute room beats a noisy 20-minute room for dictation.',
-          },
-          {
-            title: 'For dictating in a non-English language, pick it manually',
-            desc: 'Auto-detect works for most files, but short dictations or files that open with English chit-chat can confuse it. Pick the language explicitly from the dropdown.',
-          },
-        ],
-      }}
+
+      exampleTitle="Example dictated draft"
+      exampleFileName="chapter-3-draft.m4a"
+      exampleDurationLabel="12:44"
+      exampleLines={[
+        { t: '0:00',  line: 'Chapter three. The morning of the trial.' },
+        { t: '0:06',  line: 'Alex had barely slept. Not from anxiety, exactly, but from the strange stillness that follows a long preparation.' },
+        { t: '0:20',  line: 'For six months, every waking hour had been consumed by the case. And now, suddenly, there was nothing left to do but show up.' },
+        { t: '0:36',  line: 'The courthouse was three blocks from her apartment. She walked slowly, letting the cold March air work through her.' },
+        { t: '0:50',  line: 'By the time she reached the front steps, the reporters were already gathered, waiting for a face they recognized.' },
+        { t: '1:04',  line: 'She kept her head down and walked past them. There would be time for questions later. Not before.' },
+        { t: '1:18',  line: 'Inside, the lobby was mostly empty. A few clerks, one janitor, and the security guard she had seen every day this week.' },
+      ]}
+      summaryPoints={[
+        'Opening of chapter 3: morning of the trial.',
+        'Character: Alex, protagonist, sleepless not anxious.',
+        'Setting: cold March morning, courthouse three blocks away.',
+        'Media presence outside; empty lobby inside.',
+      ]}
+      actionItems={[]}
+
+      whyTitle="Why Mictoo for dictation"
+      whyCards={[
+        {
+          icon: 'target',
+          title: 'Better than phone built-in dictation',
+          desc: 'iPhone Dictation cuts off after 60 seconds. Google Docs voice typing drifts. Whisper large-v3 handles long-form dictation without either issue.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Editor for post-dictation cleanup',
+          desc: 'Switch to Editor mode, fix names, add paragraph breaks, and export as DOCX ready for your writing app.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'AI summary for outline extraction',
+          desc: 'Solid first draft for the chapter beats, memo bullet points, or article structure.',
+        },
+        {
+          icon: 'globe',
+          title: 'Dictate in any language',
+          desc: '50+ languages with auto-detect. Multilingual writers can switch languages between recordings without changing settings.',
+        },
+      ]}
+
+      scenariosTitle="Common dictation scenarios"
+      scenarios={[
+        { icon: 'editPen', title: 'First draft' },
+        { icon: 'book',    title: 'Chapter dictation' },
+        { icon: 'briefcase', title: 'Memo / email' },
+        { icon: 'chat',    title: 'Journaling' },
+        { icon: 'search',  title: 'Research notes' },
+        { icon: 'globe',   title: 'Multilingual' },
+      ]}
+
+      tipsTitle="Tips for cleaner dictation"
+      tips={[
+        'Say "comma", "period", "new paragraph" if you want explicit punctuation.',
+        'Record in a quiet room for the highest accuracy.',
+        'For long chapters over 60 MB, sign in for auto-split.',
+        'Review Editor mode before export for names and technical terms.',
+      ]}
+
+      guidesTitle="Related tools"
+      guides={[
+        { href: '/voice-memo-to-text',      icon: 'mic',    title: 'Voice memo',   desc: 'Idea capture, not draft writing' },
+        { href: '/m4a-to-text',             icon: 'file',   title: 'M4A format',   desc: 'iPhone / Apple exports' },
+        { href: '/transcribe-mp3-to-text',  icon: 'file',   title: 'MP3 format',   desc: 'Android recorder exports' },
+        { href: '/interview-transcription', icon: 'chat',   title: 'Interview',    desc: 'Two-person recorded conversation' },
+      ]}
+
       faq={[
         {
-          q: 'Will the transcript include punctuation?',
-          a: 'Yes. Whisper adds commas, periods, and capitalization automatically based on your speaking cadence. You do not need to say "comma" or "period" out loud unless you want to override.',
+          q: 'Is Mictoo better than iPhone Dictation?',
+          a: 'For long-form content, yes. iPhone Dictation cuts off after 60 seconds and does not handle chapter-length dictation. Whisper large-v3 processes any length, punctuates automatically, and preserves paragraph structure.',
         },
         {
-          q: 'How is this different from iOS or macOS built-in dictation?',
-          a: 'iOS and macOS dictation are real-time, English-first, and weaker on accents. Mictoo transcribes after recording, supports 50+ languages, and uses a more accurate model (Whisper large-v3). For long-form dictation, recording first and transcribing after is usually less frustrating.',
+          q: 'Can I dictate technical or medical terms?',
+          a: 'Whisper handles common technical vocabulary well. For rare or proprietary terms, use Editor mode after transcription to fix any misses. Faster than dictating and re-correcting inline.',
         },
         {
-          q: 'Can I dictate in another language?',
-          a: 'Yes. Whisper supports 50+ languages. Pick the language manually from the dropdown for best results, especially for shorter dictations.',
+          q: 'What is the file size limit for dictation?',
+          a: '25 MB anonymously, 60 MB when signed in. A 60-minute voice recording at typical bitrate is 20-30 MB, so most dictation sessions fit under the free cap.',
         },
         {
-          q: 'How accurate is dictation transcription?',
-          a: 'For clear speech in a quiet environment with a decent mic, 95 to 98 percent. Higher than for typical meeting or interview audio, because there is no crosstalk or background noise.',
+          q: 'Does Mictoo add punctuation automatically?',
+          a: 'Yes. Sentences and paragraphs are detected from the speech rhythm. Say "comma" or "period" if you want explicit punctuation at a specific point.',
         },
         {
-          q: 'Can I dictate for an hour straight?',
-          a: 'Up to 60 minutes per file when signed in (free). For longer continuous dictations, split the file into chunks. Most writers dictate in 10 to 20 minute bursts anyway, which fits comfortably.',
+          q: 'Can I edit the transcript before exporting?',
+          a: 'Yes. Switch to Editor mode to edit any word or line inline. Save the changes and export as TXT, DOCX, or PDF (signed-in).',
         },
         {
-          q: 'Will my dictation be stored on your servers?',
-          a: 'No. The file streams to our transcription provider, gets processed, then is discarded. Useful for personal drafts or confidential content.',
+          q: 'Can I translate my dictated draft?',
+          a: 'Yes. Pick a target language and click Translate. Useful for writers producing in a second language, or translators drafting a working version.',
         },
         {
-          q: 'Can I use this for HIPAA-compliant medical dictation?',
-          a: 'No. We are not HIPAA compliant. For medical dictation that involves PHI (protected health information), use a local Whisper installation on your own machine or a dedicated HIPAA-compliant transcription service. The same applies to attorney-client privileged dictation.',
-        },
-        {
-          q: 'Will the transcript include filler words (um, uh, like)?',
-          a: 'Whisper usually omits common filler words automatically. Occasional "um" makes it through. Clean up during editing if you want a polished version.',
-        },
-        {
-          q: 'Can I dictate a list and have it formatted as a list?',
-          a: 'Whisper preserves the words but does not auto-format as bullet points. Say "first ... second ... third" or "bullet point one" if you want clear list markers, then find-replace in your editor after.',
-        },
-        {
-          q: 'Will the transcript be in paragraphs?',
-          a: 'Whisper inserts paragraph breaks at long pauses. For predictable paragraph structure, pause for 1 to 2 seconds between paragraphs while dictating. You can also restructure manually after.',
-        },
-        {
-          q: 'Can I dictate from my phone and upload directly?',
-          a: 'Yes. Record in iPhone Voice Memos or Android voice recorder, then upload from the same phone using Safari or Chrome. The site is mobile-friendly. Or AirDrop / email the file to a computer first if you prefer.',
-        },
-        {
-          q: 'What is the maximum dictation length?',
-          a: '30 minutes per file without an account, 60 minutes when signed in (also free). For longer dictations, split into chunks.',
+          q: 'Are dictations stored on your servers?',
+          a: 'No. The audio streams to the transcription provider, gets processed once, and is dropped. Only the transcript persists if you sign in and save it.',
         },
       ]}
+
+      ctaHeadline="Turn spoken drafts into text"
+      ctaSubtitle="Chapter, memo, article, journal entry. Faster than typing when you already know what you want to say."
+      ctaButton="Upload a dictation"
+
       relatedLinks={[
-        { href: '/voice-memo-to-text', label: 'Voice Memo to Text', desc: 'Specifically for iPhone and Android voice memos.' },
-        { href: '/m4a-to-text', label: 'M4A to Text', desc: 'For M4A files (default iPhone Voice Memos format).' },
-        { href: '/transcribe-audio-to-text', label: 'Audio to Text', desc: 'Generic audio transcription for any format.' },
-        { href: '/interview-transcription', label: 'Interview Transcription', desc: 'For dictating an interview note after the conversation.' },
+        { href: '/voice-memo-to-text',      label: 'Voice Memo to Text' },
+        { href: '/interview-transcription', label: 'Interview Transcription' },
+        { href: '/lecture-transcription',   label: 'Lecture Transcription' },
+        { href: '/m4a-to-text',             label: 'M4A to Text' },
+        { href: '/transcribe-mp3-to-text',  label: 'MP3 to Text' },
       ]}
     />
   )
