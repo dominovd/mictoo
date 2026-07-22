@@ -41,6 +41,7 @@ export default function SiteFooter() {
     ['/webinar-transcription',       lab('webinarTranscription'),       'presentation'],
     ['/sermon-transcription',        lab('sermonTranscription'),        'book'],
     ['/dictation-to-text',           lab('dictationToText'),            'pen'],
+    ['/youtube-to-text',             lab('youtubeToText'),              'play'],
   ]
   const formats = [
     ['/transcribe-audio-to-text', lab('audioToText'), 'fileAudio'],
@@ -59,7 +60,6 @@ export default function SiteFooter() {
   const tools = [
     ['/free-srt-generator',        lab('srtGenerator'),          'captions'],
     ['/timestamped-transcription', lab('timestampedTranscript'), 'clock'],
-    ['/youtube-to-text',           lab('youtubeToText'),         'play'],
     // Wave 6 — functional converters (real ffmpeg backend, not just SEO).
     ['/mp4-to-mp3',                lab('mp4ToMp3'),              'refresh'],
     ['/wav-to-mp3',                lab('wavToMp3'),              'refresh'],

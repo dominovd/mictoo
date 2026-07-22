@@ -58,6 +58,7 @@ const Icons = {
   gear:     <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" /><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" /></svg>,
   clip:     <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" /></svg>,
   target:   <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg>,
+  youtube:  <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="3" /><path d="M10 9.5v5l5-2.5z" fill="currentColor" stroke="none" /></svg>,
 }
 
 // USE CASES sidebar — always-visible list.
@@ -74,6 +75,7 @@ const USE_CASE_NAV = [
   { href: '/webinar-transcription',        icon: 'monitor',  label: 'Webinar Transcription' },
   { href: '/sermon-transcription',         icon: 'church',   label: 'Sermon Transcription' },
   { href: '/dictation-to-text',            icon: 'editPen',  label: 'Dictation to Text' },
+  { href: '/youtube-to-text',              icon: 'youtube',  label: 'YouTube to Text' },
 ]
 
 function Eyebrow({ children }) {
@@ -221,6 +223,9 @@ export default function UseCaseLayout({
 
   // Related use cases footer
   relatedLinks = [],   // [{href, label}]
+
+  // Enable YouTube URL input in the upload zone (YouTube page uses this)
+  enableYouTubeUrl = false,
 }) {
   // JSON-LD FAQ schema for Google rich results
   const faqSchema = faq?.length > 0 ? {
@@ -260,7 +265,7 @@ export default function UseCaseLayout({
         </div>
 
         <div id="tool" className="max-w-2xl mx-auto mt-10 scroll-mt-20">
-          <UploadZone />
+          <UploadZone enableYouTubeUrl={enableYouTubeUrl} />
         </div>
 
         {/* Platform row under upload */}
