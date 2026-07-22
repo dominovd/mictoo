@@ -72,10 +72,10 @@ const TOOLS_NAV = [
   { href: '/mp3-to-wav',                icon: 'refresh',  label: 'MP3 to WAV' },
 ]
 
-// Default 4-chip trust row (Free / Private / No signup / No watermark).
+// Default 4-chip trust row.
 const DEFAULT_CHIPS = [
   { label: 'Free',         icon: 'gift' },
-  { label: 'Private',      icon: 'shield' },
+  { label: 'Auto-deleted', icon: 'shield' },
   { label: 'No signup',    icon: 'user' },
   { label: 'No watermark', icon: 'drop' },
 ]
@@ -296,11 +296,11 @@ export default function ConverterPageLayout({
                       </div>
                     </div>
 
-                    {/* Fake download button */}
-                    <button className="inline-flex items-center gap-1.5 bg-brand-600 text-white rounded-lg px-3 py-2 text-xs font-semibold justify-self-end sm:justify-self-auto">
+                    {/* Visual preview only — the real download appears after conversion. */}
+                    <div className="inline-flex items-center gap-1.5 bg-brand-600 text-white rounded-lg px-3 py-2 text-xs font-semibold justify-self-end sm:justify-self-auto">
                       <span className="w-3.5 h-3.5">{Icons.download}</span>
                       Download {to?.toUpperCase() || 'file'}
-                    </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -386,7 +386,9 @@ export default function ConverterPageLayout({
                         })}
                       </div>
                       <p className="text-[11px] text-slate-500 text-center mt-4 leading-snug">
-                        We extract the audio from your {from?.toUpperCase()} and encode it as {to?.toUpperCase() ? `an ${to.toUpperCase()}` : 'text'}.
+                        {isConverter
+                          ? `We extract the audio from your ${from?.toUpperCase()} and encode it as ${to?.toUpperCase()}.`
+                          : 'We transcribe your audio or video and return timestamped text for review and export.'}
                       </p>
                     </div>
                   </div>

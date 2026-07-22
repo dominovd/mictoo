@@ -33,6 +33,9 @@ const ALLOWED_PAIRS = new Set([
   'wav>mp3',
   'webm>mp3',
   'flac>mp3',
+  'aac>mp3',
+  'wma>mp3',
+  'm4a>mp3',
   'mp3>m4a',
   'mp3>wav',
 ])
@@ -47,6 +50,9 @@ const SOURCE_MIME_OK = {
   webm: ['audio/webm', 'video/webm'],
   flac: ['audio/flac'],
   mp3:  ['audio/mpeg', 'audio/mp3'],
+  aac:  ['audio/aac', 'audio/x-aac', 'audio/aacp'],
+  wma:  ['audio/x-ms-wma', 'audio/wma'],
+  m4a:  ['audio/mp4', 'audio/x-m4a', 'audio/m4a'],
 }
 
 // Resolve the ffmpeg binary path. @ffmpeg-installer/ffmpeg ships per-platform

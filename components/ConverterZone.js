@@ -26,6 +26,9 @@ const SOURCE_ACCEPT = {
   webm: { mimes: ['audio/webm', 'video/webm', 'application/octet-stream'], accept: '.webm,audio/webm,video/webm' },
   flac: { mimes: ['audio/flac', 'application/octet-stream'], accept: '.flac,audio/flac' },
   mp3:  { mimes: ['audio/mpeg', 'audio/mp3', 'application/octet-stream'], accept: '.mp3,audio/mpeg' },
+  aac:  { mimes: ['audio/aac', 'audio/x-aac', 'audio/aacp', 'application/octet-stream'], accept: '.aac,audio/aac' },
+  wma:  { mimes: ['audio/x-ms-wma', 'audio/wma', 'application/octet-stream'], accept: '.wma,audio/x-ms-wma' },
+  m4a:  { mimes: ['audio/mp4', 'audio/x-m4a', 'audio/m4a', 'application/octet-stream'], accept: '.m4a,audio/mp4' },
 }
 
 function fmtBytes(n) {
@@ -183,7 +186,7 @@ export default function ConverterZone({ from, to, labels }) {
   const busy = status === 'uploading' || status === 'converting'
 
   return (
-    <div id="tool" className="max-w-2xl mx-auto px-4">
+    <div className="max-w-2xl mx-auto px-4">
       <div
         onDrop={onDrop}
         onDragOver={onDragOver}

@@ -47,7 +47,7 @@ const Icons = {
   gift:     <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" /><path d="M5 12v9h14v-9M12 8v13" /><path d="M12 8s-3-4-6-2 2 4 6 2zM12 8s3-4 6-2-2 4-6 2z" /></svg>,
   shield:   <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.5 9.5-8 11-4.5-1.5-8-6-8-11V5z" /></svg>,
   globe:    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2c2.5 3 4 6.5 4 10s-1.5 7-4 10c-2.5-3-4-6.5-4-10s1.5-7 4-10z" /></svg>,
-  accent:   <svg fill="none" viewBox="0 0 24 24"><text x="12" y="17" textAnchor="middle" fontSize="15" fontWeight="700" fill="currentColor">É</text></svg>,
+  accent:   <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8 4l3 3M13 4l3 3M12 9v11M8 14h8" /></svg>,
   quote:    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M8 10c-2 0-3 1-3 3v4h4v-4M18 10c-2 0-3 1-3 3v4h4v-4" /></svg>,
   translate: <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M5 8l6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6" /></svg>,
   mic:      <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3M8 22h8" /></svg>,
@@ -104,7 +104,7 @@ export default function LanguagePageLayout({
   subtitle,
   chips = [                 // 4 trust chips
     { label: 'Free', icon: 'gift' },
-    { label: 'Private', icon: 'shield' },
+    { label: 'Auto-deleted', icon: 'shield' },
     { label: 'Language variants', icon: 'globe' },
     { label: 'AI summary', icon: 'sparkles' },
   ],

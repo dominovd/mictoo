@@ -29,7 +29,7 @@ const CHIPS = [
     ),
   },
   {
-    label: 'Private',
+    label: 'Auto-deleted',
     icon: (
       <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
         <path d="M12 2l9 4v6c0 5-3.9 9.5-9 10-5.1-.5-9-5-9-10V6z" />
