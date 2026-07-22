@@ -207,6 +207,11 @@ export default function UseCaseLayout({
   scenariosTitle = 'Common scenarios',
   scenarios = [],      // [{icon, title}]
 
+  // Optional practical guide unique to a specific use case
+  practicalTitle,
+  practicalIntro,
+  practicalItems = [], // [{title, desc}]
+
   // Tips column + Platform guide grid
   tipsTitle = 'Tips for better transcripts',
   tips = [],           // string[]
@@ -252,7 +257,7 @@ export default function UseCaseLayout({
         <div className="max-w-3xl mx-auto text-center">
           <Eyebrow>{badge}</Eyebrow>
           <h1 className="mt-5 text-4xl sm:text-5xl font-bold text-slate-900 leading-tight">
-            {h1First}
+            {h1First}{' '}
             {h1Second && (<><br /><span className="text-brand-600">{h1Second}</span></>)}
           </h1>
           <p className="mt-5 text-lg text-slate-600 max-w-2xl mx-auto">{subtitle}</p>
@@ -314,8 +319,8 @@ export default function UseCaseLayout({
                   {/* Tab bar */}
                   <div className="flex items-center justify-between border-b border-slate-100 px-4">
                     <div className="flex items-center gap-4">
-                      <button className="pb-2.5 pt-3 font-semibold text-sm text-brand-700 border-b-2 border-brand-600">Transcript</button>
-                      <button className="pb-2.5 pt-3 font-medium text-sm text-slate-500">Notes</button>
+                      <span className="pb-2.5 pt-3 font-semibold text-sm text-brand-700 border-b-2 border-brand-600">Transcript</span>
+                      <span className="pb-2.5 pt-3 font-medium text-sm text-slate-500">Notes</span>
                     </div>
                     <div className="relative">
                       <span className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400">{Icons.search}</span>
@@ -378,14 +383,14 @@ export default function UseCaseLayout({
                       <span className="text-slate-500">1x</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <button className="text-xs bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 font-medium text-slate-700">Translate</button>
+                      <span className="text-xs bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 font-medium text-slate-700">Translate</span>
                       {['TXT', 'SRT', 'VTT', 'DOCX'].map((f) => (
-                        <button
+                        <span
                           key={f}
                           className="text-xs bg-white border border-slate-200 rounded-lg px-2 py-1.5 font-semibold text-brand-700"
                         >
                           {f}
-                        </button>
+                        </span>
                       ))}
                     </div>
                   </div>
@@ -425,6 +430,24 @@ export default function UseCaseLayout({
                         <span className="w-4 h-4">{Icons[icon] || Icons.sparkles}</span>
                       </div>
                       <div className="text-[13px] font-semibold text-slate-800 leading-tight">{title}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* ── Optional use-case-specific practical guide ── */}
+            {practicalItems.length > 0 && (
+              <div>
+                <h2 className="text-2xl font-bold text-slate-900 mb-3">{practicalTitle}</h2>
+                {practicalIntro && (
+                  <p className="text-sm text-slate-600 leading-relaxed max-w-3xl mb-6">{practicalIntro}</p>
+                )}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {practicalItems.map(({ title, desc }) => (
+                    <div key={title} className="bg-white border border-slate-200 rounded-2xl p-5">
+                      <div className="font-semibold text-slate-900 mb-1.5">{title}</div>
+                      <div className="text-sm text-slate-600 leading-relaxed">{desc}</div>
                     </div>
                   ))}
                 </div>
