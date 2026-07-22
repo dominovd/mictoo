@@ -56,7 +56,7 @@ export default function Mp3ToWavPage() {
       whyTitle="Why use Mictoo for MP3 to WAV?"
       whyCards={[
         { icon: 'target',   title: 'DAW-ready output',       desc: 'Uncompressed PCM is what audio editors and mastering tools expect.' },
-        { icon: 'fileAudio',title: 'Standard 16-bit / 44.1', desc: 'CD-quality settings that every DAW, mastering plugin, and CD burner recognises.' },
+        { icon: 'fileAudio',title: 'Standard 16-bit / 44.1', desc: 'A widely supported PCM setting for audio editors, mastering tools, and CD-authoring software.' },
         { icon: 'lock',     title: 'Files deleted after',    desc: 'Uploaded MP3 is dropped after conversion; the WAV is purged within the hour.' },
         { icon: 'shield',   title: 'No watermark or tag',    desc: 'Just the audio, decoded to PCM. No branded intro, no metadata injected.' },
       ]}
@@ -74,7 +74,7 @@ export default function Mp3ToWavPage() {
         'WAV is 10× larger than MP3 (about 10 MB per minute).',
         'The output is not "true" lossless — it preserves the MP3 signal.',
         'For real lossless audio, start from a FLAC or original WAV master.',
-        'For 60 MB cap, sign in.',
+        'Keep the source file under the current 25 MB upload limit.',
       ]}
       processTitle="What happens during conversion"
       processSteps={['MP3 Stream', 'Decode to PCM', 'WAV Container']}
@@ -85,7 +85,7 @@ export default function Mp3ToWavPage() {
       ]}
       faq={[
         { q: 'Does converting MP3 to WAV recover lossless quality?', a: 'No. MP3 is lossy; the WAV preserves the MP3 signal but nothing more. For true lossless, you need to start from a FLAC or original WAV.' },
-        { q: 'Is the converter free?', a: 'Yes. Up to 25 MB anonymously, 60 MB signed in. No watermark, no upgrade prompts.' },
+        { q: 'Is the converter free?', a: 'Yes. Files up to 25 MB can be converted without an account, and the output has no watermark.' },
         { q: 'Why is the WAV file so much larger?', a: 'WAV is uncompressed PCM. A 5 MB MP3 becomes roughly a 50 MB WAV. That is normal.' },
         { q: 'What bit depth and sample rate?', a: '16-bit / 44.1 kHz stereo (CD quality). This is the standard DAW-import format.' },
         { q: 'Are files stored?', a: 'No. Uploaded MP3 is dropped after conversion; the WAV is purged within the hour.' },

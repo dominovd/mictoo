@@ -1,5 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
-import ConverterZone from '@/components/ConverterZone'
+import ConverterPageLayout from '@/components/ConverterPageLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/mp3-to-wav',
@@ -16,81 +15,90 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'MP3 na WAV — darmowy konwerter online | Mictoo',
+  title: 'MP3 na WAV, darmowy konwerter online | Mictoo',
   description:
-    'Konwertuj MP3 na WAV online za darmo. Rozszerz skompresowany MP3 do nieskompresowanego WAV 16-bit/44.1 kHz do edycji audio. Bez rejestracji, bez znaku wodnego.',
+    'Konwertuj MP3 na WAV za darmo online. Rozwiń skompresowane MP3 do nieskompresowanego 16-bitowego/44,1 kHz WAV do edycji audio. Bez rejestracji, bez znaku wodnego.',
   alternates: { canonical: 'https://mictoo.com/pl/mp3-to-wav', languages: LANGS },
-
   openGraph: {
-    title: "MP3 na WAV — darmowy konwerter online | Mictoo",
-    description: "Konwertuj MP3 na WAV online za darmo. Rozszerz skompresowany MP3 do nieskompresowanego WAV 16-bit/44.1 kHz do edycji audio. Bez rejestracji, bez znaku wodnego.",
-    url: "https://mictoo.com/pl/mp3-to-wav",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'MP3 na WAV, darmowy konwerter online | Mictoo',
+    description: 'MP3 na nieskompresowane 16-bitowe/44,1 kHz WAV. Do edycji.',
+    url: 'https://mictoo.com/pl/mp3-to-wav',
+    siteName: 'Mictoo', type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "MP3 na WAV — darmowy konwerter online | Mictoo",
-    description: "Konwertuj MP3 na WAV online za darmo. Rozszerz skompresowany MP3 do nieskompresowanego WAV 16-bit/44.1 kHz do edycji audio. Bez rejestracji, bez znaku wodnego.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'MP3 na WAV, darmowy konwerter online',
+    description: 'Do edycji i masteringu w DAW.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function PlMp3ToWavPage() {
   return (
-    <LandingLayout
-      defaultLanguage="pl"
-      badge="MP3 → WAV · Za darmo · Bez rejestracji"
-      h1={<>MP3 na WAV<br /><span className="text-brand-600">Darmowy konwerter online</span></>}
-      subtitle="Upuść MP3. Dostań WAV PCM 16-bit/44.1 kHz gotowy do oprogramowania edycji audio. Bez znaku wodnego, bez emaila."
-      tool={<ConverterZone from="mp3" to="wav" />}
-      howItWorks={[
-        { icon: '📂', title: 'Upuść MP3', desc: 'Przeciągnij MP3 do okna. Pliki do 25 MB anonimowo, 60 MB po rejestracji.' },
-        { icon: '⚡', title: 'ffmpeg dekoduje do PCM', desc: 'PCM 16-bit, 44.1 kHz, układ kanałów źródła zachowany. Kilka sekund dla typowego pliku.' },
-        { icon: '⬇️', title: 'Pobierz WAV', desc: 'Plik WAV jest około dziesięć razy większy niż MP3, bo jest nieskompresowany. Wymazany z naszych serwerów w ciągu godziny.' },
+    <ConverterPageLayout
+      locale="pl"
+      mode="converter" from="mp3" to="wav" currentHref="/pl/mp3-to-wav"
+      badge="MP3 → WAV · Darmowy · Przyjazny dla edytorów"
+      h1First="MP3 na WAV"
+      h1Second="Darmowy konwerter online"
+      subtitle="Wrzuć MP3 i otrzymaj nieskompresowane 16-bitowe / 44,1 kHz WAV do edycji w DAW, masteringu lub nagrywania na CD. Bez znaku wodnego, bez e-maila."
+      outputFormat="WAV" outputQuality="16-bit / 44,1 kHz" outputAudio="Stereo"
+      stepsTitle="Jak działa konwersja MP3 na WAV"
+      steps={[
+        { icon: 'upload',   title: 'Wrzuć MP3',       desc: 'Dowolne MP3 o bitrate do 25 MB anonimowo.' },
+        { icon: 'waveform', title: 'Dekodujemy do PCM', desc: 'ffmpeg dekoduje MP3 do nieskompresowanego 16-bitowego / 44,1 kHz PCM w kontenerze WAV.' },
+        { icon: 'download', title: 'Pobierz WAV',     desc: 'Gotowe do Audacity, Pro Tools, Logic, Ableton i każdego edytora audio.' },
       ]}
-      whyUse={{ title: 'Dlaczego konwertować MP3 na WAV', bullets: [
-        { title: 'Edytory audio wolą WAV', desc: 'Audacity, Adobe Audition, Logic, Pro Tools, wszystkie otwierają MP3, ale większość operacji (precyzyjna edycja, nakładanie efektów, normalizacja) działa lepiej na WAV. Konwersja najpierw unika lekkiej straty jakości powtórzonych kodowań MP3.' },
-        { title: 'Brak dodatkowej straty jakości przy edycjach', desc: 'Każde ponowne kodowanie MP3 lekko degraduje audio. Konwertuj na WAV, zrób edycje, wyeksportuj z powrotem na MP3 na końcu, ten pojedynczy obrót to najlepsze, co możesz zrobić.' },
-        { title: 'Wymagane przez niektóry starszy sprzęt i oprogramowanie', desc: 'Niektóre stare oprogramowanie do wypalania CD, samplery i sprzęt nagrywający czytają tylko WAV. Konwersja to most.' },
-        { title: 'Użycie kryminalistyczne i broadcastowe', desc: 'Kryminalistyczna analiza audio i workflow broadcastowe tradycyjnie używają WAV, bo format jest dobrze rozumiany i nieskompresowany. MP3 jest akceptowalne jako materiał źródłowy, ale WAV to format roboczy.' },
-        { title: 'Bez znaku wodnego, bez upsellu', desc: 'Po prostu zdekodowane audio w kontenerze WAV. Nic nie dodajemy.' },
-      ]}}
-      useCases={{ title: 'Kiedy konwertować MP3 na WAV', items: [
-        { title: 'Edycja audio w Audacity, Reaper, Logic', desc: 'Konwertuj najpierw na WAV, potem nakładaj efekty, tnij, normalizuj, miksuj. Wyeksportuj ponownie na MP3 na końcu, jeśli potrzebujesz małego pliku do dystrybucji.' },
-        { title: 'Mastering pod winyl lub CD', desc: 'Cięcie winyla i tłoczenie CD oba chcą bezstratnego audio. Jeśli twoim jedynym źródłem jest MP3, konwersja na WAV daje inżynierowi masteringu coś, z czym można pracować, choć jakość audio jest ograniczona źródłem MP3.' },
-        { title: 'Przygotowanie sampla do samplera', desc: 'Sampelry sprzętowe (Akai, Korg) często chcą plików WAV w określonych głębiach bitowych i sample rate.' },
-        { title: 'Praca voiceover do wideo', desc: 'Niektóre edytory wideo (DaVinci, Premiere) dobrze obsługują MP3, ale pokazują lepsze przebiegi i nakładają efekty czyściej na WAV.' },
-        { title: 'Analiza kryminalistyczna lub transkrypcyjna', desc: 'Niektóre specjalistyczne narzędzia analizy wymagają wejścia WAV.' },
-      ]}}
-      proTips={{ title: 'Wskazówki do konwersji MP3 na WAV', tips: [
-        { title: 'WAV będzie 10x rozmiaru MP3', desc: 'MP3 5 MB rozszerza się do około 50 MB jako WAV 16-bit/44.1 kHz. Konwersja nie przywraca utraconej jakości, daje ci tylko działający format.' },
-        { title: 'Jakość WAV jest ograniczona MP3', desc: 'Nie możesz sprawić, żeby MP3 128 kbps brzmiał jak CD, konwertując na WAV. WAV po prostu czyni istniejące audio edytowalnym bez dalszej straty kompresji.' },
-        { title: 'Dla wyższej wierności, poproś o oryginał', desc: 'Jeśli robisz poważny mastering lub restaurację, weź bezstratny oryginał (WAV, FLAC, ALAC) ze źródła. MP3 → WAV to obejście, nie upgrade.' },
-        { title: 'Sample rate ma znaczenie dla sprzętu', desc: 'Większość sprzętu chce 44.1 kHz (CD) lub 48 kHz (wideo). Nasz konwerter zawsze wypuszcza 44.1. Jeśli potrzebujesz 48, otwórz WAV w Audacity i przesampluj.' },
-        { title: 'WAV 24-bit, użyj Audacity', desc: 'Nasz konwerter wypuszcza WAV 16-bit. Dla 24-bit otwórz powstały WAV w Audacity i wyeksportuj ponownie z 24-bit float. Dodatkowa głębia bitowa daje zapas do edycji, nawet jeśli audio źródłowe to tylko ekwiwalent 16-bit.' },
-        { title: 'Mono wchodzi, mono wychodzi, oszczędza miejsce', desc: 'Jeśli twój MP3 jest mono, WAV też jest mono, połowa rozmiaru konwersji stereo. Zachowujemy układ kanałów źródła.' },
-      ]}}
+      previewInputName="voiceover.mp3"
+      previewInputSize="4,6 MB · 00:05:00 · 128 kbps"
+      previewOutputName="voiceover.wav"
+      previewOutputSize="00:05:00 · 16-bit / 44,1 kHz · 50 MB"
+      whyTitle="Dlaczego warto używać Mictoo do MP3 na WAV?"
+      whyCards={[
+        { icon: 'target',   title: 'Wyjście gotowe do DAW',       desc: 'Nieskompresowane PCM to to, czego oczekują edytory audio i narzędzia do masteringu.' },
+        { icon: 'fileAudio',title: 'Standard 16-bit / 44,1', desc: 'Szeroko wspierane ustawienie PCM dla edytorów audio, narzędzi do masteringu i oprogramowania do nagrywania CD.' },
+        { icon: 'lock',     title: 'Pliki usuwane po',    desc: 'Przesłane MP3 jest usuwane po konwersji; WAV jest usuwane w ciągu godziny.' },
+        { icon: 'shield',   title: 'Bez znaku wodnego ani tagu',    desc: 'Tylko audio, dekodowane do PCM. Bez wprowadzenia marki, bez wstrzykiwania metadanych.' },
+      ]}
+      scenariosTitle="Kiedy MP3 na WAV jest przydatne"
+      scenarios={[
+        { icon: 'editPen',    title: 'Edycja w Audacity' },
+        { icon: 'waveform',   title: 'Import w Pro Tools' },
+        { icon: 'headphones', title: 'Workflow masteringu' },
+        { icon: 'archive',    title: 'Nagrywanie na CD' },
+        { icon: 'video',      title: 'Edytor wideo z wymaganiem WAV' },
+        { icon: 'target',     title: 'Wejście do treningu klonowania głosu' },
+      ]}
+      tipsTitle="Wskazówki dotyczące czystej konwersji MP3 na WAV"
+      tips={[
+        'WAV jest 10× większy niż MP3 (około 10 MB na minutę).',
+        'Wyjście nie jest „prawdziwie” bezstratne ,  zachowuje sygnał MP3.',
+        'Aby uzyskać prawdziwe audio bezstratne, zacznij od FLAC lub oryginalnego mastera WAV.',
+        'Trzymaj plik źródłowy poniżej aktualnego limitu przesyłania 25 MB.',
+      ]}
+      processTitle="Co się dzieje podczas konwersji"
+      processSteps={['Strumień MP3', 'Dekodowanie do PCM', 'Kontener WAV']}
+      compareTitle="MP3 vs WAV"
+      compareRows={[
+        { fmt: 'MP3', contains: 'Nie', size: 'Mały (~1 MB/min)', best: 'Udostępnianie, telefony, strumieniowanie' },
+        { fmt: 'WAV', contains: 'Nie', size: 'Duży (~10 MB/min)', best: 'Edycja, mastering, nagrywanie na CD' },
+      ]}
       faq={[
-        { q: 'Czy konwersja MP3 na WAV jest naprawdę darmowa?', a: 'Tak. Bez konta do 25 MB, bez znaku wodnego, bez limitu czasu.' },
-        { q: 'Dlaczego WAV jest tak dużo większy niż MP3?', a: 'MP3 używa kompresji percepcyjnej, żeby wyrzucić dane audio, których twoje uszy ledwo zauważają. WAV przechowuje każdą próbkę w pełnej precyzji. Typowy MP3 to jedna dziesiąta rozmiaru ekwiwalentu WAV.' },
-        { q: 'Czy WAV będzie brzmiał lepiej niż MP3?', a: 'Nie. MP3 już stracił dane podczas swojego oryginalnego kodowania. WAV zachowuje audio jak jest, nie przywraca jakości.' },
-        { q: 'Jaki format WAV wypuszczacie?', a: 'PCM 16-bit, 44.1 kHz, układ kanałów źródła zachowany (mono in → mono out, stereo in → stereo out).' },
-        { q: 'Ile trwa?', a: 'Sekundy. Dekodowanie MP3 jest szybkie.' },
-        { q: 'Mogę dostać WAV 24-bit lub 32-bit float?', a: 'Nie z tego konwertera. Otwórz nasz WAV 16-bit w Audacity i wyeksportuj ponownie z głębią bitową, której chcesz, dodatkowe bity dają zapas do edycji, nawet jeśli precyzja audio źródła jest ograniczona MP3.' },
-        { q: 'Trzymacie moje pliki?', a: 'Nie. Upload kasowany po konwersji. Wyjście czyszczone w ciągu godziny.' },
-        { q: 'Mogę konwertować wsadowo?', a: 'Jeszcze nie w darmowym planie. Otwórz kilka zakładek przeglądarki.' },
-        { q: 'A sample rate 48 kHz?', a: 'Wypuszczamy 44.1 kHz (rate CD). Dla 48 kHz (praca z wideo) przesampluj WAV w Audacity po konwersji.' },
-        { q: 'Po co w ogóle konwertować?', a: 'Głównie do edycji audio. Audacity, Pro Tools, Logic, wszystkie działają lepiej na WAV niż na MP3, zwłaszcza dla powtarzanych edycji.' },
-        { q: 'Czy konwersja zawiedzie dla niektórych MP3?', a: 'Rzadko. ffmpeg dekoduje zasadniczo każdy standardowy MP3. Naprawdę uszkodzony plik może zawieść; poza tym jest niezawodne.' },
-        { q: 'Powinienem trzymać oba pliki?', a: 'Do edycji pracuj w WAV. Do dystrybucji trzymaj też MP3. Kiedy edycja jest gotowa, wyeksportuj ponownie z WAV na świeży MP3 na końcu łańcucha.' },
+        { q: 'Czy konwersja MP3 na WAV przywraca jakość bezstratną?', a: 'Nie. MP3 jest stratne; WAV zachowuje sygnał MP3, ale nic więcej. Aby uzyskać prawdziwie bezstratne, musisz zacząć od FLAC lub oryginalnego WAV.' },
+        { q: 'Czy konwerter jest darmowy?', a: 'Tak. Pliki do 25 MB można konwertować bez konta, a wyjście nie ma znaku wodnego.' },
+        { q: 'Dlaczego plik WAV jest tak dużo większy?', a: 'WAV to nieskompresowane PCM. 5 MB MP3 staje się mniej więcej 50 MB WAV. To normalne.' },
+        { q: 'Jaka jest głębokość bitowa i częstotliwość próbkowania?', a: '16-bit / 44,1 kHz stereo (jakość CD). To standardowy format importu do DAW.' },
+        { q: 'Czy pliki są przechowywane?', a: 'Nie. Przesłane MP3 jest usuwane po konwersji; WAV jest usuwane w ciągu godziny.' },
       ]}
-      relatedLinks={[
-        { href: '/pl/wav-to-mp3', label: 'WAV na MP3', desc: 'Odwrotny kierunek.' },
-        { href: '/pl/flac-to-mp3', label: 'FLAC na MP3', desc: 'Bezstratny FLAC na przenośny MP3.' },
-        { href: '/pl/wav-to-text', label: 'WAV na tekst', desc: 'Transkrybuj audio WAV bezpośrednio.' },
-        { href: '/pl/how-to-compress-audio', label: 'Skompresuj audio', desc: 'Dla plików, które musisz zmniejszyć.' },
+      ctaHeadline="Konwertuj swoje MP3 na WAV teraz"
+      ctaSubtitle="Wrzuć swoje MP3 i otrzymaj nieskompresowane WAV gotowe do edycji."
+      ctaButton="Wybierz plik MP3"
+      moreTools={[
+        { href: '/pl/wav-to-mp3',  label: 'WAV na MP3' },
+        { href: '/pl/mp3-to-m4a',  label: 'MP3 na M4A' },
+        { href: '/pl/flac-to-mp3', label: 'FLAC na MP3' },
+        { href: '/pl/wav-to-text', label: 'WAV na tekst' },
       ]}
     />
   )

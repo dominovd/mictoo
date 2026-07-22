@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/business-transcription',
@@ -15,80 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: '비즈니스 받아쓰기 — 회의와 통화용 무료 도구 | Mictoo',
+  title: '비즈니스 회의 전사 및 AI 요약 | Mictoo',
   description:
-    '무료 비즈니스 받아쓰기. 영업 통화, 고객 인터뷰, 포커스 그룹, 이사회 회의, 컨퍼런스. 업로드하여 몇 초 만에 깨끗한 AI 받아쓰기. 가입 불필요.',
-  alternates: { canonical: 'https://mictoo.com/ko/business-transcription', languages: LANGS },
-
+    '승인된 내부 회의 녹음을 타임스탬프가 있는 전사본, AI 요약 및 내보낼 수 있는 요약 문서로 변환합니다.',
+  alternates: {
+    canonical: 'https://mictoo.com/ko/business-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "비즈니스 받아쓰기 — 회의와 통화용 무료 도구 | Mictoo",
-    description: "무료 비즈니스 받아쓰기. 영업 통화, 고객 인터뷰, 포커스 그룹, 이사회 회의, 컨퍼런스. 업로드하여 몇 초 만에 깨끗한 AI 받아쓰기. 가입 불필요.",
-    url: "https://mictoo.com/ko/business-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: '비즈니스 전사: 내부 회의를 텍스트로 | Mictoo',
+    description: 'IT 설정 없이 내부 회사 회의를 전사합니다.',
+    url: 'https://mictoo.com/ko/business-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "비즈니스 받아쓰기 — 회의와 통화용 무료 도구 | Mictoo",
-    description: "무료 비즈니스 받아쓰기. 영업 통화, 고객 인터뷰, 포커스 그룹, 이사회 회의, 컨퍼런스. 업로드하여 몇 초 만에 깨끗한 AI 받아쓰기. 가입 불필요.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: '비즈니스 전사',
+    description: '창립자 1:1, 전체 회의, 임원 브리핑.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function KoBusinessPage() {
+export default function KoBusinessTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="ko"
-      badge="영업 · 연구 · 규정 준수 · 무료"
-      h1={<>비즈니스 받아쓰기<br /><span className="text-brand-600">비즈니스 오디오를 텍스트로, 무료</span></>}
-      subtitle="모든 비즈니스 오디오를 깨끗한 텍스트로 변환. 영업 통화, 고객 인터뷰, 포커스 그룹, 컨퍼런스, 이사회 회의. 계정 불필요, 분당 과금 없음."
-      howItWorks={[
-        { icon: '🎙️', title: '오디오 또는 비디오 드롭', desc: '통화 레코더의 MP3, 휴대폰의 M4A, 비디오 컨퍼런스의 MP4, 필드 레코더의 WAV. Gong의 영업 통화, 고객 인터뷰의 Zoom 녹화, 이사회 M4A. 모두 작동.' },
-        { icon: '⚡', title: 'AI가 받아쓰기', desc: 'Whisper large-v3가 오디오를 처리합니다. 30분 통화는 약 1분에 완료. 60분 회의는 2분 미만.' },
-        { icon: '📋', title: '받아쓰기 받기', desc: '읽고, 복사하거나 TXT 또는 SRT로 다운로드. CRM, 연구 저장소, 프로젝트 문서 또는 규정 준수 아카이브에 붙여넣기.' },
+    <UseCaseLayout
+      locale="ko"
+      badge="창립자 · 임원 · 소규모 팀 · 무료"
+      h1First="비즈니스 전사"
+      h1Second="창립자 1:1, 전체 회의, 임원 브리핑"
+      subtitle="승인된 내부 회의를 위한 실용적인 전사 도구입니다. 녹음을 업로드하고, 전사본과 AI 요약을 검토한 후, 팀을 위한 요약을 내보내세요."
+      currentHref="/ko/business-transcription"
+
+      platforms={[
+        { name: 'Zoom',        iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/ko/zoom-transcription' },
+        { name: 'MS Teams',    iconKey: 'videoCameraFill', brandBg: '#4B53BC', href: '/ko/teams-meeting-transcription' },
+        { name: 'Google Meet', iconKey: 'videoCameraFill', brandBg: '#00832D', href: '/ko/google-meet-transcription' },
+        { name: 'Webex',       iconKey: 'videoCameraFill', brandBg: '#0F1F35' },
+        { name: 'BlueJeans',   iconKey: 'videoCameraFill', brandBg: '#005EB8' },
+        { name: 'GoToMeeting', iconKey: 'videoCameraFill', brandBg: '#F68B1F' },
       ]}
-      whyUse={{ title: '비즈니스 오디오에 Mictoo를 사용하는 이유', bullets: [
-        { title: '고가 옵션과 같은 정확도', desc: 'Whisper large-v3는 많은 유료 엔터프라이즈 받아쓰기 도구 뒤의 모델. 프로 시트 라이선스 비용 없이 실행합니다.' },
-        { title: '산발적 사용에 작동', desc: '주당 영업 통화 하나를 받아쓴다면, 엔터프라이즈 도구의 월별 시트를 지불하는 것은 낭비. 분 카운터 없는 무료가 산발적 사용 패턴에 맞습니다.' },
-        { title: '50개 이상의 언어, 국제 비즈니스에 유용', desc: '다국어 고객 인터뷰, 국경 간 영업 통화, 비원어민 영어 화자가 있는 패널. 모두 커버.' },
-        { title: '파일은 보관되지 않음', desc: '녹화는 받아쓰기 제공업체로 가서 폐기됩니다. 제3자 서버에 앉아 있는 것을 보고 싶지 않은 비즈니스 오디오에는 중요합니다.' },
-        { title: '비디오 에디터용 SRT 내보내기', desc: '비즈니스 오디오가 비디오(컨퍼런스 패널, 타운홀)에서 온다면, SRT는 자막 작업을 위해 Premiere, DaVinci 또는 YouTube Studio에 직접 들어갑니다.' },
-      ]}}
-      useCases={{ title: '일반적인 비즈니스 받아쓰기 사용 사례', items: [
-        { title: '영업 통화 요약', desc: '계정 임원은 거래 옆에 통화 녹화를 CRM에 넣습니다. 더 빠른 핸드오프, 후속 이메일을 위한 더 나은 인용 검색, 영업 관리자를 위한 더 쉬운 코칭.' },
-        { title: '제품 연구를 위한 고객 인터뷰', desc: '제품 관리자와 UX 연구원은 패턴을 코딩하고, 사용자 스토리를 쓰고, 연구 저장소를 구축하기 위해 고객과의 대화를 받아씁니다.' },
-        { title: '포커스 그룹 받아쓰기', desc: '시장 조사 기관은 분석을 위해 포커스 그룹 세션을 받아씁니다. 코딩하는 것은 비디오가 아닌 받아쓰기.' },
-        { title: '이사회 회의와 리더십 오프사이트', desc: '받아쓰기는 기업 결정을 검색 가능하게 만들고 몇 달 후 모호성을 줄입니다. 거버넌스, 직원 커뮤니케이션, 감사 추적에 유용.' },
-        { title: '컨퍼런스 패널 녹화', desc: '마케팅과 PR 팀은 자사 임원이 발언한 패널 토론을 받아씁니다. 블로그 게시물, 소셜용 인용 그래픽, 영업 활성화 콘텐츠. 모두 받아쓰기에서 시작.' },
-      ]}}
-      proTips={{ title: '비즈니스 받아쓰기 팁', tips: [
-        { title: '영업 통화 녹화에는 가능하면 Gong이나 Chorus 같은 도구 사용', desc: '이 도구들은 녹화, 받아쓰기, CRM 로깅을 함께 수행. Mictoo는 가끔의 받아쓰기에 올바른 선택, 대용량 영업 운영에는 아닙니다.' },
-        { title: '고객 인터뷰에서 동의를 얻고 오디오가 어떻게 사용될지 설명', desc: '"노트를 작성하지 않아도 되도록 이 대화를 녹음하고 있습니다. 오디오는 받아쓰여지고 우리 연구 저장소에 남습니다." 많은 관할권에서 이는 또한 모든 통화 녹음에 대한 법적 요구 사항.' },
-        { title: '특히 클라이언트에게 적절한 마이크 사용', desc: '전화 라인을 통해 캡처된 클라이언트 음성은 클라이언트 측 USB 헤드셋의 다이얼인 통화보다 5-10% 덜 정확하게 받아쓰여집니다. 고가치 인터뷰에는 통화 전에 헤드셋을 보내세요.' },
-        { title: '파일 크기 예산을 절약하기 위해 업로드 전 잡담 자르기', desc: '대부분의 비즈니스 통화는 2-5분의 날씨와 예의로 시작. 파일이 한도에 가깝다면 업로드 전에 Audacity에서 잘라내기.' },
-        { title: '국제 통화에는 언어를 수동으로 선택', desc: '영업 통화가 영어로 열리지만 프랑스어로 전환되면 자동 감지가 혼란될 수 있습니다. 지배적인 언어를 수동으로 선택.' },
-        { title: '기밀 비즈니스 오디오에는 클라우드 받아쓰기를 사용하지 마세요, 우리 것도', desc: 'HR 대화, M&A 토론, 법적 통화, 특권으로 커버된 모든 것. 로컬 Whisper 설치 사용. 같은 모델, 오프라인 실행, 제3자 처리 없음.' },
-      ]}}
+
+      howItWorksTitle="비즈니스 전사가 작동하는 방식"
+      steps={[
+        {
+          icon: 'folder',
+          title: '녹음 내보내기',
+          desc: 'Zoom, Teams, Meet, Webex 또는 귀사가 사용하는 어떤 것이든. MP4 또는 M4A 오디오 전용 모두 가능합니다.',
+        },
+        {
+          icon: 'upload',
+          title: '파일 여기로 드롭',
+          desc: '귀사가 처리할 수 있도록 허용하는 녹음을 업로드하세요. 소프트웨어 설치나 디렉토리 통합이 필요하지 않습니다.',
+        },
+        {
+          icon: 'editPen',
+          title: '전사본, 요약, 작업 항목',
+          desc: '타임스탬프가 있는 전사본, AI 요약, 요약 이메일을 위한 DOCX 내보내기 준비 완료.',
+        },
+      ]}
+
+      exampleTitle="비즈니스 회의 전사 예시"
+      exampleFileName="q3-strategy-session.mp4"
+      exampleDurationLabel="58분 42초"
+      exampleLines={[
+        { t: '0:00',  line: '모두 시간 내주셔서 감사합니다. 이것은 우리의 Q3 전략 점검이며, 약 한 시간이 차단되어 있습니다.' },
+        { t: '0:10',  line: '상위 업데이트로 시작하겠습니다. 수익은 계획보다 8% 앞서고 있으며, 주로 중형 시장 확장에서 발생하고 있습니다.' },
+        { t: '0:22',  line: '새로운 기업 전략은 우리가 예상했던 것보다 느립니다. 두 건의 거래가 Q2에서 Q3로 미뤄졌습니다.' },
+        { t: '0:35',  line: '우리는 중형 시장에 집중할지 아니면 이번 분기에 기업 준비를 더 강하게 추진할지 논의해야 합니다.' },
+        { t: '0:48',  line: '제 생각은 중형 시장이 효과적이며, 아직 기업 세그먼트를 추구함으로써 팀을 방해해서는 안 된다는 것입니다.' },
+        { t: '1:02',  line: '동의합니다. Q3 말까지 30개의 새로운 중형 시장 계정을 목표로 설정하고, Q4 계획에서 기업을 재검토합시다.' },
+        { t: '1:14',  line: '마무리하기 전에 한 가지 더 주제입니다. 같은 분기의 엔지니어링 로드맵으로, 우리는 이러한 고객 약속과 연결됩니다.' },
+      ]}
+      summaryPoints={[
+        '수익 8% 계획보다 앞서며, 중형 시장에 의해 추진됩니다.',
+        '기업 전략이 미뤄지고 있습니다 (2건의 거래가 Q2에서 Q3로 이동).',
+        '결정: 이번 분기에 중형 시장에 집중합니다.',
+        '목표: Q3 말까지 30개의 새로운 중형 시장 계정.',
+      ]}
+      actionItems={[
+        '30계정 중형 시장 목표 설정',
+        'Q4 계획에서 기업 전략 재검토',
+        '고객 약속에 맞춰 엔지니어링 로드맵 조정',
+      ]}
+
+      whyTitle="비즈니스 전사에 Mictoo를 선택하는 이유"
+      whyCards={[
+        {
+          icon: 'lock',
+          title: '소프트웨어 설치 없음',
+          desc: '브라우저 워크플로우는 데스크탑 클라이언트나 디렉토리 통합이 필요하지 않습니다. 귀사의 정책이 여전히 적용됩니다.',
+        },
+        {
+          icon: 'sparkles',
+          title: '요약 이메일 준비 완료',
+          desc: 'AI 요약은 몇 초 안에 요약 초안을 제공합니다. 이미 약속한 내용을 다듬고, 에스컬레이션이 필요한 내용을 유지하세요.',
+        },
+        {
+          icon: 'shield',
+          title: '녹음이 저장되지 않음',
+          desc: '오디오 스트림은 전사 제공업체로 전송되며 처리 후 삭제됩니다. 전사본만 로그인한 계정에 남습니다.',
+        },
+        {
+          icon: 'globe',
+          title: '국제 팀을 위한 번역',
+          desc: '영어로 회의하지만 요약은 독일 자회사로 보내야 하나요? 클릭 한 번으로 가능합니다.',
+        },
+      ]}
+
+      scenariosTitle="일반적인 비즈니스 시나리오"
+      scenarios={[
+        { icon: 'briefcase', title: '임원 브리핑' },
+        { icon: 'users',     title: '전체 회의' },
+        { icon: 'chat',      title: '창립자 1:1' },
+        { icon: 'target',    title: '전략 오프사이트' },
+        { icon: 'search',    title: '이사회 업데이트' },
+        { icon: 'headset',   title: '고객 에스컬레이션' },
+      ]}
+
+      tipsTitle="내부 녹음을 위한 팁"
+      tips={[
+        '플랫폼에서 제공하는 경우 오디오 전용 내보내기를 선호하세요.',
+        '60 MB를 초과하는 회의 비디오 MP4의 경우, 먼저 ffmpeg로 오디오를 추출하세요.',
+        '다국어 리더십 통화를 위해 자동 감지를 사용하세요.',
+        '검색 가능한 아카이브를 구축하기 위해 전사본을 기록에 저장하세요.',
+      ]}
+
+      guidesTitle="올바른 플랫폼 선택 가이드"
+      guides={[
+        { href: '/ko/zoom-transcription',          icon: 'video', title: 'Zoom',        desc: '클라우드 녹음, M4A 오디오 전용' },
+        { href: '/ko/teams-meeting-transcription', icon: 'video', title: 'MS Teams',    desc: 'OneDrive 또는 SharePoint 경로' },
+        { href: '/ko/google-meet-transcription',   icon: 'video', title: 'Google Meet', desc: '드라이브 녹음, 무료 우회 방법' },
+        { href: '/ko/meeting-transcription#tool',  icon: 'file',  title: '기타',       desc: 'Webex, BlueJeans, GoToMeeting' },
+      ]}
+
       faq={[
-        { q: 'Mictoo가 비즈니스 사용에 적합합니까?', a: '가끔의 받아쓰기(영업 통화, 인터뷰, 패널)에는 네. 대용량 운영(하루 50통의 통화를 받아쓰는 영업 팀)에는 CRM 통합, 코칭 워크플로우, 팀 분석을 패키지화하는 Gong이나 Chorus 같은 전용 도구가 더 잘 맞습니다.' },
-        { q: '내 비즈니스 오디오가 서버에 저장됩니까?', a: '아니요. 파일은 받아쓰기 제공업체(Groq, 백업으로 OpenAI)로 가서 처리 후 폐기. 오디오나 받아쓰기를 보관하지 않습니다.' },
-        { q: 'GDPR 준수입니까?', a: '사이트를 떠난 후 오디오나 받아쓰기를 저장하지 않습니다. 우리는 유럽에 있고 제공업체(Groq US, OpenAI US)는 DPA에 서명. 특정 GDPR 상황(컨트롤러 의무, 녹음의 법적 근거)에 대해서는 개인정보 보호 정책을 참조하고 데이터 보호 책임자와 상담.' },
-        { q: 'EU 또는 캘리포니아 클라이언트와의 통화 녹음에 사용할 수 있습니까?', a: '받아쓰기는 사용 가능. 녹음 자체는 많은 관할권에서 상대방의 동의가 필요(캘리포니아와 EU 일부의 양측 동의). 녹음 전에 동의를 받으세요.' },
-        { q: '고유 명사와 회사 이름의 받아쓰기 정확도는?', a: '일반 단어보다 덜 정확. Whisper는 클라이언트 이름, 제품 이름 또는 회사 특정 용어를 모릅니다. 수동으로 수정할 것으로 예상. 받아쓰기의 나머지는 단단할 것입니다.' },
-        { q: '스피커 레이블(영업자 대 클라이언트)을 받을 수 있습니까?', a: '자동으로는 안 됩니다. 2 스피커 통화는 대화에 따라 수동으로 레이블을 추가. 스피커당 별도 오디오 트랙이 있는 다자 통화는 각 트랙을 별도로 받아쓰기.' },
-        { q: 'Gong, Chorus 또는 Fireflies와 비교하면?', a: '그것들은 CRM 통합, 자동 코칭, 거래 단계 태그 지정, 통화 분석이 있는 완전한 영업 통화 플랫폼. 우리는 순수 받아쓰기, 통합 없음, 코칭 레이어 없음. 더 저렴(무료), 훨씬 좁음. 완전한 플랫폼이 필요하면 그것을 사용. 텍스트만 필요하면 우리를 사용.' },
-        { q: '기밀 비즈니스 통화를 받아쓸 수 있습니까?', a: '비기밀 비즈니스 통화에는 네. 기밀(HR, 법적, M&A, 특권이 있는 모든 것)에는 우리 것을 포함한 모든 클라우드 받아쓰기를 피하세요. 대신 로컬 Whisper 설치 사용.' },
-        { q: '비즈니스 통화 받아쓰기는 얼마나 걸립니까?', a: '오디오 길이의 약 1-2%. 30분 통화는 약 30-60초에 완료.' },
-        { q: '출력 포맷은?', a: '일반 텍스트(TXT)와 SRT(타임코드가 있는 자막 파일). 클립보드에 복사도 CRM이나 문서에 직접 붙여넣는 데 작동.' },
-        { q: '여러 영업 통화를 배치로 업로드할 수 있습니까?', a: '아직 한 번 클릭으로는 안 됩니다. 현재는 한 번에 한 파일 업로드. 배치는 미래 Pro 플랜의 로드맵에 있습니다.' },
-        { q: '비즈니스 오디오가 60분을 초과하는 경우는?', a: '60분 미만 청크로 분할. 받아쓰기는 나중에 재결합 가능.' },
+        {
+          q: '내 회사의 녹음이 귀사의 서버로 전송되나요?',
+          a: '오디오 스트림은 전사 제공업체(Groq/Replicate/Deepgram/OpenAI 라우팅에 따라)로 전송되며, 한 번 처리되고 메모리에서 삭제됩니다. 우리는 오디오를 디스크에 기록하지 않습니다. 전사본만 남으며, 로그인하고 저장해야만 가능합니다.',
+        },
+        {
+          q: '회사 녹음을 업로드하려면 승인이 필요합니까?',
+          a: '이는 귀사의 정책과 녹음의 정보에 따라 다릅니다. Mictoo는 소프트웨어 설치를 요구하지 않지만, 외부 전사 제공업체에 회사 미디어를 전송하기 전에 필요한 승인을 받아야 합니다.',
+        },
+        {
+          q: '규제 산업에 Mictoo를 사용할 수 있나요?',
+          a: '귀하의 특정 준수 요구 사항을 확인하세요. 우리는 서명된 BAA 또는 SOC 2 보고서를 제공하지 않습니다. 엄격한 규제 환경에서는 완전히 자체 호스팅된 전사 도구를 사용하는 것이 좋습니다.',
+        },
+        {
+          q: '요약 이메일을 위한 AI 요약을 받을 수 있나요?',
+          a: '네. AI 요약은 전사본과 함께 자동으로 표시됩니다. 후속 이메일이나 Notion 문서의 훌륭한 초안입니다.',
+        },
+        {
+          q: '회의가 60 MB를 초과하면 어떻게 하나요?',
+          a: '로그인하여 자동 분할을 활성화하세요 (약 3시간까지). 또는 ffmpeg -i meeting.mp4 -vn -ac 1 -ar 16000 audio.m4a로 비디오에서 오디오를 추출하면 파일 크기가 5-15배 줄어듭니다.',
+        },
+        {
+          q: '국제 팀을 위해 전사본을 번역할 수 있나요?',
+          a: '네. 전사 후 목표 언어를 선택하고 번역을 클릭하세요. 다국어 자회사에 유용합니다.',
+        },
+        {
+          q: '요약 이메일에 어떤 내보내기 형식이 적합합니까?',
+          a: '이메일 본문에 붙여넣기 위한 TXT, 적절한 첨부 파일을 위한 DOCX, 아카이브를 위한 PDF(로그인한 경우). 요약은 별도로 제공됩니다.',
+        },
       ]}
+
+      ctaHeadline="내부 회의를 요약 문서로 변환하세요"
+      ctaSubtitle="창립자 1:1, 전체 회의 및 임원 브리핑. 승인된 미디어를 업로드하여 전사본과 요약을 받으세요."
+      ctaButton="비즈니스 회의 업로드"
+
       relatedLinks={[
-        { href: '/ko/interview-transcription', label: '인터뷰 받아쓰기', desc: '1대1 대화와 질적 연구용.' },
-        { href: '/ko/meeting-transcription', label: '회의 받아쓰기', desc: '모든 회의 녹화, 모든 플랫폼용.' },
-        { href: '/ko/zoom-transcription', label: 'Zoom 받아쓰기', desc: 'Zoom 녹화 통화용.' },
-        { href: '/ko/teams-meeting-transcription', label: 'Teams 받아쓰기', desc: 'Microsoft Teams 통화용.' },
+        { href: '/ko/meeting-transcription',       label: '회의 전사' },
+        { href: '/ko/zoom-transcription',          label: '줌 전사' },
+        { href: '/ko/teams-meeting-transcription', label: '팀 전사' },
+        { href: '/ko/google-meet-transcription',   label: '구글 미트 전사' },
+        { href: '/ko/interview-transcription',     label: '인터뷰 전사' },
       ]}
     />
   )

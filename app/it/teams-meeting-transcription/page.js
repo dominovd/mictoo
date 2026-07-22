@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/teams-meeting-transcription',
@@ -15,79 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Trascrizione Microsoft Teams — trascrivi le riunioni | Mictoo',
-  description: 'Trascrizione gratuita Microsoft Teams. Carica la registrazione (MP4) da OneDrive o SharePoint e ottieni una trascrizione IA pulita in pochi secondi. Senza registrazione.',
-  alternates: { canonical: 'https://mictoo.com/it/teams-meeting-transcription', languages: LANGS },
-
+  title: 'Trascrizione delle riunioni di Teams da registrazioni MP4 | Mictoo',
+  description:
+    'Carica un MP4 di Microsoft Teams da OneDrive o SharePoint e ottieni una trascrizione con timestamp, un riepilogo AI e file di esportazione.',
+  alternates: {
+    canonical: 'https://mictoo.com/it/teams-meeting-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Trascrizione Microsoft Teams — trascrivi le riunioni | Mictoo",
-    description: "Trascrizione gratuita Microsoft Teams. Carica la registrazione (MP4) da OneDrive o SharePoint e ottieni una trascrizione IA pulita in pochi secondi. Senza registrazione.",
-    url: "https://mictoo.com/it/teams-meeting-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Trascrizione delle riunioni di Teams da MP4 | Mictoo',
+    description: 'Carica una registrazione di Teams da OneDrive o SharePoint e ottieni testo, riepilogo ed esportazioni.',
+    url: 'https://mictoo.com/it/teams-meeting-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Trascrizione Microsoft Teams — trascrivi le riunioni | Mictoo",
-    description: "Trascrizione gratuita Microsoft Teams. Carica la registrazione (MP4) da OneDrive o SharePoint e ottieni una trascrizione IA pulita in pochi secondi. Senza registrazione.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Trascrizione delle riunioni di Teams',
+    description: 'Carica un MP4 da OneDrive o SharePoint e ottieni una trascrizione.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function ItTeamsPage() {
+export default function ItTeamsMeetingTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="it"
-      badge="TEAMS · ONEDRIVE · GRATIS"
-      h1={<>Trascrizione Microsoft Teams<br /><span className="text-brand-600">Trascrizione gratuita riunioni Teams</span></>}
-      subtitle="Trasforma la tua registrazione Teams in testo pulito. Rilascia l'MP4 da OneDrive o SharePoint, ottieni la trascrizione in pochi secondi. Senza registrazione, senza tariffa al minuto."
-      howItWorks={[
-        { icon: '☁️', title: 'Scarica da OneDrive o SharePoint', desc: 'Le registrazioni Teams sono salvate nel OneDrive dell\'organizzatore (per riunioni non-canale) o sul sito SharePoint (per riunioni in canale). Scarica come MP4. Per riunioni lunghe estrai prima l\'audio.' },
-        { icon: '⚡', title: 'Rilascia il file', desc: 'Estraiamo l\'audio dall\'MP4 e lo mandiamo a Whisper large-v3. Una riunione di 30 minuti finisce in circa un minuto.' },
-        { icon: '📋', title: 'Ottieni la trascrizione', desc: 'Leggi nel browser, copia o scarica come TXT o SRT. Sistema nomi o gergo sbagliati nell\'editor prima dell\'export.' },
+    <UseCaseLayout
+      locale="it"
+      badge="Teams · OneDrive / SharePoint · M365 · Gratuito"
+      h1First="Trascrizione delle riunioni di Teams"
+      h1Second="Da MP4 di OneDrive o SharePoint a testo"
+      subtitle="Scarica la registrazione di Teams a cui hai accesso, quindi carica l’MP4 per una trascrizione con timestamp, un riepilogo AI e file di esportazione. La disponibilità della registrazione dipende dalla tua licenza Microsoft 365 e dalle politiche dell’organizzazione."
+      currentHref="/it/teams-meeting-transcription"
+
+      platforms={[
+        { name: 'OneDrive',    iconKey: 'videoCameraFill', brandBg: '#0364B8' },
+        { name: 'SharePoint',  iconKey: 'videoCameraFill', brandBg: '#036C70' },
+        { name: 'Channel MP4', iconKey: 'videoCameraFill', brandBg: '#4B53BC' },
+        { name: 'Zoom',        iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/it/zoom-transcription' },
+        { name: 'Google Meet', iconKey: 'videoCameraFill', brandBg: '#00832D', href: '/it/google-meet-transcription' },
+        { name: 'Meeting hub', iconKey: 'videoCameraFill', brandBg: '#0F1F35', href: '/it/meeting-transcription' },
       ]}
-      whyUse={{ title: 'Perché Mictoo per le riunioni Teams', bullets: [
-        { title: 'Funziona senza licenza Microsoft 365 specifica per trascrizione', desc: 'Finché hai il file della registrazione, puoi trascriverlo qui. Niente Teams Premium o piani Office specifici necessari.' },
-        { title: 'Migliore copertura non-inglese e accenti', desc: 'La trascrizione Microsoft Teams funziona bene in inglese e nelle grandi lingue europee occidentali. Whisper large-v3 copre oltre 50 lingue con gestione più forte di accenti e conversazioni bilingui.' },
-        { title: 'Gratis, nessun contatore al minuto', desc: 'La trascrizione Teams è inclusa nella licenza ma limitata da feature gate. Mictoo non ha cap per riunione né limite mensile di minuti.' },
-        { title: 'Export SRT per editor video', desc: 'Il transcript Teams vive nell\'app Teams o si scarica come VTT. Noi esportiamo sia TXT che SRT pulito, drop-in compatibile con Premiere, DaVinci, CapCut e YouTube Studio.' },
-        { title: 'Privacy di default', desc: 'Il file va al provider di trascrizione, viene processato, poi scartato. Non conserviamo l\'audio della tua riunione.' },
-      ]}}
-      useCases={{ title: 'Per cosa la gente trascrive riunioni Teams', items: [
-        { title: 'Verbali di riunioni di progetto', desc: 'Rilascia la trascrizione in Confluence, Notion o una pagina SharePoint. Chi si è perso la call legge il testo in 5 minuti invece di guardare 60 minuti di video.' },
-        { title: 'Revisione chiamate client per team account', desc: 'Salva la trascrizione accanto al deal in Salesforce, Dynamics o HubSpot. Il recupero citazioni per email follow-up richiede secondi.' },
-        { title: 'Log decisioni cross-team', desc: 'Le grandi decisioni prese nelle call Teams vengono riassunte nella trascrizione. Utile per governance e audit trail.' },
-        { title: 'Call con fornitori e contractor', desc: 'Quando un progetto coinvolge parti esterne, la trascrizione è il record inequivocabile di quello che è stato concordato.' },
-        { title: 'Compliance e settori regolamentati', desc: 'Alcuni settori richiedono di conservare certe conversazioni. Le trascrizioni rendono le registrazioni audio cercabili e indicizzabili.' },
-      ]}}
-      proTips={{ title: 'Consigli per trascrivere Teams', tips: [
-        { title: 'Estrai l\'audio dall\'MP4 prima dell\'upload', desc: 'Gli MP4 Teams sono video 720p o 1080p, irrilevante per una trascrizione. Prendi solo l\'audio: ffmpeg -i teams.mp4 -vn -ac 1 -b:a 64k teams.mp3. Un MP4 da 1.5 GB scende a 30 MB o meno.' },
-        { title: 'Scarica da OneDrive o SharePoint, non in streaming', desc: 'OneDrive a volte riproduce gli MP4 nel browser. Assicurati di aver effettivamente scaricato il file prima di provare a caricarlo qui. I link condivisione SharePoint non sono il file stesso.' },
-        { title: 'Per riunioni oltre 60 minuti, dividi prima dell\'upload', desc: 'Taglia in pezzi da 30 o 45 minuti prima. Le trascrizioni si possono concatenare. Le call Teams lunghe sono comuni e meritano gestione attenta.' },
-        { title: 'Silenzia le notifiche di background durante la riunione se puoi', desc: 'Le notifiche desktop Outlook e i suoni chat Teams durante la call finiscono nell\'audio e a volte nella trascrizione. Usa Focus Assist su Windows o Non disturbare su Mac.' },
-        { title: 'I microfoni delle sale riunioni hanno bisogno di pulizia', desc: 'Le Teams Rooms con microfoni a soffitto hanno qualità audio variabile. Eco e pickup a distanza danneggiano la precisione. Adobe Podcast Enhance (web gratis) può aiutare con queste registrazioni prima dell\'upload.' },
-        { title: 'Per riunioni confidenziali, evita upload esterni', desc: 'Inclusi noi. Per conversazioni HR, legali o di board, preferisci trascrizione on-premise. Il nostro servizio è per riunioni non confidenziali dove l\'elaborazione IA cloud è accettabile.' },
-      ]}}
+
+      howItWorksTitle="Come funziona la trascrizione delle riunioni di Teams"
+      steps={[
+        {
+          icon: 'folder',
+          title: 'Trova la registrazione',
+          desc: 'Riunione privata: OneDrive › I miei file › Registrazioni. Riunione di canale: il sito SharePoint del canale.',
+        },
+        {
+          icon: 'upload',
+          title: 'Trascina l’MP4 qui',
+          desc: 'Scarica da OneDrive o SharePoint e trascina qui. Per file superiori a 60 MB, estrai l’audio o accedi per la divisione automatica.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Trascrizione, riepilogo, esportazioni',
+          desc: 'Trascrizione con timestamp, riepilogo AI, TXT/SRT/VTT/DOCX. Una chiamata di Teams di 30 minuti si conclude in circa un minuto.',
+        },
+      ]}
+
+      exampleTitle="Esempio di trascrizione di una riunione di Teams"
+      exampleFileName="teams-channel-meeting.mp4"
+      exampleDurationLabel="41:08"
+      exampleLines={[
+        { t: '0:00',  line: 'Bene, benvenuti alla revisione dello sprint. Cammineremo attraverso ciò che è stato rilasciato, ciò che non lo è stato e perché.' },
+        { t: '0:11',  line: 'Il team pagamenti ha rilasciato il nuovo flusso di rimborso martedì. L’adozione è superiore alle aspettative, circa il quaranta percento dei biglietti idonei.' },
+        { t: '0:24',  line: 'Il team di ricerca ha incontrato una pipeline di indicizzazione più lunga del previsto. Rilascio spostato al prossimo sprint.' },
+        { t: '0:35',  line: 'Va bene, ma dobbiamo comunicare il ritardo al team di customer success in modo che possano gestire le aspettative.' },
+        { t: '0:47',  line: 'Invierò una nota nel canale condiviso oggi con la timeline rivista e il motivo.' },
+        { t: '0:58',  line: 'In terzo luogo, il tasso di crash mobile è leggermente aumentato. Ancora entro SLA, ma vale la pena monitorarlo in questo sprint.' },
+        { t: '1:09',  line: 'Il team dispositivi è già al lavoro. Dovremmo avere una causa principale entro mercoledì e una soluzione entro la fine dello sprint.' },
+      ]}
+      summaryPoints={[
+        'Flusso di rimborso rilasciato martedì, 40% di adozione.',
+        'Il team di ricerca ha ritardato di uno sprint (pipeline di indicizzazione).',
+        'Il tasso di crash mobile è aumentato ma rimane entro SLA.',
+        'Causa principale per il crash mobile entro mercoledì.',
+      ]}
+      actionItems={[
+        'Invia nota di ritardo al canale di customer success',
+        'Indaga sulla causa principale del crash mobile (mercoledì)',
+        'Conferma la nuova data di rilascio del team di ricerca',
+      ]}
+
+      whyTitle="Perché Mictoo per le registrazioni di Teams"
+      whyCards={[
+        {
+          icon: 'folder',
+          title: 'Funziona con registrazioni scaricate',
+          desc: 'Utilizza un MP4 di cui hai già il permesso di scaricare da OneDrive o dal sito SharePoint del canale.',
+        },
+        {
+          icon: 'target',
+          title: 'Controlla nomi e terminologia',
+          desc: 'L’output con timestamp rende più facile trovare e correggere nomi di prodotto, acronimi e termini specialistici.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Riepilogo accanto alla trascrizione',
+          desc: 'Genera una bozza di riepilogo e conservala accanto al testo completo per la revisione prima della condivisione.',
+        },
+        {
+          icon: 'globe',
+          title: 'Traduci registrazioni in lingue diverse',
+          desc: 'Registrazione in una lingua, riepilogo necessario in un’altra. Un clic, oltre 50 lingue.',
+        },
+      ]}
+
+      scenariosTitle="Scenari comuni di Teams"
+      scenarios={[
+        { icon: 'chat',      title: 'Revisione dello sprint' },
+        { icon: 'briefcase', title: 'Sincronizzazione del consiglio' },
+        { icon: 'users',     title: 'Standup' },
+        { icon: 'target',    title: 'Revisione OKR' },
+        { icon: 'headset',   title: 'Escalation di supporto' },
+        { icon: 'globe',     title: 'Chiamata internazionale' },
+      ]}
+
+      tipsTitle="Suggerimenti per le registrazioni di Teams"
+      tips={[
+        'Le riunioni private vengono salvate su OneDrive (account dell’organizzatore).',
+        'Le riunioni di canale vengono salvate sul sito SharePoint del canale.',
+        'I tenant GCC / enterprise potrebbero limitare i download: chiedi a IT.',
+        'Per riunioni lunghe, estrai l’audio con ffmpeg per ridurre il file.',
+      ]}
+
+      guidesTitle="Altre piattaforme di riunione"
+      guides={[
+        { href: '/it/zoom-transcription',        icon: 'video', title: 'Zoom',        desc: 'Cloud + Locale + M4A' },
+        { href: '/it/google-meet-transcription', icon: 'video', title: 'Google Meet', desc: 'Workspace + gratuito' },
+        { href: '/it/meeting-transcription',     icon: 'video', title: 'Meeting hub', desc: 'Qualsiasi piattaforma, un caricamento' },
+        { href: '/it/business-transcription',    icon: 'briefcase', title: 'Business', desc: 'Registrazioni interne autorizzate' },
+      ]}
+
       faq={[
-        { q: 'Mictoo funziona con le registrazioni Microsoft Teams?', a: 'Sì. Scarica l\'MP4 da OneDrive (l\'OneDrive del tuo organizzatore per riunioni non-canale) o dal sito SharePoint del canale. Carica su Mictoo. L\'estrazione audio prima accelera per riunioni lunghe.' },
-        { q: 'Mi serve Teams Premium o un piano Microsoft 365 specifico?', a: 'Ti serve un piano che ti permetta di registrare riunioni. Una volta che la registrazione è in OneDrive o SharePoint, la trascrizione qui è gratis indipendentemente dalla licenza.' },
-        { q: 'La mia registrazione sarà caricata su Microsoft?', a: 'No. Il file va al nostro provider di trascrizione (Groq, con OpenAI come backup) ed è scartato dopo elaborazione. Niente va a Microsoft, Outlook o qualsiasi servizio Microsoft.' },
-        { q: 'Come si confronta con la trascrizione nativa Teams?', a: 'La trascrizione Teams nativa va bene per riunioni in inglese se la licenza la include. La nostra è gratis, funziona su più lingue e accenti, ed esporta SRT pulito per editor video.' },
-        { q: 'La mia registrazione Teams supera i 60 MB. Cosa faccio?', a: 'Estrai solo l\'audio con ffmpeg o qualsiasi strumento audio. Un MP4 Teams da 1.5 GB scende sotto i 30 MB come audio. Se l\'audio supera i 60 MB, dividi in pezzi.' },
-        { q: 'Avrò etichette dei parlanti?', a: 'Non automaticamente. Per una riunione con voci distinte, aggiungi le etichette manualmente in base alla conversazione. Se la riunione è stata registrata con tracce audio separate per parlante (raro per Teams), carica ogni traccia separatamente.' },
-        { q: 'Funziona con i messaggi chat Teams?', a: 'No. I messaggi chat restano in Teams. Trascriviamo solo l\'audio. Combina i due tu se ti servono entrambi.' },
-        { q: 'Quanto è precisa la trascrizione Teams?', a: 'Per riunioni con buoni microfoni (laptop con cuffie USB), 90-95%. Per riunioni in sale con microfoni a soffitto, 80-90%. Nomi, termini tecnici e acronimi spesso richiedono pulizia.' },
-        { q: 'Posso trascrivere una riunione Teams in tempo reale?', a: 'No. Lavoriamo con file registrati. Per real-time durante la riunione, usa la funzione live captions o transcript nativa di Teams.' },
-        { q: 'Quali lingue supportate?', a: 'Oltre 50 lingue con rilevamento automatico. Per riunioni sotto i 5 minuti o con intro non vocali (musica waiting room, toni di attesa), scegli la lingua manualmente.' },
-        { q: 'Posso esportare la trascrizione in un Word o OneDrive?', a: 'Esportiamo testo semplice (TXT) e SRT. Copia e incolla in Word, o carica tu il TXT in OneDrive. Non abbiamo integrazione Microsoft 365 ancora.' },
-        { q: 'È conforme GDPR per riunioni Teams europee?', a: 'Non conserviamo audio o trascrizione sui nostri server dopo che chiudi la pagina. Siamo in Europa, e i nostri provider (Groq US, OpenAI US) hanno DPA firmati. Per domande specifiche di conformità vedi la Privacy Policy o scrivi a info@mictoo.com.' },
+        {
+          q: 'Dove vengono salvate le registrazioni di Teams?',
+          a: 'Riunioni private: nel OneDrive dell’organizzatore sotto I miei file › Registrazioni. Riunioni di canale: nel sito SharePoint che supporta quel canale, sotto la cartella del canale in Documenti.',
+        },
+        {
+          q: 'Ho bisogno di Teams Premium per caricare una registrazione?',
+          a: 'Mictoo elabora il file multimediale scaricato piuttosto che connettersi al tuo account Teams. La tua capacità di registrare, trascrivere o scaricare all’interno di Teams dipende ancora dalla tua licenza Microsoft 365, dal ruolo nella riunione e dalle politiche dell’organizzazione.',
+        },
+        {
+          q: 'Dovrei usare la trascrizione di Teams o caricare la registrazione?',
+          a: 'Usa la trascrizione di Teams quando è disponibile e soddisfa le tue esigenze. Caricare la registrazione è utile quando desideri esportazioni Mictoo, traduzione o una trascrizione aggiuntiva da rivedere. L’accuratezza varia con la registrazione.',
+        },
+        {
+          q: 'Il mio MP4 di Teams è superiore a 60 MB. Cosa faccio?',
+          a: 'Estrai l’audio: ffmpeg -i teams.mp4 -vn -ac 1 -ar 16000 audio.m4a. Oppure accedi per la divisione automatica di file fino a circa 3 ore.',
+        },
+        {
+          q: 'Posso usare Mictoo per tenant GCC / enterprise?',
+          a: 'Alcuni tenant enterprise e governativi limitano i download o l’elaborazione esterna. Segui la politica della tua organizzazione e verifica con IT o con il proprietario della registrazione prima di scaricare o caricare i media della riunione.',
+        },
+        {
+          q: 'Mictoo identifica i relatori di Teams?',
+          a: 'No. L’attuale trascrizione è testo continuo con timestamp per riga e senza etichette automatiche per i relatori.',
+        },
+        {
+          q: 'Le registrazioni di Teams sono memorizzate sui vostri server?',
+          a: 'No. Il file viene trasmesso al fornitore di trascrizione, elaborato una sola volta e poi eliminato. Solo la trascrizione persiste sugli account effettuati accesso.',
+        },
       ]}
+
+      ctaHeadline="Trasforma le riunioni di Teams in testo pulito"
+      ctaSubtitle="Carica una registrazione autorizzata di OneDrive o SharePoint e ottieni testo, riepilogo ed esportazioni."
+      ctaButton="Carica registrazione di Teams"
+
       relatedLinks={[
-        { href: '/it/zoom-transcription', label: 'Trascrizione Zoom', desc: 'Per registrazioni Cloud o locali Zoom.' },
-        { href: '/it/google-meet-transcription', label: 'Trascrizione Google Meet', desc: 'Per registrazioni Google Meet.' },
-        { href: '/it/meeting-transcription', label: 'Trascrizione riunione', desc: 'Per registrazioni da altre piattaforme.' },
-        { href: '/it/business-transcription', label: 'Trascrizione business', desc: 'Per call vendita, interviste e altro audio business.' },
+        { href: '/it/meeting-transcription',       label: 'Trascrizione delle riunioni' },
+        { href: '/it/zoom-transcription',          label: 'Trascrizione di Zoom' },
+        { href: '/it/google-meet-transcription',   label: 'Trascrizione di Google Meet' },
+        { href: '/it/business-transcription',      label: 'Trascrizione Business' },
+        { href: '/it/webinar-transcription',       label: 'Trascrizione di Webinar' },
       ]}
     />
   )

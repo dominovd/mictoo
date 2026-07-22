@@ -1,9 +1,9 @@
 import UseCaseLayout from '@/components/UseCaseLayout'
 
 export const metadata = {
-  title: 'Dictation to Text: Free Voice Dictation Transcription | Mictoo',
+  title: 'Dictation to Text for Recorded Voice Drafts | Mictoo',
   description:
-    'Free dictation to text. Record a draft by voice, drop the file, get clean text. Built for writers, professionals, and anyone who thinks faster than they type.',
+    'Record a voice draft, upload the file, and get editable text with timestamps and export options for your writing workflow.',
   alternates: {
     canonical: 'https://mictoo.com/dictation-to-text',
     languages: {
@@ -97,8 +97,8 @@ export default function DictationToTextPage() {
       whyCards={[
         {
           icon: 'target',
-          title: 'Better than phone built-in dictation',
-          desc: 'iPhone Dictation cuts off after 60 seconds. Google Docs voice typing drifts. Whisper large-v3 handles long-form dictation without either issue.',
+          title: 'Designed for recorded drafts',
+          desc: 'Record a complete draft first, then transcribe it as one file. This keeps the original audio available while you review and edit the text.',
         },
         {
           icon: 'editPen',
@@ -130,7 +130,7 @@ export default function DictationToTextPage() {
       tipsTitle="Tips for cleaner dictation"
       tips={[
         'Say "comma", "period", "new paragraph" if you want explicit punctuation.',
-        'Record in a quiet room for the highest accuracy.',
+        'Record in a quiet room so words are easier to distinguish.',
         'For long chapters over 60 MB, sign in for auto-split.',
         'Review Editor mode before export for names and technical terms.',
       ]}
@@ -145,8 +145,8 @@ export default function DictationToTextPage() {
 
       faq={[
         {
-          q: 'Is Mictoo better than iPhone Dictation?',
-          a: 'For long-form content, yes. iPhone Dictation cuts off after 60 seconds and does not handle chapter-length dictation. Whisper large-v3 processes any length, punctuates automatically, and preserves paragraph structure.',
+          q: 'How is Mictoo different from live phone dictation?',
+          a: 'Mictoo works from a saved recording rather than listening live as you type. That makes it useful for reviewing longer drafts against the original audio, subject to the current file-size and duration limits.',
         },
         {
           q: 'Can I dictate technical or medical terms?',

@@ -1,3 +1,5 @@
+import ConverterPageLayout from '@/components/ConverterPageLayout'
+
 const LANGS = {
   'en': 'https://mictoo.com/aac-to-mp3',
   'fr': 'https://mictoo.com/fr/aac-to-mp3',
@@ -13,115 +15,94 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'AAC를 MP3로 변환하는 방법 — 무료 방법 (2026) | Mictoo',
-  description: "AAC 오디오 파일을 무료로 MP3로 변환하세요. 온라인 컨버터, QuickTime/VLC, ffmpeg 명령줄의 세 가지 빠른 방법. 팁: Mictoo는 대부분의 AAC 파일을 변환 없이 바로 받아들입니다.",
-  alternates: { canonical: 'https://mictoo.com/ko/aac-to-mp3', languages: LANGS },
-
+  title: 'AAC를 MP3로: 무료 온라인 변환기 | Mictoo',
+  description:
+    'AAC를 MP3로 무료로 변환하고, 변환이 실제로 도움이 되는 경우와 품질을 저하시킬 수 있는 경우에 대한 명확한 설명을 제공합니다.',
+  alternates: {
+    canonical: 'https://mictoo.com/ko/aac-to-mp3',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "AAC를 MP3로 변환하는 방법 — 무료 방법 (2026) | Mictoo",
-    description: "AAC 오디오 파일을 무료로 MP3로 변환하세요. 온라인 컨버터, QuickTime/VLC, ffmpeg 명령줄의 세 가지 빠른 방법. 팁: Mictoo는 대부분의 AAC 파일을 변환 없이 바로 받아들입니다.",
-    url: "https://mictoo.com/ko/aac-to-mp3",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'AAC를 MP3로: 무료 온라인 변환기 | Mictoo',
+    description: 'AAC를 MP3로 무료로 변환합니다.',
+    url: 'https://mictoo.com/ko/aac-to-mp3',
+    siteName: 'Mictoo', type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "AAC를 MP3로 변환하는 방법 — 무료 방법 (2026) | Mictoo",
-    description: "AAC 오디오 파일을 무료로 MP3로 변환하세요. 온라인 컨버터, QuickTime/VLC, ffmpeg 명령줄의 세 가지 빠른 방법. 팁: Mictoo는 대부분의 AAC 파일을 변환 없이 바로 받아들입니다.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'AAC를 MP3로: 무료 온라인 변환기',
+    description: 'AAC를 MP3로 몇 초 안에 변환합니다. 무료, 가입 필요 없음.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function KoAacToMp3Page() {
   return (
-    <section className="max-w-2xl mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold text-slate-900 mb-3">AAC를 MP3로 변환하는 방법</h1>
-      <p className="text-slate-500 mb-10 leading-relaxed">
-        AAC(Advanced Audio Coding)는 iPhone 음성 메모, Android 녹음기, MP4 비디오 내 오디오의 기본 형식입니다. MP3는 더 범용적이며 모든 플레이어, 편집기, 전사 도구에서 작동합니다. 아래에 세 가지 무료 방법과, 변환이 정말 필요한지에 대한 간단한 메모를 정리했습니다.
-      </p>
-
-      <div className="bg-brand-50 border border-brand-100 rounded-2xl p-5 mb-10">
-        <p className="text-sm text-slate-700 mb-2">
-          <strong>변환하기 전에:</strong> 목적이 전사라면, Mictoo는 대부분의 AAC 파일을 직접 받습니다. MP4 컨테이너 안의 <code className="font-mono text-xs bg-white px-1.5 py-0.5 rounded border border-slate-200">.aac</code> 파일(iPhone 음성 메모, 공유 시트 내보내기, 대부분의 Android 녹음기 포함). 먼저 업로드해 보고, 파일이 거부될 때만 변환하세요.
-        </p>
-        <a href="/ko" className="inline-flex items-center gap-2 text-sm text-brand-600 hover:underline">
-          ↑ .aac 바로 전사하기
-        </a>
-      </div>
-
-      <div className="space-y-12 text-slate-600 text-sm leading-relaxed">
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">방법 1 — 온라인 컨버터 (설치 불필요)</h2>
-
-          <img
-            src="/svg/online-converter-3step.svg"
-            alt="세 단계: AAC 파일 드롭, 출력 형식으로 MP3 선택, 결과 다운로드."
-            className="w-full rounded-2xl border border-slate-100 mb-5"
-            width={640}
-            height={240}
-          />
-
-          <p className="mb-4">
-            약 200 MB 이하 파일에 가장 빠릅니다. 브라우저에 드롭하면 몇 초 만에 MP3가 반환됩니다. 모두 가입 없이 가능:
-          </p>
-          <p className="text-xs text-slate-500 mt-3">
-            개인정보: 온라인 컨버터는 파일을 자사 서버에 업로드합니다. 민감한 녹음(의료, 법률, 업무 통화)에는 아래 데스크톱 방법을 사용하세요.
-          </p>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">방법 2 — 데스크톱 앱 (오프라인)</h2>
-
-          <h3 className="font-semibold text-slate-700 mt-4 mb-2">macOS — QuickTime + iMovie</h3>
-          <p className="mb-2">
-            QuickTime은 AAC 파일을 엽니다. <strong>파일 → 다른 이름으로 내보내기 → 오디오 전용</strong>를 사용하고 대화상자에서 MP3를 선택하세요. 모든 Mac에 기본 탑재.
-          </p>
-
-          <h3 className="font-semibold text-slate-700 mt-4 mb-2">Windows / macOS / Linux — Audacity (무료)</h3>
-          <p>
-            AAC 파일을 <a href="https://www.audacityteam.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Audacity</a>에서 연 다음, <strong>파일 → 내보내기 → MP3로 내보내기</strong>. 음성이면 모노 및 64–96 kbps를 선택하세요.
-          </p>
-
-          <h3 className="font-semibold text-slate-700 mt-4 mb-2">크로스 플랫폼 — VLC</h3>
-          <p>
-            VLC는 <strong>미디어 → 변환 / 저장</strong>에서 변환합니다. .aac를 추가하고 프로필 <code className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded mx-1">Audio - MP3</code>를 선택, 저장 위치를 정하고 시작을 클릭하세요.
-          </p>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">방법 3 — 명령줄 (ffmpeg)</h2>
-          <p className="mb-4">
-            설치된 <a href="https://ffmpeg.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">ffmpeg</a>로 한 줄:
-          </p>
-          <pre className="bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto text-xs"><code>{`ffmpeg -i input.aac -acodec libmp3lame -ab 128k output.mp3`}</code></pre>
-          <p className="text-xs text-slate-500 mt-2">
-            음성/전사용으로는 <code className="font-mono">-ab 64k -ac 1</code>로 낮추세요 — 정확도 손실 없이 파일이 2~3배 작아집니다.
-          </p>
-        </div>
-
-        <div className="border-t border-slate-100 pt-8">
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">MP3 준비됐나요?</h2>
-          <p className="mb-4">
-            Mictoo에 드롭하면 타임스탬프, SRT 자막, AI 요약이 포함된 무료 전사를 받을 수 있습니다. 가입 불필요.
-          </p>
-          <a href="/ko" className="inline-flex items-center gap-2 btn-primary text-base px-6 py-3">
-            ↑ MP3를 무료로 텍스트로 변환
-          </a>
-        </div>
-
-      </div>
-
-      <div className="border-t border-slate-100 mt-12 pt-8">
-        <p className="text-sm text-slate-400 mb-4 text-center">관련 가이드</p>
-        <div className="flex flex-wrap justify-center gap-3">
-          <a href="/ko/wma-to-mp3" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">WMA를 MP3로</a>
-          <a href="/ko/m4a-to-mp3" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">M4A를 MP3로</a>
-          <a href="/ko/aac-to-text" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">AAC를 텍스트로</a>
-          <a href="/ko/how-to-compress-audio" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">오디오 압축</a>
-        </div>
-      </div>
-    </section>
+    <ConverterPageLayout
+      locale="ko"
+      mode="converter" from="aac" to="mp3" currentHref="/ko/aac-to-mp3"
+      badge="AAC → MP3 · 무료 · 가입 필요 없음"
+      h1First="AAC를 MP3로"
+      h1Second="무료 온라인 변환기"
+      subtitle="원시 .aac 파일(ADTS 스트림, 방송 덤프 또는 추출된 iPhone 오디오)을 드롭하고 몇 초 안에 휴대용 MP3를 받으세요."
+      outputFormat="MP3" outputQuality="128 kbps" outputAudio="스테레오"
+      stepsTitle="AAC를 MP3로 변환하는 방법"
+      steps={[
+        { icon: 'upload',   title: 'AAC 드롭하기',        desc: '원시 ADTS 또는 ADIF 프레임, 최대 25 MB 익명으로.' },
+        { icon: 'waveform', title: '우리가 디코딩하고 인코딩합니다', desc: 'ffmpeg가 AAC 비트스트림을 읽고 128 kbps 스테레오 MP3로 다시 인코딩합니다.' },
+        { icon: 'download', title: 'MP3 다운로드',    desc: '몇 초 안에 깨끗한 MP3를 받아보세요. 모든 플레이어에 준비 완료.' },
+      ]}
+      previewInputName="broadcast-clip.aac"
+      previewInputSize="8.4 MB · 00:07:22 · 128 kbps AAC"
+      previewOutputName="broadcast-clip.mp3"
+      previewOutputSize="00:07:22 · 128 kbps MP3 · 6.8 MB"
+      whyTitle="AAC를 MP3로 변환할 때 Mictoo를 사용하는 이유는?"
+      whyCards={[
+        { icon: 'target',   title: '원시 AAC 처리',        desc: 'ADTS 및 ADIF 프레임 모두 직접 작동, 수동 재포장 필요 없음.' },
+        { icon: 'fileAudio',title: 'MP3는 어디서나 재생',   desc: '구형 장치 및 레거시 팟캐스트 호스트는 때때로 AAC보다 MP3를 선호합니다.' },
+        { icon: 'lock',     title: '파일은 변환 후 삭제',    desc: '업로드된 AAC는 변환 후 삭제됩니다; MP3는 한 시간 이내에 삭제됩니다.' },
+        { icon: 'shield',   title: '워터마크나 태그 없음',    desc: '오디오만 재인코딩됩니다. 브랜드 소개나 메타데이터 없음.' },
+      ]}
+      scenariosTitle="AAC를 MP3로 변환할 때 유용한 경우"
+      scenarios={[
+        { icon: 'video',      title: 'HLS 방송 덤프' },
+        { icon: 'headphones', title: '팟캐스트 호스트가 MP3 요구' },
+        { icon: 'mail',       title: '레거시 플레이어 호환성' },
+        { icon: 'editPen',    title: 'DAW 가져오기(구형 도구)' },
+        { icon: 'archive',    title: '일관된 아카이브 형식' },
+        { icon: 'waveform',   title: '추출된 iPhone AAC' },
+      ]}
+      tipsTitle="깨끗한 AAC를 MP3로 변환하기 위한 팁"
+      tips={[
+        '장치가 AAC를 기본적으로 재생할 수 있다면 변환할 필요가 없을 수 있습니다.',
+        'AAC와 MP3는 모두 손실 형식입니다; 재인코딩은 약간의 품질 손실을 추가합니다.',
+        '소스 파일을 현재 25 MB 업로드 제한 이하로 유지하세요.',
+        '전사용으로는 AAC를 /aac-to-text로 직접 업로드하세요.',
+      ]}
+      processTitle="변환 중에 발생하는 일"
+      processSteps={['AAC ADTS 프레임', '디코드', 'MP3 인코딩']}
+      compareTitle="AAC vs MP3"
+      compareRows={[
+        { fmt: 'AAC', contains: '아니오', size: '작음(효율적)', best: '현대 장치, 스트리밍, iPhone' },
+        { fmt: 'MP3', contains: '아니오', size: '작음',             best: '보편적 호환성, 레거시 플레이어' },
+      ]}
+      faq={[
+        { q: '정말로 AAC를 MP3로 변환해야 하나요?', a: '드물게. 대부분의 현대 장치는 AAC를 기본적으로 재생합니다. 특정 도구나 호스트가 명시적으로 MP3를 요구하는 경우에만 변환하세요.' },
+        { q: '변환기는 무료인가요?', a: '네. 25 MB까지의 파일은 계정 없이 변환할 수 있으며, 출력에는 워터마크가 없습니다.' },
+        { q: '품질 손실은 무엇인가요?', a: 'AAC와 MP3는 모두 손실 형식입니다. 재인코딩은 약간의 추가 손실을 발생시키지만, 128 kbps에서 일반적인 청취에는 들리지 않습니다.' },
+        { q: '어떤 AAC 프레임이 작동하나요?', a: 'ADTS(가장 일반적), ADIF, LATM 모두 디코딩됩니다. MP4/M4A 내의 AAC도 작동하지만 다른 입력 경로입니다.' },
+        { q: '파일이 저장되나요?', a: '아니요. 업로드된 AAC는 변환 후 삭제됩니다; MP3는 한 시간 이내에 삭제됩니다.' },
+      ]}
+      ctaHeadline="지금 AAC를 MP3로 변환하세요"
+      ctaSubtitle="AAC를 드롭하고 몇 초 안에 깨끗한 MP3를 받으세요. 가입 필요 없음. 워터마크 없음."
+      ctaButton="AAC 파일 선택"
+      moreTools={[
+        { href: '/ko/m4a-to-mp3',  label: 'M4A를 MP3로' },
+        { href: '/ko/mp4-to-mp3',  label: 'MP4를 MP3로' },
+        { href: '/ko/wav-to-mp3',  label: 'WAV를 MP3로' },
+        { href: '/ko/aac-to-text', label: 'AAC를 텍스트로' },
+      ]}
+    />
   )
 }

@@ -74,7 +74,9 @@ const LANG_NAMES = {
   tr: 'Turkish', ja: 'Japanese', ko: 'Korean', zh: 'Chinese', ar: 'Arabic',
   hi: 'Hindi', cs: 'Czech', sv: 'Swedish', fi: 'Finnish', no: 'Norwegian',
   da: 'Danish', he: 'Hebrew', id: 'Indonesian', th: 'Thai', vi: 'Vietnamese',
-  el: 'Greek', hu: 'Hungarian', ro: 'Romanian', ms: 'Malay',
+  el: 'Greek', hu: 'Hungarian', ro: 'Romanian', ms: 'Malay', bg: 'Bulgarian',
+  bn: 'Bengali', fa: 'Persian', hr: 'Croatian', sk: 'Slovak', ta: 'Tamil',
+  ur: 'Urdu',
 }
 
 // Hard cap on the whole transcript per request. ~32k characters ≈ 5000-8000

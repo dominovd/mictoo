@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/lecture-transcription',
@@ -15,195 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Vorlesungs-Transkription — kostenloser Transkript-Generator | Mictoo',
+  title: 'Vorlesungsabschrift für Klassen und Seminare | Mictoo',
   description:
-    'Kostenlose Vorlesungs-Transkription. Laden Sie die Aufnahme einer Vorlesung, eines Kurses oder Seminars (MP3, M4A, MP4) hoch und erhalten Sie in Sekunden sauberen Text. Gebaut für Studierende.',
-  alternates: { canonical: 'https://mictoo.com/de/lecture-transcription', languages: LANGS },
-
+    'Laden Sie eine aufgezeichnete Klasse, Vorlesung oder ein Seminar hoch und erhalten Sie durchsuchbaren Text, Zeitstempel, eine KI-Zusammenfassung und Exportdateien.',
+  alternates: {
+    canonical: 'https://mictoo.com/de/lecture-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Vorlesungs-Transkription — kostenloser Transkript-Generator | Mictoo",
-    description: "Kostenlose Vorlesungs-Transkription. Laden Sie die Aufnahme einer Vorlesung, eines Kurses oder Seminars (MP3, M4A, MP4) hoch und erhalten Sie in Sekunden sauberen Text. Gebaut für Studierende.",
-    url: "https://mictoo.com/de/lecture-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Vorlesungsabschrift: Kostenloser Transkriptgenerator | Mictoo',
+    description: 'Laden Sie Ihre aufgezeichnete Klasse oder Ihr Seminar hoch und erhalten Sie in Sekunden sauberen Text.',
+    url: 'https://mictoo.com/de/lecture-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Vorlesungs-Transkription — kostenloser Transkript-Generator | Mictoo",
-    description: "Kostenlose Vorlesungs-Transkription. Laden Sie die Aufnahme einer Vorlesung, eines Kurses oder Seminars (MP3, M4A, MP4) hoch und erhalten Sie in Sekunden sauberen Text. Gebaut für Studierende.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Vorlesungsabschrift: Kostenloser Generator',
+    description: 'Laden Sie Ihre Klassen- oder Seminaraufnahme hoch.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function DeLecturePage() {
+export default function DeLectureTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="de"
+    <UseCaseLayout
+      locale="de"
       badge="Studierende · Akademiker · Kostenlos"
-      h1={
-        <>
-          Vorlesungs-Transkription
-          <br />
-          <span className="text-brand-600">Kostenloses Tool für Vorlesungs-Transkripte</span>
-        </>
-      }
-      subtitle="Verwandeln Sie jede aufgenommene Vorlesung in sauberen Text zum Lernen. Uni, Online-Kurs, Konferenzvortrag, berufliche Schulung. Ohne Anmeldung, ohne Tarif pro Minute."
-      howItWorks={[
+      h1First="Vorlesungsabschrift"
+      h1Second="Kostenlose Transkripte für Klassen und Seminare"
+      subtitle="Laden Sie Ihre aufgezeichnete Vorlesung von Zoom, Panopto, YouTube, Kaltura oder Ihrem Telefon hoch. Erhalten Sie ein durchsuchbares Transkript mit Zeitstempeln, bereit für Studiennotizen, Revision und Zitation."
+      currentHref="/de/lecture-transcription"
+
+      platforms={[
+        { name: 'Zoom',      iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/de/zoom-transcription' },
+        { name: 'YouTube',   iconKey: 'videoCameraFill', brandBg: '#FF0000' },
+        { name: 'Panopto',   iconKey: 'cap',             brandBg: '#014A96' },
+        { name: 'Kaltura',   iconKey: 'cap',             brandBg: '#FA6425' },
+        { name: 'Camtasia',  iconKey: 'videoCameraFill', brandBg: '#00A651' },
+        { name: 'Voice Memo',iconKey: 'mic',             brandBg: '#F97316', href: '/de/voice-memo-to-text' },
+      ]}
+
+      howItWorksTitle="Wie die Vorlesungsabschrift funktioniert"
+      steps={[
         {
-          icon: '🎓',
-          title: 'Vorlesungs-Audio oder -Video ablegen',
-          desc: 'MP3 von einem Sprachrekorder, M4A von Ihrem Handy, MP4 von einer Zoom-Vorlesung oder einer Bildschirmaufnahme einer Online-Vorlesung. WAV von einem Forschungsrekorder. Alles geht.',
+          icon: 'folder',
+          title: 'Exportieren Sie die Vorlesung',
+          desc: 'Laden Sie von Panopto/Kaltura herunter, speichern Sie aus der Zoom-Cloud oder zeichnen Sie während des Unterrichts auf Ihrem Telefon auf.',
         },
         {
-          icon: '⚡',
-          title: 'KI transkribiert',
-          desc: 'Whisper large-v3 liest das Audio. Eine 60-Minuten-Vorlesung ist in rund einer Minute fertig.',
+          icon: 'upload',
+          title: 'Legen Sie die Datei hier ab',
+          desc: 'MP3, MP4, M4A, WAV, MOV funktionieren alle. Lange Vorlesungen werden automatisch aufgeteilt, wenn Sie angemeldet sind.',
         },
         {
-          icon: '📋',
-          title: 'Transkript holen',
-          desc: 'Lesen, in Ihre Notizen kopieren oder als TXT oder SRT herunterladen. Korrigieren Sie falsche Fachbegriffe inline vor dem Export.',
+          icon: 'editPen',
+          title: 'Notizen, Zusammenfassung, Zitationen',
+          desc: 'Durchsuchbares, zeitgestempeltes Transkript, KI-Zusammenfassung, DOCX für Studiennotizen. Chatten Sie mit dem Transkript, um sich auf Prüfungen vorzubereiten.',
         },
       ]}
-      whyUse={{
-        title: 'Warum Mictoo für Vorlesungen',
-        bullets: [
-          {
-            title: 'Langform ist okay',
-            desc: 'Bis zu 60 Minuten pro Datei nach kostenloser Anmeldung. Für eine 90-Minuten-Vorlesung in zwei 45-Minuten-Stücke teilen. Das Transkript ist zusammenfügbar.',
-          },
-          {
-            title: 'Handhabt Fachvokabular besser als die meisten',
-            desc: 'Whisper wurde auf einer riesigen Vielfalt von Audio trainiert, einschließlich akademischer Vorlesungen. Latein, Fachjargon, mathematische Begriffe, Code-Schnipsel kommen oft sauberer raus als erwartet.',
-          },
-          {
-            title: 'Keine Kosten pro Vorlesung',
-            desc: 'Für Studierende ist es Verschwendung, Transkription pro Kurs zu bezahlen. Kostenlos ohne Minuten-Zähler bedeutet, dass Sie jede Vorlesung in einem Semester transkribieren können.',
-          },
-          {
-            title: 'Privatsphäre und Urheberrecht',
-            desc: 'Die Datei wird zum Transkriptions-Anbieter gestreamt und verworfen. Wir behalten das Audio nicht. Nützlich, wenn Sie Material transkribieren, das Ihnen gehört (Ihre Aufnahmen), aber nicht zu einem Drittanbieter-Speicherdienst hochladen wollen.',
-          },
-          {
-            title: 'Über 50 Sprachen',
-            desc: 'Internationale Studierende und Online-Kurse in nicht-englischen Sprachen funktionieren alle. Auto-Erkennung deckt die meisten Fälle ab.',
-          },
-        ],
-      }}
-      useCases={{
-        title: 'Wofür Studierende und Akademiker Vorlesungs-Transkripte nutzen',
-        items: [
-          {
-            title: 'Durchsuchbare Lern-Notizen',
-            desc: 'Transkript in Notion, Obsidian oder ein Word-Dokument ablegen. Strg+F nach jedem Begriff, den der Professor erwähnt hat. Besser, als eine 90-Minuten-Audiodatei zu durchsuchen.',
-          },
-          {
-            title: 'Vorbereitung auf Klausuren',
-            desc: 'Überfliegen Sie das Transkript, während Sie Ihre handgeschriebenen Notizen durchgehen. Fängt Dinge auf, die Sie während der Live-Vorlesung verpasst haben.',
-          },
-          {
-            title: 'Übersetzen von Vorlesungen für Nicht-Muttersprachler',
-            desc: 'In der Ausgangssprache transkribieren, dann durch DeepL oder ChatGPT zum Übersetzen jagen. Nützlich für Studierende, die Kurse in ihrer Zweitsprache hören.',
-          },
-          {
-            title: 'Barrierefreiheit für gehörlose und schwerhörige Studierende',
-            desc: 'Ein Transkript oder eine SRT-Datei liefert denselben Inhalt in einer anderen Modalität. Manche Unis schreiben das für aufgezeichneten Kursinhalt vor.',
-          },
-          {
-            title: 'Karteikarten und Lernmaterialien erstellen',
-            desc: 'Transkripte fließen in Anki-Karten, Zusammenfassungs-Dokumente oder KI-unterstützte Lerntools.',
-          },
-        ],
-      }}
-      proTips={{
-        title: 'Tipps für Vorlesungs-Transkription',
-        tips: [
-          {
-            title: 'Bei Präsenzvorlesungen nah am Professor sitzen',
-            desc: 'Aus der letzten Reihe durch Raumgeräusche aufzunehmen produziert ein Transkript mit vielen Lücken. Handy in der ersten Reihe, Bildschirm nach unten, fängt saubere Sprache ein.',
-          },
-          {
-            title: 'Für lange Vorlesungen einen dedizierten Sprachrekorder nutzen',
-            desc: 'Handy-Aufnahmen haben aggressives Auto-Leveling und Rauschunterdrückung, was der Transkription schadet. Ein Zoom H1n oder ähnlicher Entry-Level-Rekorder gibt für 80 Euro deutlich saubereres Audio.',
-          },
-          {
-            title: 'Für Online-Vorlesungen das System-Audio direkt aufnehmen',
-            desc: 'OBS Studio auf Windows oder Mac kann das Vorlesungs-Audio direkt vom System aufnehmen. Sauberer als die Aufnahme durch das Laptop-Mikro.',
-          },
-          {
-            title: 'Sprache manuell setzen',
-            desc: 'Auto-Erkennung liegt meist richtig, kann aber durch Warmup des Professors in einer anderen Sprache verwirrt werden. Wählen Sie die Vorlesungssprache explizit aus dem Dropdown.',
-          },
-          {
-            title: 'Die ersten 5 Minuten weglassen, wenn es Admin-Ankündigungen sind',
-            desc: '„Habt ihr die Hausaufgabe gemacht? Habt ihr Kapitel 3 gelesen?" ist für das Transkript nicht nützlich. Schneiden Sie das in Audacity vor dem Upload weg, um Ihr Datei-Größen-Budget zu sparen.',
-          },
-          {
-            title: 'Bei MINT-Vorlesungen mit Gleichungen fängt das Transkript gesprochene Mathematik ein, nicht die Gleichungen',
-            desc: 'Mathematische Ausdrücke an der Tafel sind nicht im Audio, also nicht im Transkript. Sie müssen die trotzdem separat erfassen (Fotos von der Tafel, Screenshots der Folien).',
-          },
-          {
-            title: 'Bei der ersten Durchsicht die Aufnahme noch einmal anhören, während Sie das Transkript lesen',
-            desc: 'Das ist der beste Weg, um professorenspezifische Begriffe und Gleichungs-Verweise zu korrigieren. Einmal gereinigt, steht das Transkript für sich.',
-          },
-        ],
-      }}
+
+      exampleTitle="Beispiel einer Vorlesungsabschrift"
+      exampleFileName="intro-microeconomics-lecture-08.mp4"
+      exampleDurationLabel="47:32"
+      exampleLines={[
+        { t: '0:00',  line: 'Alles klar. Letzte Woche haben wir mit dem Konzept des Konsumentenüberschusses abgeschlossen. Heute bauen wir darauf mit dem Produzentenüberschuss.' },
+        { t: '0:11',  line: 'Der Produzentenüberschuss ist der Unterschied zwischen dem, was ein Produzent für ein Gut akzeptieren würde, und dem, was er tatsächlich erhält.' },
+        { t: '0:23',  line: 'Zusammen geben der Konsumenten- und der Produzentenüberschuss uns das gesamte Wohlergehen in einem Markt, bevor wir Steuern oder Preisregulierungen einführen.' },
+        { t: '0:35',  line: 'Warum ist uns dieses Konzept praktisch wichtig? Weil es uns ermöglicht zu bewerten, ob eine Politik einen Markt besser oder schlechter macht.' },
+        { t: '0:47',  line: 'Betrachten Sie eine Steuer pro Einheit. Sie verschiebt die Angebotskurve um den Steuerbetrag nach oben, und beide Überschüsse schrumpfen.' },
+        { t: '0:58',  line: 'Die Lücke, die zwischen dem, was Käufer zahlen, und dem, was Verkäufer erhalten, entsteht, nennen wir Wohlfahrtsverlust.' },
+        { t: '1:08',  line: 'Bitte öffnen Sie das Arbeitsbuch auf Seite einunddreißig, und lassen Sie uns gemeinsam ein numerisches Beispiel durchgehen.' },
+      ]}
+      summaryPoints={[
+        'Zusammenfassung: Konsumentenüberschuss aus der vorherigen Vorlesung.',
+        'Neues Konzept: Produzentenüberschuss und gesamtes Wohlergehen.',
+        'Angewandt auf die Steueranalyse.',
+        'Wohlfahrtsverlust numerisch veranschaulicht.',
+      ]}
+      actionItems={[
+        'Überprüfen Sie das Arbeitsbuch auf Seite 31',
+        'Üben Sie die Berechnung des Wohlfahrtsverlusts',
+        'Lesen Sie Kapitel 4 vor Donnerstag',
+      ]}
+
+      whyTitle="Warum Mictoo für Vorlesungsabschriften"
+      whyCards={[
+        {
+          icon: 'search',
+          title: 'Durchsuchbar im Transkript',
+          desc: 'Drücken Sie Ctrl-F für jedes Konzept aus der gesamten 45-minütigen Vorlesung in einer Sekunde. Besser als durch das Video zu scrubbing.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'KI-Zusammenfassung für Revisionsnotizen',
+          desc: 'Die Zusammenfassung ist ein solider Ausgangspunkt für die Revision. Kürzen Sie, was Sie bereits wissen, und behalten Sie, was Sie verpasst haben.',
+        },
+        {
+          icon: 'chat',
+          title: 'Chatten Sie mit der Vorlesung',
+          desc: 'Stellen Sie Fragen zum Material, um sich auf Prüfungen vorzubereiten. RAG-Stil Antworten zitieren den genauen Zeitstempel.',
+        },
+        {
+          icon: 'globe',
+          title: 'Übersetzen für nicht-native Studierende',
+          desc: 'Vorlesung auf Englisch, aber Sie lernen auf Portugiesisch? Ein-Klick-Übersetzung in über 50 Sprachen.',
+        },
+      ]}
+
+      scenariosTitle="Häufige Vorlesungsszenarien"
+      scenarios={[
+        { icon: 'book',      title: 'Universitätsklasse' },
+        { icon: 'cap' ,      title: 'Online-Kurs' },
+        { icon: 'search',    title: 'Prüfungsvorbereitung' },
+        { icon: 'editPen',   title: 'Studiennotizen' },
+        { icon: 'globe',     title: 'Nicht-native Studierende' },
+        { icon: 'headset',   title: 'Aufgezeichnetes Seminar' },
+      ]}
+
+      tipsTitle="Tipps für sauberere Vorlesungsabschriften"
+      tips={[
+        'Sitzen Sie nah an der Front und verwenden Sie Ihr Telefon als Backup-Mikrofon.',
+        'Lange Vorlesungen über 60 MB werden automatisch aufgeteilt, wenn Sie sich anmelden.',
+        'Setzen Sie die Sprache explizit für technische oder nicht-englische Inhalte.',
+        'Verwenden Sie den Chat, um nach der Transkription Folgefragen zu stellen.',
+      ]}
+
+      guidesTitle="Verwandte Lernwerkzeuge"
+      guides={[
+        { href: '/de/zoom-transcription',        icon: 'video', title: 'Zoom-Vorlesung',      desc: 'Cloud-Aufnahme herunterladen' },
+        { href: '/de/youtube-to-text',           icon: 'video', title: 'YouTube-Vorlesung',   desc: 'URL einfügen oder hochladen' },
+        { href: '/de/voice-memo-to-text',        icon: 'mic',   title: 'Telefonaufnahme',   desc: 'iPhone Voice Memo im Unterricht' },
+        { href: '/de/timestamped-transcription', icon: 'file',  title: 'Zeitgestempelte Notizen', desc: 'Zeitlich abgestimmte Exporte' },
+      ]}
+
       faq={[
         {
-          q: 'Ist das genau genug für Universitäts-Hausarbeiten?',
-          a: 'Für die meisten Vorlesungsinhalte ja. Whisper large-v3 produziert 90 bis 95 Prozent Genauigkeit bei sauberem Vorlesungs-Audio. Fachbegriffe und Eigennamen brauchen oft Cleanup. Nutzen Sie das Transkript als Lern-Notizen, nicht als kanonische Quelle für Zitate.',
+          q: 'Kann ich eine Zoom-Klassenaufnahme transkribieren?',
+          a: 'Ja. Laden Sie die Cloud-Aufnahme MP4 oder M4A herunter und legen Sie sie hier ab. Siehe den Zoom-Leitfaden für den genauen Downloadpfad.',
         },
         {
-          q: 'Meine Vorlesung ist nicht auf Englisch. Wird es funktionieren?',
-          a: 'Ja. Whisper unterstützt über 50 Sprachen mit guter Genauigkeit in den großen Sprachen und grundlegender Unterstützung für viele weitere. Wählen Sie die Sprache manuell aus dem Dropdown für die besten Ergebnisse.',
+          q: 'Meine Vorlesung ist über 60 MB. Was nun?',
+          a: 'Melden Sie sich an, um die automatische Aufteilung zu aktivieren (bis zu etwa 3 Stunden). Oder reduzieren Sie die Größe auf 64 kbps Mono MP3 mit ffmpeg für eine 5-fache Größenreduktion.',
         },
         {
-          q: 'Meine Vorlesung dauert 90 Minuten. Was tun?',
-          a: 'Teilen Sie sie. Unser Cap ist 60 Minuten pro Datei. In zwei 45-Minuten-Stücke an einem natürlichen Pausenpunkt schneiden (Mittagspause oder Themenübergang).',
+          q: 'Transkribiert Mictoo nicht-englische Vorlesungen?',
+          a: 'Ja. Whisper large-v3 unterstützt über 50 Sprachen. Setzen Sie die Sprache explizit für technisches Vokabular oder starke Akzente.',
         },
         {
-          q: 'Ist es legal, Vorlesungen zu transkribieren?',
-          a: 'Für persönlichen Lernzweck in den meisten Jurisdiktionen generell ja, solange Sie legal Zugriff auf die Aufnahme haben. Für Weiterverbreitung (Veröffentlichung des Transkripts online, Verkauf von Lernmaterialien) brauchen Sie die Erlaubnis des Dozenten oder der Institution. Manche Unis haben explizite Richtlinien zur Aufnahme und Transkription von Vorlesungen. Prüfen Sie Ihre.',
+          q: 'Kann ich im Transkript suchen?',
+          a: 'Ja. Die Leseransicht enthält ein Suchfeld mit Trefferanzahl und Hervorhebung. Drücken Sie Ctrl-F für Ihren Begriff und springen Sie zwischen den Treffern.',
         },
         {
-          q: 'Kann ich eine Video-Vorlesung von Coursera, edX oder Khan Academy transkribieren?',
-          a: 'Ja, wenn Sie die Videodatei herunterladen können. Manche Plattformen erlauben Downloads für Offline-Ansicht (Sie bekommen eine MP4). Hier hochladen. Für Plattformen, die keinen Download erlauben, prüfen Sie deren Bedingungen vor dem Scrapen.',
+          q: 'Kann ich Fragen zum Vorlesungsmaterial stellen?',
+          a: 'Ja. Chatten Sie mit dem Transkript, um zu fragen „erklären Sie den Wohlfahrtsverlust“ oder „welche Seiten hat der Professor erwähnt“. Antworten zitieren Zeitstempel.',
         },
         {
-          q: 'Wird das Transkript Folien-Inhalte enthalten?',
-          a: 'Nein. Wir transkribieren nur das Audio. Wenn der Professor Folien laut vorliest, ist dieser Text im Transkript. Wenn Folien Text am Bildschirm haben, den der Professor nicht vorgelesen hat, ist der nicht im Transkript. Kombinieren Sie mit Screenshots der Folien für vollständige Notizen.',
+          q: 'Kann ich Vorlesungsnotizen als DOCX oder PDF exportieren?',
+          a: 'Ja. DOCX für alle, PDF und JSON für angemeldete Benutzer. TXT ist immer verfügbar.',
         },
         {
-          q: 'Wie genau sind Fachbegriffe und Jargon?',
-          a: 'Weniger genau als gängiges Vokabular. Für lateinische medizinische Begriffe, fortgeschrittene Mathe-Symbole, Nischen-Akronyme rechnen Sie damit, die manuell zu korrigieren. Der allgemeine Fluss der Vorlesung wird solide sein.',
-        },
-        {
-          q: 'Kann ich das Transkript in meine Notiz-App exportieren?',
-          a: 'Ja. Als TXT herunterladen und in Notion, Obsidian, OneNote, Bear oder jedes textfreundliche Tool einfügen. SRT funktioniert in Videoplayern, falls Sie Untertitel neben der Aufnahme wollen.',
-        },
-        {
-          q: 'Wird mein Vorlesungs-Audio gespeichert?',
-          a: 'Nein. Die Datei wird zu unserem Transkriptions-Anbieter gestreamt, verarbeitet und dann verworfen. Wir behalten das Audio nicht.',
-        },
-        {
-          q: 'Wie lange dauert die Transkription einer Vorlesung?',
-          a: 'Etwa 1 bis 2 Prozent der Audiolänge. Eine 60-Minuten-Vorlesung ist in rund 60 Sekunden fertig. Der Upload ist meist die längere Wartezeit.',
-        },
-        {
-          q: 'Kann ich Zeitstempel bekommen, um zu bestimmten Momenten zurückzuspringen?',
-          a: 'Ja. Als SRT herunterladen. Jede Zeile hat einen Zeitstempel, der mit dem Original-Audio abgeglichen ist. Nützlich, um während der Klausurvorbereitung zu einem bestimmten Punkt zurückzukehren.',
-        },
-        {
-          q: 'Was, wenn die Vorlesung am Ende ein Q&A hat?',
-          a: 'Q&A transkribiert sich genauso wie die Hauptvorlesung. Publikumsfragen kommen manchmal weniger klar rüber (Publikumsmitglieder sind meist weiter vom Mikro entfernt), aber die Professor-Antwort sollte sauber sein. Fügen Sie in Ihren Notizen einen „Q&A"-Abschnitt hinzu.',
+          q: 'Werden Vorlesungsaufnahmen auf Ihren Servern gespeichert?',
+          a: 'Nein. Audio wird an den Transkriptionsanbieter gestreamt, einmal verarbeitet und dann gelöscht. Transkripte werden nur gespeichert, wenn Sie sich anmelden.',
         },
       ]}
+
+      ctaHeadline="Verwandeln Sie Vorlesungen in Studiennotizen"
+      ctaSubtitle="Durchsuchbares Transkript, KI-Zusammenfassung, chatten Sie mit dem Material. Kostenlos pro Vorlesung."
+      ctaButton="Eine Vorlesung hochladen"
+
       relatedLinks={[
-        { href: '/de/transcribe-audio-to-text', label: 'Audio in Text', desc: 'Für allgemeine Audiodateien.' },
-        { href: '/de/transcribe-video-to-text', label: 'Video in Text', desc: 'Für Video-Vorlesungen (MP4, MOV).' },
-        { href: '/de/timestamped-transcription', label: 'Transkription mit Zeitstempeln', desc: 'Um zu bestimmten Momenten zurückzuspringen.' },
-        { href: '/de/how-to-split-audio', label: 'Audio teilen', desc: 'Für Vorlesungen über 60 Minuten.' },
+        { href: '/de/webinar-transcription',     label: 'Webinar-Transkription' },
+        { href: '/de/sermon-transcription',      label: 'Predigt-Transkription' },
+        { href: '/de/voice-memo-to-text',        label: 'Voice Memo zu Text' },
+        { href: '/de/interview-transcription',   label: 'Interview-Transkription' },
+        { href: '/de/meeting-transcription',     label: 'Besprechungs-Transkription' },
       ]}
     />
   )

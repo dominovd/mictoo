@@ -1,3 +1,5 @@
+import ConverterPageLayout from '@/components/ConverterPageLayout'
+
 const LANGS = {
   'en': 'https://mictoo.com/m4a-to-mp3',
   'fr': 'https://mictoo.com/fr/m4a-to-mp3',
@@ -13,131 +15,94 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'M4AをMP3に変換する方法 — 無料の方法（または不要）| Mictoo',
-  description: "無料のオンラインツール、QuickTime、VLC、ffmpegでM4Aを数秒でMP3に変換。注意：ほとんどのアプリ（Mictooを含む）はM4Aを直接受け付けるため、変換が不要な場合もあります。",
-  alternates: { canonical: 'https://mictoo.com/ja/m4a-to-mp3', languages: LANGS },
-
+  title: 'M4AからMP3へ：Appleオーディオの無料コンバーター | Mictoo',
+  description:
+    'iPhoneのボイスメモ、GarageBandのバウンス、AppleエコシステムのM4Aファイルを、ポッドキャストホスト、古いAndroidフォン、レガシープレーヤー用の汎用MP3に変換します。',
+  alternates: {
+    canonical: 'https://mictoo.com/ja/m4a-to-mp3',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "M4AをMP3に変換する方法 — 無料の方法（または不要）| Mictoo",
-    description: "無料のオンラインツール、QuickTime、VLC、ffmpegでM4Aを数秒でMP3に変換。注意：ほとんどのアプリ（Mictooを含む）はM4Aを直接受け付けるため、変換が不要な場合もあります。",
-    url: "https://mictoo.com/ja/m4a-to-mp3",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'M4AからMP3へ：Appleオーディオの無料コンバーター | Mictoo',
+    description: 'iPhoneのボイスメモとGarageBandのバウンスを汎用MP3に変換します。',
+    url: 'https://mictoo.com/ja/m4a-to-mp3',
+    siteName: 'Mictoo', type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "M4AをMP3に変換する方法 — 無料の方法（または不要）| Mictoo",
-    description: "無料のオンラインツール、QuickTime、VLC、ffmpegでM4Aを数秒でMP3に変換。注意：ほとんどのアプリ（Mictooを含む）はM4Aを直接受け付けるため、変換が不要な場合もあります。",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'M4AからMP3へ：無料コンバーター',
+    description: 'iPhoneのボイスメモを汎用MP3に変換します。',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function JaM4aToMp3Page() {
   return (
-    <section className="max-w-2xl mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold text-slate-900 mb-3">M4AをMP3に変換する方法</h1>
-      <p className="text-slate-500 mb-10 leading-relaxed">
-        M4Aは、iPhoneのボイスメモ、Apple Podcastsのダウンロード、ほとんどのmacOS録音アプリで使われる既定の音声形式です。MP3はより汎用的ですが、2026年現在、驚くほど多くのツールがM4Aを直接受け付けます — ほぼすべてのブラウザ、オーディオエディター、ポッドキャストアプリ、文字起こしサービスを含みます。本当に変換が必要な場合と、最速の無料変換方法を紹介します。
-      </p>
-
-      <div className="bg-brand-50 border border-brand-100 rounded-2xl p-5 mb-10">
-        <p className="text-sm text-slate-700 mb-2">
-          <strong>おそらく変換は不要です。</strong> M4AとMP3の音質は非常に似ています。MP3を読める最新アプリは、ほとんどの場合M4Aも読みます。具体的には：
-        </p>
-        <ul className="text-sm text-slate-700 list-disc pl-5 mt-2 space-y-1">
-          <li><strong>文字起こし：</strong> Mictooは <code className="font-mono text-xs bg-white px-1.5 py-0.5 rounded border border-slate-200">.m4a</code> を直接受け付けます — ファイルをドロップしてテキストを取得。変換不要。</li>
-          <li><strong>オーディオ編集：</strong> Audacity、GarageBand、Logic、Premiere、DaVinci ResolveすべてM4Aを読みます。</li>
-          <li><strong>ストリーミング・再生：</strong> Spotify、Apple Music、YouTube Music、すべての最新ブラウザとOSがM4Aを再生します。</li>
-        </ul>
-        <p className="text-sm text-slate-700 mt-3">
-          MP3が本当に必要なのは、ターゲットアプリが明示的にMP3のみと書いている場合だけです — 一部の古いカーステレオ、フィットネス機器、基本的なボイスレコーダー、レガシーソフトウェアなど。
-        </p>
-        <a href="/ja" className="inline-flex items-center gap-2 text-sm text-brand-600 hover:underline mt-3">
-          ↑ MictooでM4Aを直接文字起こし
-        </a>
-      </div>
-
-      <div className="space-y-12 text-slate-600 text-sm leading-relaxed">
-
-        <p className="-mb-6 text-slate-700">
-          <strong>それでもMP3が必要？</strong> 環境に合う方法を以下から選択。すべて無料。
-        </p>
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">方法1 — オンラインコンバーター</h2>
-          <p className="mb-4">
-            ドラッグ、ドロップ、ダウンロード — 通常のボイスメモなら10秒以下：
-          </p>
-          <p className="text-xs text-slate-500 mt-3">
-            プライバシー：オンラインツールはファイルをアップロードします。機密録音にはスキップしデスクトップ手法を使用。
-          </p>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">方法2 — macOS（インストール不要）</h2>
-
-          <img
-            src="/svg/macos-music-convert.svg"
-            alt="macOSミュージックアプリ：メニューバーのファイルをクリック、ドロップダウンの変換にホバー、サブメニューからMP3バージョンを作成を選択。"
-            className="w-full rounded-2xl border border-slate-100 mb-5"
-            width={640}
-            height={280}
-          />
-
-          <p className="mb-3">
-            <strong>ミュージックアプリ：</strong> <code className="font-mono">.m4a</code> をミュージックにドラッグし、選択、続いて <strong>ファイル → 変換 → MP3バージョンを作成</strong>。MP3が元のファイルと並んで表示されます。
-          </p>
-          <p className="mb-3">
-            <strong>QuickTime Player：</strong> ファイルを開く → <strong>ファイル → 書き出す → オーディオのみ</strong>。QuickTimeはデフォルトでM4Aとして書き出します。MP3が必要なら下のVLCまたはAudacityと組み合わせてください。
-          </p>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">方法3 — VLC（クロスプラットフォーム）</h2>
-          <p className="mb-3">
-            <a href="https://www.videolan.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">VLC</a> Windows/macOS/Linuxで：
-          </p>
-          <ol className="list-decimal pl-5 space-y-1">
-            <li>VLCを開く → <strong>メディア → 変換 / 保存</strong>。</li>
-            <li>ファイル <code className="font-mono">.m4a</code> を追加、<strong>変換 / 保存</strong> をクリック。</li>
-            <li>プロファイル <code className="font-mono">Audio - MP3</code> を選択。</li>
-            <li>保存先ファイル名を <code className="font-mono">.mp3</code> で終わるように指定し、<strong>開始</strong> をクリック。</li>
-          </ol>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">方法4 — コマンドライン（ffmpeg）</h2>
-          <p className="mb-4">
-            <a href="https://ffmpeg.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">ffmpeg</a> で1行：
-          </p>
-          <pre className="bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto text-xs"><code>{`ffmpeg -i input.m4a -acodec libmp3lame -ab 128k output.mp3`}</code></pre>
-          <p className="text-xs text-slate-500 mt-2">
-            音声・文字起こしには <code className="font-mono">-ab 64k -ac 1</code> を使用 — 音声の品質を保ったままファイルが2〜3分の1に。
-          </p>
-        </div>
-
-        <div className="border-t border-slate-100 pt-8">
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">文字起こしが必要？</h2>
-          <p className="mb-4">
-            M4AもMP3もMictooで直接動作します。ファイルをドロップして、タイムスタンプ、SRT字幕、AI要約付きのテキストを取得 — 無料、登録不要。
-          </p>
-          <a href="/ja" className="inline-flex items-center gap-2 btn-primary text-base px-6 py-3">
-            ↑ 音声を無料でテキストに変換
-          </a>
-        </div>
-
-      </div>
-
-      <div className="border-t border-slate-100 mt-12 pt-8">
-        <p className="text-sm text-slate-400 mb-4 text-center">関連ガイド</p>
-        <div className="flex flex-wrap justify-center gap-3">
-          <a href="/ja/aac-to-mp3" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">AACをMP3に</a>
-          <a href="/ja/wma-to-mp3" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">WMAをMP3に</a>
-          <a href="/ja/m4a-to-text" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">M4Aをテキストに</a>
-          <a href="/ja/how-to-compress-audio" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">音声を圧縮</a>
-        </div>
-      </div>
-    </section>
+    <ConverterPageLayout
+      locale="ja"
+      mode="converter" from="m4a" to="mp3" currentHref="/ja/m4a-to-mp3"
+      badge="M4A → MP3 · 無料 · Appleオーディオ"
+      h1First="M4AからMP3へ"
+      h1Second="Appleエコシステムオーディオの無料コンバーター"
+      subtitle="iPhoneのボイスメモ、GarageBandのバウンス、またはApple Podcastsのエクスポートをドロップして、ポッドキャストホスト、古いAndroidフォン、レガシープレーヤー用の汎用MP3を取得します。"
+      outputFormat="MP3" outputQuality="128 kbps" outputAudio="ステレオ"
+      stepsTitle="M4AからMP3への変換の仕組み"
+      steps={[
+        { icon: 'upload',   title: 'M4Aをドロップ',        desc: 'ボイスメモ、GarageBand、Apple Podcastsから。最大25 MBを匿名で。' },
+        { icon: 'waveform', title: 'デコードとエンコード', desc: 'ffmpegがM4Aコンテナ内のAACをデコードし、128 kbps MP3に再エンコードします。' },
+        { icon: 'download', title: 'MP3をダウンロード',    desc: 'ほとんどの現在のプレーヤーとオーディオエディターに互換性のあるMP3を取得します。' },
+      ]}
+      previewInputName="voice-memo.m4a"
+      previewInputSize="6.2 MB · 00:12:04"
+      previewOutputName="voice-memo.mp3"
+      previewOutputSize="00:12:04 · 128 kbps · 11.5 MB"
+      whyTitle="M4AからMP3への変換にMictooを使う理由"
+      whyCards={[
+        { icon: 'target',   title: 'iPhoneフレンドリー',        desc: 'iPhoneのボイスメモのネイティブ.m4aが直接ドロップイン、名前変更は不要です。' },
+        { icon: 'fileAudio',title: 'レガシーホスト用のMP3',   desc: '一部のポッドキャストホストや古いAndroidデバイスは、MP3をM4Aよりも好むことがあります。' },
+        { icon: 'lock',     title: '変換後にファイル削除',    desc: 'アップロードされたM4Aは変換後に削除され、MP3は1時間以内に消去されます。' },
+        { icon: 'shield',   title: 'ウォーターマークやタグなし',    desc: 'オーディオだけが再エンコードされます。ブランドのイントロやメタデータは挿入されません。' },
+      ]}
+      scenariosTitle="M4AからMP3が役立つ場面"
+      scenarios={[
+        { icon: 'headphones', title: 'iPhoneのボイスメモ' },
+        { icon: 'waveform',   title: 'GarageBandのバウンス' },
+        { icon: 'mail',       title: 'レガシーポッドキャストホスト' },
+        { icon: 'archive',    title: '一貫したライブラリ形式' },
+        { icon: 'editPen',    title: '古いDAWのインポート' },
+        { icon: 'video',      title: '非Appleのビデオエディター' },
+      ]}
+      tipsTitle="クリーンなM4AからMP3への変換のためのヒント"
+      tips={[
+        'プラットフォームがM4Aを受け入れる場合、変換する必要はないかもしれません。',
+        '両方のフォーマットはロスィーです。再エンコードはわずかな品質損失を追加します。',
+        'ID3およびiTunesメタデータは引き継がれません。',
+        'トランスクリプションには、M4Aを直接/m4a-to-textにアップロードしてください。',
+      ]}
+      processTitle="変換中に何が起こるか"
+      processSteps={['M4A (MP4コンテナ)', 'AACデコード', 'MP3エンコーディング']}
+      compareTitle="M4AとMP3"
+      compareRows={[
+        { fmt: 'M4A', contains: 'いいえ', size: '小さい（効率的）', best: 'Appleエコシステム、現代のデバイス' },
+        { fmt: 'MP3', contains: 'いいえ', size: '小さい',             best: '汎用、レガシープレーヤー、古いホスト' },
+      ]}
+      faq={[
+        { q: 'M4AをMP3に変換する必要がありますか？', a: '特定のツールやホストがMP3を要求する場合のみです。ほとんどの現代のデバイス（2026年のすべてのAndroidおよびWindowsを含む）は、M4Aをネイティブに再生します。' },
+        { q: 'コンバーターは無料ですか？', a: 'はい。最大25 MBのファイルはアカウントなしで変換でき、出力にはウォーターマークがありません。' },
+        { q: '品質を失いますか？', a: 'M4AとMP3はどちらもロスィーです。再エンコードはわずかな損失を追加しますが、通常のリスニングでは聞こえません。' },
+        { q: 'iPhoneのボイスメモのネイティブフォーマットは機能しますか？', a: 'はい。iPhoneのボイスメモは標準の.m4aを書き込み、直接ドロップインします。' },
+        { q: 'ファイルは保存されますか？', a: 'いいえ。アップロードされたM4Aは変換後に削除され、MP3は1時間以内に消去されます。' },
+      ]}
+      ctaHeadline="今すぐM4AをMP3に変換"
+      ctaSubtitle="iPhoneのボイスメモやAppleオーディオをドロップして、ポータブルMP3を取得します。"
+      ctaButton="M4Aファイルを選択"
+      moreTools={[
+        { href: '/ja/aac-to-mp3',  label: 'AACからMP3へ' },
+        { href: '/ja/mp4-to-mp3',  label: 'MP4からMP3へ' },
+        { href: '/ja/mp3-to-m4a',  label: 'MP3からM4Aへ' },
+        { href: '/ja/m4a-to-text', label: 'M4Aからテキストへ' },
+      ]}
+    />
   )
 }

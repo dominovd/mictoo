@@ -1,9 +1,9 @@
 import UseCaseLayout from '@/components/UseCaseLayout'
 
 export const metadata = {
-  title: 'Lecture Transcription: Free Lecture Transcript Generator | Mictoo',
+  title: 'Lecture Transcription for Classes and Seminars | Mictoo',
   description:
-    'Free lecture transcription. Upload your recorded class, university lecture, or seminar (MP3, M4A, MP4) and get clean text in seconds. Built for students.',
+    'Upload a recorded class, lecture, or seminar and get searchable text, timestamps, an AI summary, and export files.',
   alternates: {
     canonical: 'https://mictoo.com/lecture-transcription',
     languages: {

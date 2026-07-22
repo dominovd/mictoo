@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/lecture-transcription',
@@ -15,195 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Trascrizione lezione — generatore gratuito IA | Mictoo',
+  title: 'Trascrizione delle Lezioni per Corsi e Seminari | Mictoo',
   description:
-    'Trascrizione gratuita di lezioni. Carica la registrazione di una lezione, un corso o un seminario (MP3, M4A, MP4) e ottieni testo pulito in pochi secondi. Costruito per studenti.',
-  alternates: { canonical: 'https://mictoo.com/it/lecture-transcription', languages: LANGS },
-
+    'Carica una lezione, un seminario o una conferenza registrata e ottieni testo ricercabile, timestamp, un riepilogo AI e file di esportazione.',
+  alternates: {
+    canonical: 'https://mictoo.com/it/lecture-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Trascrizione lezione — generatore gratuito IA | Mictoo",
-    description: "Trascrizione gratuita di lezioni. Carica la registrazione di una lezione, un corso o un seminario (MP3, M4A, MP4) e ottieni testo pulito in pochi secondi. Costruito per studenti.",
-    url: "https://mictoo.com/it/lecture-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Trascrizione delle Lezioni: Generatore di Trascrizioni Gratuito | Mictoo',
+    description: 'Carica la tua lezione o seminario registrato e ottieni testo pulito in pochi secondi.',
+    url: 'https://mictoo.com/it/lecture-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Trascrizione lezione — generatore gratuito IA | Mictoo",
-    description: "Trascrizione gratuita di lezioni. Carica la registrazione di una lezione, un corso o un seminario (MP3, M4A, MP4) e ottieni testo pulito in pochi secondi. Costruito per studenti.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Trascrizione delle Lezioni: Generatore Gratuito',
+    description: 'Carica la registrazione della tua lezione o seminario.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function ItLecturePage() {
+export default function ItLectureTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="it"
-      badge="Studenti · Accademici · Gratis"
-      h1={
-        <>
-          Trascrizione lezione
-          <br />
-          <span className="text-brand-600">Strumento gratuito per trascrizioni di lezioni</span>
-        </>
-      }
-      subtitle="Trasforma qualsiasi lezione registrata in testo pulito per studiare. Università, corso online, talk a una conferenza, formazione professionale. Senza registrazione, senza tariffa al minuto."
-      howItWorks={[
+    <UseCaseLayout
+      locale="it"
+      badge="Studenti · Accademici · Gratuito"
+      h1First="Trascrizione delle Lezioni"
+      h1Second="Trascrizioni gratuite per corsi e seminari"
+      subtitle="Carica la tua lezione registrata da Zoom, Panopto, YouTube, Kaltura o dal tuo telefono. Ottieni una trascrizione ricercabile con timestamp pronta per appunti di studio, revisione e citazione."
+      currentHref="/it/lecture-transcription"
+
+      platforms={[
+        { name: 'Zoom',      iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/it/zoom-transcription' },
+        { name: 'YouTube',   iconKey: 'videoCameraFill', brandBg: '#FF0000' },
+        { name: 'Panopto',   iconKey: 'cap',             brandBg: '#014A96' },
+        { name: 'Kaltura',   iconKey: 'cap',             brandBg: '#FA6425' },
+        { name: 'Camtasia',  iconKey: 'videoCameraFill', brandBg: '#00A651' },
+        { name: 'Voice Memo',iconKey: 'mic',             brandBg: '#F97316', href: '/it/voice-memo-to-text' },
+      ]}
+
+      howItWorksTitle="Come funziona la trascrizione delle lezioni"
+      steps={[
         {
-          icon: '🎓',
-          title: 'Rilascia l\'audio o il video della lezione',
-          desc: 'MP3 da un registratore vocale, M4A dal tuo telefono, MP4 da una lezione su Zoom o da una registrazione schermo di una lezione online. WAV da un registratore da campo. Tutto va bene.',
+          icon: 'folder',
+          title: 'Esporta la lezione',
+          desc: 'Scarica da Panopto/Kaltura, salva dalla nuvola di Zoom o registra sul tuo telefono durante la lezione.',
         },
         {
-          icon: '⚡',
-          title: 'L\'IA trascrive',
-          desc: 'Whisper large-v3 legge l\'audio. Una lezione di 60 minuti finisce in circa un minuto.',
+          icon: 'upload',
+          title: 'Trascina il file qui',
+          desc: 'MP3, MP4, M4A, WAV, MOV funzionano tutti. Le lezioni lunghe vengono automaticamente suddivise quando sei connesso.',
         },
         {
-          icon: '📋',
-          title: 'Prendi la trascrizione',
-          desc: 'Leggi, copia nei tuoi appunti o scarica come TXT o SRT. Sistema i termini tecnici sbagliati inline prima di esportare.',
+          icon: 'editPen',
+          title: 'Appunti, riepiloghi, citazioni',
+          desc: 'Trascrizione ricercabile con timestamp, riepilogo AI, DOCX per appunti di studio. Chatta con la trascrizione per prepararti agli esami.',
         },
       ]}
-      whyUse={{
-        title: 'Perché Mictoo per le lezioni',
-        bullets: [
-          {
-            title: 'Formato lungo va bene',
-            desc: 'Fino a 60 minuti per file dopo registrazione gratuita. Per una lezione di 90 minuti, dividila in due pezzi da 45 minuti. La trascrizione è ricomponibile.',
-          },
-          {
-            title: 'Gestisce il vocabolario tecnico meglio della maggior parte',
-            desc: 'Whisper è stato addestrato su una vasta varietà di audio, comprese lezioni accademiche. Latino, gergo specialistico, termini matematici, frammenti di codice spesso escono più puliti del previsto.',
-          },
-          {
-            title: 'Nessun costo per lezione',
-            desc: 'Per uno studente è uno spreco pagare la trascrizione per corso. Gratis senza contatore al minuto significa che puoi trascrivere ogni lezione in un semestre.',
-          },
-          {
-            title: 'Privacy e copyright',
-            desc: 'Il file va al provider di trascrizione ed è scartato. Non conserviamo l\'audio. Utile quando trascrivi materiale che è tuo (le tue registrazioni) ma non vuoi caricare su un servizio di archiviazione di terze parti.',
-          },
-          {
-            title: 'Oltre 50 lingue',
-            desc: 'Studenti internazionali e corsi online in lingue diverse dall\'inglese funzionano tutti. Il rilevamento automatico copre la maggior parte dei casi.',
-          },
-        ],
-      }}
-      useCases={{
-        title: 'A cosa servono le trascrizioni di lezioni per studenti e accademici',
-        items: [
-          {
-            title: 'Appunti di studio ricercabili',
-            desc: 'Metti la trascrizione in Notion, Obsidian o un documento Word. Ctrl+F su qualsiasi termine che il professore ha citato. Meglio di scorrere 90 minuti di audio.',
-          },
-          {
-            title: 'Preparazione esami',
-            desc: 'Scorri la trascrizione mentre rivedi i tuoi appunti scritti a mano. Cattura cose che hai perso durante la lezione dal vivo.',
-          },
-          {
-            title: 'Tradurre lezioni per non madrelingua',
-            desc: 'Trascrivi nella lingua di partenza, poi passa per DeepL o ChatGPT per tradurre. Utile per studenti che seguono corsi nella loro seconda lingua.',
-          },
-          {
-            title: 'Accessibilità per studenti sordi e ipoudenti',
-            desc: 'Una trascrizione o un file SRT fornisce lo stesso contenuto in un\'altra modalità. Alcune università lo richiedono per contenuto didattico registrato.',
-          },
-          {
-            title: 'Creare flashcard e materiali di studio',
-            desc: 'Le trascrizioni alimentano carte Anki, documenti di riepilogo o strumenti di studio assistiti dall\'IA.',
-          },
-        ],
-      }}
-      proTips={{
-        title: 'Consigli per la trascrizione di lezioni',
-        tips: [
-          {
-            title: 'Per le lezioni in presenza, siediti vicino al professore',
-            desc: 'Registrare dall\'ultima fila attraverso il rumore di sala produce una trascrizione con molte lacune. Telefono in prima fila, schermo verso il basso, cattura voce pulita.',
-          },
-          {
-            title: 'Per lezioni lunghe usa un registratore vocale dedicato',
-            desc: 'Le registrazioni telefoniche hanno auto-leveling aggressivo e riduzione del rumore, che danneggia la trascrizione. Uno Zoom H1n o registratore entry-level simile dà audio molto più pulito per 80 euro.',
-          },
-          {
-            title: 'Per lezioni online registra l\'audio di sistema direttamente',
-            desc: 'OBS Studio su Windows o Mac può registrare l\'audio della lezione direttamente dal sistema. Più pulito che registrare attraverso il microfono del laptop.',
-          },
-          {
-            title: 'Imposta la lingua manualmente',
-            desc: 'Il rilevamento automatico di solito è corretto, ma può essere confuso dal warmup del professore in un\'altra lingua. Scegli la lingua della lezione esplicitamente dal menu.',
-          },
-          {
-            title: 'Taglia i primi 5 minuti se sono annunci amministrativi',
-            desc: '"Avete fatto i compiti? Avete letto il capitolo 3?" non è utile per la trascrizione. Taglialo via in Audacity prima dell\'upload per risparmiare il budget di dimensione file.',
-          },
-          {
-            title: 'Per lezioni STEM con equazioni, la trascrizione cattura la matematica parlata, non le equazioni',
-            desc: 'Le espressioni matematiche alla lavagna non sono nell\'audio, quindi non nella trascrizione. Devi catturarle comunque separatamente (foto della lavagna, screenshot delle slide).',
-          },
-          {
-            title: 'Alla prima revisione, riascolta la registrazione mentre leggi la trascrizione',
-            desc: 'È il modo migliore per correggere termini specifici del professore e riferimenti a equazioni. Una volta ripulita, la trascrizione regge da sola.',
-          },
-        ],
-      }}
+
+      exampleTitle="Esempio di trascrizione di una lezione"
+      exampleFileName="intro-microeconomics-lecture-08.mp4"
+      exampleDurationLabel="47:32"
+      exampleLines={[
+        { t: '0:00',  line: 'Va bene. La settimana scorsa abbiamo finito con il concetto di surplus del consumatore. Oggi ci basiamo su questo con il surplus del produttore.' },
+        { t: '0:11',  line: 'Il surplus del produttore è la differenza tra ciò che un produttore accetterebbe per un bene e ciò che riceve effettivamente.' },
+        { t: '0:23',  line: 'Insieme, il surplus del consumatore più il surplus del produttore ci dà il benessere totale in un mercato prima di introdurre tasse o controlli sui prezzi.' },
+        { t: '0:35',  line: 'Ora, perché ci interessa questo concetto praticamente? Perché ci permette di valutare se una politica rende un mercato migliore o peggiore.' },
+        { t: '0:47',  line: 'Considera una tassa per unità. Essa sposta la curva di offerta verso l’alto dell’importo della tassa, e entrambi i surplus si riducono.' },
+        { t: '0:58',  line: 'Il divario che appare tra ciò che i compratori pagano e ciò che i venditori ricevono è ciò che chiamiamo perdita di peso morto.' },
+        { t: '1:08',  line: 'Per favore, apri il quaderno a pagina trentauno e lavoriamo insieme su un esempio numerico.' },
+      ]}
+      summaryPoints={[
+        'Riepilogo: surplus del consumatore dalla lezione precedente.',
+        'Nuovo concetto: surplus del produttore e benessere totale.',
+        'Applicato all’analisi fiscale.',
+        'Perdita di peso morto illustrata numericamente.',
+      ]}
+      actionItems={[
+        'Rivedi la pagina 31 del quaderno',
+        'Pratica il calcolo della perdita di peso morto',
+        'Leggi il capitolo 4 prima di giovedì',
+      ]}
+
+      whyTitle="Perché Mictoo per la trascrizione delle lezioni"
+      whyCards={[
+        {
+          icon: 'search',
+          title: 'Ricercabile all’interno della trascrizione',
+          desc: 'Ctrl-F qualsiasi concetto dall’intera lezione di 45 minuti in un secondo. Meglio che scorrere il video.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Riepilogo AI per appunti di revisione',
+          desc: 'Il riepilogo è un solido punto di partenza per la revisione. Riduci ciò che già sai, mantieni ciò che hai perso.',
+        },
+        {
+          icon: 'chat',
+          title: 'Chatta con la lezione',
+          desc: 'Fai domande sul materiale per prepararti agli esami. Le risposte in stile RAG citano il timestamp esatto.',
+        },
+        {
+          icon: 'globe',
+          title: 'Traduci per studenti non madrelingua',
+          desc: 'Lezione in inglese ma studi in portoghese? Traduzione con un clic in oltre 50 lingue.',
+        },
+      ]}
+
+      scenariosTitle="Scenari comuni delle lezioni"
+      scenarios={[
+        { icon: 'book',      title: 'Corso universitario' },
+        { icon: 'cap' ,      title: 'Corso online' },
+        { icon: 'search',    title: 'Revisione per l’esame' },
+        { icon: 'editPen',   title: 'Appunti di studio' },
+        { icon: 'globe',     title: 'Studente non madrelingua' },
+        { icon: 'headset',   title: 'Seminario registrato' },
+      ]}
+
+      tipsTitle="Suggerimenti per trascrizioni di lezioni più pulite"
+      tips={[
+        'Siediti vicino alla parte anteriore e usa il tuo telefono come microfono di riserva.',
+        'Le lezioni lunghe oltre 60 MB vengono automaticamente suddivise quando accedi.',
+        'Imposta esplicitamente la lingua per contenuti tecnici o non in inglese.',
+        'Usa la chat per fare domande di follow-up dopo la trascrizione.',
+      ]}
+
+      guidesTitle="Strumenti di apprendimento correlati"
+      guides={[
+        { href: '/it/zoom-transcription',        icon: 'video', title: 'Lezione Zoom',      desc: 'Download della registrazione nella nuvola' },
+        { href: '/it/youtube-to-text',           icon: 'video', title: 'Lezione YouTube',   desc: 'Incolla l’URL o carica' },
+        { href: '/it/voice-memo-to-text',        icon: 'mic',   title: 'Registrazione telefonica',   desc: 'Memo vocali di iPhone in classe' },
+        { href: '/it/timestamped-transcription', icon: 'file',  title: 'Appunti con timestamp', desc: 'Esportazioni allineate nel tempo' },
+      ]}
+
       faq={[
         {
-          q: 'È abbastanza preciso per compiti universitari?',
-          a: 'Per la maggior parte del contenuto di una lezione, sì. Whisper large-v3 produce 90-95% di precisione su audio lezione pulito. Termini tecnici e nomi propri spesso richiedono cleanup. Usa la trascrizione come appunti di studio, non come fonte canonica per citazioni.',
+          q: 'Posso trascrivere una registrazione di una lezione Zoom?',
+          a: 'Sì. Scarica il MP4 o M4A della registrazione nella nuvola e trascinalo qui. Consulta la guida di Zoom per il percorso di download esatto.',
         },
         {
-          q: 'La mia lezione non è in inglese. Funzionerà?',
-          a: 'Sì. Whisper supporta oltre 50 lingue con buona precisione nelle lingue maggiori e supporto base per molte altre. Scegli la lingua manualmente dal menu per i migliori risultati.',
+          q: 'La mia lezione è oltre 60 MB. E adesso?',
+          a: 'Accedi per abilitare la suddivisione automatica (fino a circa 3 ore). Oppure riduci a 64 kbps mono MP3 con ffmpeg per una riduzione della dimensione di 5 volte.',
         },
         {
-          q: 'La mia lezione dura 90 minuti. Cosa faccio?',
-          a: 'Dividila. Il nostro cap è 60 minuti per file. Tagliala in due pezzi da 45 minuti a un punto di pausa naturale (pausa pranzo o cambio argomento).',
+          q: 'Mictoo trascrive lezioni non in inglese?',
+          a: 'Sì. Whisper large-v3 supporta oltre 50 lingue. Imposta esplicitamente la lingua per vocabolario tecnico o accenti pesanti.',
         },
         {
-          q: 'È legale trascrivere lezioni?',
-          a: 'Per uso personale di studio in genere sì nella maggior parte delle giurisdizioni, purché tu abbia accesso legale alla registrazione. Per ridistribuzione (pubblicare la trascrizione online, vendere materiali di studio) ti serve il permesso del docente o dell\'istituzione. Alcune università hanno politiche esplicite sulla registrazione e trascrizione delle lezioni. Controlla la tua.',
+          q: 'Posso cercare all’interno della trascrizione?',
+          a: 'Sì. La vista lettore include una casella di ricerca con conteggio delle corrispondenze e evidenziazione. Ctrl-F il tuo termine e salta tra le corrispondenze.',
         },
         {
-          q: 'Posso trascrivere una video-lezione di Coursera, edX o Khan Academy?',
-          a: 'Sì, se puoi scaricare il file video. Alcune piattaforme permettono download per visione offline (ottieni un MP4). Caricalo qui. Per piattaforme che non permettono il download, verifica i loro termini prima di fare scraping.',
+          q: 'Posso fare domande sul materiale della lezione?',
+          a: 'Sì. Chattare con la trascrizione ti consente di chiedere "spiega la perdita di peso morto" o "quali pagine ha menzionato il professore". Le risposte citano i timestamp.',
         },
         {
-          q: 'La trascrizione conterrà il contenuto delle slide?',
-          a: 'No. Trascriviamo solo l\'audio. Se il professore legge le slide ad alta voce, quel testo è nella trascrizione. Se le slide hanno testo a schermo che il professore non ha letto, quello non è nella trascrizione. Combina con screenshot delle slide per appunti completi.',
+          q: 'Posso esportare appunti di lezione come DOCX o PDF?',
+          a: 'Sì. DOCX per chiunque, PDF e JSON per utenti registrati. TXT è sempre disponibile.',
         },
         {
-          q: 'Quanto sono precisi termini tecnici e gergo?',
-          a: 'Meno precisi del vocabolario comune. Per termini medici latini, simboli matematici avanzati, acronimi di nicchia aspettati di correggerli manualmente. Il flusso generale della lezione sarà solido.',
-        },
-        {
-          q: 'Posso esportare la trascrizione nella mia app di appunti?',
-          a: 'Sì. Scaricala come TXT e incollala in Notion, Obsidian, OneNote, Bear o qualsiasi strumento text-friendly. SRT funziona nei video player se vuoi sottotitoli accanto alla registrazione.',
-        },
-        {
-          q: 'L\'audio della mia lezione viene conservato?',
-          a: 'No. Il file va al nostro provider di trascrizione, viene processato, poi scartato. Non conserviamo l\'audio.',
-        },
-        {
-          q: 'Quanto ci mette a trascrivere una lezione?',
-          a: 'Circa l\'1-2% della durata audio. Una lezione di 60 minuti finisce in circa 60 secondi. L\'upload di solito è l\'attesa più lunga.',
-        },
-        {
-          q: 'Posso ottenere timecode per saltare a momenti specifici?',
-          a: 'Sì. Scarica come SRT. Ogni riga ha un timecode allineato all\'audio originale. Utile per tornare a un punto preciso durante la preparazione esame.',
-        },
-        {
-          q: 'E se la lezione ha un Q&A alla fine?',
-          a: 'Il Q&A si trascrive proprio come la lezione principale. Le domande dal pubblico a volte arrivano meno chiare (chi è in sala di solito è più lontano dal microfono), ma la risposta del professore dovrebbe essere pulita. Aggiungi una sezione "Q&A" nei tuoi appunti.',
+          q: 'Le registrazioni delle lezioni vengono conservate sui vostri server?',
+          a: 'No. I flussi audio vengono inviati al fornitore di trascrizione, elaborati una sola volta e poi eliminati. Le trascrizioni vengono salvate solo se accedi.',
         },
       ]}
+
+      ctaHeadline="Trasforma le lezioni in appunti di studio"
+      ctaSubtitle="Trascrizione ricercabile, riepilogo AI, chat con il materiale. Gratuito per lezione."
+      ctaButton="Carica una lezione"
+
       relatedLinks={[
-        { href: '/it/transcribe-audio-to-text', label: 'Audio in testo', desc: 'Per file audio generici.' },
-        { href: '/it/transcribe-video-to-text', label: 'Video in testo', desc: 'Per video-lezioni (MP4, MOV).' },
-        { href: '/it/timestamped-transcription', label: 'Trascrizione con timecode', desc: 'Per saltare a momenti specifici.' },
-        { href: '/it/how-to-split-audio', label: 'Dividere l\'audio', desc: 'Per lezioni oltre 60 minuti.' },
+        { href: '/it/webinar-transcription',     label: 'Trascrizione Webinar' },
+        { href: '/it/sermon-transcription',      label: 'Trascrizione Sermone' },
+        { href: '/it/voice-memo-to-text',        label: 'Memo Vocale in Testo' },
+        { href: '/it/interview-transcription',   label: 'Trascrizione Intervista' },
+        { href: '/it/meeting-transcription',     label: 'Trascrizione Riunione' },
       ]}
     />
   )

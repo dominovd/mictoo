@@ -1,9 +1,9 @@
 import UseCaseLayout from '@/components/UseCaseLayout'
 
 export const metadata = {
-  title: 'Google Meet Transcription: Workspace Recording or Free-Account Workaround | Mictoo',
+  title: 'Google Meet Recording Transcription to Text | Mictoo',
   description:
-    'Drop a Google Meet recording from your Drive (Workspace Business Standard+) or a screen capture from a free Meet account. Get a cleaner transcript than the Workspace AI add-on.',
+    'Upload an authorized Google Meet recording from Drive or a local screen capture and get a transcript, AI summary, and exports.',
   alternates: {
     canonical: 'https://mictoo.com/google-meet-transcription',
     languages: {
@@ -39,10 +39,10 @@ export const metadata = {
 export default function GoogleMeetTranscriptionPage() {
   return (
     <UseCaseLayout
-      badge="Google Meet · Any tier · Free"
+      badge="Google Meet · Drive or local capture · Free"
       h1First="Google Meet Transcription"
-      h1Second="Workspace recording or free-account workaround"
-      subtitle="If you have a Workspace Business Standard+ plan, download the MP4 from Drive › Meet Recordings and drop it here. On a free Meet account, screen-record with QuickTime or OBS and drop that file. Either path produces a cleaner transcript than the Workspace AI add-on."
+      h1Second="Drive recordings and local captures to text"
+      subtitle="Upload a Google Meet recording from Drive or a local capture you are authorized to make. Recording availability depends on the host's Workspace edition, permissions, and administrator settings."
       currentHref="/google-meet-transcription"
 
       platforms={[
@@ -59,7 +59,7 @@ export default function GoogleMeetTranscriptionPage() {
         {
           icon: 'folder',
           title: 'Get the recording',
-          desc: 'Workspace: Drive › My Drive › Meet Recordings. Free tier: use QuickTime or OBS to screen-record.',
+          desc: 'Eligible Workspace recording: Drive › My Drive › Meet Recordings. Otherwise, use an authorized local capture that follows participant-consent rules.',
         },
         {
           icon: 'upload',
@@ -69,7 +69,7 @@ export default function GoogleMeetTranscriptionPage() {
         {
           icon: 'editPen',
           title: 'Transcript, summary, exports',
-          desc: 'Timestamped transcript, AI summary, TXT/SRT/VTT/DOCX in under a minute for a 30-minute call.',
+          desc: 'Get a timestamped transcript, AI summary, and TXT/SRT/VTT/DOCX exports. Processing time depends on duration and file size.',
         },
       ]}
 
@@ -101,13 +101,13 @@ export default function GoogleMeetTranscriptionPage() {
       whyCards={[
         {
           icon: 'lock',
-          title: 'Works on the free Meet tier',
-          desc: 'No Workspace license required. Screen-record any Meet call with QuickTime or OBS, drop it here.',
+          title: 'Works with a media file',
+          desc: 'Upload a Drive recording or an authorized local capture without connecting Mictoo to your Google account.',
         },
         {
           icon: 'target',
-          title: 'Higher accuracy than Workspace AI',
-          desc: 'Whisper large-v3 outperforms the Workspace AI transcript add-on on names and technical terms.',
+          title: 'Timestamped text for review',
+          desc: 'Review names and technical terms against the recording, then export the corrected transcript in the format you need.',
         },
         {
           icon: 'sparkles',
@@ -150,15 +150,15 @@ export default function GoogleMeetTranscriptionPage() {
       faq={[
         {
           q: 'Do I need Google Workspace to record a Meet call?',
-          a: 'For the built-in recording feature, yes: Business Standard or higher. On a free account, use a screen recorder (QuickTime on Mac, OBS on Windows/Linux) to capture the meeting locally.',
+          a: 'Google recording availability depends on the host account edition, meeting role, administrator settings, and permissions. Eligible recordings are saved to Drive. If you make a local capture instead, obtain any required participant consent and follow applicable policy.',
         },
         {
           q: 'Where do Workspace Meet recordings save?',
           a: 'To the meeting organizer\'s Drive: My Drive › Meet Recordings. The MP4 typically appears within a few minutes of the meeting ending. An email notification is sent when it is ready.',
         },
         {
-          q: 'Is Mictoo better than the Workspace AI transcript add-on?',
-          a: 'For most content, yes. Whisper large-v3 tends to outperform the Workspace AI ASR on names and technical terms. Also, Mictoo AI summary is bundled; Workspace AI summary is a separate feature.',
+          q: 'Should I use the Meet transcript or upload the recording?',
+          a: 'Use the Meet transcript when it is available and meets your needs. Uploading the media is useful when you want Mictoo exports, translation, or an additional transcript to review. Accuracy varies with the audio.',
         },
         {
           q: 'My Meet recording is over 60 MB. What now?',
@@ -170,7 +170,7 @@ export default function GoogleMeetTranscriptionPage() {
         },
         {
           q: 'Does Mictoo identify who is speaking in Meet?',
-          a: 'Not yet. The transcript is continuous text with per-line timestamps, no speaker labels. Diarisation is on the Pro roadmap.',
+          a: 'No. The current transcript is continuous text with per-line timestamps and no automatic speaker labels.',
         },
         {
           q: 'Are Meet recordings kept on your servers?',
@@ -179,7 +179,7 @@ export default function GoogleMeetTranscriptionPage() {
       ]}
 
       ctaHeadline="Turn Meet calls into clean text"
-      ctaSubtitle="Workspace recording from Drive, or QuickTime/OBS capture on the free tier. Either works."
+      ctaSubtitle="Upload an authorized Drive recording or local capture for text, summary, and exports."
       ctaButton="Upload Meet recording"
 
       relatedLinks={[

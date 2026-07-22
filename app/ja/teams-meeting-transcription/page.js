@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/teams-meeting-transcription',
@@ -15,80 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Microsoft Teams文字起こし — 会議を文字起こし | Mictoo',
+  title: 'MP4録画からのTeams会議の文字起こし | Mictoo',
   description:
-    '無料Microsoft Teams文字起こし。OneDriveまたはSharePointからの録画(MP4)をアップロードして、クリーンなAI文字起こしを数秒で取得。登録不要。',
-  alternates: { canonical: 'https://mictoo.com/ja/teams-meeting-transcription', languages: LANGS },
-
+    'OneDriveまたはSharePointからMicrosoft TeamsのMP4をアップロードし、タイムスタンプ付きの文字起こし、AI要約、エクスポートファイルを取得します。',
+  alternates: {
+    canonical: 'https://mictoo.com/ja/teams-meeting-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Microsoft Teams文字起こし — 会議を文字起こし | Mictoo",
-    description: "無料Microsoft Teams文字起こし。OneDriveまたはSharePointからの録画(MP4)をアップロードして、クリーンなAI文字起こしを数秒で取得。登録不要。",
-    url: "https://mictoo.com/ja/teams-meeting-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'MP4からのTeams会議の文字起こし | Mictoo',
+    description: 'OneDriveまたはSharePointからTeamsの録画をドロップし、テキスト、要約、エクスポートを取得します。',
+    url: 'https://mictoo.com/ja/teams-meeting-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Microsoft Teams文字起こし — 会議を文字起こし | Mictoo",
-    description: "無料Microsoft Teams文字起こし。OneDriveまたはSharePointからの録画(MP4)をアップロードして、クリーンなAI文字起こしを数秒で取得。登録不要。",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Teams会議の文字起こし',
+    description: 'OneDriveまたはSharePointからMP4をアップロードし、文字起こしを取得します。',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function JaTeamsPage() {
+export default function JaTeamsMeetingTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="ja"
-      badge="TEAMS · ONEDRIVE · 無料"
-      h1={<>Microsoft Teams文字起こし<br /><span className="text-brand-600">無料Teams会議文字起こし</span></>}
-      subtitle="Teams録画をクリーンなテキストに変換。OneDriveまたはSharePointからMP4をドロップして、数秒で文字起こし。アカウント不要、分単位課金なし。"
-      howItWorks={[
-        { icon: '☁️', title: 'OneDriveまたはSharePointからダウンロード', desc: 'Teams録画は主催者のOneDrive(チャネル外会議)またはSharePointサイト(チャネル会議)に保存。MP4としてダウンロード。長い会議には先に音声を抽出。' },
-        { icon: '⚡', title: 'ファイルをドロップ', desc: 'MP4から音声を抽出してWhisper large-v3に送信。30分の会議は約1分で完了。' },
-        { icon: '📋', title: '文字起こし取得', desc: 'ブラウザで読む、コピー、またはTXTかSRTでダウンロード。エクスポート前に誤った名前や専門用語をインラインで修正。' },
+    <UseCaseLayout
+      locale="ja"
+      badge="Teams · OneDrive / SharePoint · M365 · 無料"
+      h1First="Teams会議の文字起こし"
+      h1Second="OneDriveまたはSharePointのMP4からテキストへ"
+      subtitle="アクセス許可のあるTeamsの録画をダウンロードし、MP4をアップロードしてタイムスタンプ付きの文字起こし、AI要約、エクスポートを取得します。録画の可用性は、Microsoft 365ライセンスと組織のポリシーによります。"
+      currentHref="/ja/teams-meeting-transcription"
+
+      platforms={[
+        { name: 'OneDrive',    iconKey: 'videoCameraFill', brandBg: '#0364B8' },
+        { name: 'SharePoint',  iconKey: 'videoCameraFill', brandBg: '#036C70' },
+        { name: 'Channel MP4', iconKey: 'videoCameraFill', brandBg: '#4B53BC' },
+        { name: 'Zoom',        iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/ja/zoom-transcription' },
+        { name: 'Google Meet', iconKey: 'videoCameraFill', brandBg: '#00832D', href: '/ja/google-meet-transcription' },
+        { name: 'Meeting hub', iconKey: 'videoCameraFill', brandBg: '#0F1F35', href: '/ja/meeting-transcription' },
       ]}
-      whyUse={{ title: 'Teams会議にMictooを使う理由', bullets: [
-        { title: '文字起こし用の特定Microsoft 365ライセンスエントリーなしで動作', desc: '録画ファイルがあれば、ここで文字起こしできます。Teams Premiumや特定のOfficeプランは不要。' },
-        { title: 'より強い非英語とアクセントカバレッジ', desc: 'Microsoft Teams文字起こしは英語と主要西欧言語でうまく動作。Whisper large-v3は50以上の言語をカバーし、アクセントとバイリンガル会話のより強い扱い。' },
-        { title: '無料、分カウンターなし', desc: 'Teams文字起こしはライセンスに組み込まれていますが、機能ゲートで制限。Mictooには会議制限も月間分制限もありません。' },
-        { title: '動画エディタ向けSRTエクスポート', desc: 'Teams文字起こしはTeamsアプリ内に存在するか、VTTとしてダウンロード。私たちは両方をエクスポート、TXTとクリーンなSRT、Premiere、DaVinci、CapCut、YouTube Studioとドロップイン互換。' },
-        { title: 'デフォルトでプライバシー', desc: 'ファイルは文字起こしプロバイダにストリーミングされ、処理されて破棄。会議音声を保持しません。' },
-      ]}}
-      useCases={{ title: '人々がTeams会議を文字起こしする用途', items: [
-        { title: 'プロジェクト会議議事録', desc: 'Confluence、Notion、またはSharePointページに文字起こしを貼り付け。会議を逃した人は60分の動画ではなく5分でテキストを読む。' },
-        { title: 'アカウントチームのクライアント通話レビュー', desc: 'Salesforce、Dynamics、HubSpotのディール横に文字起こしを保存。フォローアップメール用の引用検索は数秒。' },
-        { title: 'クロスファンクショナル決定ログ', desc: 'Teams通話からの大きな決定が文字起こしで要約。ガバナンスと監査証跡に便利。' },
-        { title: 'ベンダーと請負業者通話', desc: 'プロジェクトが外部関係者を含む時、文字起こしは合意されたことの曖昧でない記録。' },
-        { title: 'コンプライアンスと規制業界', desc: '一部の業界では特定の会話の記録が必要。文字起こしは音声録音を検索可能でインデックス可能にします。' },
-      ]}}
-      proTips={{ title: 'Teams文字起こしのコツ', tips: [
-        { title: 'アップロード前にMP4から音声を抽出', desc: 'Teams MP4は720pまたは1080p動画で、文字起こしには無関係。音声のみ取得: ffmpeg -i teams.mp4 -vn -ac 1 -b:a 64k teams.mp3。1.5 GB MP4が30 MB以下に縮小。' },
-        { title: 'OneDriveまたはSharePointからダウンロード、ストリームしない', desc: 'OneDriveは時々ブラウザでMP4を再生。ここにアップロードする前に実際にファイルをダウンロードしたことを確認。SharePoint共有リンクはファイル自体と同じではありません。' },
-        { title: '60分超の会議はアップロード前に分割', desc: '30分か45分のチャンクに切る。文字起こしは再結合可能。長いTeams通話は一般的で、慎重に扱う価値あり。' },
-        { title: '可能なら会議中にバックグラウンド通知をミュート', desc: '通話中のOutlookデスクトップ通知とTeamsチャット音は音声に着地し、時々文字起こしにも。WindowsのFocus AssistまたはMacの「邪魔しない」を使用。' },
-        { title: '会議室マイクはクリーンアップが必要', desc: '天井マイクのTeams Roomsは音声品質が変動。エコーと遠距離フィールド録音が精度を傷つける。Adobe Podcast Enhance(無料Web)はこれらの録音でアップロード前に助ける。' },
-        { title: '機密会議は外部にアップロードしない', desc: '私たちにも。HR、法的、または取締役会話には、オンプレミス文字起こしを優先。私たちのサービスはクラウドAI処理が許容される非機密会議用。' },
-      ]}}
+
+      howItWorksTitle="Teams会議の文字起こしの仕組み"
+      steps={[
+        {
+          icon: 'folder',
+          title: '録画を見つける',
+          desc: 'プライベート会議: OneDrive › マイファイル › 録画。チャンネル会議: チャンネルのSharePointサイト。',
+        },
+        {
+          icon: 'upload',
+          title: 'ここにMP4をドロップ',
+          desc: 'OneDriveまたはSharePointからダウンロードし、ドラッグします。60MBを超える場合は、音声を抽出するか、サインインして自動分割を行います。',
+        },
+        {
+          icon: 'editPen',
+          title: '文字起こし、要約、エクスポート',
+          desc: 'タイムスタンプ付きの文字起こし、AI要約、TXT/SRT/VTT/DOCX。30分のTeamsコールは約1分で完了します。',
+        },
+      ]}
+
+      exampleTitle="Teams会議の文字起こしの例"
+      exampleFileName="teams-channel-meeting.mp4"
+      exampleDurationLabel="41:08"
+      exampleLines={[
+        { t: '0:00',  line: 'はい、スプリントレビューへようこそ。出荷されたもの、出荷されなかったもの、そしてその理由を説明します。' },
+        { t: '0:11',  line: '支払いチームは火曜日に新しい返金フローを出荷しました。採用率は期待を上回り、約40％の対象チケットです。' },
+        { t: '0:24',  line: '検索チームは予想以上に長いインデックスパイプラインに直面しました。出荷は次のスプリントに持ち越されました。' },
+        { t: '0:35',  line: 'それは問題ありませんが、顧客成功チームに遅延を伝える必要があります。そうすれば、期待を管理できます。' },
+        { t: '0:47',  line: '今日、共有チャンネルに修正されたタイムラインと理由を記載したメモを送ります。' },
+        { t: '0:58',  line: '第三に、モバイルのクラッシュ率がわずかに上昇しました。SLA内ですが、このスプリント中は注意が必要です。' },
+        { t: '1:09',  line: 'デバイステームはすでに対応しています。水曜日までに根本原因を特定し、スプリントの終わりまでに修正を行う予定です。' },
+      ]}
+      summaryPoints={[
+        '返金フローは火曜日に出荷され、40％の採用率。',
+        '検索チームは1スプリント遅延（インデックスパイプライン）。',
+        'モバイルのクラッシュ率は上昇しましたが、SLA内です。',
+        '水曜日までにモバイルのクラッシュの根本原因を特定します。',
+      ]}
+      actionItems={[
+        '顧客成功チャンネルに遅延通知を送信',
+        'モバイルクラッシュの根本原因を調査（水曜日）',
+        '検索チームの新しい出荷日を確認',
+      ]}
+
+      whyTitle="Teamsの録画にMictooを選ぶ理由"
+      whyCards={[
+        {
+          icon: 'folder',
+          title: 'ダウンロードした録画で動作',
+          desc: 'OneDriveまたはチャンネルのSharePointサイトからダウンロードする権限のあるMP4を使用します。',
+        },
+        {
+          icon: 'target',
+          title: '名前と用語を確認',
+          desc: 'タイムスタンプ付きの出力により、製品名、略語、専門用語を見つけて修正しやすくなります。',
+        },
+        {
+          icon: 'sparkles',
+          title: '文字起こしと一緒に要約',
+          desc: '要約のドラフトを生成し、共有する前に完全なテキストの横に置いておきます。',
+        },
+        {
+          icon: 'globe',
+          title: '異なる言語の録画を翻訳',
+          desc: 'ある言語での録画、別の言語での要約が必要です。ワンクリックで50以上の言語に対応。',
+        },
+      ]}
+
+      scenariosTitle="一般的なTeamsのシナリオ"
+      scenarios={[
+        { icon: 'chat',      title: 'スプリントレビュー' },
+        { icon: 'briefcase', title: 'ボード同期' },
+        { icon: 'users',     title: 'スタンドアップ' },
+        { icon: 'target',    title: 'OKRレビュー' },
+        { icon: 'headset',   title: 'サポートエスカレーション' },
+        { icon: 'globe',     title: '国際電話' },
+      ]}
+
+      tipsTitle="Teamsの録画に関するヒント"
+      tips={[
+        'プライベート会議はOneDrive（主催者のアカウント）に保存されます。',
+        'チャンネル会議はチャンネルのSharePointサイトに保存されます。',
+        'GCC / エンタープライズテナントはダウンロードを制限する場合があります: ITに確認してください。',
+        '長時間の会議の場合は、ffmpegを使用して音声を抽出し、ファイルを縮小します。',
+      ]}
+
+      guidesTitle="他の会議プラットフォーム"
+      guides={[
+        { href: '/ja/zoom-transcription',        icon: 'video', title: 'Zoom',        desc: 'クラウド + ローカル + M4A' },
+        { href: '/ja/google-meet-transcription', icon: 'video', title: 'Google Meet', desc: 'ワークスペース + 無料' },
+        { href: '/ja/meeting-transcription',     icon: 'video', title: 'Meeting hub', desc: '任意のプラットフォーム、1回のアップロード' },
+        { href: '/ja/business-transcription',    icon: 'briefcase', title: 'ビジネス', desc: '承認された内部録画' },
+      ]}
+
       faq={[
-        { q: 'MictooはMicrosoft Teams録画で動作しますか?', a: 'はい。OneDrive(チャネル外会議用の主催者のOneDrive)またはチャネルSharePointサイトからMP4をダウンロード。ここにアップロード。音声抽出を先にすると長い会議が速くなる。' },
-        { q: 'Teams Premiumや特定のMicrosoft 365プランが必要ですか?', a: '会議を録画させるプランが必要。録画がOneDriveまたはSharePointにあれば、ここでの文字起こしはライセンスに関係なく無料。' },
-        { q: '録画はMicrosoftに戻りますか?', a: 'いいえ。ファイルは文字起こしプロバイダ(Groq、バックアップとしてOpenAI)に行き、処理後に破棄。Microsoft、Outlook、Microsoftサービスには何も戻りません。' },
-        { q: 'Teams内蔵文字起こしと比較してどうですか?', a: 'Teams文字起こしはライセンスに含まれていれば英語会議には大丈夫。私たちのは無料で、より多くの言語とアクセントで動作し、動画エディタ用にクリーンなSRTをエクスポート。会議に合うものを使用。' },
-        { q: 'Teams録画が60 MBを超えています。どうすれば?', a: 'ffmpegや音声ツールで音声のみ抽出。1.5 GB Teams MP4は音声として30 MB以下に。音声がまだ60 MB超なら、チャンクに分割。' },
-        { q: 'スピーカーラベルは取得できますか?', a: '自動的にはありません。区別できる声の会議では、会話に基づいて手動でラベルを追加できます。スピーカーごとに別々の音声トラックで録画された会議(Teamsでは稀)では、クリーンな帰属のために各トラックを別々にアップロード。' },
-        { q: 'Teamsチャットメッセージで動作しますか?', a: 'いいえ。チャットメッセージはTeams内に残る。音声のみ文字起こし。両方が必要なら自分で組み合わせ。' },
-        { q: 'Teams文字起こしはどれくらい正確?', a: '良いマイクの会議(USBヘッドセットのノートPC): 90〜95%。天井マイクの会議室会議: 80〜90%。名前、専門用語、頭字語は通常クリーンアップが必要。' },
-        { q: 'Teams会議をリアルタイムで文字起こしできますか?', a: 'いいえ。録画されたファイルで動作。会議中のリアルタイムにはTeamsの内蔵ライブキャプションまたはTranscript機能を使用。' },
-        { q: 'どの言語をサポートしていますか?', a: '自動検出で50以上の言語。5分未満の会議や非音声のイントロ(待機室音楽、ホールド音)があるファイルでは、言語を手動で選んでください。' },
-        { q: '文字起こしをWord文書またはOneDriveにエクスポートできますか?', a: 'プレーンテキスト(TXT)とSRTをエクスポート。コピーしてWordに貼り付けるか、TXTを自分でOneDriveにアップロード。Microsoft 365統合はまだありません。' },
-        { q: 'ヨーロッパのTeams会議でGDPR準拠ですか?', a: 'サイトを離れた後、音声や文字起こしをサーバーに保存しません。私たちはヨーロッパにあり、プロバイダ(Groq US、OpenAI US)はDPAに署名しています。特定のコンプライアンス質問にはプライバシーポリシーを参照するか、info@mictoo.comに書いてください。' },
+        {
+          q: 'Teamsの録画はどこに保存されますか？',
+          a: 'プライベート会議: 主催者のOneDriveのマイファイル › 録画。チャンネル会議: そのチャンネルを支えるSharePointサイトのドキュメント内のチャンネルフォルダ。',
+        },
+        {
+          q: '録画をアップロードするのにTeams Premiumは必要ですか？',
+          a: 'Mictooは、Teamsアカウントに接続するのではなく、ダウンロードしたメディアファイルを処理します。録画、文字起こし、またはTeams内でのダウンロードの能力は、Microsoft 365ライセンス、会議の役割、組織のポリシーによります。',
+        },
+        {
+          q: 'Teamsの文字起こしを使用すべきですか、それとも録画をアップロードすべきですか？',
+          a: '利用可能でニーズを満たす場合は、Teamsの文字起こしを使用してください。Mictooのエクスポート、翻訳、またはレビュー用の追加の文字起こしが必要な場合は、録画をアップロードすることが有用です。録画によって精度は異なります。',
+        },
+        {
+          q: '私のTeams MP4は60MBを超えています。どうすればいいですか？',
+          a: '音声を抽出します: ffmpeg -i teams.mp4 -vn -ac 1 -ar 16000 audio.m4a。または、約3時間までのファイルの自動分割のためにサインインします。',
+        },
+        {
+          q: 'GCC / エンタープライズテナントでMictooを使用できますか？',
+          a: '一部のエンタープライズおよび政府のテナントは、ダウンロードや外部処理を制限しています。組織のポリシーに従い、ダウンロードまたは会議メディアのアップロード前にITまたは録画の所有者に確認してください。',
+        },
+        {
+          q: 'MictooはTeamsの話者を特定しますか？',
+          a: 'いいえ。現在の文字起こしは、行ごとのタイムスタンプ付きの連続テキストであり、自動話者ラベルはありません。',
+        },
+        {
+          q: 'Teamsの録画はあなたのサーバーに保存されますか？',
+          a: 'いいえ。ファイルは文字起こしプロバイダーにストリーミングされ、一度処理されて削除されます。サインインしたアカウントには文字起こしのみが残ります。',
+        },
       ]}
+
+      ctaHeadline="Teamsの会議をクリーンなテキストに変換"
+      ctaSubtitle="承認されたOneDriveまたはSharePointの録画をアップロードし、テキスト、要約、エクスポートを取得します。"
+      ctaButton="Teamsの録画をアップロード"
+
       relatedLinks={[
-        { href: '/ja/zoom-transcription', label: 'Zoom文字起こし', desc: 'Zoom CloudまたはLocal Recordings用。' },
-        { href: '/ja/google-meet-transcription', label: 'Google Meet文字起こし', desc: 'Google Meet録画用。' },
-        { href: '/ja/meeting-transcription', label: '会議文字起こし', desc: '他のプラットフォームからの録画用。' },
-        { href: '/ja/business-transcription', label: 'ビジネス文字起こし', desc: '営業通話、インタビュー、その他のビジネス音声用。' },
+        { href: '/ja/meeting-transcription',       label: '会議の文字起こし' },
+        { href: '/ja/zoom-transcription',          label: 'Zoomの文字起こし' },
+        { href: '/ja/google-meet-transcription',   label: 'Google Meetの文字起こし' },
+        { href: '/ja/business-transcription',      label: 'ビジネスの文字起こし' },
+        { href: '/ja/webinar-transcription',       label: 'ウェビナーの文字起こし' },
       ]}
     />
   )

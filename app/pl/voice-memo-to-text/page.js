@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/voice-memo-to-text',
@@ -15,82 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Notatka głosowa na tekst — transkrybuj Voice Memos iPhone za darmo | Mictoo',
+  title: 'Przekształcanie notatek głosowych na tekst dla iPhone’a i Androida | Mictoo',
   description:
-    'Darmowa transkrypcja notatek głosowych. Upuść notatkę z iPhone lub nagranie głosowe Android (M4A, MP3) i otrzymaj czysty tekst w kilka sekund. Bez rejestracji.',
-  alternates: { canonical: 'https://mictoo.com/pl/voice-memo-to-text', languages: LANGS },
-
+    'Prześlij nagranie głosowe z iPhone’a lub Androida i otrzymaj tekst z znacznikami czasowymi, podsumowanie AI i edytowalne eksporty.',
+  alternates: {
+    canonical: 'https://mictoo.com/pl/voice-memo-to-text',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Notatka głosowa na tekst — transkrybuj Voice Memos iPhone za darmo | Mictoo",
-    description: "Darmowa transkrypcja notatek głosowych. Upuść notatkę z iPhone lub nagranie głosowe Android (M4A, MP3) i otrzymaj czysty tekst w kilka sekund. Bez rejestracji.",
-    url: "https://mictoo.com/pl/voice-memo-to-text",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Przekształcanie notatek głosowych na tekst: Darmowe | Mictoo',
+    description: 'Prześlij swoje nagranie głosowe z iPhone’a lub Androida, otrzymaj czysty tekst.',
+    url: 'https://mictoo.com/pl/voice-memo-to-text',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Notatka głosowa na tekst — transkrybuj Voice Memos iPhone za darmo | Mictoo",
-    description: "Darmowa transkrypcja notatek głosowych. Upuść notatkę z iPhone lub nagranie głosowe Android (M4A, MP3) i otrzymaj czysty tekst w kilka sekund. Bez rejestracji.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Przekształcanie notatek głosowych na tekst',
+    description: 'Darmowa transkrypcja nagrań głosowych z telefonu.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function PlVoiceMemoPage() {
+export default function PlVoiceMemoToTextPage() {
   return (
-    <LandingLayout
-      defaultLanguage="pl"
-      badge="iPhone · Android · Za darmo"
-      h1={<>Notatka głosowa na tekst<br /><span className="text-brand-600">Darmowy transkryptor notatek głosowych</span></>}
-      subtitle="Zamień notatki głosowe w czysty tekst. iPhone, Android, dedykowany dyktafon, dowolny plik głosowy. Upuść, otrzymaj transkrypcję w kilka sekund. Bez rejestracji, bez opłaty za minutę."
-      howItWorks={[
-        { icon: '📱', title: 'Przenieś notatkę na komputer (lub wgraj z telefonu)', desc: 'iPhone: otwórz Voice Memos, dotknij Udostępnij, wyślij przez AirDrop lub email do siebie. Android: znajdź nagranie w Pliki lub w folderze aplikacji dyktafonu. Lub użyj przeglądarki mobilnej, aby wgrać bezpośrednio z telefonu.' },
-        { icon: '📂', title: 'Upuść plik', desc: 'M4A z iPhone, M4A lub MP3 z Android, WAV z niektórych dyktafonów. Wszystko działa.' },
-        { icon: '📋', title: 'Weź transkrypcję', desc: 'Czytaj w przeglądarce, skopiuj do schowka lub pobierz jako TXT. Wklej w Notion, Apple Notes, Google Docs lub gdzie żyją twoje notatki.' },
+    <UseCaseLayout
+      locale="pl"
+      badge="iPhone · Android · Darmowe"
+      h1First="Przekształcanie notatek głosowych na tekst"
+      h1Second="Darmowa transkrypcja nagrań głosowych z telefonu"
+      subtitle="Prześlij swoją notatkę głosową z iPhone’a, nagranie głosowe z Androida, notatkę głosową z WhatsAppa lub wiadomość głosową z Telegrama. Otrzymaj czysty transkrypt w kilka sekund. Bez rejestracji, bez opłaty za minutę."
+      currentHref="/pl/voice-memo-to-text"
+
+      platforms={[
+        { name: 'iPhone',       iconKey: 'mic',       brandBg: '#0F172A' },
+        { name: 'Google Rec',   iconKey: 'mic',       brandBg: '#4285F4' },
+        { name: 'Samsung',      iconKey: 'mic',       brandBg: '#1428A0' },
+        { name: 'WhatsApp',     iconKey: 'phone',     brandBg: '#25D366' },
+        { name: 'Telegram',     iconKey: 'phone',     brandBg: '#0088CC' },
+        { name: 'Audacity',     iconKey: 'soundwave', brandBg: '#0B60D6' },
       ]}
-      whyUse={{ title: 'Dlaczego Mictoo do notatek głosowych', bullets: [
-        { title: 'Natywne wsparcie M4A', desc: 'Voice Memos iPhone są zapisywane jako M4A. Akceptujemy M4A bezpośrednio. Bez konwersji.' },
-        { title: 'Za darmo, bez licznika minut', desc: 'Notatki głosowe to format "jeden na raz". Płacenie za minutę za 2-minutowy pomysł jest absurdalne. Za darmo bez cap pasuje do tego przypadku użycia.' },
-        { title: 'Szybko dla krótkich plików', desc: '2-minutowa notatka głosowa transkrybuje się w około 5 sekund. Szybciej niż wystukiwanie pomysłu.' },
-        { title: 'Prywatność', desc: 'Notatki głosowe są często osobiste. Twoje audio idzie do dostawcy transkrypcji, jest przetwarzane i odrzucane. Nie przechowujemy.' },
-        { title: 'Mobile-friendly', desc: 'Wgraj bezpośrednio z telefonu przez przeglądarkę. iOS i Android oba działają.' },
-        { title: 'Auto-wykrywanie obsługuje twój język', desc: 'Notatki głosowe w dowolnym z ponad 50 języków. Przydatne, jeśli myślisz w dwóch językach i twoje notatki się przełączają.' },
-      ]}}
-      useCases={{ title: 'Do czego ludzie używają transkrypcji notatek głosowych', items: [
-        { title: 'Łapanie pomysłów w ruchu', desc: 'Miałeś myśl podczas spaceru, podyktowałeś do telefonu. Teraz chcesz działać. Transkrybuj, wklej w task manager lub aplikację notatek.' },
-        { title: 'Dyktowanie długich tekstów', desc: 'Niektórzy szkicują eseje, posty na blog lub emaile, mówiąc. Transkrybuj notatkę głosową, edytuj tekst, wyślij.' },
-        { title: 'Zadania po spotkaniu', desc: 'Podyktowałeś sobie podsumowanie w drodze powrotnej z sali konferencyjnej. Transkrybuj, wklej w dokument projektu.' },
-        { title: 'Notatki terenowe dla dziennikarzy i badaczy', desc: 'Łap obserwacje i cytaty na miejscu. Transkrybuj później dla uporządkowanych notatek.' },
-        { title: 'Listy przypomnień (zakupy, pakowanie, plany projektu)', desc: 'Notatki głosowe są szybsze niż pisanie na telefonie. Transkrybuj dla przeszukiwalnej, edytowalnej wersji tekstowej.' },
-      ]}}
-      proTips={{ title: 'Wskazówki do transkrypcji notatek głosowych', tips: [
-        { title: 'Trzymaj telefon blisko, ale nie za blisko', desc: '10-15 cm od ust to słodki punkt. Bliżej i mikrofon łapie plozyje i oddech. Dalej i tracisz zrozumiałość w głośnych środowiskach.' },
-        { title: 'Wiatr to wróg', desc: '10-sekundowa notatka głosowa na wietrznej ulicy może być nieużywalna. Jeśli możesz, zatrzymaj się, odwróć tyłem do wiatru, potem nagrywaj. Lub użyj słuchawek z mikrofonem odpornym na wiatr.' },
-        { title: 'Pauza przed słowami kluczowymi', desc: 'Podczas dyktowania nazwiska, adresu lub terminu technicznego zrób krótką pauzę przed. Whisper radzi sobie z izolowanymi słowami lepiej niż z szybką mową dla nazw własnych.' },
-        { title: 'Voice Memos iPhone domyślnie jest na lossless M4A, ale możesz przełączyć na lossy', desc: 'Ustawienia, Voice Memos, Jakość audio. Lossless to przesada dla transkrypcji. Lossy to jedna trzecia rozmiaru bez różnicy w dokładności.' },
-        { title: 'Przytnij ciszę na początku i końcu przed uploadem', desc: 'Notatki głosowe czasem łapią 3-5 sekund martwego powietrza. Przytnij w aplikacji Voice Memos (dotknij Edytuj) przed udostępnieniem. Mniejszy plik, szybciej transkrybowany.' },
-        { title: 'Dla długich dyktatów (pisanie szkicu głosem) podziel na kawałki 5-10 minut', desc: 'Łatwiejsze do edycji. Łatwiej ponownie nagrać pojedynczy kawałek, jeśli pójdzie źle.' },
-        { title: 'Whisper radzi sobie z twoim akcentem lepiej niż wbudowana funkcja dyktowania telefonu', desc: 'iOS ma wbudowane dyktowanie, ale jest angielsko-first i słabsze przy akcentach. Whisper pokrywa ponad 50 języków z lepszą dokładnością.' },
-      ]}}
+
+      howItWorksTitle="Jak działa transkrypcja notatek głosowych"
+      steps={[
+        {
+          icon: 'folder',
+          title: 'Udostępnij nagranie',
+          desc: 'iPhone: udostępnij z aplikacji Notatki Głosowe. Android: plik z aplikacji Pliki. WhatsApp: przekaż jako plik.',
+        },
+        {
+          icon: 'upload',
+          title: 'Prześlij plik tutaj',
+          desc: 'M4A (iPhone), MP3 (Android), OPUS/OGG (WhatsApp, Telegram) działają bezpośrednio.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Transkrypt w kilka sekund',
+          desc: '5-minutowa notatka kończy się w około 10 sekund. Podsumowanie AI przekształca chaotyczne pomysły w zwięzłą listę działań.',
+        },
+      ]}
+
+      exampleTitle="Przykład transkryptu notatki głosowej"
+      exampleFileName="voice-memo.m4a"
+      exampleDurationLabel="3:22"
+      exampleLines={[
+        { t: '0:00',  line: 'Dobrze, szybka notatka głosowa, zanim zapomnę cały pomysł.' },
+        { t: '0:04',  line: 'Więc pomysł polega na tym, że bierzemy proces zakupu i dzielimy go na dwa wyraźne kroki zamiast jednego długiego formularza.' },
+        { t: '0:13',  line: 'Krok pierwszy, tylko e-mail i karta. Krok drugi, dane do wysyłki po zobaczeniu numeru potwierdzenia.' },
+        { t: '0:22',  line: 'Powód, dla którego to ma znaczenie, jest taki, że spadek w obecnym formularzu jednolitym wynosi około trzydzieści osiem procent.' },
+        { t: '0:32',  line: 'Większość tego spadku występuje w sekcji wysyłki, a nie przy wprowadzaniu karty, co jest nieintuicyjne.' },
+        { t: '0:42',  line: 'Jeśli przeniesiemy wysyłkę na czas po zakupie, możemy prawdopodobnie odzyskać dwanaście do piętnastu procent tego ruchu.' },
+        { t: '0:52',  line: 'Pod względem czasu, myślę, że to dwa tygodnie frontend, jeden tydzień backend, może tydzień testowania.' },
+      ]}
+      summaryPoints={[
+        'Pomysł: podzielić proces zakupu na dwa kroki.',
+        'Krok 1: e-mail + karta. Krok 2: wysyłka po potwierdzeniu.',
+        'Obecny spadek: 38%, głównie w sekcji wysyłki.',
+        'Szacowane odzyskanie: 12-15% ruchu.',
+      ]}
+      actionItems={[
+        'Sporządź makietę dwuetapowego procesu zakupu',
+        'Zweryfikuj 38% spadku w analizach',
+        'Określ zakres inżynieryjny (~4 tygodnie łącznie)',
+      ]}
+
+      whyTitle="Dlaczego Mictoo do notatek głosowych"
+      whyCards={[
+        {
+          icon: 'sparkles',
+          title: 'Podsumowanie AI dla chaotycznych notatek',
+          desc: 'Notatki głosowe są z natury chaotyczne. Podsumowanie przekształca pięciominutowy strumień myśli w dwulinijkowe podsumowanie.',
+        },
+        {
+          icon: 'mic',
+          title: 'iPhone .m4a natywnie',
+          desc: 'Apple Notatki Głosowe zapisują w .m4a (AAC w MP4). Akceptujemy to bezpośrednio, bez konwersji.',
+        },
+        {
+          icon: 'chat',
+          title: 'Telegram .oga natywnie',
+          desc: 'Zapisz wiadomość głosową z czatu i prześlij plik .oga. Opus w OGG, obsługiwane natywnie.',
+        },
+        {
+          icon: 'globe',
+          title: 'Tłumaczenie dla notatek w różnych językach',
+          desc: 'Notatka w twoim ojczystym języku, notatki w języku angielskim dla zespołu. Jedno kliknięcie.',
+        },
+      ]}
+
+      scenariosTitle="Typowe scenariusze notatek głosowych"
+      scenarios={[
+        { icon: 'sparkles', title: 'Zbieranie pomysłów' },
+        { icon: 'chat',     title: 'Notatki ze spotkań' },
+        { icon: 'editPen',  title: 'Pisanie szkiców' },
+        { icon: 'book',     title: 'Prowadzenie dziennika' },
+        { icon: 'phone',    title: 'Wiadomość głosowa' },
+        { icon: 'globe',    title: 'Wielojęzyczne' },
+      ]}
+
+      tipsTitle="Porady na temat czystszych notatek głosowych"
+      tips={[
+        'Trzymaj telefon blisko, aby zredukować hałas w tle.',
+        'Dla długich notatek powyżej 60 MB, zaloguj się, aby automatycznie podzielić.',
+        'Mów w jednym języku na notatkę dla najczystszej detekcji.',
+        'Powiedz "nowy akapit", jeśli chcesz, aby transkrypt się tam przerwał.',
+      ]}
+
+      guidesTitle="Powiązane narzędzia"
+      guides={[
+        { href: '/pl/m4a-to-text',        icon: 'file',  title: 'Format M4A',       desc: 'iPhone / GarageBand głęboka analiza' },
+        { href: '/pl/ogg-to-text',        icon: 'file',  title: 'OGG / .oga',       desc: 'Głęboka analiza wiadomości głosowych z Telegrama' },
+        { href: '/pl/dictation-to-text',  icon: 'editPen', title: 'Dyktowanie',      desc: 'Praca w trybie głosowym' },
+        { href: '/pl/interview-transcription', icon: 'chat', title: 'Wywiad',    desc: 'Wywiad telefoniczny lub osobisty' },
+      ]}
+
       faq={[
-        { q: 'Czy Mictoo obsługuje Voice Memos iPhone?', a: 'Tak. Voice Memos iPhone są zapisywane jako M4A (czasem lossless jako ALAC). M4A działa bezpośrednio. Dla ALAC najpierw skonwertuj na WAV lub M4A AAC.' },
-        { q: 'Jak przenieść notatkę głosową z iPhone do Mictoo?', a: 'Trzy opcje. Otwórz notatkę w Voice Memos, dotknij Udostępnij, wybierz AirDrop na Mac (najszybciej) lub email do siebie. Lub użyj Safari na iPhone, aby otworzyć mictoo.com i wgrać bezpośrednio z aplikacji Pliki.' },
-        { q: 'A co z nagraniami głosowymi Android?', a: 'Dyktafony Android zazwyczaj zapisują jako M4A lub MP3. Oba działają. Znajdź plik w aplikacji Pliki, udostępnij na komputer lub wgraj z przeglądarki mobilnej.' },
-        { q: 'Czy mogę wgrywać bezpośrednio z telefonu?', a: 'Tak. Strona jest mobile-friendly. Dotknij obszaru uploadu, wybierz plik z aplikacji Pliki telefonu lub folderu nagrań.' },
-        { q: 'Jak długa może być moja notatka głosowa?', a: 'Do 30 minut na plik za darmo, 60 minut z rejestracją. Większość notatek głosowych jest poniżej 5 minut, dobrze w ramach dowolnego limitu.' },
-        { q: 'Jak dokładna jest transkrypcja notatek głosowych?', a: 'Dla wyraźnej mowy w cichym środowisku: 90-95%. Dla zamamrotaczej mowy, szumu tła (ulica, kawiarnia, samochód) dokładność spada. Nazwy własne często wymagają oczyszczenia.' },
-        { q: 'Czy transkrypcja będzie zawierać interpunkcję?', a: 'Tak. Whisper dodaje interpunkcję automatycznie. Nie zawsze idealnie dla dyktowanej mowy (która ma mniej naturalne granice zdań), ale użyteczne tak jak jest.' },
-        { q: 'Czy działa do dyktowania w języku nieangielskim?', a: 'Tak, ponad 50 języków. Wybierz język ręcznie z menu dla krótkich notatek (auto-wykrywanie potrzebuje więcej audio, aby być niezawodne).' },
-        { q: 'Czy moja notatka głosowa jest zapisywana?', a: 'Nie. Plik idzie do naszego dostawcy transkrypcji, jest przetwarzany, potem odrzucany.' },
-        { q: 'Czy mogę edytować transkrypcję przed pobraniem?', a: 'Tak. Popraw błędne słowa w przeglądarce przed eksportem.' },
-        { q: 'Czy działa do nagrywania rozmów telefonicznych?', a: 'Transkrybujemy plik, który wgrywasz, niezależnie od tego, jak został nagrany. Samo nagrywanie rozmów wymaga zgody w większości jurysdykcji. Uzyskaj zgodę przed nagrywaniem.' },
-        { q: 'Jaka jest różnica z wbudowaną funkcją dyktowania iOS?', a: 'Dyktowanie iOS jest w czasie rzeczywistym podczas mówienia, ograniczone do określonych języków i słabsze przy akcentach. Mictoo transkrybuje po nagraniu, obsługuje ponad 50 języków i używa bardziej dokładnego modelu (Whisper large-v3).' },
+        {
+          q: 'Czy mogę bezpośrednio transkrybować notatki głosowe z iPhone’a?',
+          a: 'Tak. Udostępnij notatkę z aplikacji Notatki Głosowe (udzielanie → zapisz do Plików lub wyślij do siebie) i prześlij .m4a do Mictoo. Nie wymaga konwersji.',
+        },
+        {
+          q: 'Czy Mictoo transkrybuje wiadomości głosowe z WhatsAppa lub Telegrama?',
+          a: 'Tak. Zapisz wiadomość głosową z czatu (przekaż → zapisz jako plik) i prześlij ją. Notatki głosowe z WhatsAppa są w .opus, notatki głosowe z Telegrama są w .oga (oba są kontenerami OGG). Oba działają bezpośrednio.',
+        },
+        {
+          q: 'Jaki jest limit rozmiaru pliku?',
+          a: '25 MB anonimowo, 60 MB po zalogowaniu. 60-minutowa notatka głosowa przy typowym bitrate wynosi około 20-30 MB, więc większość mieści się w darmowym limicie.',
+        },
+        {
+          q: 'Czy Mictoo transkrybuje notatki głosowe w językach innych niż angielski?',
+          a: 'Tak. Whisper large-v3 obsługuje ponad 50 języków. Dla krótkich notatek lub treści w językach obcych, ustaw język explicite dla czystszej detekcji przy pierwszym podejściu.',
+        },
+        {
+          q: 'Czy mogę uzyskać podsumowanie chaotycznej notatki burzy mózgów?',
+          a: 'Tak. Podsumowanie AI pojawia się automatycznie obok transkryptu. Doskonałe do przekształcania notatek strumienia świadomości w zwięzłe listy działań.',
+        },
+        {
+          q: 'Czy notatki głosowe są przechowywane na waszych serwerach?',
+          a: 'Nie. Audio jest przesyłane do dostawcy transkrypcji, przetwarzane raz i usuwane. Tylko transkrypt pozostaje, jeśli się zalogujesz i go zapiszesz.',
+        },
+        {
+          q: 'Czy mogę przetłumaczyć swoją notatkę głosową na inny język?',
+          a: 'Tak. Wybierz docelowy język i kliknij Tłumacz po transkrypcji. GPT-4o-mini zajmuje się tłumaczeniem i pojawia się obok oryginału.',
+        },
       ]}
+
+      ctaHeadline="Przekształć notatki głosowe w tekst i zadania"
+      ctaSubtitle="Notatki głosowe z iPhone’a, Androida, WhatsAppa, Telegrama. Wszystkie formaty, jedno przesłanie."
+      ctaButton="Prześlij notatkę głosową"
+
       relatedLinks={[
-        { href: '/pl/m4a-to-text', label: 'M4A na tekst', desc: 'Specyficznie dla plików M4A.' },
-        { href: '/pl/dictation-to-text', label: 'Dyktowanie na tekst', desc: 'Dla podyktowanych szkiców tekstu i długoformatowego pisania głosem.' },
-        { href: '/pl/interview-transcription', label: 'Transkrypcja wywiadu', desc: 'Dla wywiadów nagranych na telefonie.' },
-        { href: '/pl/transcribe-audio-to-text', label: 'Audio na tekst', desc: 'Dla innych formatów audio.' },
+        { href: '/pl/dictation-to-text',       label: 'Dyktowanie na tekst' },
+        { href: '/pl/interview-transcription', label: 'Transkrypcja wywiadów' },
+        { href: '/pl/m4a-to-text',             label: 'M4A na tekst' },
+        { href: '/pl/ogg-to-text',             label: 'OGG na tekst' },
+        { href: '/pl/meeting-transcription',   label: 'Transkrypcja spotkań' },
       ]}
     />
   )

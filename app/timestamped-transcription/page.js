@@ -3,7 +3,7 @@ import ConverterPageLayout from '@/components/ConverterPageLayout'
 export const metadata = {
   title: 'Timestamped Transcription: Free Time-Coded Transcript Generator | Mictoo',
   description:
-    'Free timestamped transcription. Get word-level or sentence-level timestamps for any audio or video. Perfect for journalism, research, podcasting, video editing.',
+    'Free timestamped transcription with segment-level time codes for audio or video. Useful for journalism, research, podcasting, and video editing.',
   alternates: {
     canonical: 'https://mictoo.com/timestamped-transcription',
     languages: {
@@ -45,14 +45,14 @@ export default function TimestampedTranscriptionPage() {
       subtitle="Upload audio or video and get a transcript with per-segment timestamps. Click any timestamp to jump to that moment in the audio player. Free, no signup."
       stepsTitle="How timestamped transcription works"
       steps={[
-        { icon: 'upload',   title: 'Drop audio or video',       desc: 'MP3, MP4, WAV, M4A, WEBM, FLAC and more. Up to 25 MB anonymously.' },
+        { icon: 'upload',   title: 'Drop audio or video',       desc: 'MP3, MP4, WAV, M4A, WEBM, FLAC and more. Up to 25 MB anonymously or 180 MB signed in.' },
         { icon: 'waveform', title: 'Whisper timestamps segments', desc: 'Whisper large-v3 provides per-segment timestamps aligned to the original audio.' },
         { icon: 'download', title: 'Export with timestamps',      desc: 'TXT with inline timestamps, SRT / VTT for subtitles, DOCX for review.' },
       ]}
       whyTitle="Why use Mictoo for timestamped transcripts?"
       whyCards={[
         { icon: 'clock',    title: 'Click-to-jump timestamps',   desc: 'Every timestamp is clickable in the Reader view. Jump to any moment in the audio player.' },
-        { icon: 'target',   title: 'Whisper-quality accuracy',   desc: 'Higher accuracy than typical auto-transcript tools on proper nouns and accents.' },
+        { icon: 'target',   title: 'Whisper-quality transcription', desc: 'Whisper large-v3 adds punctuation and handles many languages, accents, and recording types.' },
         { icon: 'captions', title: 'SRT + VTT included',         desc: 'Timestamps carry through to SRT and VTT exports for video captioning.' },
         { icon: 'lock',     title: 'Files deleted after',        desc: 'Uploaded audio is dropped after transcription; transcript persists only on signed-in accounts.' },
       ]}
@@ -77,7 +77,7 @@ export default function TimestampedTranscriptionPage() {
       faq={[
         { q: 'What granularity are the timestamps?', a: 'Per-segment (roughly per-sentence). Whisper natively produces segment-level timestamps aligned to the audio.' },
         { q: 'Can I click a timestamp to jump in the audio?', a: 'Yes. In Reader view, every timestamp is clickable and scrubs the audio player to that moment.' },
-        { q: 'Is the tool free?', a: 'Yes. Up to 25 MB anonymously, 60 MB signed in. No watermark, no per-minute fee.' },
+        { q: 'Is the tool free?', a: 'Yes. Up to 25 MB anonymously or 180 MB when signed in. No watermark and no per-minute fee.' },
         { q: 'What export formats are supported?', a: 'TXT (with inline timestamps), SRT, VTT, DOCX. Signed-in users also get PDF and JSON with structured timestamp data.' },
         { q: 'Do you identify speakers?', a: 'Not yet. Continuous timestamped text with no speaker labels. Diarisation is on the Pro roadmap.' },
         { q: 'Are recordings kept on your servers?', a: 'No. Audio streams to the transcription provider, gets processed once, and is dropped. Transcripts persist only on signed-in accounts.' },

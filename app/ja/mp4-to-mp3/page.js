@@ -1,5 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
-import ConverterZone from '@/components/ConverterZone'
+import ConverterPageLayout from '@/components/ConverterPageLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/mp4-to-mp3',
@@ -16,81 +15,141 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'MP4からMP3へ — 無料オンライン変換ツール | Mictoo',
+  title: 'MP4からMP3への無料オンラインコンバーター | Mictoo',
   description:
-    'MP4からMP3への変換が無料オンラインで使えます。動画ファイルをドロップするだけで、数秒できれいな128 kbpsのMP3音声ファイルが手に入ります。登録不要、ウォーターマークなし、メール不要。最大25 MBまで。',
+    'MP4をMP3に無料でオンライン変換します。動画をアップロードすると、数秒でクリーンな128 kbpsのMP3オーディオファイルが得られます。サインアップ不要、ウォーターマークなし、メールも不要。最大25 MBまで対応。',
   alternates: { canonical: 'https://mictoo.com/ja/mp4-to-mp3', languages: LANGS },
-
   openGraph: {
-    title: "MP4からMP3へ — 無料オンライン変換ツール | Mictoo",
-    description: "MP4からMP3への変換が無料オンラインで使えます。動画ファイルをドロップするだけで、数秒できれいな128 kbpsのMP3音声ファイルが手に入ります。登録不要、ウォーターマークなし、メール不要。最大25 MBまで。",
-    url: "https://mictoo.com/ja/mp4-to-mp3",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'MP4からMP3への無料オンラインコンバーター | Mictoo',
+    description: 'MP4をMP3に無料でオンライン変換します。128 kbps、サインアップ不要、ウォーターマークなし。',
+    url: 'https://mictoo.com/ja/mp4-to-mp3',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "MP4からMP3へ — 無料オンライン変換ツール | Mictoo",
-    description: "MP4からMP3への変換が無料オンラインで使えます。動画ファイルをドロップするだけで、数秒できれいな128 kbpsのMP3音声ファイルが手に入ります。登録不要、ウォーターマークなし、メール不要。最大25 MBまで。",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'MP4からMP3への無料オンラインコンバーター',
+    description: 'MP4をMP3に無料でオンライン変換します。128 kbps、サインアップ不要、ウォーターマークなし。',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function JaMp4ToMp3Page() {
   return (
-    <LandingLayout
-      defaultLanguage="ja"
-      badge="MP4 → MP3 · 無料 · 登録不要"
-      h1={<>MP4からMP3へ<br /><span className="text-brand-600">無料オンライン変換ツール</span></>}
-      subtitle="MP4動画をドロップしてください。MP3音声ファイルが手に入ります。ウォーターマークなし、メール不要、待ち時間なし。サーバー側のffmpegで処理し、数秒で完了します。"
-      tool={<ConverterZone from="mp4" to="mp3" />}
-      howItWorks={[
-        { icon: '📂', title: 'MP4をドロップ', desc: 'ボックスにMP4動画をドラッグするか、クリックして選択してください。25 MBまでのファイルは登録なしで処理できます。60 MBまで使いたい場合はサインインしてください。' },
-        { icon: '⚡', title: '音声を抽出します', desc: 'サーバー側でffmpegが動作し、動画ストリームを取り除いて、音声を128 kbpsステレオMP3、44.1 kHzで再エンコードします。25 MBの動画なら通常5〜15秒で完了します。' },
-        { icon: '⬇️', title: 'MP3をダウンロード', desc: 'ダウンロードボタンを押すと、元のファイル名に.mp3拡張子をつけたファイルが手に入ります。アップロードと結果はどちらも1時間以内にサーバーから削除されます。' },
+    <ConverterPageLayout
+      locale="ja"
+      mode="converter"
+      from="mp4"
+      to="mp3"
+      currentHref="/ja/mp4-to-mp3"
+
+      badge="MP4 → MP3 · 無料 · サインアップ不要"
+      h1First="MP4からMP3"
+      h1Second="無料オンラインコンバーター"
+      subtitle="MP4動画をアップロードすると、数秒でクリーンなMP3オーディオファイルが得られます。ウォーターマークなし、メール不要、待機時間なし。"
+
+      outputFormat="MP3"
+      outputQuality="128 kbps"
+      outputAudio="ステレオ"
+
+      stepsTitle="MP4からMP3への変換方法"
+      steps={[
+        {
+          icon: 'upload',
+          title: 'MP4をアップロード',
+          desc: 'MP4動画をアップロードします。最大25 MBのファイルに対応しています。',
+        },
+        {
+          icon: 'waveform',
+          title: 'オーディオを抽出',
+          desc: 'サーバーがオーディオトラックを抽出し、MP3にエンコードします。',
+        },
+        {
+          icon: 'download',
+          title: 'MP3をダウンロード',
+          desc: '数秒でクリーンなMP3ファイルを取得します。',
+        },
       ]}
-      whyUse={{ title: 'MP4からMP3への変換にMictooを選ぶ理由', bullets: [
-        { title: '変換だけ。それ以外は何もしません', desc: 'ポップアップなし、カウントダウンタイマーなし、課金を促す偽の「無料」枠もありません。ドロップ、変換、ダウンロードだけ。' },
-        { title: '128 kbps MP3、小さくて汎用的', desc: 'このビットレートは音声向けの実用的なスイートスポットです。1分あたり約1 MB、どこでも再生でき、クリアに聞こえます。品質ピッカーは用意していません。一般的な用途で価値を加えずに摩擦だけ増やすからです。' },
-        { title: 'ファイルはサーバーに残りません', desc: 'MP4はVercel Blobストレージに着地し、変換され、すぐに削除されます。MP3自体は1時間ごとのクリーンアップで消去されます。ローカルにコピーを保存してください。' },
-        { title: 'ウォーターマークなし、音声タグなし', desc: '無料の変換ツールの多くは「FreeMP3.com で変換されました」のようなイントロを差し込みます。Mictooは再エンコード以外には音声に触れません。' },
-        { title: '他の無料変換ツールは広告ネットワークの入り口がほとんど', desc: 'Googleで「mp4 to mp3」を検索すると出てくるサイトの多くは、戻るボタンを乗っ取ったり偽のウイルス警告を出すAdSenseの誘導ページです。Mictooはマーケティングページのディスプレイ広告で運営されているインディSEOプロジェクトで、変換フロー内には広告を入れません。' },
-      ]}}
-      useCases={{ title: 'MP4からMP3に変換したくなる場面', items: [
-        { title: '動画で持っているポッドキャストを保存する', desc: 'ポッドキャストのフィードの多くはYouTubeアップロードやVimeoのMP4としても公開されています。動画版しか手元にない場合、MP3にすればスマホで聞きやすくなり、サイズも10分の1になります。' },
-        { title: '講義録画から音楽や音声だけを取り出す', desc: 'ZoomやTeamsはMP4で書き出します。通勤中に聞いたり、文字起こししたり、編集ソフトに読み込ませたいときは音声だけあれば十分です。' },
-        { title: '1 GBの動画を縮めてメールで送る', desc: '1080pで1時間の動画は簡単に1 GBに達します。同じ録画の音声はフル品質で30〜60 MB、128 kbpsなら30 MB以下になることも多いです。これで一気にメール送信可能になります。' },
-        { title: '音声を期待する文字起こしツールに渡す', desc: 'Mictooの文字起こしツール自体はMP4を直接受け付けますが、サードパーティのツールや音声エディタ、DAWは純粋な音声を欲しがります。MP3は最大公約数のフォーマットです。' },
-        { title: 'スクリーンキャストやスライドショーのBGM', desc: 'YouTubeチュートリアルのMP4の中には、単独で使いたい音楽やナレーションが入っていることがあります。変換してiMovie、Audacity、Logicに読み込ませてください。' },
-      ]}}
-      proTips={{ title: 'MP4からMP3への変換をきれいに行うコツ', tips: [
-        { title: 'MP4が大きい場合は先にトリミング', desc: '上限は登録なしで25 MB、登録ありで60 MBです。1080pで10分以上の動画は基本的に収まりません。QuickTime（Mac）または写真アプリ（Windows）で開き、必要な部分だけにトリミングして再エクスポートしてください。' },
-        { title: '128 kbpsは音声には十分すぎ、音楽にはちょうど良い', desc: '話し声だけなら64 kbps MP3でも半分のサイズで聞き取りに違いはありません。Mictooが128 kbpsに揃えているのは、動画の中身が何かはっきりしないことが多く、128ならどちらにもクリアに聞こえるからです。' },
-        { title: '元の動画に複数の音声トラックがある場合、デフォルトのみが対象', desc: '映画、DVDリッピング、一部の講義書き出しには複数言語のトラックが埋め込まれています。Mictooの変換ツールはデフォルトのトラックを採用します。別のトラックが必要な場合は、動画エディタでデフォルトを変更してからMP4を再エクスポートし、アップロードしてください。' },
-        { title: 'カムコーダー時代の古いMP4はデコードできないことがある', desc: 'AVCHDなどカムコーダー時代のMP4は、ffmpegが追加ライブラリなしでは読めないコーデックを使うことがあります。変換が失敗したら、HandBrake（無料、全プラットフォーム対応）でファイルを開き、標準的なH.264 MP4として再エクスポートしてからもう一度試してください。' },
-        { title: '320 kbpsやVBRが必要ならAudacityで仕上げ', desc: 'MictooのMP3は固定128 kbpsです。それ以上のビットレートやVBRが必要な場合は、MP3をAudacity（こちらも無料）で開き、好みの設定で再エクスポートしてください。高めのビットレートで再エンコードしても品質低下はほとんどありません。' },
-        { title: '保護されたコンテンツ（iTunesムービー、DRM）は失敗します', desc: 'DRM保護のMP4はffmpegで読めません。著作権で保護されたコンテンツの暗号解除は行いません。ストリーミングサービス由来のファイルなら、変換する権利はおそらく持っていないはずです。' },
-      ]}}
+
+      previewInputName="meeting-recording.mp4"
+      previewInputSize="128.4 MB · 00:45:32"
+      previewOutputName="meeting-recording.mp3"
+      previewOutputSize="00:45:32 · 128 kbps"
+
+      whyTitle="なぜMictooをMP4からMP3に使用するのか？"
+      whyCards={[
+        {
+          icon: 'target',
+          title: '変換に特化',
+          desc: 'MP4からMP3への変換に特化し、迅速かつ信頼性の高いサービスを提供します。',
+        },
+        {
+          icon: 'fileAudio',
+          title: '小さく、普遍的なMP3',
+          desc: 'MP3はどこでも動作し、ファイルサイズを小さく保ちます。',
+        },
+        {
+          icon: 'lock',
+          title: 'ファイルは削除されます',
+          desc: 'アップロードされたファイルは安全に処理され、変換後に削除されます。',
+        },
+        {
+          icon: 'shield',
+          title: 'ウォーターマークやオーディオタグなし',
+          desc: 'ウォーターマークや追加タグのないクリーンなMP3を取得します。',
+        },
+      ]}
+
+      scenariosTitle="MP4からMP3が役立つ場面"
+      scenarios={[
+        { icon: 'headphones', title: 'ビデオポッドキャストを保存' },
+        { icon: 'cap',        title: '講義の音声を抽出' },
+        { icon: 'mail',       title: '小さなファイルをメール' },
+        { icon: 'editPen',    title: '文字起こしの準備' },
+        { icon: 'waveform',   title: 'バックグラウンドオーディオ' },
+        { icon: 'archive',    title: '音声録音をアーカイブ' },
+      ]}
+
+      tipsTitle="クリーンな変換のためのヒント"
+      tips={[
+        'まずは大きな動画をトリミングしてください。',
+        '128 kbpsは音声や音楽に適しています。',
+        'デフォルトのオーディオトラックが使用されます。',
+        'DRM保護された動画はサポートされていません。',
+      ]}
+      processTitle="変換中に何が起こるか"
+      processSteps={[
+        'MP4コンテナ',
+        'オーディオトラックの抽出',
+        'MP3エンコード',
+      ]}
+
+      compareTitle="MP4とMP3の比較"
+      compareRows={[
+        { fmt: 'MP4', contains: 'はい', size: '大きい', best: '動画の視聴、共有' },
+        { fmt: 'MP3', contains: 'いいえ', size: '小さい', best: '音声のみの視聴' },
+      ]}
+
       faq={[
-        { q: 'MP4からMP3への変換は本当に無料ですか', a: 'はい。25 MBまでのファイルならアカウント不要、時間制限なし、出力にウォーターマークなし、「初回だけ無料」のような手口もありません。サーバー費用はマーケティングページのディスプレイ広告で賄っており、変換ツール自体には広告を入れていません。' },
-        { q: '最大ファイルサイズはどれくらいですか', a: 'アカウントなしで25 MB、無料サインインで60 MBです。本当の上限はVercelのファンクション予算ですが、全員の変換が60秒以内に収まるよう、それより低く制限しています。' },
-        { q: '変換にはどれくらい時間がかかりますか', a: '一般的な10〜20 MBのMP4（数分の動画）であれば5〜15秒で完了します。ボトルネックはアップロード速度で、変換自体ではありません。ffmpegの音声再エンコードはリアルタイムよりはるかに高速です。' },
-        { q: 'MP3の品質はどれくらいですか', a: '固定ビットレート128 kbps、44.1 kHz、ステレオです。これは「何にでも十分」な普遍的な設定で、音声でも音楽でもほとんどの耳には原音と区別がつかず、音声1分あたり約1 MBです。' },
-        { q: 'ファイルは保存されますか', a: 'いいえ。アップロードは変換に必要な間だけVercel Blobストレージに置かれ、その後削除されます。生成されたMP3も1時間以内にクリーンアップのcronで消去されます。MP3はローカルに保存してください。再送はできません。' },
-        { q: '出力にウォーターマークや音声タグは入りますか', a: 'いいえ。「Mictooで変換」のようなイントロやブランディング付きの締めくくりは差し込みません。MP3は元の音声を再エンコードしただけです。' },
-        { q: 'これでYouTube動画を変換できますか', a: '権利のあるMP4ファイルなら何でも変換できます。YouTubeから動画をダウンロードする機能はありません。それはYouTubeの利用規約に反するからです。4K Video Downloaderやyt-dlpのようなツールでMP4をローカルに保存してから、ここにドロップしてください。' },
-        { q: 'なぜ対応形式がMP4だけなのですか', a: '各変換ツールは1つのURLに1つの仕事です。MP4からMP3への変換は /mp4-to-mp3 にあり、WAVからMP3への変換は /wav-to-mp3 にあります。正しいページを選ぶことで、何を期待しているかが明確になり、Googleにも順位付けしやすい単一目的のページを提供できます。' },
-        { q: 'MP4が「対応していないコーデック」エラーで失敗しました。どうすればいいですか', a: '古いカムコーダーのMP4や一部のDRM保護ファイルは、ffmpegが標準でデコードできないコーデックを使っています。HandBrake（無料）でファイルを開き、標準的なH.264 MP4として再エクスポートしてから再試行してください。それでも失敗するなら、DRMロックされている可能性が高いです。' },
-        { q: 'モバイルでも動きますか', a: 'はい。ページはモバイル対応で、iOS SafariやAndroid Chromeからのアップロードも機能します。iPhoneでは、ファイルピッカーから動画にアクセスできるよう、先にファイルアプリへ共有が必要な場合があります。' },
-        { q: 'MP3は非可逆ですよね。気にすべきですか', a: 'はい、MP3は非可逆形式です。128 kbpsであれば、ほぼ全てのリスナーがほぼ全ての素材で音質の劣化を感じません。ロスレスが必要な場合（例えば音楽のマスタリング）はMP4をWAVに変換してください。' },
-        { q: 'バッチアップロードはないのですか', a: '無料版は1ファイルずつです。バッチは将来のProプランで予定しています。今のところはブラウザのタブを複数開いて並行して変換できます。' },
+        { q: 'MP4からMP3へのコンバーターは無料ですか？', a: 'はい。最大25 MBのファイルにはアカウントは不要で、時間制限や出力にウォーターマークはありません。マーケティングページの広告がサーバーコストをカバーしています。' },
+        { q: '変換によって音質は低下しますか？', a: 'わずかに。MP3はロスィフォーマットですが、128 kbpsでは音質の低下は音声や一般的な音楽再生では聞こえません。ロスレスが必要な場合は、WAVに変換してください。' },
+        { q: 'アップロードされたファイルは保存されますか？', a: 'いいえ。あなたのMP4はVercel Blobストレージに変換されるまでの短い時間だけ保存され、その後削除されます。生成されたMP3も1時間以内に削除されます。MP3はローカルに保存してください。' },
+        { q: '大きなMP4を変換できますか？', a: '現在のアップロード制限は25 MBです。MP4がそれ以上の場合は、QuickTime、Photosアプリ、または他の動画編集ソフトでトリミングしてからアップロードしてください。' },
+        { q: 'モバイルで動作しますか？', a: 'はい。このページはモバイルフレンドリーで、iOS SafariやAndroid Chromeからのアップロードが可能です。iPhoneでは、最初に動画をファイルに共有して、ピッカーがアクセスできるようにしてください。' },
       ]}
-      relatedLinks={[
-        { href: '/ja/wav-to-mp3', label: 'WAVからMP3へ', desc: 'ロスレスWAVファイルをコンパクトなMP3に縮小します。' },
-        { href: '/ja/webm-to-mp3', label: 'WEBMからMP3へ', desc: 'WEBM（YouTubeダウンローダーがよく返す形式）からMP3を取り出します。' },
-        { href: '/ja/transcribe-video-to-text', label: '動画からテキストへ', desc: 'MP3の手間を飛ばして、動画から直接テキスト文字起こしへ。' },
-        { href: '/ja/how-to-compress-audio', label: '音声を圧縮', desc: 'MP3でもまだ共有には大きすぎる場合に。' },
+
+      ctaHeadline="今すぐMP4をMP3に変換"
+      ctaSubtitle="動画をアップロードし、数秒でクリーンなMP3を取得します。サインアップ不要。ウォーターマークなし。"
+      ctaButton="MP4ファイルを選択"
+
+      moreTools={[
+        { href: '/ja/wav-to-mp3',  label: 'WAVからMP3' },
+        { href: '/ja/webm-to-mp3', label: 'WEBMからMP3' },
+        { href: '/ja/flac-to-mp3', label: 'FLACからMP3' },
+        { href: '/ja/aac-to-mp3',  label: 'AACからMP3' },
+        { href: '/ja/m4a-to-mp3',  label: 'M4AからMP3' },
+        { href: '/ja/mp3-to-wav',  label: 'MP3からWAV' },
       ]}
     />
   )

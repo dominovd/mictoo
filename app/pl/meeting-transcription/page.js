@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/meeting-transcription',
@@ -15,80 +15,198 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Transkrypcja spotkań — darmowa transkrypcja AI dla calli i spotkań | Mictoo',
+  title: 'Transkrypcja spotkań dla każdej nagranej platformy | Mictoo',
   description:
-    'Darmowa transkrypcja AI spotkań. Prześlij dowolne nagranie spotkania (z dowolnej platformy) i otrzymaj czysty tekst w kilka sekund. Bez rejestracji, bez opłaty za minutę, ponad 50 języków.',
-  alternates: { canonical: 'https://mictoo.com/pl/meeting-transcription', languages: LANGS },
-
+    'Prześlij autoryzowane nagranie spotkania z Zoom, Teams, Meet, Webex, Loom lub Riverside, aby uzyskać tekst, podsumowanie i eksporty.',
+  alternates: {
+    canonical: 'https://mictoo.com/pl/meeting-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Transkrypcja spotkań — darmowa transkrypcja AI dla calli i spotkań | Mictoo",
-    description: "Darmowa transkrypcja AI spotkań. Prześlij dowolne nagranie spotkania (z dowolnej platformy) i otrzymaj czysty tekst w kilka sekund. Bez rejestracji, bez opłaty za minutę, ponad 50 języków.",
-    url: "https://mictoo.com/pl/meeting-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Transkrypcja spotkań: każda platforma, każde nagranie | Mictoo',
+    description: 'Wrzuć dowolne nagranie spotkania, uzyskaj transkrypt. Darmowe.',
+    url: 'https://mictoo.com/pl/meeting-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Transkrypcja spotkań — darmowa transkrypcja AI dla calli i spotkań | Mictoo",
-    description: "Darmowa transkrypcja AI spotkań. Prześlij dowolne nagranie spotkania (z dowolnej platformy) i otrzymaj czysty tekst w kilka sekund. Bez rejestracji, bez opłaty za minutę, ponad 50 języków.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Transkrypcja spotkań: każda platforma',
+    description: 'Wrzuć dowolne nagranie spotkania, uzyskaj transkrypt.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function PlMeetingPage() {
+export default function PlMeetingTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="pl"
-      badge="Każda platforma · Za darmo · 50+ języków"
-      h1={<>Transkrypcja spotkań<br /><span className="text-brand-600">Darmowe transkrypcje AI spotkań</span></>}
-      subtitle="Zamień dowolne nagranie spotkania w czysty tekst. Działa z Zoom, Meet, Teams, Webex, Discord, Skype, dyktafonami, czymkolwiek. Bez rejestracji, bez opłaty za minutę."
-      howItWorks={[
-        { icon: '🎙️', title: 'Weź nagranie spotkania', desc: 'Nieważne, której platformy użyłeś (Zoom, Meet, Teams, Webex, Discord, GoToMeeting, dyktafon stacjonarny), wyeksportuj nagranie jako MP4, MP3, M4A, WAV, FLAC lub OGG.' },
-        { icon: '⚡', title: 'Upuść plik', desc: 'Wyciągamy audio, jeśli potrzeba, i wysyłamy do Whisper large-v3. Spotkanie 30-minutowe jest gotowe w około minutę.' },
-        { icon: '📋', title: 'Weź transkrypcję', desc: 'Przeczytaj, skopiuj lub pobierz jako TXT lub SRT. Popraw błędne słowa lub terminy techniczne inline przed eksportem.' },
+    <UseCaseLayout
+      locale="pl"
+      badge="Każda platforma · Darmowe · Bez rejestracji"
+      h1First="Transkrypcja spotkań"
+      h1Second="Jedna strona do przesyłania dla każdej platformy"
+      subtitle="Prześlij nagranie z Zoom, Teams, Google Meet, Webex, Loom lub dowolnego nagrania ekranu. Uzyskaj czysty transkrypt z znacznikami czasowymi, podsumowaniem AI i eksportami."
+      currentHref="/pl/meeting-transcription"
+
+      platforms={[
+        { name: 'Zoom',        iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/pl/zoom-transcription' },
+        { name: 'Google Meet', iconKey: 'videoCameraFill', brandBg: '#00832D', href: '/pl/google-meet-transcription' },
+        { name: 'MS Teams',    iconKey: 'videoCameraFill', brandBg: '#4B53BC', href: '/pl/teams-meeting-transcription' },
+        { name: 'Webex',       iconKey: 'videoCameraFill', brandBg: '#0F1F35' },
+        { name: 'Loom',        iconKey: 'loomPlay',        brandBg: '#625DF5' },
+        { name: 'Riverside',   iconKey: 'waveMic',         brandBg: '#4B2AF7' },
       ]}
-      whyUse={{ title: 'Dlaczego Mictoo do spotkań', bullets: [
-        { title: 'Platforma źródłowa nie ma znaczenia', desc: 'Zoom, Meet, Teams, Webex, Discord, GoToMeeting, BlueJeans, dyktafon stacjonarny. Jeśli masz plik, transkrybujemy.' },
-        { title: 'Jeden model dla wszystkich spotkań', desc: 'Ten sam Whisper large-v3 dla calla sprzedażowego nagranego w Zoom i retro zespołu w Teams. Spójna dokładność, spójny format wyjściowy.' },
-        { title: 'Za darmo, bez licznika minut', desc: 'Większość transkrypcji wbudowanych w narzędzia spotkań jest częścią tier licencji, który ma własny koszt. Nasza jest naprawdę darmowa, bez miesięcznego cap.' },
-        { title: 'Ponad 50 języków', desc: 'Spotkania międzynarodowe, rozmowy dwujęzyczne, zespoły międzynarodowe. Whisper radzi sobie ze wszystkim, z auto-wykrywaniem lub ręcznym wyborem języka.' },
-        { title: 'Nic nie jest zapisywane', desc: 'Plik jest strumieniowany do dostawcy transkrypcji i odrzucany. Nie zapisujemy audio spotkania na naszych serwerach.' },
-      ]}}
-      useCases={{ title: 'Częste typy spotkań, które ludzie transkrybują', items: [
-        { title: 'Stand-upy zespołu i retro', desc: 'Asynchroniczne zespoły transkrybują stand-upy, aby ludzie w innych strefach mogli nadrobić. Retro korzystają z pisemnego zapisu do działań follow-up.' },
-        { title: 'Calle z klientami', desc: 'Calle sprzedażowe, check-iny account, customer interview. Zapisz transkrypcję w CRM obok deala lub kontaktu.' },
-        { title: 'Wewnętrzne sesje szkoleniowe i onboardingu', desc: 'Nowi pracownicy czytają transkrypcję podczas oglądania wideo. Lepsze zapamiętywanie, przeszukiwalne później, gdy zapomną kroku.' },
-        { title: 'Spotkania zarządu, leadership offsite, all-hands', desc: 'Transkrypcje czynią komunikację korporacyjną bardziej dostępną. Przydatne dla pracowników, którzy nie mogli uczestniczyć, i dla dokumentacji.' },
-        { title: 'Wywiady i badania jakościowe', desc: 'Czy to screening kandydata, user interview czy dziennikarstwo, transkrypcja to faktyczny rezultat pracy.' },
-      ]}}
-      proTips={{ title: 'Wskazówki do transkrypcji spotkań', tips: [
-        { title: 'Wyciągnij audio, gdy źródło to wideo', desc: 'Platformy spotkań eksportują MP4 z audio i wideo. Potrzebujemy tylko audio. ffmpeg -i meeting.mp4 -vn -ac 1 -b:a 64k meeting.mp3 zamienia MP4 1 GB w 25 MB lub mniej. Szybszy upload, ta sama transkrypcja.' },
-        { title: 'Upewnij się, że wszyscy mają prawdziwy mikrofon', desc: 'Wbudowane mikrofony laptopa na callu wifi produkują zaszumione, echowate audio. Przewodowy USB headset za 100 zł dla każdego uczestnika opłaca się w dokładności transkrypcji.' },
-        { title: 'Wycisz uczestników, którzy nie mówią', desc: 'Otwarte mikrofony podczas prezentacji łapią pisanie na klawiaturze, szum tła pokoju i rozmowy poboczne. Whisper czasem transkrybuje to jako słowa-bzdury.' },
-        { title: 'Dla spotkań z nienatywnymi mówcami angielskiego nie dziel bez potrzeby', desc: 'Whisper korzysta z dłuższego kontekstu dla rzadszych fraz. Ciągły plik 30-minutowy transkrybuje się lepiej niż trzy 10-minutowe kawałki, jeśli masz wybór.' },
-        { title: 'Długie spotkania dzielą się lepiej w naturalnych przerwach', desc: 'Jeśli musisz podzielić 90-minutowe spotkanie na kawałki, szukaj naturalnych przerw (przerwa na kawę, przejście agendy) i podziel tam. Mniejsze ryzyko przecięcia zdania w środku.' },
-        { title: 'Wybierz język ręcznie dla krótkich lub nietypowych spotkań', desc: 'Auto-wykrywanie próbkuje pierwszy fragment audio. Dla spotkań zaczynających się muzyką poczekalni, krótkim powitaniem lub ciszą ręczny wybór języka jest bardziej niezawodny.' },
-      ]}}
+
+      howItWorksTitle="Jak działa transkrypcja spotkań"
+      steps={[
+        {
+          icon: 'folder',
+          title: 'Znajdź swoje nagranie spotkania',
+          desc: 'Eksportuj lub pobierz nagranie z dowolnej platformy.',
+        },
+        {
+          icon: 'upload',
+          title: 'Wrzuć plik tutaj',
+          desc: 'Prześlij swój plik w formatach MP3, MP4, WAV lub innych obsługiwanych formatach.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Transkrypt, podsumowanie, eksporty',
+          desc: 'Uzyskaj transkrypt ze znacznikami czasowymi, podsumowanie AI i pliki eksportowe.',
+        },
+      ]}
+
+      exampleTitle="Przykładowy transkrypt i podsumowanie"
+      exampleFileName="meeting-recording.mp4"
+      exampleDurationLabel="30:15"
+      exampleLines={[
+        { t: '0:00',  line: 'Dziękuję wszystkim za dołączenie. Szybko podsumujmy postępy z zeszłego tygodnia, zanim przejdziemy do dzisiejszego porządku obrad.' },
+        { t: '0:12',  line: 'Wdrożyliśmy proces onboardingu i zauważyliśmy dwunastoprocentowy wzrost aktywacji w porównaniu do poprzedniego poziomu.' },
+        { t: '0:28',  line: 'Świetnie. Następnie musimy naprawić błąd przy kasie na urządzeniach mobilnych, zanim dotknie to kolejnych płacących klientów.' },
+        { t: '0:36',  line: 'Stworzę zgłoszenie i przypiszę je do zespołu do końca dnia. Powinno być rozwiązane w trakcie sprintu.' },
+        { t: '0:44',  line: 'Powinniśmy również omówić aktualizacje strony z cenami. Obecna wersja nie konwertuje tak, jak się spodziewaliśmy.' },
+        { t: '0:55',  line: 'Podzielę się szkicem do końca dnia i możemy go wspólnie przejrzeć jutro przed standupem.' },
+      ]}
+      summaryPoints={[
+        'Proces onboardingu wdrożony z 12% wzrostem aktywacji.',
+        'Błąd przy kasie na urządzeniach mobilnych wymaga naprawy.',
+        'Aktualizacje strony z cenami do omówienia.',
+        'Szkic do podzielenia się do końca dnia i przeglądu jutro.',
+      ]}
+      actionItems={[
+        'Stwórz zgłoszenie dotyczące błędu przy kasie na urządzeniach mobilnych',
+        'Podziel się szkicem strony z cenami',
+        'Przejrzyj szkic jutro',
+      ]}
+
+      whyTitle="Dlaczego przesyłanie niezależne od platformy jest pomocne"
+      whyCards={[
+        {
+          icon: 'globe',
+          title: 'Działa na każdej platformie spotkań',
+          desc: 'Prześlij z Zoom, Teams, Google Meet, Webex, Loom i innych.',
+        },
+        {
+          icon: 'target',
+          title: 'Jedna procedura przeglądu',
+          desc: 'Użyj tego samego układu ze znacznikami czasowymi i opcji eksportu, niezależnie od tego, która platforma stworzyła nagranie.',
+        },
+        {
+          icon: 'lock',
+          title: 'Działa z autoryzowanym plikiem',
+          desc: 'Mictoo przetwarza nagranie, do którego już masz pozwolenie na użycie; polityki dostępu i pobierania wciąż należą do platformy źródłowej.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Podsumowanie i tłumaczenie w zestawie',
+          desc: 'Uzyskaj podsumowania AI i przetłumacz transkrypty na 50+ języków.',
+        },
+      ]}
+
+      scenariosTitle="Typowe scenariusze transkrypcji spotkań"
+      scenarios={[
+        { icon: 'chat',      title: 'E-maile z podsumowaniem dla klientów' },
+        { icon: 'search',    title: 'Notatki z badań użytkowników' },
+        { icon: 'users',     title: 'Selekcje rekruterów' },
+        { icon: 'briefcase', title: 'Archiwa spotkań zespołu' },
+        { icon: 'headset',   title: 'Eskalacje wsparcia' },
+        { icon: 'globe',     title: 'Wielojęzyczne spotkania' },
+      ]}
+
+      practicalTitle="Gdzie znaleźć nagranie spotkania"
+      practicalIntro="Dokładna lokalizacja zależy od platformy i twojej roli w spotkaniu. Pobieraj tylko nagrania, do których masz autoryzację, i przestrzegaj polityki dotyczącej zgody uczestników oraz organizacji przed przesłaniem."
+      practicalItems={[
+        {
+          title: 'Nagranie w chmurze lub lokalne Zoom',
+          desc: 'Nagrania w chmurze są dostępne z portalu internetowego Zoom na kwalifikowanych płatnych kontach. Nagrania komputerowe są zazwyczaj zapisywane w lokalnym folderze Zoom.',
+        },
+        {
+          title: 'Nagranie Google Meet',
+          desc: 'Kwalifikowane nagrania Meet są zapisywane w folderze Moje Dyski › Nagrania Meet organizatora. Dostępność zależy od edycji i ustawień administratora.',
+        },
+        {
+          title: 'Nagranie Microsoft Teams',
+          desc: 'Znajdź nagranie w czacie spotkania, OneDrive lub witrynie SharePoint kanału. Uprawnienia do pobierania mogą być ograniczone przez politykę.',
+        },
+        {
+          title: 'Webex, Loom i Riverside',
+          desc: 'Użyj opcji eksportu lub kontroli pobierania platformy, aby uzyskać plik audio lub wideo, a następnie upewnij się, że plik odtwarza się poprawnie przed przesłaniem.',
+        },
+      ]}
+
+      tipsTitle="Wskazówki dotyczące lepszych transkryptów spotkań"
+      tips={[
+        'Preferuj eksporty tylko audio, gdy chcesz mniejszego przesyłania.',
+        'Nagrywaj w cichym miejscu i redukuj hałas w tle.',
+        'Użyj Auto-detekcji dla wielojęzycznych lub mieszanych połączeń.',
+        'Przejrzyj imiona i terminologię po transkrypcji.',
+      ]}
+
+      guidesTitle="Wybierz odpowiedni przewodnik po platformie"
+      guides={[
+        { href: '/pl/zoom-transcription',          icon: 'video', title: 'Spotkania Zoom',    desc: 'Przewodnik krok po kroku dotyczący pobierania' },
+        { href: '/pl/google-meet-transcription',   icon: 'video', title: 'Google Meet',      desc: 'Przewodnik krok po kroku dotyczący pobierania' },
+        { href: '/pl/teams-meeting-transcription', icon: 'video', title: 'Microsoft Teams',  desc: 'Przewodnik krok po kroku dotyczący pobierania' },
+        { href: '/pl/meeting-transcription#tool',  icon: 'file',  title: 'Inne platformy',  desc: 'Zobacz wszystkie przewodniki i wskazówki' },
+      ]}
+
       faq={[
-        { q: 'Jakie platformy spotkań obsługujecie?', a: 'Wszystkie. Pracujemy z plikiem nagrania, nie z platformą. Zoom, Microsoft Teams, Google Meet, Webex, Discord, Skype, GoToMeeting, BlueJeans, dyktafon stacjonarny. Jeśli plik to MP4, MP3, M4A, WAV, FLAC, OGG lub WEBM, transkrybujemy.' },
-        { q: 'Moje spotkanie było w Zoom (lub Meet, lub Teams). Czy używać tej strony, czy specyficznej dla platformy?', a: 'Ten sam silnik, ta sama dokładność. Strony specyficzne dla platformy dają bardziej ukierunkowane wskazówki. Użyj tego, co ci łatwiej.' },
-        { q: 'Czy dostanę etykiety mówców?', a: 'Nie automatycznie. Whisper domyślnie nie robi diaryzacji. Dla spotkania z rozróżnialnymi głosami dodaj etykiety ręcznie w oparciu o rozmowę. Dla spotkań z osobnymi ścieżkami audio na mówcę (Riverside, SquadCast, czasem Zoom) transkrybuj każdą ścieżkę osobno.' },
-        { q: 'Moje nagranie spotkania przekracza 60 MB. Co teraz?', a: 'Dwie opcje. Wyciągnij tylko audio z wideo (jedno polecenie ffmpeg), lub podziel spotkanie na kawałki.' },
-        { q: 'Jak dokładna jest transkrypcja spotkań?', a: 'Dla czystego audio (dobre mikrofony, bez szumu tła): 90-95%. Dla mikrofonów sali konferencyjnej lub speakerphonów: 80-90%. Nazwy i terminy techniczne często wymagają oczyszczania.' },
-        { q: 'Czy moje spotkanie jest zapisywane na waszych serwerach?', a: 'Nie. Plik jest strumieniowany do dostawcy transkrypcji i odrzucany po przetworzeniu. Nie zapisujemy ani audio spotkania, ani transkrypcji w naszej bazie.' },
-        { q: 'Czy transkrypcja spotkania w Mictoo jest zgodna z RODO?', a: 'Nie przechowujemy audio ani transkryptu po opuszczeniu strony. Jesteśmy w Europie, a nasi dostawcy (Groq US, OpenAI US) mają DPA. Dla konkretnych pytań compliance zobacz naszą politykę prywatności.' },
-        { q: 'Czy mogę dostać podsumowanie spotkania, nie tylko transkrypcję?', a: 'Obecnie dostarczamy pełną transkrypcję. Dla podsumowań wklej transkrypcję w ChatGPT lub Claude z promptem typu "Podsumuj tę transkrypcję spotkania w kluczowe decyzje i zadania".' },
-        { q: 'Jakie języki są obsługiwane?', a: 'Ponad 50, z auto-wykrywaniem. Dla spotkań poniżej 5 minut lub plików z niemowymi intrami wybierz język ręcznie dla bardziej niezawodnych wyników.' },
-        { q: 'Czy mogę transkrybować spotkanie w czasie rzeczywistym?', a: 'Nie. Pracujemy z plikami nagranymi. Do czasu rzeczywistego użyj wbudowanej transkrypcji platformy spotkań lub dedykowanego meeting assistant.' },
-        { q: 'Jak dostaję plik SRT wyrównany z moim wideo spotkania?', a: 'Pobierz SRT po transkrypcji. Większość edytorów wideo (Premiere, DaVinci, CapCut, Final Cut) importuje SRT, które wyrównuje się automatycznie, dopóki audio w wideo pasuje do tego, co transkrybowałeś.' },
-        { q: 'Czy mogę transkrybować poufne spotkania?', a: 'Dla poufnych spotkań (HR, prawo, M&A, zarząd) bądź ostrożny z każdym serwisem transkrypcji w chmurze, włącznie z naszym. Nasz plik nie jest zapisywany, ale przechodzi przez zewnętrznego dostawcę mowy do przetwarzania. Dla maksymalnej prywatności użyj lokalnej instalacji Whisper.' },
+        {
+          q: 'Czy mogę transkrybować nagranie Zoom, Meet lub Teams?',
+          a: 'Tak. Każdy plik audio lub wideo z dowolnej platformy spotkań działa. Po prostu pobierz nagranie i wrzuć je tutaj. Akceptujemy MP3, MP4, WAV, M4A, WEBM, FLAC i inne.',
+        },
+        {
+          q: 'Czy transkrypcja spotkań jest darmowa?',
+          a: 'Tak. Pliki do 25 MB anonimowo, 60 MB po zalogowaniu. Dłuższe spotkania mogą być automatycznie dzielone dla zalogowanych użytkowników. Nie jest wymagana karta kredytowa.',
+        },
+        {
+          q: 'Czy Mictoo identyfikuje różnych mówców?',
+          a: 'Nie. Obecny transkrypt to ciągły tekst z znacznikami czasowymi w każdej linii i bez automatycznych etykiet "Mówca 1 / Mówca 2".',
+        },
+        {
+          q: 'Czy nagrania spotkań są przechowywane?',
+          a: 'Nie. Plik jest przesyłany do dostawcy transkrypcji, przetwarzany raz i usuwany z pamięci. Transkrypt jest zapisywany tylko wtedy, gdy zalogujesz się i dodasz go do swojej historii.',
+        },
+        {
+          q: 'Jakie formaty eksportu są dostępne?',
+          a: 'TXT (czysty tekst), SRT i VTT (napisy z znacznikami czasowymi dopasowanymi do nagrania) oraz DOCX (dokument Word). Zalogowani użytkownicy otrzymują również PDF i JSON.',
+        },
+        {
+          q: 'Czy mogę przetłumaczyć transkrypt?',
+          a: 'Tak. Po transkrypcji wybierz docelowy język i kliknij Tłumacz. Przydatne do wysyłania e-maili z podsumowaniem do uczestników w ich preferowanym języku lub do archiwizacji spotkań międzyjęzykowych w jednym języku roboczym.',
+        },
       ]}
+
+      ctaHeadline="Przekształć swoje następne spotkanie w jasne notatki"
+      ctaSubtitle="Wrzuć nagranie z dowolnej platformy i uzyskaj transkrypt, podsumowanie i eksporty w kilka sekund."
+      ctaButton="Prześlij nagranie spotkania"
+
       relatedLinks={[
-        { href: '/pl/zoom-transcription', label: 'Transkrypcja Zoom', desc: 'Wskazówki i workflow eksportu specyficzne dla Zoom.' },
-        { href: '/pl/google-meet-transcription', label: 'Transkrypcja Google Meet', desc: 'Dla nagrań Google Meet.' },
-        { href: '/pl/teams-meeting-transcription', label: 'Transkrypcja Teams', desc: 'Dla nagrań Microsoft Teams.' },
-        { href: '/pl/business-transcription', label: 'Transkrypcja business', desc: 'Dla rozmów z klientami, konferencji i calli sprzedażowych.' },
+        { href: '/pl/interview-transcription',  label: 'Transkrypcja wywiadów' },
+        { href: '/pl/podcast-transcription',    label: 'Transkrypcja podcastów' },
+        { href: '/pl/lecture-transcription',    label: 'Transkrypcja wykładów' },
+        { href: '/pl/business-transcription',   label: 'Transkrypcja biznesowa' },
+        { href: '/pl/voice-memo-to-text',       label: 'Notatka głosowa na tekst' },
       ]}
     />
   )

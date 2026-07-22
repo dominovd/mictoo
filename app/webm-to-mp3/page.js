@@ -72,7 +72,7 @@ export default function WebmToMp3Page() {
       tipsTitle="Tips for clean WEBM to MP3"
       tips={[
         'Video-WEBM is auto-demuxed, no need to strip first.',
-        'For long recordings over 25 MB, sign in for 60 MB.',
+        'For recordings over 25 MB, trim or split the source before uploading.',
         'The default audio track is used if multiple exist.',
         'For Whisper transcription, upload the WEBM directly to /webm-to-text.',
       ]}
@@ -84,11 +84,11 @@ export default function WebmToMp3Page() {
         { fmt: 'MP3',  contains: 'No',        size: 'Small',        best: 'Sharing, playback, everywhere' },
       ]}
       faq={[
-        { q: 'Is the WEBM to MP3 converter free?', a: 'Yes. Files up to 25 MB anonymously, 60 MB signed in. No watermark, no upgrade prompts.' },
+        { q: 'Is the WEBM to MP3 converter free?', a: 'Yes. Files up to 25 MB can be converted without an account, and the output has no watermark.' },
         { q: 'What if my WEBM has video?', a: 'We demux the video track server-side and only encode the audio. You do not need to pre-strip anything.' },
         { q: 'Which WEBM audio codecs work?', a: 'Opus (modern, most common) and Vorbis (older). Both are supported directly.' },
         { q: 'Are uploaded files stored?', a: 'No. WEBM is dropped after conversion; the MP3 is purged within the hour.' },
-        { q: 'My WEBM is over 60 MB. What now?', a: 'Trim the source before uploading, or extract audio-only WEBM with ffmpeg first (usually 5-10x smaller).' },
+        { q: 'My WEBM is over 25 MB. What now?', a: 'Trim the source before uploading, or extract an audio-only WEBM first to reduce the file size.' },
       ]}
       ctaHeadline="Convert your WEBM to MP3 now"
       ctaSubtitle="Drop your WEBM and get a clean MP3 in seconds. No signup. No watermark."

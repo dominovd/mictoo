@@ -1,5 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
-import ConverterZone from '@/components/ConverterZone'
+import ConverterPageLayout from '@/components/ConverterPageLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/flac-to-mp3',
@@ -16,81 +15,90 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'FLAC para MP3 — conversor online gratuito | Mictoo',
+  title: 'FLAC para MP3, conversor online gratuito | Mictoo',
   description:
-    'Converta FLAC para MP3 online grátis. Encolha FLAC sem perdas para MP3 a 128 kbps em segundos. Sem cadastro, sem marca d\'água. Até 25 MB.',
+    'Converta FLAC para MP3 gratuitamente online. Reduza o FLAC sem perdas para MP3 a 128 kbps em segundos. Sem registro, sem marca d’água. Até 25 MB.',
   alternates: { canonical: 'https://mictoo.com/pt/flac-to-mp3', languages: LANGS },
-
   openGraph: {
-    title: "FLAC para MP3 — conversor online gratuito | Mictoo",
-    description: "Converta FLAC para MP3 online grátis. Encolha FLAC sem perdas para MP3 a 128 kbps em segundos. Sem cadastro, sem marca d\\'água. Até 25 MB.",
-    url: "https://mictoo.com/pt/flac-to-mp3",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'FLAC para MP3, conversor online gratuito | Mictoo',
+    description: 'Reduza o FLAC sem perdas para MP3 a 128 kbps. Sem registro.',
+    url: 'https://mictoo.com/pt/flac-to-mp3',
+    siteName: 'Mictoo', type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "FLAC para MP3 — conversor online gratuito | Mictoo",
-    description: "Converta FLAC para MP3 online grátis. Encolha FLAC sem perdas para MP3 a 128 kbps em segundos. Sem cadastro, sem marca d\\'água. Até 25 MB.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'FLAC para MP3, conversor online gratuito',
+    description: 'Reduza o FLAC sem perdas para MP3 portátil.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function PtFlacToMp3Page() {
   return (
-    <LandingLayout
-      defaultLanguage="pt"
-      badge="FLAC → MP3 · Grátis · Sem cadastro"
-      h1={<>FLAC para MP3<br /><span className="text-brand-600">Conversor online gratuito</span></>}
-      subtitle="Solte um arquivo FLAC. Receba um MP3 portátil com um terço do tamanho, que toca em todo lugar. Sem marca d&apos;água, sem email."
-      tool={<ConverterZone from="flac" to="mp3" />}
-      howItWorks={[
-        { icon: '📂', title: 'Solte o FLAC', desc: 'Arraste seu FLAC para a caixa. Arquivos até 25 MB anonimamente, 60 MB com cadastro.' },
-        { icon: '⚡', title: 'ffmpeg re-codifica para MP3', desc: '128 kbps em taxa constante, 44.1 kHz, layout de canais preservado. Um FLAC típico de 25 MB termina em 3-10 segundos.' },
-        { icon: '⬇️', title: 'Baixe o MP3', desc: 'O resultado mantém o nome original do arquivo com .mp3. Apagado dos nossos servidores em até uma hora.' },
+    <ConverterPageLayout
+      locale="pt"
+      mode="converter" from="flac" to="mp3" currentHref="/pt/flac-to-mp3"
+      badge="FLAC → MP3 · Gratuito · Sem registro"
+      h1First="FLAC para MP3"
+      h1Second="Conversor online gratuito"
+      subtitle="Coloque um arquivo FLAC sem perdas (de um rip de CD, download do Tidal ou fonte de alta resolução) e obtenha um MP3 portátil a 128 kbps em segundos."
+      outputFormat="MP3" outputQuality="128 kbps" outputAudio="Estéreo"
+      stepsTitle="Como funciona a conversão de FLAC para MP3"
+      steps={[
+        { icon: 'upload',   title: 'Coloque o FLAC',       desc: 'Qualquer FLAC (nativo ou FLAC em OGG). Até 25 MB anonimamente.' },
+        { icon: 'waveform', title: 'Nós decodificamos e codificamos', desc: 'ffmpeg decodifica o FLAC sem perdas e re-codifica para MP3 estéreo a 128 kbps.' },
+        { icon: 'download', title: 'Baixe o MP3',    desc: 'Obtenha seu MP3 5-8x menor, pronto para qualquer reprodutor.' },
       ]}
-      whyUse={{ title: 'Por que converter FLAC para MP3', bullets: [
-        { title: 'FLAC é sem perdas mas enorme', desc: 'Um FLAC de 5 minutos em taxas típicas tem 25-40 MB. O mesmo áudio como MP3 a 128 kbps tem 5 MB. Para celulares, carros e Bluetooth, esse tamanho importa.' },
-        { title: 'A maioria dos estéreos de carro e alto-falantes Bluetooth não toca FLAC', desc: 'Mesmo em 2026, o infotainment de fábrica do carro e muito hardware Bluetooth mediano é MP3 ou nada. MP3 simplesmente funciona.' },
-        { title: 'A 128 kbps a perda de qualidade é inaudível para quase todos', desc: 'Em fones de consumidor, em carros, em alto-falantes de celular, ninguém vai notar a diferença. O compromisso só aparece em monitores de estúdio com escuta crítica.' },
-        { title: 'iPods, players MP3 antigos, apps básicos de música, MP3 ganha', desc: 'Se você está carregando música em algo mais antigo que um iPhone recente, MP3 é a aposta mais segura. Suporte a FLAC em hardware legado é imprevisível.' },
-        { title: 'Sem marca d\'água, sem upsell', desc: 'Só seu áudio re-codificado. Não enfiamos nada.' },
-      ]}}
-      useCases={{ title: 'Quando você converteria FLAC para MP3', items: [
-        { title: 'Download do Bandcamp / Qobuz → biblioteca do celular', desc: 'Bandcamp te dá FLAC por padrão para downloads pagos. Converta para MP3 para caber numa coleção musical no celular ou sincronizar com um sistema de carro que não lida com FLAC.' },
-        { title: 'Rip de CD → biblioteca portátil', desc: 'Se você rippou CDs para FLAC para arquivamento, converta cada álbum para MP3 para escuta do dia a dia, mantenha os FLACs como master.' },
-        { title: 'Export de estúdio → distribuição', desc: 'Seu produtor musical pode te mandar FLAC. Converta para MP3 para hosts de podcast, players web, ou só para mandar por email o mix bruto para um colaborador.' },
-        { title: 'Gravações de campo → compartilhamento rápido', desc: 'Gravadores de campo como o Tascam DR-40X ou Zoom F3 podem gravar em FLAC. Converta antes de compartilhar com um produtor ou editor de som que trabalha em MP3.' },
-        { title: 'Limpeza de biblioteca', desc: 'Limpando um HD antigo de FLACs, mantenha os originais num NAS, converta para MP3 para uso ativo.' },
-      ]}}
-      proTips={{ title: 'Dicas para conversão FLAC para MP3 limpa', tips: [
-        { title: 'FLAC é sem perdas então a primeira codificação está ok', desc: 'Não há penalidade de qualidade indo FLAC → MP3 uma vez. Você só começa a ouvir artefatos quando re-codifica o MP3 de novo, ou quando vai MP3 → outros formatos com perdas.' },
-        { title: 'Para uso audiófilo, mantenha o FLAC', desc: 'Se você está ouvindo em fones de ponta, num DAC dedicado ou fazendo escuta crítica, vale a pena manter o FLAC. MP3 é para distribuição e uso casual.' },
-        { title: 'Tags nem sempre passam', desc: 'Tags FLAC (Vorbis comments) e tags MP3 (ID3) são formatos diferentes. Nosso conversor não transfere capa do álbum e metadados detalhados entre eles. Adicione tags você mesmo no MusicBrainz Picard ou Mp3tag depois da conversão.' },
-        { title: 'FLAC 24-bit/96 kHz converte igual a 16-bit/44.1', desc: 'MP3 chega no máximo a 16-bit/48 kHz na prática. Profundidade de bit extra e sample rate na fonte não sobrevivem à codificação MP3, mas também não machucam nada.' },
-        { title: 'Para conversão sem perdas, use ALAC em vez disso', desc: 'Se você precisa de sem perdas que toque em iTunes/Apple Music, converta FLAC para ALAC (Apple Lossless) em vez disso, mesma qualidade de áudio, metade da pegada de metadados do FLAC, toca nativamente no ecossistema Apple.' },
-        { title: 'Para uma taxa MP3 maior, re-exporte do Audacity', desc: 'Nosso conversor gera a 128 kbps. Para 320 kbps, abra o MP3 no Audacity (grátis) e re-exporte. A codificação dupla mal é audível.' },
-      ]}}
+      previewInputName="album-track.flac"
+      previewInputSize="42 MB · 00:05:12 · 16-bit / 44.1 kHz"
+      previewOutputName="album-track.mp3"
+      previewOutputSize="00:05:12 · 128 kbps · 4.8 MB"
+      whyTitle="Por que usar Mictoo para FLAC para MP3?"
+      whyCards={[
+        { icon: 'target',    title: 'Mantém o master sem perdas', desc: 'Seu arquivo FLAC nunca é modificado. Nós apenas produzimos uma cópia.' },
+        { icon: 'fileAudio', title: 'Cópia de audição menor',    desc: 'Um MP3 a 128 kbps é muitas vezes várias vezes menor que o FLAC. A conversão é com perdas, então mantenha o FLAC como seu master.' },
+        { icon: 'lock',      title: 'Arquivos deletados após',       desc: 'O FLAC enviado é excluído após a conversão; o MP3 é eliminado dentro de uma hora.' },
+        { icon: 'shield',    title: 'Sem marca d’água ou tag',       desc: 'Apenas o áudio, re-codificado. Sem splice de introdução, sem metadados de marca.' },
+      ]}
+      scenariosTitle="Quando FLAC para MP3 é útil"
+      scenarios={[
+        { icon: 'headphones', title: 'Rip de CD para telefone' },
+        { icon: 'mail',       title: 'Enviar um arquivo menor por e-mail' },
+        { icon: 'archive',    title: 'Biblioteca de música portátil' },
+        { icon: 'editPen',    title: 'Importação para DAW' },
+        { icon: 'waveform',   title: 'Cópia para ouvir podcast' },
+        { icon: 'video',      title: 'Trilha sonora de vídeo' },
+      ]}
+      tipsTitle="Dicas para uma conversão limpa de FLAC para MP3"
+      tips={[
+        'Mantenha o FLAC como a cópia de arquivo sem perdas.',
+        '128 kbps é transparente para a maioria das audições.',
+        'Para faixas acima de 25 MB, corte ou divida a fonte antes de enviar.',
+        'Tags de metadados Vorbis (título/artista) não são transferidas para o MP3.',
+      ]}
+      processTitle="O que acontece durante a conversão"
+      processSteps={['Container FLAC', 'Decodificação sem perdas', 'Codificação MP3']}
+      compareTitle="FLAC vs MP3"
+      compareRows={[
+        { fmt: 'FLAC', contains: 'Não', size: 'Grande (~5-8 MB/min)', best: 'Arquivamento, reprodução hi-fi' },
+        { fmt: 'MP3',  contains: 'Não', size: 'Pequeno (~1 MB/min)',   best: 'Compartilhamento, telefones, em todo o lado' },
+      ]}
       faq={[
-        { q: 'A conversão FLAC para MP3 é realmente grátis?', a: 'Sim. Sem conta até 25 MB, sem marca d\'água, sem limite de tempo. Display ads nas páginas editoriais cobrem o custo do servidor.' },
-        { q: 'Qual o tamanho máximo do arquivo?', a: '25 MB anonimamente, 60 MB com conta gratuita. Uma música típica de 5 minutos em FLAC tem 30-40 MB, então para álbuns completos você pode precisar converter faixa por faixa.' },
-        { q: 'Vou ouvir uma diferença de qualidade?', a: 'Em alto-falantes de celular, em carros, em fones baratos, não. Em monitores de estúdio com escuta crítica, possivelmente. O compromisso é razoável para tudo exceto masterização e reprodução audiófila.' },
-        { q: 'Capa do álbum e metadados transferem?', a: 'Parcialmente. Tags básicas (artista, título, álbum) geralmente passam. Capa do álbum e Vorbis comments detalhados frequentemente não. Use MusicBrainz Picard ou Mp3tag depois da conversão para tags limpas.' },
-        { q: 'Que qualidade de MP3 vocês geram?', a: '128 kbps em taxa constante, 44.1 kHz, preserva o layout de canais da fonte.' },
-        { q: 'Quanto tempo leva?', a: 'Segundos. Um FLAC de 25 MB converte em 3-10 segundos. Upload é o gargalo.' },
-        { q: 'Vocês guardam meus arquivos?', a: 'Não. Upload deletado após a conversão. Saída eliminada em até uma hora pelo nosso cron de limpeza.' },
-        { q: 'Posso converter em lote um álbum inteiro?', a: 'Ainda não, plano grátis é um arquivo por vez. Abra várias abas do navegador como contorno.' },
-        { q: 'Meu FLAC 24-bit/96 kHz soa igual ao MP3?', a: 'Quase certamente, em reprodução consumidor. O 24-bit e o sample rate alto importam para processamento e masterização, não para escutar através de cadeias de áudio nível MP3.' },
-        { q: 'Devo converter para ALAC em vez disso?', a: 'Se você precisa de áudio sem perdas no Apple Music ou iTunes, sim, ALAC é o equivalente Apple do FLAC. Não geramos ALAC, mas o Audacity gera.' },
-        { q: 'Meu FLAC é de um download Hi-Res. Vale a pena converter?', a: 'Para escuta no celular ou no carro, o MP3 vai soar idêntico. Mantenha o original para qualquer processamento futuro.' },
-        { q: 'Posso obter mais que 128 kbps?', a: 'Não deste conversor. Re-codifique o MP3 no Audacity com sua taxa preferida.' },
+        { q: 'O conversor de FLAC para MP3 é gratuito?', a: 'Sim. Arquivos de até 25 MB podem ser convertidos sem uma conta, e a saída não tem marca d’água.' },
+        { q: 'Perco qualidade ao converter FLAC para MP3?', a: 'Tecnicamente sim (MP3 é com perdas), mas a 128 kbps a perda é inaudível para audições típicas. Mantenha o FLAC como a cópia de arquivo.' },
+        { q: 'Arquivos FLAC em OGG são suportados?', a: 'Sim. Tanto FLAC nativo (bytes mágicos fLaC) quanto FLAC dentro de containers OGG funcionam.' },
+        { q: 'Os arquivos são armazenados?', a: 'Não. O FLAC enviado é excluído após a conversão; o MP3 é eliminado dentro de uma hora.' },
+        { q: 'Meu FLAC tem mais de 25 MB. E agora?', a: 'Corte ou divida a fonte, ou exporte uma cópia de audição de menor resolução antes de enviar.' },
       ]}
-      relatedLinks={[
-        { href: '/pt/wav-to-mp3', label: 'WAV para MP3', desc: 'Converta WAV sem perdas para MP3.' },
-        { href: '/pt/mp3-to-wav', label: 'MP3 para WAV', desc: 'A direção reversa, MP3 expandido para WAV não comprimido.' },
-        { href: '/pt/flac-to-text', label: 'FLAC para texto', desc: 'Transcreva áudio FLAC direto para texto.' },
-        { href: '/pt/how-to-compress-audio', label: 'Comprimir áudio', desc: 'Quando o MP3 ainda precisa ser menor.' },
+      ctaHeadline="Converta seu FLAC para MP3 agora"
+      ctaSubtitle="Coloque seu FLAC e obtenha um MP3 portátil em segundos. Sem registro. Sem marca d’água."
+      ctaButton="Escolha um arquivo FLAC"
+      moreTools={[
+        { href: '/pt/wav-to-mp3',  label: 'WAV para MP3' },
+        { href: '/pt/mp4-to-mp3',  label: 'MP4 para MP3' },
+        { href: '/pt/webm-to-mp3', label: 'WEBM para MP3' },
+        { href: '/pt/flac-to-text', label: 'FLAC para Texto' },
       ]}
     />
   )

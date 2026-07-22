@@ -45,9 +45,9 @@ export default function WavToMp3Page() {
       outputFormat="MP3" outputQuality="128 kbps" outputAudio="Stereo"
       stepsTitle="How WAV to MP3 conversion works"
       steps={[
-        { icon: 'upload',   title: 'Drop the WAV',         desc: 'Upload your WAV file. Up to 25 MB anonymously, 60 MB when signed in.' },
+        { icon: 'upload',   title: 'Drop the WAV',         desc: 'Upload a WAV file up to 25 MB. No account is required.' },
         { icon: 'waveform', title: 'We encode to MP3',      desc: 'ffmpeg encodes to 128 kbps stereo MP3 at 44.1 kHz. A 25 MB WAV finishes in about 10 seconds.' },
-        { icon: 'download', title: 'Download the MP3',     desc: 'Ten-times-smaller MP3 with the same filename plus a .mp3 extension.' },
+        { icon: 'download', title: 'Download the MP3',     desc: 'Get a smaller 128 kbps MP3 with the original base filename.' },
       ]}
       previewInputName="studio-bounce.wav"
       previewInputSize="120 MB · 00:12:34 · 16-bit / 44.1 kHz"
@@ -56,7 +56,7 @@ export default function WavToMp3Page() {
       whyTitle="Why use Mictoo for WAV to MP3?"
       whyCards={[
         { icon: 'target',   title: 'One job done well',      desc: 'Just the conversion. No newsletter popup, no fake progress bar.' },
-        { icon: 'fileAudio',title: '10-15× smaller output',  desc: 'A 60 MB WAV becomes a 5-6 MB MP3 with no audible loss for typical listening.' },
+        { icon: 'fileAudio',title: 'Much smaller output',    desc: 'Uncompressed PCM WAV files often become 8–12× smaller at 128 kbps. The exact ratio depends on the source.' },
         { icon: 'lock',     title: 'Files deleted after',    desc: 'Your upload is dropped once conversion finishes; the MP3 is purged within the hour.' },
         { icon: 'shield',   title: 'No watermark or tag',    desc: 'No branded intro, no metadata injected. Just the audio, re-encoded.' },
       ]}
@@ -72,7 +72,7 @@ export default function WavToMp3Page() {
       tipsTitle="Tips for clean WAV to MP3"
       tips={[
         '128 kbps is transparent for most listening.',
-        'If the WAV is over 25 MB, sign in for a 60 MB cap.',
+        'If the WAV is over 25 MB, trim or compress it before uploading.',
         'Multi-channel WAV is downmixed to stereo.',
         'For lossless preservation, keep the WAV as the archive copy.',
       ]}
@@ -84,10 +84,10 @@ export default function WavToMp3Page() {
         { fmt: 'MP3', contains: 'No', size: 'Small (~1 MB/min)',  best: 'Sharing, playback, listening' },
       ]}
       faq={[
-        { q: 'Is the WAV to MP3 converter free?', a: 'Yes. No account needed for files up to 25 MB, no watermark, no upgrade prompts. Sign in to bump the cap to 60 MB.' },
+        { q: 'Is the WAV to MP3 converter free?', a: 'Yes. No account is needed for files up to 25 MB, and the output has no watermark.' },
         { q: 'Does the conversion reduce audio quality?', a: 'Slightly. MP3 at 128 kbps is a lossy format but the quality drop is inaudible for voice and typical music playback. Keep your WAV as the master.' },
         { q: 'Are uploaded files stored?', a: 'No. Your WAV lands on Vercel Blob storage just long enough to convert, then it is deleted. The MP3 is purged within the hour.' },
-        { q: 'Can I convert a large WAV?', a: 'Cap is 25 MB (anonymously) or 60 MB (signed in). A 60 MB WAV covers roughly 6 minutes of stereo 16-bit audio. For longer, downsample to mono first with Audacity.' },
+        { q: 'Can I convert a large WAV?', a: 'The current upload limit is 25 MB. For a larger file, trim it or export a mono or lower-sample-rate copy before uploading.' },
         { q: 'Does it work on mobile?', a: 'Yes. Uploads work from iOS Safari and Android Chrome.' },
       ]}
       ctaHeadline="Convert your WAV to MP3 now"

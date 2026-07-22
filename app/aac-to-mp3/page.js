@@ -74,7 +74,7 @@ export default function AacToMp3Page() {
       tips={[
         'If your device plays AAC natively, you may not need to convert.',
         'Both AAC and MP3 are lossy; re-encoding adds a small quality loss.',
-        'For 60 MB cap, sign in.',
+        'Keep the source file under the current 25 MB upload limit.',
         'For transcription, upload the AAC directly to /aac-to-text instead.',
       ]}
       processTitle="What happens during conversion"
@@ -86,7 +86,7 @@ export default function AacToMp3Page() {
       ]}
       faq={[
         { q: 'Do I really need to convert AAC to MP3?', a: 'Rarely. Most modern devices play AAC natively. Convert only if a specific tool or host explicitly requires MP3.' },
-        { q: 'Is the converter free?', a: 'Yes. Files up to 25 MB anonymously, 60 MB signed in. No watermark, no upgrade prompts.' },
+        { q: 'Is the converter free?', a: 'Yes. Files up to 25 MB can be converted without an account, and the output has no watermark.' },
         { q: 'What is the quality loss?', a: 'AAC and MP3 are both lossy. Re-encoding adds a small extra loss but is inaudible for typical listening at 128 kbps.' },
         { q: 'Which AAC framings work?', a: 'ADTS (most common), ADIF, and LATM all decode. AAC inside MP4/M4A works too but is a different intake path.' },
         { q: 'Are files stored?', a: 'No. Uploaded AAC is dropped after conversion; the MP3 is purged within the hour.' },

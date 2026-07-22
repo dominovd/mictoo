@@ -55,8 +55,8 @@ export default function Mp3ToM4aPage() {
       previewOutputSize="00:09:22 · 128 kbps AAC · 7.6 MB"
       whyTitle="Why use Mictoo for MP3 to M4A?"
       whyCards={[
-        { icon: 'target',    title: 'iPhone-ready output',      desc: 'M4A plays natively in iOS, iTunes, GarageBand, and every Apple app.' },
-        { icon: 'fileAudio', title: 'Slightly smaller size',    desc: 'AAC compresses more efficiently than MP3 at the same bitrate, roughly 10% smaller.' },
+        { icon: 'target',    title: 'Apple-friendly output',    desc: 'M4A works natively with common iPhone, iTunes, GarageBand, and Apple media workflows.' },
+        { icon: 'fileAudio', title: 'Predictable output',       desc: 'The file is re-encoded as 128 kbps AAC. Its final size depends mainly on the recording duration.' },
         { icon: 'lock',      title: 'Files deleted after',      desc: 'Uploaded MP3 is dropped after conversion; the M4A is purged within the hour.' },
         { icon: 'shield',    title: 'No watermark or tag',      desc: 'Just the audio, re-encoded. No branded intro, no metadata injected.' },
       ]}
@@ -74,7 +74,7 @@ export default function Mp3ToM4aPage() {
         'MP3 and AAC are both lossy; re-encoding adds a small quality loss.',
         'For lossless, convert to WAV instead.',
         'ID3 tags are not carried into the M4A.',
-        'For 60 MB cap, sign in.',
+        'Keep the source file under the current 25 MB upload limit.',
       ]}
       processTitle="What happens during conversion"
       processSteps={['MP3 Stream', 'Decode', 'AAC / M4A Encoding']}
@@ -84,7 +84,7 @@ export default function Mp3ToM4aPage() {
         { fmt: 'M4A', contains: 'No', size: 'Slightly smaller', best: 'iPhone, iTunes, GarageBand, Apple apps' },
       ]}
       faq={[
-        { q: 'Is the MP3 to M4A converter free?', a: 'Yes. Up to 25 MB anonymously, 60 MB signed in. No watermark, no upgrade prompts.' },
+        { q: 'Is the MP3 to M4A converter free?', a: 'Yes. Files up to 25 MB can be converted without an account, and the output has no watermark.' },
         { q: 'Does converting MP3 to M4A improve quality?', a: 'No. Re-encoding from one lossy format to another can only lose quality slightly. Do it only for Apple-ecosystem compatibility.' },
         { q: 'Will the M4A work in iTunes and Apple Music?', a: 'Yes. Standard AAC inside MP4 container is the exact format iTunes uses.' },
         { q: 'Are files stored?', a: 'No. Uploaded MP3 is dropped after conversion; the M4A is purged within the hour.' },

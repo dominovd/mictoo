@@ -1,9 +1,9 @@
 import LanguagePageLayout from '@/components/LanguagePageLayout'
 
 export const metadata = {
-  title: 'Spanish Audio to Text: Castilian, Mexican, Argentine, and Caribbean Spanish | Mictoo',
+  title: 'Spanish Audio to Text for Regional Varieties | Mictoo',
   description:
-    'Transcribe Spanish audio across regional varieties: Castilian, Mexican, Rioplatense, Caribbean, Andean. Handles seseo, voseo, ustedeo and dialect-specific vocabulary.',
+    'Transcribe Castilian, Mexican, Rioplatense, Caribbean, Andean, and other Spanish audio. Review timestamps, summaries, translations, and exports.',
   alternates: {
     canonical: 'https://mictoo.com/spanish-audio-to-text',
     languages: {
@@ -47,7 +47,7 @@ export default function SpanishAudioToTextPage() {
 
       chips={[
         { label: 'Free',              icon: 'gift' },
-        { label: 'Private',           icon: 'shield' },
+        { label: 'Auto-deleted',      icon: 'shield' },
         { label: 'Spanish variants',  icon: 'globe' },
         { label: 'AI summary',        icon: 'sparkles' },
       ]}
@@ -63,8 +63,8 @@ export default function SpanishAudioToTextPage() {
       stepsTitle="How Spanish transcription works"
       steps={[
         { icon: 'upload',   title: 'Upload your Spanish audio',        desc: 'MP3, MP4, WAV, M4A or any common format with Spanish speech.' },
-        { icon: 'sparkles', title: 'Whisper recognises regional accents', desc: 'Our AI handles seseo, voseo, ustedeo and regional vocabulary.' },
-        { icon: 'editPen',  title: 'Edit, translate, and export',        desc: 'Review, get an AI summary, translate to English or 50+ languages, export.' },
+        { icon: 'sparkles', title: 'Regional Spanish support', desc: 'Whisper can recognise seseo, voseo, ustedeo and regional vocabulary; review strong dialects and slang.' },
+        { icon: 'editPen',  title: 'Edit, translate, and export', desc: 'Review the transcript, generate a summary, translate into one of 36 languages, and export.' },
       ]}
 
       exampleTitle="Example Spanish transcript & summary"
@@ -87,10 +87,10 @@ export default function SpanishAudioToTextPage() {
 
       whyTitle="Why use Mictoo for Spanish audio?"
       whyCards={[
-        { icon: 'globe',    title: 'Every major variety',        desc: 'Castilian, Mexican, Rioplatense, Andean, Caribbean, Chilean — all natively handled.' },
-        { icon: 'accent',   title: 'Diacritics preserved',       desc: 'á, é, í, ó, ú, ñ and ¿?¡! are captured correctly with proper Spanish punctuation.' },
-        { icon: 'quote',    title: 'Voseo and ustedeo handled',  desc: 'Recognises "vos tenés" as easily as "tú tienes" or "usted tiene".' },
-        { icon: 'translate',title: 'Translation included',        desc: 'One-click translation to English (or any of 50+ languages).' },
+        { icon: 'globe',    title: 'Major regional varieties',   desc: 'Designed for Castilian, Mexican, Rioplatense, Andean, Caribbean and Chilean Spanish.' },
+        { icon: 'accent',   title: 'Spanish orthography',        desc: 'The transcript can preserve diacritics and Spanish punctuation; review names and regional terms.' },
+        { icon: 'quote',    title: 'Voseo and ustedeo support',  desc: 'The model can distinguish forms such as “vos tenés”, “tú tienes”, and “usted tiene”.' },
+        { icon: 'translate',title: 'Translation included',       desc: 'Translate the finished transcript into any of the 36 supported target languages.' },
       ]}
 
       worksWellTitle="Spanish audio that works well"
@@ -112,10 +112,10 @@ export default function SpanishAudioToTextPage() {
       ]}
       challengesTitle="What makes Spanish speech recognition difficult"
       challenges={[
-        { title: 'Voseo',             desc: 'Argentine and some Central American speakers use "vos" instead of "tú".',    example: 'vos tenés',    ipa: 'boh te.nes' },
+        { title: 'Voseo',             desc: 'Argentine and some Central American speakers use "vos" instead of "tú".',    example: 'vos tenés',    ipa: 'bos teˈnes' },
         { title: 'Seseo / distinción', desc: 'Some regions pronounce "z" and "c" as "s"; Spain distinguishes them.',       example: 'gracias',      ipa: 'ɡɾa.sjas / ɡɾa.θjas' },
-        { title: 'll and y sounds',    desc: 'Yeísmo merges "ll" and "y" in most regions; Rioplatense turns them to "sh".', example: 'calle',        ipa: 'ka.ʝe / ka.ʃe' },
-        { title: 'Regional slang',      desc: 'Vocabulary differences: "coche" (Spain) vs "carro" (Mexico) vs "auto" (Argentina).', example: 'carro',  ipa: 'car / coche / auto' },
+        { title: 'll and y sounds',    desc: 'Yeísmo merges "ll" and "y" in most regions; Rioplatense often uses a “sh”-like sound.', example: 'calle', ipa: 'ˈka.ʝe / ˈka.ʃe' },
+        { title: 'Regional vocabulary', desc: 'Common words differ between Spain, Mexico, Argentina, and other regions.', example: 'coche / carro / auto', ipa: '' },
       ]}
 
       varietiesTitle="Spanish varieties supported"
@@ -129,12 +129,12 @@ export default function SpanishAudioToTextPage() {
       ]}
 
       faq={[
-        { q: 'Can Mictoo transcribe Mexican and Argentine Spanish?',  a: 'Yes. Set the language to Spanish; the model handles all major varieties including Mexican, Argentine (vos), Chilean, Colombian, and Peninsular Spanish.' },
+        { q: 'Can Mictoo transcribe Mexican and Argentine Spanish?',  a: 'Yes. Set the language to Spanish. The model supports Mexican, Argentine, Chilean, Colombian, Peninsular, and other varieties, though strong dialects may need review.' },
         { q: 'Are diacritics (á, é, ñ, ¿?) preserved?',                a: 'Yes. Whisper outputs proper Spanish orthography including all diacritics and opening question / exclamation marks.' },
         { q: 'Can I translate the transcript to English?',              a: 'Yes. Pick English as the target and click Translate. GPT-4o-mini handles the translation and it appears alongside the original.' },
-        { q: 'Is Spanish transcription free?',                          a: 'Yes. Up to 25 MB anonymously, 60 MB signed in. No watermark, no per-minute fee.' },
+        { q: 'Is Spanish transcription free?',                          a: 'Yes. Files up to 25 MB can be transcribed anonymously or up to 180 MB when signed in. No watermark and no per-minute fee.' },
         { q: 'Are my audio files stored?',                              a: 'No. Audio streams to the transcription provider, gets processed once, and is dropped. Transcripts persist only on signed-in accounts.' },
-        { q: 'Does it handle code-switching (Spanglish)?',              a: 'Yes. For English / Spanish mixed audio, use Auto-detect. Whisper handles mid-sentence language switches well.' },
+        { q: 'Does it handle code-switching (Spanglish)?',              a: 'It can transcribe many English and Spanish switches. Use Auto-detect and review short switches, proper nouns, and ambiguous phrases.' },
       ]}
 
       ctaHeadline="Transcribe your Spanish audio"
@@ -144,7 +144,7 @@ export default function SpanishAudioToTextPage() {
       exploreCards={[
         { href: '/french-speech-to-text',      flag: '🇫🇷', title: 'French Speech to Text',       desc: 'Liaisons, accents, and Quebec French supported.' },
         { href: '/german-audio-transcription', flag: '🇩🇪', title: 'German Audio Transcription',  desc: 'Compound words and regional varieties handled.' },
-        { href: '/multilingual-transcription', flag: '🌐', title: 'Multilingual Transcription',   desc: 'Transcribe in 50+ languages with one platform.' },
+        { href: '/multilingual-transcription', flag: '🌐', title: 'Multilingual Transcription',   desc: 'Choose from 36 languages or use automatic detection.' },
       ]}
     />
   )

@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/voice-memo-to-text',
@@ -15,199 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Nota de voz a texto — transcribe Voice Memos de iPhone gratis | Mictoo',
+  title: 'Transcripción de notas de voz a texto para iPhone y Android | Mictoo',
   description:
-    'Transcripción gratuita de notas de voz. Sube tu Voice Memo de iPhone o la grabación de Android (M4A, MP3) y obtén texto limpio en segundos. Sin registro.',
-  alternates: { canonical: 'https://mictoo.com/es/voice-memo-to-text', languages: LANGS },
-
+    'Sube una grabación de voz de iPhone o Android y obtén texto con marcas de tiempo, un resumen de IA y exportaciones editables.',
+  alternates: {
+    canonical: 'https://mictoo.com/es/voice-memo-to-text',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Nota de voz a texto — transcribe Voice Memos de iPhone gratis | Mictoo",
-    description: "Transcripción gratuita de notas de voz. Sube tu Voice Memo de iPhone o la grabación de Android (M4A, MP3) y obtén texto limpio en segundos. Sin registro.",
-    url: "https://mictoo.com/es/voice-memo-to-text",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Transcripción de notas de voz a texto: Gratis | Mictoo',
+    description: 'Sube tu grabación de voz de iPhone o Android, obtén texto limpio.',
+    url: 'https://mictoo.com/es/voice-memo-to-text',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Nota de voz a texto — transcribe Voice Memos de iPhone gratis | Mictoo",
-    description: "Transcripción gratuita de notas de voz. Sube tu Voice Memo de iPhone o la grabación de Android (M4A, MP3) y obtén texto limpio en segundos. Sin registro.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Transcripción de notas de voz a texto',
+    description: 'Transcripción gratuita para grabaciones de voz del teléfono.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function EsVoiceMemoPage() {
+export default function EsVoiceMemoToTextPage() {
   return (
-    <LandingLayout
-      defaultLanguage="es"
+    <UseCaseLayout
+      locale="es"
       badge="iPhone · Android · Gratis"
-      h1={
-        <>
-          Nota de voz a texto
-          <br />
-          <span className="text-brand-600">Transcriptor gratuito de notas de voz</span>
-        </>
-      }
-      subtitle="Convierte notas de voz en texto limpio. iPhone, Android, grabadora dedicada, cualquier archivo de voz. Súbelo y obtén la transcripción en segundos. Sin registro, sin tarifa por minuto."
-      howItWorks={[
+      h1First="Transcripción de notas de voz a texto"
+      h1Second="Transcripción gratuita para grabaciones de voz del teléfono"
+      subtitle="Sube tu nota de voz de iPhone, grabación de voz de Android, nota de voz de WhatsApp o mensaje de voz de Telegram. Obtén una transcripción limpia en segundos. Sin registro, sin tarifa por minuto."
+      currentHref="/es/voice-memo-to-text"
+
+      platforms={[
+        { name: 'iPhone',       iconKey: 'mic',       brandBg: '#0F172A' },
+        { name: 'Google Rec',   iconKey: 'mic',       brandBg: '#4285F4' },
+        { name: 'Samsung',      iconKey: 'mic',       brandBg: '#1428A0' },
+        { name: 'WhatsApp',     iconKey: 'phone',     brandBg: '#25D366' },
+        { name: 'Telegram',     iconKey: 'phone',     brandBg: '#0088CC' },
+        { name: 'Audacity',     iconKey: 'soundwave', brandBg: '#0B60D6' },
+      ]}
+
+      howItWorksTitle="Cómo funciona la transcripción de notas de voz"
+      steps={[
         {
-          icon: '📱',
-          title: 'Pasa la nota al ordenador (o súbela desde el móvil)',
-          desc: 'iPhone: abre Voice Memos, toca Compartir, AirDrop o email a ti. Android: localiza la grabación en Archivos o en la carpeta de tu app de grabación. O usa el navegador móvil para subir directamente desde el teléfono.',
+          icon: 'folder',
+          title: 'Comparte la grabación',
+          desc: 'iPhone: hoja de compartir desde Notas de Voz. Android: archivo desde la app de Archivos. WhatsApp: reenvía como archivo.',
         },
         {
-          icon: '📂',
-          title: 'Sube el archivo',
-          desc: 'M4A del iPhone, M4A o MP3 de Android, WAV de algunas grabadoras. Todos sirven.',
+          icon: 'upload',
+          title: 'Suelta el archivo aquí',
+          desc: 'M4A (iPhone), MP3 (Android), OPUS/OGG (WhatsApp, Telegram) funcionan directamente.',
         },
         {
-          icon: '📋',
-          title: 'Recibe la transcripción',
-          desc: 'Léela en el navegador, cópiala al portapapeles o descárgala como TXT. Pégala en Notion, Apple Notes, Google Docs o donde vivan tus notas.',
+          icon: 'editPen',
+          title: 'Transcripción en segundos',
+          desc: 'Una nota de 5 minutos termina en unos 10 segundos. El resumen de IA convierte ideas desordenadas en una lista de acciones clara.',
         },
       ]}
-      whyUse={{
-        title: 'Por qué Mictoo para notas de voz',
-        bullets: [
-          {
-            title: 'Soporte nativo de M4A',
-            desc: 'Voice Memos de iPhone guarda como M4A. Aceptamos M4A directamente. Sin conversión.',
-          },
-          {
-            title: 'Gratis sin contador de minutos',
-            desc: 'Las notas de voz son formato de "una a la vez". Pagar por minuto por una idea de 2 minutos es tonto. Gratis sin tope encaja con el caso de uso.',
-          },
-          {
-            title: 'Rápido en archivos cortos',
-            desc: 'Una nota de voz de 2 minutos se transcribe en unos 5 segundos. Más rápido que teclear la idea tú.',
-          },
-          {
-            title: 'Privacidad',
-            desc: 'Las notas de voz suelen ser personales. Tu audio va al proveedor de transcripción, se procesa y se descarta. No lo guardamos.',
-          },
-          {
-            title: 'Mobile-friendly',
-            desc: 'Sube directamente desde tu teléfono usando el navegador. iOS y Android funcionan.',
-          },
-          {
-            title: 'La detección automática maneja tu idioma',
-            desc: 'Notas de voz en cualquiera de 50+ idiomas. Útil si piensas en dos idiomas y tus notas cambian.',
-          },
-        ],
-      }}
-      useCases={{
-        title: 'Para qué usa la gente las transcripciones de notas de voz',
-        items: [
-          {
-            title: 'Captura de ideas en movimiento',
-            desc: 'Tuviste una idea en un paseo, la dictaste al móvil. Ahora quieres actuar sobre ella. Transcribe, pega en tu gestor de tareas o app de notas.',
-          },
-          {
-            title: 'Dictado de escritura larga',
-            desc: 'Algunos redactan ensayos, posts de blog o emails hablando. Transcribe la nota de voz, edita el texto, envía.',
-          },
-          {
-            title: 'Acciones después de una reunión',
-            desc: 'Te dictaste un resumen en el camino de vuelta de la sala. Transcribes, pegas en el documento del proyecto.',
-          },
-          {
-            title: 'Notas de campo para periodistas e investigadores',
-            desc: 'Captura observaciones y citas in situ. Transcribe después para notas ordenadas.',
-          },
-          {
-            title: 'Listas-recordatorio (compra, prep, planes de proyecto)',
-            desc: 'Las notas de voz son más rápidas que teclear en el móvil. Transcribe para tener una versión textual buscable y editable.',
-          },
-        ],
-      }}
-      proTips={{
-        title: 'Consejos para transcripción de notas de voz',
-        tips: [
-          {
-            title: 'Ten el móvil cerca, pero no demasiado',
-            desc: 'De 10 a 15 cm de la boca es lo óptimo. Más cerca y el micro coge plosivos y respiración. Más lejos y pierdes inteligibilidad en entornos ruidosos.',
-          },
-          {
-            title: 'El viento es el enemigo',
-            desc: 'Una nota de voz de 10 segundos en una calle ventosa puede ser inservible. Si puedes, párate, gira la espalda al viento, luego graba. O usa auriculares con micro resistente al viento.',
-          },
-          {
-            title: 'Pausa antes de palabras clave',
-            desc: 'Al dictar un nombre, dirección o término técnico, pausa brevemente antes. Whisper maneja palabras aisladas mejor que el habla rápida para nombres propios.',
-          },
-          {
-            title: 'Voice Memos de iPhone por defecto graba en M4A lossless, pero puedes ponerlo en lossy',
-            desc: 'Settings, Voice Memos, Audio Quality. Lossless es excesivo para transcripción. Lossy es un tercio del tamaño sin diferencia en precisión.',
-          },
-          {
-            title: 'Recorta silencios al inicio y al final antes de subir',
-            desc: 'Voice Memos a veces captura 3–5 segundos de aire muerto. Recorta en la app Voice Memos (pulsa Edit) antes de compartir. Archivo más pequeño, transcripción más rápida.',
-          },
-          {
-            title: 'Para dictados largos (escribiendo un borrador por voz), divide en trozos de 5–10 minutos',
-            desc: 'Más fácil de editar. Más fácil regrabar un solo trozo si sale mal.',
-          },
-          {
-            title: 'Whisper maneja tu acento mejor que el dictado nativo del móvil',
-            desc: 'iOS tiene dictado integrado, pero es english-first y más débil con acentos. Whisper cubre más de 50 idiomas con mejor precisión.',
-          },
-        ],
-      }}
+
+      exampleTitle="Ejemplo de transcripción de nota de voz"
+      exampleFileName="voice-memo.m4a"
+      exampleDurationLabel="3:22"
+      exampleLines={[
+        { t: '0:00',  line: 'Está bien, nota de voz rápida antes de que olvide la idea completa.' },
+        { t: '0:04',  line: 'La propuesta es que tomemos el flujo de pago y lo dividamos en dos pasos claros en lugar de un formulario largo.' },
+        { t: '0:13',  line: 'Paso uno, solo correo y tarjeta. Paso dos, detalles de envío después de que vean el número de confirmación.' },
+        { t: '0:22',  line: 'La razón por la que esto importa es que la tasa de abandono en el formulario de una sola página actual es de alrededor del treinta y ocho por ciento.' },
+        { t: '0:32',  line: 'La mayor parte de ese abandono ocurre en la sección de envío, no en la entrada de la tarjeta, lo cual es contraintuitivo.' },
+        { t: '0:42',  line: 'Si cambiamos el envío a después de la compra, probablemente podamos recuperar entre el doce y el quince por ciento de ese tráfico.' },
+        { t: '0:52',  line: 'En cuanto a la línea de tiempo, creo que esto son dos semanas de frontend, una semana de backend, tal vez una semana de pruebas.' },
+      ]}
+      summaryPoints={[
+        'Idea: dividir el flujo de pago en dos pasos.',
+        'Paso 1: correo + tarjeta. Paso 2: envío después de la confirmación.',
+        'Tasa de abandono actual: 38%, principalmente en la sección de envío.',
+        'Recuperación estimada: 12-15% del tráfico.',
+      ]}
+      actionItems={[
+        'Bocetar un prototipo de pago en dos pasos',
+        'Verificar el 38% de abandono en analíticas',
+        'Definir el alcance de ingeniería (~4 semanas en total)',
+      ]}
+
+      whyTitle="Por qué Mictoo para notas de voz"
+      whyCards={[
+        {
+          icon: 'sparkles',
+          title: 'Resumen de IA para notas desordenadas',
+          desc: 'Las notas de voz son desordenadas por naturaleza. El resumen convierte un flujo de pensamiento de cinco minutos en una conclusión de dos líneas.',
+        },
+        {
+          icon: 'mic',
+          title: 'nativo .m4a de iPhone',
+          desc: 'Apple Notas de Voz escribe .m4a (AAC en MP4). Lo aceptamos directamente, sin conversión.',
+        },
+        {
+          icon: 'chat',
+          title: 'nativo .oga de Telegram',
+          desc: 'Guarda el mensaje de voz de Telegram del chat y suelta el archivo .oga. Opus en OGG, manejado de forma nativa.',
+        },
+        {
+          icon: 'globe',
+          title: 'Traduce para notas en diferentes idiomas',
+          desc: 'Nota en tu idioma nativo, notas en inglés para el equipo. Un clic.',
+        },
+      ]}
+
+      scenariosTitle="Escenarios comunes de notas de voz"
+      scenarios={[
+        { icon: 'sparkles', title: 'Captura de ideas' },
+        { icon: 'chat',     title: 'Notas de reuniones' },
+        { icon: 'editPen',  title: 'Escritura de borradores' },
+        { icon: 'book',     title: 'Diario' },
+        { icon: 'phone',    title: 'Mensaje de voz' },
+        { icon: 'globe',    title: 'Multilingüe' },
+      ]}
+
+      tipsTitle="Consejos para notas de voz más limpias"
+      tips={[
+        'Sostén el teléfono cerca para reducir el ruido de la habitación.',
+        'Para notas largas de más de 60 MB, inicia sesión para auto-dividir.',
+        'Habla en un idioma por nota para la detección más limpia.',
+        'Di "nuevo párrafo" si quieres que la transcripción se interrumpa allí.',
+      ]}
+
+      guidesTitle="Herramientas relacionadas"
+      guides={[
+        { href: '/es/m4a-to-text',        icon: 'file',  title: 'Formato M4A',       desc: 'Análisis profundo de iPhone / GarageBand' },
+        { href: '/es/ogg-to-text',        icon: 'file',  title: 'OGG / .oga',       desc: 'Análisis profundo de voz de Telegram' },
+        { href: '/es/dictation-to-text',  icon: 'editPen', title: 'Dictado',      desc: 'Flujo de trabajo de escritura con voz' },
+        { href: '/es/interview-transcription', icon: 'chat', title: 'Entrevista',    desc: 'Entrevista por teléfono o en persona' },
+      ]}
+
       faq={[
         {
-          q: '¿Mictoo soporta Voice Memos de iPhone?',
-          a: 'Sí. Voice Memos de iPhone guarda como M4A (a veces ALAC lossless). El M4A funciona directamente. Para ALAC, convierte primero a WAV o M4A AAC.',
+          q: '¿Puedo transcribir notas de voz de iPhone directamente?',
+          a: 'Sí. Comparte la nota desde la app de Notas de Voz (hoja de compartir → guardar en Archivos o enviártela a ti mismo) y suelta el .m4a en Mictoo. No se necesita conversión.',
         },
         {
-          q: '¿Cómo paso la nota de voz del iPhone a Mictoo?',
-          a: 'Tres opciones. Abre la nota en Voice Memos, toca Compartir, elige AirDrop al Mac (más rápido) o email a ti. O usa Safari en el iPhone para abrir mictoo.com y subir directamente desde la app Archivos.',
+          q: '¿Mictoo transcribe mensajes de voz de WhatsApp o Telegram?',
+          a: 'Sí. Guarda el mensaje de voz del chat (reenviar → guardar como archivo) y suéltalo. Las notas de voz de WhatsApp son .opus, las notas de voz de Telegram son .oga (ambos son contenedores OGG). Ambos funcionan directamente.',
         },
         {
-          q: '¿Y las grabaciones de Android?',
-          a: 'Las grabadoras de voz de Android suelen guardar como M4A o MP3. Ambos sirven. Localiza el archivo en la app Archivos, compártelo al ordenador o súbelo desde el navegador móvil.',
+          q: '¿Cuál es el límite de tamaño de archivo?',
+          a: '25 MB de forma anónima, 60 MB al iniciar sesión. Una nota de voz de 60 minutos a una tasa de bits típica es de aproximadamente 20-30 MB, por lo que la mayoría encajan bajo el límite gratuito.',
         },
         {
-          q: '¿Puedo subir directamente desde el móvil?',
-          a: 'Sí. El sitio es mobile-friendly. Toca la zona de subida, elige el archivo desde la app Archivos del teléfono o la carpeta de grabaciones.',
+          q: '¿Mictoo transcribe notas de voz en idiomas no ingleses?',
+          a: 'Sí. Whisper large-v3 soporta más de 50 idiomas. Para notas cortas o contenido en idiomas no ingleses, establece el idioma explícitamente para una detección más limpia en la primera pasada.',
         },
         {
-          q: '¿Cuánto puede durar la nota de voz?',
-          a: 'Hasta 30 minutos por archivo en gratis, 60 minutos con login. La mayoría de notas duran menos de 5 minutos, dentro de cualquier límite.',
+          q: '¿Puedo obtener un resumen de una nota de lluvia de ideas desordenada?',
+          a: 'Sí. El resumen de IA aparece automáticamente junto a la transcripción. Excelente para convertir notas de flujo de conciencia en listas de acciones claras.',
         },
         {
-          q: '¿Qué precisión tiene la transcripción de notas de voz?',
-          a: 'Para habla clara en entorno tranquilo, 90–95 %. Para habla mascullada, ruido de fondo (calle, café, coche), la precisión baja. Los nombres propios suelen necesitar limpieza.',
+          q: '¿Se almacenan las notas de voz en sus servidores?',
+          a: 'No. El audio se transmite al proveedor de transcripción, se procesa una vez y se elimina. Solo la transcripción persiste si inicias sesión y la guardas.',
         },
         {
-          q: '¿La transcripción incluirá puntuación?',
-          a: 'Sí. Whisper añade puntuación automáticamente. No siempre es perfecta para habla dictada (que tiene menos límites naturales de frase), pero se usa tal cual.',
-        },
-        {
-          q: '¿Funciona para dictar en un idioma no inglés?',
-          a: 'Sí, más de 50 idiomas. Elige el idioma manualmente desde el desplegable para notas cortas (la detección automática necesita más audio para ser fiable).',
-        },
-        {
-          q: '¿Se guarda mi nota de voz?',
-          a: 'No. El archivo va a nuestro proveedor de transcripción, se procesa y se descarta.',
-        },
-        {
-          q: '¿Puedo editar la transcripción antes de descargar?',
-          a: 'Sí. Arregla palabras mal entendidas en el navegador antes de exportar.',
-        },
-        {
-          q: '¿Esto funciona para grabar llamadas telefónicas?',
-          a: 'Transcribimos el archivo que subes, sea cual sea cómo se grabó. La grabación de llamadas en sí requiere consentimiento en la mayoría de jurisdicciones. Pide consentimiento antes de grabar.',
-        },
-        {
-          q: '¿Diferencia entre esto y el dictado nativo de iOS?',
-          a: 'El dictado de iOS es en tiempo real mientras hablas, limitado a ciertos idiomas y más débil con acentos. Mictoo transcribe después de la grabación, soporta más de 50 idiomas y usa un modelo más preciso (Whisper large-v3).',
+          q: '¿Puedo traducir mi nota de voz a otro idioma?',
+          a: 'Sí. Elige un idioma de destino y haz clic en Traducir después de la transcripción. GPT-4o-mini maneja la traducción y aparece junto al original.',
         },
       ]}
+
+      ctaHeadline="Convierte notas de voz en texto y elementos de acción"
+      ctaSubtitle="Notas de voz de iPhone, Android, WhatsApp, Telegram. Todos los formatos, una carga."
+      ctaButton="Sube una nota de voz"
+
       relatedLinks={[
-        { href: '/es/m4a-to-text', label: 'M4A a texto', desc: 'Específicamente para archivos M4A.' },
-        { href: '/es/dictation-to-text', label: 'Dictado a texto', desc: 'Para borradores y escritura larga por voz.' },
-        { href: '/es/interview-transcription', label: 'Transcripción de entrevistas', desc: 'Para entrevistas grabadas por teléfono.' },
-        { href: '/es/transcribe-audio-to-text', label: 'Audio a texto', desc: 'Para otros formatos de audio.' },
+        { href: '/es/dictation-to-text',       label: 'Dictado a Texto' },
+        { href: '/es/interview-transcription', label: 'Transcripción de Entrevista' },
+        { href: '/es/m4a-to-text',             label: 'M4A a Texto' },
+        { href: '/es/ogg-to-text',             label: 'OGG a Texto' },
+        { href: '/es/meeting-transcription',   label: 'Transcripción de Reunión' },
       ]}
     />
   )

@@ -1,9 +1,9 @@
 import UseCaseLayout from '@/components/UseCaseLayout'
 
 export const metadata = {
-  title: 'Free Interview Transcription Tool: Convert Interviews to Text Online | Mictoo',
+  title: 'Interview Transcription for Audio and Video | Mictoo',
   description:
-    'Transcribe interviews for free with AI. Upload audio or video recordings and get accurate interview transcripts in minutes. Supports MP3, WAV, M4A, MP4, MOV, and more.',
+    'Upload an interview recording and get timestamped text, an AI summary, and exports for reporting, research, or review.',
   alternates: {
     canonical: 'https://mictoo.com/interview-transcription',
     languages: {
@@ -101,8 +101,8 @@ export default function InterviewTranscriptionPage() {
       whyCards={[
         {
           icon: 'target',
-          title: 'Accurate on proper nouns',
-          desc: 'Whisper large-v3 handles names, cities, and company terms better than most built-in meeting-app transcripts.',
+          title: 'Review names and proper nouns',
+          desc: 'Use timestamps to check names, cities, organizations, and specialist terms against the original interview recording.',
         },
         {
           icon: 'sparkles',
@@ -111,8 +111,8 @@ export default function InterviewTranscriptionPage() {
         },
         {
           icon: 'lock',
-          title: 'Subject anonymity preserved',
-          desc: 'The recording is never stored on our servers. Only the transcript persists, and only if you sign in.',
+          title: 'Clear processing model',
+          desc: 'The recording is sent to a transcription provider for processing and is not retained by Mictoo after the job completes.',
         },
         {
           icon: 'globe',
@@ -154,7 +154,7 @@ export default function InterviewTranscriptionPage() {
         },
         {
           q: 'Does Mictoo identify who is speaking?',
-          a: 'Not yet. The transcript is continuous text with per-line timestamps and no "Interviewer / Subject" labels. Diarisation is on the Pro roadmap.',
+          a: 'No. The current transcript is continuous text with per-line timestamps and no automatic "Interviewer / Subject" labels.',
         },
         {
           q: 'Is interview transcription free?',

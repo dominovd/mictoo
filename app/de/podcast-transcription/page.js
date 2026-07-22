@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/podcast-transcription',
@@ -15,191 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Podcast-Transkription — kostenloser KI-Transkript-Generator | Mictoo',
+  title: 'Podcast-Transkription mit Zusammenfassung und SRT | Mictoo',
   description:
-    'Kostenlose KI-Podcast-Transkription. Laden Sie Ihre Episode hoch (MP3, MP4, M4A, WAV) und erhalten Sie in Sekunden ein sauberes Transkript mit Zeitstempeln. Ohne Anmeldung, ohne Tarif pro Minute.',
-  alternates: { canonical: 'https://mictoo.com/de/podcast-transcription', languages: LANGS },
-
+    'Laden Sie eine Podcast-Episode hoch und erhalten Sie einen zeitgestempelten Text, eine KI-Zusammenfassung und Exporte für Shownotes, Untertitel und Ihr Archiv.',
+  alternates: {
+    canonical: 'https://mictoo.com/de/podcast-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Podcast-Transkription — kostenloser KI-Transkript-Generator | Mictoo",
-    description: "Kostenlose KI-Podcast-Transkription. Laden Sie Ihre Episode hoch (MP3, MP4, M4A, WAV) und erhalten Sie in Sekunden ein sauberes Transkript mit Zeitstempeln. Ohne Anmeldung, ohne Tarif pro Minute.",
-    url: "https://mictoo.com/de/podcast-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Podcast-Transkription: Kostenloser KI-Podcast-Transkriptgenerator | Mictoo',
+    description: 'Laden Sie Ihre Episode hoch und erhalten Sie in Sekunden ein sauberes, zeitgestempeltes Transkript.',
+    url: 'https://mictoo.com/de/podcast-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Podcast-Transkription — kostenloser KI-Transkript-Generator | Mictoo",
-    description: "Kostenlose KI-Podcast-Transkription. Laden Sie Ihre Episode hoch (MP3, MP4, M4A, WAV) und erhalten Sie in Sekunden ein sauberes Transkript mit Zeitstempeln. Ohne Anmeldung, ohne Tarif pro Minute.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Podcast-Transkription: Kostenloser Generator',
+    description: 'Laden Sie Ihre Episode hoch und erhalten Sie ein sauberes Transkript.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function DePodcastPage() {
+export default function DePodcastTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="de"
-      badge="Podcaster · Hosts · Kostenlos"
-      h1={
-        <>
-          Podcast-Transkription
-          <br />
-          <span className="text-brand-600">Kostenloser Transkript-Generator</span>
-        </>
-      }
-      subtitle="Verwandeln Sie jede Episode in sauberen Text. Laden Sie Ihre MP3, MP4 oder M4A hoch und erhalten Sie in Sekunden das Transkript. Ohne Konto, ohne Tarif pro Minute."
-      howItWorks={[
+    <UseCaseLayout
+      locale="de"
+      badge="Podcaster · Gastgeber · Kostenlos"
+      h1First="Podcast-Transkription"
+      h1Second="Kostenloses KI-Transkript für jede Episode"
+      subtitle="Laden Sie Ihre Episode von jedem Aufnahme-Tool hoch. Erhalten Sie ein sauberes, zeitgestempeltes Transkript mit KI-Zusammenfassung, bereit für Shownotes, SEO-Zusammenfassung und YouTube-Untertitel."
+      currentHref="/de/podcast-transcription"
+
+      platforms={[
+        { name: 'Riverside',  iconKey: 'waveMic',   brandBg: '#4B2AF7' },
+        { name: 'Zencastr',   iconKey: 'soundwave', brandBg: '#F7B32B' },
+        { name: 'SquadCast',  iconKey: 'waveMic',   brandBg: '#7E22CE' },
+        { name: 'Cleanfeed',  iconKey: 'soundwave', brandBg: '#0F766E' },
+        { name: 'Descript',   iconKey: 'soundwave', brandBg: '#111827' },
+        { name: 'Anchor',     iconKey: 'mic',       brandBg: '#8B5CF6' },
+      ]}
+
+      howItWorksTitle="Wie die Podcast-Transkription funktioniert"
+      steps={[
         {
-          icon: '📂',
-          title: 'Episode ablegen',
-          desc: 'MP3, MP4, M4A, WAV oder FLAC. Cloud Recording von Riverside, Exports aus Descript, rohes Audio aus Zoom, Anchor.fm-Dateien. Alles geht.',
+          icon: 'folder',
+          title: 'Episode exportieren',
+          desc: 'Jedes Format, das Ihr DAW oder Aufnahme-Tool produziert. MP3 ist am häufigsten, aber M4A, WAV und FLAC funktionieren ebenfalls.',
         },
         {
-          icon: '⚡',
-          title: 'KI macht die Arbeit',
-          desc: 'Whisper large-v3 läuft auf unserem Backend und wandelt das Audio in Text um. Die meisten 30-Minuten-Episoden sind in unter einer Minute fertig.',
+          icon: 'upload',
+          title: 'Datei hier ablegen',
+          desc: 'Laden Sie Dateien bis zu 60 MB hoch, wenn Sie angemeldet sind. Längere Episoden werden automatisch in Segmente aufgeteilt und wieder zusammengefügt.',
         },
         {
-          icon: '📋',
-          title: 'Kopieren, herunterladen oder bearbeiten',
-          desc: 'Holen Sie sich den Text als TXT, als SRT für Untertitel, oder fügen Sie ihn direkt in Ihren Show-Notes-Editor ein. Korrigieren Sie falsche Wörter in unserem Viewer vor dem Export.',
+          icon: 'editPen',
+          title: 'Shownotes, Untertitel, Exporte',
+          desc: 'Transkript, KI-Zusammenfassung, SRT für die YouTube-Version und DOCX für den Blog. Die Verarbeitungszeit hängt von der Episodenlänge und der Dateigröße ab.',
         },
       ]}
-      whyUse={{
-        title: 'Warum Podcaster Mictoo nutzen',
-        bullets: [
-          {
-            title: 'Lange Episoden sind kein Problem',
-            desc: 'Bis zu 60 Minuten pro Datei nach kostenloser Anmeldung. Bei einer Aufteilung in zwei Teile behalten wir relative Zeitstempel, damit Sie die SRT-Dateien ohne Rechnerei wieder zusammensetzen können.',
-          },
-          {
-            title: 'Akzente und Crosstalk halten stand',
-            desc: 'Whisper large-v3 ist das stärkste offene Sprachmodell, das wir für nicht-muttersprachliches Englisch kennen. Wenn Ihr Co-Host aus Berlin oder São Paulo kommt, wird das Transkript nicht zu Brei.',
-          },
-          {
-            title: 'Musik-Beds brechen es nicht',
-            desc: 'Unsere Pipeline führt Voice Activity Detection vor der Transkription aus. Lange instrumentale Intros werden als Stille markiert, nicht als erfundene Wörter. Sponsor-Reads mit Musik-Bett kommen ebenfalls sauber durch.',
-          },
-          {
-            title: 'Kein Abo',
-            desc: 'Viele Podcaster transkribieren eine oder zwei Episoden im Monat. 15 Dollar für einen monatlichen Seat dafür zu zahlen, ist Verschwendung. Laden Sie die Datei nach Bedarf hoch. Wir verdienen mit Werbung und einem geplanten Pro-Tarif für Power-User.',
-          },
-          {
-            title: 'Ihr Audio wird nicht gespeichert',
-            desc: 'Dateien werden direkt zum Sprach-Anbieter gestreamt, transkribiert und gelöscht. Wir behalten Ihre Episoden nicht, und die Anbieter (Groq, OpenAI) trainieren nicht auf API-Daten.',
-          },
-        ],
-      }}
-      useCases={{
-        title: 'Was Podcaster wirklich mit dem Transkript machen',
-        items: [
-          {
-            title: 'Show Notes und Blog-Posts',
-            desc: 'Fügen Sie das Transkript in Ihr CMS ein, markieren Sie Kapitel, fügen Sie Links hinzu, veröffentlichen Sie den Blog-Post. Eine 45-Minuten-Episode liefert meist 6000 bis 8000 Wörter Quellmaterial. Drei oder vier leicht bearbeitete Blog-Posts aus einer Aufnahme.',
-          },
-          {
-            title: 'Episoden-Zitate für Social Media',
-            desc: 'Scannen Sie das Transkript nach der Zeile, die gesessen hat, und machen Sie eine Grafik daraus. Viel schneller, als das Audio in 1,5x-Geschwindigkeit nach dem Zeitstempel zu durchsuchen.',
-          },
-          {
-            title: 'Durchsuchbares Archiv des Backkatalogs',
-            desc: 'Lassen Sie Ihre alten Episoden durch Batch-Transkription laufen, und plötzlich haben Sie ein Strg+F über Jahre an Gesprächen. Nützlich, wenn ein Gast zurückkommt und Sie sich erinnern wollen, worüber Sie das letzte Mal gesprochen haben.',
-          },
-          {
-            title: 'Ersatz für YouTube-Auto-Untertitel',
-            desc: 'YouTubes Auto-Untertitel sind mittelmäßig für Podcasts mit zwei Stimmen und Musik. Laden Sie stattdessen eine Mictoo-SRT hoch. Bessere Zeichensetzung, weniger Fehler, bessere Barrierefreiheit.',
-          },
-          {
-            title: 'Barrierefreiheits-Transkript-Link',
-            desc: 'Viele Podcaster fügen einen „Transkript lesen"-Link in den RSS-Show-Notes hinzu. Das hilft gehörlosen und schwerhörigen Hörern, und es hilft Suchmaschinen, Ihre Inhalte zu finden.',
-          },
-        ],
-      }}
-      proTips={{
-        title: 'Tipps für sauberere Podcast-Transkripte',
-        tips: [
-          {
-            title: 'Intro- und Outro-Musik zuerst entfernen',
-            desc: 'Whisper ignoriert Musik gut, aber ein 90 Sekunden langes instrumentales Cold Open löst manchmal Geisterwörter aus. Wenn Ihr Intro in jeder Episode gleich ist, schneiden Sie die ersten 1:30 in Audacity vor dem Upload weg. Spart ein paar Minuten Cleanup später.',
-          },
-          {
-            title: 'In 64 kbps Mono exportieren, wenn die Rohdatei riesig ist',
-            desc: 'Stimme braucht kein Stereo, und 64 kbps reichen für Sprache. Eine zweistündige Episode mit 64 kbps Mono ist rund 55 MB. Passt in das 60-MB-Limit mit Anmeldung ohne Teilen. ffmpeg: ffmpeg -i episode.wav -ac 1 -b:a 64k episode.mp3.',
-          },
-          {
-            title: 'Bei Interviews mit schlechtem Gast-Audio jede Spur einzeln transkribieren',
-            desc: 'Wenn Sie auf Riverside oder SquadCast aufnehmen und separate Audiospuren pro Sprecher haben, laden Sie jede für sich hoch. Whisper kommt mit einer Stimme nach der anderen leichter klar. Sauberere Zuordnung, weniger verlorene Wörter bei Überlappungen.',
-          },
-          {
-            title: 'Bei kurzen Episoden die Sprache explizit setzen',
-            desc: 'Die Auto-Erkennung samplet den ersten Audio-Chunk. Wenn Sie mit einem einwortigen Cold Open oder einem Lachen öffnen, kann die Erkennung in die falsche Sprache fallen. Für alles unter 5 Minuten die Sprache manuell wählen.',
-          },
-          {
-            title: 'Zeichensetzung wird unvollkommen sein. Erste 10 Zeilen korrigieren, Rest stehen lassen',
-            desc: 'Whisper bekommt die meiste Zeichensetzung richtig hin, aber verpasst manchmal Strichpunkte und direkte Rede. Für Show Notes zählen die ersten 10 Zeilen (Leute überfliegen sie). Darüber hinaus: rausschicken wie es ist.',
-          },
-          {
-            title: 'SRT-Export nutzen, auch wenn Sie keine Untertitel brauchen',
-            desc: 'SRT gibt Ihnen alle paar Sekunden Zeitstempel. Selbst wenn Sie in einen Blog-Post einfügen, helfen diese Zeitstempel, ins Audio zurückzuspringen, um ein Zitat zu verifizieren. Wir haben einen kostenlosen SRT-Generator direkt hier.',
-          },
-        ],
-      }}
+
+      exampleTitle="Beispiel für ein Podcast-Transkript"
+      exampleFileName="episode-042.mp3"
+      exampleDurationLabel="52:07"
+      exampleLines={[
+        { t: '0:00',  line: 'Willkommen zurück zur Show. Dies ist Episode zweiundvierzig, und heute sprechen wir über unabhängiges Podcasting im Jahr 2026.' },
+        { t: '0:10',  line: 'Mein Gast hat seit acht Jahren jede Woche eine Show ohne eine Episode auszulassen. Danke, dass Sie hier sind.' },
+        { t: '0:20',  line: 'Danke, dass ich hier sein darf. Es ist verrückt zu denken, dass wir damit angefangen haben, als alle sagten, dass Audio bereits gesättigt sei.' },
+        { t: '0:30',  line: 'Lassen Sie uns dort anfangen. Was war anders beim Start eines Podcasts im Jahr 2018 im Vergleich zu jetzt.' },
+        { t: '0:38',  line: 'Die Verbreitung war schwieriger, aber die Zuhörer waren geduldiger. Aufmerksamkeit war im Grunde genommen günstiger.' },
+        { t: '0:48',  line: 'Heute sind die Werkzeuge erstaunlich. Transkription in Sekunden, KI-Shownotes, aber die Aufmerksamkeit selbst ist viel seltener.' },
+        { t: '0:58',  line: 'Das ist ein guter Übergang. Wie sieht Ihr Shownotes-Workflow aus, jetzt wo Transkripte im Grunde kostenlos sind?' },
+      ]}
+      summaryPoints={[
+        'Episode 42, Fokus auf unabhängiges Podcasting im Jahr 2026.',
+        'Gast: Gastgeber einer wöchentlichen Show seit 8 Jahren.',
+        'Diskussion: Veränderungen in der Verbreitung 2018 vs. 2026.',
+        'Aufmerksamkeitsökonomie als neuer Engpass.',
+      ]}
+      actionItems={[
+        'Draft Shownotes aus der Zusammenfassung',
+        'Extrahieren Sie 3 Zitate für soziale Medien',
+        'Veröffentlichen Sie SRT für die YouTube-Version',
+      ]}
+
+      whyTitle="Warum Mictoo für Podcast-Transkription"
+      whyCards={[
+        {
+          icon: 'sparkles',
+          title: 'KI-Zusammenfassung für Shownotes',
+          desc: 'Solide erste Entwurf für Episodenbeschreibungen, Blog-Zusammenfassungen und SEO-freundliche Shownotes.',
+        },
+        {
+          icon: 'clip',
+          title: 'SRT für die YouTube-Version',
+          desc: 'Zeitstempel stimmen mit dem Originalaudio überein. SRT in YouTube Studio ablegen und die Untertitel sind fertig.',
+        },
+        {
+          icon: 'globe',
+          title: 'Übersetzen für internationale Zielgruppen',
+          desc: 'Ein-Klick-Übersetzung in über 50 Sprachen. Solo-Gastgeber syndizieren global ohne Übersetzungsagentur.',
+        },
+        {
+          icon: 'gear',
+          title: 'Jede Bitrate, jeder Rekorder',
+          desc: '32 kbps Sprachnotizen bis 320 kbps Studio-Bounces transkribieren identisch für sauberen Sprachfluss.',
+        },
+      ]}
+
+      scenariosTitle="Szenarien für Podcast-Transkription"
+      scenarios={[
+        { icon: 'chat',      title: 'Shownotes' },
+        { icon: 'clip',      title: 'YouTube-Untertitel' },
+        { icon: 'search',    title: 'SEO-Zusammenfassung' },
+        { icon: 'sparkles',  title: 'Zitat-Clips' },
+        { icon: 'globe',     title: 'Übersetzung' },
+        { icon: 'book',      title: 'Back-Katalog' },
+      ]}
+
+      tipsTitle="Tipps für sauberere Podcast-Transkripte"
+      tips={[
+        'Bounce einen nur Sprach-Stamm, wenn Ihr DAW es erlaubt.',
+        'Ein sprachoptimiertes 64 kbps Mono MP3 transkribiert ebenso gut.',
+        'Bei Interviewepisoden Musikbetten vor der Transkription entfernen.',
+        'Überprüfen Sie die Namen von Gastgeber und Gast einmal, sie erscheinen danach konsistent.',
+      ]}
+
+      guidesTitle="Verwandte Transkriptionsanleitungen"
+      guides={[
+        { href: '/de/transcribe-mp3-to-text',    icon: 'file',  title: 'MP3-Transkription',   desc: 'Podcast-Format-Anleitung' },
+        { href: '/de/m4a-to-text',               icon: 'file',  title: 'M4A-Transkription',   desc: 'GarageBand und Apple-Exporte' },
+        { href: '/de/wav-to-text',               icon: 'file',  title: 'WAV-Transkription',   desc: 'Studio-Bounces' },
+        { href: '/de/timestamped-transcription', icon: 'file',  title: 'Zeitstempel-Tiefenblick', desc: 'SRT / VTT Exportmechanik' },
+      ]}
+
       faq={[
         {
-          q: 'Kann ich eine 2-Stunden-Episode transkribieren?',
-          a: 'Ja, aber teilen Sie sie zuerst. Unser Datei-Cap ist 30 Minuten kostenlos, oder 60 Minuten nach Anmeldung. Für eine 2-Stunden-Episode in zwei oder drei Teile teilen und jeden transkribieren. Unser Audio-Teilen-Guide erklärt, wie das in 60 Sekunden mit ffmpeg oder Audacity geht.',
+          q: 'Mit welchen Podcast-Plattformen funktioniert Mictoo?',
+          a: 'Mit allen. Wir akzeptieren jede Audio- oder Videodatei, unabhängig vom Host. Häufig: Riverside, Zencastr, SquadCast, Anchor, Buzzsprout, Libsyn. Kostenlos pro Datei bis zu 60 MB, wenn Sie angemeldet sind.',
         },
         {
-          q: 'Bekomme ich Sprecher-Labels (Host vs. Gast)?',
-          a: 'Derzeit nicht automatisch. Whisper selbst macht keine Sprecher-Diarisierung. Wenn Sie separate Spuren pro Sprecher haben (üblich bei Riverside, SquadCast, Zencastr), laden Sie jede separat hoch und beschriften Sie sie selbst im finalen Transkript. Wir schauen uns Diarisierung an, aber nur, wenn wir es gut hinbekommen.',
+          q: 'Kann ich das Transkript automatisch als Shownotes erhalten?',
+          a: 'Die KI-Zusammenfassung erscheint automatisch neben dem Transkript. Verwenden Sie es als ersten Entwurf Ihrer Shownotes und kürzen Sie es dann, um zu Ihrer Stimme zu passen.',
         },
         {
-          q: 'Wie kommt es mit Akzenten und zweisprachigen Podcasts klar?',
-          a: 'Whisper large-v3 wurde auf 680.000 Stunden mehrsprachiges Audio trainiert. Nicht-muttersprachliches Englisch, regionale Akzente und Code-Switching funktionieren besser als bei kleineren Modellen. Für einen Podcast, der mitten in der Episode zwischen Englisch und Spanisch wechselt, wählen Sie „Auto-Erkennung" als Sprache, und Whisper folgt dem Wechsel.',
+          q: 'Meine Episode ist über 60 MB. Was nun?',
+          a: 'Melden Sie sich an, um längere Dateien automatisch zu splitten, oder reduzieren Sie die Qualität zuerst mit ffmpeg -i episode.mp3 -b:a 64k -ac 1 out.mp3. Ein 60-minütiger Podcast wird auf ~28 MB ohne Genauigkeitsverlust.',
         },
         {
-          q: 'Welche Audioformate unterstützen Sie für Podcasts?',
-          a: 'MP3, M4A, WAV, FLAC, OGG, WEBM und AAC. Plus Videodateien wie MP4 und MOV (wir extrahieren das Audio). Wenn Ihr Podcast-Hoster einen Download in einem davon bietet, sind Sie startklar. AIFF und ALAC werden nicht direkt unterstützt, konvertieren Sie zuerst in WAV.',
+          q: 'Kann ich SRT für die YouTube-Version herunterladen?',
+          a: 'Ja. SRT und VTT enthalten Zeitstempel, die mit dem Originalaudio übereinstimmen. Direkt in YouTube Studio ablegen.',
         },
         {
-          q: 'Gibt es ein Wörter-Limit pro Episode?',
-          a: 'Kein Wörter-Limit. Nur das Dateigrößen-Limit (25 MB kostenlos, 60 MB mit Anmeldung) und die Dauer (30 Min kostenlos, 60 Min mit Anmeldung). Eine typische 60-Minuten-Episode produziert rund 9000 bis 11.000 Wörter.',
+          q: 'Transkribiert Mictoo nicht-englische Podcasts?',
+          a: 'Ja. Whisper large-v3 unterstützt über 50 Sprachen mit automatischer Erkennung. Für kurze Episoden oder ungewöhnliche Akzente wählen Sie die Sprache ausdrücklich aus.',
         },
         {
-          q: 'Wie genau ist die Podcast-Transkription im Vergleich zu menschlichen Transkribierern?',
-          a: 'Für sauberes Studio-Audio landet Whisper large-v3 typischerweise bei 5 bis 10 Prozent Wortfehlerrate. Menschliche Transkribierer liegen bei 3 bis 5 Prozent. Für die meiste Show-Notes- und Blog-Repurposing-Arbeit ist KI gut genug. Für Gerichtsaussagen oder akademische Zitate nehmen Sie einen Menschen.',
+          q: 'Werden Episoden auf Ihren Servern gespeichert?',
+          a: 'Nein. Das Audio wird an den Transkriptionsanbieter gestreamt, einmal verarbeitet und aus dem Speicher gelöscht. Transkripte werden nur gespeichert, wenn Sie sich anmelden.',
         },
         {
-          q: 'Wird meine Episode auf Ihren Servern gespeichert?',
-          a: 'Nein. Wir leiten das Audio direkt zum Transkriptions-Anbieter (Groq, mit OpenAI als Backup). Sie verarbeiten es, und wir verwerfen es. Wir schreiben Ihre Podcast-Datei nie in unsere Datenbank oder unseren Speicher.',
-        },
-        {
-          q: 'Kann ich als SRT für Untertitel herunterladen?',
-          a: 'Ja. Klicken Sie nach der Transkription den SRT-Download-Button. Nutzen Sie ihn direkt in YouTube Studio, Premiere Pro, DaVinci Resolve oder jedem Video-Editor.',
-        },
-        {
-          q: 'Berechnen Sie pro Minute?',
-          a: 'Nein. Transkription auf Mictoo ist kostenlos. Wir sind derzeit werbefinanziert, mit einem bezahlten Pro-Tarif, der später für Nutzer kommt, die längere Dateien oder Batch-Uploads brauchen.',
-        },
-        {
-          q: 'Meine Episode hat explizite Sprache. Wird sie zensiert?',
-          a: 'Keine Filterung. Das Transkript spiegelt exakt wider, was gesagt wurde. Wenn Sie Schimpfwörter für eine saubere Version bearbeiten wollen, machen Sie das selbst nach dem Download.',
-        },
-        {
-          q: 'Kann ich das Transkript vor dem Download bearbeiten?',
-          a: 'Ja. Es gibt einen einfachen Editor im Ergebnis-View. Korrigieren Sie falsche Wörter, dann laden Sie die bearbeitete Version als TXT oder SRT herunter.',
-        },
-        {
-          q: 'Ist die Podcast-Transkription auf Mictoo DSGVO-konform?',
-          a: 'Wir speichern Audio oder Transkript nicht auf unseren Servern, nachdem Sie die Seite verlassen. Wir sind in Europa, und unsere Anbieter (Groq US, OpenAI US) haben DPAs unterzeichnet. Für spezifische Compliance-Fragen siehe unsere Datenschutzerklärung oder schreiben Sie an info@mictoo.com.',
+          q: 'Kann ich identifizieren, wer spricht (Gastgeber vs. Gast)?',
+          a: 'Nein. Das aktuelle Transkript ist kontinuierlicher Text mit Zeitstempeln und ohne automatische Sprecherbezeichnungen.',
         },
       ]}
+
+      ctaHeadline="Verwandeln Sie jede Episode in veröffentlichbaren Text"
+      ctaSubtitle="Shownotes, YouTube-Untertitel, SEO-Zusammenfassung, Übersetzung. Alles aus einem einzigen Upload."
+      ctaButton="Laden Sie eine Podcast-Episode hoch"
+
       relatedLinks={[
-        { href: '/de/free-srt-generator', label: 'SRT-Generator', desc: 'Podcast-fertige Untertiteldateien, nicht nur reiner Text.' },
-        { href: '/de/timestamped-transcription', label: 'Transkription mit Zeitstempeln', desc: 'Für Kapitelmarken, Schnitte und Zitatsuche.' },
-        { href: '/de/interview-transcription', label: 'Interview-Transkription', desc: 'Derselbe Motor, optimiert für das One-on-One-Format.' },
-        { href: '/de/youtube-to-text', label: 'YouTube in Text', desc: 'Ihre Episode ist schon auf YouTube? Holen Sie das Audio von dort.' },
+        { href: '/de/interview-transcription',   label: 'Interview-Transkription' },
+        { href: '/de/webinar-transcription',     label: 'Webinar-Transkription' },
+        { href: '/de/transcribe-mp3-to-text',    label: 'MP3 zu Text' },
+        { href: '/de/free-srt-generator',        label: 'Kostenloser SRT-Generator' },
+        { href: '/de/meeting-transcription',     label: 'Meeting-Transkription' },
       ]}
     />
   )

@@ -56,7 +56,7 @@ export default function FlacToMp3Page() {
       whyTitle="Why use Mictoo for FLAC to MP3?"
       whyCards={[
         { icon: 'target',    title: 'Keeps the lossless master', desc: 'Your FLAC file is never modified. We only produce a copy.' },
-        { icon: 'fileAudio', title: '5-8× smaller output',       desc: 'A 40 MB FLAC becomes a 5 MB MP3 with no audible loss for typical listening.' },
+        { icon: 'fileAudio', title: 'Smaller listening copy',    desc: 'A 128 kbps MP3 is often several times smaller than FLAC. Conversion is lossy, so keep the FLAC as your master.' },
         { icon: 'lock',      title: 'Files deleted after',       desc: 'Uploaded FLAC is dropped after conversion; the MP3 is purged within the hour.' },
         { icon: 'shield',    title: 'No watermark or tag',       desc: 'Just the audio, re-encoded. No intro splice, no branded metadata.' },
       ]}
@@ -73,7 +73,7 @@ export default function FlacToMp3Page() {
       tips={[
         'Keep the FLAC as the lossless archive copy.',
         '128 kbps is transparent for most listening.',
-        'For long tracks over 25 MB, sign in for 60 MB.',
+        'For tracks over 25 MB, trim or split the source before uploading.',
         'Vorbis metadata tags (title/artist) are not carried into the MP3.',
       ]}
       processTitle="What happens during conversion"
@@ -84,11 +84,11 @@ export default function FlacToMp3Page() {
         { fmt: 'MP3',  contains: 'No', size: 'Small (~1 MB/min)',   best: 'Sharing, phones, everywhere' },
       ]}
       faq={[
-        { q: 'Is the FLAC to MP3 converter free?', a: 'Yes. Files up to 25 MB anonymously, 60 MB signed in. No watermark, no upgrade prompts.' },
+        { q: 'Is the FLAC to MP3 converter free?', a: 'Yes. Files up to 25 MB can be converted without an account, and the output has no watermark.' },
         { q: 'Do I lose quality converting FLAC to MP3?', a: 'Technically yes (MP3 is lossy), but at 128 kbps the loss is inaudible for typical listening. Keep the FLAC as the archive copy.' },
         { q: 'Are FLAC-in-OGG files supported?', a: 'Yes. Both native FLAC (magic bytes fLaC) and FLAC inside OGG containers work.' },
         { q: 'Are files stored?', a: 'No. Uploaded FLAC is dropped after conversion; the MP3 is purged within the hour.' },
-        { q: 'My FLAC is over 60 MB. What now?', a: 'Very long FLAC tracks are common. Trim the source or export a mono version first to reduce size.' },
+        { q: 'My FLAC is over 25 MB. What now?', a: 'Trim or split the source, or export a lower-resolution listening copy before uploading.' },
       ]}
       ctaHeadline="Convert your FLAC to MP3 now"
       ctaSubtitle="Drop your FLAC and get a portable MP3 in seconds. No signup. No watermark."

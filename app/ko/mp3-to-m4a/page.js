@@ -1,5 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
-import ConverterZone from '@/components/ConverterZone'
+import ConverterPageLayout from '@/components/ConverterPageLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/mp3-to-m4a',
@@ -16,81 +15,90 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'MP3를 M4A로 — 무료 온라인 변환기 | Mictoo',
+  title: 'MP3를 M4A로 변환, 무료 온라인 변환기 | Mictoo',
   description:
-    'MP3를 M4A로 무료 온라인 변환합니다. MP3를 AAC로 재인코딩해 iPhone, iTunes, Apple 생태계용 M4A 컨테이너에 담습니다. 가입 없이, 워터마크 없음.',
+    'MP3를 무료로 M4A로 변환하세요. MP3를 AAC로 재인코딩하여 iPhone, iTunes 및 Apple 생태계에서 사용할 수 있는 M4A 컨테이너에 담습니다. 가입 필요 없고, 워터마크도 없습니다.',
   alternates: { canonical: 'https://mictoo.com/ko/mp3-to-m4a', languages: LANGS },
-
   openGraph: {
-    title: "MP3를 M4A로 — 무료 온라인 변환기 | Mictoo",
-    description: "MP3를 M4A로 무료 온라인 변환합니다. MP3를 AAC로 재인코딩해 iPhone, iTunes, Apple 생태계용 M4A 컨테이너에 담습니다. 가입 없이, 워터마크 없음.",
-    url: "https://mictoo.com/ko/mp3-to-m4a",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'MP3를 M4A로 변환, 무료 온라인 변환기 | Mictoo',
+    description: 'MP3를 M4A로 변환. iPhone 친화적입니다. 가입 필요 없습니다.',
+    url: 'https://mictoo.com/ko/mp3-to-m4a',
+    siteName: 'Mictoo', type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "MP3를 M4A로 — 무료 온라인 변환기 | Mictoo",
-    description: "MP3를 M4A로 무료 온라인 변환합니다. MP3를 AAC로 재인코딩해 iPhone, iTunes, Apple 생태계용 M4A 컨테이너에 담습니다. 가입 없이, 워터마크 없음.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'MP3를 M4A로 변환, 무료 온라인 변환기',
+    description: 'iPhone 친화적인 AAC-in-MP4.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function KoMp3ToM4aPage() {
   return (
-    <LandingLayout
-      defaultLanguage="ko"
-      badge="MP3 → M4A · 무료 · 가입 없이"
-      h1={<>MP3를 M4A로<br /><span className="text-brand-600">무료 온라인 변환기</span></>}
-      subtitle="MP3를 드롭하세요. M4A, 즉 MP4 컨테이너 안의 AAC 오디오를 얻습니다. iTunes, Apple Music, 모든 iPhone에서 네이티브로 재생됩니다. 워터마크 없음, 이메일 불필요."
-      tool={<ConverterZone from="mp3" to="m4a" />}
-      howItWorks={[
-        { icon: '📂', title: 'MP3를 드롭', desc: '아무 MP3나 박스에 드래그하세요. 25 MB까지 익명, 60 MB는 가입 후.' },
-        { icon: '⚡', title: 'ffmpeg가 AAC로 재인코딩', desc: 'M4A 컨테이너 안의 128 kbps AAC, faststart 플래그 적용. 스트리밍 시 즉시 재생됩니다. 3~10초 내에 완료.' },
-        { icon: '⬇️', title: 'M4A를 다운로드', desc: '결과는 원래 이름에 .m4a가 붙은 형태입니다. 파일은 1시간 이내에 서버에서 제거됩니다.' },
+    <ConverterPageLayout
+      locale="ko"
+      mode="converter" from="mp3" to="m4a" currentHref="/ko/mp3-to-m4a"
+      badge="MP3 → M4A · 무료 · iPhone 친화적"
+      h1First="MP3를 M4A로 변환"
+      h1Second="무료 온라인 변환기"
+      subtitle="MP3를 드롭하면 iPhone 음성 메모, iTunes, GarageBand 및 Apple 생태계에서 사용할 수 있는 M4A(AAC가 포함된 MP4 컨테이너)를 얻을 수 있습니다. 워터마크 없고, 이메일 필요 없습니다."
+      outputFormat="M4A" outputQuality="128 kbps AAC" outputAudio="스테레오"
+      stepsTitle="MP3에서 M4A로 변환하는 방법"
+      steps={[
+        { icon: 'upload',   title: 'MP3 드롭하기',        desc: '비트 전송률에 관계없이 최대 25 MB의 MP3를 익명으로 업로드합니다.' },
+        { icon: 'waveform', title: 'AAC로 재인코딩', desc: 'ffmpeg가 MP3를 디코딩하고 .m4a 컨테이너 안에 128 kbps AAC로 재인코딩합니다.' },
+        { icon: 'download', title: 'M4A 다운로드',   desc: '원래 이름에 .m4a 확장자가 추가된 iPhone 친화적인 파일입니다.' },
       ]}
-      whyUse={{ title: 'MP3를 M4A로 변환하는 이유', bullets: [
-        { title: 'Apple 생태계는 M4A를 선호', desc: 'iTunes, Apple Music, iCloud 음악 라이브러리, GarageBand, 모두 M4A를 1급 포맷으로 처리합니다. MP3도 작동하지만, 네이티브로 말하는 언어는 M4A입니다.' },
-        { title: '같은 비트레이트에서 AAC가 MP3보다 약간 더 좋게 들림', desc: '128 kbps에서 차이는 작지만 실재하며, 특히 고역에서 그렇습니다. 소스 MP3가 이미 손실이라면 이 재인코딩이 더 나빠지게 만들지 않습니다.' },
-        { title: 'M4A는 챕터 마커와 풍부한 메타데이터를 지원', desc: '오디오북, 팟캐스트 미리보기 파일, Apple 생태계용 콘텐츠를 만든다면 M4A는 챕터를 깔끔하게 처리합니다. MP3의 챕터 지원은 들쭉날쭉합니다.' },
-        { title: 'iPhone 벨소리는 M4A여야 함', desc: 'iPhone 커스텀 벨소리는 M4R 확장자를 씁니다. M4A와 같은 AAC-in-MP4 포맷입니다. 변환 후 벨소리 용도로 .m4r로 이름을 바꾸세요.' },
-        { title: '워터마크 없음, 업셀 없음', desc: '오디오를 재인코딩한 것 외에는 아무것도 없습니다.' },
-      ]}}
-      useCases={{ title: 'MP3를 M4A로 변환하고 싶을 때', items: [
-        { title: '음악 컬렉션을 Apple Music에 가져오기', desc: 'M4A는 깔끔하게 가져와지고 iCloud 음악 라이브러리와 통합됩니다. MP3는 동기화 중 가끔 메타데이터 문제가 있을 수 있습니다.' },
-        { title: 'iPhone 벨소리 만들기', desc: 'MP3 → M4A로 변환, 40초 미만으로 자르기, .m4r로 이름 변경, iPhone 연결 중에 Finder에 드롭.' },
-        { title: '챕터 마커가 있는 오디오북', desc: 'M4A는 챕터를 지원합니다. MP3 지원은 불안정합니다. 청취자가 챕터 사이를 이동하려는 긴 오디오북에는 M4A가 적합한 포맷입니다.' },
-        { title: 'iCloud용 음성 메모 정리', desc: 'MP3 음성 메모 폴더가 있고 iCloud나 Apple Voice Memos에 넣고 싶다면 M4A가 더 네이티브이고 동기화도 더 안정적입니다.' },
-        { title: 'GarageBand나 Logic 프로젝트', desc: 'Apple의 음악 소프트웨어에 참고 오디오를 가져올 때 일부 워크플로에서는 MP3보다 M4A가 더 부드럽게 들어옵니다.' },
-      ]}}
-      proTips={{ title: 'MP3 → M4A 변환 팁', tips: [
-        { title: '재인코딩은 약간의 손실을 추가함', desc: '한 손실 포맷에서 다른 손실 포맷으로 가는 것입니다. 128 kbps MP3에서 128 kbps AAC로 가는 경우 손실은 실재하지만 대부분의 사람에게는 대부분의 환경에서 들리지 않습니다. 비판적 용도에는 무손실 소스를 찾으세요.' },
-        { title: '벨소리는 변환 전에 자르세요', desc: 'iPhone 벨소리는 40초가 상한입니다. Audacity나 QuickTime에서 먼저 MP3를 자른 후 변환하세요.' },
-        { title: '96 kbps AAC는 보통 128 kbps MP3를 능가함', desc: 'Mictoo의 변환기는 호환성을 위해 128 kbps로 출력하지만, 완전히 제어할 수 있다면 AAC를 더 낮춰도 MP3 품질에 맞출 수 있습니다. 도구를 단순하게 유지하기 위해 선택기는 제공하지 않습니다.' },
-        { title: 'M4A vs MP4 — 같은 컨테이너, 다른 관습', desc: 'M4A 파일은 오디오만 포함합니다. MP4 파일은 비디오, 오디오 또는 둘 다 포함할 수 있습니다. iTunes는 구분을 명확히 하기 위해 .m4a 확장자를 씁니다. 일부 플레이어는 어느 확장자든 받습니다.' },
-        { title: '챕터 마커는 Mictoo가 추가하지 않습니다', desc: '오디오를 재인코딩만 합니다. 챕터 마커를 추가하려면 오디오북에는 Apple Books를, 또는 Chapter and Verse 같은 전용 도구를 쓰세요.' },
-        { title: 'DRM 보호 MP3는 변환이 실패합니다', desc: '2026년에 MP3의 DRM은 극히 드물지만, 어떻게든 가지고 있다면 디코딩되지 않습니다.' },
-      ]}}
+      previewInputName="episode.mp3"
+      previewInputSize="8.4 MB · 00:09:22"
+      previewOutputName="episode.m4a"
+      previewOutputSize="00:09:22 · 128 kbps AAC · 7.6 MB"
+      whyTitle="MP3를 M4A로 변환할 때 Mictoo를 사용하는 이유"
+      whyCards={[
+        { icon: 'target',    title: 'Apple 친화적인 출력',    desc: 'M4A는 일반적인 iPhone, iTunes, GarageBand 및 Apple 미디어 워크플로우와 원활하게 작동합니다.' },
+        { icon: 'fileAudio', title: '예측 가능한 출력',       desc: '파일은 128 kbps AAC로 재인코딩됩니다. 최종 크기는 주로 녹음 시간에 따라 달라집니다.' },
+        { icon: 'lock',      title: '변환 후 파일 삭제',      desc: '업로드된 MP3는 변환 후 삭제되며, M4A는 한 시간 이내에 삭제됩니다.' },
+        { icon: 'shield',    title: '워터마크 또는 태그 없음',      desc: '오디오만 재인코딩됩니다. 브랜드 소개나 메타데이터 주입이 없습니다.' },
+      ]}
+      scenariosTitle="MP3를 M4A로 변환할 때 유용한 경우"
+      scenarios={[
+        { icon: 'headphones', title: 'iTunes 라이브러리 가져오기' },
+        { icon: 'waveform',   title: 'GarageBand 프로젝트' },
+        { icon: 'video',      title: 'iMovie 사운드트랙' },
+        { icon: 'mail',       title: 'AirDrop 호환성' },
+        { icon: 'archive',    title: 'Apple 생태계 아카이브' },
+        { icon: 'editPen',    title: 'Logic Pro 가져오기' },
+      ]}
+      tipsTitle="MP3에서 M4A로 변환할 때 유용한 팁"
+      tips={[
+        'MP3와 AAC는 모두 손실 형식입니다. 재인코딩은 약간의 품질 손실을 추가합니다.',
+        '무손실을 원하시면 WAV로 변환하세요.',
+        'ID3 태그는 M4A로 전송되지 않습니다.',
+        '소스 파일을 현재 25 MB 업로드 제한 이하로 유지하세요.',
+      ]}
+      processTitle="변환 중 발생하는 일"
+      processSteps={['MP3 스트림', '디코드', 'AAC / M4A 인코딩']}
+      compareTitle="MP3와 M4A 비교"
+      compareRows={[
+        { fmt: 'MP3', contains: '아니요', size: '작음', best: '범용, 레거시 플레이어' },
+        { fmt: 'M4A', contains: '아니요', size: '조금 더 작음', best: 'iPhone, iTunes, GarageBand, Apple 앱' },
+      ]}
       faq={[
-        { q: 'MP3 → M4A 변환이 정말 무료인가요', a: '예. 25 MB까지 계정 불필요, 워터마크 없음, 시간 제한 없음.' },
-        { q: '최대 파일 크기는 얼마인가요', a: '익명으로 25 MB, 무료 계정으로 60 MB.' },
-        { q: 'M4A가 MP3보다 음질이 나쁘게 들리나요', a: '이론적으로는 예. 어떤 손실 포맷이든 재인코딩하면 약간의 손실이 추가됩니다. 실제로 128 kbps MP3에서 128 kbps AAC로 가는 경우, 컨슈머 재생에서 사람이 차이를 들을 수 없습니다.' },
-        { q: 'M4A와 MP4의 차이는 무엇인가요', a: 'M4A와 MP4는 같은 컨테이너 포맷입니다. .m4a 확장자는 "오디오 전용"을 알리는 신호이고 iTunes에 무엇을 할지 알려줍니다. 일부 플레이어는 어느 확장자든 받습니다.' },
-        { q: '얼마나 걸리나요', a: '몇 초입니다. 25 MB MP3는 3~10초에 변환됩니다.' },
-        { q: '어떤 품질로 출력하나요', a: 'M4A 컨테이너 안의 128 kbps AAC, 44.1 kHz, 소스 채널 레이아웃 유지.' },
-        { q: '파일을 보관하나요', a: '아니요. 업로드는 변환 후 삭제됩니다. 출력은 1시간 이내에 제거됩니다.' },
-        { q: '이걸로 iPhone 벨소리를 만들 수 있나요', a: '간접적으로 가능합니다. MP3를 M4A로 변환, QuickTime에서 40초 미만으로 자르기, .m4a를 .m4r로 이름 변경, iPhone 연결 상태에서 Finder에 드롭.' },
-        { q: 'iTunes가 결과를 받아주나요', a: '예. M4A는 iTunes의 네이티브 포맷입니다.' },
-        { q: 'MP3가 이미 320 kbps인데 변환해야 하나요', a: '호환성을 위해 M4A가 특별히 필요할 때만요. 결과는 128 kbps AAC가 됩니다. 320 kbps MP3에서는 기술적으로 품질 저하지만, 대부분의 재생에서 실질적으로 들리지 않습니다. 320 kbps 품질을 유지하려면 더 높은 비트레이트를 설정할 수 있는 다른 변환기가 필요합니다.' },
-        { q: '태그가 옮겨지나요', a: '기본 태그 (제목, 아티스트, 앨범)는 보통 옮겨집니다. 커버 아트와 상세 코멘트는 MP3 ID3와 M4A iTunes 메타데이터 사이에서 불안정합니다. 변환 후 iTunes나 Mp3tag에서 다시 태그를 다세요.' },
-        { q: '일괄 변환이 되나요', a: '무료 단계에서는 아직 안 됩니다. 여러 브라우저 탭을 열어 병렬로 변환하세요.' },
+        { q: 'MP3에서 M4A로 변환하는 것은 무료인가요?', a: '네. 25 MB까지의 파일은 계정 없이 변환할 수 있으며, 출력물에는 워터마크가 없습니다.' },
+        { q: 'MP3를 M4A로 변환하면 품질이 향상되나요?', a: '아니요. 손실 형식에서 다른 손실 형식으로 재인코딩하면 품질이 약간 손실될 수 있습니다. Apple 생태계 호환성을 위해서만 수행하세요.' },
+        { q: 'M4A는 iTunes와 Apple Music에서 작동하나요?', a: '네. MP4 컨테이너 안의 표준 AAC는 iTunes에서 사용하는 정확한 형식입니다.' },
+        { q: '파일이 저장되나요?', a: '아니요. 업로드된 MP3는 변환 후 삭제되며, M4A는 한 시간 이내에 삭제됩니다.' },
+        { q: '무손실 M4A(ALAC)로 변환할 수 있나요?', a: '이 페이지에서는 불가능합니다. 출력은 손실 AAC입니다. 무손실을 원하시면 MP3를 WAV로 먼저 변환한 후, DAW에서 ALAC로 변환하세요.' },
       ]}
-      relatedLinks={[
-        { href: '/ko/m4a-to-mp3', label: 'M4A를 MP3로', desc: '반대 방향의 변환.' },
-        { href: '/ko/wav-to-mp3', label: 'WAV를 MP3로', desc: 'WAV를 휴대용 MP3로 줄입니다.' },
-        { href: '/ko/m4a-to-text', label: 'M4A를 텍스트로', desc: 'M4A 오디오를 직접 전사합니다.' },
-        { href: '/ko/how-to-compress-audio', label: '오디오 압축', desc: '더 작아져야 하는 파일에.' },
+      ctaHeadline="지금 MP3를 M4A로 변환하세요"
+      ctaSubtitle="MP3를 드롭하면 몇 초 안에 iPhone 친화적인 M4A를 얻을 수 있습니다."
+      ctaButton="MP3 파일 선택"
+      moreTools={[
+        { href: '/ko/m4a-to-mp3',  label: 'M4A를 MP3로' },
+        { href: '/ko/mp3-to-wav',  label: 'MP3를 WAV로' },
+        { href: '/ko/mp4-to-mp3',  label: 'MP4를 MP3로' },
+        { href: '/ko/m4a-to-text', label: 'M4A를 텍스트로' },
       ]}
     />
   )

@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/business-transcription',
@@ -15,80 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'ビジネス文字起こし — 会議と通話用の無料ツール | Mictoo',
+  title: 'ビジネス会議の文字起こしとAI要約 | Mictoo',
   description:
-    '無料ビジネス文字起こし。営業通話、カスタマーインタビュー、フォーカスグループ、取締役会、カンファレンス。アップロードして数秒でクリーンなAI文字起こし。登録不要。',
-  alternates: { canonical: 'https://mictoo.com/ja/business-transcription', languages: LANGS },
-
+    '承認された内部会議の録音をタイムスタンプ付きの文字起こし、AI要約、エクスポート可能な要約文書に変換します。',
+  alternates: {
+    canonical: 'https://mictoo.com/ja/business-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "ビジネス文字起こし — 会議と通話用の無料ツール | Mictoo",
-    description: "無料ビジネス文字起こし。営業通話、カスタマーインタビュー、フォーカスグループ、取締役会、カンファレンス。アップロードして数秒でクリーンなAI文字起こし。登録不要。",
-    url: "https://mictoo.com/ja/business-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'ビジネスの文字起こし: 内部会議からテキストへ | Mictoo',
+    description: 'IT設定なしで内部会社会議を文字起こしします。',
+    url: 'https://mictoo.com/ja/business-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "ビジネス文字起こし — 会議と通話用の無料ツール | Mictoo",
-    description: "無料ビジネス文字起こし。営業通話、カスタマーインタビュー、フォーカスグループ、取締役会、カンファレンス。アップロードして数秒でクリーンなAI文字起こし。登録不要。",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'ビジネスの文字起こし',
+    description: '創業者の1対1、全体会議、役員ブリーフィング。',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function JaBusinessPage() {
+export default function JaBusinessTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="ja"
-      badge="営業 · 研究 · コンプライアンス · 無料"
-      h1={<>ビジネス文字起こし<br /><span className="text-brand-600">ビジネス音声をテキストに、無料</span></>}
-      subtitle="あらゆるビジネス音声をクリーンなテキストに変換。営業通話、カスタマーインタビュー、フォーカスグループ、カンファレンス、取締役会議。アカウント不要、分単位課金なし。"
-      howItWorks={[
-        { icon: '🎙️', title: '音声または動画をドロップ', desc: '通話レコーダーのMP3、スマホのM4A、ビデオ会議のMP4、フィールドレコーダーのWAV。Gongの営業通話、カスタマーインタビューのZoom録画、取締役会のM4A。すべて動作。' },
-        { icon: '⚡', title: 'AIが文字起こし', desc: 'Whisper large-v3が音声を処理。30分通話は約1分で完了。60分会議は2分弱。' },
-        { icon: '📋', title: '文字起こし取得', desc: '読む、コピー、またはTXTかSRTでダウンロード。CRM、研究リポジトリ、プロジェクト文書、コンプライアンスアーカイブに貼り付け。' },
+    <UseCaseLayout
+      locale="ja"
+      badge="創業者 · 役員 · 小規模チーム · 無料"
+      h1First="ビジネスの文字起こし"
+      h1Second="創業者の1対1、全体会議、役員ブリーフィング"
+      subtitle="承認された内部会議のための実用的な文字起こしツールです。録音をアップロードし、文字起こしとAI要約を確認し、チームのために要約をエクスポートします。"
+      currentHref="/ja/business-transcription"
+
+      platforms={[
+        { name: 'Zoom',        iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/ja/zoom-transcription' },
+        { name: 'MS Teams',    iconKey: 'videoCameraFill', brandBg: '#4B53BC', href: '/ja/teams-meeting-transcription' },
+        { name: 'Google Meet', iconKey: 'videoCameraFill', brandBg: '#00832D', href: '/ja/google-meet-transcription' },
+        { name: 'Webex',       iconKey: 'videoCameraFill', brandBg: '#0F1F35' },
+        { name: 'BlueJeans',   iconKey: 'videoCameraFill', brandBg: '#005EB8' },
+        { name: 'GoToMeeting', iconKey: 'videoCameraFill', brandBg: '#F68B1F' },
       ]}
-      whyUse={{ title: 'ビジネス音声にMictooを使う理由', bullets: [
-        { title: '高価なオプションと同じ精度', desc: 'Whisper large-v3は多くの有料エンタープライズ文字起こしツールの背後にあるモデル。プロシートライセンスコストなしで動かしています。' },
-        { title: '散発的使用に動作', desc: '週に1つの営業通話を文字起こしするなら、エンタープライズツールの月額シートを払うのは無駄。分カウンターなしの無料は散発的使用パターンに合います。' },
-        { title: '50以上の言語、国際ビジネスに便利', desc: '多言語カスタマーインタビュー、クロスボーダー営業通話、非ネイティブ英語スピーカーのパネル。すべてカバー。' },
-        { title: 'ファイルは保存されない', desc: '録画は文字起こしプロバイダに行って破棄。第三者サーバーに座っているのを見たくないビジネス音声には重要。' },
-        { title: '動画エディタ用SRTエクスポート', desc: 'ビジネス音声が動画(カンファレンスパネル、タウンホール)から来る場合、SRTは字幕作業のためにPremiere、DaVinci、YouTube Studioに直接入る。' },
-      ]}}
-      useCases={{ title: '一般的なビジネス文字起こし用例', items: [
-        { title: '営業通話の要約', desc: 'アカウントエグゼクティブはCRMでディール横に通話録画を入れる。より速いハンドオフ、フォローアップメールのためのより良い引用検索、営業マネージャーのためのより簡単なコーチング。' },
-        { title: '製品研究のためのカスタマーインタビュー', desc: 'プロダクトマネージャーとUX研究者は、パターンをコード化、ユーザーストーリーを書く、研究リポジトリを構築するために顧客との会話を文字起こし。' },
-        { title: 'フォーカスグループ文字起こし', desc: '市場調査機関は分析のためにフォーカスグループセッションを文字起こし。コード化するのは文字起こしであって動画ではない。' },
-        { title: '取締役会とリーダーシップオフサイト', desc: '文字起こしは企業決定を検索可能にし、数ヶ月後の曖昧さを減らす。ガバナンス、従業員コミュニケーション、監査証跡に便利。' },
-        { title: 'カンファレンスパネル録画', desc: 'マーケティングとPRチームは、自社の幹部が話したパネルディスカッションを文字起こし。ブログ投稿、ソーシャル用引用グラフィック、営業イネーブルメントコンテンツ。すべて文字起こしから始まる。' },
-      ]}}
-      proTips={{ title: 'ビジネス文字起こしのコツ', tips: [
-        { title: '営業通話録画にはできればGongやChorusのようなツールを使う', desc: 'これらのツールは録画、文字起こし、CRMロギングを一緒にやる。Mictooは時々の文字起こしには正しい選択、ハイボリュームの営業オペレーションではない。' },
-        { title: 'カスタマーインタビューでは同意を得て音声がどう使われるか説明', desc: '「ノートを取らなくていいようにこの会話を録画しています。音声は文字起こしされて研究リポジトリに残ります。」多くの管轄でこれはあらゆる通話録画の法的要件でもあります。' },
-        { title: '良いマイクを使う、特にクライアントには', desc: '電話回線で捕捉されたクライアントの声はクライアント側のUSBヘッドセットのダイヤルイン通話より5〜10%精度が低い。価値の高いインタビューには通話前にヘッドセットを送ってください。' },
-        { title: 'ファイルサイズ予算を節約するためにアップロード前に世間話をカット', desc: 'ほとんどのビジネス通話は2〜5分の天気と礼儀から始まる。ファイルが制限に近いなら、アップロード前にAudacityで切り取り。' },
-        { title: '国際通話には言語を手動で選択', desc: '営業通話が英語で開いてフランス語に切り替わる場合、自動検出が混乱することがあります。支配的な言語を手動で選択。' },
-        { title: '機密ビジネス音声にはクラウド文字起こしを使わない、私たちのも', desc: 'HR会話、M&A議論、法的通話、特権で覆われたものすべて。ローカルWhisperインストールを使用。同じモデル、オフライン動作、第三者処理なし。' },
-      ]}}
+
+      howItWorksTitle="ビジネスの文字起こしの仕組み"
+      steps={[
+        {
+          icon: 'folder',
+          title: '録音をエクスポート',
+          desc: 'Zoom、Teams、Meet、Webex、または会社が使用するもので。MP4またはM4Aの音声のみのファイルが両方とも対応しています。',
+        },
+        {
+          icon: 'upload',
+          title: 'ファイルをここにドロップ',
+          desc: '組織が処理を許可する録音をアップロードします。ソフトウェアのインストールやディレクトリ統合は必要ありません。',
+        },
+        {
+          icon: 'editPen',
+          title: '文字起こし、要約、アクションアイテム',
+          desc: 'タイムスタンプ付きの文字起こし、AI要約、要約メール用に準備されたDOCXエクスポート。',
+        },
+      ]}
+
+      exampleTitle="ビジネス会議の文字起こしの例"
+      exampleFileName="q3-strategy-session.mp4"
+      exampleDurationLabel="58分42秒"
+      exampleLines={[
+        { t: '0:00',  line: '皆さん、時間を作っていただきありがとうございます。これは私たちのQ3戦略チェックインで、約1時間のブロックがあります。' },
+        { t: '0:10',  line: 'まずはトップラインの更新から始めます。収益は計画の8パーセント上回っています。主に中規模市場の拡大からです。' },
+        { t: '0:22',  line: '新しいエンタープライズの動きは、私たちが予測したよりも遅れています。2件の契約がQ2からQ3にずれ込みました。' },
+        { t: '0:35',  line: '今四半期に中規模市場に注力するか、エンタープライズの準備を進めるかを議論する必要があります。' },
+        { t: '0:48',  line: '私の意見では、中規模市場は機能しており、エンタープライズセグメントを追いかけることでチームを混乱させるべきではありません。' },
+        { t: '1:02',  line: '同意します。Q3の終わりまでに30の新しい中規模市場のアカウントを目標に設定し、Q4の計画でエンタープライズを再検討しましょう。' },
+        { t: '1:14',  line: 'まとめる前にもう1つのトピックがあります。同じ四半期のエンジニアリングロードマップで、これらの顧客のコミットメントに結びつけます。' },
+      ]}
+      summaryPoints={[
+        '収益は計画の8%上回り、中規模市場によって推進されています。',
+        'エンタープライズの動きが遅れており（2件の契約がQ2からQ3に移動）。',
+        '決定: 今四半期は中規模市場に注力します。',
+        '目標: Q3の終わりまでに30の新しい中規模市場のアカウント。',
+      ]}
+      actionItems={[
+        '30アカウントの中規模市場目標を設定',
+        'Q4の計画でエンタープライズの動きを再検討',
+        '顧客のコミットメントに合わせてエンジニアリングロードマップを調整',
+      ]}
+
+      whyTitle="ビジネスの文字起こしにMictooを選ぶ理由"
+      whyCards={[
+        {
+          icon: 'lock',
+          title: 'ソフトウェアのインストール不要',
+          desc: 'ブラウザのワークフローはデスクトップクライアントやディレクトリ統合を必要としません。組織のポリシーは引き続き適用されます。',
+        },
+        {
+          icon: 'sparkles',
+          title: '要約メール用の準備が整った要約',
+          desc: 'AI要約は数秒で要約のドラフトを提供します。すでにコミットした内容を削除し、エスカレーションが必要なものを保持します。',
+        },
+        {
+          icon: 'shield',
+          title: '録音は保存されません',
+          desc: '音声は文字起こしプロバイダーにストリーミングされ、処理後にメモリから削除されます。文字起こしのみがサインインしたアカウントに残ります。',
+        },
+        {
+          icon: 'globe',
+          title: '国際チーム向けに翻訳',
+          desc: '英語で会議を行っているが、要約をドイツの子会社に送る必要がありますか？ワンクリックです。',
+        },
+      ]}
+
+      scenariosTitle="一般的なビジネスシナリオ"
+      scenarios={[
+        { icon: 'briefcase', title: '役員ブリーフィング' },
+        { icon: 'users',     title: '全体会議' },
+        { icon: 'chat',      title: '創業者の1対1' },
+        { icon: 'target',    title: '戦略オフサイト' },
+        { icon: 'search',    title: '取締役会の更新' },
+        { icon: 'headset',   title: '顧客のエスカレーション' },
+      ]}
+
+      tipsTitle="内部録音のためのヒント"
+      tips={[
+        'プラットフォームが提供する場合、音声のみのエクスポートを優先してください。',
+        '60 MBを超える会議ビデオMP4の場合、最初にffmpegで音声を抽出してください。',
+        '多言語のリーダーシップコールには自動検出を使用してください。',
+        '検索可能なアーカイブを構築するために、文字起こしを履歴に保存してください。',
+      ]}
+
+      guidesTitle="適切なプラットフォームガイドを選ぶ"
+      guides={[
+        { href: '/ja/zoom-transcription',          icon: 'video', title: 'Zoom',        desc: 'クラウド録音、M4A音声のみ' },
+        { href: '/ja/teams-meeting-transcription', icon: 'video', title: 'MS Teams',    desc: 'OneDriveまたはSharePointパス' },
+        { href: '/ja/google-meet-transcription',   icon: 'video', title: 'Google Meet', desc: 'ドライブ録音、無料の回避策' },
+        { href: '/ja/meeting-transcription#tool',  icon: 'file',  title: 'その他',       desc: 'Webex、BlueJeans、GoToMeeting' },
+      ]}
+
       faq={[
-        { q: 'Mictooはビジネス使用に適していますか?', a: '時々の文字起こし(営業通話、インタビュー、パネル)には、はい。ハイボリュームオペレーション(1日に50通話を文字起こしする営業チーム)には、CRM統合、コーチングワークフロー、チーム分析をパッケージ化するGongやChorusのような専用ツールがよりフィット。' },
-        { q: 'ビジネス音声はサーバーに保存されますか?', a: 'いいえ。ファイルは文字起こしプロバイダ(Groq、バックアップとしてOpenAI)に行き、処理後に破棄。音声も文字起こしも保持しません。' },
-        { q: 'GDPR準拠ですか?', a: 'サイトを離れた後、音声や文字起こしを保存しません。私たちはヨーロッパにあり、プロバイダ(Groq US、OpenAI US)はDPAに署名しています。特定のGDPR状況(コントローラ義務、録画の法的根拠)には、プライバシーポリシーを参照してデータ保護オフィサーに相談。' },
-        { q: 'EUまたはカリフォルニアのクライアントとの通話の録画に使えますか?', a: '文字起こしは使えます。録画自体は多くの管轄で他者の同意が必要(カリフォルニアとEU部分での2者同意)。録画前に同意を得てください。' },
-        { q: '固有名詞と会社名の文字起こしはどれくらい正確?', a: '一般的な単語より精度が低い。Whisperはクライアント名、製品名、会社固有の用語を知らない。手動で修正することを予想。残りの文字起こしはしっかりしています。' },
-        { q: 'スピーカーラベル(営業担当対クライアント)は取得できますか?', a: '自動的にはありません。2スピーカー通話には会話に基づいて手動でラベルを追加。スピーカーごとに別々の音声トラックのマルチパーティ通話には、各トラックを別々に文字起こし。' },
-        { q: 'Gong、Chorus、Firefliesと比較してどうですか?', a: 'それらはCRM統合、自動コーチング、ディールステージタグ、通話分析を備えた完全な営業通話プラットフォーム。私たちは純粋な文字起こし、統合なし、コーチングレイヤーなし。より安い(無料)、はるかに狭い。完全なプラットフォームが必要なら使用。テキストだけ必要なら私たちを使用。' },
-        { q: '機密ビジネス通話を文字起こしできますか?', a: '非機密ビジネス通話には、はい。機密のもの(HR、法的、M&A、特権付き)には、私たちのを含むあらゆるクラウド文字起こしを避けてください。代わりにローカルWhisperインストールを使用。' },
-        { q: 'ビジネス通話の文字起こしにはどれくらい時間がかかりますか?', a: '音声長さの約1〜2%。30分通話は約30〜60秒で完了。' },
-        { q: '出力フォーマットは?', a: 'プレーンテキスト(TXT)とSRT(タイムコード付き字幕ファイル)。クリップボードへのコピーもCRMや文書に直接貼り付けるのに動作。' },
-        { q: '複数の営業通話をバッチでアップロードできますか?', a: 'まだワンクリックではできません。今は1ファイルずつアップロード。バッチは将来のProプランのロードマップにあります。' },
-        { q: 'ビジネス音声が60分を超える場合は?', a: '60分未満のチャンクに分割。文字起こしは後で再結合できます。' },
+        {
+          q: '私の会社の録音はあなたのサーバーに送信されますか？',
+          a: '音声は文字起こしプロバイダー（ルーティングに応じてGroq/Replicate/Deepgram/OpenAI）にストリーミングされ、一度処理され、メモリから削除されます。音声をディスクに書き込むことはありません。文字起こしのみが残り、サインインして保存した場合のみです。',
+        },
+        {
+          q: '会社の録音をアップロードするには承認が必要ですか？',
+          a: 'それはあなたの組織のポリシーと録音の情報によります。Mictooはソフトウェアのインストールを必要としませんが、会社のメディアを外部の文字起こしプロバイダーに送信する前に、必要な承認を得るべきです。',
+        },
+        {
+          q: '規制産業でMictooを使用できますか？',
+          a: '特定のコンプライアンス要件を確認してください。署名されたBAAやSOC 2レポートは提供していません。厳格な規制環境では、完全に自己ホストされた文字起こしツールを使用してください。',
+        },
+        {
+          q: '要約メールのためにAI要約を取得できますか？',
+          a: 'はい。AI要約は自動的に文字起こしとともに表示されます。フォローアップメールやNotionドキュメントのためのしっかりとした初稿です。',
+        },
+        {
+          q: '会議が60 MBを超えた場合はどうなりますか？',
+          a: 'サインインして自動分割を有効にします（約3時間まで）。または、ffmpeg -i meeting.mp4 -vn -ac 1 -ar 16000 audio.m4aでビデオから音声を抽出し、ファイルサイズを5-15倍に削減します。',
+        },
+        {
+          q: '国際チームのために文字起こしを翻訳できますか？',
+          a: 'はい。文字起こし後にターゲット言語を選択し、翻訳をクリックします。言語を超えた子会社に便利です。',
+        },
+        {
+          q: '要約メールに適したエクスポート形式は何ですか？',
+          a: 'メール本文に貼り付けるためのTXT、適切な添付ファイルのためのDOCX、アーカイブ用のPDF（サインイン時）です。要約は別途利用可能です。',
+        },
       ]}
+
+      ctaHeadline="内部会議を要約文書に変換"
+      ctaSubtitle="創業者の1対1、全体会議、役員ブリーフィング。承認されたメディアをアップロードして文字起こしと要約を取得します。"
+      ctaButton="ビジネス会議をアップロード"
+
       relatedLinks={[
-        { href: '/ja/interview-transcription', label: 'インタビュー文字起こし', desc: '1対1会話と質的研究用。' },
-        { href: '/ja/meeting-transcription', label: '会議文字起こし', desc: 'あらゆる会議録画、あらゆるプラットフォーム用。' },
-        { href: '/ja/zoom-transcription', label: 'Zoom文字起こし', desc: 'Zoom録画通話用。' },
-        { href: '/ja/teams-meeting-transcription', label: 'Teams文字起こし', desc: 'Microsoft Teams通話用。' },
+        { href: '/ja/meeting-transcription',       label: '会議の文字起こし' },
+        { href: '/ja/zoom-transcription',          label: 'Zoomの文字起こし' },
+        { href: '/ja/teams-meeting-transcription', label: 'Teamsの文字起こし' },
+        { href: '/ja/google-meet-transcription',   label: 'Google Meetの文字起こし' },
+        { href: '/ja/interview-transcription',     label: 'インタビューの文字起こし' },
       ]}
     />
   )

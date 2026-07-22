@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/sermon-transcription',
@@ -15,81 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Trascrizione di sermoni — Generatore gratis di transcript | Mictoo',
-  description: "Trascrivi gratis sermoni e audio di chiesa in testo. Ideale per blog, note di studio e accessibilità. Supporta MP3, MP4, M4A. Senza registrazione.",
-  alternates: { canonical: 'https://mictoo.com/it/sermon-transcription', languages: LANGS },
-
+  title: 'Trascrizione dei Sermoni per Servizi e Studio | Mictoo',
+  description:
+    'Carica una registrazione di un sermone o servizio e ottieni testo ricercabile, timestamp, un riepilogo AI e file di esportazione.',
+  alternates: {
+    canonical: 'https://mictoo.com/it/sermon-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Trascrizione di sermoni — Generatore gratis di transcript | Mictoo",
-    description: "Trascrivi gratis sermoni e audio di chiesa in testo. Ideale per blog, note di studio e accessibilità. Supporta MP3, MP4, M4A. Senza registrazione.",
-    url: "https://mictoo.com/it/sermon-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Trascrizione dei Sermoni: Gratuita | Mictoo',
+    description: 'Carica la registrazione del tuo servizio, ottieni una trascrizione pulita.',
+    url: 'https://mictoo.com/it/sermon-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Trascrizione di sermoni — Generatore gratis di transcript | Mictoo",
-    description: "Trascrivi gratis sermoni e audio di chiesa in testo. Ideale per blog, note di studio e accessibilità. Supporta MP3, MP4, M4A. Senza registrazione.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Trascrizione dei Sermoni',
+    description: 'Trascrizioni gratuite per chiese e studio.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function ItSermonPage() {
+export default function ItSermonTranscriptionPage() {
   return (
-    <LandingLayout
-      badge="Sermoni · Chiesa · Gratis"
-      h1={<>Trascrizione di sermoni<br /><span className="text-brand-600">Generatore gratis di transcript</span></>}
-      subtitle="Trasforma le registrazioni dei sermoni in testo pulito in pochi secondi. Ideale per blog di chiesa, guide di studio, post per i social e per rendere accessibili i messaggi a chi ha difficoltà uditive."
-      defaultLanguage="it"
-      valueBlock={
-        <>
-          <p>Un sermone trascritto può diventare note per la chiesa, sottotitoli YouTube, materiale per piccoli gruppi, citazioni e un archivio ricercabile.</p>
-          <p>Mictoo aiuta a trasformare audio o video del culto in testo modificabile da pubblicare, rivedere e riutilizzare.</p>
-        </>
-      }
-      howItWorks={[
-        { title: 'Carica l’audio del sermone', desc: 'Usa MP3, WAV, M4A o video esportato dal culto.' },
-        { title: 'Ottieni una bozza', desc: 'Mictoo genera una trascrizione con timestamp per rivedere passaggi e nomi.' },
-        { title: 'Pubblica o riutilizza', desc: 'Esporta testo per sito, note, sottotitoli o archivio interno.' },
+    <UseCaseLayout
+      locale="it"
+      badge="Chiese · Pastori · Studio · Gratuito"
+      h1First="Trascrizione dei Sermoni"
+      h1Second="Trascrizione gratuita per servizi e studio"
+      subtitle="Carica una registrazione del servizio domenicale, una lezione serale o una sessione di studio biblico. Ottieni una trascrizione pulita con timestamp per il sito web della chiesa, appunti di studio e note per episodi di podcast."
+      currentHref="/it/sermon-transcription"
+
+      platforms={[
+        { name: 'SermonAudio',   iconKey: 'broadcast', brandBg: '#B91C1C' },
+        { name: 'ProPresenter',  iconKey: 'monitor',   brandBg: '#0EA5E9' },
+        { name: 'YouTube Live',  iconKey: 'broadcast', brandBg: '#FF0000' },
+        { name: 'Facebook Live', iconKey: 'broadcast', brandBg: '#1877F2' },
+        { name: 'Zoom',          iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/it/zoom-transcription' },
+        { name: 'Church stream', iconKey: 'broadcast', brandBg: '#6B21A8' },
       ]}
-      whyUse={{
-        title: 'Perché trascrivere sermoni',
-        bullets: [
-          { title: 'Accessibilità', desc: 'Aiuta chi preferisce leggere o ha bisogno di supporto scritto.' },
-          { title: 'Riutilizzo del contenuto', desc: 'Trasforma messaggi in post, newsletter, devozionali o citazioni.' },
-          { title: 'Archivio ricercabile', desc: 'Trova temi, serie e riferimenti biblici più velocemente.' },
-          { title: 'Supporto al team media', desc: 'Facilita sottotitoli e descrizioni per i video.' },
-        ],
-      }}
-      useCases={{
-        title: 'Usi per le chiese',
-        items: [
-          { title: 'Pagina del sermone', desc: 'Pubblica il testo accanto ad audio o video.' },
-          { title: 'Sottotitoli YouTube', desc: 'Crea una base per captions e revisione manuale.' },
-          { title: 'Materiale di gruppo', desc: 'Estrai domande, punti principali e citazioni.' },
-          { title: 'Serie predicate', desc: 'Cerca temi ripetuti in mesi o anni di messaggi.' },
-        ],
-      }}
-      proTips={{
-        title: 'Consigli per sermoni',
-        tips: [
-          { title: 'Estrai audio dai video grandi', desc: 'Caricare solo la traccia vocale è spesso più veloce.' },
-          { title: 'Rivedi nomi biblici', desc: 'Nomi propri e riferimenti possono richiedere correzioni.' },
-          { title: 'Dividi conferenze lunghe', desc: 'Un file per sessione semplifica revisione e pubblicazione.' },
-        ],
-      }}
+
+      howItWorksTitle="Come funziona la trascrizione dei sermoni"
+      steps={[
+        {
+          icon: 'folder',
+          title: 'Esporta la registrazione del servizio',
+          desc: 'MP4 del livestream domenicale, WAV della console audio, o l’MP3 del podcast che pubblichi già.',
+        },
+        {
+          icon: 'upload',
+          title: 'Carica il file qui',
+          desc: 'MP3, MP4, WAV, M4A funzionano tutti. I servizi lunghi beneficiano dell’auto-split se si è registrati.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Trascrizione per il sito web',
+          desc: 'Testo pulito pronto per il sito web della chiesa, appunti di studio, descrizione del podcast e archivio ricercabile.',
+        },
+      ]}
+
+      exampleTitle="Esempio di trascrizione di un sermone"
+      exampleFileName="sunday-service-jan-14.mp3"
+      exampleDurationLabel="38:56"
+      exampleLines={[
+        { t: '0:00',  line: 'Buongiorno chiesa. Per favore, aprite con me il Vangelo di Matteo, capitolo cinque, versetto tre.' },
+        { t: '0:12',  line: 'Questa mattina iniziamo una nuova serie su ciò che Gesù chiamava la vita benedetta, le Beatitudini.' },
+        { t: '0:24',  line: 'Beati i poveri in spirito, perché di essi è il regno dei cieli. Questo è il nostro testo per questa settimana.' },
+        { t: '0:38',  line: 'La parola che Gesù usa qui per beati non significa felice in un senso superficiale o circostanziale.' },
+        { t: '0:51',  line: 'Significa essere profondamente e fondamentalmente contenti a causa della tua relazione con Dio, indipendentemente dalle circostanze.' },
+        { t: '1:04',  line: 'E essere poveri in spirito non riguarda la povertà materiale. È una postura di dipendenza da Dio.' },
+        { t: '1:18',  line: 'È sapere che qualunque cosa tu costruisca, qualunque cosa tu realizzi, alla fine si basa sulla grazia, non sul merito.' },
+      ]}
+      summaryPoints={[
+        'Nuova serie sulle Beatitudini (Matteo 5).',
+        'Focus: "Beati i poveri in spirito."',
+        'Beati = profondo contentamento attraverso la relazione con Dio.',
+        'Poveri in spirito = postura di dipendenza, non povertà materiale.',
+      ]}
+      actionItems={[
+        'Pubblica la trascrizione sul sito web della chiesa',
+        'Taglia un clip di 60 secondi per i social',
+        'Includi nella guida di studio settimanale',
+      ]}
+
+      whyTitle="Perché scegliere Mictoo per la trascrizione dei sermoni"
+      whyCards={[
+        {
+          icon: 'search',
+          title: 'Archivio di sermoni ricercabile',
+          desc: 'Pubblica le trascrizioni sul sito della chiesa. I membri trovano gli insegnamenti per argomento o versetto, mesi o anni dopo.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Appunti di studio e guide per piccoli gruppi',
+          desc: 'Il riepilogo AI è il punto di partenza per la guida di studio settimanale o le domande di discussione per piccoli gruppi.',
+        },
+        {
+          icon: 'clip',
+          title: 'Sottotitoli per la riproduzione del livestream',
+          desc: 'SRT per la versione video su YouTube o Facebook. Accessibilità per i membri con problemi di udito.',
+        },
+        {
+          icon: 'globe',
+          title: 'Traduci per congregazioni multilingue',
+          desc: 'Sermone in inglese ma parte della congregazione preferisce lo spagnolo o il coreano. Traduzione con un clic.',
+        },
+      ]}
+
+      scenariosTitle="Scenari comuni di sermoni"
+      scenarios={[
+        { icon: 'church',    title: 'Servizio domenicale' },
+        { icon: 'book',      title: 'Studio biblico' },
+        { icon: 'chat',      title: 'Gruppo piccolo' },
+        { icon: 'sparkles',  title: 'Devozionale' },
+        { icon: 'globe',     title: 'Missioni' },
+        { icon: 'headset',   title: 'Podcast' },
+      ]}
+
+      tipsTitle="Consigli per le registrazioni dei sermoni"
+      tips={[
+        'WAV o M4A dalla console audio forniscono un input più pulito rispetto al microfono della stanza.',
+        'Per servizi lunghi oltre 60 MB, registrati per l’auto-split.',
+        'Per congregazioni con termini scripturali pesanti, rivedi le parole chiave.',
+        'Includi il titolo del sermone nel nome del file per l’ordinamento dell’archivio.',
+      ]}
+
+      guidesTitle="Strumenti correlati"
+      guides={[
+        { href: '/it/transcribe-mp3-to-text',    icon: 'file',  title: 'Formato MP3',        desc: 'Esportazione adatta ai podcast' },
+        { href: '/it/wav-to-text',               icon: 'file',  title: 'Formato WAV',        desc: 'Registrazione dalla console audio' },
+        { href: '/it/lecture-transcription',     icon: 'book',  title: 'Trascrizione di Lezioni',   desc: 'Contenuto ricco di insegnamenti' },
+        { href: '/it/free-srt-generator',        icon: 'file',  title: 'Sottotitoli SRT',      desc: 'Riproduzione del livestream' },
+      ]}
+
       faq={[
-        { q: 'Come trasformare in testo una registrazione di un sermone?', a: 'Esporta la registrazione dal mixer della chiesa, dal feed podcast o da YouTube come MP3, MP4 o M4A. Carica il file sopra — Mictoo lo trascrive in pochi secondi.' },
-        { q: 'Posso trascrivere sermoni dal canale YouTube della nostra chiesa?', a: 'Sì. Per il tuo canale: YouTube Studio → Contenuti → clicca sul video → Scarica. Carica il file su Mictoo. Per canali esterni serve il permesso — molti ministeri condividono i download audio tramite il feed podcast.' },
-        { q: 'E con i versetti biblici e i nomi propri?', a: 'La trascrizione IA gestisce bene versetti e nomi comuni, ma talvolta sbaglia nomi biblici rari o terminologia specifica della tua chiesa. Correggili nell\'editor del browser prima del download — di solito 30 secondi di rilettura.' },
-        { q: 'Qual è la durata massima del sermone?', a: 'Fino a 25 MB per file. Un sermone di 30 minuti a 128 kbps entra comodamente. Per messaggi più lunghi (45-60 minuti) abbassa il bitrate a 64 kbps mono o dividi in due parti.' },
-        { q: 'I file restano privati?', a: 'Sì. I sermoni vengono elaborati e immediatamente eliminati. Non memorizziamo né l\'audio né il contenuto della trascrizione.' },
+        {
+          q: 'Posso trascrivere una registrazione del livestream domenicale?',
+          a: 'Sì. Scarica l’MP4 da YouTube Live, Facebook Live, o dal tuo fornitore di streaming della chiesa e caricalo qui. Il video viene demuxato automaticamente sul server.',
+        },
+        {
+          q: 'Mictoo gestisce con precisione i riferimenti scripturali e i termini teologici?',
+          a: 'Whisper large-v3 gestisce bene il vocabolario scripturale e teologico comune in inglese. Per nomi propri insoliti (traslitterazioni più vecchie, termini di traduzione specifici), rivedi dopo la trascrizione.',
+        },
+        {
+          q: 'Mictoo è gratuito per le chiese?',
+          a: 'Sì. Gratuito per file fino al limite di dimensione. Nessun livello o licenza specifica per le chiese.',
+        },
+        {
+          q: 'La mia registrazione del servizio è oltre 60 MB. Cosa faccio?',
+          a: 'Registrati per l’auto-split (fino a circa 3 ore). Oppure riduci: ffmpeg -i service.mp3 -b:a 64k -ac 1 out.mp3. Stessa precisione, 3-5 volte più piccolo.',
+        },
+        {
+          q: 'Posso ottenere sottotitoli per la riproduzione del livestream?',
+          a: 'Sì. Scarica SRT o VTT dopo la trascrizione. I timestamp si allineano alla registrazione originale per YouTube, Facebook, o il tuo hosting video.',
+        },
+        {
+          q: 'Posso tradurre il sermone per il team delle missioni?',
+          a: 'Sì. Scegli una lingua target e clicca su Traduci. Utile per congregazioni multilingue, missioni e ministero della diaspora.',
+        },
+        {
+          q: 'Le registrazioni vengono mantenute sui vostri server?',
+          a: 'No. L’audio viene inviato al fornitore di trascrizione, elaborato una sola volta e poi eliminato. Solo la trascrizione persiste sugli account registrati.',
+        },
       ]}
+
+      ctaHeadline="Trasforma ogni sermone in una risorsa ricercabile"
+      ctaSubtitle="Trascrizione per il sito web, sottotitoli per la riproduzione, appunti per i gruppi di studio."
+      ctaButton="Carica un sermone"
+
       relatedLinks={[
-        { href: '/it/podcast-transcription', label: 'Trascrizione di podcast' },
-        { href: '/it/lecture-transcription', label: 'Trascrizione di lezioni' },
-        { href: '/it', label: 'Tutti i formati' },
+        { href: '/it/lecture-transcription',     label: 'Trascrizione di Lezioni' },
+        { href: '/it/podcast-transcription',     label: 'Trascrizione di Podcast' },
+        { href: '/it/webinar-transcription',     label: 'Trascrizione di Webinar' },
+        { href: '/it/free-srt-generator',        label: 'Generatore di SRT Gratuito' },
+        { href: '/it/interview-transcription',   label: 'Trascrizione di Interviste' },
       ]}
     />
   )

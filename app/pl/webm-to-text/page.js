@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import FormatPageLayout from '@/components/FormatPageLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/webm-to-text',
@@ -15,81 +15,176 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'WEBM na tekst — Darmowa transkrypcja WEBM online | Mictoo',
-  description: 'Konwertuj pliki audio i wideo WEBM na tekst za darmo online. Prześlij dowolne nagranie WEBM i otrzymaj precyzyjną transkrypcję natychmiast. Bez rejestracji.',
-  alternates: { canonical: 'https://mictoo.com/pl/webm-to-text', languages: LANGS },
-
+  title: 'WebM na tekst: Transkrypcja Loom, OBS i nagrań z przeglądarki | Mictoo',
+  description:
+    'Prześlij nagrania ekranu WebM z Loom, OBS lub przeglądarki MediaRecorder API. Usuwamy wideo i transkrybujemy audio. Edytowalna transkrypcja z znacznikami czasowymi w sekundach.',
+  alternates: {
+    canonical: 'https://mictoo.com/pl/webm-to-text',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "WEBM na tekst — Darmowa transkrypcja WEBM online | Mictoo",
-    description: "Konwertuj pliki audio i wideo WEBM na tekst za darmo online. Prześlij dowolne nagranie WEBM i otrzymaj precyzyjną transkrypcję natychmiast. Bez rejestracji.",
-    url: "https://mictoo.com/pl/webm-to-text",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'WebM na tekst: Transkrypcja Loom, OBS, nagrań z przeglądarki | Mictoo',
+    description: 'Prześlij nagranie ekranu WebM. Wyodrębniamy audio i zwracamy edytowalną transkrypcję z znacznikami czasowymi.',
+    url: 'https://mictoo.com/pl/webm-to-text',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "WEBM na tekst — Darmowa transkrypcja WEBM online | Mictoo",
-    description: "Konwertuj pliki audio i wideo WEBM na tekst za darmo online. Prześlij dowolne nagranie WEBM i otrzymaj precyzyjną transkrypcję natychmiast. Bez rejestracji.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'WebM na tekst: Transkrypcja Loom, OBS, nagrań z przeglądarki',
+    description: 'Prześlij nagranie ekranu WebM. Wyodrębniamy audio i zwracamy edytowalną transkrypcję.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function PlWebmToTextPage() {
   return (
-    <LandingLayout
-      badge="WEBM · Nagrania przeglądarki · Za darmo"
-      h1={<>WEBM na tekst<br /><span className="text-brand-600">Darmowa transkrypcja WEBM online</span></>}
-      subtitle="Prześlij dowolny plik audio lub wideo WEBM i otrzymaj precyzyjną transkrypcję tekstową w kilka sekund. WEBM jest powszechnie używany przez przeglądarki, rejestratory ekranu i narzędzia wideokonferencji. Bez konta."
-      defaultLanguage="pl"
-      valueBlock={
-        <>
-          <p>WEBM często pochodzi z nagrań przeglądarki, screen recordingów, Loom, OBS albo rozmów webowych. Może zawierać wideo, ale do transkrypcji kluczowa jest ścieżka głosu.</p>
-          <p>Mictoo wyodrębnia audio z WEBM i zamienia je na tekst z timestampami, bez ręcznego renderowania do innego formatu.</p>
-        </>
-      }
-      howItWorks={[
-        { title: 'Prześlij WEBM', desc: 'Dodaj nagranie z przeglądarki, ekranu lub rozmowy.' },
-        { title: 'Audio jest wyodrębniane', desc: 'Mictoo przetwarza głos i generuje edytowalną transkrypcję.' },
-        { title: 'Eksportuj tekst lub napisy', desc: 'Pobierz TXT albo SRT do notatek, dokumentacji lub captions.' },
+    <FormatPageLayout
+      locale="pl"
+      badge="WebM · Loom · OBS · Nagranie ekranu"
+      h1First="WebM na tekst"
+      h1Second="Dla Loom, OBS i nagrań z przeglądarki"
+      subtitle="WebM to format, który eksportuje Loom, nagrywa OBS w nowszych wersjach i zapisuje przeglądarka, gdy Twoja aplikacja korzysta z MediaRecorder API. Przeciągnij plik, usuwamy wideo i transkrybujemy audio w sekundach."
+      highlightFormat="webm"
+      previewFileName="loom-recording.webm"
+      previewWordCount={172}
+      previewDurationLabel="7:36"
+      previewLines={[
+        { t: '0:00',  line: 'Cześć zespole, chciałem przejść przez nowy proces onboardingu przed jego wdrożeniem w czwartek.' },
+        { t: '0:07',  line: 'To jest mój ekran. To, co widzisz, to strona powitalna po świeżym zarejestrowaniu się.' },
+        { t: '0:14',  line: 'Pierwsza rzecz, którą warto zauważyć, to to, że modal powitalny teraz znajduje się nad pulpitem nawigacyjnym, zamiast blokować cały widok.' },
+        { t: '0:23',  line: 'To jest zamierzone. Użytkownicy często się gubili, gdy pulpit był całkowicie ukryty przez wycieczkę.' },
+        { t: '0:32',  line: 'Po drugie, trzy kroki wycieczki są krótsze. Skróciliśmy tekst mniej więcej o połowę na podstawie ostatniej rundy opinii.' },
+        { t: '0:41',  line: 'Jeśli kliknę Pomiń wycieczkę tutaj, modal zamyka się i przenosimy użytkownika bezpośrednio do pustego oznaczenia coacha.' },
+        { t: '0:51',  line: 'To oznaczenie coacha wskazuje na główny przycisk przesyłania, który jest jedyną akcją, którą każdy użytkownik musi wykonać jako pierwszą.' },
+        { t: '1:00',  line: 'Daj mi znać, co myślisz. Problemy blokujące wdrożenie do środy rano, jeśli to możliwe.' },
       ]}
-      whyUse={{
-        title: 'Dlaczego Mictoo do WEBM',
-        bullets: [
-          { title: 'Mniej technicznych kroków', desc: 'Nie musisz uruchamiać ffmpeg tylko po to, by wyjąć audio z nagrania webowego.' },
-          { title: 'Dopasowane timestampy', desc: 'Znaczniki czasu pomagają wrócić do właściwego momentu filmu.' },
-          { title: 'Dobre dla Opus', desc: 'WEBM często używa Opus, który jest wydajny dla mowy.' },
-          { title: 'Praktyczna prywatność', desc: 'Transkrybuj lokalne nagranie bez publikowania go na platformie wideo.' },
-        ],
-      }}
-      useCases={{
-        title: 'Kiedy transkrybować WEBM',
-        items: [
-          { title: 'Nagrania Loom', desc: 'Zamieniaj tutoriale i dema w notatki lub dokumentację.' },
-          { title: 'Capture z OBS', desc: 'Wyciągaj tekst z lekcji, webinarów lub testów produktu.' },
-          { title: 'Spotkania w przeglądarce', desc: 'Odzyskaj decyzje i pytania z lokalnych nagrań.' },
-          { title: 'QA i research', desc: 'Transkrybuj sesje użytkowników, by przeglądać cytaty i problemy.' },
-        ],
-      }}
-      proTips={{
-        title: 'Wskazówki dla WEBM',
-        tips: [
-          { title: 'Wyodrębnij audio, jeśli wideo jest ogromne', desc: 'Ścieżka OPUS lub M4A może przesłać się szybciej niż cały WEBM.' },
-          { title: 'Zadbaj o mikrofon', desc: 'Czysty głos poprawia transkrypcję bardziej niż wysoka rozdzielczość wideo.' },
-          { title: 'Zachowaj oryginalny WEBM', desc: 'Przyda się później do montażu klipów lub weryfikacji timestampów.' },
-        ],
-      }}
+      whyTitle="Dlaczego Mictoo do transkrypcji WebM"
+      whyCards={[
+        {
+          icon: 'video',
+          title: 'Wideo WebM obsługiwane po stronie serwera',
+          desc: 'Nagranie ekranu WebM z nienaruszonym śladem wideo. Demuxujemy, usuwamy wideo i transkrybujemy audio. Nie jest potrzebne lokalne wyodrębnienie.',
+        },
+        {
+          icon: 'gear',
+          title: 'Obsługuje zarówno Opus, jak i Vorbis',
+          desc: 'Większość plików WebM zawiera audio Opus (nowsze) lub Vorbis (starsze). Obsługujemy oba kodeki, nie jest wymagana ręczna konwersja.',
+        },
+        {
+          icon: 'clip',
+          title: 'Napisy SRT do wycieczki',
+          desc: 'Pobierz SRT lub VTT po transkrypcji. Znaczniki czasowe są zgodne z oryginalnym WebM, więc napisy pasują do nagrania ekranu z dokładnością do klatki.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Podsumowanie AI do notatek o wydaniu',
+          desc: 'Podsumowanie AI to solidny pierwszy szkic do opisu biletu, notatki o wydaniu lub aktualizacji asynchronicznej, która miała zastąpić wycieczkę.',
+        },
+      ]}
+      scenariosTitle="Kiedy WebM na tekst jest odpowiednim rozwiązaniem"
+      scenarios={[
+        {
+          icon: 'video',
+          title: 'Wycieczka Loom',
+          desc: 'Demonstracja produktu, przegląd kodu lub aktualizacja asynchroniczna nagrana w Loom. Transkrypcja zasila bilet, dokument w Notion lub e-mail z dalszymi informacjami.',
+        },
+        {
+          icon: 'briefcase',
+          title: 'Nagranie ekranu OBS',
+          desc: 'Tutorial lub nagranie rozgrywki nagrane z OBS Studio. Transkrypcja staje się opisem YouTube lub wpisem na blogu.',
+        },
+        {
+          icon: 'gear',
+          title: 'Wyjście z MediaRecorder przeglądarki',
+          desc: 'Audio nagrane przez aplikację za pomocą MediaRecorder API. Przeciągnij plik .webm, który Twoja aplikacja wygenerowała, bez żadnego kroku konwersji.',
+        },
+        {
+          icon: 'users',
+          title: 'Nagranie Google Meet lub Firefox',
+          desc: 'Niektóre narzędzia do spotkań i przeglądarki nagrywają domyślnie do WebM. Przeciągnij plik, aby uzyskać wersję tekstową rozmowy, którą można przeszukiwać.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Asynchroniczna recenzja projektu',
+          desc: 'Projektant nagrywa WebM, przechodząc przez makietę. Recenzenci otrzymują pisemną transkrypcję, aby mogli przejrzeć przed obejrzeniem.',
+        },
+        {
+          icon: 'book',
+          title: 'Nagranie wykładu',
+          desc: 'Wykładowca nagrywa slajdy z narracją i udostępnia jako WebM. Studenci otrzymują przeszukiwalną transkrypcję obok wideo.',
+        },
+      ]}
+      technicalTitle="Co warto wiedzieć o nagraniach WebM"
+      technicalIntro="WebM to przyjazny dla przeglądarki kontener, który może zawierać wideo plus audio lub tylko audio. Ustawienia przeglądarki i rejestratora decydują, które ślady i kodeki są obecne."
+      technicalFacts={[
+        {
+          icon: 'layers',
+          title: 'Audio Opus lub Vorbis',
+          desc: 'Najbardziej aktualne nagrania mowy WebM używają Opus; starsze pliki mogą używać Vorbis. Oba znajdują się w kontenerze WebM.',
+        },
+        {
+          icon: 'video',
+          title: 'Tylko audio lub z wideo',
+          desc: 'WebM może zawierać nagranie ekranu lub tylko ślad mikrofonu. Transkrypcja korzysta z słyszalnego strumienia mowy.',
+        },
+        {
+          icon: 'clip',
+          title: 'Eksporty oparte na czasie',
+          desc: 'Znaczniki czasowe transkrypcji podążają za dekodowanym harmonogramem nagrania do późniejszej pracy nad napisami lub edytowaniem.',
+        },
+        {
+          icon: 'gear',
+          title: 'Wyjście z rejestratora przeglądarki',
+          desc: 'Ustawienia MediaRecorder różnią się w zależności od przeglądarki. Jeśli nagranie nie ma zgody na mikrofon, może nie zawierać mowy do transkrypcji.',
+        },
+      ]}
       faq={[
-        { q: 'Jak konwertuję WEBM na tekst?', a: 'Prześlij plik WEBM powyżej. Transkrypcja jest generowana automatycznie w kilka sekund.' },
-        { q: 'Czy konwersja WEBM na tekst jest darmowa?', a: 'Tak, całkowicie darmowa. Bez konta i rejestracji.' },
-        { q: 'Czy mogę transkrybować nagrania ekranu z Chrome?', a: 'Tak. Wbudowany rejestrator ekranu Chrome zapisuje wideo jako WEBM. Prześlij plik bezpośrednio, aby uzyskać transkrypcję.' },
-        { q: 'Jaki jest maksymalny rozmiar WEBM?', a: 'Do 25 MB. Dla większych nagrań wyodrębnij najpierw ścieżkę audio, aby zmniejszyć rozmiar.' },
+        {
+          q: 'Jakie pliki WebM akceptuje Mictoo?',
+          a: 'Każde standardowe WebM: wideo z audio Opus lub Vorbis (Loom, OBS, przeglądarka MediaRecorder), lub WebM tylko z audio. Demuxujemy ślad audio po stronie serwera i transkrybujemy za pomocą Whisper large-v3.',
+        },
+        {
+          q: 'Czy muszę najpierw samodzielnie wyodrębnić audio?',
+          a: 'Nie. Prześlij wideo WebM w takiej formie, w jakiej jest. Obsługujemy demux po stronie serwera i transkrybujemy tylko ślad audio. Jeśli już wyodrębniłeś audio (Opus lub Vorbis), to też działa.',
+        },
+        {
+          q: 'Moje Loom ma ponad 60 MB. Co teraz?',
+          a: '20-30 minutowe Loom często przekracza 60 MB. Jeśli jesteś zalogowany, automatycznie dzielimy długie pliki do około 3 godzin. W przeciwnym razie użyj ustawień pobierania Loom, aby zmniejszyć jakość lub wyeksportuj audio i prześlij to.',
+        },
+        {
+          q: 'Czy znaczniki czasowe odpowiadają mojemu nagraniu ekranu?',
+          a: 'Tak. Znaczniki czasowe w transkrypcji i w eksportach SRT/VTT są zgodne z oryginalnym harmonogramem WebM, więc napisy pasują do nagrania ekranu z dokładnością do klatki, gdy są ponownie umieszczane na wideo.',
+        },
+        {
+          q: 'Czy mogę uzyskać napisy SRT do wycieczki?',
+          a: 'Tak. Pobierz SRT lub VTT po transkrypcji. Przeciągnij do swojego edytora wideo, przesyłania na YouTube lub przepływu pracy Loom.',
+        },
+        {
+          q: 'Czy Mictoo transkrybuje nieangielskie WebM?',
+          a: 'Tak. Whisper large-v3 obsługuje 50+ języków z automatycznym wykrywaniem. Dla krótkich nagrań lub treści nieangielskich, ustaw język jawnie dla czystszych wyników w pierwszym przejściu.',
+        },
+        {
+          q: 'Co jeśli WebM nie ma śladu audio?',
+          a: 'Transkrypcja będzie pusta. Pliki WebM bez śladu audio (ciche nagrania ekranu, przechwyty GIF) nie mają nic do transkrypcji przez Whisper.',
+        },
+        {
+          q: 'Czy mogę przetłumaczyć transkrypcję na inny język?',
+          a: 'Tak. Po transkrypcji wybierz docelowy język i kliknij Tłumacz. Tłumaczenie działa na GPT-4o-mini i pojawia się obok oryginału.',
+        },
+        {
+          q: 'Czy mój plik WebM jest przechowywany na Waszych serwerach?',
+          a: 'Nie. WebM przesyła się do dostawcy transkrypcji, demuxujemy i transkrybujemy w pamięci, a następnie wszystko usuwamy. Transkrypcja jest przechowywana tylko wtedy, gdy się zalogujesz i zapiszesz w historii.',
+        },
+        {
+          q: 'Jak długo trwa transkrypcja WebM?',
+          a: '10-minutowe Loom zazwyczaj kończy się w 20-40 sekund. Dłuższe pliki WebM (30-45 minut) zajmują 60-90 sekund. Prędkość przesyłania często jest dłuższym krokiem dla dużych nagrań ekranu.',
+        },
       ]}
-      relatedLinks={[
-        { href: '/pl/transcribe-video-to-text', label: 'Wideo na tekst' },
-        { href: '/pl/wav-to-text', label: 'WAV na tekst' },
-        { href: '/pl', label: 'Wszystkie formaty' },
-      ]}
+      ctaHeadline="Prześlij swoje nagranie Loom lub OBS"
+      ctaSubtitle="Nagrania ekranu WebM, wyjście z MediaRecorder przeglądarki. Wideo demuxowane po stronie serwera."
+      ctaButton="Prześlij WebM do transkrypcji"
     />
   )
 }

@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/zoom-transcription',
@@ -15,80 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Zoom文字起こし — Zoom録画を無料で文字起こし | Mictoo',
+  title: 'Zoomのクラウドおよびローカル録音の文字起こし | Mictoo',
   description:
-    '無料Zoom文字起こし。Cloud Recording(MP4)またはLocal Recording(M4A)をアップロードして正確なAI文字起こしを数秒で取得。登録不要、分単位課金なし。',
-  alternates: { canonical: 'https://mictoo.com/ja/zoom-transcription', languages: LANGS },
-
+    'ZoomのクラウドまたはローカルのMP4/M4A録音をアップロードし、タイムスタンプ付きの文字起こし、AI要約、エクスポートファイルを取得します。',
+  alternates: {
+    canonical: 'https://mictoo.com/ja/zoom-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Zoom文字起こし — Zoom録画を無料で文字起こし | Mictoo",
-    description: "無料Zoom文字起こし。Cloud Recording(MP4)またはLocal Recording(M4A)をアップロードして正確なAI文字起こしを数秒で取得。登録不要、分単位課金なし。",
-    url: "https://mictoo.com/ja/zoom-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Zoom録音の文字起こし | Mictoo',
+    description: 'ZoomのクラウドまたはローカルのMP4/M4Aをアップロードし、文字起こし、要約、エクスポートを取得します。',
+    url: 'https://mictoo.com/ja/zoom-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Zoom文字起こし — Zoom録画を無料で文字起こし | Mictoo",
-    description: "無料Zoom文字起こし。Cloud Recording(MP4)またはLocal Recording(M4A)をアップロードして正確なAI文字起こしを数秒で取得。登録不要、分単位課金なし。",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Zoomの文字起こし: 無料',
+    description: 'Zoomの録音をアップロードし、タイムスタンプ付きの文字起こしを取得します。',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function JaZoomPage() {
+export default function JaZoomTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="ja"
-      badge="ZOOM · MP4 · M4A · 無料"
-      h1={<>Zoom文字起こし<br /><span className="text-brand-600">Zoom録画をテキストに変換</span></>}
-      subtitle="Zoom録画をクリーンなテキストに変換。Cloud Recording MP4またはローカルM4A、両方動作。ファイルをドロップして数秒で文字起こし取得。"
-      howItWorks={[
-        { icon: '🎬', title: 'Zoom録画をエクスポート', desc: 'Cloud RecordingsはMP4(動画+音声)またはM4A(音声のみ)としてダウンロード。Local Recordingsはデバイス上にMP4とM4Aとして保存。両方のフォーマットがここで動作。' },
-        { icon: '⚡', title: 'ファイルをドロップ', desc: 'ドラッグするだけ。動画なら音声を取り出してWhisper large-v3に送ります。30分の会議は通常1分未満で完了。' },
-        { icon: '📋', title: '文字起こし取得', desc: '読む、コピー、またはTXTかSRTでダウンロード。エクスポート前に誤った名前や専門用語をインラインで修正。' },
+    <UseCaseLayout
+      locale="ja"
+      badge="Zoom · クラウド / ローカル / M4Aオーディオ · 無料"
+      h1First="Zoomの文字起こし"
+      h1Second="クラウドおよびローカル録音からテキストへ"
+      subtitle="Zoomクラウド録音のMP4、オーディオのみのM4A、またはローカル録音をアップロードします。タイムスタンプ付きの文字起こし、AI要約、翻訳、エクスポートファイルを1つのワークフローで取得します。"
+      currentHref="/ja/zoom-transcription"
+
+      platforms={[
+        { name: 'クラウドMP4',    iconKey: 'videoCameraFill', brandBg: '#2D8CFF' },
+        { name: 'M4Aオーディオ',    iconKey: 'mic',             brandBg: '#0EA5A4' },
+        { name: 'ローカルMP4',    iconKey: 'videoCameraFill', brandBg: '#4B53BC' },
+        { name: 'Google Meet',  iconKey: 'videoCameraFill', brandBg: '#00832D', href: '/ja/google-meet-transcription' },
+        { name: 'MS Teams',     iconKey: 'videoCameraFill', brandBg: '#4B53BC', href: '/ja/teams-meeting-transcription' },
+        { name: 'ミーティングハブ',  iconKey: 'videoCameraFill', brandBg: '#0F1F35', href: '/ja/meeting-transcription' },
       ]}
-      whyUse={{ title: 'Zoom録画にMictooを使う理由', bullets: [
-        { title: '無料プランを含むあらゆるZoomプランで動作', desc: 'Zoomの文字起こしは特定の有料プランに限定。私たちのはZoomプラン要件なし。録画、ダウンロード、アップロード、完了。' },
-        { title: '非ネイティブ英語とコードスイッチングがより良い', desc: 'Whisper large-v3は、歴史的に英語ファーストのZoom内蔵文字起こしよりも、アクセントとバイリンガル会議をうまく扱います。' },
-        { title: '音声のみM4Aは直接アップロードに十分小さい', desc: 'ほとんどの30分Zoom会議はM4Aとして15〜25 MBに着地。圧縮なしで快適に無料層に収まる。' },
-        { title: '14日保持の心配なし', desc: 'Zoom Cloud Recordingsはプランによって14〜30日後に消える可能性。ファイルをダウンロードしてここで文字起こししたら、永久にあなたのもの。' },
-        { title: 'プライバシー', desc: 'ファイルは文字起こしプロバイダにストリーミングされて破棄。Zoom録画をデータベースやストレージに書き込みません。' },
-      ]}}
-      useCases={{ title: '人々がZoom録画を文字起こしする用途', items: [
-        { title: '社内会議議事録', desc: '録画を通す、テキストを取得、NotionやConfluenceに貼り付け。会議を逃した人は60分の動画ではなく5分の読書で追いつく。' },
-        { title: 'クライアントと営業通話', desc: 'CRMでディールの横に文字起こしを保存。6ヶ月後の未来のあなたが感謝します。' },
-        { title: '分散チームの非同期スタンドアップ', desc: '一部のチームはライブ会議ではなく非同期スタンドアップを録画。文字起こしは検索可能でスキャン可能にします。' },
-        { title: '研究インタビュー', desc: '質的研究、ユーザーインタビュー、候補者スクリーニング通話。コーディングしてタグ付けするのは動画ではなくテキスト。' },
-        { title: 'ウェビナーとパネル文字起こし', desc: 'アクセシビリティと発見可能性のために録画の横に文字起こしを公開。検索エンジンは動画ではなくテキストをインデックス。' },
-      ]}}
-      proTips={{ title: 'Zoom文字起こしのコツ', tips: [
-        { title: 'MP4ではなく音声のみM4Aをダウンロード', desc: 'Zoom Cloud Recordingは両方を提供。M4Aは同一の音声品質でMP4の10分の1のサイズ。より速いアップロード、ほとんどの会議で60 MB制限のはるか下。' },
-        { title: 'マルチスピーカー会議には「Record a separate audio file for each participant」を有効化', desc: 'Zoom設定、録画の下。スピーカーごとに1つのM4A。各々を別々に文字起こしすれば、ダイアライゼーション不要でクリーンなスピーカー帰属。' },
-        { title: '話さない参加者をミュート', desc: 'プレゼンテーション中に開いたマイクからの背景ノイズは文字起こしにゴースト単語を生成。大きな通話では強制する価値があります。' },
-        { title: 'ローカルとクラウド録画は同じ品質', desc: '両方ともデフォルトで同じ音声設定で録画。ローカルは速い(Zoomへのアップロード不要)が、ディスクスペースが必要。' },
-        { title: '機密コンテンツにはローカル録画を使う', desc: 'Cloud RecordingはZoomサーバーに会議を保存。ローカル録画はあなたが行き先を選ぶまでデバイス上に留まります。機密性の高いクライアントやHR会話には、ローカル→私たちに直接が、プライバシーを保持する方法。' },
-        { title: '長いZoom会議(60分超)は分割が必要', desc: '私たちのファイル制限は登録で60分。90分通話には45分のチャンク2つに分割。Audacityで簡単(File、Export、Multiple)、またはffmpegで。' },
-      ]}}
+
+      howItWorksTitle="Zoomの文字起こしの仕組み"
+      steps={[
+        {
+          icon: 'folder',
+          title: 'Zoomからダウンロード',
+          desc: 'クラウド: zoom.us → 録音 → MP4または「オーディオのみ(M4A)」バージョンをダウンロードします。ローカル: ~/Documents/Zoom/.',
+        },
+        {
+          icon: 'upload',
+          title: 'ここにファイルをドロップ',
+          desc: 'オーディオのみのM4Aは通常MP4よりもはるかに小さく、ビデオトラックのアップロードを回避します。匿名で最大25MB、サインインで60MBまで無料です。',
+        },
+        {
+          icon: 'editPen',
+          title: 'レビューとエクスポート',
+          desc: '処理時間は、長さ、ファイルサイズ、需要によって異なります。完了したら、文字起こしをレビューし、要約、キャプション、またはDOCXの要約をエクスポートします。',
+        },
+      ]}
+
+      exampleTitle="Zoomミーティングの文字起こしの例"
+      exampleFileName="zoom-cloud-recording.m4a"
+      exampleDurationLabel="34:12"
+      exampleLines={[
+        { t: '0:00',  line: 'さて、皆さん遅れてすみません。Zoomが更新するまで入れてくれませんでした。始めましょう。' },
+        { t: '0:10',  line: '今日は先週のプロトタイプフィードバックをレビューし、スプリントの優先順位を決定します。' },
+        { t: '0:22',  line: '全体的にフィードバックは良好でした。15人中12人が助けなしでフローを理解しました。' },
+        { t: '0:33',  line: 'つまずいた3人は全員、設定画面で同じ問題に直面しました。まずそれを修正する必要があります。' },
+        { t: '0:45',  line: '同意します。すでにデザインの修正を進めています。木曜日までにレビューできるはずです。' },
+        { t: '0:56',  line: '次に、皆さんは新しい空の状態を気に入っていましたが、インポートボタンが見つかりませんでした。深すぎて埋もれています。' },
+        { t: '1:08',  line: 'インポートを空の状態の主要なアクションに移動しましょう。それはエンジニアリングにとって1行の変更です。' },
+      ]}
+      summaryPoints={[
+        'プロトタイプフィードバック: 12/15が支援なしでフローを完了。',
+        'ブロッカー: 設定画面が3/15の参加者を混乱させた。',
+        '空の状態は好評だが、インポートボタンが見つけにくい。',
+        '木曜日までにデザインの修正。',
+      ]}
+      actionItems={[
+        '設定画面を修正（木曜日にデザインの修正）',
+        '空の状態でインポートを主要なアクションに昇格',
+        '金曜日のスタンドアップで修正されたプロトタイプを共有',
+      ]}
+
+      whyTitle="Zoom録音でMictooを使用する理由"
+      whyCards={[
+        {
+          icon: 'target',
+          title: 'レビュー用の2つ目の文字起こし',
+          desc: '名前、用語、重要な引用を確認するために、追加の文字起こしとタイムスタンプ付きのテキストが必要な場合はMictooを使用します。',
+        },
+        {
+          icon: 'lock',
+          title: 'ダウンロードしたファイルを処理',
+          desc: 'MictooはあなたのZoomアカウントに接続しません。すでに使用許可のあるクラウドまたはローカル録音をアップロードします。',
+        },
+        {
+          icon: 'gear',
+          title: 'ローカル録音にも対応',
+          desc: 'Zoomの内蔵文字起こしはクラウド専用です。ローカル録音は何も得られません。Mictooは両方に対応しています。',
+        },
+        {
+          icon: 'sparkles',
+          title: '要約 + 翻訳が含まれています',
+          desc: 'AI要約が文字起こしと自動的に表示されます。ワンクリックで50以上の言語に翻訳します。',
+        },
+      ]}
+
+      scenariosTitle="一般的なZoomシナリオ"
+      scenarios={[
+        { icon: 'chat',      title: 'クライアントコール' },
+        { icon: 'users',     title: 'チームスタンドアップ' },
+        { icon: 'briefcase', title: '営業デモ' },
+        { icon: 'search',    title: 'ユーザーインタビュー' },
+        { icon: 'book',      title: 'ウェビナー' },
+        { icon: 'globe',     title: '多言語コール' },
+      ]}
+
+      tipsTitle="Zoom録音のヒント"
+      tips={[
+        'M4Aの「オーディオのみ」バージョンをダウンロードします。同じ精度で、10倍小さいです。',
+        'クラウド録音のクォータは、私たちの文字起こしには消費されません（外部で実行しています）。',
+        'ローカル録音も機能します。~/Documents/Zoom/の下を確認してください。',
+        '60MBを超える長い通話の場合は、サインインして自動分割を利用してください。',
+      ]}
+
+      guidesTitle="独自のガイドを持つミーティングプラットフォーム"
+      guides={[
+        { href: '/ja/google-meet-transcription',   icon: 'video', title: 'Google Meet', desc: 'Workspace + 無料のワークアラウンド' },
+        { href: '/ja/teams-meeting-transcription', icon: 'video', title: 'MS Teams',    desc: 'OneDrive + SharePointのパス' },
+        { href: '/ja/meeting-transcription',       icon: 'video', title: 'ミーティングハブ', desc: '任意のプラットフォーム、1回のアップロード' },
+        { href: '/ja/webinar-transcription',       icon: 'monitor', title: 'ウェビナー',  desc: 'Zoomウェビナー、Demio、ON24' },
+      ]}
+
       faq={[
-        { q: 'MictooはZoom Cloud Recordingsで動作しますか?', a: 'はい。ZoomレコーディングライブラリからMP4またはM4Aをダウンロードし、ここにアップロード。M4A音声のみエクスポートは速くて小さい。' },
-        { q: 'Zoom Phone通話録画で動作しますか?', a: 'はい。Zoom PhoneはMP3またはM4Aで録画。両方とも動作。電話品質の音声(8 kHzモノラル)は動画会議音声よりわずかに精度が低いが、結果はまだ読めます。' },
-        { q: 'ローカルZoom録画はどうですか?', a: '同じ話。ZoomはデフォルトのZoomフォルダにMP4とM4Aとして保存。M4Aをここにドロップ。' },
-        { q: 'スピーカーラベルは取得できますか?', a: '自動的にはありません。Zoom設定で「Record a separate audio file for each participant」を有効にした場合、各スピーカーのファイルを別々に文字起こしできます。そうでなければ、会話の流れに基づいて手動でスピーカーラベルを追加する必要があります。' },
-        { q: 'Zoom録画が60 MBを超えています。どうすれば?', a: 'MP4ではなく音声のみM4Aダウンロードを使用。それでも大きすぎる場合は、チャンクに分割するか、低ビットレートで再エンコード。圧縮と分割ガイドを参照。' },
-        { q: 'Zoom内蔵文字起こしと比較してどうですか?', a: '私たちは非ネイティブ英語、アクセントでより良く、言語サポートが広い(50以上)。Zoom内蔵文字起こしは、適切なZoomプランをすでに支払っている場合により便利。私たちのは無料で、Zoomティアに関係なく動作します。' },
-        { q: 'Zoom録画はサーバーに保存されますか?', a: 'いいえ。ファイルは文字起こしプロバイダ(Groq、バックアップとしてOpenAI)にストリーミングされ、文字起こしされて破棄。録画をディスクに書き込みません。' },
-        { q: 'Zoom会議をリアルタイムで文字起こしできますか?', a: 'いいえ。録画されたファイルでのみ動作。会議中のリアルタイムにはZoom内蔵ツールまたは専用ミーティングアシスタントが正しい選択です。' },
-        { q: 'ZoomウェビナーとLarge meetingsはどうですか?', a: '同じワークフロー。録画をダウンロード、アップロード、文字起こし。非常に長いウェビナー(60分超)はまず分割。' },
-        { q: '会議のチャットメッセージは文字起こしされますか?', a: 'いいえ。チャットメッセージはZoomによって別々に保存(Zoomフォルダ内のTXTとして)。音声のみを文字起こし。両方が必要なら自分で組み合わせてください。' },
-        { q: 'Zoom音声文字起こしはどれくらい正確?', a: '良いマイクのクリーンな会議音声: 90〜95%。悪い音声(ノートPCマイク、騒がしい部屋、弱いWiFi)の会議は精度がやや落ちる。名前と専門用語は通常クリーンアップが必要。' },
-        { q: 'Microsoft TeamsやGoogle Meet録画でも動作しますか?', a: 'はい、同じエンジン。Google MeetとMicrosoft Teams用に専用ページがあります。' },
+        {
+          q: 'どのZoom録音タイプが機能しますか？',
+          a: 'クラウド録音MP4（ビデオ）、クラウド録音M4A（オーディオのみ）、およびローカル録音MP4。また、チャットログが必要な場合はchat.txtエクスポートも可能ですが、チャットは文字起こししません。',
+        },
+        {
+          q: 'Zoom Proまたはそれ以上が必要ですか？',
+          a: 'いいえ。無料プランのローカル録音を含む、任意のZoom録音が機能します。Zoomクラウド録音自体はPro+が必要ですが、すでにファイルを持っている場合、MictooはあなたのZoomティアを気にしません。',
+        },
+        {
+          q: '私のクラウド録音MP4は60MBを超えています。どうすればいいですか？',
+          a: '録音にオーディオのみ（M4A）のダウンロードが含まれている場合は、それを使用してビデオトラックのアップロードを回避してください。可用性とファイルサイズは、録音設定と長さによって異なります。',
+        },
+        {
+          q: 'Zoomのオーディオ文字起こしを使用するべきですか、それともMictooを使用するべきですか？',
+          a: 'Zoomのオーディオ文字起こしは、クラウド録音と文字起こしがアカウントで有効になっている場合に便利です。Mictooは、ローカルファイル、追加のエクスポート形式、翻訳、またはレビュー用の別の文字起こしを生成するのに役立ちます。精度は録音によって異なります。',
+        },
+        {
+          q: 'MictooはZoomのスピーカーを特定しますか？',
+          a: 'いいえ。現在の文字起こしは、行ごとのタイムスタンプ付きの連続テキストであり、自動的な「スピーカー1 / スピーカー2」ラベルはありません。',
+        },
+        {
+          q: 'ローカル録音はどこに保存されますか？',
+          a: 'デフォルトでは、Macの~/Documents/Zoom/およびWindowsの%USERPROFILE%\\Documents\\Zoom\\です。各ミーティングには、MP4と別のaudio.m4aを含む独自のフォルダーが作成されます。',
+        },
+        {
+          q: '私のZoom録音はあなたのサーバーに保存されていますか？',
+          a: 'いいえ。ファイルは文字起こしプロバイダーにストリーミングされ、1回処理され、メモリから削除されます。サインインした場合のみ、文字起こしが持続します。',
+        },
       ]}
+
+      ctaHeadline="Zoom録音をクリーンなテキストに変換"
+      ctaSubtitle="クラウドMP4またはM4A、ローカル録音、任意のZoomティア。ファイルごとに無料です。"
+      ctaButton="Zoom録音をアップロード"
+
       relatedLinks={[
-        { href: '/ja/google-meet-transcription', label: 'Google Meet文字起こし', desc: 'Google Meet録画用の同じワークフロー。' },
-        { href: '/ja/teams-meeting-transcription', label: 'Teams文字起こし', desc: 'Microsoft Teams録画用。' },
-        { href: '/ja/meeting-transcription', label: '会議文字起こし', desc: '他のプラットフォームからの録画用の一般ページ。' },
-        { href: '/ja/interview-transcription', label: 'インタビュー文字起こし', desc: '1対1の会話と質的インタビュー用。' },
+        { href: '/ja/meeting-transcription',       label: 'ミーティングの文字起こし' },
+        { href: '/ja/google-meet-transcription',   label: 'Google Meetの文字起こし' },
+        { href: '/ja/teams-meeting-transcription', label: 'Teamsの文字起こし' },
+        { href: '/ja/webinar-transcription',       label: 'ウェビナーの文字起こし' },
+        { href: '/ja/interview-transcription',     label: 'インタビューの文字起こし' },
       ]}
     />
   )

@@ -1,9 +1,9 @@
 import UseCaseLayout from '@/components/UseCaseLayout'
 
 export const metadata = {
-  title: 'Teams Meeting Transcription: OneDrive / SharePoint Recording to Text (No Teams Premium) | Mictoo',
+  title: 'Teams Meeting Transcription from MP4 Recordings | Mictoo',
   description:
-    'Drop a Microsoft Teams recording from OneDrive (private meetings) or SharePoint (channel meetings). No Teams Premium license required, no IT ticket, cleaner transcripts than built-in.',
+    'Upload a Microsoft Teams MP4 from OneDrive or SharePoint and get a timestamped transcript, AI summary, and export files.',
   alternates: {
     canonical: 'https://mictoo.com/teams-meeting-transcription',
     languages: {
@@ -21,8 +21,8 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'Teams Meeting Transcription: No Premium Required | Mictoo',
-    description: 'Drop a Teams recording from OneDrive or SharePoint. Free.',
+    title: 'Teams Meeting Transcription from MP4 | Mictoo',
+    description: 'Drop a Teams recording from OneDrive or SharePoint and get text, summary, and exports.',
     url: 'https://mictoo.com/teams-meeting-transcription',
     siteName: 'Mictoo',
     type: 'website',
@@ -30,8 +30,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Teams Transcription: No Premium License',
-    description: 'MP4 from OneDrive or SharePoint. Free.',
+    title: 'Teams Meeting Transcription',
+    description: 'Upload an MP4 from OneDrive or SharePoint and get a transcript.',
     images: ['https://mictoo.com/opengraph-image'],
   },
 }
@@ -41,8 +41,8 @@ export default function TeamsMeetingTranscriptionPage() {
     <UseCaseLayout
       badge="Teams · OneDrive / SharePoint · M365 · Free"
       h1First="Teams Meeting Transcription"
-      h1Second="No Teams Premium license needed"
-      subtitle="Teams recordings save to OneDrive (private meetings) or SharePoint (channel meetings). Download the MP4, drop here, get a transcript without needing Teams Premium, an admin enablement, or an IT ticket."
+      h1Second="From OneDrive or SharePoint MP4 to text"
+      subtitle="Download the Teams recording you are allowed to access, then upload the MP4 for a timestamped transcript, AI summary, and exports. Recording availability depends on your Microsoft 365 license and organization policies."
       currentHref="/teams-meeting-transcription"
 
       platforms={[
@@ -100,19 +100,19 @@ export default function TeamsMeetingTranscriptionPage() {
       whyTitle="Why Mictoo for Teams recordings"
       whyCards={[
         {
-          icon: 'lock',
-          title: 'No Teams Premium required',
-          desc: 'Built-in Teams transcript requires the Premium license. Mictoo works with any Teams tier.',
+          icon: 'folder',
+          title: 'Works with downloaded recordings',
+          desc: 'Use an MP4 you already have permission to download from OneDrive or the channel SharePoint site.',
         },
         {
           icon: 'target',
-          title: 'Higher accuracy on names and jargon',
-          desc: 'Whisper large-v3 handles proper nouns, product names, and technical terms better than the Teams ASR.',
+          title: 'Review names and terminology',
+          desc: 'The timestamped output makes it easier to find and correct product names, acronyms, and specialist terms.',
         },
         {
           icon: 'sparkles',
-          title: 'AI summary included',
-          desc: 'Meeting recap draft appears alongside the transcript. Teams AI summary is a separate paid feature.',
+          title: 'Summary alongside the transcript',
+          desc: 'Generate a recap draft and keep it next to the full text for review before sharing.',
         },
         {
           icon: 'globe',
@@ -144,7 +144,7 @@ export default function TeamsMeetingTranscriptionPage() {
         { href: '/zoom-transcription',        icon: 'video', title: 'Zoom',        desc: 'Cloud + Local + M4A' },
         { href: '/google-meet-transcription', icon: 'video', title: 'Google Meet', desc: 'Workspace + free' },
         { href: '/meeting-transcription',     icon: 'video', title: 'Meeting hub', desc: 'Any platform, one upload' },
-        { href: '/business-transcription',    icon: 'briefcase', title: 'Business', desc: 'Internal use, no IT setup' },
+        { href: '/business-transcription',    icon: 'briefcase', title: 'Business', desc: 'Authorized internal recordings' },
       ]}
 
       faq={[
@@ -153,12 +153,12 @@ export default function TeamsMeetingTranscriptionPage() {
           a: 'Private meetings: to the organizer\'s OneDrive under My Files › Recordings. Channel meetings: to the SharePoint site backing that channel, under the channel folder in Documents.',
         },
         {
-          q: 'Do I need Teams Premium to use Mictoo?',
-          a: 'No. Any Teams tier works, including standard M365 without the Premium add-on. The built-in Teams transcript requires Premium; Mictoo does not.',
+          q: 'Do I need Teams Premium to upload a recording?',
+          a: 'Mictoo processes the downloaded media file rather than connecting to your Teams account. Your ability to record, transcribe, or download within Teams still depends on your Microsoft 365 license, meeting role, and organization policies.',
         },
         {
-          q: 'Is Mictoo better than Teams built-in transcript?',
-          a: 'For most content, yes. Whisper large-v3 outperforms the Teams ASR on names, technical terms, and non-native accents.',
+          q: 'Should I use the Teams transcript or upload the recording?',
+          a: 'Use the Teams transcript when it is available and meets your needs. Uploading the recording is useful when you want Mictoo exports, translation, or an additional transcript to review. Accuracy varies with the recording.',
         },
         {
           q: 'My Teams MP4 is over 60 MB. What now?',
@@ -166,11 +166,11 @@ export default function TeamsMeetingTranscriptionPage() {
         },
         {
           q: 'Can I use Mictoo for GCC / enterprise tenants?',
-          a: 'Mictoo does not require any admin enablement. However, some enterprise tenants restrict downloads from OneDrive/SharePoint. Check with your IT before downloading.',
+          a: 'Some enterprise and government tenants restrict downloads or external processing. Follow your organization policy and check with IT or the recording owner before downloading or uploading meeting media.',
         },
         {
           q: 'Does Mictoo identify Teams speakers?',
-          a: 'Not yet. Continuous text with per-line timestamps, no speaker labels. Diarisation is on the Pro roadmap.',
+          a: 'No. The current transcript is continuous text with per-line timestamps and no automatic speaker labels.',
         },
         {
           q: 'Are Teams recordings stored on your servers?',
@@ -179,7 +179,7 @@ export default function TeamsMeetingTranscriptionPage() {
       ]}
 
       ctaHeadline="Turn Teams meetings into clean text"
-      ctaSubtitle="OneDrive or SharePoint recording, any Teams tier. No Premium required."
+      ctaSubtitle="Upload an authorized OneDrive or SharePoint recording and get text, summary, and exports."
       ctaButton="Upload Teams recording"
 
       relatedLinks={[

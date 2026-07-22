@@ -1,9 +1,9 @@
 import UseCaseLayout from '@/components/UseCaseLayout'
 
 export const metadata = {
-  title: 'Voice Memo to Text: Transcribe iPhone Voice Memos Free | Mictoo',
+  title: 'Voice Memo to Text for iPhone and Android | Mictoo',
   description:
-    'Free voice memo transcription. Drop your iPhone Voice Memo or Android voice recorder file (M4A, MP3) and get clean text in seconds. No signup, no per-minute fee.',
+    'Upload an iPhone or Android voice recording and get timestamped text, an AI summary, and editable exports.',
   alternates: {
     canonical: 'https://mictoo.com/voice-memo-to-text',
     languages: {

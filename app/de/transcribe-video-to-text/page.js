@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import FormatPageLayout from '@/components/FormatPageLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/transcribe-video-to-text',
@@ -15,193 +15,186 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Video in Text — kostenlose Online-Transkription | Mictoo',
+  title: 'Video zu Text: Kostenlose Online-Video-Transkription für MP4, MOV, WebM | Mictoo',
   description:
-    'Kostenlose Video-zu-Text-Transkription. Laden Sie MP4, MOV, WEBM, AVI hoch und bekommen Sie ein KI-Transkript oder eine SRT-Untertiteldatei. Funktioniert mit Bildschirmaufnahmen, Tutorials, Vlogs.',
-  alternates: { canonical: 'https://mictoo.com/de/transcribe-video-to-text', languages: LANGS },
-
+    'Laden Sie ein MP4-, MOV-, WebM-, AVI- oder MKV-Video hoch und erhalten Sie ein Transkript mit Zeitstempeln, KI-Zusammenfassung und SRT-Untertiteln. Für Bildschirmaufzeichnungen, Tutorials, Vlogs und Webinare.',
+  alternates: {
+    canonical: 'https://mictoo.com/de/transcribe-video-to-text',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Video in Text — kostenlose Online-Transkription | Mictoo",
-    description: "Kostenlose Video-zu-Text-Transkription. Laden Sie MP4, MOV, WEBM, AVI hoch und bekommen Sie ein KI-Transkript oder eine SRT-Untertiteldatei. Funktioniert mit Bildschirmaufnahmen, Tutorials, Vlogs.",
-    url: "https://mictoo.com/de/transcribe-video-to-text",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Video zu Text: Kostenlose Online-Video-Transkription | Mictoo',
+    description: 'MP4-, MOV-, WebM-Video-Transkription mit SRT, Zusammenfassung und Übersetzung.',
+    url: 'https://mictoo.com/de/transcribe-video-to-text',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Video in Text — kostenlose Online-Transkription | Mictoo",
-    description: "Kostenlose Video-zu-Text-Transkription. Laden Sie MP4, MOV, WEBM, AVI hoch und bekommen Sie ein KI-Transkript oder eine SRT-Untertiteldatei. Funktioniert mit Bildschirmaufnahmen, Tutorials, Vlogs.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Video zu Text: Kostenlose Online-Video-Transkription',
+    description: 'MP4-, MOV-, WebM-Video-Transkription mit SRT und Zusammenfassung.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function DeVideoToTextPage() {
+export default function DeTranscribeVideoToTextPage() {
   return (
-    <LandingLayout
-      defaultLanguage="de"
-      enableYouTubeUrl
-      badge="MP4 · MOV · WEBM · KOSTENLOS"
-      h1={
-        <>
-          Video in Text
-          <br />
-          <span className="text-brand-600">Kostenlose KI-Video-Transkription</span>
-        </>
-      }
-      subtitle="Kostenlose KI-Transkription für jede Videodatei. Wir extrahieren das Audio automatisch. Ohne Konto, ohne Tarif pro Minute, ohne E-Mail."
-      howItWorks={[
+    <FormatPageLayout
+      locale="de"
+      badge="Videodateien · MP4 · MOV · WebM · Kostenlos"
+      h1First="Video zu Text"
+      h1Second="Für Bildschirmaufzeichnungen, Tutorials und Vlogs"
+      subtitle="Laden Sie eine MP4-, MOV-, WebM-, MKV- oder AVI-Datei hoch. Wir extrahieren die Audiospur, transkribieren mit Whisper large-v3 und liefern ein Transkript mit Zeitstempeln, KI-Zusammenfassung und SRT-Untertiteln, die bereit sind, wieder ins Video eingefügt zu werden."
+      highlightFormat="video"
+      relatedFormatsTitle="Video-Container, die Sie hochladen können"
+      relatedFormats={[
+        { key: 'video', name: 'MP4', ext: '.mp4' },
+        { key: 'mov', name: 'MOV', ext: '.mov' },
+        { key: 'webm', name: 'WebM', ext: '.webm', href: '/de/webm-to-text' },
+        { key: 'mkv', name: 'MKV', ext: '.mkv' },
+        { key: 'avi', name: 'AVI', ext: '.avi' },
+        { key: 'mpeg', name: 'MPEG', ext: '.mpeg' },
+      ]}
+      previewFileName="keynote-recording.mp4"
+      previewWordCount={205}
+      previewDurationLabel="32:47"
+      enableYouTubeUrl={true}
+      previewLines={[
+        { t: '0:00',  line: 'Guten Morgen zusammen, und danke, dass Sie heute hierher gekommen sind.' },
+        { t: '0:06',  line: 'Wir werden die nächsten dreißig Minuten damit verbringen, wo sich das Video 2026 verändert hat und was das für die Creator bedeutet.' },
+        { t: '0:15',  line: 'Drei schnelle Zahlen, bevor wir anfangen. Zweiundneunzig Prozent der Internetnutzer sehen jede Woche Videos.' },
+        { t: '0:24',  line: 'Kurzform hat jetzt mehr Betrachtungszeit als Langform auf jeder wichtigen Plattform.' },
+        { t: '0:32',  line: 'Und die Suchanfragen, die zu einem Videoergebnis führen, sind im Jahresvergleich um das Zweieinhalbfache gestiegen.' },
+        { t: '0:41',  line: 'Die Plattformen drängen also auf Video. Das Publikum sieht mehr Videos. Dieser Teil ist nicht umstritten.' },
+        { t: '0:50',  line: 'Was umstritten ist, ist, was tatsächlich Aufmerksamkeit in diesem Video-Ozean erregt.' },
+        { t: '0:58',  line: 'Lassen Sie mich die drei Muster durchgehen, die wir bei Creatorn gesehen haben, die jede Woche arbeiten.' },
+      ]}
+      whyTitle="Warum Mictoo für Video-Transkription"
+      whyCards={[
         {
-          icon: '🎬',
-          title: 'Video ablegen — oder YouTube-URL einfügen',
-          desc: 'MP4, MOV, WEBM, AVI oder jeder gängige Videocontainer. Bildschirmaufnahmen, Vlogs, Webinar-Exporte, Zoom-MP4s. Datei reinziehen oder zum Auswählen klicken. Neu: YouTube-Link einfügen statt hochzuladen und wir holen das Transkript in Sekunden, ohne Download.',
+          icon: 'video',
+          title: 'Jeder gängige Video-Container',
+          desc: 'MP4, MOV, WebM, MKV, AVI. Wir demuxen die Audiospur serverseitig, sodass Sie das Video unverändert hochladen können, ohne einen Umwandlungsschritt.',
         },
         {
-          icon: '⚡',
-          title: 'Wir extrahieren das Audio, KI transkribiert',
-          desc: 'Wir holen die Tonspur aus dem Video heraus und schicken nur die an Whisper large-v3. Keine Notwendigkeit, zuerst in MP3 zu konvertieren. Ein 30-Minuten-Video ist meist in rund einer Minute fertig.',
+          icon: 'clip',
+          title: 'SRT und VTT bereit für die Timeline',
+          desc: 'Zeitstempel stimmen mit der ursprünglichen Video-Timeline überein. Laden Sie SRT oder VTT herunter und fügen Sie es direkt in Premiere, DaVinci, CapCut oder Ihren YouTube-Upload ein.',
         },
         {
-          icon: '📋',
-          title: 'Kopieren, herunterladen oder Untertitel holen',
-          desc: 'Laden Sie es als TXT für Notizen herunter, oder als SRT, um es als Untertitel in einen Video-Editor zu legen. Falsche Wörter im Browser vor dem Export korrigieren.',
+          icon: 'sparkles',
+          title: 'KI-Zusammenfassung für Beschreibungen',
+          desc: 'Automatisch generierte Zusammenfassung neben dem Transkript. Solide erste Entwurf für Videobeschreibungen, Blog-Zusammenfassungen und Kapiteltitel.',
+        },
+        {
+          icon: 'globe',
+          title: 'Übersetzen Sie Untertitel in über 50 Sprachen',
+          desc: 'Nachdem das Transkript bereit ist, übersetzen Sie die Untertitel in Spanisch, Französisch, Deutsch, Portugiesisch und 45+ andere Sprachen mit einem Klick.',
         },
       ]}
-      whyUse={{
-        title: 'Warum Mictoo für Video',
-        bullets: [
-          {
-            title: 'YouTube-URL direkt einfügen',
-            desc: 'Sparen Sie sich den Download-Schritt für YouTube-Videos — legen Sie den Link in das Feld über der Ablagezone und das Transkript kommt in Sekunden zurück. Für Videos ohne Untertitel laden Sie die Audiodatei hoch und Whisper erledigt den Rest.',
-          },
-          {
-            title: 'Audio-Extraktion ist automatisch',
-            desc: 'Sie legen die MP4 ab. Wir holen das Audio intern raus und schicken es an das Sprachmodell. Sie müssen ffmpeg nicht selbst starten.',
-          },
-          {
-            title: 'Die Ausgabe funktioniert in echten Video-Editoren',
-            desc: 'Die SRT, die wir erzeugen, funktioniert in Premiere Pro, DaVinci Resolve, Final Cut, CapCut und YouTube Studio. Zeitstempel sind framegenau.',
-          },
-          {
-            title: 'Größere Videodateien? Audio komprimieren, nicht Video',
-            desc: 'Ein 200-MB-Video besteht meist aus 195 MB Video und 5 MB Audio. Sie müssen nicht alles komprimieren, nur die Tonspur.',
-          },
-          {
-            title: 'Keine Datei wird gespeichert',
-            desc: 'Das Video kommt zu uns, wir extrahieren das Audio, schicken es an den Transkriptions-Anbieter und verwerfen beides. Wir behalten weder Ihr Video noch Ihr Audio auf unseren Servern.',
-          },
-        ],
-      }}
-      useCases={{
-        title: 'Wofür Video-Transkription gut ist',
-        items: [
-          {
-            title: 'Untertitel für Social-Media-Videos',
-            desc: 'TikTok, Instagram Reels, YouTube Shorts profitieren alle von eingebrannten Untertiteln. Erzeugen Sie die SRT hier, importieren Sie in CapCut oder Premiere, gestalten Sie die Untertitel nach Geschmack und brennen Sie sie ins Video ein.',
-          },
-          {
-            title: 'Tutorials und Kursinhalte',
-            desc: 'Wenn Sie Screencast-Tutorials aufnehmen, hilft eine Textversion bei SEO, Barrierefreiheit und Übersetzung. Fügen Sie das Transkript in Ihren Blog oder Ihre Kursplattform als Begleitung zum Video ein.',
-          },
-          {
-            title: 'Webinar-Follow-ups',
-            desc: 'Sie haben ein einstündiges Webinar gemacht. Transkribieren Sie die Aufnahme, bearbeiten Sie leicht und schicken Sie sie als Follow-up-Mail an Teilnehmer, die nicht bis zum Ende bleiben konnten.',
-          },
-          {
-            title: 'Interview-Schnitte für die Bearbeitung',
-            desc: 'Beim Schneiden eines langen Video-Interviews können Sie mit dem Transkript auf einem zweiten Bildschirm einen „Paper Edit" machen. Markieren Sie die gewünschten Zeilen, finden Sie sie auf der Timeline, viel schneller als zu scrubben.',
-          },
-          {
-            title: 'Übersetzungs- und Synchronisations-Vorbereitung',
-            desc: 'Transkribieren Sie in der Ausgangssprache, jagen Sie den Text durch DeepL oder ChatGPT zum Übersetzen und nutzen Sie das als Skript für Synchronisation oder Untertitelübersetzung.',
-          },
-        ],
-      }}
-      proTips={{
-        title: 'Tipps für Video-Transkription',
-        tips: [
-          {
-            title: 'Audio zuerst extrahieren, wenn Ihr Video über 60 MB ist',
-            desc: 'Ein 1080p-Video besteht hauptsächlich aus Pixel-Bytes, die wir sowieso wegwerfen. Holen Sie nur die Tonspur: ffmpeg -i video.mp4 -vn -ac 1 -b:a 64k audio.mp3. Ein 500-MB-Video schrumpft auf unter 30 MB Audio.',
-          },
-          {
-            title: 'Hintergrundmusik im Editor vor dem Export stummschalten',
-            desc: 'Wenn Ihr Video Musik unter dem Dialog hat (B-Roll, Intro, Übergänge), schalten Sie die Musikspur im Editor vor dem Export der hochzuladenden Version stumm oder leiser. Whisper erfindet manchmal Wörter, wenn Sprache unter Musik begraben ist.',
-          },
-          {
-            title: 'Bildschirmaufnahmen ohne Musik sind am einfachsten',
-            desc: 'Loom-, Zoom-, OBS-Aufnahmen von jemandem, der über Slides spricht, ergeben die saubersten Transkripte. Keine Musik, eine Stimme, klares Mikro. Sie bekommen nahezu menschliche Genauigkeit.',
-          },
-          {
-            title: 'Bei Multi-Speaker-Videos wenn möglich separate Audiospuren aufnehmen',
-            desc: 'Wenn Sie die Aufnahme kontrollieren, nehmen Sie jeden Sprecher auf seine eigene Spur auf. Transkribieren Sie jede Spur separat. Sauberere Zuordnung, weniger Fehler bei Überlappungen.',
-          },
-          {
-            title: 'Die Framerate ist egal, nur die Audioqualität zählt',
-            desc: 'Whisper schaut nicht aufs Video, nur aufs Audio. Ein 4K-Video mit schlechtem Audio transkribiert schlechter als ein 480p-Video mit Lavalier-Mikro. Stecken Sie Ihre Mühe ins Audio.',
-          },
-          {
-            title: 'SRT-Zeitstempel brauchen in manchen Editoren einen kleinen Versatz',
-            desc: 'Die meisten Editoren richten SRT-Zeitstempel perfekt aus. Ein paar ältere Editoren erwarten, dass der erste Untertitel bei 00:00:01,000 startet statt bei 00:00:00,000. Wenn Ihre Untertitel um eine Sekunde verschoben sind, liegt es meist daran.',
-          },
-        ],
-      }}
+      scenariosTitle="Wann Video zu Text die richtige Wahl ist"
+      scenarios={[
+        {
+          icon: 'video',
+          title: 'YouTube-Video-Untertitel',
+          desc: 'Aufgenommen, bearbeitet und als MP4 exportiert. Laden Sie die Datei für SRT-Untertitel und eine beschreibungsbereite Zusammenfassung hoch.',
+        },
+        {
+          icon: 'briefcase',
+          title: 'Loom- und Bildschirmaufzeichnungen',
+          desc: 'WebM oder MP4 von Loom, OBS oder Browser-Bildschirmaufnahme. Erhalten Sie eine saubere Textversion des Walkthroughs.',
+        },
+        {
+          icon: 'users',
+          title: 'Webinar- und Workshop-Aufzeichnungen',
+          desc: 'Langform-Event-Aufzeichnung. Das Transkript wird zum Nachfolge-Blogbeitrag, LinkedIn-Zusammenfassung und durchsuchbaren Archiv.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Vlog- und Tutorial-Inhalte',
+          desc: 'Vlog-Ausschnitt, Tutorial-Erklärung oder Produktdemo. Transkript speist Notizen, Untertitel und Wiederverwertung für soziale Medien.',
+        },
+        {
+          icon: 'book',
+          title: 'Kurslektionen-Archiv',
+          desc: 'Aufgezeichnete Vorlesung oder Lektion MP4. Geben Sie den Studenten eine durchsuchbare Textversion und sichern Sie Untertitel für Barrierefreiheit.',
+        },
+        {
+          icon: 'mic',
+          title: 'Interview- und Testimonial-Video',
+          desc: 'Gesprächsinterview oder Kunden-Testimonial. Transkript erleichtert das Zitieren, Bearbeiten und Übersetzen erheblich.',
+        },
+      ]}
+      technicalTitle="Was mit der Videodatei passiert"
+      technicalIntro="Mictoo verwendet die gesprochene Audiospur für die Transkription. Der Container und die Bildqualität verbessern nicht die Spracherkennung, beeinflussen jedoch die Upload-Größe und ob ein Audiostream verfügbar ist."
+      technicalFacts={[
+        {
+          icon: 'video',
+          title: 'Audiospur extrahiert',
+          desc: 'Die Sprachspur wird aus dem Video-Container dekodiert. Sie müssen vor dem Hochladen keine separate MP3 exportieren.',
+        },
+        {
+          icon: 'clip',
+          title: 'Ursprüngliche Timeline beibehalten',
+          desc: 'Transkriptsegmente und Untertitel-Exporte verwenden die ursprüngliche Medien-Timeline, sodass sie wieder mit dem Video abgeglichen werden können.',
+        },
+        {
+          icon: 'layers',
+          title: 'Container ist nicht der Codec',
+          desc: 'MP4, MOV, WebM, MKV und AVI können verschiedene Audio-Codecs enthalten. Die Datei wird beim Verarbeiten inspiziert.',
+        },
+        {
+          icon: 'ear',
+          title: 'Sprache ist erforderlich',
+          desc: 'Stille Clips und nur Musikvideos haben kein zuverlässiges gesprochenes Transkript. Überprüfen Sie zuerst, ob die beabsichtigte Audiospur hörbar ist.',
+        },
+      ]}
       faq={[
         {
-          q: 'Welche Videoformate unterstützen Sie?',
-          a: 'MP4, MOV, WEBM, AVI, MKV, FLV. Wenn Ihr Video in VLC läuft, funktioniert es fast sicher hier. Wir extrahieren das Audio intern, der Video-Codec spielt also kaum eine Rolle.',
+          q: 'Welche Videoformate akzeptiert Mictoo?',
+          a: 'MP4, MOV, WebM, MKV, AVI und die meisten anderen gängigen Container. Wir demuxen die Audiospur serverseitig, sodass Sie einen dieser Container direkt hochladen können, ohne zuerst in Audio umzuwandeln.',
         },
         {
-          q: 'Meine Videodatei ist zu groß zum Hochladen. Was tun?',
-          a: 'Zwei Optionen. Extrahieren Sie zuerst nur das Audio (ein ffmpeg-Befehl, siehe Tipps oben) und laden Sie das hoch. Oder nutzen Sie einen kleineren Export aus Ihrem Editor (niedrigere Auflösung oder Bitrate). Für Dateien über 60 MB ist Audio-Extraktion schneller.',
+          q: 'Wie groß darf eine Videodatei sein, die ich hochladen kann?',
+          a: 'Bis zu 25 MB anonym, 60 MB bei Anmeldung. Für längere Videos teilen wir Dateien bis zu etwa 3 Stunden automatisch auf, wenn Sie angemeldet sind. Für sehr große Exporte, reduzieren Sie zuerst die Videoqualität oder extrahieren Sie die Audiospur und laden Sie die Audiodatei hoch.',
         },
         {
-          q: 'Kann ich SRT-Untertitel bekommen, nicht nur reinen Text?',
-          a: 'Ja. Klicken Sie nach der Transkription auf „Als SRT herunterladen". Die SRT funktioniert in YouTube Studio, Premiere Pro, DaVinci Resolve, Final Cut, CapCut und jedem Standard-Video-Editor.',
+          q: 'Kann ich stattdessen eine YouTube-URL einfügen?',
+          a: 'Ja. Auf dieser Seite können Sie eine YouTube-Video-URL einfügen, und Mictoo wird die Untertitel abrufen, wenn verfügbar. Wenn keine Untertitel vorhanden sind, laden Sie die Videodatei oder die extrahierte Audiospur für eine vollständige Whisper-Transkription hoch.',
         },
         {
-          q: 'Passen die SRT-Timings exakt zu meinen Video-Frames?',
-          a: 'Ja. SRT-Zeitstempel sind in Millisekunden, was präziser ist als jede Videoframerate. Sie passen korrekt bei 24, 25, 29.97, 30, 50 und 60 fps.',
+          q: 'Stimmen die Zeitstempel mit dem ursprünglichen Video überein?',
+          a: 'Ja. Transkript- und SRT/VTT-Zeitstempel verwenden die ursprüngliche Video-Timeline. Sie bieten eine nützliche erste Untertitelspur, aber Sie sollten die Zeit und Zeilenumbrüche in Ihrem Editor vor der Veröffentlichung überprüfen.',
         },
         {
-          q: 'Kann ich ein Video ohne Ton transkribieren (nur Text am Bildschirm)?',
-          a: 'Nein. Wir transkribieren gesprochenes Audio. Für Texterkennung am Bildschirm brauchen Sie OCR, das ist ein anderes Tool.',
+          q: 'Kann ich SRT-Untertitel für das Video erhalten?',
+          a: 'Ja. Laden Sie nach der Transkription als SRT oder VTT herunter. Beide Formate funktionieren in Premiere, DaVinci Resolve, Final Cut, CapCut, YouTube Studio und den meisten modernen Video-Playern.',
         },
         {
-          q: 'Wie genau ist Video in Text?',
-          a: 'Hängt vom Audio ab. Saubere Voiceover-Aufnahmen: nahezu menschliche Genauigkeit (95 Prozent oder besser). Konferenzvideos mit schlechter Raumakustik: rund 85 bis 90 Prozent. Musiklastige Videos mit leisem Dialog: weiter darunter.',
+          q: 'Extrahieren Sie Audio aus stummen Videoclips?',
+          a: 'Nein. Wenn das Video keine hörbare Sprache hat, gibt es nichts zu transkribieren. Bei Clips mit nur Musik wird das Transkript normalerweise leer oder enthält kurze Textfragmente.',
         },
         {
-          q: 'Wird mein Video zu YouTube oder Drittdiensten hochgeladen?',
-          a: 'Nein. Ihr Video wird zu unserem Transkriptions-Anbieter gestreamt und verworfen. Nichts wird zu YouTube, Google oder anderswo hochgeladen. Wir sind nicht im Cloud-Video-Storage-Geschäft.',
+          q: 'Kann ich die Untertitel in eine andere Sprache übersetzen?',
+          a: 'Ja. Nach der Transkription wählen Sie eine Zielsprache und klicken auf Übersetzen. Die Übersetzung erfolgt auf GPT-4o-mini und erscheint neben dem Original. Exportieren Sie die übersetzten SRT für Untertitel in Fremdsprachen.',
         },
         {
-          q: 'Kann ich das Transkript vor dem Download bearbeiten?',
-          a: 'Ja. Korrigieren Sie falsche Wörter im Browser vor dem Export. Nützlich für Eigennamen und Fachbegriffe.',
+          q: 'Wird meine Videodatei auf Ihren Servern gespeichert?',
+          a: 'Nein. Das Video wird an den Transkriptionsanbieter gestreamt, wir extrahieren das Audio im Speicher, transkribieren einmal und löschen alles aus dem Speicher. Das Transkript wird nur gespeichert, wenn Sie sich anmelden und entscheiden, es in der Historie zu speichern.',
         },
         {
-          q: 'Unterstützen Sie 360-Video oder VR-Videoformate?',
-          a: 'Der Video-Codec spielt für uns keine Rolle. Solange die Datei ein Standard-Container (MP4, MOV) mit einer Tonspur ist, extrahieren wir das Audio und transkribieren.',
+          q: 'Transkribiert Mictoo nicht-englische Videos?',
+          a: 'Ja. Whisper large-v3 unterstützt über 50 Sprachen mit automatischer Erkennung. Für kurze Videos oder nicht-englische Inhalte stellen Sie die Sprache explizit im Dropdown-Menü ein, um eine sauberere erste Erkennung zu erhalten.',
         },
         {
-          q: 'Was, wenn mein Video mehrere Audiospuren hat (Kommentar, Original, Musik)?',
-          a: 'Wir nutzen nur die Standardspur. Wenn Sie eine bestimmte Spur wollen, exportieren Sie das Video neu mit dieser Spur als Standard, oder extrahieren Sie die gewünschte Spur und laden Sie sie als Audio hoch.',
-        },
-        {
-          q: 'Gibt es eine Längen-Begrenzung für Videos?',
-          a: '30 Minuten pro Datei kostenlos, 60 Minuten mit Anmeldung. Für längere Videos teilen Sie in Stücke. Die Transkripte lassen sich danach zusammenfügen.',
-        },
-        {
-          q: 'Kann ich einen Live-Video-Stream transkribieren?',
-          a: 'Nein. Wir arbeiten nur mit aufgenommenen Dateien. Für Live-Transkription brauchen Sie eine andere Kategorie von Tool.',
+          q: 'Wie lange dauert eine Video-Transkription?',
+          a: 'Ein 30-minütiges MP4 dauert normalerweise 40-70 Sekunden von Anfang bis Ende. Die Upload-Zeit und die Größe der Videodatei sind normalerweise der längere Schritt, da wir die Datei empfangen müssen, bevor wir das Audio demuxen.',
         },
       ]}
-      relatedLinks={[
-        { href: '/de/free-srt-generator', label: 'SRT-Generator', desc: 'Dasselbe Tool, ausgerichtet auf Untertitel-Workflows.' },
-        { href: '/de/youtube-to-text', label: 'YouTube in Text', desc: 'Wenn Ihr Video bereits auf YouTube ist.' },
-        { href: '/de/zoom-transcription', label: 'Zoom-Transkription', desc: 'Speziell für Zoom-MP4-Aufnahmen.' },
-        { href: '/de/how-to-compress-audio', label: 'Audio komprimieren', desc: 'Für Videos, deren Audio die Größenbeschränkung überschreitet.' },
-      ]}
+      ctaHeadline="Laden Sie Ihr Video hoch, erhalten Sie Untertitel und ein Transkript"
+      ctaSubtitle="MP4, MOV, WebM, MKV, AVI. SRT, VTT, DOCX und eine Zusammenfassung in Sekunden."
+      ctaButton="Video zum Transkribieren hochladen"
     />
   )
 }

@@ -134,7 +134,7 @@ export default function Mp4ToMp3Page() {
         { q: 'Is the MP4 to MP3 converter free?', a: 'Yes. No account needed for files up to 25 MB, no time limit, no watermark on the output, no upgrade prompts. Display ads on the marketing pages cover server costs.' },
         { q: 'Does conversion reduce audio quality?', a: 'Slightly. MP3 is a lossy format, but at 128 kbps the quality loss is inaudible for voice and typical music playback. If you need lossless, convert to WAV instead.' },
         { q: 'Are uploaded files stored?', a: 'No. Your MP4 lands on Vercel Blob storage just long enough to be converted, then it is deleted. The resulting MP3 is purged within the hour. Save the MP3 locally.' },
-        { q: 'Can I convert a large MP4?', a: 'The free cap is 25 MB. If your MP4 is larger, trim it in QuickTime (Mac), the Photos app (Windows), or any video editor, then re-export. Sign in to bump the cap to 60 MB.' },
+        { q: 'Can I convert a large MP4?', a: 'The current upload limit is 25 MB. If your MP4 is larger, trim it in QuickTime, the Photos app, or another video editor before uploading.' },
         { q: 'Does it work on mobile?', a: 'Yes. The page is mobile-friendly and uploads work from iOS Safari and Android Chrome. On iPhone, share the video to Files first so the picker can reach it.' },
       ]}
 

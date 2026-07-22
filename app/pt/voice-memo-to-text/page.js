@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/voice-memo-to-text',
@@ -15,82 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Memo de voz em texto — transcreva Voice Memos do iPhone grátis | Mictoo',
+  title: 'Transcrição de Voz para Texto para iPhone e Android | Mictoo',
   description:
-    'Transcrição grátis de memo de voz. Solte seu memo do iPhone ou gravação Android (M4A, MP3) e receba texto limpo em segundos. Sem cadastro.',
-  alternates: { canonical: 'https://mictoo.com/pt/voice-memo-to-text', languages: LANGS },
-
+    'Carregue uma gravação de voz do iPhone ou Android e obtenha texto com timestamps, um resumo de IA e exportações editáveis.',
+  alternates: {
+    canonical: 'https://mictoo.com/pt/voice-memo-to-text',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Memo de voz em texto — transcreva Voice Memos do iPhone grátis | Mictoo",
-    description: "Transcrição grátis de memo de voz. Solte seu memo do iPhone ou gravação Android (M4A, MP3) e receba texto limpo em segundos. Sem cadastro.",
-    url: "https://mictoo.com/pt/voice-memo-to-text",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Transcrição de Voz para Texto: Grátis | Mictoo',
+    description: 'Envie a sua gravação de voz do iPhone ou Android, obtenha texto limpo.',
+    url: 'https://mictoo.com/pt/voice-memo-to-text',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Memo de voz em texto — transcreva Voice Memos do iPhone grátis | Mictoo",
-    description: "Transcrição grátis de memo de voz. Solte seu memo do iPhone ou gravação Android (M4A, MP3) e receba texto limpo em segundos. Sem cadastro.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Transcrição de Voz para Texto',
+    description: 'Transcrição gratuita para gravações de voz do telefone.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function PtVoiceMemoPage() {
+export default function PtVoiceMemoToTextPage() {
   return (
-    <LandingLayout
-      defaultLanguage="pt"
+    <UseCaseLayout
+      locale="pt"
       badge="iPhone · Android · Grátis"
-      h1={<>Memo de voz em texto<br /><span className="text-brand-600">Transcritor grátis de memos de voz</span></>}
-      subtitle="Transforme memos de voz em texto limpo. iPhone, Android, gravador dedicado, qualquer arquivo de voz. Solte, receba a transcrição em segundos. Sem cadastro, sem cobrança por minuto."
-      howItWorks={[
-        { icon: '📱', title: 'Leve o memo para o computador (ou suba do celular)', desc: 'iPhone: abra Voice Memos, toque em Compartilhar, mande por AirDrop ou email para você mesmo. Android: ache a gravação em Arquivos ou na pasta do seu app gravador. Ou use o navegador mobile para enviar direto do celular.' },
-        { icon: '📂', title: 'Solte o arquivo', desc: 'M4A do iPhone, M4A ou MP3 do Android, WAV de alguns gravadores. Tudo funciona.' },
-        { icon: '📋', title: 'Pegue a transcrição', desc: 'Leia no navegador, copie para a área de transferência ou baixe como TXT. Cole no Notion, Apple Notes, Google Docs ou onde suas notas vivem.' },
+      h1First="Transcrição de Voz para Texto"
+      h1Second="Transcrição gratuita para gravações de voz do telefone"
+      subtitle="Envie o seu Voice Memo do iPhone, gravação de voz do Android, nota de voz do WhatsApp ou mensagem de voz do Telegram. Obtenha uma transcrição limpa em segundos. Sem registo, sem taxa por minuto."
+      currentHref="/pt/voice-memo-to-text"
+
+      platforms={[
+        { name: 'iPhone',       iconKey: 'mic',       brandBg: '#0F172A' },
+        { name: 'Google Rec',   iconKey: 'mic',       brandBg: '#4285F4' },
+        { name: 'Samsung',      iconKey: 'mic',       brandBg: '#1428A0' },
+        { name: 'WhatsApp',     iconKey: 'phone',     brandBg: '#25D366' },
+        { name: 'Telegram',     iconKey: 'phone',     brandBg: '#0088CC' },
+        { name: 'Audacity',     iconKey: 'soundwave', brandBg: '#0B60D6' },
       ]}
-      whyUse={{ title: 'Por que Mictoo para memos de voz', bullets: [
-        { title: 'Suporte nativo a M4A', desc: 'Voice Memos do iPhone são salvos como M4A. Aceitamos M4A direto. Sem conversão necessária.' },
-        { title: 'Grátis, sem contador por minuto', desc: 'Memos de voz são formato "um por vez". Pagar por minuto para uma ideia de 2 minutos é ridículo. Grátis sem cap se encaixa no caso de uso.' },
-        { title: 'Rápido para arquivos curtos', desc: 'Um memo de voz de 2 minutos transcreve em cerca de 5 segundos. Mais rápido que digitar a ideia.' },
-        { title: 'Privacidade', desc: 'Memos de voz frequentemente são pessoais. Seu áudio vai ao provedor de transcrição, é processado e descartado. Não guardamos.' },
-        { title: 'Mobile-friendly', desc: 'Envie direto do celular pelo navegador. iOS e Android funcionam.' },
-        { title: 'A detecção automática lida com o seu idioma', desc: 'Memos de voz em qualquer um de mais de 50 idiomas. Útil se você pensa em dois idiomas e os memos alternam.' },
-      ]}}
-      useCases={{ title: 'Para que as pessoas usam transcrições de memo de voz', items: [
-        { title: 'Captura de ideias em movimento', desc: 'Você teve um pensamento durante uma caminhada, ditou no celular. Agora quer agir. Transcreva, cole no seu task manager ou app de notas.' },
-        { title: 'Ditado de textos longos', desc: 'Algumas pessoas rascunham ensaios, posts de blog ou emails falando. Transcreva o memo de voz, edite o texto, envie.' },
-        { title: 'Action items depois de uma reunião', desc: 'Você se ditou um resumo no caminho de volta da sala de reuniões. Transcreva, cole no doc do projeto.' },
-        { title: 'Notas de campo para jornalistas e pesquisadores', desc: 'Capture observações e citações no local. Transcreva depois para notas organizadas.' },
-        { title: 'Listas-lembrete (mercado, mala de viagem, planos de projeto)', desc: 'Memos de voz são mais rápidos que digitar no celular. Transcreva para uma versão textual pesquisável e editável.' },
-      ]}}
-      proTips={{ title: 'Dicas para transcrição de memo de voz', tips: [
-        { title: 'Mantenha o celular perto, mas não tão perto', desc: '10-15 cm da boca é o ponto doce. Mais perto e o microfone pega plosivas e respiração. Mais longe e você perde inteligibilidade em ambientes ruidosos.' },
-        { title: 'Vento é o inimigo', desc: 'Um memo de voz de 10 segundos numa rua ventosa pode ser inutilizável. Se puder, pare, dê as costas para o vento, depois grave. Ou use fones com microfone resistente a vento.' },
-        { title: 'Pause antes de palavras-chave', desc: 'Quando ditar um nome, endereço ou termo técnico, dê uma pausa curta antes. O Whisper lida com palavras isoladas melhor que fala rápida para nomes próprios.' },
-        { title: 'Voice Memos do iPhone vem padrão em M4A lossless, mas você pode mudar para lossy', desc: 'Ajustes, Voice Memos, Qualidade de áudio. Lossless é exagero para transcrição. Lossy é um terço do tamanho sem diferença de precisão.' },
-        { title: 'Corte silêncio no começo e fim antes do upload', desc: 'Memos de voz às vezes pegam 3-5 segundos de ar morto. Corte no app Voice Memos (toque em Editar) antes de compartilhar. Arquivo menor, transcrito mais rápido.' },
-        { title: 'Para ditados longos (escrever um rascunho por voz), divida em pedaços de 5-10 minutos', desc: 'Mais fácil de editar. Mais fácil regravar um pedaço único se sair errado.' },
-        { title: 'O Whisper lida com seu sotaque melhor que a função de ditado integrada do telefone', desc: 'iOS tem ditado integrado, mas é inglês-first e mais fraco em sotaques. O Whisper cobre mais de 50 idiomas com precisão melhor.' },
-      ]}}
+
+      howItWorksTitle="Como funciona a transcrição de voz"
+      steps={[
+        {
+          icon: 'folder',
+          title: 'Partilhe a gravação',
+          desc: 'iPhone: partilhe a partir da aplicação Voice Memos. Android: ficheiro a partir da aplicação Files. WhatsApp: encaminhe como ficheiro.',
+        },
+        {
+          icon: 'upload',
+          title: 'Envie o ficheiro aqui',
+          desc: 'M4A (iPhone), MP3 (Android), OPUS/OGG (WhatsApp, Telegram) funcionam diretamente.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Transcrição em segundos',
+          desc: 'Uma gravação de 5 minutos termina em cerca de 10 segundos. O resumo de IA transforma ideias dispersas numa lista de ações concisa.',
+        },
+      ]}
+
+      exampleTitle="Exemplo de transcrição de voz"
+      exampleFileName="voice-memo.m4a"
+      exampleDurationLabel="3:22"
+      exampleLines={[
+        { t: '0:00',  line: 'Ok, gravação rápida antes que me esqueça da ideia toda.' },
+        { t: '0:04',  line: 'A proposta é que dividimos o fluxo de checkout em dois passos claros em vez de um formulário longo.' },
+        { t: '0:13',  line: 'Passo um, apenas email e cartão. Passo dois, detalhes de envio após ver o número de confirmação.' },
+        { t: '0:22',  line: 'A razão pela qual isso importa é que a desistência no formulário de página única atual é de cerca de trinta e oito por cento.' },
+        { t: '0:32',  line: 'A maior parte dessa desistência acontece na seção de envio, não na entrada do cartão, o que é contraintuitivo.' },
+        { t: '0:42',  line: 'Se deslocarmos o envio para depois da compra, provavelmente conseguiremos recuperar doze a quinze por cento desse tráfego.' },
+        { t: '0:52',  line: 'Em termos de cronograma, acho que isto são duas semanas de frontend, uma semana de backend, talvez uma semana de testes.' },
+      ]}
+      summaryPoints={[
+        'Ideia: dividir o fluxo de checkout em dois passos.',
+        'Passo 1: email + cartão. Passo 2: envio após confirmação.',
+        'Desistência atual: 38%, principalmente na seção de envio.',
+        'Recuperação estimada: 12-15% do tráfego.',
+      ]}
+      actionItems={[
+        'Elaborar um mockup de checkout em dois passos',
+        'Verificar a desistência de 38% nas análises',
+        'Definir engenharia (~4 semanas no total)',
+      ]}
+
+      whyTitle="Por que escolher Mictoo para gravações de voz"
+      whyCards={[
+        {
+          icon: 'sparkles',
+          title: 'Resumo de IA para gravações dispersas',
+          desc: 'As gravações de voz são confusas por natureza. O resumo transforma um fluxo de pensamento de cinco minutos numa conclusão de duas linhas.',
+        },
+        {
+          icon: 'mic',
+          title: 'iPhone .m4a nativo',
+          desc: 'A Apple Voice Memos grava em .m4a (AAC em MP4). Aceitamos diretamente, sem conversão.',
+        },
+        {
+          icon: 'chat',
+          title: 'Telegram .oga nativo',
+          desc: 'Guarde a mensagem de voz do Telegram do chat e envie o ficheiro .oga. Opus em OGG, tratado de forma nativa.',
+        },
+        {
+          icon: 'globe',
+          title: 'Traduza para notas em várias línguas',
+          desc: 'Memo na sua língua nativa, notas em inglês para a equipa. Um clique.',
+        },
+      ]}
+
+      scenariosTitle="Cenários comuns de gravações de voz"
+      scenarios={[
+        { icon: 'sparkles', title: 'Captura de ideias' },
+        { icon: 'chat',     title: 'Notas de reunião' },
+        { icon: 'editPen',  title: 'Redação de rascunhos' },
+        { icon: 'book',     title: 'Jornalização' },
+        { icon: 'phone',    title: 'Mensagem de voz' },
+        { icon: 'globe',    title: 'Multilingue' },
+      ]}
+
+      tipsTitle="Dicas para gravações de voz mais limpas"
+      tips={[
+        'Segure o telefone perto para reduzir o ruído ambiente.',
+        'Para gravações longas acima de 60 MB, faça login para auto-dividir.',
+        'Fale numa língua por gravação para a deteção mais limpa.',
+        'Diga "novo parágrafo" se quiser que a transcrição quebre ali.',
+      ]}
+
+      guidesTitle="Ferramentas relacionadas"
+      guides={[
+        { href: '/pt/m4a-to-text',        icon: 'file',  title: 'Formato M4A',       desc: 'iPhone / GarageBand em profundidade' },
+        { href: '/pt/ogg-to-text',        icon: 'file',  title: 'OGG / .oga',       desc: 'Telegram voice em profundidade' },
+        { href: '/pt/dictation-to-text',  icon: 'editPen', title: 'Ditado',      desc: 'Fluxo de trabalho de escrita com voz' },
+        { href: '/pt/interview-transcription', icon: 'chat', title: 'Entrevista',    desc: 'Entrevista por telefone ou presencial' },
+      ]}
+
       faq={[
-        { q: 'O Mictoo suporta Voice Memos do iPhone?', a: 'Sim. Voice Memos do iPhone salva como M4A (às vezes lossless como ALAC). O M4A funciona direto. Para ALAC, converta para WAV ou M4A AAC antes.' },
-        { q: 'Como levo o memo de voz do iPhone para o Mictoo?', a: 'Três opções. Abra o memo em Voice Memos, toque Compartilhar, escolha AirDrop para o Mac (mais rápido) ou email para você mesmo. Ou use Safari no iPhone para abrir mictoo.com e enviar direto do app Arquivos.' },
-        { q: 'E gravações de voz Android?', a: 'Gravadores de voz Android normalmente salvam como M4A ou MP3. Os dois funcionam. Ache o arquivo no app Arquivos, compartilhe para o computador ou envie do navegador mobile.' },
-        { q: 'Posso enviar direto do celular?', a: 'Sim. A página é mobile-friendly. Toque na área de upload, escolha o arquivo do app Arquivos do seu celular ou da pasta de gravações.' },
-        { q: 'Quanto pode ter meu memo de voz?', a: 'Até 30 minutos por arquivo grátis, 60 minutos com cadastro. A maioria dos memos de voz fica abaixo de 5 minutos, bem dentro de qualquer limite.' },
-        { q: 'Quão precisa é a transcrição de memo de voz?', a: 'Para fala clara em ambiente quieto: 90-95%. Para fala mastigada, ruído de fundo (rua, café, carro), a precisão cai. Nomes próprios frequentemente precisam de cleanup.' },
-        { q: 'A transcrição vai ter pontuação?', a: 'Sim. O Whisper adiciona pontuação automaticamente. Nem sempre perfeito para fala ditada (que tem fronteiras de frase menos naturais), mas utilizável assim mesmo.' },
-        { q: 'Funciona para ditar num idioma não-inglês?', a: 'Sim, mais de 50 idiomas. Escolha o idioma manualmente no menu para memos curtos (a detecção automática precisa de mais áudio para ser confiável).' },
-        { q: 'Meu memo de voz é guardado?', a: 'Não. O arquivo vai ao nosso provedor de transcrição, é processado, depois descartado.' },
-        { q: 'Posso editar a transcrição antes de baixar?', a: 'Sim. Corrija palavras erradas no navegador antes de exportar.' },
-        { q: 'Funciona para gravar chamadas telefônicas?', a: 'Transcrevemos o arquivo que você envia, independente de como foi gravado. A gravação de chamada em si exige consentimento na maior parte das jurisdições. Obtenha consentimento antes de gravar.' },
-        { q: 'Qual a diferença com a função de ditado integrada do iOS?', a: 'O ditado iOS é em tempo real enquanto você fala, limitado a certos idiomas e mais fraco em sotaques. Mictoo transcreve após a gravação, suporta mais de 50 idiomas e usa um modelo mais preciso (Whisper large-v3).' },
+        {
+          q: 'Posso transcrever gravações de voz do iPhone diretamente?',
+          a: 'Sim. Partilhe o memo a partir da aplicação Voice Memos (partilha → guardar em Ficheiros ou enviar para si mesmo) e envie o .m4a para o Mictoo. Sem conversão necessária.',
+        },
+        {
+          q: 'O Mictoo transcreve mensagens de voz do WhatsApp ou Telegram?',
+          a: 'Sim. Guarde a mensagem de voz do chat (encaminhar → guardar como ficheiro) e envie-a. As notas de voz do WhatsApp são .opus, as notas de voz do Telegram são .oga (ambas são contentores OGG). Ambas funcionam diretamente.',
+        },
+        {
+          q: 'Qual é o limite de tamanho do ficheiro?',
+          a: '25 MB anonimamente, 60 MB quando está registado. Uma gravação de voz de 60 minutos a uma taxa de bits típica é cerca de 20-30 MB, portanto a maioria encaixa-se no limite gratuito.',
+        },
+        {
+          q: 'O Mictoo transcreve gravações de voz não em inglês?',
+          a: 'Sim. O Whisper large-v3 suporta mais de 50 línguas. Para gravações curtas ou conteúdo não em inglês, defina a língua explicitamente para uma deteção mais limpa na primeira passagem.',
+        },
+        {
+          q: 'Posso obter um resumo de um memo de brainstorming disperso?',
+          a: 'Sim. O resumo de IA aparece automaticamente ao lado da transcrição. Excelente para transformar memos de fluxo de consciência em listas de ações concisas.',
+        },
+        {
+          q: 'As gravações de voz são armazenadas nos seus servidores?',
+          a: 'Não. O áudio é transmitido para o fornecedor de transcrição, processado uma vez e descartado. Apenas a transcrição persiste se fizer login e a guardar.',
+        },
+        {
+          q: 'Posso traduzir o meu memo de voz para outra língua?',
+          a: 'Sim. Escolha uma língua-alvo e clique em Traduzir após a transcrição. O GPT-4o-mini faz a tradução e aparece ao lado do original.',
+        },
       ]}
+
+      ctaHeadline="Transforme gravações de voz em texto e itens de ação"
+      ctaSubtitle="Notas de voz do iPhone, Android, WhatsApp, Telegram. Todos os formatos, um upload."
+      ctaButton="Carregar um memo de voz"
+
       relatedLinks={[
-        { href: '/pt/m4a-to-text', label: 'M4A em texto', desc: 'Específico para arquivos M4A.' },
-        { href: '/pt/dictation-to-text', label: 'Ditado em texto', desc: 'Para rascunhos ditados e escrita de formato longo por voz.' },
-        { href: '/pt/interview-transcription', label: 'Transcrição de entrevista', desc: 'Para entrevistas gravadas no telefone.' },
-        { href: '/pt/transcribe-audio-to-text', label: 'Áudio em texto', desc: 'Para outros formatos de áudio.' },
+        { href: '/pt/dictation-to-text',       label: 'Ditado para Texto' },
+        { href: '/pt/interview-transcription', label: 'Transcrição de Entrevista' },
+        { href: '/pt/m4a-to-text',             label: 'M4A para Texto' },
+        { href: '/pt/ogg-to-text',             label: 'OGG para Texto' },
+        { href: '/pt/meeting-transcription',   label: 'Transcrição de Reunião' },
       ]}
     />
   )

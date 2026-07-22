@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/business-transcription',
@@ -15,80 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Transkrypcja business — darmowe narzędzie dla spotkań i calli | Mictoo',
+  title: 'Transkrypcja Spotkań Biznesowych i Podsumowanie AI | Mictoo',
   description:
-    'Darmowa transkrypcja business. Calle sprzedażowe, customer interview, focus groups, posiedzenia zarządu, konferencje. Wgraj i otrzymaj czystą transkrypcję AI w kilka sekund. Bez rejestracji.',
-  alternates: { canonical: 'https://mictoo.com/pl/business-transcription', languages: LANGS },
-
+    'Przekształć autoryzowane nagrania wewnętrznych spotkań w transkrypcje z oznaczeniem czasowym, podsumowania AI i eksportowalne dokumenty podsumowujące.',
+  alternates: {
+    canonical: 'https://mictoo.com/pl/business-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Transkrypcja business — darmowe narzędzie dla spotkań i calli | Mictoo",
-    description: "Darmowa transkrypcja business. Calle sprzedażowe, customer interview, focus groups, posiedzenia zarządu, konferencje. Wgraj i otrzymaj czystą transkrypcję AI w kilka sekund. Bez rejestracji.",
-    url: "https://mictoo.com/pl/business-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Transkrypcja Biznesowa: Spotkania Wewnętrzne na Tekst | Mictoo',
+    description: 'Transkrybuj wewnętrzne spotkania firmowe bez konfiguracji IT.',
+    url: 'https://mictoo.com/pl/business-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Transkrypcja business — darmowe narzędzie dla spotkań i calli | Mictoo",
-    description: "Darmowa transkrypcja business. Calle sprzedażowe, customer interview, focus groups, posiedzenia zarządu, konferencje. Wgraj i otrzymaj czystą transkrypcję AI w kilka sekund. Bez rejestracji.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Transkrypcja Biznesowa',
+    description: 'Spotkania 1:1 dla założycieli, spotkania ogólne, briefingi wykonawcze.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function PlBusinessPage() {
+export default function PlBusinessTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="pl"
-      badge="Sprzedaż · Badania · Compliance · Za darmo"
-      h1={<>Transkrypcja business<br /><span className="text-brand-600">Audio business w tekst, za darmo</span></>}
-      subtitle="Zamień każde audio business w czysty tekst. Calle sprzedażowe, customer interview, focus groups, konferencje, posiedzenia zarządu. Bez rejestracji, bez opłaty za minutę."
-      howItWorks={[
-        { icon: '🎙️', title: 'Upuść audio lub wideo', desc: 'MP3 z rejestratora rozmów, M4A z telefonu, MP4 z videokonferencji, WAV z rejestratora terenowego. Call sprzedażowy z Gong, nagranie Zoom customer interview, M4A z posiedzenia zarządu. Wszystko działa.' },
-        { icon: '⚡', title: 'AI transkrybuje', desc: 'Whisper large-v3 przetwarza audio. Call 30-minutowy kończy się w około minutę. Spotkanie 60-minutowe w nieco mniej niż dwie.' },
-        { icon: '📋', title: 'Weź transkrypcję', desc: 'Czytaj, kopiuj lub pobierz jako TXT lub SRT. Wklej w swój CRM, research repository, dokument projektu lub archiwum compliance.' },
+    <UseCaseLayout
+      locale="pl"
+      badge="Założyciele · Wykonawcy · Małe zespoły · Darmowe"
+      h1First="Transkrypcja Biznesowa"
+      h1Second="Spotkania 1:1 dla założycieli, spotkania ogólne, briefingi wykonawcze"
+      subtitle="Praktyczne narzędzie do transkrypcji dla autoryzowanych spotkań wewnętrznych. Prześlij nagranie, przejrzyj transkrypcję i podsumowanie AI, a następnie wyeksportuj podsumowanie dla swojego zespołu."
+      currentHref="/pl/business-transcription"
+
+      platforms={[
+        { name: 'Zoom',        iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/pl/zoom-transcription' },
+        { name: 'MS Teams',    iconKey: 'videoCameraFill', brandBg: '#4B53BC', href: '/pl/teams-meeting-transcription' },
+        { name: 'Google Meet', iconKey: 'videoCameraFill', brandBg: '#00832D', href: '/pl/google-meet-transcription' },
+        { name: 'Webex',       iconKey: 'videoCameraFill', brandBg: '#0F1F35' },
+        { name: 'BlueJeans',   iconKey: 'videoCameraFill', brandBg: '#005EB8' },
+        { name: 'GoToMeeting', iconKey: 'videoCameraFill', brandBg: '#F68B1F' },
       ]}
-      whyUse={{ title: 'Dlaczego Mictoo dla audio business', bullets: [
-        { title: 'Ta sama dokładność co drogie opcje', desc: 'Whisper large-v3 to model za wieloma drogimi narzędziami enterprise transkrypcji. Uruchamiamy go bez kosztu licencji pro seat.' },
-        { title: 'Działa dla sporadycznego użycia', desc: 'Jeśli transkrybujesz jeden call sprzedażowy tygodniowo, płacenie miesięcznego seat narzędzia enterprise to marnowanie. Za darmo bez licznika minut pasuje do sporadycznego wzorca użycia.' },
-        { title: 'Ponad 50 języków, przydatne dla biznesu międzynarodowego', desc: 'Wielojęzyczne customer interview, calle sprzedażowe cross-border, panele z nienatywnymi mówcami angielskiego. Wszystko pokryte.' },
-        { title: 'Żaden plik nie jest zapisywany', desc: 'Nagranie jest strumieniowane do dostawcy transkrypcji i odrzucane. Dla audio business, którego nie chcesz widzieć leżącego na serwerze strony trzeciej, to się liczy.' },
-        { title: 'Eksport SRT dla edytorów wideo', desc: 'Jeśli twoje audio business pochodzi z wideo (panel konferencyjny, town hall), SRT wchodzi bezpośrednio w Premiere, DaVinci lub YouTube Studio do pracy nad napisami.' },
-      ]}}
-      useCases={{ title: 'Częste przypadki użycia transkrypcji business', items: [
-        { title: 'Podsumowania calli sprzedażowych', desc: 'Account Executives wkładają nagrania calli do CRM obok deala. Szybsze handoffy, lepsze wyszukiwanie cytatów do follow-up emaili, łatwiejszy coaching dla sales managerów.' },
-        { title: 'Customer interview do badań produktowych', desc: 'Product managerowie i UX researcherzy transkrybują rozmowy z klientami, aby kodować wzorce, pisać user stories i budować research repositories.' },
-        { title: 'Transkrypcje focus group', desc: 'Agencje badań rynku transkrybują sesje focus group do analizy. To, co kodują, to transkrypcja, nie wideo.' },
-        { title: 'Posiedzenia zarządu i leadership offsite', desc: 'Transkrypcje czynią decyzje korporacyjne przeszukiwalnymi i redukują niejednoznaczność miesiące później. Przydatne dla governance, komunikacji z pracownikami i audit trail.' },
-        { title: 'Nagrania paneli konferencyjnych', desc: 'Zespoły marketingu i PR transkrybują dyskusje panelowe, gdzie ich kadra kierownicza przemawiała. Posty na blog, grafiki cytatów na social, treści sales enablement. Wszystko zaczyna się od transkrypcji.' },
-      ]}}
-      proTips={{ title: 'Wskazówki do transkrypcji business', tips: [
-        { title: 'Dla nagrań calli sprzedażowych użyj narzędzia typu Gong lub Chorus, jeśli możesz', desc: 'Te narzędzia robią nagrywanie, transkrypcję i logging CRM razem. Mictoo to właściwy wybór dla okazjonalnej transkrypcji, nie dla operacji sprzedaży o dużej objętości.' },
-        { title: 'W customer interview uzyskaj zgodę i wyjaśnij, jak audio będzie używane', desc: '"Nagrywam tę rozmowę, abym nie musiał robić notatek. Audio jest transkrybowane i pozostaje w naszym research repository." W wielu jurysdykcjach to także wymóg prawny dla każdego nagrania calla.' },
-        { title: 'Użyj porządnego mikrofonu, szczególnie dla klienta', desc: 'Głosy klientów łapane przez linię telefoniczną transkrybują się 5-10% mniej dokładnie niż calle dial-in z USB headsetem po stronie klienta. Dla wywiadów o wysokiej wartości wyślij headset przed callem.' },
-        { title: 'Wytnij small talk przed uploadem, aby zaoszczędzić budget rozmiaru pliku', desc: 'Większość calli business zaczyna się od 2-5 minut pogody i uprzejmości. Wytnij w Audacity przed uploadem, jeśli plik jest blisko limitu.' },
-        { title: 'Wybierz język ręcznie dla calli międzynarodowych', desc: 'Jeśli call sprzedażowy otwiera się po angielsku, ale przechodzi na francuski, auto-wykrywanie może się zmylić. Wybierz dominujący język ręcznie.' },
-        { title: 'Dla poufnego audio business nie używaj transkrypcji w chmurze, nawet naszej', desc: 'Rozmowy HR, dyskusje M&A, calle prawne, cokolwiek objętego tajemnicą. Użyj lokalnej instalacji Whisper. Ten sam model, działa offline, bez przetwarzania strony trzeciej.' },
-      ]}}
+
+      howItWorksTitle="Jak działa transkrypcja biznesowa"
+      steps={[
+        {
+          icon: 'folder',
+          title: 'Eksportuj nagranie',
+          desc: 'Z Zoom, Teams, Meet, Webex lub cokolwiek używa twoja firma. MP4 lub M4A audio tylko działają.',
+        },
+        {
+          icon: 'upload',
+          title: 'Przeciągnij plik tutaj',
+          desc: 'Prześlij nagranie, które twoja organizacja pozwala ci przetworzyć. Nie jest wymagana instalacja oprogramowania ani integracja z katalogiem.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Transkrypcja, podsumowanie, zadania do wykonania',
+          desc: 'Transkrypcja z oznaczeniem czasowym, podsumowanie AI, eksport DOCX gotowy do e-maila z podsumowaniem.',
+        },
+      ]}
+
+      exampleTitle="Przykład transkrypcji spotkania biznesowego"
+      exampleFileName="q3-strategy-session.mp4"
+      exampleDurationLabel="58:42"
+      exampleLines={[
+        { t: '0:00',  line: 'Dzięki wszystkim za poświęcenie czasu. To nasze spotkanie kontrolne Q3, mamy zablokowaną godzinę.' },
+        { t: '0:10',  line: 'Zacznę od aktualizacji. Przychody są o osiem procent wyższe od planu, głównie z ekspansji na rynku średnim.' },
+        { t: '0:22',  line: 'Nowa strategia dla przedsiębiorstw jest wolniejsza niż przewidywaliśmy. Dwa kontrakty przesunęły się z Q2 do Q3.' },
+        { t: '0:35',  line: 'Powinniśmy omówić, czy podwoić nasze wysiłki na rynku średnim, czy bardziej skupić się na gotowości przedsiębiorstw w tym kwartale.' },
+        { t: '0:48',  line: 'Moja opinia: rynek średni działa, a nie powinniśmy rozpraszać zespołu, goniąc za segmentem przedsiębiorstw jeszcze.' },
+        { t: '1:02',  line: 'Zgadzam się. Ustalmy cel trzydziestu nowych kont na rynku średnim do końca Q3 i wróćmy do przedsiębiorstw w planowaniu Q4.' },
+        { t: '1:14',  line: 'Jeszcze jeden temat przed zakończeniem. Plan inżynieryjny na ten sam kwartał, który wiążemy z tymi zobowiązaniami klientów.' },
+      ]}
+      summaryPoints={[
+        'Przychody 8% powyżej planu, napędzane przez rynek średni.',
+        'Ruch przedsiębiorstw opóźniony (2 kontrakty przeniesione z Q2 do Q3).',
+        'Decyzja: podwoić wysiłki na rynku średnim w tym kwartale.',
+        'Cel: 30 nowych kont na rynku średnim do końca Q3.',
+      ]}
+      actionItems={[
+        'Ustal cel 30 kont na rynku średnim',
+        'Wróć do ruchu przedsiębiorstw w planowaniu Q4',
+        'Dostosuj plan inżynieryjny do zobowiązań klientów',
+      ]}
+
+      whyTitle="Dlaczego Mictoo do transkrypcji biznesowej"
+      whyCards={[
+        {
+          icon: 'lock',
+          title: 'Brak instalacji oprogramowania',
+          desc: 'Przepływ pracy w przeglądarce nie wymaga klienta desktopowego ani integracji z katalogiem. Polityki twojej organizacji nadal obowiązują.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Podsumowanie gotowe do e-maila',
+          desc: 'Podsumowanie AI daje szkic podsumowania w kilka sekund. Skróć to, co już zobowiązałeś się, zachowaj to, co wymaga eskalacji.',
+        },
+        {
+          icon: 'shield',
+          title: 'Nagrania nie są przechowywane',
+          desc: 'Strumienie audio trafiają do dostawcy transkrypcji i są usuwane po przetworzeniu. Tylko transkrypcja pozostaje na zalogowanych kontach.',
+        },
+        {
+          icon: 'globe',
+          title: 'Tłumacz dla międzynarodowych zespołów',
+          desc: 'Spotkanie w języku angielskim, ale podsumowanie musi trafić do niemieckiej filii? Jedno kliknięcie.',
+        },
+      ]}
+
+      scenariosTitle="Typowe scenariusze biznesowe"
+      scenarios={[
+        { icon: 'briefcase', title: 'Briefing wykonawczy' },
+        { icon: 'users',     title: 'Spotkania ogólne' },
+        { icon: 'chat',      title: 'Spotkanie 1:1 dla założycieli' },
+        { icon: 'target',    title: 'Strategiczne spotkanie offsite' },
+        { icon: 'search',    title: 'Aktualizacja zarządu' },
+        { icon: 'headset',   title: 'Eskalacja klienta' },
+      ]}
+
+      tipsTitle="Wskazówki dotyczące nagrań wewnętrznych"
+      tips={[
+        'Preferuj eksporty audio tylko, gdy twoja platforma je oferuje.',
+        'Dla nagrań wideo MP4 powyżej 60 MB, najpierw wyodrębnij audio za pomocą ffmpeg.',
+        'Użyj automatycznego wykrywania dla wielojęzycznych rozmów kierowniczych.',
+        'Zapisz transkrypcję w historii, aby zbudować wyszukiwalny archiwum.',
+      ]}
+
+      guidesTitle="Wybierz odpowiednią platformę"
+      guides={[
+        { href: '/pl/zoom-transcription',          icon: 'video', title: 'Zoom',        desc: 'Nagranie w chmurze, audio M4A' },
+        { href: '/pl/teams-meeting-transcription', icon: 'video', title: 'MS Teams',    desc: 'Ścieżka OneDrive lub SharePoint' },
+        { href: '/pl/google-meet-transcription',   icon: 'video', title: 'Google Meet', desc: 'Nagranie z Dysku, darmowe obejście' },
+        { href: '/pl/meeting-transcription#tool',  icon: 'file',  title: 'Inne',       desc: 'Webex, BlueJeans, GoToMeeting' },
+      ]}
+
       faq={[
-        { q: 'Czy Mictoo nadaje się do użytku business?', a: 'Dla okazjonalnej transkrypcji (calle sprzedażowe, interviews, panele) tak. Dla operacji o dużej objętości (zespół sprzedażowy transkrybujący 50 calli dziennie), dedykowane narzędzie jak Gong lub Chorus pasuje lepiej, bo pakuje integrację CRM, workflowy coachingu i analytics zespołu.' },
-        { q: 'Czy moje audio business jest zapisywane na waszych serwerach?', a: 'Nie. Plik idzie do naszego dostawcy transkrypcji (Groq, z OpenAI jako backup) i jest odrzucany po przetworzeniu. Nie przechowujemy ani audio, ani transkrypcji.' },
-        { q: 'Czy to jest zgodne z RODO?', a: 'Nie przechowujemy audio ani transkrypcji po opuszczeniu strony. Jesteśmy w Europie, a nasi dostawcy (Groq US, OpenAI US) podpisali DPA. Dla twojej konkretnej sytuacji RODO (obowiązki administratora, podstawa prawna nagrań) zobacz naszą politykę prywatności i skonsultuj się z inspektorem ochrony danych.' },
-        { q: 'Czy mogę używać do nagrywania calli z klientami UE lub Kalifornii?', a: 'Możesz używać transkrypcji. Samo nagrywanie wymaga w wielu jurysdykcjach zgody drugiej strony (two-party consent w Kalifornii i częściach UE). Uzyskaj zgodę przed nagrywaniem.' },
-        { q: 'Jak dokładna jest transkrypcja dla nazw własnych i firm?', a: 'Mniej dokładna niż popularne słowa. Whisper nie zna nazwy klienta, nazwy produktu ani specyficznej terminologii twojej firmy. Spodziewaj się ręcznego poprawiania. Reszta transkrypcji będzie solidna.' },
-        { q: 'Czy dostanę etykiety mówców (Sprzedawca vs. Klient)?', a: 'Nie automatycznie. Dla calli na 2 mówców dodaj etykiety ręcznie w oparciu o rozmowę. Dla calli wieloosobowych z osobnymi ścieżkami audio na mówcę transkrybuj każdą ścieżkę osobno.' },
-        { q: 'Jak to wypada w porównaniu z Gong, Chorus lub Fireflies?', a: 'To są pełne platformy dla calli sprzedażowych z integracją CRM, automatycznym coachingiem, tagowaniem deal stage i analytics rozmów. My to czysta transkrypcja, bez integracji, bez warstwy coachingu. Taniej (za darmo), znacznie węższe w zakresie. Użyj tamtych, jeśli potrzebujesz pełnej platformy. Użyj nas, jeśli potrzebujesz tylko tekstu.' },
-        { q: 'Czy mogę transkrybować poufny call business?', a: 'Dla niewrażliwych calli business tak. Dla poufnych (HR, prawne, M&A, cokolwiek objętego tajemnicą) unikaj wszelkiej transkrypcji w chmurze, włącznie z naszą. Użyj zamiast lokalnej instalacji Whisper.' },
-        { q: 'Jak długo trwa transkrypcja calla business?', a: 'Około 1-2% długości audio. Call 30-minutowy kończy się w około 30-60 sekund.' },
-        { q: 'Jakie są formaty wyjściowe?', a: 'Czysty tekst (TXT) i SRT (plik napisów z timecodes). Kopiowanie do schowka działa też do wklejania bezpośrednio w CRM lub dokument.' },
-        { q: 'Czy mogę wgrywać wiele calli sprzedażowych wsadowo?', a: 'Jeszcze nie jednym kliknięciem. Obecnie wgrywasz jeden plik na raz. Batch jest w roadmapie dla przyszłego planu Pro.' },
-        { q: 'Co jeśli moje audio business przekracza 60 minut?', a: 'Podziel na kawałki poniżej 60 minut. Transkrypcje można złączyć potem.' },
+        {
+          q: 'Czy moje nagranie jest wysyłane na wasze serwery?',
+          a: 'Strumień audio trafia do dostawcy transkrypcji (Groq/Replicate/Deepgram/OpenAI w zależności od routingu), jest przetwarzany raz i usuwany z pamięci. Nigdy nie zapisujemy audio na dysku. Tylko tekstowa transkrypcja pozostaje, i to tylko jeśli się zalogujesz i ją zapiszesz.',
+        },
+        {
+          q: 'Czy potrzebuję zgody na przesłanie nagrania firmowego?',
+          a: 'To zależy od polityki twojej organizacji i informacji zawartych w nagraniu. Mictoo nie wymaga instalacji oprogramowania, ale powinieneś uzyskać wszelkie wymagane zezwolenia przed wysłaniem mediów firmowych do zewnętrznego dostawcy transkrypcji.',
+        },
+        {
+          q: 'Czy mogę używać Mictoo w regulowanych branżach?',
+          a: 'Sprawdź swoje specyficzne wymagania dotyczące zgodności. Nie oferujemy podpisanej umowy BAA ani raportu SOC 2. W przypadku ściśle regulowanych środowisk, użyj w pełni samodzielnie hostowanego narzędzia do transkrypcji.',
+        },
+        {
+          q: 'Czy mogę uzyskać podsumowanie AI do e-maila z podsumowaniem?',
+          a: 'Tak. Podsumowanie AI pojawia się obok transkrypcji automatycznie. Solidny pierwszy szkic do e-maila follow-up lub dokumentu w Notion.',
+        },
+        {
+          q: 'Co jeśli spotkanie ma ponad 60 MB?',
+          a: 'Zaloguj się, aby włączyć automatyczne dzielenie (do około 3 godzin). Lub wyodrębnij audio z wideo za pomocą ffmpeg -i meeting.mp4 -vn -ac 1 -ar 16000 audio.m4a, zmniejsza rozmiar pliku 5-15x.',
+        },
+        {
+          q: 'Czy mogę przetłumaczyć transkrypcję dla międzynarodowego zespołu?',
+          a: 'Tak. Po transkrypcji wybierz docelowy język i kliknij Tłumacz. Przydatne dla filii w różnych językach.',
+        },
+        {
+          q: 'Jakie formaty eksportu działają dla e-maila z podsumowaniem?',
+          a: 'TXT do wklejenia w treści e-maila, DOCX jako odpowiedni załącznik, PDF (zalogowany) do archiwum. Podsumowanie jest dostępne osobno.',
+        },
       ]}
+
+      ctaHeadline="Przekształć wewnętrzne spotkania w dokumenty podsumowujące"
+      ctaSubtitle="Spotkania 1:1 dla założycieli, spotkania ogólne i briefingi wykonawcze. Prześlij autoryzowane media do transkrypcji i podsumowania."
+      ctaButton="Prześlij spotkanie biznesowe"
+
       relatedLinks={[
-        { href: '/pl/interview-transcription', label: 'Transkrypcja wywiadu', desc: 'Dla rozmów jeden-na-jeden i badań jakościowych.' },
-        { href: '/pl/meeting-transcription', label: 'Transkrypcja spotkań', desc: 'Dla każdego nagrania spotkania, każdej platformy.' },
-        { href: '/pl/zoom-transcription', label: 'Transkrypcja Zoom', desc: 'Dla calli nagranych w Zoom.' },
-        { href: '/pl/teams-meeting-transcription', label: 'Transkrypcja Teams', desc: 'Dla calli Microsoft Teams.' },
+        { href: '/pl/meeting-transcription',       label: 'Transkrypcja Spotkań' },
+        { href: '/pl/zoom-transcription',          label: 'Transkrypcja Zoom' },
+        { href: '/pl/teams-meeting-transcription', label: 'Transkrypcja Teams' },
+        { href: '/pl/google-meet-transcription',   label: 'Transkrypcja Google Meet' },
+        { href: '/pl/interview-transcription',     label: 'Transkrypcja Wywiadów' },
       ]}
     />
   )

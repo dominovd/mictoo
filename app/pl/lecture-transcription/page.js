@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/lecture-transcription',
@@ -15,81 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Transkrypcja wykładu — darmowy generator AI | Mictoo',
+  title: 'Transkrypcja wykładów na zajęcia i seminaria | Mictoo',
   description:
-    'Darmowa transkrypcja wykładów. Prześlij nagranie wykładu, kursu lub seminarium (MP3, M4A, MP4) i otrzymaj czysty tekst w kilka sekund. Zbudowane dla studentów.',
-  alternates: { canonical: 'https://mictoo.com/pl/lecture-transcription', languages: LANGS },
-
+    'Prześlij nagraną lekcję, wykład lub seminarium i otrzymaj tekst do przeszukiwania, znaczniki czasowe, podsumowanie AI oraz pliki do eksportu.',
+  alternates: {
+    canonical: 'https://mictoo.com/pl/lecture-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Transkrypcja wykładu — darmowy generator AI | Mictoo",
-    description: "Darmowa transkrypcja wykładów. Prześlij nagranie wykładu, kursu lub seminarium (MP3, M4A, MP4) i otrzymaj czysty tekst w kilka sekund. Zbudowane dla studentów.",
-    url: "https://mictoo.com/pl/lecture-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Transkrypcja wykładów: Darmowy generator transkryptów | Mictoo',
+    description: 'Prześlij nagranie swojego wykładu lub seminarium i otrzymaj czysty tekst w kilka sekund.',
+    url: 'https://mictoo.com/pl/lecture-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Transkrypcja wykładu — darmowy generator AI | Mictoo",
-    description: "Darmowa transkrypcja wykładów. Prześlij nagranie wykładu, kursu lub seminarium (MP3, M4A, MP4) i otrzymaj czysty tekst w kilka sekund. Zbudowane dla studentów.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Transkrypcja wykładów: Darmowy generator',
+    description: 'Prześlij nagranie swojej lekcji lub seminarium.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function PlLecturePage() {
+export default function PlLectureTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="pl"
-      badge="Studenci · Akademicy · Za darmo"
-      h1={<>Transkrypcja wykładu<br /><span className="text-brand-600">Darmowe narzędzie do transkrypcji wykładów</span></>}
-      subtitle="Zamień każdy nagrany wykład w czysty tekst do nauki. Uniwersytet, kurs online, talk konferencyjny, szkolenie zawodowe. Bez rejestracji, bez opłaty za minutę."
-      howItWorks={[
-        { icon: '🎓', title: 'Upuść audio lub wideo wykładu', desc: 'MP3 z dyktafonu, M4A z telefonu, MP4 z wykładu Zoom lub nagrania ekranu wykładu online. WAV z rejestratora terenowego. Wszystko działa.' },
-        { icon: '⚡', title: 'AI transkrybuje', desc: 'Whisper large-v3 czyta audio. Wykład 60-minutowy kończy się w około minutę.' },
-        { icon: '📋', title: 'Weź transkrypcję', desc: 'Czytaj, skopiuj do swoich notatek lub pobierz jako TXT lub SRT. Popraw błędne terminy techniczne inline przed eksportem.' },
+    <UseCaseLayout
+      locale="pl"
+      badge="Studenci · Akademicy · Darmowe"
+      h1First="Transkrypcja wykładów"
+      h1Second="Darmowe transkrypty dla zajęć i seminariów"
+      subtitle="Prześlij nagrany wykład z Zoom, Panopto, YouTube, Kaltura lub swojego telefonu. Otrzymaj przeszukiwalny transkrypt z znacznikami czasowymi gotowy do notatek, powtórek i cytatów."
+      currentHref="/pl/lecture-transcription"
+
+      platforms={[
+        { name: 'Zoom',      iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/pl/zoom-transcription' },
+        { name: 'YouTube',   iconKey: 'videoCameraFill', brandBg: '#FF0000' },
+        { name: 'Panopto',   iconKey: 'cap',             brandBg: '#014A96' },
+        { name: 'Kaltura',   iconKey: 'cap',             brandBg: '#FA6425' },
+        { name: 'Camtasia',  iconKey: 'videoCameraFill', brandBg: '#00A651' },
+        { name: 'Voice Memo',iconKey: 'mic',             brandBg: '#F97316', href: '/pl/voice-memo-to-text' },
       ]}
-      whyUse={{ title: 'Dlaczego Mictoo do wykładów', bullets: [
-        { title: 'Długi format jest ok', desc: 'Do 60 minut na plik po darmowej rejestracji. Dla wykładu 90-minutowego podziel na dwa kawałki po 45 minut. Transkrypcja jest składalna.' },
-        { title: 'Radzi sobie ze słownictwem technicznym lepiej niż większość', desc: 'Whisper został wytrenowany na ogromnej różnorodności audio, włącznie z wykładami akademickimi. Łacina, żargon specjalistyczny, terminy matematyczne, fragmenty kodu często wychodzą czyściej, niż się spodziewasz.' },
-        { title: 'Bez kosztu za wykład', desc: 'Dla studenta płacenie za transkrypcję na kurs to marnotrawstwo. Za darmo bez licznika minut oznacza, że możesz transkrybować każdy wykład w semestrze.' },
-        { title: 'Prywatność i copyright', desc: 'Plik jest strumieniowany do dostawcy transkrypcji i odrzucany. Nie przechowujemy audio. Przydatne, gdy transkrybujesz materiał, który jest twój (twoje nagrania), ale nie chcesz wgrywać do serwisu storage strony trzeciej.' },
-        { title: 'Ponad 50 języków', desc: 'Międzynarodowi studenci i kursy online w językach innych niż angielski wszystkie działają. Auto-wykrywanie pokrywa większość przypadków.' },
-      ]}}
-      useCases={{ title: 'Do czego studenci i akademicy używają transkrypcji wykładu', items: [
-        { title: 'Przeszukiwalne notatki do nauki', desc: 'Wklej transkrypcję w Notion, Obsidian lub dokument Word. Ctrl+F po dowolnym terminie, który profesor wspomniał. Lepsze niż przewijanie 90 minut audio.' },
-        { title: 'Przygotowanie do egzaminu', desc: 'Przejrzyj transkrypcję podczas przeglądania notatek odręcznych. Łapie rzeczy, które przegapiłeś podczas wykładu na żywo.' },
-        { title: 'Tłumaczenie wykładów dla nienatywnych', desc: 'Transkrybuj w języku źródłowym, potem przepuść przez DeepL lub ChatGPT do tłumaczenia. Przydatne dla studentów uczestniczących w kursach w drugim języku.' },
-        { title: 'Dostępność dla studentów niesłyszących i niedosłyszących', desc: 'Transkrypcja lub plik SRT dostarcza tę samą treść w innej modalności. Niektóre uniwersytety to wymagają dla nagrywanych treści dydaktycznych.' },
-        { title: 'Tworzenie fiszek i materiałów do nauki', desc: 'Transkrypcje zasilają karty Anki, dokumenty podsumowania lub narzędzia do nauki wspomagane AI.' },
-      ]}}
-      proTips={{ title: 'Wskazówki do transkrypcji wykładu', tips: [
-        { title: 'Na wykładach stacjonarnych usiądź blisko profesora', desc: 'Nagrywanie z ostatniego rzędu przez szum sali produkuje transkrypcję z wieloma lukami. Telefon w pierwszym rzędzie, ekran w dół, łapie czysty głos.' },
-        { title: 'Dla długich wykładów używaj dedykowanego dyktafonu', desc: 'Nagrania telefoniczne mają agresywne auto-leveling i redukcję szumów, co szkodzi transkrypcji. Zoom H1n lub podobny rejestrator entry-level daje zauważalnie czystsze audio za 300 zł.' },
-        { title: 'Dla wykładów online nagrywaj audio systemu bezpośrednio', desc: 'OBS Studio na Windows lub Mac może nagrywać audio wykładu bezpośrednio z systemu. Czystsze niż nagrywanie przez mikrofon laptopa.' },
-        { title: 'Ustaw język ręcznie', desc: 'Auto-wykrywanie zwykle trafia, ale może zostać zmylone przez warmup profesora w innym języku. Wybierz język wykładu wyraźnie z menu.' },
-        { title: 'Wytnij pierwsze 5 minut, jeśli to ogłoszenia administracyjne', desc: '"Czy zrobiliście pracę domową? Czy przeczytaliście rozdział 3?" nie jest przydatne dla transkrypcji. Wytnij w Audacity przed uploadem, aby zaoszczędzić budget rozmiaru pliku.' },
-        { title: 'Dla wykładów STEM z równaniami transkrypcja łapie mówioną matematykę, nie równania', desc: 'Wyrażenia matematyczne na tablicy nie są w audio, więc nie w transkrypcji. Musisz je i tak przechwycić osobno (zdjęcia tablicy, screenshoty slajdów).' },
-        { title: 'Przy pierwszym przeglądzie odsłuchaj nagranie podczas czytania transkrypcji', desc: 'To najlepszy sposób na poprawienie terminów specyficznych dla profesora i odniesień do równań. Raz oczyszczona transkrypcja stoi samodzielnie.' },
-      ]}}
+
+      howItWorksTitle="Jak działa transkrypcja wykładów"
+      steps={[
+        {
+          icon: 'folder',
+          title: 'Eksportuj wykład',
+          desc: 'Pobierz z Panopto/Kaltura, zapisz z chmury Zoom lub nagraj na swoim telefonie podczas zajęć.',
+        },
+        {
+          icon: 'upload',
+          title: 'Upuść plik tutaj',
+          desc: 'MP3, MP4, M4A, WAV, MOV działają. Długie wykłady są automatycznie dzielone po zalogowaniu.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Notatki, podsumowanie, cytaty',
+          desc: 'Przeszukiwalny transkrypt z znacznikami czasowymi, podsumowanie AI, DOCX do notatek. Rozmawiaj z transkryptem, aby przygotować się do egzaminów.',
+        },
+      ]}
+
+      exampleTitle="Przykładowy transkrypt wykładu"
+      exampleFileName="intro-microeconomics-lecture-08.mp4"
+      exampleDurationLabel="47:32"
+      exampleLines={[
+        { t: '0:00',  line: 'Dobrze. W zeszłym tygodniu zakończyliśmy na koncepcji nadwyżki konsumenta. Dziś rozwijamy to o nadwyżkę producenta.' },
+        { t: '0:11',  line: 'Nadwyżka producenta to różnica między tym, co producent zaakceptowałby za towar, a tym, co faktycznie otrzymuje.' },
+        { t: '0:23',  line: 'Razem, nadwyżka konsumenta i producenta daje nam całkowity dobrobyt na rynku, zanim wprowadzimy podatki lub kontrolę cen.' },
+        { t: '0:35',  line: 'Dlaczego to pojęcie jest dla nas praktycznie ważne? Ponieważ pozwala nam ocenić, czy polityka poprawia, czy pogarsza sytuację na rynku.' },
+        { t: '0:47',  line: 'Rozważmy podatek jednostkowy. Przesuwa krzywą podaży w górę o wysokość podatku, a obie nadwyżki maleją.' },
+        { t: '0:58',  line: 'Luka, która pojawia się między tym, co płacą nabywcy, a tym, co otrzymują sprzedawcy, to to, co nazywamy stratą wagi martwej.' },
+        { t: '1:08',  line: 'Proszę otworzyć zeszyt na stronie trzydzieści jeden i przepracujmy razem przykład numeryczny.' },
+      ]}
+      summaryPoints={[
+        'Podsumowanie: nadwyżka konsumenta z poprzedniego wykładu.',
+        'Nowa koncepcja: nadwyżka producenta i całkowity dobrobyt.',
+        'Zastosowane w analizie podatkowej.',
+        'Strata wagi martwej zilustrowana numerycznie.',
+      ]}
+      actionItems={[
+        'Przejrzyj zeszyt na stronie 31',
+        'Ćwicz obliczanie straty wagi martwej',
+        'Przeczytaj rozdział 4 przed czwartkiem',
+      ]}
+
+      whyTitle="Dlaczego Mictoo do transkrypcji wykładów"
+      whyCards={[
+        {
+          icon: 'search',
+          title: 'Przeszukiwalne w transkrypcie',
+          desc: 'Ctrl-F jakiekolwiek pojęcie z całego 45-minutowego wykładu w sekundę. Lepiej niż przeszukiwanie wideo.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Podsumowanie AI do notatek',
+          desc: 'Podsumowanie to solidny punkt wyjścia do powtórek. Skróć to, co już wiesz, zachowaj to, co przegapiłeś.',
+        },
+        {
+          icon: 'chat',
+          title: 'Rozmawiaj z wykładem',
+          desc: 'Zadawaj pytania dotyczące materiału, aby przygotować się do egzaminów. Odpowiedzi w stylu RAG cytują dokładny znacznik czasowy.',
+        },
+        {
+          icon: 'globe',
+          title: 'Tłumacz dla studentów nieznających języka',
+          desc: 'Wykład po angielsku, ale uczysz się po portugalsku? Tłumaczenie jednym kliknięciem na 50+ języków.',
+        },
+      ]}
+
+      scenariosTitle="Typowe scenariusze wykładów"
+      scenarios={[
+        { icon: 'book',      title: 'Zajęcia uniwersyteckie' },
+        { icon: 'cap' ,      title: 'Kurs online' },
+        { icon: 'search',    title: 'Powtórka przed egzaminem' },
+        { icon: 'editPen',   title: 'Notatki do nauki' },
+        { icon: 'globe',     title: 'Student nieznający języka' },
+        { icon: 'headset',   title: 'Nagrane seminarium' },
+      ]}
+
+      tipsTitle="Wskazówki dla czystszych transkryptów wykładów"
+      tips={[
+        'Siedź blisko przodu i używaj telefonu jako zapasowego mikrofonu.',
+        'Długie wykłady powyżej 60 MB są automatycznie dzielone po zalogowaniu.',
+        'Ustaw język wyraźnie dla treści technicznych lub nieanglojęzycznych.',
+        'Użyj czatu, aby zadawać pytania po transkrypcji.',
+      ]}
+
+      guidesTitle="Powiązane narzędzia do nauki"
+      guides={[
+        { href: '/pl/zoom-transcription',        icon: 'video', title: 'Wykład Zoom',      desc: 'Pobieranie nagrania w chmurze' },
+        { href: '/pl/youtube-to-text',           icon: 'video', title: 'Wykład YouTube',   desc: 'Wklej URL lub prześlij' },
+        { href: '/pl/voice-memo-to-text',        icon: 'mic',   title: 'Nagranie z telefonu',   desc: 'iPhone Voice Memo na zajęciach' },
+        { href: '/pl/timestamped-transcription', icon: 'file',  title: 'Notatki z znacznikami czasowymi', desc: 'Eksporty z dopasowaniem czasowym' },
+      ]}
+
       faq={[
-        { q: 'Czy to wystarczająco dokładne dla prac uniwersyteckich?', a: 'Dla większości treści wykładu tak. Whisper large-v3 produkuje 90-95% dokładności na czystym audio wykładu. Terminy techniczne i nazwy własne często wymagają oczyszczania. Użyj transkrypcji jako notatek do nauki, nie jako kanonicznego źródła do cytatów.' },
-        { q: 'Mój wykład nie jest po angielsku. Czy zadziała?', a: 'Tak. Whisper obsługuje ponad 50 języków z dobrą dokładnością w głównych i podstawowym wsparciem dla wielu innych. Wybierz język ręcznie z menu dla najlepszych wyników.' },
-        { q: 'Mój wykład trwa 90 minut. Co robić?', a: 'Podziel. Nasz cap to 60 minut na plik. Potnij na dwa kawałki po 45 minut w naturalnym punkcie przerwy (przerwa na lunch lub przejście tematu).' },
-        { q: 'Czy transkrybowanie wykładów jest legalne?', a: 'Dla osobistego użytku do nauki generalnie tak w większości jurysdykcji, dopóki masz legalny dostęp do nagrania. Dla redystrybucji (publikacji transkrypcji online, sprzedaży materiałów do nauki) potrzebujesz zgody wykładowcy lub instytucji. Niektóre uniwersytety mają wyraźne polityki dotyczące nagrywania i transkrybowania wykładów. Sprawdź swoją.' },
-        { q: 'Czy mogę transkrybować wideo-wykład z Coursera, edX lub Khan Academy?', a: 'Tak, jeśli możesz pobrać plik wideo. Niektóre platformy pozwalają pobierać do oglądania offline (dostajesz MP4). Wgraj tutaj. Dla platform, które nie pozwalają pobierać, sprawdź warunki przed scrapingiem.' },
-        { q: 'Czy transkrypcja będzie zawierać treść slajdów?', a: 'Nie. Transkrybujemy tylko audio. Jeśli profesor czyta slajdy na głos, ten tekst jest w transkrypcji. Jeśli slajdy mają tekst na ekranie, którego profesor nie przeczytał, to nie jest w transkrypcji. Połącz z screenshotami slajdów dla pełnych notatek.' },
-        { q: 'Jak dokładne są terminy techniczne i żargon?', a: 'Mniej dokładne niż popularne słownictwo. Dla łacińskich terminów medycznych, zaawansowanych symboli matematycznych, niszowych skrótów spodziewaj się ręcznego poprawiania. Ogólny przepływ wykładu będzie solidny.' },
-        { q: 'Czy mogę wyeksportować transkrypcję do mojej aplikacji notatek?', a: 'Tak. Pobierz jako TXT i wklej w Notion, Obsidian, OneNote, Bear lub dowolne narzędzie tekstowe. SRT działa w video playerach, jeśli chcesz napisy obok nagrania.' },
-        { q: 'Czy audio mojego wykładu jest zapisywane?', a: 'Nie. Plik idzie do naszego dostawcy transkrypcji, jest przetwarzany, potem odrzucany. Nie przechowujemy audio.' },
-        { q: 'Jak długo trwa transkrypcja wykładu?', a: 'Około 1-2% długości audio. Wykład 60-minutowy kończy się w około 60 sekund. Upload zwykle jest dłuższym czekaniem.' },
-        { q: 'Czy mogę dostać timecode, aby przeskoczyć do konkretnych momentów?', a: 'Tak. Pobierz jako SRT. Każda linia ma timecode wyrównany z oryginalnym audio. Przydatne do powrotu do konkretnego punktu podczas przygotowań do egzaminu.' },
-        { q: 'Co jeśli wykład ma Q&A na końcu?', a: 'Q&A transkrybuje się tak samo jak główny wykład. Pytania z publiczności czasem przychodzą mniej wyraźnie (publiczność jest zwykle dalej od mikrofonu), ale odpowiedź profesora powinna być czysta. Dodaj sekcję "Q&A" w swoich notatkach.' },
+        {
+          q: 'Czy mogę transkrybować nagranie klasy Zoom?',
+          a: 'Tak. Pobierz nagranie w chmurze MP4 lub M4A i upuść tutaj. Zobacz przewodnik Zoom, aby uzyskać dokładną ścieżkę pobierania.',
+        },
+        {
+          q: 'Mój wykład ma ponad 60 MB. Co teraz?',
+          a: 'Zaloguj się, aby włączyć automatyczne dzielenie (do około 3 godzin). Lub zmniejsz do 64 kbps mono MP3 za pomocą ffmpeg, aby uzyskać 5-krotną redukcję rozmiaru.',
+        },
+        {
+          q: 'Czy Mictoo transkrybuje wykłady w innych językach?',
+          a: 'Tak. Whisper large-v3 obsługuje 50+ języków. Ustaw język wyraźnie dla słownictwa technicznego lub mocnych akcentów.',
+        },
+        {
+          q: 'Czy mogę przeszukiwać transkrypt?',
+          a: 'Tak. Widok czytnika zawiera pole wyszukiwania z liczbą dopasowań i podświetleniem. Ctrl-F swoje hasło i przeskakuj między trafieniami.',
+        },
+        {
+          q: 'Czy mogę zadawać pytania dotyczące materiału wykładu?',
+          a: 'Tak. Czat z transkryptem pozwala zadawać pytania „wyjaśnij stratę wagi martwej” lub „jakie strony wspomniał profesor”. Odpowiedzi cytują znaczniki czasowe.',
+        },
+        {
+          q: 'Czy mogę eksportować notatki wykładowe jako DOCX lub PDF?',
+          a: 'Tak. DOCX dla każdego, PDF i JSON dla zalogowanych użytkowników. TXT jest zawsze dostępny.',
+        },
+        {
+          q: 'Czy nagrania wykładów są przechowywane na waszych serwerach?',
+          a: 'Nie. Strumienie audio są przesyłane do dostawcy transkrypcji, przetwarzane raz i usuwane. Transkrypty są zapisywane tylko, jeśli się zalogujesz.',
+        },
       ]}
+
+      ctaHeadline="Zamień wykłady w notatki do nauki"
+      ctaSubtitle="Przeszukiwalny transkrypt, podsumowanie AI, czat z materiałem. Darmowe za wykład."
+      ctaButton="Prześlij wykład"
+
       relatedLinks={[
-        { href: '/pl/transcribe-audio-to-text', label: 'Audio na tekst', desc: 'Dla ogólnych plików audio.' },
-        { href: '/pl/transcribe-video-to-text', label: 'Wideo na tekst', desc: 'Dla wideo-wykładów (MP4, MOV).' },
-        { href: '/pl/timestamped-transcription', label: 'Transkrypcja ze znacznikami czasu', desc: 'Aby przeskakiwać do konkretnych momentów.' },
-        { href: '/pl/how-to-split-audio', label: 'Podział audio', desc: 'Dla wykładów powyżej 60 minut.' },
+        { href: '/pl/webinar-transcription',     label: 'Transkrypcja webinarów' },
+        { href: '/pl/sermon-transcription',      label: 'Transkrypcja kazań' },
+        { href: '/pl/voice-memo-to-text',        label: 'Notatki głosowe na tekst' },
+        { href: '/pl/interview-transcription',   label: 'Transkrypcja wywiadów' },
+        { href: '/pl/meeting-transcription',     label: 'Transkrypcja spotkań' },
       ]}
     />
   )

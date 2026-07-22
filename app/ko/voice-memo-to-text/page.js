@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/voice-memo-to-text',
@@ -15,82 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: '음성 메모를 텍스트로 — iPhone Voice Memos 무료 받아쓰기 | Mictoo',
+  title: '아이폰 및 안드로이드용 음성 메모를 텍스트로 변환 | Mictoo',
   description:
-    '무료 음성 메모 받아쓰기. iPhone 음성 메모 또는 Android 녹음(M4A, MP3)을 드롭하여 깨끗한 텍스트를 몇 초 만에 받으세요. 가입 불필요.',
-  alternates: { canonical: 'https://mictoo.com/ko/voice-memo-to-text', languages: LANGS },
-
+    '아이폰 또는 안드로이드 음성 녹음을 업로드하고 타임스탬프가 있는 텍스트, AI 요약 및 편집 가능한 내보내기를 받으세요.',
+  alternates: {
+    canonical: 'https://mictoo.com/ko/voice-memo-to-text',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "음성 메모를 텍스트로 — iPhone Voice Memos 무료 받아쓰기 | Mictoo",
-    description: "무료 음성 메모 받아쓰기. iPhone 음성 메모 또는 Android 녹음(M4A, MP3)을 드롭하여 깨끗한 텍스트를 몇 초 만에 받으세요. 가입 불필요.",
-    url: "https://mictoo.com/ko/voice-memo-to-text",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: '음성 메모를 텍스트로: 무료 | Mictoo',
+    description: '아이폰 또는 안드로이드 음성 녹음을 드롭하고 깔끔한 텍스트를 받으세요.',
+    url: 'https://mictoo.com/ko/voice-memo-to-text',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "음성 메모를 텍스트로 — iPhone Voice Memos 무료 받아쓰기 | Mictoo",
-    description: "무료 음성 메모 받아쓰기. iPhone 음성 메모 또는 Android 녹음(M4A, MP3)을 드롭하여 깨끗한 텍스트를 몇 초 만에 받으세요. 가입 불필요.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: '음성 메모를 텍스트로',
+    description: '전화 음성 녹음에 대한 무료 전사.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function KoVoiceMemoPage() {
+export default function KoVoiceMemoToTextPage() {
   return (
-    <LandingLayout
-      defaultLanguage="ko"
-      badge="iPhone · Android · 무료"
-      h1={<>음성 메모를 텍스트로<br /><span className="text-brand-600">무료 음성 메모 받아쓰기</span></>}
-      subtitle="음성 메모를 깨끗한 텍스트로 변환. iPhone, Android, 전용 레코더, 모든 음성 파일. 드롭하여 몇 초 만에 받아쓰기. 계정 불필요, 분당 과금 없음."
-      howItWorks={[
-        { icon: '📱', title: '메모를 컴퓨터로 가져오기(또는 휴대폰에서 업로드)', desc: 'iPhone: 음성 메모 열기, 공유 탭, AirDrop 또는 자신에게 이메일. Android: 파일이나 녹음기 앱 폴더에서 녹음 찾기. 또는 모바일 브라우저로 휴대폰에서 직접 업로드.' },
-        { icon: '📂', title: '파일 드롭', desc: 'iPhone의 M4A, Android의 M4A 또는 MP3, 일부 레코더의 WAV. 모두 작동.' },
-        { icon: '📋', title: '받아쓰기 받기', desc: '브라우저에서 읽고, 클립보드에 복사 또는 TXT로 다운로드. Notion, Apple Notes, Google Docs 또는 노트가 사는 곳에 붙여넣기.' },
+    <UseCaseLayout
+      locale="ko"
+      badge="아이폰 · 안드로이드 · 무료"
+      h1First="음성 메모를 텍스트로"
+      h1Second="전화 음성 녹음에 대한 무료 전사"
+      subtitle="아이폰 음성 메모, 안드로이드 음성 녹음, WhatsApp 음성 메모 또는 Telegram 음성 메시지를 드롭하세요. 몇 초 안에 깔끔한 전사를 받으세요. 가입 필요 없음, 분당 요금 없음."
+      currentHref="/ko/voice-memo-to-text"
+
+      platforms={[
+        { name: '아이폰',       iconKey: 'mic',       brandBg: '#0F172A' },
+        { name: 'Google Rec',   iconKey: 'mic',       brandBg: '#4285F4' },
+        { name: '삼성',        iconKey: 'mic',       brandBg: '#1428A0' },
+        { name: 'WhatsApp',     iconKey: 'phone',     brandBg: '#25D366' },
+        { name: 'Telegram',     iconKey: 'phone',     brandBg: '#0088CC' },
+        { name: 'Audacity',     iconKey: 'soundwave', brandBg: '#0B60D6' },
       ]}
-      whyUse={{ title: '음성 메모에 Mictoo를 사용하는 이유', bullets: [
-        { title: '네이티브 M4A 지원', desc: 'iPhone 음성 메모는 M4A로 저장. M4A를 직접 수락. 변환 불필요.' },
-        { title: '무료, 분 카운터 없음', desc: '음성 메모는 "한 번에 하나" 포맷. 2분 아이디어에 분당 지불하는 것은 어리석음. 한도 없는 무료가 사용 사례에 맞음.' },
-        { title: '짧은 파일에 빠름', desc: '2분 음성 메모는 약 5초에 받아쓰여집니다. 아이디어 자체를 타이핑하는 것보다 빠름.' },
-        { title: '프라이버시', desc: '음성 메모는 종종 개인적. 오디오는 받아쓰기 제공업체로 가서 처리되고 폐기. 보관하지 않습니다.' },
-        { title: '모바일 친화적', desc: '브라우저로 휴대폰에서 직접 업로드. iOS와 Android 둘 다 작동.' },
-        { title: '자동 감지가 언어 처리', desc: '50개 이상의 언어 중 어느 것이든 음성 메모. 두 언어로 생각하고 메모가 전환되면 유용.' },
-      ]}}
-      useCases={{ title: '사람들이 음성 메모 받아쓰기를 사용하는 용도', items: [
-        { title: '이동 중 아이디어 캡처', desc: '산책 중 생각이 떠올라 휴대폰에 받아 적었습니다. 이제 행동에 옮기고 싶습니다. 받아쓰고 작업 관리자나 노트 앱에 붙여넣기.' },
-        { title: '긴 텍스트 받아쓰기', desc: '일부 사람들은 말하면서 에세이, 블로그 게시물 또는 이메일 초안을 작성. 음성 메모를 받아쓰고, 텍스트 편집, 보내기.' },
-        { title: '회의 후 액션 아이템', desc: '회의실에서 나오는 길에 자신에게 요약을 받아 적었습니다. 받아쓰고 프로젝트 문서에 붙여넣기.' },
-        { title: '기자와 연구자를 위한 현장 노트', desc: '현장에서 관찰과 인용을 캡처. 정리된 노트를 위해 나중에 받아쓰기.' },
-        { title: '알림 목록(쇼핑, 짐 싸기, 프로젝트 계획)', desc: '음성 메모가 휴대폰에 타이핑하는 것보다 빠름. 검색 가능하고 편집 가능한 텍스트 버전을 위해 받아쓰기.' },
-      ]}}
-      proTips={{ title: '음성 메모 받아쓰기 팁', tips: [
-        { title: '휴대폰을 가까이, 하지만 너무 가까이는 아님', desc: '입에서 10-15 cm가 스위트 스팟. 더 가까우면 마이크가 파열음과 호흡을 캡처. 더 멀면 시끄러운 환경에서 가독성을 잃음.' },
-        { title: '바람이 적', desc: '바람 부는 거리의 10초 음성 메모는 사용할 수 없을 수 있습니다. 가능하면 멈추고 바람에 등을 돌린 다음 녹음. 또는 바람에 강한 마이크가 있는 헤드폰 사용.' },
-        { title: '키워드 전에 일시 중지', desc: '이름, 주소 또는 전문 용어를 받아 적을 때 잠시 멈추세요. Whisper는 고유 명사에 빠른 말보다 분리된 단어를 더 잘 처리합니다.' },
-        { title: 'iPhone 음성 메모는 기본적으로 무손실 M4A이지만 손실로 전환 가능', desc: '설정, 음성 메모, 오디오 품질. 무손실은 받아쓰기에 과잉. 손실은 정확도 차이 없이 크기의 1/3.' },
-        { title: '업로드 전에 시작과 끝의 무음 트리밍', desc: '음성 메모는 가끔 3-5초의 죽은 공기를 캡처. 공유 전에 음성 메모 앱에서 트리밍(편집 탭). 더 작은 파일, 더 빠른 받아쓰기.' },
-        { title: '긴 받아쓰기(음성으로 초안 작성)는 5-10분 청크로 분할', desc: '편집하기 쉬움. 잘못되면 단일 청크를 재녹음하기 쉬움.' },
-        { title: 'Whisper가 휴대폰의 내장 받아쓰기 기능보다 억양을 더 잘 처리', desc: 'iOS는 내장 받아쓰기가 있지만 영어 우선이고 억양에 약함. Whisper는 더 나은 정확도로 50개 이상의 언어를 커버합니다.' },
-      ]}}
+
+      howItWorksTitle="음성 메모 전사 작동 방식"
+      steps={[
+        {
+          icon: 'folder',
+          title: '녹음 공유하기',
+          desc: '아이폰: 음성 메모에서 공유 시트. 안드로이드: 파일 앱에서 파일. WhatsApp: 파일로 전달하기.',
+        },
+        {
+          icon: 'upload',
+          title: '파일을 여기 드롭하세요',
+          desc: 'M4A (아이폰), MP3 (안드로이드), OPUS/OGG (WhatsApp, Telegram) 모두 직접 작동합니다.',
+        },
+        {
+          icon: 'editPen',
+          title: '몇 초 안에 전사',
+          desc: '5분 음성 메모는 약 10초 만에 완료됩니다. AI 요약은 산만한 아이디어를 간결한 작업 목록으로 변환합니다.',
+        },
+      ]}
+
+      exampleTitle="예시 음성 메모 전사"
+      exampleFileName="voice-memo.m4a"
+      exampleDurationLabel="3:22"
+      exampleLines={[
+        { t: '0:00',  line: '좋아, 아이디어를 잊기 전에 간단한 음성 메모를 남길게.' },
+        { t: '0:04',  line: '그래서 제안은 체크아웃 흐름을 하나의 긴 양식 대신 두 개의 명확한 단계로 나누는 것입니다.' },
+        { t: '0:13',  line: '첫 번째 단계는 이메일과 카드입니다. 두 번째 단계는 확인 번호를 본 후 배송 세부정보입니다.' },
+        { t: '0:22',  line: '이것이 중요한 이유는 현재의 단일 페이지 양식에서 이탈률이 약 38%이기 때문입니다.' },
+        { t: '0:32',  line: '대부분의 이탈은 카드 입력이 아닌 배송 섹션에서 발생하는데, 이는 직관적이지 않습니다.' },
+        { t: '0:42',  line: '배송을 구매 후로 옮기면 아마도 그 트래픽의 12-15%를 회복할 수 있을 것입니다.' },
+        { t: '0:52',  line: '타임라인상으로, 저는 이 작업이 프론트엔드 2주, 백엔드 1주, 아마도 테스트 1주가 걸릴 것이라고 생각합니다.' },
+      ]}
+      summaryPoints={[
+        '아이디어: 체크아웃 흐름을 두 단계로 나누기.',
+        '1단계: 이메일 + 카드. 2단계: 확인 후 배송.',
+        '현재 이탈률: 38%, 주로 배송 섹션에서 발생.',
+        '예상 회복: 12-15%의 트래픽.',
+      ]}
+      actionItems={[
+        '두 단계 체크아웃 목업 초안 작성',
+        '분석에서 38% 이탈 확인',
+        '엔지니어링 범위 설정 (~총 4주)',
+      ]}
+
+      whyTitle="음성 메모에 Mictoo를 선택하는 이유"
+      whyCards={[
+        {
+          icon: 'sparkles',
+          title: '산만한 메모를 위한 AI 요약',
+          desc: '음성 메모는 본질적으로 엉망입니다. 요약은 5분의 생각의 흐름을 두 줄의 요점으로 변환합니다.',
+        },
+        {
+          icon: 'mic',
+          title: '아이폰 .m4a 네이티브',
+          desc: 'Apple Voice Memos는 .m4a (MP4의 AAC)를 작성합니다. 우리는 이를 직접 수용하며 변환이 필요 없습니다.',
+        },
+        {
+          icon: 'chat',
+          title: 'Telegram .oga 네이티브',
+          desc: '채팅에서 Telegram 음성 메시지를 저장하고 .oga 파일을 드롭하세요. Opus는 OGG에서 네이티브로 처리됩니다.',
+        },
+        {
+          icon: 'globe',
+          title: '다국어 메모 번역',
+          desc: '모국어로 된 메모, 팀을 위한 영어 노트. 클릭 한 번으로 가능합니다.',
+        },
+      ]}
+
+      scenariosTitle="일반적인 음성 메모 시나리오"
+      scenarios={[
+        { icon: 'sparkles', title: '아이디어 캡처' },
+        { icon: 'chat',     title: '회의 노트' },
+        { icon: 'editPen',  title: '초안 작성' },
+        { icon: 'book',     title: '일기 쓰기' },
+        { icon: 'phone',    title: '음성 메시지' },
+        { icon: 'globe',    title: '다국어' },
+      ]}
+
+      tipsTitle="더 깔끔한 음성 메모를 위한 팁"
+      tips={[
+        '방 소음을 줄이기 위해 전화기를 가까이 대세요.',
+        '60 MB 이상의 긴 메모의 경우, 자동 분할을 위해 로그인하세요.',
+        '가장 깔끔한 감지를 위해 메모당 한 언어로 말하세요.',
+        '전사가 그곳에서 끊기길 원하면 "새 단락"이라고 말하세요.',
+      ]}
+
+      guidesTitle="관련 도구"
+      guides={[
+        { href: '/ko/m4a-to-text',        icon: 'file',  title: 'M4A 형식',       desc: '아이폰 / GarageBand 심층 분석' },
+        { href: '/ko/ogg-to-text',        icon: 'file',  title: 'OGG / .oga',       desc: 'Telegram 음성 심층 분석' },
+        { href: '/ko/dictation-to-text',  icon: 'editPen', title: '받아쓰기',      desc: '음성 우선 작성 워크플로우' },
+        { href: '/ko/interview-transcription', icon: 'chat', title: '인터뷰',    desc: '전화 또는 대면 인터뷰' },
+      ]}
+
       faq={[
-        { q: 'Mictoo가 iPhone 음성 메모를 지원합니까?', a: '네. iPhone 음성 메모는 M4A(때로는 ALAC로 무손실)로 저장. M4A는 직접 작동. ALAC는 먼저 WAV 또는 M4A AAC로 변환.' },
-        { q: 'iPhone에서 Mictoo로 음성 메모를 어떻게 가져옵니까?', a: '세 가지 옵션. 음성 메모에서 메모를 열고, 공유를 탭하고, Mac으로 AirDrop(가장 빠름) 또는 자신에게 이메일. 또는 iPhone에서 Safari를 사용하여 mictoo.com을 열고 파일 앱에서 직접 업로드.' },
-        { q: 'Android 음성 녹음은?', a: 'Android 음성 레코더는 보통 M4A 또는 MP3로 저장. 둘 다 작동. 파일 앱에서 파일을 찾아 PC로 공유 또는 모바일 브라우저에서 업로드.' },
-        { q: '휴대폰에서 직접 업로드할 수 있습니까?', a: '네. 사이트는 모바일 친화적. 업로드 영역 탭, 휴대폰의 파일 앱이나 녹음 폴더에서 파일 선택.' },
-        { q: '음성 메모는 얼마나 길 수 있습니까?', a: '무료로 파일당 최대 30분, 가입으로 60분. 대부분의 음성 메모는 5분 미만으로, 어느 한도 내에든 잘 맞음.' },
-        { q: '음성 메모 받아쓰기 정확도는?', a: '조용한 환경의 명확한 음성: 90-95%. 중얼거리는 음성, 배경 소음(거리, 카페, 자동차)의 경우 정확도가 떨어집니다. 고유 명사는 종종 정리가 필요.' },
-        { q: '받아쓰기에 구두점이 포함됩니까?', a: '네. Whisper는 구두점을 자동으로 추가. 받아 적힌 음성(덜 자연스러운 문장 경계가 있음)에 항상 완벽하지는 않지만 그대로 사용 가능.' },
-        { q: '비영어로 받아 적는 데 작동합니까?', a: '네, 50개 이상의 언어. 짧은 메모에는 드롭다운에서 수동으로 언어 선택(자동 감지가 신뢰할 수 있으려면 더 많은 오디오 필요).' },
-        { q: '내 음성 메모가 저장됩니까?', a: '아니요. 파일은 받아쓰기 제공업체로 가서 처리되고, 그 후 폐기됩니다.' },
-        { q: '다운로드 전에 받아쓰기를 편집할 수 있습니까?', a: '네. 내보내기 전에 브라우저에서 잘못된 단어를 수정.' },
-        { q: '전화 통화 녹음에 작동합니까?', a: '업로드한 파일을 어떻게 녹음했든 받아씁니다. 통화 녹음 자체는 대부분의 관할권에서 동의가 필요. 녹음 전에 동의를 받으세요.' },
-        { q: 'iOS 내장 받아쓰기 기능과의 차이는?', a: 'iOS 받아쓰기는 말하는 동안 실시간, 특정 언어에 제한, 억양에 약함. Mictoo는 녹음 후 받아쓰기, 50개 이상의 언어 지원, 더 정밀한 모델(Whisper large-v3) 사용.' },
+        {
+          q: '아이폰 음성 메모를 직접 전사할 수 있나요?',
+          a: '네. 음성 메모 앱에서 메모를 공유하고 (공유 시트 → 파일에 저장 또는 자신에게 전송) .m4a 파일을 Mictoo에 드롭하세요. 변환이 필요 없습니다.',
+        },
+        {
+          q: 'Mictoo는 WhatsApp 또는 Telegram 음성 메시지를 전사하나요?',
+          a: '네. 채팅에서 음성 메시지를 저장하고 (전달 → 파일로 저장) 드롭하세요. WhatsApp 음성 메모는 .opus, Telegram 음성 메모는 .oga (둘 다 OGG 컨테이너)입니다. 둘 다 직접 작동합니다.',
+        },
+        {
+          q: '파일 크기 제한은 무엇인가요?',
+          a: '익명으로는 25 MB, 로그인 시 60 MB입니다. 일반 비트 전송률의 60분 음성 메모는 약 20-30 MB이므로 대부분 무료 한도에 맞습니다.',
+        },
+        {
+          q: 'Mictoo는 비영어 음성 메모를 전사하나요?',
+          a: '네. Whisper large-v3는 50개 이상의 언어를 지원합니다. 짧은 메모나 비영어 콘텐츠의 경우, 첫 번째 감지를 더 깔끔하게 하기 위해 언어를 명시적으로 설정하세요.',
+        },
+        {
+          q: '산만한 브레인스토밍 메모의 요약을 받을 수 있나요?',
+          a: '네. AI 요약은 전사와 함께 자동으로 나타납니다. 흐름의식을 가진 메모를 간결한 작업 목록으로 변환하는 데 탁월합니다.',
+        },
+        {
+          q: '음성 메모가 귀하의 서버에 저장되나요?',
+          a: '아니요. 오디오는 전사 제공업체로 스트리밍되고, 한 번 처리된 후 삭제됩니다. 로그인하고 저장하면 전사만 지속됩니다.',
+        },
+        {
+          q: '내 음성 메모를 다른 언어로 번역할 수 있나요?',
+          a: '네. 목표 언어를 선택하고 전사 후 번역을 클릭하세요. GPT-4o-mini가 번역을 처리하며 원본과 함께 나타납니다.',
+        },
       ]}
+
+      ctaHeadline="음성 메모를 텍스트 및 작업 항목으로 변환하세요"
+      ctaSubtitle="아이폰, 안드로이드, WhatsApp, Telegram 음성 메모. 모든 형식, 하나의 업로드."
+      ctaButton="음성 메모 업로드"
+
       relatedLinks={[
-        { href: '/ko/m4a-to-text', label: 'M4A를 텍스트로', desc: 'M4A 파일 전용.' },
-        { href: '/ko/dictation-to-text', label: '받아쓰기를 텍스트로', desc: '받아 적은 텍스트 초안과 롱폼 음성 글쓰기용.' },
-        { href: '/ko/interview-transcription', label: '인터뷰 받아쓰기', desc: '전화로 녹음한 인터뷰용.' },
-        { href: '/ko/transcribe-audio-to-text', label: '오디오를 텍스트로', desc: '다른 오디오 포맷용.' },
+        { href: '/ko/dictation-to-text',       label: '받아쓰기 텍스트' },
+        { href: '/ko/interview-transcription', label: '인터뷰 전사' },
+        { href: '/ko/m4a-to-text',             label: 'M4A 텍스트' },
+        { href: '/ko/ogg-to-text',             label: 'OGG 텍스트' },
+        { href: '/ko/meeting-transcription',   label: '회의 전사' },
       ]}
     />
   )

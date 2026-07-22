@@ -1,9 +1,9 @@
 import LanguagePageLayout from '@/components/LanguagePageLayout'
 
 export const metadata = {
-  title: 'German Audio Transcription: Compound Words, Sie/du, Swiss and Austrian German | Mictoo',
+  title: 'German Audio Transcription for Regional Speech | Mictoo',
   description:
-    'Transcribe German audio with proper handling of compound words, separable verbs, Sie/du register, and regional varieties: Hochdeutsch, Swiss German, Austrian German.',
+    'Transcribe German audio from Germany, Austria, Switzerland, and Liechtenstein. Review compound words, timestamps, summaries, translations, and exports.',
   alternates: {
     canonical: 'https://mictoo.com/german-audio-transcription',
     languages: {
@@ -41,13 +41,13 @@ export default function GermanAudioTranscriptionPage() {
       badge="German · Whisper large-v3 · Free"
       h1First="German Audio Transcription"
       h1Second="Compound words, Sie/du, and regional varieties"
-      subtitle="Upload German audio from Germany, Austria, Switzerland, or Liechtenstein. Get a transcript that assembles compound words correctly, respects separable verb syntax, and handles all major dialects."
+      subtitle="Upload German audio from Germany, Austria, Switzerland, or Liechtenstein. Get a timestamped first draft designed for compound words, separable verbs, and regional speech."
       defaultLanguage="de"
       currentHref="/german-audio-transcription"
 
       chips={[
         { label: 'Free',            icon: 'gift' },
-        { label: 'Private',         icon: 'shield' },
+        { label: 'Auto-deleted',    icon: 'shield' },
         { label: 'German variants', icon: 'globe' },
         { label: 'AI summary',      icon: 'sparkles' },
       ]}
@@ -63,7 +63,7 @@ export default function GermanAudioTranscriptionPage() {
       stepsTitle="How German transcription works"
       steps={[
         { icon: 'upload',   title: 'Upload your German audio',        desc: 'MP3, MP4, WAV, M4A or any common format with clear German speech.' },
-        { icon: 'sparkles', title: 'Whisper handles compound words',   desc: 'Compound words are assembled correctly, separable verbs stay coherent.' },
+        { icon: 'sparkles', title: 'German-aware first draft', desc: 'Whisper can preserve compound words and separable verb structures; review unusual terms and strong dialects.' },
         { icon: 'editPen',  title: 'Edit, translate, and export',      desc: 'Review, summarise, translate and export as TXT, SRT, VTT, DOCX.' },
       ]}
 
@@ -87,10 +87,10 @@ export default function GermanAudioTranscriptionPage() {
 
       whyTitle="Why use Mictoo for German audio?"
       whyCards={[
-        { icon: 'globe',    title: 'All major varieties',         desc: 'Hochdeutsch, Swiss German, Austrian German, Bavarian and Northern dialects handled.' },
-        { icon: 'accent',   title: 'Umlauts and ß preserved',     desc: 'ä, ö, ü, ß captured correctly. Modern orthography rules respected.' },
-        { icon: 'quote',    title: 'Compound words assembled',    desc: 'Long German compounds (Donaudampfschifffahrtsgesellschaft) are joined properly rather than split.' },
-        { icon: 'translate',title: 'Translation included',         desc: 'One-click translation to English (or any of 50+ languages) after transcription.' },
+        { icon: 'globe',    title: 'Regional speech support',     desc: 'Designed for Hochdeutsch, Austrian German, Swiss German, Bavarian and Northern varieties.' },
+        { icon: 'accent',   title: 'German orthography',          desc: 'The transcript can preserve umlauts and ß; review names, dialect spellings, and specialist terms.' },
+        { icon: 'quote',    title: 'Compound-word review',        desc: 'Long compounds are kept when recognised, with Editor mode available for correcting unusual words.' },
+        { icon: 'translate',title: 'Translation included',        desc: 'Translate the finished transcript into any of the 36 supported target languages.' },
       ]}
 
       worksWellTitle="German audio that works well"
@@ -108,14 +108,14 @@ export default function GermanAudioTranscriptionPage() {
         'Select German (not "auto") for short clips.',
         'Review compound-word joins in Editor mode.',
         'Correct proper nouns and place names.',
-        'For Swiss German, expect Hochdeutsch orthography in the output.',
+        'For Swiss German, review whether the output uses dialect spelling or Standard German.',
       ]}
       challengesTitle="What makes German speech recognition difficult"
       challenges={[
-        { title: 'Compound words',      desc: 'German joins nouns into long compounds that must be assembled correctly.',   example: 'Krankenversicherung', ipa: 'kʁaŋk.n̩.fɛɐ.ziç.ə.ʁʊŋ' },
-        { title: 'Separable verbs',     desc: 'Verb prefixes move to the end of the clause and must reconnect at parsing time.', example: 'ich rufe an',  ipa: 'anrufen' },
+        { title: 'Compound words',      desc: 'German joins nouns into long compounds that speech recognition must keep or reconstruct.', example: 'Krankenversicherung', ipa: 'kʁaŋk.n̩.fɛɐ.ziç.ə.ʁʊŋ' },
+        { title: 'Separable verbs',     desc: 'Verb prefixes move to the end of the clause and must reconnect at parsing time.', example: 'ich rufe an', ipa: '' },
         { title: 'Formal vs informal',  desc: 'Sie / du register affects verb endings and pronoun choice throughout.',       example: 'Sie kommen / du kommst', ipa: '' },
-        { title: 'Swiss German',         desc: 'Spoken Swiss German diverges heavily but is written as Standard Hochdeutsch.', example: 'Grüezi',       ipa: 'ɡ​ʁyː.tsi' },
+        { title: 'Swiss German',         desc: 'Spoken dialect differs substantially from Standard German, so output may require manual normalisation.', example: 'Grüezi', ipa: '' },
       ]}
 
       varietiesTitle="German varieties supported"
@@ -128,11 +128,11 @@ export default function GermanAudioTranscriptionPage() {
       ]}
 
       faq={[
-        { q: 'Does Mictoo handle Swiss German?',            a: 'Spoken Swiss German is understood but the transcript is produced in Standard High German orthography (as native Swiss speakers write). Set the language to German.' },
-        { q: 'Are compound words joined correctly?',        a: 'Yes. Long German compounds are assembled into single words rather than split, matching standard German orthography.' },
+        { q: 'Does Mictoo handle Swiss German?',            a: 'Whisper can transcribe many Swiss German recordings. Set the language to German and review dialect vocabulary because the output may mix dialect spelling and Standard German.' },
+        { q: 'Are compound words joined correctly?',        a: 'Common compounds are usually kept as single words. Review uncommon names and specialist terminology in Editor mode.' },
         { q: 'Are umlauts (ä, ö, ü, ß) preserved?',         a: 'Yes. Whisper outputs proper German orthography including all umlauts and the sharp s (ß).' },
         { q: 'Can I translate the transcript to English?',  a: 'Yes. Pick English as the target and click Translate. GPT-4o-mini translates and appears alongside the original.' },
-        { q: 'Is German transcription free?',               a: 'Yes. Up to 25 MB anonymously, 60 MB signed in. No watermark, no per-minute fee.' },
+        { q: 'Is German transcription free?',               a: 'Yes. Files up to 25 MB can be transcribed anonymously or up to 180 MB when signed in. No watermark and no per-minute fee.' },
         { q: 'Are my audio files stored?',                  a: 'No. Audio streams to the transcription provider, gets processed once, and is dropped. Transcripts persist only on signed-in accounts.' },
       ]}
 
@@ -142,8 +142,8 @@ export default function GermanAudioTranscriptionPage() {
 
       exploreCards={[
         { href: '/french-speech-to-text',      flag: '🇫🇷', title: 'French Speech to Text',       desc: 'Liaisons, accents, and Quebec French supported.' },
-        { href: '/spanish-audio-to-text',      flag: '🇪🇸', title: 'Spanish Audio to Text',       desc: 'All regional Spanish varieties handled.' },
-        { href: '/multilingual-transcription', flag: '🌐', title: 'Multilingual Transcription',   desc: 'Transcribe in 50+ languages with one platform.' },
+        { href: '/spanish-audio-to-text',      flag: '🇪🇸', title: 'Spanish Audio to Text',       desc: 'Regional Spanish varieties with editable output.' },
+        { href: '/multilingual-transcription', flag: '🌐', title: 'Multilingual Transcription',   desc: 'Choose from 36 languages or use automatic detection.' },
       ]}
     />
   )

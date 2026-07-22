@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import FormatPageLayout from '@/components/FormatPageLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/transcribe-video-to-text',
@@ -15,193 +15,186 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Vídeo a texto — transcripción gratuita en línea | Mictoo',
+  title: 'Vídeo a Texto: Transcripción de Vídeo Online Gratuita para MP4, MOV, WebM | Mictoo',
   description:
-    'Transcripción gratuita de vídeo a texto. Sube MP4, MOV, WEBM, AVI y obtén una transcripción con IA o un archivo SRT. Funciona con grabaciones de pantalla, tutoriales y vlogs.',
-  alternates: { canonical: 'https://mictoo.com/es/transcribe-video-to-text', languages: LANGS },
-
+    'Sube un vídeo en MP4, MOV, WebM, AVI o MKV y obtén una transcripción con marcas de tiempo, resumen de IA y subtítulos SRT. Para grabaciones de pantalla, tutoriales, vlogs y seminarios web.',
+  alternates: {
+    canonical: 'https://mictoo.com/es/transcribe-video-to-text',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Vídeo a texto — transcripción gratuita en línea | Mictoo",
-    description: "Transcripción gratuita de vídeo a texto. Sube MP4, MOV, WEBM, AVI y obtén una transcripción con IA o un archivo SRT. Funciona con grabaciones de pantalla, tutoriales y vlogs.",
-    url: "https://mictoo.com/es/transcribe-video-to-text",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Vídeo a Texto: Transcripción de Vídeo Online Gratuita | Mictoo',
+    description: 'Transcripción de vídeo MP4, MOV, WebM con SRT, resumen y traducción.',
+    url: 'https://mictoo.com/es/transcribe-video-to-text',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Vídeo a texto — transcripción gratuita en línea | Mictoo",
-    description: "Transcripción gratuita de vídeo a texto. Sube MP4, MOV, WEBM, AVI y obtén una transcripción con IA o un archivo SRT. Funciona con grabaciones de pantalla, tutoriales y vlogs.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Vídeo a Texto: Transcripción de Vídeo Online Gratuita',
+    description: 'Transcripción de vídeo MP4, MOV, WebM con SRT y resumen.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function EsVideoToTextPage() {
+export default function EsTranscribeVideoToTextPage() {
   return (
-    <LandingLayout
-      defaultLanguage="es"
-      enableYouTubeUrl
-      badge="MP4 · MOV · WEBM · GRATIS"
-      h1={
-        <>
-          Vídeo a texto
-          <br />
-          <span className="text-brand-600">Transcripción de vídeo con IA, gratis</span>
-        </>
-      }
-      subtitle="Transcripción con IA gratuita para cualquier archivo de vídeo. Extraemos el audio por ti, automáticamente. Sin cuenta, sin tarifa por minuto, sin email."
-      howItWorks={[
+    <FormatPageLayout
+      locale="es"
+      badge="Archivos de vídeo · MP4 · MOV · WebM · Gratis"
+      h1First="Vídeo a Texto"
+      h1Second="Para grabaciones de pantalla, tutoriales y vlogs"
+      subtitle="Sube un archivo MP4, MOV, WebM, MKV o AVI. Extraemos la pista de audio, transcribimos con Whisper large-v3 y devolvemos una transcripción con marcas de tiempo, resumen de IA y subtítulos SRT listos para añadir al vídeo."
+      highlightFormat="video"
+      relatedFormatsTitle="Contenedores de vídeo que puedes subir"
+      relatedFormats={[
+        { key: 'video', name: 'MP4', ext: '.mp4' },
+        { key: 'mov', name: 'MOV', ext: '.mov' },
+        { key: 'webm', name: 'WebM', ext: '.webm', href: '/es/webm-to-text' },
+        { key: 'mkv', name: 'MKV', ext: '.mkv' },
+        { key: 'avi', name: 'AVI', ext: '.avi' },
+        { key: 'mpeg', name: 'MPEG', ext: '.mpeg' },
+      ]}
+      previewFileName="keynote-recording.mp4"
+      previewWordCount={205}
+      previewDurationLabel="32:47"
+      enableYouTubeUrl={true}
+      previewLines={[
+        { t: '0:00',  line: 'Buenos días a todos, y gracias por venir hoy.' },
+        { t: '0:06',  line: 'Vamos a pasar los próximos treinta minutos hablando sobre cómo cambió el vídeo en 2026 y lo que eso significa para los creadores.' },
+        { t: '0:15',  line: 'Tres números rápidos antes de empezar. Noventa y dos por ciento de los usuarios de internet ven vídeos cada semana.' },
+        { t: '0:24',  line: 'El contenido corto ahora representa más tiempo de visualización que el contenido largo en todas las plataformas principales.' },
+        { t: '0:32',  line: 'Y las búsquedas que llevan a un resultado de vídeo han crecido dos veces y media año tras año.' },
+        { t: '0:41',  line: 'Así que las plataformas están impulsando el vídeo. La audiencia está viendo más vídeos. Esa parte no es controvertida.' },
+        { t: '0:50',  line: 'Lo que es controvertido es lo que realmente capta la atención en ese océano de vídeos.' },
+        { t: '0:58',  line: 'Déjame repasar los tres patrones que hemos visto funcionar para los creadores que publican cada semana.' },
+      ]}
+      whyTitle="Por qué Mictoo para la transcripción de vídeo"
+      whyCards={[
         {
-          icon: '🎬',
-          title: 'Suelta el vídeo o pega una URL de YouTube',
-          desc: 'MP4, MOV, WEBM, AVI o cualquier contenedor de vídeo común. Grabaciones de pantalla, vlogs, exports de webinars, MP4 de Zoom. Arrástralo o haz clic para elegir. Nuevo: pega un enlace de YouTube en lugar de subir y sacamos la transcripción en segundos, sin necesidad de descarga.',
+          icon: 'video',
+          title: 'Cada contenedor de vídeo común',
+          desc: 'MP4, MOV, WebM, MKV, AVI. Desmuxamos la pista de audio del lado del servidor, así que subes el vídeo tal cual sin ningún paso de conversión.',
         },
         {
-          icon: '⚡',
-          title: 'Extraemos el audio, la IA lo transcribe',
-          desc: 'Sacamos la pista de audio del vídeo y enviamos solo eso a Whisper large-v3. Sin necesidad de convertir a MP3 antes. Un vídeo de 30 minutos suele estar listo en alrededor de un minuto.',
+          icon: 'clip',
+          title: 'SRT y VTT listos para la línea de tiempo',
+          desc: 'Las marcas de tiempo se alinean con la línea de tiempo original del vídeo. Descarga SRT o VTT y añádelo directamente a Premiere, DaVinci, CapCut o tu subida a YouTube.',
         },
         {
-          icon: '📋',
-          title: 'Copia, descarga o saca subtítulos',
-          desc: 'Descarga como TXT para notas, o como SRT para incrustar subtítulos en un editor de vídeo. Edita palabras erróneas en el navegador antes de exportar.',
+          icon: 'sparkles',
+          title: 'Resumen de IA para descripciones',
+          desc: 'Resumen generado automáticamente junto a la transcripción. Un sólido primer borrador para descripciones de vídeo, resúmenes de blogs y títulos de capítulos.',
+        },
+        {
+          icon: 'globe',
+          title: 'Traduce subtítulos a más de 50 idiomas',
+          desc: 'Después de que la transcripción esté lista, traduce los subtítulos al español, francés, alemán, portugués y más de 45 idiomas en un clic.',
         },
       ]}
-      whyUse={{
-        title: 'Por qué Mictoo para vídeo',
-        bullets: [
-          {
-            title: 'Pega una URL de YouTube directamente',
-            desc: 'Sáltate el paso de descarga para vídeos de YouTube: pega el enlace en el campo encima de la zona de subida y la transcripción vuelve en segundos. Para vídeos sin subtítulos, sube el archivo de audio y Whisper se encarga.',
-          },
-          {
-            title: 'Extracción de audio automática',
-            desc: 'Sueltas el MP4. Sacamos el audio de dentro y lo enviamos al modelo. Sin tener que ejecutar ffmpeg tú.',
-          },
-          {
-            title: 'La salida funciona en editores de vídeo de verdad',
-            desc: 'El SRT que generamos funciona en Premiere Pro, DaVinci Resolve, Final Cut, CapCut y YouTube Studio. Las marcas de tiempo son precisas a nivel de fotograma.',
-          },
-          {
-            title: '¿Vídeo más grande? Comprime el audio, no el vídeo',
-            desc: 'Un vídeo de 200 MB son típicamente 195 MB de vídeo y 5 MB de audio. No hace falta comprimirlo todo, solo la pista de audio.',
-          },
-          {
-            title: 'No guardamos archivos',
-            desc: 'El vídeo llega, extraemos el audio, lo enviamos al proveedor de transcripción y descartamos ambas versiones. No guardamos tu vídeo ni tu audio en nuestros servidores.',
-          },
-        ],
-      }}
-      useCases={{
-        title: 'Para qué sirve transcribir vídeo',
-        items: [
-          {
-            title: 'Subtítulos para vídeo en redes',
-            desc: 'TikTok, Instagram Reels, YouTube Shorts mejoran con subtítulos incrustados. Genera el SRT aquí, impórtalo en CapCut o Premiere, dale estilo y quémalo en el vídeo.',
-          },
-          {
-            title: 'Tutoriales y cursos',
-            desc: 'Si grabas tutoriales en pantalla, una versión en texto ayuda con SEO, accesibilidad y traducción. Pega la transcripción en tu blog o plataforma de cursos como acompañamiento del vídeo.',
-          },
-          {
-            title: 'Seguimiento a webinars',
-            desc: 'Hiciste un webinar de una hora. Transcribe la grabación, edita un poco y mándalo por email a los asistentes que no pudieron quedarse hasta el final.',
-          },
-          {
-            title: 'Cortes de entrevistas para edición',
-            desc: 'Al editar una entrevista larga, tener la transcripción en otra pantalla te deja hacer un "montaje en papel". Marcas las líneas que quieres y luego las buscas por marca de tiempo en la línea de tiempo, mucho más rápido que rebobinar.',
-          },
-          {
-            title: 'Preparación de traducción y doblaje',
-            desc: 'Transcribe en el idioma original, pasa el texto por DeepL o ChatGPT para traducir y úsalo como guion para el doblaje o la traducción de subtítulos.',
-          },
-        ],
-      }}
-      proTips={{
-        title: 'Consejos para transcribir vídeo',
-        tips: [
-          {
-            title: 'Extrae el audio primero si tu vídeo supera los 60 MB',
-            desc: 'Un vídeo 1080p son sobre todo bytes de píxeles que vamos a tirar de todas formas. Saca solo la pista de audio: ffmpeg -i video.mp4 -vn -ac 1 -b:a 64k audio.mp3. Un vídeo de 500 MB baja a menos de 30 MB de audio.',
-          },
-          {
-            title: 'Silencia la música de fondo en el editor antes de exportar',
-            desc: 'Si tu vídeo tiene música bajo el diálogo (B-roll, intro, transiciones), silencia o baja la pista musical antes de exportar la versión que vas a subir. Whisper a veces inventa palabras cuando la voz queda enterrada bajo la música.',
-          },
-          {
-            title: 'Las grabaciones de pantalla sin música son las más fáciles',
-            desc: 'Loom, Zoom, capturas de OBS de alguien hablando sobre diapositivas dan las transcripciones más limpias. Sin música, una sola voz, micro claro. Vas a obtener precisión casi humana.',
-          },
-          {
-            title: 'Para vídeo con varios hablantes, graba pistas de audio separadas si puedes',
-            desc: 'Si controlas la grabación, captura a cada hablante en su propia pista. Transcribe cada una por separado. Atribución más limpia, menos errores en los solapes.',
-          },
-          {
-            title: 'La tasa de fotogramas no importa, lo que importa es el audio',
-            desc: 'Whisper no mira el vídeo, solo el audio. Un vídeo 4K con mal sonido se transcribe peor que uno de 480p con un micrófono de solapa. Pon el esfuerzo en el audio.',
-          },
-          {
-            title: 'Las marcas SRT pueden necesitar un pequeño desfase en algunos editores',
-            desc: 'La mayoría de editores alinean las marcas SRT perfectamente. Algunos editores viejos esperan que el primer subtítulo empiece en 00:00:01,000 en vez de 00:00:00,000. Si los subtítulos van desfasados un segundo, suele ser por eso.',
-          },
-        ],
-      }}
+      scenariosTitle="Cuándo la transcripción de vídeo a texto es adecuada"
+      scenarios={[
+        {
+          icon: 'video',
+          title: 'Subtítulos de vídeo de YouTube',
+          desc: 'Grabado, editado y exportado a MP4. Sube el archivo para obtener subtítulos SRT y un resumen listo para la descripción.',
+        },
+        {
+          icon: 'briefcase',
+          title: 'Grabaciones de Loom y pantalla',
+          desc: 'WebM o MP4 de Loom, OBS o captura de pantalla del navegador. Obtén una versión de texto limpia del recorrido.',
+        },
+        {
+          icon: 'users',
+          title: 'Grabaciones de seminarios web y talleres',
+          desc: 'Grabación de evento de formato largo. La transcripción se convierte en el post del blog de seguimiento, resumen de LinkedIn y archivo buscable.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Contenido de vlog y tutorial',
+          desc: 'Corte de vlog, explicación de tutorial o demostración de producto. La transcripción alimenta las notas del programa, subtítulos y reutilización en redes sociales.',
+        },
+        {
+          icon: 'book',
+          title: 'Archivo de lecciones de curso',
+          desc: 'Lección o conferencia grabada en MP4. Ofrece a los estudiantes una versión de texto buscable y asegura subtítulos para accesibilidad.',
+        },
+        {
+          icon: 'mic',
+          title: 'Vídeo de entrevista y testimonio',
+          desc: 'Entrevista sentada o testimonio de cliente. La transcripción facilita enormemente la cita, edición y traducción.',
+        },
+      ]}
+      technicalTitle="Qué sucede con el archivo de vídeo"
+      technicalIntro="Mictoo utiliza la pista de audio hablada para la transcripción. El contenedor y la calidad de imagen no mejoran el reconocimiento de voz, pero afectan el tamaño de subida y si hay una pista de audio disponible."
+      technicalFacts={[
+        {
+          icon: 'video',
+          title: 'Pista de audio extraída',
+          desc: 'La pista de voz se decodifica del contenedor de vídeo. No necesitas exportar un MP3 separado antes de subirlo.',
+        },
+        {
+          icon: 'clip',
+          title: 'Línea de tiempo original mantenida',
+          desc: 'Los segmentos de transcripción y las exportaciones de subtítulos utilizan la línea de tiempo original del medio para que puedan coincidir con el vídeo.',
+        },
+        {
+          icon: 'layers',
+          title: 'El contenedor no es el códec',
+          desc: 'MP4, MOV, WebM, MKV y AVI pueden contener diferentes códecs de audio. El archivo se inspecciona cuando se procesa.',
+        },
+        {
+          icon: 'ear',
+          title: 'Se requiere voz',
+          desc: 'Los clips silenciosos y los vídeos solo de música no tienen una transcripción hablada confiable. Asegúrate de que la pista de audio deseada sea audible primero.',
+        },
+      ]}
       faq={[
         {
-          q: '¿Qué formatos de vídeo soportan?',
-          a: 'MP4, MOV, WEBM, AVI, MKV, FLV. Si el vídeo se reproduce en VLC, casi seguro funciona aquí. Extraemos el audio dentro, así que el códec de vídeo no importa demasiado.',
+          q: '¿Qué formatos de vídeo acepta Mictoo?',
+          a: 'MP4, MOV, WebM, MKV, AVI y la mayoría de otros contenedores comunes. Desmuxamos la pista de audio del lado del servidor, así que puedes subir cualquiera de estos directamente sin convertir a audio primero.',
         },
         {
-          q: 'Mi archivo de vídeo es demasiado grande para subirlo. ¿Qué hago?',
-          a: 'Dos opciones. Extrae solo el audio primero (un comando de ffmpeg, ver Consejos arriba) y sube eso. O usa un export más pequeño desde tu editor (resolución o bitrate menores). Para archivos por encima de 60 MB, extraer el audio es más rápido.',
+          q: '¿Cuál es el tamaño máximo de archivo de vídeo que puedo subir?',
+          a: 'Hasta 25 MB de forma anónima, 60 MB al iniciar sesión. Para vídeos más largos, dividimos automáticamente archivos de hasta aproximadamente 3 horas si estás conectado. Para exportaciones muy grandes, reduce la calidad del vídeo primero o extrae la pista de audio y sube el audio.',
         },
         {
-          q: '¿Puedo obtener subtítulos SRT, no solo texto plano?',
-          a: 'Sí. Después de transcribir, pulsa "Descargar SRT". El SRT funciona en YouTube Studio, Premiere Pro, DaVinci Resolve, Final Cut, CapCut y cualquier editor de vídeo estándar.',
+          q: '¿Puedo pegar una URL de YouTube en su lugar?',
+          a: 'Sí. En esta página puedes pegar una URL de vídeo de YouTube y Mictoo buscará subtítulos cuando estén disponibles. Cuando no existan subtítulos, sube el archivo de vídeo o el audio extraído para una transcripción completa con Whisper.',
         },
         {
-          q: '¿Las marcas de tiempo SRT coinciden exactamente con los fotogramas?',
-          a: 'Sí. Las marcas SRT están en milisegundos, lo que es más preciso que cualquier tasa de fotogramas. Encajan correctamente a 24, 25, 29.97, 30, 50 y 60 fps.',
+          q: '¿Las marcas de tiempo se alinean con el vídeo original?',
+          a: 'Sí. Las marcas de tiempo de la transcripción y SRT/VTT utilizan la línea de tiempo original del vídeo. Proporcionan una útil pista de subtítulos de primer pase, pero deberías revisar el tiempo y los saltos de línea en tu editor antes de publicar.',
         },
         {
-          q: '¿Puedo transcribir un vídeo sin sonido (solo texto en pantalla)?',
-          a: 'No. Transcribimos audio hablado. Para reconocer texto en pantalla necesitas OCR, que es una herramienta distinta.',
+          q: '¿Puedo obtener subtítulos SRT para el vídeo?',
+          a: 'Sí. Descarga como SRT o VTT después de la transcripción. Ambos formatos funcionan en Premiere, DaVinci Resolve, Final Cut, CapCut, YouTube Studio y la mayoría de los reproductores de vídeo modernos.',
         },
         {
-          q: '¿Qué precisión tiene "vídeo a texto"?',
-          a: 'Depende del audio. Una voz en off limpia, precisión casi humana (95 % o más). Un vídeo de conferencia con mala acústica de sala, en torno al 85–90 %. Vídeo con mucha música y diálogo bajo, más abajo.',
+          q: '¿Extraen audio de clips de vídeo silenciosos?',
+          a: 'No. Si el vídeo no tiene voz audible, no hay nada que transcribir. Para clips con solo música, la transcripción será típicamente vacía o con fragmentos de letras cortas.',
         },
         {
-          q: '¿Mi vídeo se subirá a YouTube o a servicios de terceros?',
-          a: 'No. Tu vídeo va a nuestro proveedor de transcripción para procesarse y se descarta. No se sube a YouTube, Google ni ningún otro lugar. No estamos en el negocio del almacenamiento de vídeo en la nube.',
+          q: '¿Puedo traducir los subtítulos a otro idioma?',
+          a: 'Sí. Después de la transcripción, elige un idioma de destino y haz clic en Traducir. La traducción se realiza en GPT-4o-mini y aparece junto al original. Exporta el SRT traducido para subtítulos en otro idioma.',
         },
         {
-          q: '¿Puedo editar la transcripción antes de descargarla?',
-          a: 'Sí. Corrige palabras mal entendidas en el navegador antes de exportar. Útil para arreglar nombres propios y términos técnicos.',
+          q: '¿Se guardará mi archivo de vídeo en sus servidores?',
+          a: 'No. El vídeo se transmite al proveedor de transcripción, extraemos el audio en memoria, transcribimos una vez y eliminamos todo de la memoria. La transcripción solo se almacena si inicias sesión y eliges guardarla en el historial.',
         },
         {
-          q: '¿Soportan vídeo 360 o formatos VR?',
-          a: 'El códec de vídeo no nos importa. Mientras el archivo sea un contenedor estándar (MP4, MOV) con una pista de audio, extraemos el audio y transcribimos.',
+          q: '¿Mictoo transcribe vídeos en otros idiomas?',
+          a: 'Sí. Whisper large-v3 soporta más de 50 idiomas con detección automática. Para vídeos cortos o contenido en otro idioma, establece el idioma explícitamente en el menú desplegable para una detección más limpia en el primer pase.',
         },
         {
-          q: '¿Qué pasa si mi vídeo tiene varias pistas de audio (comentario, original, música)?',
-          a: 'Usamos solo la pista por defecto. Si quieres una pista concreta, vuelve a exportar el vídeo con esa pista como predeterminada, o extrae la pista deseada y súbela como audio.',
-        },
-        {
-          q: '¿Hay límite de duración del vídeo?',
-          a: '30 minutos por archivo en gratis, 60 minutos con login. Para vídeos más largos, divídelos en trozos. Las transcripciones se pueden concatenar después.',
-        },
-        {
-          q: '¿Puedo transcribir una emisión de vídeo en vivo?',
-          a: 'No. Trabajamos solo con archivos grabados. Para transcripción en vivo necesitas otra categoría de herramienta.',
+          q: '¿Cuánto tiempo tarda una transcripción de vídeo?',
+          a: 'Un MP4 de 30 minutos normalmente termina en 40-70 segundos de principio a fin. El tiempo de subida y el tamaño del archivo de vídeo suelen ser el paso más largo porque necesitamos recibir el archivo antes de desmuxar el audio.',
         },
       ]}
-      relatedLinks={[
-        { href: '/es/free-srt-generator', label: 'Generador de SRT', desc: 'Misma herramienta, enfocada en flujos de subtítulos.' },
-        { href: '/es/youtube-to-text', label: 'YouTube a texto', desc: 'Si tu vídeo ya está en YouTube.' },
-        { href: '/es/zoom-transcription', label: 'Transcripción de Zoom', desc: 'Específicamente para grabaciones MP4 de Zoom.' },
-        { href: '/es/how-to-compress-audio', label: 'Cómo comprimir audio', desc: 'Para vídeos cuyo audio excede el límite de tamaño.' },
-      ]}
+      ctaHeadline="Súbete tu vídeo, obtén subtítulos y una transcripción"
+      ctaSubtitle="MP4, MOV, WebM, MKV, AVI. SRT, VTT, DOCX y un resumen en segundos."
+      ctaButton="Subir vídeo para transcribir"
     />
   )
 }

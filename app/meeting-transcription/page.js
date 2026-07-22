@@ -1,9 +1,9 @@
 import UseCaseLayout from '@/components/UseCaseLayout'
 
 export const metadata = {
-  title: 'Meeting Transcription: One Page for Any Recorded Meeting | Mictoo',
+  title: 'Meeting Transcription for Any Recorded Platform | Mictoo',
   description:
-    'A platform-agnostic upload for any recorded meeting (Zoom, Teams, Meet, Webex, Loom, Riverside). Drop the file, get a transcript with timestamps, AI summary, and exports. Free, no signup.',
+    'Upload an authorized meeting recording from Zoom, Teams, Meet, Webex, Loom, or Riverside for text, summary, and exports.',
   alternates: {
     canonical: 'https://mictoo.com/meeting-transcription',
     languages: {
@@ -105,13 +105,13 @@ export default function MeetingTranscriptionPage() {
         },
         {
           icon: 'target',
-          title: 'Better than built-in transcripts',
-          desc: 'Higher accuracy with timestamps, cleaner formatting and readable exports.',
+          title: 'One review workflow',
+          desc: 'Use the same timestamped layout and export options regardless of which platform created the recording.',
         },
         {
           icon: 'lock',
-          title: 'No enterprise license required',
-          desc: 'Transcribe meetings without paid add-ons or admin permissions.',
+          title: 'Works from an authorized file',
+          desc: 'Mictoo processes a recording you already have permission to use; access and download policies still belong to the source platform.',
         },
         {
           icon: 'sparkles',
@@ -130,9 +130,30 @@ export default function MeetingTranscriptionPage() {
         { icon: 'globe',     title: 'Multilingual meetings' },
       ]}
 
+      practicalTitle="Where to find a meeting recording"
+      practicalIntro="The exact location depends on the platform and your meeting role. Download only recordings you are authorized to access, and follow participant-consent and organization policies before uploading."
+      practicalItems={[
+        {
+          title: 'Zoom cloud or local recording',
+          desc: 'Cloud recordings are available from the Zoom web portal on eligible paid accounts. Computer recordings are normally saved to the local Zoom folder.',
+        },
+        {
+          title: 'Google Meet recording',
+          desc: 'Eligible Meet recordings are saved to the organizer\'s My Drive › Meet Recordings folder. Availability depends on edition and admin settings.',
+        },
+        {
+          title: 'Microsoft Teams recording',
+          desc: 'Find the recording from the meeting chat, OneDrive, or the channel SharePoint site. Download permissions can be restricted by policy.',
+        },
+        {
+          title: 'Webex, Loom, and Riverside',
+          desc: 'Use the platform export or download control to obtain an audio or video file, then confirm that the file plays correctly before upload.',
+        },
+      ]}
+
       tipsTitle="Tips for better meeting transcripts"
       tips={[
-        'Prefer audio-only exports for the highest accuracy.',
+        'Prefer audio-only exports when you want a smaller upload.',
         'Record in a quiet space and reduce background noise.',
         'Use Auto-detect for multilingual or mixed-language calls.',
         'Review names and terminology after transcription.',
@@ -157,7 +178,7 @@ export default function MeetingTranscriptionPage() {
         },
         {
           q: 'Does Mictoo identify different speakers?',
-          a: 'Not yet. The transcript is continuous text with per-line timestamps and no "Speaker 1 / Speaker 2" labels. Diarisation is on the Pro tier roadmap for later this year.',
+          a: 'No. The current transcript is continuous text with per-line timestamps and no automatic "Speaker 1 / Speaker 2" labels.',
         },
         {
           q: 'Are meeting recordings stored?',

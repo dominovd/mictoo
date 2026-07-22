@@ -1,9 +1,9 @@
 import UseCaseLayout from '@/components/UseCaseLayout'
 
 export const metadata = {
-  title: 'Sermon Transcription: Free Transcript Generator for Sermons | Mictoo',
+  title: 'Sermon Transcription for Services and Study | Mictoo',
   description:
-    'Free sermon transcription. Upload your service recording (MP3, MP4, M4A, WAV) and get a clean AI transcript in seconds. Built for churches, pastors, and study notes.',
+    'Upload a sermon or service recording and get searchable text, timestamps, an AI summary, and export files.',
   alternates: {
     canonical: 'https://mictoo.com/sermon-transcription',
     languages: {

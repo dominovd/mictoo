@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import FormatPageLayout from '@/components/FormatPageLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/ogg-to-text',
@@ -15,82 +15,176 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'OGG를 텍스트로 — 무료 온라인 OGG 오디오 받아쓰기 | Mictoo',
-  description: 'OGG 오디오 파일을 온라인에서 무료로 텍스트로 변환. 모든 OGG Vorbis 녹음을 업로드하고 즉시 정확한 받아쓰기를 받으세요. 가입 불필요.',
-  alternates: { canonical: 'https://mictoo.com/ko/ogg-to-text', languages: LANGS },
-
+  title: 'OGG를 텍스트로: 텔레그램 음성, 리눅스 오디오, Opus/Vorbis 전사 | Mictoo',
+  description:
+    'OGG 오디오 (Vorbis, Opus, OGG 내 FLAC) 또는 텔레그램 .oga 음성 메시지를 업로드하세요. 타임스탬프가 포함된 편집 가능한 전사, 가입 필요 없음.',
+  alternates: {
+    canonical: 'https://mictoo.com/ko/ogg-to-text',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "OGG를 텍스트로 — 무료 온라인 OGG 오디오 받아쓰기 | Mictoo",
-    description: "OGG 오디오 파일을 온라인에서 무료로 텍스트로 변환. 모든 OGG Vorbis 녹음을 업로드하고 즉시 정확한 받아쓰기를 받으세요. 가입 불필요.",
-    url: "https://mictoo.com/ko/ogg-to-text",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'OGG를 텍스트로: 텔레그램 음성, 리눅스 오디오, Opus/Vorbis 전사 | Mictoo',
+    description: 'OGG 오디오 또는 텔레그램 .oga 음성 메시지를 업로드하세요. 초 단위의 편집 가능한 전사.',
+    url: 'https://mictoo.com/ko/ogg-to-text',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "OGG를 텍스트로 — 무료 온라인 OGG 오디오 받아쓰기 | Mictoo",
-    description: "OGG 오디오 파일을 온라인에서 무료로 텍스트로 변환. 모든 OGG Vorbis 녹음을 업로드하고 즉시 정확한 받아쓰기를 받으세요. 가입 불필요.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'OGG를 텍스트로: 텔레그램 음성 및 리눅스 오디오 전사',
+    description: 'OGG 오디오 또는 텔레그램 .oga 음성 메시지를 업로드하세요. 초 단위의 편집 가능한 전사.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function KoOggToTextPage() {
   return (
-    <LandingLayout
-      badge="OGG · Vorbis · 무료 · 즉시"
-      h1={<>OGG를 텍스트로<br /><span className="text-brand-600">무료 온라인 OGG 받아쓰기</span></>}
-      subtitle="모든 OGG 오디오 파일을 업로드하고 몇 초 만에 텍스트로 변환. OGG Vorbis와 OGG Opus 지원. 계정 불필요."
-      defaultLanguage="ko"
-      valueBlock={
-        <article className="prose-content">
-          <p>OGG는 하나의 오디오 코덱이 아니라 Vorbis, Opus, 때로는 FLAC을 담는 컨테이너입니다. Telegram 음성 메시지는 보통 .oga로 저장되고 내부 코덱은 Opus입니다. Mictoo는 확장자만 보지 않고 실제 오디오 형식을 감지해 처리합니다.</p>
-          <p>Linux 녹음 앱, WebRTC 통화, 오픈소스 오디오 자료도 변환 없이 바로 올릴 수 있습니다. 먼저 MP3로 바꿀 필요가 없습니다.</p>
-          <p>60MB까지 무료입니다. Telegram Opus 음성은 매우 작아서 긴 음성 메모도 제한에 걸리는 일이 드뭅니다.</p>
-        </article>
-      }
-      howItWorks={[
-        { icon: '🐧', title: 'OGG, OGA, Opus 업로드', desc: 'Vorbis, Opus, FLAC이 들어 있는 OGG를 처리합니다. .ogg, .oga, .opus 확장자 모두 실제 코덱을 확인합니다.' },
-        { icon: '🎤', title: '오디오를 추출하고 받아쓰기', desc: '서버에서 OGG 컨테이너의 오디오를 꺼내 Whisper가 처리할 수 있는 형태로 디코딩합니다.' },
-        { icon: '💬', title: '수정하고 내보내기', desc: '결과를 화면에서 확인하고 이름이나 용어를 고친 뒤 TXT, SRT, VTT, DOCX로 저장할 수 있습니다.' },
+    <FormatPageLayout
+      locale="ko"
+      badge="OGG · Vorbis · Opus · .oga"
+      h1First="OGG를 텍스트로"
+      h1Second="텔레그램 음성, 리눅스 오디오, Opus 및 Vorbis"
+      subtitle="OGG는 텔레그램 음성이 사용하는 형식(.oga)이며, 리눅스 오디오 앱의 기본 형식이고, 오픈 소스 Opus 코덱이 포함되어 있습니다. 파일을 드롭하면 자동으로 오디오 스트림을 감지하고 Whisper large-v3로 전사합니다."
+      highlightFormat="ogg"
+      previewFileName="telegram-voice.oga"
+      previewWordCount={128}
+      previewDurationLabel="1분 52초"
+      previewLines={[
+        { t: '0:00',  line: '안녕하세요, 내일 통화에 대한 간단한 음성 메시지입니다.' },
+        { t: '0:03',  line: '슬라이드를 살펴봤고, 4번에서 6번 슬라이드는 발표 전에 다시 생각해봐야 할 것 같습니다.' },
+        { t: '0:10',  line: '주요 문제는 이야기가 문제에서 가격으로 바로 넘어가고 데모 스크린샷을 보여주지 않는 것입니다.' },
+        { t: '0:20',  line: '제가 할 일은 5번 슬라이드를 데모 흐름으로 바꾸고 가격을 슬라이드의 끝으로 밀어내는 것입니다.' },
+        { t: '0:30',  line: '그렇게 하면 제품이 실제로 무엇을 하는지에 대한 긴장을 쌓은 후에 비용에 대해 이야기할 수 있습니다.' },
+        { t: '0:39',  line: '또한, 어제 클라이언트가 통합 슬라이드를 보고 싶다고 언급했는데, 현재 부록에 있습니다.' },
+        { t: '0:49',  line: '그것을 메인 흐름으로 옮기고, 데모와 가격 사이에 두는 것이 좋습니다.' },
+        { t: '0:56',  line: '곧 이야기합시다. 기회가 되면 당신의 생각을 알려주세요.' },
       ]}
-      whyUse={{
-        title: 'OGG와 .oga에 Mictoo를 쓰는 이유',
-        bullets: [
-          { title: 'Telegram 음성을 바로 처리', desc: 'Telegram Desktop이나 Web에서 저장한 음성 메시지는 .oga인 경우가 많습니다. .ogg로 이름을 바꾸거나 MP3로 변환하지 않아도 됩니다.' },
-          { title: 'Vorbis와 Opus를 구분할 필요 없음', desc: '오래된 OGG는 Vorbis, 최근 음성 메모와 통화 녹음은 Opus가 많습니다. Mictoo가 내부 형식을 감지합니다.' },
-          { title: '작은 파일에서도 음성이 선명함', desc: 'Opus는 낮은 비트레이트의 음성에 강합니다. 말소리가 또렷하면 짧은 Telegram 메모도 잘 받아쓸 수 있습니다.' },
-          { title: 'Linux와 브라우저 녹음에 적합', desc: 'GNOME/KDE 녹음, WebRTC 통화, 오픈소스 오디오 자료처럼 OGG가 자연스럽게 나오는 작업 흐름에 맞습니다.' },
-        ],
-      }}
-      useCases={{
-        title: 'OGG 파일이 자주 나오는 곳',
-        items: [
-          { title: 'Telegram 긴 음성 메시지', desc: '업무 설명, 가족 메시지, 그룹 채팅의 긴 음성을 글로 남길 때 유용합니다.' },
-          { title: 'Linux 데스크톱 녹음', desc: 'Linux 녹음 앱은 OGG나 Opus를 선택하는 경우가 있습니다. 연구 메모나 팟캐스트 소스를 바로 처리할 수 있습니다.' },
-          { title: '브라우저 통화 백업', desc: 'WebRTC 기반 통화 녹음은 Opus를 쓰는 경우가 많아 나중에 회의록으로 만들기 좋습니다.' },
-          { title: '아카이브 오디오와 발음 샘플', desc: 'Wikipedia나 교육 자료의 OGG 오디오를 검색 가능한 텍스트로 바꿀 수 있습니다.' },
-        ],
-      }}
-      proTips={{
-        title: 'OGG 받아쓰기 팁',
-        tips: [
-          { title: '.oga를 억지로 바꾸지 않기', desc: '.oga도 오디오 전용 OGG 확장자입니다. Mictoo에서는 그대로 업로드하면 됩니다.' },
-          { title: 'Telegram은 Desktop이나 Web에서 저장', desc: '모바일 앱에서는 파일로 꺼내기 어려울 수 있습니다. Desktop/Web의 저장 기능이 더 확실합니다.' },
-          { title: '짧은 음성은 언어를 직접 선택', desc: '몇 초짜리 메시지는 자동 감지가 흔들릴 수 있습니다. 한국어 음성이면 한국어를 선택하세요.' },
-        ],
-      }}
+      whyTitle="OGG 전사에 Mictoo가 적합한 이유"
+      whyCards={[
+        {
+          icon: 'mic',
+          title: '텔레그램 음성 메시지, 네이티브 지원',
+          desc: '텔레그램 .oga 음성 노트가 바로 들어옵니다. 이름 변경이나 재포장이 필요 없습니다. OGG 컨테이너 내의 Opus 스트림을 처리합니다.',
+        },
+        {
+          icon: 'gear',
+          title: 'Vorbis, Opus 및 FLAC-in-OGG',
+          desc: 'OGG 컨테이너 내의 모든 코덱이 작동합니다: Vorbis(구형), Opus(최신형), FLAC-in-OGG(오디오파일). 서버 측에서 자동 감지됩니다.',
+        },
+        {
+          icon: 'sparkles',
+          title: '음성 노트 체인에 대한 AI 요약',
+          desc: '음성 메시지는 종종 장황합니다. AI 요약은 5분 .oga를 두 줄의 액션으로 바꿉니다.',
+        },
+        {
+          icon: 'globe',
+          title: '50개 이상의 언어로 번역',
+          desc: '그룹 채팅에서 러시아어, 스페인어 또는 포르투갈어로 된 음성 메시지. 전사 후 영어(또는 원하는 언어)로 번역합니다.',
+        },
+      ]}
+      scenariosTitle="OGG를 텍스트로 변환할 때 적합한 경우"
+      scenarios={[
+        {
+          icon: 'mic',
+          title: '텔레그램 음성 메시지',
+          desc: '동료나 클라이언트가 텔레그램을 통해 보낸 음성 노트. 채팅에서 .oga를 저장하고 여기 드롭하면 텍스트 버전을 스킴할 수 있습니다.',
+        },
+        {
+          icon: 'gear',
+          title: '리눅스 오디오 녹음',
+          desc: 'Audacity, GNOME Sound Recorder 또는 OGG를 기본으로 하는 KDE 오디오 도구에서 녹음. 완벽하게 지원되며 변환이 필요 없습니다.',
+        },
+        {
+          icon: 'briefcase',
+          title: '오픈 소스 앱 내보내기',
+          desc: 'OGG로 내보내는 팟캐스트 또는 인터뷰 녹음기(많은 FOSS 앱이 라이센스 문제로 Vorbis 또는 Opus를 기본으로 사용합니다).',
+        },
+        {
+          icon: 'video',
+          title: 'Firefox MediaRecorder 캡처',
+          desc: 'Firefox는 종종 브라우저 녹음 앱에서 OGG/Opus를 생성합니다. 파일을 드롭하여 타임스탬프가 있는 깨끗한 전사를 얻으세요.',
+        },
+        {
+          icon: 'editPen',
+          title: '음성으로 작성한 메모',
+          desc: 'OGG로 저장되는 앱에서 캡처한 음성 우선 메모. 편집 가능한 텍스트로 변환하여 작성 워크플로우에 준비합니다.',
+        },
+        {
+          icon: 'users',
+          title: '다중 화자 OGG 채팅 로그',
+          desc: 'Discord, Mumble 또는 유사한 VOIP 녹음이 OGG로 내보내집니다. 참고용, 회의록 또는 아카이브를 위한 전사.',
+        },
+      ]}
+      technicalTitle="OGG 파일 내에 무엇이 있을 수 있나요"
+      technicalIntro="OGG는 단일 오디오 코덱이 아닌 컨테이너 패밀리입니다. 스트림 유형과 확장을 아는 것은 녹음의 출처를 설명하는 데 도움이 되지만, 업로드 전에 재포장할 필요는 없습니다."
+      technicalFacts={[
+        {
+          icon: 'layers',
+          title: 'Vorbis, Opus 또는 FLAC',
+          desc: 'OGG 컨테이너는 여러 코덱을 담을 수 있습니다. 음성 메시지는 일반적으로 Opus를 사용하며, 구형 데스크톱 오디오는 종종 Vorbis를 사용합니다.',
+        },
+        {
+          icon: 'file',
+          title: '.oga 및 .ogg',
+          desc: '.oga는 같은 컨테이너 패밀리의 오디오 전용 확장입니다. 텔레그램 음성 내보내기는 종종 이 확장으로 도착합니다.',
+        },
+        {
+          icon: 'mic',
+          title: '음성 메시지 출처',
+          desc: '짧은 모바일 메시지는 방 소음과 전화 처리음을 포함할 수 있으며, 명확한 캡처가 컨테이너 이름보다 더 중요합니다.',
+        },
+        {
+          icon: 'gear',
+          title: '헤더 기반 검사',
+          desc: '스트림 구조는 처리 중에 검사되므로, 비정상적인 확장은 먼저 이름을 변경할 필요가 없습니다.',
+        },
+      ]}
       faq={[
-        { q: 'OGG를 텍스트로 변환하는 방법은?', a: '위에 OGG 파일을 업로드하세요. 받아쓰기는 몇 초 만에 자동으로 생성됩니다.' },
-        { q: 'OGG에서 텍스트 변환이 무료인가요?', a: '네, 완전히 무료입니다. 가입이나 계정이 필요하지 않습니다.' },
-        { q: 'OGG 파일의 최대 크기는?', a: '최대 25MB.' },
-        { q: '다른 오디오 포맷은 어떤 것이 지원되나요?', a: 'MP3, MP4, WAV, M4A, FLAC, WEBM도 지원됩니다.' },
+        {
+          q: 'Mictoo는 어떤 종류의 OGG 파일을 수락하나요?',
+          a: '표준 OGG 컨테이너: Vorbis 오디오(구형, 리눅스에서 일반적), Opus 오디오(최신형, 텔레그램 음성과 현대 앱에서 사용됨), FLAC-in-OGG. 또한 OGG와 다른 확장을 가진 텔레그램 .oga 파일도 수락합니다.',
+        },
+        {
+          q: 'OGA 파일이 OGG와 동일한가요?',
+          a: '실질적으로 그렇습니다. .oga는 오디오 전용 OGG의 표준화된 확장으로, 대부분 텔레그램 음성 메시지에서 Opus 스트림을 담고 있습니다. Mictoo는 .oga와 .ogg를 동일하게 처리합니다.',
+        },
+        {
+          q: '내 OGG 파일이 60 MB를 초과합니다. 이제 어떻게 하나요?',
+          a: 'Opus와 Vorbis는 효율적이므로 60 MB에 도달하는 것은 일반적으로 매우 긴 녹음을 의미합니다. 로그인하면 최대 약 3시간까지 자동 분할됩니다. 그렇지 않으면 먼저 다운샘플링하세요: ffmpeg -i in.ogg -b:a 32k -ac 1 out.ogg. 음성이 선명하게 유지됩니다.',
+        },
+        {
+          q: 'OGG 비디오(Theora)를 수락하나요?',
+          a: 'OGG/Theora 컨테이너 내의 오디오 트랙이 전사됩니다. .ogv 파일을 업로드하면 다른 비디오 형식과 마찬가지로 오디오를 디뮤직합니다. 무음 Theora 클립은 빈 전사를 생성합니다.',
+        },
+        {
+          q: 'Mictoo는 비영어 OGG를 전사하나요?',
+          a: '예. Whisper large-v3는 50개 이상의 언어를 지원하며 자동 감지합니다. 짧은 음성 메시지나 비영어 콘텐츠의 경우, 더 깨끗한 첫 번째 결과를 위해 언어를 명시적으로 설정하세요.',
+        },
+        {
+          q: 'OGG 녹음에 대한 SRT 자막을 받을 수 있나요?',
+          a: '예. 전사 후 SRT 또는 VTT를 다운로드하세요. 타임스탬프는 비디오 편집기나 접근성 도구에서 사용할 수 있도록 원래 OGG 타임라인에 맞춰집니다.',
+        },
+        {
+          q: '내 OGG 파일이 서버에 저장되나요?',
+          a: '아니요. 오디오 스트림은 전사 제공업체로 전송되고, 한 번 처리된 후 메모리에서 삭제됩니다. 디스크에 기록하지 않습니다. 전사는 로그인하고 기록으로 저장할 경우에만 저장됩니다.',
+        },
+        {
+          q: '전사를 다른 언어로 번역할 수 있나요?',
+          a: '예. 전사 후 목표 언어를 선택하고 번역을 클릭하세요. 번역은 GPT-4o-mini에서 실행되며 원본과 함께 나타납니다.',
+        },
+        {
+          q: 'OGG 품질이 전사에 영향을 미치나요?',
+          a: '거의 영향을 미치지 않습니다. Opus는 24-32 kbps에서 음성이 선명하게 들리며, 높은 비트 전송률과 본질적으로 동일하게 전사됩니다. Whisper는 내부적으로 16 kHz 단일 채널로 리샘플링하므로, 비트 전송률은 깨끗한 음성에 미치는 영향이 최소화됩니다.',
+        },
+        {
+          q: 'OGG 전사에는 얼마나 걸리나요?',
+          a: '2분 길이의 텔레그램 음성 노트는 일반적으로 5-15초 내에 완료됩니다. 더 긴 OGG 파일(30-45분)은 45-90초가 걸립니다. 업로드 속도가 종종 더 긴 단계입니다.',
+        },
       ]}
-      relatedLinks={[
-        { href: '/ko/wav-to-text', label: 'WAV를 텍스트로' },
-        { href: '/ko/flac-to-text', label: 'FLAC을 텍스트로' },
-        { href: '/ko', label: '모든 포맷' },
-      ]}
+      ctaHeadline="텔레그램 음성 또는 OGG 파일을 드롭하세요"
+      ctaSubtitle="Opus, Vorbis, FLAC-in-OGG, .oga 음성 메시지. 모든 OGG 스트림, 네이티브로 처리됩니다."
+      ctaButton="OGG 업로드하여 전사하기"
     />
   )
 }

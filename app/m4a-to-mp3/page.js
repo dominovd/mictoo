@@ -48,7 +48,7 @@ export default function M4aToMp3Page() {
       steps={[
         { icon: 'upload',   title: 'Drop the M4A',        desc: 'From Voice Memos, GarageBand, Apple Podcasts. Up to 25 MB anonymously.' },
         { icon: 'waveform', title: 'We decode and encode', desc: 'ffmpeg decodes the AAC inside the M4A container and re-encodes to 128 kbps MP3.' },
-        { icon: 'download', title: 'Download the MP3',    desc: 'Get an MP3 every player recognises.' },
+        { icon: 'download', title: 'Download the MP3',    desc: 'Get an MP3 compatible with most current players and audio editors.' },
       ]}
       previewInputName="voice-memo.m4a"
       previewInputSize="6.2 MB · 00:12:04"
@@ -86,7 +86,7 @@ export default function M4aToMp3Page() {
       ]}
       faq={[
         { q: 'Do I need to convert M4A to MP3?', a: 'Only if a specific tool or host requires MP3. Most modern devices (including all Android and Windows in 2026) play M4A natively.' },
-        { q: 'Is the converter free?', a: 'Yes. Up to 25 MB anonymously, 60 MB signed in. No watermark, no upgrade prompts.' },
+        { q: 'Is the converter free?', a: 'Yes. Files up to 25 MB can be converted without an account, and the output has no watermark.' },
         { q: 'Will I lose quality?', a: 'M4A and MP3 are both lossy. Re-encoding adds a small loss but is inaudible for typical listening.' },
         { q: 'Does iPhone Voice Memos native format work?', a: 'Yes. iPhone Voice Memos writes standard .m4a which drops in directly.' },
         { q: 'Are files stored?', a: 'No. Uploaded M4A is dropped after conversion; the MP3 is purged within the hour.' },

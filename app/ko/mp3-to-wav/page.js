@@ -1,5 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
-import ConverterZone from '@/components/ConverterZone'
+import ConverterPageLayout from '@/components/ConverterPageLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/mp3-to-wav',
@@ -16,81 +15,90 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'MP3를 WAV로 — 무료 온라인 변환기 | Mictoo',
+  title: 'MP3에서 WAV로, 무료 온라인 변환기 | Mictoo',
   description:
-    'MP3를 WAV로 무료 온라인 변환합니다. 압축된 MP3를 오디오 편집용 비압축 16비트/44.1 kHz WAV로 펼칩니다. 가입 없이, 워터마크 없음.',
+    'MP3를 WAV로 무료로 변환하세요. 압축된 MP3를 비압축 16비트/44.1 kHz WAV로 확장하여 오디오 편집에 사용하세요. 회원가입 필요 없고, 워터마크도 없습니다.',
   alternates: { canonical: 'https://mictoo.com/ko/mp3-to-wav', languages: LANGS },
-
   openGraph: {
-    title: "MP3를 WAV로 — 무료 온라인 변환기 | Mictoo",
-    description: "MP3를 WAV로 무료 온라인 변환합니다. 압축된 MP3를 오디오 편집용 비압축 16비트/44.1 kHz WAV로 펼칩니다. 가입 없이, 워터마크 없음.",
-    url: "https://mictoo.com/ko/mp3-to-wav",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'MP3에서 WAV로, 무료 온라인 변환기 | Mictoo',
+    description: 'MP3를 비압축 16비트/44.1 kHz WAV로 변환합니다. 편집용입니다.',
+    url: 'https://mictoo.com/ko/mp3-to-wav',
+    siteName: 'Mictoo', type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "MP3를 WAV로 — 무료 온라인 변환기 | Mictoo",
-    description: "MP3를 WAV로 무료 온라인 변환합니다. 압축된 MP3를 오디오 편집용 비압축 16비트/44.1 kHz WAV로 펼칩니다. 가입 없이, 워터마크 없음.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'MP3에서 WAV로, 무료 온라인 변환기',
+    description: 'DAW 편집 및 마스터링을 위한.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function KoMp3ToWavPage() {
   return (
-    <LandingLayout
-      defaultLanguage="ko"
-      badge="MP3 → WAV · 무료 · 가입 없이"
-      h1={<>MP3를 WAV로<br /><span className="text-brand-600">무료 온라인 변환기</span></>}
-      subtitle="MP3를 드롭하세요. 오디오 편집 소프트웨어에 바로 쓸 수 있는 16비트/44.1 kHz PCM WAV를 얻습니다. 워터마크 없음, 이메일 불필요."
-      tool={<ConverterZone from="mp3" to="wav" />}
-      howItWorks={[
-        { icon: '📂', title: 'MP3를 드롭', desc: 'MP3를 박스에 드래그하세요. 25 MB까지 익명, 60 MB는 가입 후.' },
-        { icon: '⚡', title: 'ffmpeg가 PCM으로 디코딩', desc: '16비트 PCM, 44.1 kHz, 소스 채널 레이아웃 유지. 일반 파일에 몇 초.' },
-        { icon: '⬇️', title: 'WAV를 다운로드', desc: 'WAV는 비압축이므로 MP3의 약 10배 크기입니다. 1시간 이내에 서버에서 제거됩니다.' },
+    <ConverterPageLayout
+      locale="ko"
+      mode="converter" from="mp3" to="wav" currentHref="/ko/mp3-to-wav"
+      badge="MP3 → WAV · 무료 · 편집자 친화적"
+      h1First="MP3에서 WAV로"
+      h1Second="무료 온라인 변환기"
+      subtitle="MP3를 드롭하면 비압축 16비트 / 44.1 kHz WAV를 받아 DAW 편집, 마스터링 또는 CD 굽기에 사용하세요. 워터마크도 없고, 이메일도 필요 없습니다."
+      outputFormat="WAV" outputQuality="16비트 / 44.1 kHz" outputAudio="스테레오"
+      stepsTitle="MP3에서 WAV로 변환하는 방법"
+      steps={[
+        { icon: 'upload',   title: 'MP3 드롭하기',       desc: '비트 전송률에 관계없이, 최대 25 MB까지 익명으로 가능합니다.' },
+        { icon: 'waveform', title: 'PCM으로 디코딩',   desc: 'ffmpeg가 MP3를 비압축 16비트 / 44.1 kHz PCM으로 디코딩하여 WAV 컨테이너에 포장합니다.' },
+        { icon: 'download', title: 'WAV 다운로드',   desc: 'Audacity, Pro Tools, Logic, Ableton 및 모든 오디오 편집기에 적합합니다.' },
       ]}
-      whyUse={{ title: 'MP3를 WAV로 변환하는 이유', bullets: [
-        { title: '오디오 편집기는 WAV를 선호', desc: 'Audacity, Adobe Audition, Logic, Pro Tools, 모두 MP3를 열지만 대부분의 작업 (정밀 편집, 이펙트 적용, 노멀라이즈)은 WAV에서 더 잘 됩니다. 먼저 변환해두면 반복 MP3 인코딩의 미세한 품질 손실을 피할 수 있습니다.' },
-        { title: '편집 시 추가 품질 손실 없음', desc: '각 MP3 재인코딩은 오디오를 약간씩 저하시킵니다. WAV로 변환, 편집, 마지막에 MP3로 내보내기. 이 한 번의 왕복이 최선입니다.' },
-        { title: '일부 레거시 하드웨어와 소프트웨어에 필수', desc: '일부 오래된 CD 굽기 소프트웨어, 샘플러, 녹음 장비는 WAV만 읽습니다. 변환이 다리가 됩니다.' },
-        { title: '포렌식과 방송 용도', desc: '포렌식 오디오 분석과 방송 워크플로는 포맷이 잘 이해되고 비압축이기 때문에 전통적으로 WAV를 씁니다. MP3는 소스 자료로는 허용되지만 작업 포맷은 WAV입니다.' },
-        { title: '워터마크 없음, 업셀 없음', desc: 'WAV 컨테이너에 디코딩된 오디오뿐입니다. 아무것도 추가하지 않습니다.' },
-      ]}}
-      useCases={{ title: 'MP3를 WAV로 변환하고 싶을 때', items: [
-        { title: 'Audacity, Reaper, Logic에서 오디오 편집', desc: '먼저 WAV로 변환한 후 이펙트 적용, 잘라내기, 노멀라이즈, 믹스를 합니다. 작은 배포 파일이 필요하면 마지막에 MP3로 다시 내보내세요.' },
-        { title: 'LP나 CD용 마스터링', desc: 'LP 커팅과 CD 프레싱 모두 무손실 오디오를 원합니다. 소스가 MP3뿐이라면 WAV로 변환해서 마스터링 엔지니어가 작업할 자료를 주세요. 다만 오디오 품질은 MP3 소스로 제한됩니다.' },
-        { title: '샘플러용 샘플 준비', desc: '하드웨어 샘플러 (Akai, Korg)는 종종 특정 비트 깊이와 샘플 레이트의 WAV 파일을 원합니다.' },
-        { title: '비디오용 보이스오버 작업', desc: '일부 비디오 편집기 (DaVinci, Premiere)는 MP3를 잘 다루지만 WAV에서 더 나은 파형을 보여주고 이펙트를 더 깔끔하게 적용합니다.' },
-        { title: '포렌식이나 전사 분석', desc: '일부 전문 분석 도구는 WAV 입력이 필요합니다.' },
-      ]}}
-      proTips={{ title: 'MP3 → WAV 변환 팁', tips: [
-        { title: 'WAV는 MP3의 10배 크기가 됨', desc: '5 MB MP3는 16비트/44.1 kHz WAV로 대략 50 MB로 펼쳐집니다. 변환은 손실된 품질을 복원하지 않습니다. 작업 가능한 포맷을 줄 뿐입니다.' },
-        { title: 'WAV 품질은 MP3에 의해 한정됨', desc: '128 kbps MP3를 WAV로 변환해서 CD 음질로 만들 수는 없습니다. WAV는 기존 오디오를 추가 압축 손실 없이 편집할 수 있게 할 뿐입니다.' },
-        { title: '더 높은 충실도가 필요하면 원본을 요청하세요', desc: '진지한 마스터링이나 복원을 한다면 소스에서 무손실 원본 (WAV, FLAC, ALAC)을 받으세요. MP3 → WAV는 우회책이지 업그레이드가 아닙니다.' },
-        { title: '하드웨어에는 샘플 레이트가 중요', desc: '대부분의 하드웨어는 44.1 kHz (CD)나 48 kHz (비디오)를 원합니다. Mictoo의 변환기는 항상 44.1로 출력합니다. 48이 필요하면 Audacity에서 WAV를 열어 리샘플하세요.' },
-        { title: '24비트 WAV는 Audacity 사용', desc: 'Mictoo의 변환기는 16비트 WAV를 출력합니다. 24비트가 필요하면 결과 WAV를 Audacity에서 열어 24비트 float으로 다시 내보내세요. 소스 오디오가 16비트 등가일지라도 추가 비트 깊이는 편집 헤드룸을 줍니다.' },
-        { title: '모노 입력, 모노 출력 — 공간 절약', desc: 'MP3가 모노라면 WAV도 모노가 됩니다. 스테레오 변환의 절반 크기입니다. 소스 채널 레이아웃을 유지합니다.' },
-      ]}}
+      previewInputName="voiceover.mp3"
+      previewInputSize="4.6 MB · 00:05:00 · 128 kbps"
+      previewOutputName="voiceover.wav"
+      previewOutputSize="00:05:00 · 16비트 / 44.1 kHz · 50 MB"
+      whyTitle="MP3에서 WAV로 변환할 때 Mictoo를 사용하는 이유"
+      whyCards={[
+        { icon: 'target',   title: 'DAW 준비 완료 출력',       desc: '비압축 PCM은 오디오 편집기와 마스터링 도구가 기대하는 것입니다.' },
+        { icon: 'fileAudio',title: '표준 16비트 / 44.1', desc: '오디오 편집기, 마스터링 도구 및 CD 제작 소프트웨어에 널리 지원되는 PCM 설정입니다.' },
+        { icon: 'lock',     title: '파일은 변환 후 삭제',    desc: '업로드된 MP3는 변환 후 삭제되며, WAV는 한 시간 이내에 삭제됩니다.' },
+        { icon: 'shield',   title: '워터마크 또는 태그 없음',    desc: '그냥 오디오, PCM으로 디코딩되었습니다. 브랜드 소개도 없고, 메타데이터도 주입되지 않습니다.' },
+      ]}
+      scenariosTitle="MP3에서 WAV로 변환이 유용한 경우"
+      scenarios={[
+        { icon: 'editPen',    title: 'Audacity 편집' },
+        { icon: 'waveform',   title: 'Pro Tools 가져오기' },
+        { icon: 'headphones', title: '마스터링 작업 흐름' },
+        { icon: 'archive',    title: 'CD 굽기' },
+        { icon: 'video',      title: 'WAV 요구 사항이 있는 비디오 편집기' },
+        { icon: 'target',     title: '음성 복제 훈련 입력' },
+      ]}
+      tipsTitle="깨끗한 MP3에서 WAV로 변환을 위한 팁"
+      tips={[
+        'WAV는 MP3보다 10배 큽니다 (분당 약 10 MB).',
+        '출력은 "진정한" 무손실이 아닙니다 ,  MP3 신호를 보존합니다.',
+        '진정한 무손실 오디오를 원하면 FLAC 또는 원본 WAV 마스터에서 시작하세요.',
+        '소스 파일을 현재 25 MB 업로드 제한 이하로 유지하세요.',
+      ]}
+      processTitle="변환 중에 발생하는 일"
+      processSteps={['MP3 스트림', 'PCM으로 디코드', 'WAV 컨테이너']}
+      compareTitle="MP3와 WAV"
+      compareRows={[
+        { fmt: 'MP3', contains: '아니요', size: '작음 (~1 MB/분)', best: '공유, 휴대폰, 스트리밍' },
+        { fmt: 'WAV', contains: '아니요', size: '큼 (~10 MB/분)', best: '편집, 마스터링, CD 굽기' },
+      ]}
       faq={[
-        { q: 'MP3 → WAV 변환이 정말 무료인가요', a: '예. 25 MB까지 계정 불필요, 워터마크 없음, 시간 제한 없음.' },
-        { q: '왜 WAV가 MP3보다 그렇게 큰가요', a: 'MP3는 귀가 거의 알아차리지 못하는 오디오 데이터를 지각적 압축으로 버립니다. WAV는 모든 샘플을 풀 정밀도로 저장합니다. 일반 MP3는 WAV 등가의 10분의 1 크기입니다.' },
-        { q: 'WAV가 MP3보다 좋게 들리나요', a: '아니요. MP3는 원래 인코딩 중에 이미 데이터를 잃었습니다. WAV는 오디오를 있는 그대로 보존하지만 품질을 복원하지는 않습니다.' },
-        { q: '어떤 WAV 포맷으로 출력하나요', a: '16비트 PCM, 44.1 kHz, 소스 채널 레이아웃 유지 (모노 입력은 모노 출력, 스테레오 입력은 스테레오 출력).' },
-        { q: '얼마나 걸리나요', a: '몇 초입니다. MP3 디코딩은 빠릅니다.' },
-        { q: '24비트나 32비트 float WAV를 얻을 수 있나요', a: '이 변환기로는 안 됩니다. Mictoo의 16비트 WAV를 Audacity에서 열어 원하는 비트 깊이로 다시 내보내세요. MP3로 소스 오디오 정밀도가 제한되어도 추가 비트는 편집 헤드룸을 줍니다.' },
-        { q: '파일을 보관하나요', a: '아니요. 업로드는 변환 후 삭제됩니다. 출력은 1시간 이내에 제거됩니다.' },
-        { q: '일괄 변환이 되나요', a: '무료 단계에서는 아직 안 됩니다. 여러 브라우저 탭을 여세요.' },
-        { q: '48 kHz 샘플 레이트는 어떻게 하나요', a: 'Mictoo는 44.1 kHz (CD 레이트)로 출력합니다. 48 kHz (비디오 작업)가 필요하면 변환 후 Audacity에서 WAV를 리샘플하세요.' },
-        { q: '왜 변환이라도 하나요', a: '주로 오디오 편집을 위해서입니다. Audacity, Pro Tools, Logic, 모두 MP3보다 WAV에서 더 잘 작동합니다. 특히 반복 편집에서요.' },
-        { q: '일부 MP3에서 변환이 실패하나요', a: '드뭅니다. ffmpeg는 사실상 모든 표준 MP3를 디코딩합니다. 정말로 손상된 파일은 실패할 수 있지만, 그 외에는 안정적입니다.' },
-        { q: '두 파일을 다 보관해야 하나요', a: '편집에는 WAV로 작업하세요. 배포에는 MP3도 보관하세요. 편집이 끝나면 체인의 끝에서 WAV로부터 새 MP3로 다시 내보내세요.' },
+        { q: 'MP3에서 WAV로 변환하면 무손실 품질이 복구되나요?', a: '아니요. MP3는 손실 형식입니다; WAV는 MP3 신호를 보존하지만 그 이상은 아닙니다. 진정한 무손실을 원하면 FLAC 또는 원본 WAV에서 시작해야 합니다.' },
+        { q: '변환기가 무료인가요?', a: '네. 최대 25 MB의 파일은 계정 없이 변환할 수 있으며, 출력에는 워터마크가 없습니다.' },
+        { q: 'WAV 파일이 이렇게 큰 이유는 무엇인가요?', a: 'WAV는 비압축 PCM입니다. 5 MB MP3는 대략 50 MB WAV로 변환됩니다. 이는 정상입니다.' },
+        { q: '비트 깊이와 샘플링 주파수는 무엇인가요?', a: '16비트 / 44.1 kHz 스테레오 (CD 품질). 이는 표준 DAW 가져오기 형식입니다.' },
+        { q: '파일이 저장되나요?', a: '아니요. 업로드된 MP3는 변환 후 삭제되며, WAV는 한 시간 이내에 삭제됩니다.' },
       ]}
-      relatedLinks={[
-        { href: '/ko/wav-to-mp3', label: 'WAV를 MP3로', desc: '반대 방향의 변환.' },
-        { href: '/ko/flac-to-mp3', label: 'FLAC을 MP3로', desc: '무손실 FLAC을 휴대용 MP3로.' },
-        { href: '/ko/wav-to-text', label: 'WAV를 텍스트로', desc: 'WAV 오디오를 직접 전사합니다.' },
-        { href: '/ko/how-to-compress-audio', label: '오디오 압축', desc: '더 작아져야 하는 파일에.' },
+      ctaHeadline="지금 MP3를 WAV로 변환하세요"
+      ctaSubtitle="MP3를 드롭하고 편집을 위한 비압축 WAV를 받으세요."
+      ctaButton="MP3 파일 선택"
+      moreTools={[
+        { href: '/ko/wav-to-mp3',  label: 'WAV에서 MP3로' },
+        { href: '/ko/mp3-to-m4a',  label: 'MP3에서 M4A로' },
+        { href: '/ko/flac-to-mp3', label: 'FLAC에서 MP3로' },
+        { href: '/ko/wav-to-text', label: 'WAV에서 텍스트로' },
       ]}
     />
   )

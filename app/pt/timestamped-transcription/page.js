@@ -1,96 +1,96 @@
-import LandingLayout from '@/components/LandingLayout'
-
-const LANGS = {
-  'en': 'https://mictoo.com/timestamped-transcription',
-  'fr': 'https://mictoo.com/fr/timestamped-transcription',
-  'de': 'https://mictoo.com/de/timestamped-transcription',
-  'es': 'https://mictoo.com/es/timestamped-transcription',
-  'ru': 'https://mictoo.com/ru/timestamped-transcription',
-  'it': 'https://mictoo.com/it/timestamped-transcription',
-  'pt': 'https://mictoo.com/pt/timestamped-transcription',
-  'pl': 'https://mictoo.com/pl/timestamped-transcription',
-  'ja': 'https://mictoo.com/ja/timestamped-transcription',
-  'ko': 'https://mictoo.com/ko/timestamped-transcription',
-  'x-default': 'https://mictoo.com/timestamped-transcription',
-}
+import ConverterPageLayout from '@/components/ConverterPageLayout'
 
 export const metadata = {
-  title: 'Transcrição com timecode — gerador grátis | Mictoo',
+  title: 'Transcrição com Marcação de Tempo: Gerador de Transcrições com Códigos de Tempo Grátis | Mictoo',
   description:
-    'Transcrição grátis com timecode. Receba timecode por palavra ou frase para qualquer áudio ou vídeo. Perfeito para jornalismo, pesquisa, podcasting, edição de vídeo.',
-  alternates: { canonical: 'https://mictoo.com/pt/timestamped-transcription', languages: LANGS },
-
+    'Transcrição com marcação de tempo gratuita com códigos de tempo a nível de segmento para áudio ou vídeo. Útil para jornalismo, pesquisa, podcasting e edição de vídeo.',
+  alternates: {
+    canonical: 'https://mictoo.com/pt/timestamped-transcription',
+    languages: {
+      'en': 'https://mictoo.com/timestamped-transcription',
+      'fr': 'https://mictoo.com/fr/timestamped-transcription',
+      'de': 'https://mictoo.com/de/timestamped-transcription',
+      'es': 'https://mictoo.com/es/timestamped-transcription',
+      'ru': 'https://mictoo.com/ru/timestamped-transcription',
+      'it': 'https://mictoo.com/it/timestamped-transcription',
+      'pt': 'https://mictoo.com/pt/timestamped-transcription',
+      'pl': 'https://mictoo.com/pl/timestamped-transcription',
+      'ja': 'https://mictoo.com/ja/timestamped-transcription',
+      'ko': 'https://mictoo.com/ko/timestamped-transcription',
+      'x-default': 'https://mictoo.com/timestamped-transcription',
+    },
+  },
   openGraph: {
-    title: "Transcrição com timecode — gerador grátis | Mictoo",
-    description: "Transcrição grátis com timecode. Receba timecode por palavra ou frase para qualquer áudio ou vídeo. Perfeito para jornalismo, pesquisa, podcasting, edição de vídeo.",
-    url: "https://mictoo.com/pt/timestamped-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Transcrição com Marcação de Tempo: Gerador de Transcrições com Códigos de Tempo Grátis | Mictoo',
+    description: 'Códigos de tempo a nível de frase para qualquer áudio ou vídeo.',
+    url: 'https://mictoo.com/pt/timestamped-transcription',
+    siteName: 'Mictoo', type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Transcrição com timecode — gerador grátis | Mictoo",
-    description: "Transcrição grátis com timecode. Receba timecode por palavra ou frase para qualquer áudio ou vídeo. Perfeito para jornalismo, pesquisa, podcasting, edição de vídeo.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Transcrição com Marcação de Tempo: Grátis',
+    description: 'Transcrições com códigos de tempo para jornalismo, pesquisa, edição.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function PtTimestampedPage() {
+export default function PtTimestampedTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="pt"
-      badge="Timecode · Citações · Grátis"
-      h1={<>Transcrição com timecode<br /><span className="text-brand-600">Transcrições time-coded grátis</span></>}
-      subtitle="Timecode preciso para cada linha ou palavra no seu áudio. Volte a momentos exatos, cite trechos específicos, construa capítulos. Grátis, sem cadastro."
-      howItWorks={[
-        { icon: '📂', title: 'Solte o arquivo', desc: 'MP3, M4A, MP4, WAV, FLAC, OGG, WEBM, AAC. Trabalhamos com formatos de áudio e vídeo.' },
-        { icon: '⚡', title: 'A IA transcreve e adiciona timecode', desc: 'O Whisper large-v3 gera a transcrição com timecodes ao milissegundo para cada segmento (e opcionalmente cada palavra).' },
-        { icon: '💾', title: 'Escolha granularidade e baixe', desc: 'Escolha timecode por frase (o mais comum) ou por palavra (para trabalho de alinhamento preciso). Baixe como TXT com timecode inline, como SRT para workflows de legenda, ou copie para a área de transferência.' },
+    <ConverterPageLayout
+      locale="pt"
+      mode="upload" currentHref="/pt/timestamped-transcription"
+      badge="Com Marcação de Tempo · Áudio ou vídeo · Grátis"
+      h1First="Transcrição com Marcação de Tempo"
+      h1Second="Transcrições com códigos de tempo para jornalismo, pesquisa, edição"
+      subtitle="Carregue áudio ou vídeo e obtenha uma transcrição com códigos de tempo por segmento. Clique em qualquer código de tempo para saltar para aquele momento no reprodutor de áudio. Grátis, sem registo."
+      stepsTitle="Como funciona a transcrição com marcação de tempo"
+      steps={[
+        { icon: 'upload',   title: 'Coloque áudio ou vídeo',       desc: 'MP3, MP4, WAV, M4A, WEBM, FLAC e mais. Até 25 MB anonimamente ou 180 MB com registo.' },
+        { icon: 'waveform', title: 'Whisper marca códigos de tempo por segmentos', desc: 'Whisper large-v3 fornece códigos de tempo por segmento alinhados ao áudio original.' },
+        { icon: 'download', title: 'Exportar com códigos de tempo',      desc: 'TXT com códigos de tempo inline, SRT / VTT para legendas, DOCX para revisão.' },
       ]}
-      whyUse={{ title: 'Por que Mictoo para transcrição com timecode', bullets: [
-        { title: 'Timecode ao milissegundo', desc: 'O Whisper produz timecodes com precisão de milissegundo. Mais preciso que qualquer framerate comum de vídeo, mais que suficiente para trabalho de citação.' },
-        { title: 'Por frase por padrão, por palavra quando preciso', desc: 'Nível frase mantém transcrições legíveis. Nível palavra é exagero para notas, mas essencial para edição de vídeo e alinhamento musical.' },
-        { title: 'Grátis', desc: 'Sem contador por minuto. Sem tier "timecode custa extra". Mesmo preço da transcrição simples (grátis).' },
-        { title: 'Export SRT para workflows de vídeo', desc: 'Timecodes em formato SRT funcionam direto em Premiere, DaVinci, CapCut e YouTube Studio como faixas de legenda.' },
-        { title: 'Timecode inline no TXT para citações', desc: 'Texto puro com marcadores [00:01:23] no começo de cada segmento. Fácil de colar em notas de pesquisa, posts de blog ou rascunhos jornalísticos.' },
-        { title: 'Nenhum arquivo guardado', desc: 'O áudio vai ao provedor de transcrição e é descartado. Nada fica nos nossos servidores.' },
-      ]}}
-      useCases={{ title: 'Para que as pessoas usam transcrições com timecode', items: [
-        { title: 'Jornalismo e citações', desc: 'Citando uma fonte de uma entrevista? Coloque o timecode ao lado da citação nas suas notas. Quando a editoria ou o fact-checker pergunta "onde exatamente ele disse isso", você tem a resposta em dois segundos.' },
-        { title: 'Marcadores de capítulo para podcasts', desc: 'Gere a transcrição, escaneie por transições de seção naturais, copie esses timecodes para a função de capítulo do seu host de podcast. Players modernos mostram capítulos na barra de reprodução.' },
-        { title: 'Rough cuts de edição de vídeo', desc: 'Pegue a transcrição, marque as linhas que quer manter, ache na timeline pelo timecode. "Paper editing" é muito mais rápido que dar scrub.' },
-        { title: 'Pesquisa acadêmica e coding qualitativo', desc: 'Pesquisadores em NVivo, Atlas.ti ou MAXQDA tagueiam segmentos de transcrição com códigos. Timecodes te deixam voltar ao áudio no momento exato quando codifica passagens ambíguas.' },
-        { title: 'Alinhamento musical para vídeos sing-along', desc: 'Timecode por palavra para projetos tipo karaokê ou lyric video. Cada palavra acende no momento exato em que é cantada.' },
-      ]}}
-      proTips={{ title: 'Dicas para transcrição com timecode', tips: [
-        { title: 'Timecode por frase funciona para 95% dos casos', desc: 'A menos que você esteja fazendo alinhamento musical ou legendagem palavra-por-palavra, nível frase é o que você quer. Mais legível, mais fácil de editar.' },
-        { title: 'Timecode por palavra incha tamanho de arquivo e complexidade', desc: 'Um SRT por palavra para uma palestra de 30 minutos tem milhares de entries. Use só quando precisa mesmo de precisão por palavra.' },
-        { title: 'Para podcasts, gere marcadores de capítulo a partir de pausas naturais', desc: 'Procure na transcrição transições de tópico, mudanças de agenda ou introduções de convidado. Copie esses timecodes para o seu host de podcast como marcadores de capítulo.' },
-        { title: 'Para jornalismo, salve o timecode com toda citação que você poderia usar', desc: 'O você do futuro, 3 semanas depois, não vai lembrar de qual entrevista veio uma citação, muito menos onde na entrevista. O timecode resolve.' },
-        { title: 'Timecodes SRT são zero-padded, os TXT não', desc: 'SRT usa 00:01:23,456. TXT geralmente usa [1:23]. Se você cola num CMS que espera um formato, converta antes de colar.' },
-        { title: 'Para edição de vídeo, o timecode no nosso SRT se alinha ao áudio no arquivo original', desc: 'Se você reexporta o vídeo a um framerate diferente, os timecodes encaixam do mesmo jeito, porque são em tempo absoluto (milissegundos), não em frames.' },
-        { title: 'Timecodes dão drift em áudio ruim', desc: 'Se o Whisper alucina palavras durante música ou silêncio, os timecodes dessas palavras fantasma são estimativas. Os timecodes da fala real ficam precisos. Confie só nas seções de fala, ignore as seções musicais.' },
-      ]}}
+      whyTitle="Por que usar a Mictoo para transcrições com marcação de tempo?"
+      whyCards={[
+        { icon: 'clock',    title: 'Códigos de tempo clicáveis',   desc: 'Cada código de tempo é clicável na visualização do Leitor. Salte para qualquer momento no reprodutor de áudio.' },
+        { icon: 'target',   title: 'Transcrição de qualidade Whisper', desc: 'Whisper large-v3 adiciona pontuação e lida com muitas línguas, sotaques e tipos de gravação.' },
+        { icon: 'captions', title: 'SRT + VTT incluídos',         desc: 'Os códigos de tempo são transferidos para exportações SRT e VTT para legendagem de vídeo.' },
+        { icon: 'lock',     title: 'Arquivos apagados após',        desc: 'O áudio carregado é eliminado após a transcrição; a transcrição persiste apenas em contas com registo.' },
+      ]}
+      scenariosTitle="Quando as transcrições com marcação de tempo são úteis"
+      scenarios={[
+        { icon: 'editPen',    title: 'Caça a citações no jornalismo' },
+        { icon: 'target',     title: 'Citação em pesquisa UX' },
+        { icon: 'video',      title: 'Lista de cues para edição de vídeo' },
+        { icon: 'headphones', title: 'Notas de programa de podcast' },
+        { icon: 'archive',    title: 'Legal / descoberta' },
+        { icon: 'waveform',   title: 'Marcação de áudio' },
+      ]}
+      tipsTitle="Dicas para uma saída com marcação de tempo mais limpa"
+      tips={[
+        'A visualização do Leitor é a melhor para navegação clicável.',
+        'Para exportação SRT / VTT, os códigos de tempo alinham-se à linha do tempo do arquivo original.',
+        'Para gravações longas, registe-se para divisão automática até cerca de 3 horas.',
+        'A barra de pesquisa destaca correspondências e mostra o seu código de tempo instantaneamente.',
+      ]}
+      processTitle="O que acontece durante a transcrição"
+      processSteps={['Áudio / vídeo', 'Whisper large-v3', 'Texto com marcação de tempo']}
       faq={[
-        { q: 'Qual a diferença entre timecode por frase e por palavra?', a: 'Nível frase: um timecode por linha de texto (normalmente uma frase). Nível palavra: um timecode por palavra. Nível frase é legível e bom para citações, podcasting e a maior parte do trabalho de vídeo. Nível palavra é para alinhamento musical, vídeos karaokê e animações de legenda palavra-a-palavra.' },
-        { q: 'Quão precisos são os timecodes?', a: 'O Whisper produz timecodes ao milissegundo. Encaixam corretamente em qualquer framerate comum (24, 25, 29.97, 30, 50, 60 fps) sem offset.' },
-        { q: 'Os timecodes dão drift num arquivo longo?', a: 'Raramente. O Whisper alinha os timecodes ao áudio real, então ficam precisos mesmo em arquivos de 60 minutos. Drift sub-segundo pode aparecer nos últimos segmentos de arquivos muito longos. Se você nota, ajuste manualmente.' },
-        { q: 'Posso ter um TXT com timecode inline, tipo [00:01:23] antes de cada linha?', a: 'Sim. Baixe como TXT e inserimos timecodes por frase inline. Formato: [00:01:23] texto da frase aqui.' },
-        { q: 'O SRT contém timecode?', a: 'Sim, é o sentido todo do formato SRT. Toda entry de legenda tem timecode de início e fim.' },
-        { q: 'Como se compara com as legendas automáticas do YouTube com timecode?', a: 'As legendas automáticas do YouTube têm timecode, mas sem pontuação e com precisão menor. As nossas têm pontuação completa, precisão melhor e output SRT padrão que funciona em qualquer editor de vídeo.' },
-        { q: 'Posso pular da transcrição para um timecode específico no áudio?', a: 'Na nossa view de resultado, clique em qualquer timecode para posicionar o player de áudio nesse momento. Após o download, você precisa de um player de áudio separado para isso.' },
-        { q: 'Os timecodes vão funcionar em Premiere ou DaVinci Resolve?', a: 'Sim. Importe o SRT na timeline. As legendas aparecem automaticamente nos momentos certos.' },
-        { q: 'Quais idiomas são suportados para transcrição com timecode?', a: 'Os mesmos mais de 50 idiomas da transcrição simples. Os timecodes vêm automaticamente com toda transcrição, independente do idioma.' },
-        { q: 'O áudio é guardado?', a: 'Não. O arquivo vai ao provedor de transcrição e é descartado após o processamento.' },
-        { q: 'Posso usar timecode por palavra para fazer um vídeo karaokê?', a: 'Sim, mas você precisa de software de vídeo que possa renderizar highlight palavra-a-palavra a partir de um formato JSON ou SRT. Algumas ferramentas (Premiere, After Effects, software karaokê especializado) suportam direto.' },
-        { q: 'Quanto demora para gerar transcrições com timecode?', a: 'Igual à transcrição simples, cerca de 1-2% da duração do áudio. Os timecodes vêm automaticamente, sem tempo extra de processamento.' },
+        { q: 'Qual é a granularidade dos códigos de tempo?', a: 'Por segmento (aproximadamente por frase). Whisper produz nativamente códigos de tempo a nível de segmento alinhados ao áudio.' },
+        { q: 'Posso clicar num código de tempo para saltar no áudio?', a: 'Sim. Na visualização do Leitor, cada código de tempo é clicável e move o reprodutor de áudio para aquele momento.' },
+        { q: 'A ferramenta é gratuita?', a: 'Sim. Até 25 MB anonimamente ou 180 MB quando registado. Sem marca d’água e sem taxa por minuto.' },
+        { q: 'Quais formatos de exportação são suportados?', a: 'TXT (com códigos de tempo inline), SRT, VTT, DOCX. Os utilizadores registados também obtêm PDF e JSON com dados de timestamp estruturados.' },
+        { q: 'Identificam os falantes?', a: 'Ainda não. Texto contínuo com códigos de tempo sem rótulos de falantes. A diarização está no roteiro Pro.' },
+        { q: 'As gravações são mantidas nos seus servidores?', a: 'Não. O áudio é enviado para o fornecedor de transcrição, processado uma vez e eliminado. As transcrições persistem apenas em contas com registo.' },
       ]}
-      relatedLinks={[
-        { href: '/pt/free-srt-generator', label: 'Gerador SRT', desc: 'Mesmos timecodes, focado em workflows de legenda.' },
-        { href: '/pt/podcast-transcription', label: 'Transcrição de podcast', desc: 'Timecodes para show notes e marcadores de capítulo.' },
-        { href: '/pt/interview-transcription', label: 'Transcrição de entrevista', desc: 'Timecodes para citação e busca de fonte.' },
-        { href: '/pt/transcribe-audio-to-text', label: 'Áudio em texto', desc: 'Para output só texto sem timecode.' },
+      ctaHeadline="Obtenha uma transcrição com marcação de tempo clicável"
+      ctaSubtitle="Jornalismo, pesquisa UX, edição de vídeo, notas de programa de podcast. Grátis por arquivo."
+      ctaButton="Carregar áudio ou vídeo"
+      moreTools={[
+        { href: '/pt/free-srt-generator',       label: 'Gerador SRT' },
+        { href: '/pt/youtube-to-text',          label: 'YouTube para Texto' },
+        { href: '/pt/transcribe-audio-to-text', label: 'Áudio para Texto' },
+        { href: '/pt/transcribe-video-to-text', label: 'Vídeo para Texto' },
       ]}
     />
   )

@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/zoom-transcription',
@@ -15,80 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Transkrypcja Zoom — transkrybuj nagrania Zoom za darmo | Mictoo',
+  title: 'Transkrypcja Zoom dla nagrań w chmurze i lokalnych | Mictoo',
   description:
-    'Darmowa transkrypcja Zoom. Prześlij swoje Cloud Recording (MP4) lub nagranie lokalne (M4A) i otrzymaj precyzyjną transkrypcję AI w kilka sekund. Bez rejestracji.',
-  alternates: { canonical: 'https://mictoo.com/pl/zoom-transcription', languages: LANGS },
-
+    'Prześlij nagranie Zoom w formacie MP4/M4A z chmury lub lokalne i uzyskaj transkrypt z znacznikami czasowymi, podsumowanie AI oraz pliki eksportowe.',
+  alternates: {
+    canonical: 'https://mictoo.com/pl/zoom-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Transkrypcja Zoom — transkrybuj nagrania Zoom za darmo | Mictoo",
-    description: "Darmowa transkrypcja Zoom. Prześlij swoje Cloud Recording (MP4) lub nagranie lokalne (M4A) i otrzymaj precyzyjną transkrypcję AI w kilka sekund. Bez rejestracji.",
-    url: "https://mictoo.com/pl/zoom-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Transkrypcja nagrań Zoom | Mictoo',
+    description: 'Prześlij nagranie Zoom w formacie MP4/M4A i uzyskaj transkrypt, podsumowanie oraz pliki eksportowe.',
+    url: 'https://mictoo.com/pl/zoom-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Transkrypcja Zoom — transkrybuj nagrania Zoom za darmo | Mictoo",
-    description: "Darmowa transkrypcja Zoom. Prześlij swoje Cloud Recording (MP4) lub nagranie lokalne (M4A) i otrzymaj precyzyjną transkrypcję AI w kilka sekund. Bez rejestracji.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Transkrypcja Zoom: Darmowa',
+    description: 'Prześlij nagranie Zoom i uzyskaj transkrypt z znacznikami czasowymi.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function PlZoomPage() {
+export default function PlZoomTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="pl"
-      badge="ZOOM · MP4 · M4A · ZA DARMO"
-      h1={<>Transkrypcja Zoom<br /><span className="text-brand-600">Konwertuj nagrania Zoom na tekst</span></>}
-      subtitle="Zamień swoje nagranie Zoom w czysty tekst. Cloud Recording MP4 lub lokalne M4A, oba działają. Upuść plik, otrzymaj transkrypcję w kilka sekund."
-      howItWorks={[
-        { icon: '🎬', title: 'Wyeksportuj nagranie Zoom', desc: 'Cloud Recordings pobierają się jako MP4 (wideo plus audio) lub M4A (tylko audio). Local Recording są zapisywane na twoim urządzeniu jako MP4 plus M4A. Oba formaty działają tutaj.' },
-        { icon: '⚡', title: 'Upuść plik', desc: 'Przeciągnij. Wyciągamy audio (jeśli to wideo) i wysyłamy do Whisper large-v3. Spotkanie 30-minutowe jest zwykle gotowe w mniej niż minutę.' },
-        { icon: '📋', title: 'Weź transkrypcję', desc: 'Przeczytaj, skopiuj lub pobierz jako TXT lub SRT. Popraw błędne nazwy lub terminy techniczne inline przed eksportem.' },
+    <UseCaseLayout
+      locale="pl"
+      badge="Zoom · Chmura / Lokalny / M4A audio · Darmowe"
+      h1First="Transkrypcja Zoom"
+      h1Second="Nagrania w chmurze i lokalne na tekst"
+      subtitle="Prześlij nagranie Zoom w formacie MP4, audio M4A lub lokalne nagranie. Uzyskaj transkrypt z znacznikami czasowymi, podsumowanie AI, tłumaczenie oraz pliki eksportowe w jednym procesie."
+      currentHref="/pl/zoom-transcription"
+
+      platforms={[
+        { name: 'Cloud MP4',    iconKey: 'videoCameraFill', brandBg: '#2D8CFF' },
+        { name: 'M4A audio',    iconKey: 'mic',             brandBg: '#0EA5A4' },
+        { name: 'Local MP4',    iconKey: 'videoCameraFill', brandBg: '#4B53BC' },
+        { name: 'Google Meet',  iconKey: 'videoCameraFill', brandBg: '#00832D', href: '/pl/google-meet-transcription' },
+        { name: 'MS Teams',     iconKey: 'videoCameraFill', brandBg: '#4B53BC', href: '/pl/teams-meeting-transcription' },
+        { name: 'Meeting hub',  iconKey: 'videoCameraFill', brandBg: '#0F1F35', href: '/pl/meeting-transcription' },
       ]}
-      whyUse={{ title: 'Dlaczego Mictoo do nagrań Zoom', bullets: [
-        { title: 'Działa na każdym planie Zoom, także darmowym', desc: 'Transkrypcja Zoom jest ograniczona do określonych planów płatnych. Nasza nie wymaga planu Zoom. Nagraj, pobierz, wgraj, gotowe.' },
-        { title: 'Lepiej dla nienatywnego angielskiego i code-switching', desc: 'Whisper large-v3 radzi sobie z akcentami i spotkaniami dwujęzycznymi lepiej niż wbudowana transkrypcja Zoom, historycznie angielsko-first.' },
-        { title: 'M4A tylko-audio jest na tyle mały dla bezpośredniego uploadu', desc: 'Większość 30-minutowych spotkań Zoom mieści się w 15-25 MB jako M4A. Komfortowo wchodzi w tier free bez kompresji.' },
-        { title: 'Brak troski o 14-dniową retencję', desc: 'Cloud Recordings Zoom mogą zniknąć po 14-30 dniach zależnie od planu. Gdy pobrałeś plik i przetranskrybowałeś tutaj, należy do ciebie na zawsze.' },
-        { title: 'Prywatność', desc: 'Plik jest strumieniowany do dostawcy transkrypcji i odrzucany. Nie zapisujemy nagrania Zoom w naszej bazie ani storage.' },
-      ]}}
-      useCases={{ title: 'Do czego ludzie transkrybują nagrania Zoom', items: [
-        { title: 'Wewnętrzne protokoły spotkań', desc: 'Przepuść nagranie, weź tekst, wklej w Notion lub Confluence. Kto przegapił spotkanie, nadrabia w pięć minut czytania zamiast godziny wideo.' },
-        { title: 'Calle z klientami i sprzedażowe', desc: 'Zapisz transkrypcję w CRM obok deala. Ty z przyszłości, sześć miesięcy później, podziękuje.' },
-        { title: 'Asynchroniczne stand-upy dla rozproszonych zespołów', desc: 'Niektóre zespoły nagrywają asynchroniczne stand-upy zamiast robić spotkania na żywo. Transkrypcje czynią je przeszukiwalnymi i skanowanymi.' },
-        { title: 'Wywiady badawcze', desc: 'Badania jakościowe, user interview, calle screeningowe kandydatów. To, co kodujesz i tagujesz, to tekst, nie wideo.' },
-        { title: 'Transkrypcje webinarów i paneli', desc: 'Opublikuj transkrypcję obok nagrania dla dostępności i SEO. Wyszukiwarki indeksują tekst, nie wideo.' },
-      ]}}
-      proTips={{ title: 'Wskazówki do transkrypcji Zoom', tips: [
-        { title: 'Pobierz M4A tylko-audio, nie MP4', desc: 'Cloud Recording Zoom oferuje oba. M4A to dziesiąta część rozmiaru MP4 przy identycznej jakości audio. Szybszy upload, daleko poniżej naszego limitu 60 MB dla większości spotkań.' },
-        { title: 'Włącz "Record a separate audio file for each participant" dla spotkań wielomówcowych', desc: 'W ustawieniach Zoom, Recording. Daje to M4A na mówcę. Transkrybuj każdą osobno dla czystej atrybucji, bez potrzeby diaryzacji.' },
-        { title: 'Wycisz uczestników, którzy nie mówią', desc: 'Szum tła z otwartych mikrofonów podczas prezentacji produkuje słowa-duchy w transkrypcji. W dużych callach warto to wymusić.' },
-        { title: 'Lokalne nagrywanie i cloud mają tę samą jakość', desc: 'Oba nagrywają domyślnie z tymi samymi ustawieniami audio. Lokalne jest szybsze (bez uploadu do Zoom najpierw), ale wymaga miejsca na dysku.' },
-        { title: 'Dla wrażliwych treści używaj lokalnego nagrywania', desc: 'Cloud Recording zapisuje twoje spotkanie na serwerach Zoom. Lokalne pozostaje na twoim urządzeniu, dopóki nie wybierzesz, dokąd idzie. Dla poufnych calli klientów lub HR lokalne + bezpośrednio do nas to droga zachowująca prywatność.' },
-        { title: 'Długie spotkania Zoom (powyżej 60 minut) muszą być podzielone', desc: 'Nasz limit pliku to 60 minut z rejestracją. Dla calla 90-minutowego podziel na dwa kawałki po 45 minut. Łatwe w Audacity (File, Export, Multiple) lub z ffmpeg.' },
-      ]}}
+
+      howItWorksTitle="Jak działa transkrypcja Zoom"
+      steps={[
+        {
+          icon: 'folder',
+          title: 'Pobierz z Zoom',
+          desc: 'Chmura: zoom.us → Nagrania → pobierz MP4 lub wersję "Tylko audio (M4A)". Lokalnie: ~/Documents/Zoom/.',
+        },
+        {
+          icon: 'upload',
+          title: 'Upuść plik tutaj',
+          desc: 'Audio M4A jest zazwyczaj znacznie mniejsze niż MP4 i unika przesyłania ścieżki wideo. Bezpłatnie do 25 MB anonimowo, 60 MB po zalogowaniu.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Przejrzyj i eksportuj',
+          desc: 'Czas przetwarzania zależy od długości, rozmiaru pliku i zapotrzebowania. Po zakończeniu, przejrzyj transkrypt i eksportuj podsumowanie, napisy lub podsumowanie DOCX.',
+        },
+      ]}
+
+      exampleTitle="Przykład transkryptu spotkania Zoom"
+      exampleFileName="zoom-cloud-recording.m4a"
+      exampleDurationLabel="34:12"
+      exampleLines={[
+        { t: '0:00',  line: 'Dobrze, przepraszam za opóźnienie. Zoom nie chciał mnie wpuścić, dopóki nie zaktualizowałem. Zaczynajmy.' },
+        { t: '0:10',  line: 'Dzisiaj przeglądamy opinie na temat prototypu z zeszłego tygodnia i decydujemy, co priorytetować w sprincie.' },
+        { t: '0:22',  line: 'Ogólnie opinie były pozytywne. Dwunastu z piętnastu uczestników zrozumiało przebieg bez pomocy.' },
+        { t: '0:33',  line: 'Trzech, którzy utknęli, napotkało ten sam problem na ekranie ustawień. Powinniśmy to naprawić jako pierwsze.' },
+        { t: '0:45',  line: 'Zgoda. Mam już w toku poprawkę projektu. Powinna być gotowa do przeglądu do czwartku.' },
+        { t: '0:56',  line: 'Po drugie, wszystkim podobał się nowy pusty stan, ale nikt nie znalazł przycisku importu. Jest zbyt głęboko ukryty.' },
+        { t: '1:08',  line: 'Przenieśmy import do głównej akcji w pustym stanie. To zmiana jednego wiersza dla inżynierii.' },
+      ]}
+      summaryPoints={[
+        'Opinie na temat prototypu: 12/15 ukończonych bez pomocy.',
+        'Blokada: ekran ustawień zdezorientował 3/15 uczestników.',
+        'Pusty stan dobrze przyjęty, ale przycisk importu trudno znaleźć.',
+        'Poprawka projektu do czwartku.',
+      ]}
+      actionItems={[
+        'Napraw ekran ustawień (poprawka projektu w czwartek)',
+        'Promuj import do głównej akcji w pustym stanie',
+        'Podziel się poprawionym prototypem na piątkowym spotkaniu',
+      ]}
+
+      whyTitle="Dlaczego warto używać Mictoo z nagraniem Zoom"
+      whyCards={[
+        {
+          icon: 'target',
+          title: 'Drugi transkrypt do przeglądu',
+          desc: 'Użyj Mictoo, gdy chcesz dodatkowy transkrypt i tekst z znacznikami czasowymi do sprawdzania nazw, terminologii i kluczowych cytatów.',
+        },
+        {
+          icon: 'lock',
+          title: 'Przetwarza pobrane pliki',
+          desc: 'Mictoo nie łączy się z Twoim kontem Zoom. Prześlij nagranie w chmurze lub lokalne, do którego już masz pozwolenie na użycie.',
+        },
+        {
+          icon: 'gear',
+          title: 'Działa również z nagraniem lokalnym',
+          desc: 'Wbudowany transkrypt Zoom jest tylko w chmurze. Nagranie lokalne nie ma nic. Mictoo działa z oboma.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Podsumowanie + Tłumaczenie w zestawie',
+          desc: 'Podsumowanie AI pojawia się obok transkryptu automatycznie. Tłumacz na 50+ języków jednym kliknięciem.',
+        },
+      ]}
+
+      scenariosTitle="Typowe scenariusze Zoom"
+      scenarios={[
+        { icon: 'chat',      title: 'Rozmowa z klientem' },
+        { icon: 'users',     title: 'Standup zespołu' },
+        { icon: 'briefcase', title: 'Prezentacja sprzedaży' },
+        { icon: 'search',    title: 'Wywiad z użytkownikiem' },
+        { icon: 'book',      title: 'Webinar' },
+        { icon: 'globe',     title: 'Rozmowa wielojęzyczna' },
+      ]}
+
+      tipsTitle="Porady dotyczące nagrań Zoom"
+      tips={[
+        'Pobierz wersję M4A "Tylko audio". Ta sama dokładność, 10x mniejsza.',
+        'Limit nagrania w chmurze nie jest wykorzystywany na naszą transkrypcję (działamy zewnętrznie).',
+        'Nagranie lokalne również działa. Sprawdź w ~/Documents/Zoom/.',
+        'Dla długich rozmów powyżej 60 MB, zaloguj się, aby automatycznie podzielić.',
+      ]}
+
+      guidesTitle="Platformy spotkań z własnymi przewodnikami"
+      guides={[
+        { href: '/pl/google-meet-transcription',   icon: 'video', title: 'Google Meet', desc: 'Workspace + darmowe obejście' },
+        { href: '/pl/teams-meeting-transcription', icon: 'video', title: 'MS Teams',    desc: 'Ścieżki OneDrive + SharePoint' },
+        { href: '/pl/meeting-transcription',       icon: 'video', title: 'Meeting hub', desc: 'Każda platforma, jeden upload' },
+        { href: '/pl/webinar-transcription',       icon: 'monitor', title: 'Webinary',  desc: 'Zoom Webinars, Demio, ON24' },
+      ]}
+
       faq={[
-        { q: 'Czy Mictoo działa z Cloud Recordings Zoom?', a: 'Tak. Pobierz MP4 lub M4A z biblioteki nagrań Zoom, potem wgraj tutaj. Eksport M4A tylko-audio jest szybszy i mniejszy.' },
-        { q: 'Czy działa z nagraniami Zoom Phone?', a: 'Tak. Zoom Phone nagrywa jako MP3 lub M4A. Oba działają. Audio jakości telefonicznej (8 kHz mono) transkrybuje się trochę mniej dokładnie niż audio spotkania wideo, ale wynik nadal jest czytelny.' },
-        { q: 'A co z lokalnymi nagraniami Zoom?', a: 'Ta sama historia. Zoom zapisuje je jako MP4 plus M4A w twoim domyślnym folderze Zoom. Upuść M4A tutaj.' },
-        { q: 'Czy dostanę etykiety mówców?', a: 'Nie automatycznie. Jeśli włączyłeś "Record a separate audio file for each participant" w ustawieniach Zoom, możesz transkrybować plik każdego mówcy osobno. W przeciwnym razie musisz dodać etykiety ręcznie w oparciu o przepływ rozmowy.' },
-        { q: 'Moje nagranie Zoom przekracza 60 MB. Co teraz?', a: 'Użyj pobierania M4A tylko-audio zamiast MP4. Jeśli wciąż za duże, podziel na kawałki lub przekoduj z niższym bitrate. Zobacz nasze przewodniki kompresji i podziału.' },
-        { q: 'Jak Mictoo wypada w porównaniu z wbudowaną transkrypcją Zoom?', a: 'Jesteśmy lepsi w nienatywnym angielskim, lepsi w akcentach i mamy szersze wsparcie języków (ponad 50). Wbudowana transkrypcja Zoom jest wygodniejsza, jeśli już płacisz odpowiedni plan Zoom. Nasza jest darmowa i działa niezależnie od twojego tier Zoom.' },
-        { q: 'Czy moje nagranie Zoom jest zapisywane na waszych serwerach?', a: 'Nie. Plik jest strumieniowany do dostawcy transkrypcji (Groq, z OpenAI jako backup), transkrybowany i odrzucany. Nie zapisujemy nagrania na dysku.' },
-        { q: 'Czy mogę transkrybować spotkanie Zoom w czasie rzeczywistym?', a: 'Nie. Pracujemy tylko z nagranymi plikami. Do czasu rzeczywistego podczas spotkania wbudowane narzędzie Zoom lub dedykowany meeting assistant byłyby właściwym wyborem.' },
-        { q: 'A co z webinarami Zoom i dużymi spotkaniami?', a: 'Ten sam workflow. Pobierz nagranie, wgraj, transkrybuj. Dla bardzo długich webinarów (powyżej 60 minut) najpierw podziel.' },
-        { q: 'Czy wiadomości czatu ze spotkania są transkrybowane?', a: 'Nie. Wiadomości czatu są zapisywane osobno przez Zoom (jako TXT w twoim folderze Zoom). Transkrybujemy tylko audio. Połącz oba sam, jeśli potrzebujesz obojga.' },
-        { q: 'Jak dokładna jest transkrypcja audio Zoom?', a: 'Dla czystego audio spotkania z dobrymi mikrofonami: 90-95%. Dla spotkań ze słabym audio (mikrofon laptopa, hałaśliwy pokój, słaby WiFi) dokładność trochę spada. Nazwy i terminy techniczne często wymagają oczyszczenia.' },
-        { q: 'Czy działa też dla nagrań Microsoft Teams lub Google Meet?', a: 'Tak, ten sam silnik. Mamy dedykowane strony dla Google Meet i Microsoft Teams.' },
+        {
+          q: 'Jakie typy nagrań Zoom działają?',
+          a: 'Nagranie w chmurze MP4 (wideo), nagranie w chmurze M4A (tylko audio) oraz nagranie lokalne MP4. Również eksport chat.txt, jeśli chcesz dziennik czatu, chociaż nie transkrybujemy czatu.',
+        },
+        {
+          q: 'Czy potrzebuję Zoom Pro lub wyżej?',
+          a: 'Nie. Działa każde nagranie Zoom, w tym z lokalnego nagrania w darmowej wersji. Nagranie w chmurze Zoom wymaga Pro+, ale jeśli już masz plik, Mictoo nie interesuje się Twoim poziomem Zoom.',
+        },
+        {
+          q: 'Moje nagranie w chmurze MP4 ma ponad 60 MB. Co teraz?',
+          a: 'Jeśli Twoje nagranie zawiera pobranie "Tylko audio (M4A)", użyj go, aby uniknąć przesyłania ścieżki wideo. Dostępność i rozmiar pliku zależą od ustawień nagrania i długości.',
+        },
+        {
+          q: 'Czy powinienem używać transkrypcji audio Zoom czy Mictoo?',
+          a: 'Transkrypcja audio Zoom jest wygodna, gdy nagranie w chmurze i transkrypcja są włączone na Twoim koncie. Mictoo jest przydatne dla plików lokalnych, dodatkowych formatów eksportu, tłumaczenia lub tworzenia innego transkryptu do przeglądu. Dokładność różni się w zależności od nagrania.',
+        },
+        {
+          q: 'Czy Mictoo identyfikuje mówców Zoom?',
+          a: 'Nie. Obecny transkrypt to ciągły tekst z znacznikami czasowymi na każdą linię i bez automatycznych etykiet "Mówca 1 / Mówca 2".',
+        },
+        {
+          q: 'Gdzie zapisuje się nagranie lokalne?',
+          a: 'Domyślnie, ~/Documents/Zoom/ na Macu i %USERPROFILE%\\Documents\\Zoom\\ na Windows. Każde spotkanie ma własny folder z MP4 i osobnym audio.m4a.',
+        },
+        {
+          q: 'Czy moje nagranie Zoom jest przechowywane na Waszych serwerach?',
+          a: 'Nie. Plik przesyłany jest do dostawcy transkrypcji, przetwarzany raz i usuwany z pamięci. Tylko transkrypt utrzymuje się, jeśli się zalogujesz.',
+        },
       ]}
+
+      ctaHeadline="Przekształć nagrania Zoom w czysty tekst"
+      ctaSubtitle="Cloud MP4 lub M4A, nagranie lokalne, dowolny poziom Zoom. Darmowe za plik."
+      ctaButton="Prześlij nagranie Zoom"
+
       relatedLinks={[
-        { href: '/pl/google-meet-transcription', label: 'Transkrypcja Google Meet', desc: 'Ten sam workflow dla nagrań Google Meet.' },
-        { href: '/pl/teams-meeting-transcription', label: 'Transkrypcja Teams', desc: 'Dla nagrań Microsoft Teams.' },
-        { href: '/pl/meeting-transcription', label: 'Transkrypcja spotkań', desc: 'Ogólna strona, jeśli twoje nagranie pochodzi z innej platformy.' },
-        { href: '/pl/interview-transcription', label: 'Transkrypcja wywiadu', desc: 'Dla rozmów jeden-na-jeden i wywiadów jakościowych.' },
+        { href: '/pl/meeting-transcription',       label: 'Transkrypcja spotkań' },
+        { href: '/pl/google-meet-transcription',   label: 'Transkrypcja Google Meet' },
+        { href: '/pl/teams-meeting-transcription', label: 'Transkrypcja Teams' },
+        { href: '/pl/webinar-transcription',       label: 'Transkrypcja webinarów' },
+        { href: '/pl/interview-transcription',     label: 'Transkrypcja wywiadów' },
       ]}
     />
   )

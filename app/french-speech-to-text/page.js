@@ -1,9 +1,9 @@
 import LanguagePageLayout from '@/components/LanguagePageLayout'
 
 export const metadata = {
-  title: 'French Speech to Text: Liaisons, Accents, and Quebec French Transcription | Mictoo',
+  title: 'French Speech to Text for Regional Accents | Mictoo',
   description:
-    'Transcribe French audio with proper handling of liaisons, nasal vowels, e-élision, and regional accents. Hexagonal, Quebec, Belgian, and Swiss French all supported.',
+    'Transcribe French audio from France, Quebec, Belgium, Switzerland, and Francophone Africa. Review timestamps, summaries, translations, and exports.',
   alternates: {
     canonical: 'https://mictoo.com/french-speech-to-text',
     languages: {
@@ -47,7 +47,7 @@ export default function FrenchSpeechToTextPage() {
 
       chips={[
         { label: 'Free',            icon: 'gift' },
-        { label: 'Private',         icon: 'shield' },
+        { label: 'Auto-deleted',    icon: 'shield' },
         { label: 'French variants', icon: 'globe' },
         { label: 'AI summary',      icon: 'sparkles' },
       ]}
@@ -63,7 +63,7 @@ export default function FrenchSpeechToTextPage() {
       stepsTitle="How French transcription works"
       steps={[
         { icon: 'upload',   title: 'Upload your French audio', desc: 'Upload MP3, MP4, WAV or other formats with clear French speech.' },
-        { icon: 'sparkles', title: 'Whisper recognises regional accents', desc: 'Our AI understands liaisons, accents and vocabulary across French varieties.' },
+        { icon: 'sparkles', title: 'Regional French support', desc: 'Whisper can recognise vocabulary and pronunciation across several French varieties; review heavy dialectal speech.' },
         { icon: 'editPen',  title: 'Edit, translate, and export', desc: 'Review the transcript, get an AI summary, translate and export in many formats.' },
       ]}
 
@@ -88,10 +88,10 @@ export default function FrenchSpeechToTextPage() {
 
       whyTitle="Why use Mictoo for French audio?"
       whyCards={[
-        { icon: 'globe',    title: 'Diverse French varieties', desc: 'Supports France, Quebec, Belgium, Switzerland and Francophone Africa.' },
-        { icon: 'accent',   title: 'Accent marks preserved',   desc: 'Accents are captured correctly for readability and proper meaning.' },
-        { icon: 'quote',    title: 'French punctuation',        desc: 'Quotes, guillemets, spaces and punctuation follow French conventions.' },
-        { icon: 'translate',title: 'Translation included',      desc: 'Translate transcripts to English with one click while keeping nuance.' },
+        { icon: 'globe',    title: 'Diverse French varieties', desc: 'Designed for audio from France, Quebec, Belgium, Switzerland and Francophone Africa.' },
+        { icon: 'accent',   title: 'French orthography',        desc: 'The transcript can preserve French accents and punctuation; review names and dialect terms.' },
+        { icon: 'quote',    title: 'Readable punctuation',      desc: 'Automatic punctuation makes the first draft easier to review and edit.' },
+        { icon: 'translate',title: 'Translation included',      desc: 'Translate the finished transcript to English or another supported language.' },
       ]}
 
       worksWellTitle="French audio that works well"
@@ -113,10 +113,10 @@ export default function FrenchSpeechToTextPage() {
       ]}
       challengesTitle="What makes French speech recognition difficult"
       challenges={[
-        { title: 'Liaisons',           desc: 'Sounds connect between words in speech.',    example: 'les amis',   ipa: 'le.z_a.mi' },
-        { title: 'Élisions',           desc: 'Vowels may drop in fast spoken French.',     example: 'je ai',      ipa: 'ʒe' },
-        { title: 'The silent e',       desc: 'Final "e" is often silent but changes meaning.', example: 'parle', ipa: 'paʁl' },
-        { title: 'Regional vocabulary', desc: 'Different words across French-speaking regions.', example: 'char',  ipa: 'voiture au Québec' },
+        { title: 'Liaisons',            desc: 'A normally silent consonant may be pronounced before a following vowel.', example: 'les amis', ipa: 'le.z‿a.mi' },
+        { title: 'Élisions',            desc: 'A vowel can disappear before another vowel sound and is replaced by an apostrophe.', example: 'j’ai', ipa: 'ʒe' },
+        { title: 'Nasal vowels',        desc: 'Vowel-plus-consonant spellings can represent a single nasal vowel.', example: 'sans', ipa: 'sɑ̃' },
+        { title: 'Regional vocabulary', desc: 'The same object may have different names across French-speaking regions.', example: 'char (Québec)', ipa: '' },
       ]}
 
       varietiesTitle="French varieties supported"
@@ -129,10 +129,10 @@ export default function FrenchSpeechToTextPage() {
       ]}
 
       faq={[
-        { q: 'Can Mictoo transcribe Quebec French?',   a: 'Yes. Quebec vocabulary (char, courriel, magasiner) and typical prosody are handled well. Set the language to French for best results.' },
+        { q: 'Can Mictoo transcribe Quebec French?',   a: 'Yes. Set the language to French, then review regional vocabulary such as char, courriel, and magasiner in the first draft.' },
         { q: 'Are French accents preserved?',           a: 'Yes. Whisper preserves é, è, ê, à, ç, ï, ô and other accent marks in the transcript output.' },
         { q: 'Can I translate the transcript to English?', a: 'Yes. Pick English as the target language and click Translate after transcription. GPT-4o-mini handles the translation.' },
-        { q: 'Is French transcription free?',           a: 'Yes. Files up to 25 MB anonymously, 60 MB signed in. No watermark, no per-minute fee.' },
+        { q: 'Is French transcription free?',           a: 'Yes. Files up to 25 MB can be transcribed anonymously or up to 180 MB when signed in. No watermark and no per-minute fee.' },
         { q: 'Are my audio files stored?',              a: 'No. Audio streams to the transcription provider, gets processed once, and is dropped. Transcripts persist only on signed-in accounts.' },
         { q: 'Which French varieties are best for the model?', a: 'Standard Parisian French has the largest training-data coverage. Quebec, Belgian, Swiss and African French also work well; heavy dialectal speech may need manual review.' },
       ]}
@@ -144,7 +144,7 @@ export default function FrenchSpeechToTextPage() {
       exploreCards={[
         { href: '/spanish-audio-to-text',      flag: '🇪🇸', title: 'Spanish Audio to Text',       desc: 'Transcribe Spanish audio with high accuracy.' },
         { href: '/german-audio-transcription', flag: '🇩🇪', title: 'German Audio Transcription',  desc: 'Accurate German transcription with timestamps.' },
-        { href: '/multilingual-transcription', flag: '🌐', title: 'Multilingual Transcription',   desc: 'Transcribe in 50+ languages with one platform.' },
+        { href: '/multilingual-transcription', flag: '🌐', title: 'Multilingual Transcription',   desc: 'Choose from 36 languages or use automatic detection.' },
       ]}
     />
   )

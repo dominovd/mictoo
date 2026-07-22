@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/meeting-transcription',
@@ -15,191 +15,198 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Meeting-Transkription — kostenloses KI-Transkript für Calls und Meetings | Mictoo',
+  title: 'Besprechungstranskription für jede aufgezeichnete Plattform | Mictoo',
   description:
-    'Kostenlose KI-Meeting-Transkription. Laden Sie eine beliebige Meeting-Aufnahme (von jeder Plattform) hoch und erhalten Sie in Sekunden sauberen Text. Ohne Anmeldung, ohne Tarif pro Minute, über 50 Sprachen.',
-  alternates: { canonical: 'https://mictoo.com/de/meeting-transcription', languages: LANGS },
-
+    'Laden Sie eine autorisierte Besprechungsaufnahme von Zoom, Teams, Meet, Webex, Loom oder Riverside für Text, Zusammenfassung und Exporte hoch.',
+  alternates: {
+    canonical: 'https://mictoo.com/de/meeting-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Meeting-Transkription — kostenloses KI-Transkript für Calls und Meetings | Mictoo",
-    description: "Kostenlose KI-Meeting-Transkription. Laden Sie eine beliebige Meeting-Aufnahme (von jeder Plattform) hoch und erhalten Sie in Sekunden sauberen Text. Ohne Anmeldung, ohne Tarif pro Minute, über 50 Sprachen.",
-    url: "https://mictoo.com/de/meeting-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Besprechungstranskription: Jede Plattform, jede Aufnahme | Mictoo',
+    description: 'Laden Sie eine Besprechungsaufnahme hoch, erhalten Sie ein Transkript. Kostenlos.',
+    url: 'https://mictoo.com/de/meeting-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Meeting-Transkription — kostenloses KI-Transkript für Calls und Meetings | Mictoo",
-    description: "Kostenlose KI-Meeting-Transkription. Laden Sie eine beliebige Meeting-Aufnahme (von jeder Plattform) hoch und erhalten Sie in Sekunden sauberen Text. Ohne Anmeldung, ohne Tarif pro Minute, über 50 Sprachen.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Besprechungstranskription: Jede Plattform',
+    description: 'Laden Sie eine Besprechungsaufnahme hoch, erhalten Sie ein Transkript.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function DeMeetingPage() {
+export default function DeMeetingTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="de"
-      badge="Jede Plattform · Kostenlos · 50+ Sprachen"
-      h1={
-        <>
-          Meeting-Transkription
-          <br />
-          <span className="text-brand-600">Kostenlose KI-Meeting-Transkripte</span>
-        </>
-      }
-      subtitle="Verwandeln Sie jede Meeting-Aufnahme in sauberen Text. Funktioniert mit Zoom, Meet, Teams, Webex, Discord, Skype, Sprachrekordern, allem. Ohne Anmeldung, ohne Tarif pro Minute."
-      howItWorks={[
+    <UseCaseLayout
+      locale="de"
+      badge="Jede Plattform · Kostenlos · Keine Anmeldung"
+      h1First="Besprechungstranskription"
+      h1Second="Eine Upload-Seite für jede Plattform"
+      subtitle="Laden Sie eine Aufnahme von Zoom, Teams, Google Meet, Webex, Loom oder einer Bildschirmaufnahme hoch. Erhalten Sie ein sauberes Transkript mit Zeitstempeln, KI-Zusammenfassung und Exporten."
+      currentHref="/de/meeting-transcription"
+
+      platforms={[
+        { name: 'Zoom',        iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/de/zoom-transcription' },
+        { name: 'Google Meet', iconKey: 'videoCameraFill', brandBg: '#00832D', href: '/de/google-meet-transcription' },
+        { name: 'MS Teams',    iconKey: 'videoCameraFill', brandBg: '#4B53BC', href: '/de/teams-meeting-transcription' },
+        { name: 'Webex',       iconKey: 'videoCameraFill', brandBg: '#0F1F35' },
+        { name: 'Loom',        iconKey: 'loomPlay',        brandBg: '#625DF5' },
+        { name: 'Riverside',   iconKey: 'waveMic',         brandBg: '#4B2AF7' },
+      ]}
+
+      howItWorksTitle="Wie die Besprechungstranskription funktioniert"
+      steps={[
         {
-          icon: '🎙️',
-          title: 'Meeting-Aufnahme besorgen',
-          desc: 'Egal welche Plattform Sie genutzt haben (Zoom, Meet, Teams, Webex, Discord, GoToMeeting, Vor-Ort-Sprachrekorder), exportieren Sie die Aufnahme als MP4, MP3, M4A, WAV, FLAC oder OGG.',
+          icon: 'folder',
+          title: 'Finden Sie Ihre Besprechungsaufnahme',
+          desc: 'Exportieren oder laden Sie die Aufnahme von jeder Plattform herunter.',
         },
         {
-          icon: '⚡',
-          title: 'Datei ablegen',
-          desc: 'Wir extrahieren das Audio bei Bedarf und schicken es an Whisper large-v3. Ein 30-Minuten-Meeting ist in rund einer Minute fertig.',
+          icon: 'upload',
+          title: 'Ziehen Sie die Datei hierher',
+          desc: 'Laden Sie Ihre Datei im MP3-, MP4-, WAV- oder anderen unterstützten Formaten hoch.',
         },
         {
-          icon: '📋',
-          title: 'Transkript holen',
-          desc: 'Lesen, kopieren oder als TXT oder SRT herunterladen. Korrigieren Sie falsche Wörter oder Fachbegriffe inline vor dem Export.',
+          icon: 'editPen',
+          title: 'Transkript, Zusammenfassung, Exporte',
+          desc: 'Erhalten Sie ein zeitgestempeltes Transkript, eine KI-Zusammenfassung und Exportdateien.',
         },
       ]}
-      whyUse={{
-        title: 'Warum Mictoo für Meetings',
-        bullets: [
-          {
-            title: 'Quell-Plattform spielt keine Rolle',
-            desc: 'Zoom, Meet, Teams, Webex, Discord, GoToMeeting, BlueJeans, Vor-Ort-Rekorder. Wenn Sie die Datei haben, transkribieren wir sie.',
-          },
-          {
-            title: 'Ein Modell für alle Meetings',
-            desc: 'Dasselbe Whisper large-v3 für den Vertriebs-Call, den Sie auf Zoom aufgenommen haben, und die Team-Retro, die Sie auf Teams erfasst haben. Konsistente Genauigkeit, konsistentes Ausgabeformat.',
-          },
-          {
-            title: 'Kostenlos, kein Minuten-Zähler',
-            desc: 'Die meisten Meeting-Tool-Transkriptionen sind in eine Lizenz-Stufe eingebaut, die ihre eigenen Kosten hat. Unsere ist echt kostenlos, kein monatliches Cap.',
-          },
-          {
-            title: 'Über 50 Sprachen',
-            desc: 'Grenzüberschreitende Meetings, zweisprachige Gespräche, internationale Teams. Whisper kommt mit allen klar, mit Auto-Erkennung oder manueller Sprachauswahl.',
-          },
-          {
-            title: 'Nichts wird gespeichert',
-            desc: 'Die Datei wird zum Transkriptions-Anbieter gestreamt und verworfen. Wir schreiben Ihr Meeting-Audio nicht auf unsere Server.',
-          },
-        ],
-      }}
-      useCases={{
-        title: 'Gängige Meeting-Typen, die Leute transkribieren',
-        items: [
-          {
-            title: 'Team-Stand-ups und Retros',
-            desc: 'Asynchrone Teams transkribieren Stand-ups, damit Leute in anderen Zeitzonen aufholen können. Retros profitieren von einer schriftlichen Aufzeichnung für Follow-up-Aktionen.',
-          },
-          {
-            title: 'Kunden- und Customer-Calls',
-            desc: 'Vertriebs-Calls, Account-Check-ins, Customer Interviews. Speichern Sie das Transkript im CRM neben dem Deal oder Kontakt.',
-          },
-          {
-            title: 'Interne Trainings und Onboarding-Sessions',
-            desc: 'Neue Mitarbeitende lesen das Transkript, während sie das Video schauen. Bessere Behaltensleistung, später durchsuchbar, wenn sie einen Schritt vergessen.',
-          },
-          {
-            title: 'Vorstandssitzungen, Leadership-Offsites, All-Hands',
-            desc: 'Transkripte machen Unternehmenskommunikation zugänglicher. Nützlich für Mitarbeitende, die nicht teilnehmen konnten, und für die Dokumentation.',
-          },
-          {
-            title: 'Interviews und qualitative Forschung',
-            desc: 'Ob es um Kandidaten-Screening, User Interviews oder Journalismus geht, das Transkript ist das eigentliche Arbeitsergebnis.',
-          },
-        ],
-      }}
-      proTips={{
-        title: 'Tipps für Meeting-Transkription',
-        tips: [
-          {
-            title: 'Audio extrahieren, wenn die Quelle Video ist',
-            desc: 'Meeting-Plattformen exportieren MP4 mit Audio und Video. Wir brauchen nur das Audio. ffmpeg -i meeting.mp4 -vn -ac 1 -b:a 64k meeting.mp3 macht aus einem 1-GB-MP4 25 MB oder weniger. Schnellerer Upload, gleiches Transkript.',
-          },
-          {
-            title: 'Stellen Sie sicher, dass alle ein echtes Mikro haben',
-            desc: 'Eingebaute Laptop-Mikros bei einem WLAN-Call produzieren verrauschtes, echohaltiges Audio. Ein kabelgebundenes 20-Dollar-USB-Headset für jeden Teilnehmer zahlt sich in Transkript-Genauigkeit aus.',
-          },
-          {
-            title: 'Teilnehmer stummschalten, die nicht sprechen',
-            desc: 'Offene Mikros während einer Präsentation nehmen Tastatur-Tippen, Hintergrundgeräusche im Raum und Nebengespräche auf. Whisper transkribiert das manchmal als Unsinn-Wörter.',
-          },
-          {
-            title: 'Bei Meetings mit nicht-muttersprachlichen Englisch-Sprechern nicht unnötig teilen',
-            desc: 'Whisper profitiert von längerem Kontext für seltenere Phrasen. Eine durchgängige 30-Minuten-Datei transkribiert besser als drei 10-Minuten-Stücke, wenn Sie die Wahl haben.',
-          },
-          {
-            title: 'Lange Meetings teilen sich besser an natürlichen Pausen',
-            desc: 'Wenn Sie ein 90-Minuten-Meeting in Stücke teilen müssen, suchen Sie nach natürlichen Pausen (eine Kaffeepause, ein Agenda-Übergang) und teilen Sie dort. Geringeres Risiko, einen Satz in der Mitte zu schneiden.',
-          },
-          {
-            title: 'Sprache manuell wählen für kurze oder ungewöhnliche Meetings',
-            desc: 'Auto-Erkennung samplet den ersten Audio-Chunk. Für Meetings, die mit Warteschleifen-Musik, einer kurzen Begrüßung oder Stille beginnen, ist manuelle Sprachauswahl zuverlässiger.',
-          },
-        ],
-      }}
+
+      exampleTitle="Beispieltranskript & Zusammenfassung"
+      exampleFileName="meeting-recording.mp4"
+      exampleDurationLabel="30:15"
+      exampleLines={[
+        { t: '0:00',  line: 'Danke, dass Sie alle dabei sind. Lassen Sie uns schnell den Fortschritt der letzten Woche zusammenfassen, bevor wir in die heutige Agenda einsteigen.' },
+        { t: '0:12',  line: 'Wir haben den Onboarding-Prozess abgeschlossen und einen Anstieg der Aktivierung um zwölf Prozent im Vergleich zur vorherigen Basislinie festgestellt.' },
+        { t: '0:28',  line: 'Großartig. Als Nächstes müssen wir den Checkout-Fehler auf Mobilgeräten beheben, bevor er weitere zahlende Kunden erreicht.' },
+        { t: '0:36',  line: 'Ich werde ein Ticket erstellen und es bis zum Ende des Tages dem Team zuweisen. Sollte innerhalb des Sprints gelöst werden.' },
+        { t: '0:44',  line: 'Wir sollten auch die Updates zur Preisgestaltungsseite besprechen. Die aktuelle Version konvertiert nicht so, wie wir es erwartet haben.' },
+        { t: '0:55',  line: 'Ich werde bis zum Ende des Tages einen Entwurf teilen, und wir können ihn morgen vor dem Standup gemeinsam überprüfen.' },
+      ]}
+      summaryPoints={[
+        'Onboarding-Prozess abgeschlossen mit 12% Anstieg der Aktivierung.',
+        'Checkout-Fehler auf Mobilgeräten muss behoben werden.',
+        'Updates zur Preisgestaltungsseite sind zu besprechen.',
+        'Entwurf wird bis EOD geteilt und morgen überprüft.',
+      ]}
+      actionItems={[
+        'Ticket für den mobilen Checkout-Fehler erstellen',
+        'Entwurf der Preisgestaltungsseite teilen',
+        'Entwurf morgen überprüfen',
+      ]}
+
+      whyTitle="Warum ein plattformunabhängiger Upload hilfreich ist"
+      whyCards={[
+        {
+          icon: 'globe',
+          title: 'Funktioniert auf jeder Besprechungsplattform',
+          desc: 'Laden Sie von Zoom, Teams, Google Meet, Webex, Loom und mehr hoch.',
+        },
+        {
+          icon: 'target',
+          title: 'Ein Überprüfungsworkflow',
+          desc: 'Verwenden Sie dasselbe zeitgestempelte Layout und dieselben Exportoptionen, unabhängig davon, welche Plattform die Aufnahme erstellt hat.',
+        },
+        {
+          icon: 'lock',
+          title: 'Funktioniert von einer autorisierten Datei',
+          desc: 'Mictoo verarbeitet eine Aufnahme, für die Sie bereits die Erlaubnis zur Nutzung haben; Zugriffs- und Downloadrichtlinien gehören weiterhin zur Quellplattform.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Zusammenfassung und Übersetzung inklusive',
+          desc: 'Erhalten Sie KI-Zusammenfassungen und übersetzen Sie Transkripte in über 50 Sprachen.',
+        },
+      ]}
+
+      scenariosTitle="Häufige Szenarien für Besprechungstranskriptionen"
+      scenarios={[
+        { icon: 'chat',      title: 'Kundenrückblick-E-Mails' },
+        { icon: 'search',    title: 'Nutzerforschungsnotizen' },
+        { icon: 'users',     title: 'Recruiter-Screenings' },
+        { icon: 'briefcase', title: 'Team-Besprechungsarchive' },
+        { icon: 'headset',   title: 'Support-Eskalationen' },
+        { icon: 'globe',     title: 'Mehrsprachige Besprechungen' },
+      ]}
+
+      practicalTitle="Wo Sie eine Besprechungsaufnahme finden"
+      practicalIntro="Der genaue Standort hängt von der Plattform und Ihrer Rolle in der Besprechung ab. Laden Sie nur Aufnahmen herunter, auf die Sie autorisierten Zugriff haben, und beachten Sie die Richtlinien zur Zustimmung der Teilnehmer und der Organisation, bevor Sie hochladen."
+      practicalItems={[
+        {
+          title: 'Zoom-Cloud- oder lokale Aufnahme',
+          desc: 'Cloud-Aufnahmen sind im Zoom-Webportal für berechtigte kostenpflichtige Konten verfügbar. Computeraufnahmen werden normalerweise im lokalen Zoom-Ordner gespeichert.',
+        },
+        {
+          title: 'Google Meet-Aufnahme',
+          desc: 'Berechtigte Meet-Aufnahmen werden im Ordner „Mein Laufwerk“ › „Meet-Aufnahmen“ des Organisators gespeichert. Die Verfügbarkeit hängt von der Edition und den Admin-Einstellungen ab.',
+        },
+        {
+          title: 'Microsoft Teams-Aufnahme',
+          desc: 'Finden Sie die Aufnahme im Besprechungs-Chat, OneDrive oder der SharePoint-Seite des Kanals. Die Berechtigungen zum Herunterladen können durch Richtlinien eingeschränkt werden.',
+        },
+        {
+          title: 'Webex, Loom und Riverside',
+          desc: 'Verwenden Sie die Plattform-Export- oder Download-Steuerung, um eine Audio- oder Videodatei zu erhalten, und bestätigen Sie, dass die Datei vor dem Hochladen korrekt abgespielt wird.',
+        },
+      ]}
+
+      tipsTitle="Tipps für bessere Besprechungstranskripte"
+      tips={[
+        'Bevorzugen Sie Audio-Only-Exporte, wenn Sie einen kleineren Upload wünschen.',
+        'Nehmen Sie in einem ruhigen Raum auf und reduzieren Sie Hintergrundgeräusche.',
+        'Verwenden Sie die automatische Erkennung für mehrsprachige oder gemischte Sprachgespräche.',
+        'Überprüfen Sie Namen und Terminologie nach der Transkription.',
+      ]}
+
+      guidesTitle="Wählen Sie den richtigen Plattformleitfaden"
+      guides={[
+        { href: '/de/zoom-transcription',          icon: 'video', title: 'Zoom-Besprechungen',    desc: 'Schritt-für-Schritt-Download-Leitfaden' },
+        { href: '/de/google-meet-transcription',   icon: 'video', title: 'Google Meet',      desc: 'Schritt-für-Schritt-Download-Leitfaden' },
+        { href: '/de/teams-meeting-transcription', icon: 'video', title: 'Microsoft Teams',  desc: 'Schritt-für-Schritt-Download-Leitfaden' },
+        { href: '/de/meeting-transcription#tool',  icon: 'file',  title: 'Andere Plattformen',  desc: 'Alle Leitfäden und Tipps ansehen' },
+      ]}
+
       faq={[
         {
-          q: 'Welche Meeting-Plattformen unterstützen Sie?',
-          a: 'Alle. Wir arbeiten mit der Aufnahme-Datei, nicht mit der Plattform. Zoom, Microsoft Teams, Google Meet, Webex, Discord, Skype, GoToMeeting, BlueJeans, Vor-Ort-Sprachrekorder. Wenn die Datei MP4, MP3, M4A, WAV, FLAC, OGG oder WEBM ist, transkribieren wir sie.',
+          q: 'Kann ich eine Zoom-, Meet- oder Teams-Aufnahme transkribieren?',
+          a: 'Ja. Jede Audio- oder Videodatei von jeder Besprechungsplattform funktioniert. Laden Sie einfach die Aufnahme herunter und ziehen Sie sie hierher. Wir akzeptieren MP3, MP4, WAV, M4A, WEBM, FLAC und mehr.',
         },
         {
-          q: 'Mein Meeting war auf Zoom (oder Meet, oder Teams). Soll ich diese Seite nutzen oder die plattformspezifische?',
-          a: 'Gleicher Motor, gleiche Genauigkeit. Die plattformspezifischen Seiten geben Ihnen gezieltere Tipps. Nutzen Sie das, was Ihnen leichter fällt.',
+          q: 'Ist die Besprechungstranskription kostenlos?',
+          a: 'Ja. Dateien bis zu 25 MB anonym, 60 MB bei Anmeldung. Längere Besprechungen können automatisch für angemeldete Benutzer aufgeteilt werden. Keine Kreditkarte erforderlich.',
         },
         {
-          q: 'Bekomme ich Sprecher-Labels?',
-          a: 'Nicht automatisch. Whisper macht standardmäßig keine Sprecher-Diarisierung. Für ein Meeting mit unterscheidbaren Stimmen fügen Sie Labels manuell basierend auf dem Gespräch hinzu. Für Meetings mit separaten Audiospuren pro Sprecher (Riverside, SquadCast, manchmal Zoom) transkribieren Sie jede Spur separat.',
+          q: 'Identifiziert Mictoo verschiedene Sprecher?',
+          a: 'Nein. Das aktuelle Transkript ist fortlaufender Text mit Zeitstempeln pro Zeile und ohne automatische „Sprecher 1 / Sprecher 2“-Bezeichnungen.',
         },
         {
-          q: 'Meine Meeting-Aufnahme ist über 60 MB. Was tun?',
-          a: 'Zwei Optionen. Nur Audio aus dem Video extrahieren (ein ffmpeg-Befehl), oder das Meeting in Stücke teilen.',
+          q: 'Werden Besprechungsaufnahmen gespeichert?',
+          a: 'Nein. Die Datei wird an den Transkriptionsanbieter gestreamt, einmal verarbeitet und aus dem Speicher gelöscht. Das Transkript wird nur gespeichert, wenn Sie sich anmelden und es zu Ihrer Historie hinzufügen.',
         },
         {
-          q: 'Wie genau ist die Meeting-Transkription?',
-          a: 'Für sauberes Audio (gute Mikros, kein Hintergrundlärm): 90 bis 95 Prozent. Für Konferenzraum-Mikros oder Speakerphones: 80 bis 90 Prozent. Namen und Fachbegriffe brauchen oft Cleanup.',
+          q: 'Welche Exportformate sind verfügbar?',
+          a: 'TXT (reiner Text), SRT und VTT (Untertitel mit Zeitstempeln, die mit der Aufnahme ausgerichtet sind), und DOCX (Word-Dokument). Angemeldete Benutzer erhalten auch PDF und JSON.',
         },
         {
-          q: 'Wird mein Meeting auf Ihren Servern gespeichert?',
-          a: 'Nein. Die Datei wird zum Transkriptions-Anbieter gestreamt und nach der Verarbeitung verworfen. Wir schreiben weder Ihr Meeting-Audio noch das Transkript in unsere Datenbank.',
-        },
-        {
-          q: 'Ist die Meeting-Transkription auf Mictoo DSGVO-konform?',
-          a: 'Wir behalten Audio oder Transkript nicht, nachdem Sie die Seite verlassen. Wir sind in Europa, und unsere Anbieter (Groq US, OpenAI US) haben DPAs. Für spezifische Compliance-Fragen siehe unsere Datenschutzerklärung.',
-        },
-        {
-          q: 'Kann ich eine Zusammenfassung des Meetings bekommen, nicht nur das Transkript?',
-          a: 'Derzeit liefern wir das vollständige Transkript. Für Zusammenfassungen fügen Sie das Transkript in ChatGPT oder Claude ein mit einem Prompt wie „Fasse dieses Meeting-Transkript in Schlüsselentscheidungen und Aktionspunkte zusammen".',
-        },
-        {
-          q: 'Welche Sprachen werden unterstützt?',
-          a: 'Über 50, mit Auto-Erkennung. Für Meetings unter 5 Minuten oder Dateien mit nicht-sprachlichen Intros wählen Sie die Sprache manuell für zuverlässigere Ergebnisse.',
-        },
-        {
-          q: 'Kann ich ein Meeting in Echtzeit transkribieren?',
-          a: 'Nein. Wir arbeiten mit aufgenommenen Dateien. Für Echtzeit nutzen Sie die eigene Live-Transkription der Meeting-Plattform oder einen dedizierten Meeting-Assistenten.',
-        },
-        {
-          q: 'Wie bekomme ich die SRT-Datei passend zu meinem Meeting-Video?',
-          a: 'Laden Sie die SRT nach der Transkription herunter. Die meisten Video-Editoren (Premiere, DaVinci, CapCut, Final Cut) importieren SRTs, die sich automatisch ausrichten, solange das Audio im Video mit dem übereinstimmt, was Sie transkribiert haben.',
-        },
-        {
-          q: 'Kann ich vertrauliche Meetings transkribieren?',
-          a: 'Für vertrauliche Meetings (HR, Recht, M&A, Vorstand) seien Sie vorsichtig mit jedem Cloud-Transkriptions-Service, einschließlich unserem. Unsere Datei wird nicht gespeichert, aber sie geht durch einen Drittanbieter-Sprach-Anbieter zur Verarbeitung. Für maximale Privatsphäre nutzen Sie stattdessen eine lokale Whisper-Installation.',
+          q: 'Kann ich das Transkript übersetzen?',
+          a: 'Ja. Wählen Sie nach der Transkription eine Zielsprache aus und klicken Sie auf Übersetzen. Nützlich, um Rückblick-E-Mails an Teilnehmer in ihrer bevorzugten Sprache zu senden oder um mehrsprachige Besprechungen in einer einzigen Arbeitssprache zu archivieren.',
         },
       ]}
+
+      ctaHeadline="Verwandeln Sie Ihre nächste Besprechung in klare Notizen"
+      ctaSubtitle="Laden Sie eine Aufnahme von jeder Plattform hoch und erhalten Sie in Sekundenschnelle ein Transkript, eine Zusammenfassung und Exporte."
+      ctaButton="Eine Besprechungsaufnahme hochladen"
+
       relatedLinks={[
-        { href: '/de/zoom-transcription', label: 'Zoom-Transkription', desc: 'Zoom-spezifische Tipps und Export-Workflow.' },
-        { href: '/de/google-meet-transcription', label: 'Google Meet-Transkription', desc: 'Für Google Meet-Aufnahmen.' },
-        { href: '/de/teams-meeting-transcription', label: 'Teams-Transkription', desc: 'Für Microsoft Teams-Aufnahmen.' },
-        { href: '/de/business-transcription', label: 'Business-Transkription', desc: 'Für Kundengespräche, Konferenzen und Vertriebs-Calls.' },
+        { href: '/de/interview-transcription',  label: 'Interviewtranskription' },
+        { href: '/de/podcast-transcription',    label: 'Podcasttranskription' },
+        { href: '/de/lecture-transcription',    label: 'Vorlesungstranskription' },
+        { href: '/de/business-transcription',   label: 'Business-Transkription' },
+        { href: '/de/voice-memo-to-text',       label: 'Sprachnotiz in Text' },
       ]}
     />
   )

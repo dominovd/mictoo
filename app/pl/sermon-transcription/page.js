@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/sermon-transcription',
@@ -15,81 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Transkrypcja kazań — Darmowy generator transkryptów kazań | Mictoo',
-  description: 'Transkrybuj kazania i audio kościelne na tekst za darmo. Idealne do blogów, notatek do studium i dostępności. Obsługuje MP3, MP4, M4A. Bez rejestracji.',
-  alternates: { canonical: 'https://mictoo.com/pl/sermon-transcription', languages: LANGS },
-
+  title: 'Transkrypcja kazań dla usług i studiów | Mictoo',
+  description:
+    'Prześlij nagranie kazania lub usługi i uzyskaj tekst do przeszukiwania, znaczniki czasowe, podsumowanie AI oraz pliki do eksportu.',
+  alternates: {
+    canonical: 'https://mictoo.com/pl/sermon-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Transkrypcja kazań — Darmowy generator transkryptów kazań | Mictoo",
-    description: "Transkrybuj kazania i audio kościelne na tekst za darmo. Idealne do blogów, notatek do studium i dostępności. Obsługuje MP3, MP4, M4A. Bez rejestracji.",
-    url: "https://mictoo.com/pl/sermon-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Transkrypcja kazań: Darmowe | Mictoo',
+    description: 'Prześlij nagranie usługi, uzyskaj czystą transkrypcję.',
+    url: 'https://mictoo.com/pl/sermon-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Transkrypcja kazań — Darmowy generator transkryptów kazań | Mictoo",
-    description: "Transkrybuj kazania i audio kościelne na tekst za darmo. Idealne do blogów, notatek do studium i dostępności. Obsługuje MP3, MP4, M4A. Bez rejestracji.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Transkrypcja kazań',
+    description: 'Darmowe transkrypcje dla kościołów i studiów.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function PlSermonPage() {
+export default function PlSermonTranscriptionPage() {
   return (
-    <LandingLayout
-      badge="Kazania · Kościół · Za darmo"
-      h1={<>Transkrypcja kazań<br /><span className="text-brand-600">Darmowy generator transkryptów</span></>}
-      subtitle="Przekształć nagrania kazań w czysty tekst w kilka sekund. Idealne do blogów kościelnych, przewodników do studium, postów na social media i uczynienia przesłania dostępnym dla niesłyszących."
-      defaultLanguage="pl"
-      valueBlock={
-        <>
-          <p>Transkrypcja kazania może stać się notatkami dla kościoła, napisami YouTube, materiałem dla małych grup, cytatami i przeszukiwalnym archiwum.</p>
-          <p>Mictoo pomaga zamienić audio lub wideo z nabożeństwa w edytowalny tekst do publikacji, korekty i ponownego użycia.</p>
-        </>
-      }
-      howItWorks={[
-        { title: 'Prześlij audio kazania', desc: 'Użyj MP3, WAV, M4A albo wideo wyeksportowanego z nabożeństwa.' },
-        { title: 'Otrzymaj szkic', desc: 'Mictoo generuje transkrypcję z timestampami do sprawdzenia fragmentów i nazw.' },
-        { title: 'Opublikuj lub wykorzystaj ponownie', desc: 'Eksportuj tekst na stronę, do notatek, napisów albo archiwum wewnętrznego.' },
+    <UseCaseLayout
+      locale="pl"
+      badge="Kościoły · Pastorzy · Studia · Darmowe"
+      h1First="Transkrypcja kazań"
+      h1Second="Darmowa transkrypcja dla usług i studiów"
+      subtitle="Prześlij nagranie z niedzielnej usługi, nauczania w tygodniu lub sesji studiów biblijnych. Uzyskaj czystą transkrypcję z znacznikami czasowymi na stronę kościoła, notatki do studiów i notatki do podcastu."
+      currentHref="/pl/sermon-transcription"
+
+      platforms={[
+        { name: 'SermonAudio',   iconKey: 'broadcast', brandBg: '#B91C1C' },
+        { name: 'ProPresenter',  iconKey: 'monitor',   brandBg: '#0EA5E9' },
+        { name: 'YouTube Live',  iconKey: 'broadcast', brandBg: '#FF0000' },
+        { name: 'Facebook Live', iconKey: 'broadcast', brandBg: '#1877F2' },
+        { name: 'Zoom',          iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/pl/zoom-transcription' },
+        { name: 'Church stream', iconKey: 'broadcast', brandBg: '#6B21A8' },
       ]}
-      whyUse={{
-        title: 'Dlaczego transkrybować kazania',
-        bullets: [
-          { title: 'Dostępność', desc: 'Pomaga osobom, które wolą czytać albo potrzebują wsparcia tekstowego.' },
-          { title: 'Ponowne użycie treści', desc: 'Zamieniaj przesłania w posty, newslettery, rozważania lub cytaty.' },
-          { title: 'Przeszukiwalne archiwum', desc: 'Szybciej znajduj tematy, serie i odniesienia biblijne.' },
-          { title: 'Wsparcie zespołu media', desc: 'Ułatwia przygotowanie napisów i opisów do filmów.' },
-        ],
-      }}
-      useCases={{
-        title: 'Zastosowania dla kościołów',
-        items: [
-          { title: 'Strona kazania', desc: 'Opublikuj tekst obok audio lub wideo.' },
-          { title: 'Napisy YouTube', desc: 'Stwórz bazę do captions i ręcznej korekty.' },
-          { title: 'Materiał dla grup', desc: 'Wyciągaj pytania, główne punkty i cytaty.' },
-          { title: 'Serie kazań', desc: 'Szukaj powtarzających się tematów w miesiącach lub latach nagrań.' },
-        ],
-      }}
-      proTips={{
-        title: 'Wskazówki dla kazań',
-        tips: [
-          { title: 'Wyodrębnij audio z dużych filmów', desc: 'Przesłanie samej ścieżki głosu zwykle jest szybsze.' },
-          { title: 'Sprawdź nazwy biblijne', desc: 'Nazwy własne i odniesienia mogą wymagać korekty.' },
-          { title: 'Dziel długie konferencje', desc: 'Jeden plik na sesję ułatwia przegląd i publikację.' },
-        ],
-      }}
+
+      howItWorksTitle="Jak działa transkrypcja kazań"
+      steps={[
+        {
+          icon: 'folder',
+          title: 'Eksportuj nagranie usługi',
+          desc: 'Niedzielny livestream MP4, WAV z dźwięku w kościele lub MP3 podcastu, który już publikujesz.',
+        },
+        {
+          icon: 'upload',
+          title: 'Prześlij plik tutaj',
+          desc: 'MP3, MP4, WAV, M4A działają. Długie usługi korzystają z automatycznego podziału po zalogowaniu.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Transkrypcja na stronę',
+          desc: 'Czysty tekst gotowy na stronę kościoła, notatki do studiów, opis podcastu i przeszukiwalny archiwum.',
+        },
+      ]}
+
+      exampleTitle="Przykładowa transkrypcja kazania"
+      exampleFileName="niedzielna-usługa-14-stycznia.mp3"
+      exampleDurationLabel="38:56"
+      exampleLines={[
+        { t: '0:00',  line: 'Dzień dobry kościele. Proszę, otwórzcie Ewangelię Mateusza, rozdział piąty, werset trzeci.' },
+        { t: '0:12',  line: 'Dziś zaczynamy nową serię na temat tego, co Jezus nazywał błogosławionym życiem, Błogosławieństwami.' },
+        { t: '0:24',  line: 'Błogosławieni są ubodzy duchem, albowiem do nich należy królestwo niebieskie. To jest nasz tekst na ten tydzień.' },
+        { t: '0:38',  line: 'Słowo, którego Jezus używa tutaj dla błogosławionych, nie oznacza szczęśliwych w płytkim, okolicznościowym sensie.' },
+        { t: '0:51',  line: 'Oznacza głęboką, fundamentalną satysfakcję z powodu twojego związku z Bogiem, niezależnie od okoliczności.' },
+        { t: '1:04',  line: 'A być ubogim duchem nie oznacza materialnej biedy. To postawa zależności od Boga.' },
+        { t: '1:18',  line: 'To wiedza, że cokolwiek zbudujesz, cokolwiek osiągniesz, ostatecznie opiera się na łasce, a nie na zasługach.' },
+      ]}
+      summaryPoints={[
+        'Nowa seria na temat Błogosławieństw (Mateusz 5).',
+        'Skupienie: "Błogosławieni ubodzy duchem."',
+        'Błogosławieni = głęboka satysfakcja przez związek z Bogiem.',
+        'Ubogi w duchu = postawa zależności, a nie materialna bieda.',
+      ]}
+      actionItems={[
+        'Opublikuj transkrypcję na stronie kościoła',
+        'Zrób 60-sekundowy klip do mediów społecznościowych',
+        'Dołącz do tygodniowego przewodnika do studiów',
+      ]}
+
+      whyTitle="Dlaczego Mictoo do transkrypcji kazań"
+      whyCards={[
+        {
+          icon: 'search',
+          title: 'Przeszukiwalny archiwum kazań',
+          desc: 'Publikuj transkrypcje na stronie kościoła. Członkowie znajdują nauczanie według tematu lub wersetu, miesiące lub lata później.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Notatki do studiów i przewodniki dla małych grup',
+          desc: 'Podsumowanie AI jest punktem wyjścia do tygodniowego przewodnika do studiów lub pytań dyskusyjnych dla małych grup.',
+        },
+        {
+          icon: 'clip',
+          title: 'Napisy do powtórki livestreamu',
+          desc: 'SRT dla wersji wideo na YouTube lub Facebooku. Dostępność dla osób z trudnościami w słyszeniu.',
+        },
+        {
+          icon: 'globe',
+          title: 'Tłumaczenie dla wielojęzycznych kongregacji',
+          desc: 'Kazanie po angielsku, ale część kongregacji woli hiszpański lub koreański. Tłumaczenie jednym kliknięciem.',
+        },
+      ]}
+
+      scenariosTitle="Typowe scenariusze kazań"
+      scenarios={[
+        { icon: 'church',    title: 'Niedzielna usługa' },
+        { icon: 'book',      title: 'Studium biblijne' },
+        { icon: 'chat',      title: 'Mała grupa' },
+        { icon: 'sparkles',  title: 'Duchowe' },
+        { icon: 'globe',     title: 'Misje' },
+        { icon: 'headset',   title: 'Podcast' },
+      ]}
+
+      tipsTitle="Porady dotyczące nagrań kazań"
+      tips={[
+        'WAV lub M4A z dźwięku w kościele daje czystszy dźwięk niż mikrofon w pomieszczeniu.',
+        'Dla długich usług powyżej 60 MB, zaloguj się, aby uzyskać automatyczny podział.',
+        'Dla kongregacji z dużą ilością terminów biblijnych, przeglądaj kluczowe słowa.',
+        'Uwzględnij tytuł kazania w nazwie pliku dla porządku archiwum.',
+      ]}
+
+      guidesTitle="Powiązane narzędzia"
+      guides={[
+        { href: '/pl/transcribe-mp3-to-text',    icon: 'file',  title: 'Format MP3',        desc: 'Eksport przyjazny dla podcastów' },
+        { href: '/pl/wav-to-text',               icon: 'file',  title: 'Format WAV',        desc: 'Nagranie z dźwięku w kościele' },
+        { href: '/pl/lecture-transcription',     icon: 'book',  title: 'Transkrypcja wykładów',   desc: 'Treści z dużą ilością nauczania' },
+        { href: '/pl/free-srt-generator',        icon: 'file',  title: 'Napisy SRT',      desc: 'Powtórka livestreamu' },
+      ]}
+
       faq={[
-        { q: 'Jak przekształcić nagranie kazania w tekst?', a: 'Eksportuj nagranie z konsoli dźwiękowej kościoła, z feedu podcastów lub z YouTube jako MP3, MP4 lub M4A. Prześlij plik powyżej — Mictoo transkrybuje w kilka sekund.' },
-        { q: 'Czy mogę transkrybować kazania z kanału YouTube naszego kościoła?', a: 'Tak. Dla swojego kanału: YouTube Studio → Treść → kliknij wideo → Pobierz. Prześlij plik do Mictoo. Dla zewnętrznych kanałów potrzebujesz pozwolenia — wiele służb udostępnia pobieranie audio przez feed podcastów.' },
-        { q: 'A wersety biblijne i imiona własne?', a: 'Transkrypcja AI dobrze radzi sobie z popularnymi wersetami i imionami, ale czasami błędnie zapisuje rzadkie biblijne imiona lub terminologię specyficzną dla twojego kościoła. Popraw je w edytorze przeglądarki przed pobraniem — zwykle 30 sekund recenzji.' },
-        { q: 'Jaka jest maksymalna długość kazania?', a: 'Do 25 MB na plik. 30-minutowe kazanie w 128 kbps mieści się wygodnie. Dla dłuższych przesłań (45-60 minut) obniż bitrate do 64 kbps mono lub podziel na dwie części.' },
-        { q: 'Czy pliki pozostają prywatne?', a: 'Tak. Kazania są przetwarzane i natychmiastowo usuwane. Nie przechowujemy ani audio, ani treści transkrypcji.' },
+        {
+          q: 'Czy mogę transkrybować nagranie z niedzielnego livestreamu?',
+          a: 'Tak. Pobierz MP4 z YouTube Live, Facebook Live lub dostawcy streamingu kościoła i prześlij tutaj. Wideo jest automatycznie demuxowane po stronie serwera.',
+        },
+        {
+          q: 'Czy Mictoo dokładnie obsługuje odniesienia biblijne i terminy teologiczne?',
+          a: 'Whisper large-v3 dobrze radzi sobie z powszechnymi angielskimi terminami biblijnymi i teologicznymi. W przypadku nietypowych nazw własnych (starsze transliteracje, specyficzne terminy tłumaczeniowe), przeglądaj po transkrypcji.',
+        },
+        {
+          q: 'Czy Mictoo jest darmowe dla kościołów?',
+          a: 'Tak. Darmowe za plik do limitu rozmiaru. Brak specyficznej dla kościoła taryfy lub licencji.',
+        },
+        {
+          q: 'Moje nagranie usługi ma ponad 60 MB. Co teraz?',
+          a: 'Zaloguj się, aby uzyskać automatyczny podział (do około 3 godzin). Lub zmniejsz: ffmpeg -i service.mp3 -b:a 64k -ac 1 out.mp3. Ta sama dokładność, 3-5x mniejszy rozmiar.',
+        },
+        {
+          q: 'Czy mogę uzyskać napisy do powtórki livestreamu?',
+          a: 'Tak. Pobierz SRT lub VTT po transkrypcji. Znaczniki czasowe są zgodne z oryginalnym nagraniem dla YouTube, Facebooka lub twojego hostingu wideo.',
+        },
+        {
+          q: 'Czy mogę przetłumaczyć kazanie dla zespołu misyjnego?',
+          a: 'Tak. Wybierz język docelowy i kliknij Tłumacz. Przydatne dla wielojęzycznych kongregacji, misji i posługi w diasporze.',
+        },
+        {
+          q: 'Czy nagrania są przechowywane na waszych serwerach?',
+          a: 'Nie. Audio przesyłane jest do dostawcy transkrypcji, przetwarzane raz i usuwane. Tylko transkrypcja pozostaje na zalogowanych kontach.',
+        },
       ]}
+
+      ctaHeadline="Zmień każde kazanie w przeszukiwalny zasób"
+      ctaSubtitle="Transkrypcja na stronę, napisy do powtórki, notatki do grup studenckich."
+      ctaButton="Prześlij kazanie"
+
       relatedLinks={[
-        { href: '/pl/podcast-transcription', label: 'Transkrypcja podcastów' },
-        { href: '/pl/lecture-transcription', label: 'Transkrypcja wykładów' },
-        { href: '/pl', label: 'Wszystkie formaty' },
+        { href: '/pl/lecture-transcription',     label: 'Transkrypcja wykładów' },
+        { href: '/pl/podcast-transcription',     label: 'Transkrypcja podcastów' },
+        { href: '/pl/webinar-transcription',     label: 'Transkrypcja webinarów' },
+        { href: '/pl/free-srt-generator',        label: 'Darmowy generator SRT' },
+        { href: '/pl/interview-transcription',   label: 'Transkrypcja wywiadów' },
       ]}
     />
   )

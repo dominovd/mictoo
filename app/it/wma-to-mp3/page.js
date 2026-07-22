@@ -1,3 +1,5 @@
+import ConverterPageLayout from '@/components/ConverterPageLayout'
+
 const LANGS = {
   'en': 'https://mictoo.com/wma-to-mp3',
   'fr': 'https://mictoo.com/fr/wma-to-mp3',
@@ -13,119 +15,94 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Come convertire WMA in MP3 — metodi gratuiti (2026) | Mictoo',
-  description: "Converti WMA (Windows Media Audio) in MP3 gratis. Convertitori online, VLC, Audacity e ffmpeg — scegli quello che ti va. Poi trascrivi l'MP3 in testo con Mictoo.",
-  alternates: { canonical: 'https://mictoo.com/it/wma-to-mp3', languages: LANGS },
-
+  title: 'WMA a MP3: Convertitore Gratuito per Windows Media Audio Legacy | Mictoo',
+  description:
+    'Converti vecchi file WMA in MP3 universali. Creato per recuperare archivi Windows Media legacy, esportazioni di messaggi vocali e CD strappati che nulla di moderno vuole aprire.',
+  alternates: {
+    canonical: 'https://mictoo.com/it/wma-to-mp3',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Come convertire WMA in MP3 — metodi gratuiti (2026) | Mictoo",
-    description: "Converti WMA (Windows Media Audio) in MP3 gratis. Convertitori online, VLC, Audacity e ffmpeg — scegli quello che ti va. Poi trascrivi l'MP3 in testo con Mictoo.",
-    url: "https://mictoo.com/it/wma-to-mp3",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'WMA a MP3: Convertitore Windows Media Legacy | Mictoo',
+    description: 'Recupera archivi WMA legacy, esportazioni di messaggi vocali, CD strappati.',
+    url: 'https://mictoo.com/it/wma-to-mp3',
+    siteName: 'Mictoo', type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Come convertire WMA in MP3 — metodi gratuiti (2026) | Mictoo",
-    description: "Converti WMA (Windows Media Audio) in MP3 gratis. Convertitori online, VLC, Audacity e ffmpeg — scegli quello che ti va. Poi trascrivi l'MP3 in testo con Mictoo.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'WMA a MP3: Convertitore Gratuito',
+    description: 'Recupera file WMA legacy. Gratuito.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function ItWmaToMp3Page() {
   return (
-    <section className="max-w-2xl mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold text-slate-900 mb-3">Come convertire WMA in MP3</h1>
-      <p className="text-slate-500 mb-10 leading-relaxed">
-        WMA (Windows Media Audio) era il formato Microsoft predefinito negli anni 2000 per registratori Windows e rip di Windows Media Player. Funziona su Windows ma è scomodo quasi ovunque altro — telefoni moderni, strumenti web e motori di trascrizione di solito non lo accettano. MP3 è il sostituto universale. Ecco quattro modi gratuiti per convertire.
-      </p>
-
-      <div className="bg-amber-50 border border-amber-100 rounded-2xl p-5 mb-10">
-        <p className="text-sm text-slate-700">
-          <strong>Perché convertire:</strong> Mictoo (e la maggior parte degli strumenti di trascrizione moderni) non legge WMA direttamente — usa un codec proprietario. Devi prima convertire in MP3, M4A o WAV. Il risultato MP3 sarà leggermente più piccolo e si riproduce ovunque.
-        </p>
-      </div>
-
-      <div className="space-y-12 text-slate-600 text-sm leading-relaxed">
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">Metodo 1 — Convertitore online (senza installazione)</h2>
-          <p className="mb-4">
-            Il modo più semplice se il file è sotto ~200 MB e la registrazione non è sensibile. Trascina, rilascia, scarica — di solito 5–15 secondi:
-          </p>
-          <p className="text-xs text-slate-500 mt-3">
-            Privacy: per registrazioni confidenziali (interviste, chiamate di lavoro, medico) preferisci i metodi desktop — il tuo audio non lascia mai il computer.
-          </p>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">Metodo 2 — VLC (Windows / macOS / Linux)</h2>
-
-          <img
-            src="/svg/vlc-convert-dialog.svg"
-            alt="Finestra Converti di VLC: origine recording.wma, profilo Audio – MP3, file destinazione .mp3, pulsante Avvia."
-            className="w-full rounded-2xl border border-slate-100 mb-5"
-            width={640}
-            height={300}
-          />
-
-          <p className="mb-3">
-            <a href="https://www.videolan.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">VLC</a> è gratis e legge WMA nativamente su tutti i sistemi. Converti in quattro clic:
-          </p>
-          <ol className="list-decimal pl-5 space-y-1">
-            <li>Apri VLC. Clicca <strong>Media → Converti / Salva</strong>.</li>
-            <li>Aggiungi il file <code className="font-mono">.wma</code>, clicca di nuovo <strong>Converti / Salva</strong>.</li>
-            <li>In <strong>Profilo</strong> scegli <code className="font-mono">Audio - MP3</code>.</li>
-            <li>Scegli una destinazione che termini con <code className="font-mono">.mp3</code> e clicca <strong>Avvia</strong>.</li>
-          </ol>
-          <p className="mt-3">Fatto. La barra di progresso in basso in VLC diventa l'indicatore di conversione.</p>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">Metodo 3 — Audacity (gratis, tutte le piattaforme)</h2>
-          <p className="mb-3">
-            <a href="https://www.audacityteam.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Audacity</a> è utile se vuoi anche pulire l'audio (tagliare silenzi, alzare voce bassa, rimuovere ronzio di fondo) prima della trascrizione.
-          </p>
-          <ol className="list-decimal pl-5 space-y-1">
-            <li><strong>File → Importa → Audio</strong> → scegli il <code className="font-mono">.wma</code></li>
-            <li>(Opzionale) modifica, normalizza, riduci rumore.</li>
-            <li><strong>File → Esporta → Esporta come MP3</strong>. Scegli mono e 64–96 kbps per la voce.</li>
-          </ol>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">Metodo 4 — Riga di comando (ffmpeg)</h2>
-          <p className="mb-4">
-            Una riga con <a href="https://ffmpeg.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">ffmpeg</a>:
-          </p>
-          <pre className="bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto text-xs"><code>{`ffmpeg -i input.wma -acodec libmp3lame -ab 128k output.mp3`}</code></pre>
-          <p className="text-xs text-slate-500 mt-2">
-            Per voce/trascrizione scendi a <code className="font-mono">-ab 64k -ac 1</code> (mono, 64 kbps) — stessa precisione, file 2–3× più piccolo.
-          </p>
-        </div>
-
-        <div className="border-t border-slate-100 pt-8">
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">MP3 pronto?</h2>
-          <p className="mb-4">
-            Trascinalo in Mictoo per una trascrizione gratis — funziona con 50+ lingue, restituisce timestamp, sottotitoli SRT e riassunto IA. Senza registrazione.
-          </p>
-          <a href="/it" className="inline-flex items-center gap-2 btn-primary text-base px-6 py-3">
-            ↑ Trascrivi MP3 in testo gratis
-          </a>
-        </div>
-
-      </div>
-
-      <div className="border-t border-slate-100 mt-12 pt-8">
-        <p className="text-sm text-slate-400 mb-4 text-center">Guide correlate</p>
-        <div className="flex flex-wrap justify-center gap-3">
-          <a href="/it/aac-to-mp3" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">AAC in MP3</a>
-          <a href="/it/m4a-to-mp3" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">M4A in MP3</a>
-          <a href="/it/transcribe-audio-to-text" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">Trascrivere audio</a>
-          <a href="/it/how-to-compress-audio" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">Comprimere audio</a>
-        </div>
-      </div>
-    </section>
+    <ConverterPageLayout
+      locale="it"
+      mode="converter" from="wma" to="mp3" currentHref="/it/wma-to-mp3"
+      badge="WMA → MP3 · Gratuito · Recupero legacy"
+      h1First="WMA a MP3"
+      h1Second="Convertitore Windows Media legacy gratuito"
+      subtitle="Carica un vecchio file WMA (esportazione di messaggi vocali, CD strappato, archivio Windows Media legacy) e ottieni un MP3 universale che qualsiasi dispositivo o lettore moderno aprirà."
+      outputFormat="MP3" outputQuality="128 kbps" outputAudio="Stereo"
+      stepsTitle="Come funziona la conversione da WMA a MP3"
+      steps={[
+        { icon: 'upload',   title: 'Carica il WMA',        desc: 'Qualsiasi versione di Windows Media Audio, fino a 25 MB in modo anonimo.' },
+        { icon: 'waveform', title: 'Decodifichiamo e codifichiamo', desc: 'ffmpeg legge il WMA e lo ricodifica in MP3 stereo a 128 kbps a 44.1 kHz.' },
+        { icon: 'download', title: 'Scarica il MP3',    desc: 'Ottieni un MP3 compatibile con la maggior parte dei lettori, telefoni e editor audio attuali.' },
+      ]}
+      previewInputName="voicemail-2011.wma"
+      previewInputSize="1.2 MB · 00:02:34"
+      previewOutputName="voicemail-2011.mp3"
+      previewOutputSize="00:02:34 · 128 kbps · 2.4 MB"
+      whyTitle="Perché usare Mictoo per WMA a MP3?"
+      whyCards={[
+        { icon: 'target',   title: 'File legacy gestiti',    desc: 'Vecchi file Windows Media Audio che iTunes, Apple Music e i lettori moderni rifiutano di aprire.' },
+        { icon: 'fileAudio',title: 'Ampia compatibilità MP3', desc: 'MP3 è ampiamente supportato su macOS, Linux, iPhone, Android e lettori musicali comuni.' },
+        { icon: 'lock',     title: 'File eliminati dopo',     desc: 'Il WMA caricato viene eliminato dopo la conversione; l’MP3 viene purgato entro un’ora.' },
+        { icon: 'shield',   title: 'Nessuna filigrana o tag',     desc: 'Solo l’audio, ricodificato. Nessuna introduzione con marchio, nessun metadato iniettato.' },
+      ]}
+      scenariosTitle="Quando WMA a MP3 è utile"
+      scenarios={[
+        { icon: 'archive',    title: 'Strappo CD legacy' },
+        { icon: 'headphones', title: 'Vecchia esportazione di messaggi vocali' },
+        { icon: 'editPen',    title: 'Output di Windows Movie Maker' },
+        { icon: 'mail',       title: 'Condividi su dispositivo non Windows' },
+        { icon: 'video',      title: 'Importa in editor moderno' },
+        { icon: 'waveform',   title: 'Recupera archivio su nastro' },
+      ]}
+      tipsTitle="Suggerimenti per una conversione pulita da WMA a MP3"
+      tips={[
+        'WMA protetto da DRM (vecchi noleggi di Windows Media Player) non può essere decodificato.',
+        'WMA a bitrate molto basso (messaggi vocali) suonerà come la sorgente.',
+        'Il video WMV vecchio non è supportato qui; usa MP4 a MP3 invece.',
+        'Per registrazioni superiori a 25 MB, ritaglia o dividi la sorgente prima di caricarla.',
+      ]}
+      processTitle="Cosa succede durante la conversione"
+      processSteps={['WMA (ASF)', 'Decodifica Windows Media', 'Codifica MP3']}
+      compareTitle="WMA vs MP3"
+      compareRows={[
+        { fmt: 'WMA', contains: 'No', size: 'Piccolo', best: 'Flussi di lavoro Windows legacy (deprecato)' },
+        { fmt: 'MP3', contains: 'No', size: 'Piccolo', best: 'Compatibilità universale, dispositivi moderni' },
+      ]}
+      faq={[
+        { q: 'Il convertitore da WMA a MP3 è gratuito?', a: 'Sì. I file fino a 25 MB possono essere convertiti senza un account, e l’output non ha filigrana.' },
+        { q: 'Perché i lettori moderni rifiutano di aprire WMA?', a: 'Apple non ha mai supportato WMA. Alcuni lettori Android l’hanno abbandonato. WMA è un formato legacy di Microsoft che Windows stesso ha iniziato a lasciare.' },
+        { q: 'Puoi convertire WMA protetto da DRM?', a: 'No. I vecchi noleggi di Windows Media Player utilizzavano DRM che ffmpeg non può decodificare. Non aggiriamo mai la protezione del copyright.' },
+        { q: 'I file vengono memorizzati?', a: 'No. Il WMA caricato viene eliminato dopo la conversione; l’MP3 viene purgato entro un’ora.' },
+        { q: 'E per WMA lossless?', a: 'Il convertitore legge anche WMA lossless, ma l’output rimane 128 kbps MP3 (lossy). Per output lossless, converti in WAV invece.' },
+      ]}
+      ctaHeadline="Converti il tuo WMA in MP3 ora"
+      ctaSubtitle="Recupera Windows Media Audio legacy. Ottieni un MP3 portatile in pochi secondi."
+      ctaButton="Scegli un file WMA"
+      moreTools={[
+        { href: '/it/mp4-to-mp3',  label: 'MP4 a MP3' },
+        { href: '/it/wav-to-mp3',  label: 'WAV a MP3' },
+        { href: '/it/flac-to-mp3', label: 'FLAC a MP3' },
+        { href: '/it/aac-to-mp3',  label: 'AAC a MP3' },
+      ]}
+    />
   )
 }

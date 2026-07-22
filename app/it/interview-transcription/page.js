@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/interview-transcription',
@@ -15,80 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Trascrizione intervista — generatore gratuito IA | Mictoo',
-  description: 'Trascrizione intervista gratuita con IA. Carica la registrazione (MP3, M4A, MP4, WAV) e ottieni una trascrizione pulita con timecode in pochi secondi. Costruito per giornalisti e ricercatori.',
-  alternates: { canonical: 'https://mictoo.com/it/interview-transcription', languages: LANGS },
-
+  title: 'Trascrizione Interviste per Audio e Video | Mictoo',
+  description:
+    'Carica una registrazione di un’intervista e ottieni testo con timestamp, un riepilogo AI e esportazioni per report, ricerche o revisione.',
+  alternates: {
+    canonical: 'https://mictoo.com/it/interview-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Trascrizione intervista — generatore gratuito IA | Mictoo",
-    description: "Trascrizione intervista gratuita con IA. Carica la registrazione (MP3, M4A, MP4, WAV) e ottieni una trascrizione pulita con timecode in pochi secondi. Costruito per giornalisti e ricercatori.",
-    url: "https://mictoo.com/it/interview-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Strumento di Trascrizione Interviste Gratuito | Mictoo',
+    description: 'Trascrizione interviste gratuita con AI. Carica audio o video, ottieni una trascrizione pulita in pochi minuti.',
+    url: 'https://mictoo.com/it/interview-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Trascrizione intervista — generatore gratuito IA | Mictoo",
-    description: "Trascrizione intervista gratuita con IA. Carica la registrazione (MP3, M4A, MP4, WAV) e ottieni una trascrizione pulita con timecode in pochi secondi. Costruito per giornalisti e ricercatori.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Trascrizione Interviste Gratuita',
+    description: 'Carica audio o video, ottieni una trascrizione pulita in pochi minuti.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function ItInterviewPage() {
+export default function ItInterviewTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="it"
-      badge="Giornalismo · Ricerca · Gratis"
-      h1={<>Trascrizione intervista<br /><span className="text-brand-600">Trascrizioni intervista gratuite</span></>}
-      subtitle="Trasforma qualsiasi registrazione intervista in testo pulito e citabile. Per giornalisti, ricercatori, podcaster, team di recruiting. Senza registrazione, senza tariffa al minuto, senza email."
-      howItWorks={[
-        { icon: '🎙️', title: 'Rilascia l\'audio intervista', desc: 'MP3 da un registratore vocale, M4A da un telefono, MP4 da una videochiamata, WAV da un registratore da campo. Tutto va bene.' },
-        { icon: '⚡', title: 'L\'IA trascrive', desc: 'Whisper large-v3 legge l\'audio. Un\'intervista di 30 minuti di solito finisce in circa un minuto.' },
-        { icon: '📋', title: 'Leggi, modifica, esporta', desc: 'Sfoglia la trascrizione con timecode. Sistema nomi o gergo sbagliati inline. Scarica come TXT per note, SRT per video, o copia nel software di coding.' },
+    <UseCaseLayout
+      locale="it"
+      badge="Giornalisti · Ricercatori · UX · Gratuito"
+      h1First="Trascrizione Interviste"
+      h1Second="Strumento gratuito per giornalisti, ricercatori e team UX"
+      subtitle="Carica un’intervista 1:1 o di gruppo da qualsiasi registratore o app di riunione. Ottieni una trascrizione pulita con timestamp, riepilogo AI ed esportazioni pronte per l’articolo, il documento o il repository di ricerca."
+      currentHref="/it/interview-transcription"
+
+      platforms={[
+        { name: 'Zoom',        iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/it/zoom-transcription' },
+        { name: 'Google Meet', iconKey: 'videoCameraFill', brandBg: '#00832D', href: '/it/google-meet-transcription' },
+        { name: 'MS Teams',    iconKey: 'videoCameraFill', brandBg: '#4B53BC', href: '/it/teams-meeting-transcription' },
+        { name: 'Riverside',   iconKey: 'waveMic',         brandBg: '#4B2AF7' },
+        { name: 'Voice Memo',  iconKey: 'mic',             brandBg: '#F97316', href: '/it/voice-memo-to-text' },
+        { name: 'Phone call',  iconKey: 'phone',           brandBg: '#0EA5A4' },
       ]}
-      whyUse={{ title: 'Perché Mictoo per la trascrizione interviste', bullets: [
-        { title: 'Whisper gestisce bene le interviste', desc: 'Singole registrazioni con due voci e botta-risposta chiara sono il caso più pulito per il riconoscimento vocale. La maggior parte delle interviste arriva al 90-95% di precisione al primo passaggio.' },
-        { title: 'Timecode per citazione e ricerca citazioni', desc: 'Ogni riga nell\'export SRT ha un timecode. Quando devi verificare una citazione o tornare a un momento preciso della registrazione, il timecode ti dice esattamente dove.' },
-        { title: 'Nessun costo per intervista', desc: 'Alcuni servizi di trascrizione fanno pagare al minuto o per intervista. Noi no. Trascrivine una o cinquanta, il prezzo è lo stesso (gratis).' },
-        { title: 'Oltre 50 lingue, anche interviste bilingui', desc: 'Le interviste cross-linguistiche sono comuni in ricerca e giornalismo. Whisper gestisce il code-switching meglio della maggior parte dei servizi.' },
-        { title: 'Privacy e protezione fonti', desc: 'Il file va al provider di trascrizione ed è scartato. Non conserviamo l\'audio. Per materiale fonte sensibile, conta.' },
-      ]}}
-      useCases={{ title: 'Chi usa trascrizioni intervista', items: [
-        { title: 'Giornalismo e scrittura feature', desc: 'I reporter trascrivono le interviste per citare con precisione e per scorrere conversazioni lunghe alla ricerca del materiale più utile. Un\'intervista di 60 minuti spesso diventa 3-5 citazioni chiave nel pezzo pubblicato.' },
-        { title: 'Ricerca qualitativa e studi accademici', desc: 'I ricercatori trascrivono interviste semi-strutturate per codificare e analizzare in strumenti come NVivo, Atlas.ti o MAXQDA. La trascrizione è il dataset.' },
-        { title: 'Interviste podcast', desc: 'I conduttori trascrivono interviste con ospiti per show notes, post blog episodio e grafiche citazioni per social. L\'audio raggiunge un pubblico, il testo ne raggiunge un altro via search.' },
-        { title: 'Recruiting e screening candidati', desc: 'Recruiter e hiring manager trascrivono le interviste per condividerle col team. Più facile di un video per recensori in fusi orari diversi. Più facile confrontare note quando tutti hanno lo stesso testo.' },
-        { title: 'User research e customer interview', desc: 'I team prodotto trascrivono conversazioni con client per trovare pattern. La trascrizione va nel research repository (Dovetail, Marvin o un Notion condiviso).' },
-      ]}}
-      proTips={{ title: 'Consigli per trascrivere interviste', tips: [
-        { title: 'Usa un microfono vero, anche per l\'intervista al telefono', desc: 'Un lavalier o USB per l\'intervistato in presenza, e cuffie decenti per l\'intervistatore al telefono. La qualità della registrazione è il singolo fattore più grande nella precisione trascrizione.' },
-        { title: 'Registra in uno spazio tranquillo', desc: 'Le interviste in caffetteria stanno bene in camera e si trascrivono male. Musica di fondo e chiacchiere degradano la precisione più di quanto la gente pensi.' },
-        { title: 'Per interviste a due voci, trascrivi tutta la registrazione poi aggiungi etichette parlante manualmente', desc: 'Whisper non fa diarizzazione. Per un\'intervista pulita botta-risposta, aggiungere "Intervistatore:" e "Fonte:" richiede circa 5 minuti per ogni 30 minuti di intervista.' },
-        { title: 'Se hai tracce audio separate (Riverside, SquadCast), trascrivi ognuna separatamente', desc: 'Allora ottieni attribuzione pulita senza indovinare. Alcuni registratori di ricerca catturano due microfoni in due canali di un file stereo. Puoi dividerlo in due file mono prima.' },
-        { title: 'Salva la trascrizione con data e nome fonte', desc: 'Un file trascrizione chiamato 2026-05-25-jane-smith.txt è più facile da trovare sei mesi dopo di transcript-final-v2.txt.' },
-        { title: 'Modifica le prime 50 righe per precisione, lascia il resto', desc: 'La gente scorre le trascrizioni. La parte iniziale conta di più. Oltre, sistema solo le citazioni che pensi di usare.' },
-        { title: 'Imposta la lingua manualmente se l\'intervista non è in inglese', desc: 'Il rilevamento automatico funziona per la maggior parte dei file, ma un falso-inizio di 5 secondi all\'inizio può fuorviarlo. Scegliere la lingua esplicitamente è più affidabile.' },
-      ]}}
+
+      howItWorksTitle="Come funziona la trascrizione delle interviste"
+      steps={[
+        {
+          icon: 'folder',
+          title: 'Esporta la tua intervista',
+          desc: 'Qualsiasi registrazione va bene. Memo vocale, registrazione cloud di Zoom, traccia audio di Riverside, esportazione di una telefonata.',
+        },
+        {
+          icon: 'upload',
+          title: 'Trascina il file qui',
+          desc: 'Carica MP3, MP4, M4A, WAV, MOV o qualsiasi formato audio e video comune fino a 60 MB.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Trascrizione, citazioni, esportazioni',
+          desc: 'Trascrizione con timestamp, riepilogo AI, esportazioni TXT / SRT / VTT / DOCX. Pronto per l’articolo o il documento di ricerca.',
+        },
+      ]}
+
+      exampleTitle="Esempio di trascrizione di un’intervista"
+      exampleFileName="researcher-interview.m4a"
+      exampleDurationLabel="42:18"
+      exampleLines={[
+        { t: '0:00',  line: 'Grazie per aver dedicato del tempo. Potresti iniziare descrivendo il tuo ruolo e da quanto tempo sei in questo.' },
+        { t: '0:08',  line: 'Certo. Guida il team di analisi in una fintech di medie dimensioni, e sono in questo ruolo da poco più di due anni.' },
+        { t: '0:20',  line: 'Prima di questo ero in una banca più grande, lavorando principalmente sulla fidelizzazione dei clienti e sulla modellazione del valore nel tempo.' },
+        { t: '0:32',  line: 'Quindi il passaggio da una grande banca a una fintech riguardava principalmente il ritmo e la libertà di provare cose nuove.' },
+        { t: '0:44',  line: 'E gli strumenti sono migliorati notevolmente. Ciò che prima richiedeva una settimana nel vecchio stack ora richiede un pomeriggio.' },
+        { t: '0:56',  line: 'Puoi darmi un esempio di quel tipo di cambiamento? Qualcosa di concreto che non avresti tentato prima.' },
+        { t: '1:04',  line: 'Il più ovvio è la sperimentazione di coorti in tempo reale. Lanciamo un’idea al mattino e vediamo dati significativi entro quella sera.' },
+      ]}
+      summaryPoints={[
+        'Responsabile analisi in fintech, oltre 2 anni in ruolo.',
+        'Ruolo precedente in una grande banca focalizzato sulla modellazione della fidelizzazione.',
+        'Passaggio a fintech guidato da ritmo e libertà di sperimentazione.',
+        'Sperimentazioni di coorti in tempo reale possibili con strumenti moderni.',
+      ]}
+      actionItems={[
+        'Segui il confronto sulla modellazione della fidelizzazione',
+        'Chiedi un esempio di esperimento di coorte in tempo reale',
+        'Ottieni un’introduzione al contatto del precedente datore di lavoro',
+      ]}
+
+      whyTitle="Perché Mictoo per la trascrizione delle interviste"
+      whyCards={[
+        {
+          icon: 'target',
+          title: 'Controlla nomi e nomi propri',
+          desc: 'Usa i timestamp per controllare nomi, città, organizzazioni e termini specialistici rispetto alla registrazione originale dell’intervista.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Riepilogo AI ed estrazione di citazioni',
+          desc: 'Il riepilogo AI è una solida prima bozza per l’elenco delle citazioni, il memo di ricerca o l’introduzione dell’articolo.',
+        },
+        {
+          icon: 'lock',
+          title: 'Modello di elaborazione chiaro',
+          desc: 'La registrazione viene inviata a un fornitore di trascrizione per l’elaborazione e non viene conservata da Mictoo dopo il completamento del lavoro.',
+        },
+        {
+          icon: 'globe',
+          title: 'Traduci per lavoro multilingue',
+          desc: 'Intervista condotta in spagnolo, tedesco o giapponese. Traduci nella tua lingua di lavoro con un clic.',
+        },
+      ]}
+
+      scenariosTitle="Scenari comuni di interviste"
+      scenarios={[
+        { icon: 'chat',      title: 'Giornalismo' },
+        { icon: 'search',    title: 'Ricerca UX' },
+        { icon: 'users',     title: 'Reclutamento' },
+        { icon: 'book',      title: 'Storia orale' },
+        { icon: 'briefcase', title: 'Deposizione legale' },
+        { icon: 'globe',     title: 'Multilingue' },
+      ]}
+
+      tipsTitle="Suggerimenti per trascrizioni di interviste più pulite"
+      tips={[
+        'Registra con un microfono a clip o portatile vicino al soggetto.',
+        'Chiedi al soggetto di fare una breve pausa tra risposte lunghe.',
+        'Imposta esplicitamente la lingua per accenti forti o non inglesi.',
+        'Controlla nomi e termini insoliti dopo la trascrizione.',
+      ]}
+
+      guidesTitle="Scegli la guida giusta per il registratore"
+      guides={[
+        { href: '/it/zoom-transcription',        icon: 'video', title: 'Intervista Zoom',    desc: 'Registrazione cloud MP4 o M4A' },
+        { href: '/it/google-meet-transcription', icon: 'video', title: 'Intervista Meet',    desc: 'Download registrazione da Drive' },
+        { href: '/it/voice-memo-to-text',        icon: 'mic',   title: 'Memo Vocale iPhone', desc: 'Qualsiasi registrazione vocale M4A' },
+        { href: '/it/podcast-transcription',     icon: 'headset', title: 'Stile Podcast',   desc: 'Riverside, Zencastr, Cleanfeed' },
+      ]}
+
       faq={[
-        { q: 'È abbastanza preciso per citazioni giornalistiche?', a: 'Per citazione letterale, dovresti sempre verificare contro l\'audio. Whisper azzecca il 90-95% delle parole su audio intervista pulito. Il 5-10% che sbaglia include spesso nomi, termini tecnici e parlato sovrapposto. Usa i timecode SRT per tornare alla registrazione per qualsiasi citazione che pubblichi.' },
-        { q: 'Avrò etichette dei parlanti?', a: 'Non automaticamente. Le aggiungi in base al flusso conversazione. Per un\'intervista a 2 parlanti è veloce. Per panel o focus group, pianifica più tempo o carica la traccia di ogni parlante separatamente se le hai.' },
-        { q: 'Posso trascrivere un\'intervista in un\'altra lingua?', a: 'Sì, oltre 50 lingue con rilevamento automatico. Per interviste sotto i 5 minuti o interviste non-inglesi che iniziano con chiacchiere in inglese, scegli la lingua manualmente.' },
-        { q: 'La mia intervista è di 90 minuti. Cosa faccio?', a: 'Dividila in pezzi sotto il cap di 60 minuti. La pausa naturale è dove la conversazione si ferma (caffè a metà intervista, cambio argomento).' },
-        { q: 'Quanto sono precisi termini tecnici e nomi propri?', a: 'Meno precisi del vocabolario comune. Whisper non sa il nome dell\'azienda della tua fonte, il termine medico che ha usato o il software specifico che ha menzionato. Aspettati di sistemarli manualmente. Il resto della trascrizione sarà solido.' },
-        { q: 'L\'audio viene conservato?', a: 'No. Il file va al provider di trascrizione (Groq, con OpenAI come backup), viene processato, poi scartato. Non conserviamo l\'audio sui nostri server.' },
-        { q: 'È conforme alle politiche di etica della ricerca?', a: 'La maggior parte dei protocolli di ricerca approvati IRB richiede di sapere dove l\'audio viene processato. I nostri provider processano negli USA. Non conserviamo. Per conformità IRB specifica, documenta il workflow e verifica col tuo IRB.' },
-        { q: 'Posso importare la trascrizione in NVivo, Atlas.ti o Dedoose?', a: 'Sì. Scarica come TXT e importa nel tuo strumento di analisi qualitativa. La trascrizione è testo semplice, nessun formato speciale necessario.' },
-        { q: 'Quanto ci mette la trascrizione?', a: 'Circa 1-2% della durata audio. Un\'intervista di 30 minuti finisce in circa 60 secondi.' },
-        { q: 'E se l\'intervista ha qualità audio scadente?', a: 'Passala prima per uno strumento denoise (Audacity Noise Reduction o Adobe Podcast Enhance). Poi carica la versione pulita. Input migliore dà output notevolmente migliore.' },
-        { q: 'Posso trascrivere un\'intervista registrata sul telefono?', a: 'Sì. iPhone Voice Memos salva come M4A, i registratori vocali Android di solito come M4A o MP3. Entrambi funzionano. AirDrop o email il file al computer, poi carica qui.' },
-        { q: 'I timecode nell\'SRT corrisponderanno esattamente alla registrazione originale?', a: 'Sì, al millisecondo. I timecode SRT riflettono il tempo reale nel file audio. Funzionano per tornare a un momento specifico in qualsiasi player audio o video.' },
+        {
+          q: 'Quali formati di file accetta Mictoo per le interviste?',
+          a: 'MP3, MP4, M4A, WAV, MOV, WEBM, FLAC, OGG, AAC e la maggior parte degli altri formati audio e video comuni. I file video vengono demuxati automaticamente lato server.',
+        },
+        {
+          q: 'Mictoo identifica chi sta parlando?',
+          a: 'No. L’attuale trascrizione è testo continuo con timestamp per riga e senza etichette automatiche "Intervistatore / Soggetto".',
+        },
+        {
+          q: 'La trascrizione delle interviste è gratuita?',
+          a: 'Sì. Gratuita per file fino a 25 MB in modo anonimo, 60 MB per utenti registrati. Interviste più lunghe possono essere suddivise automaticamente per utenti registrati.',
+        },
+        {
+          q: 'Posso oscurare i nomi prima di pubblicare la trascrizione?',
+          a: 'Sì. Passa alla modalità Editor dopo la trascrizione per modificare qualsiasi parola o riga. Salva la versione modificata ed esporta.',
+        },
+        {
+          q: 'Le registrazioni vengono conservate sui vostri server?',
+          a: 'No. I flussi audio vengono inviati al fornitore di trascrizione, elaborati una sola volta e poi scartati. Le trascrizioni vengono memorizzate solo se accedi.',
+        },
+        {
+          q: 'Posso tradurre la trascrizione dell’intervista?',
+          a: 'Sì. Scegli una lingua di destinazione e fai clic su Traduci. Utile per ricerche sul campo multilingue o reporting multilingue.',
+        },
+        {
+          q: 'Quali formati di esportazione sono disponibili?',
+          a: 'TXT, SRT, VTT, DOCX. Gli utenti registrati ottengono anche PDF e JSON. I timestamp in SRT e VTT si allineano alla registrazione originale.',
+        },
       ]}
+
+      ctaHeadline="Trasforma le interviste in testo pubblicabile"
+      ctaSubtitle="Carica la tua registrazione e ottieni una trascrizione, un riepilogo e esportazioni pronte per l’articolo o il repository di ricerca."
+      ctaButton="Carica un’intervista"
+
       relatedLinks={[
-        { href: '/it/podcast-transcription', label: 'Trascrizione podcast', desc: 'Per interviste podcast e conversazioni host.' },
-        { href: '/it/timestamped-transcription', label: 'Trascrizione con timecode', desc: 'Per timecode per parola o frase.' },
-        { href: '/it/voice-memo-to-text', label: 'Memo vocale in testo', desc: 'Per interviste registrate al telefono.' },
-        { href: '/it/business-transcription', label: 'Trascrizione business', desc: 'Per call vendita, customer call, focus group.' },
+        { href: '/it/meeting-transcription',      label: 'Trascrizione Riunioni' },
+        { href: '/it/podcast-transcription',      label: 'Trascrizione Podcast' },
+        { href: '/it/voice-memo-to-text',         label: 'Memo Vocale in Testo' },
+        { href: '/it/business-transcription',     label: 'Trascrizione Aziendale' },
+        { href: '/it/lecture-transcription',      label: 'Trascrizione Lezioni' },
       ]}
     />
   )

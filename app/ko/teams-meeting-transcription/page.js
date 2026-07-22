@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/teams-meeting-transcription',
@@ -15,80 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Microsoft Teams 받아쓰기 — 회의 받아쓰기 | Mictoo',
+  title: 'MP4 녹화에서 Teams 회의 전사 | Mictoo',
   description:
-    '무료 Microsoft Teams 받아쓰기. OneDrive 또는 SharePoint에서 녹화(MP4)를 업로드하여 깨끗한 AI 받아쓰기를 몇 초 만에 받으세요. 가입 불필요.',
-  alternates: { canonical: 'https://mictoo.com/ko/teams-meeting-transcription', languages: LANGS },
-
+    'OneDrive 또는 SharePoint에서 Microsoft Teams MP4를 업로드하고 타임스탬프가 있는 전사본, AI 요약 및 내보내기 파일을 받으세요.',
+  alternates: {
+    canonical: 'https://mictoo.com/ko/teams-meeting-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Microsoft Teams 받아쓰기 — 회의 받아쓰기 | Mictoo",
-    description: "무료 Microsoft Teams 받아쓰기. OneDrive 또는 SharePoint에서 녹화(MP4)를 업로드하여 깨끗한 AI 받아쓰기를 몇 초 만에 받으세요. 가입 불필요.",
-    url: "https://mictoo.com/ko/teams-meeting-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'MP4에서 Teams 회의 전사 | Mictoo',
+    description: 'OneDrive 또는 SharePoint에서 Teams 녹화를 드롭하고 텍스트, 요약 및 내보내기를 받으세요.',
+    url: 'https://mictoo.com/ko/teams-meeting-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Microsoft Teams 받아쓰기 — 회의 받아쓰기 | Mictoo",
-    description: "무료 Microsoft Teams 받아쓰기. OneDrive 또는 SharePoint에서 녹화(MP4)를 업로드하여 깨끗한 AI 받아쓰기를 몇 초 만에 받으세요. 가입 불필요.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Teams 회의 전사',
+    description: 'OneDrive 또는 SharePoint에서 MP4를 업로드하고 전사본을 받으세요.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function KoTeamsPage() {
+export default function KoTeamsMeetingTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="ko"
-      badge="TEAMS · ONEDRIVE · 무료"
-      h1={<>Microsoft Teams 받아쓰기<br /><span className="text-brand-600">무료 Teams 회의 받아쓰기</span></>}
-      subtitle="Teams 녹화를 깨끗한 텍스트로 변환. OneDrive 또는 SharePoint에서 MP4를 드롭하면 몇 초 만에 받아쓰기. 가입 불필요, 분당 과금 없음."
-      howItWorks={[
-        { icon: '☁️', title: 'OneDrive 또는 SharePoint에서 다운로드', desc: 'Teams 녹화는 주최자의 OneDrive(채널 외 회의) 또는 SharePoint 사이트(채널 회의)에 저장. MP4로 다운로드. 긴 회의는 먼저 오디오 추출.' },
-        { icon: '⚡', title: '파일 드롭', desc: 'MP4에서 오디오를 추출하여 Whisper large-v3로 보냅니다. 30분 회의는 약 1분에 완료.' },
-        { icon: '📋', title: '받아쓰기 받기', desc: '브라우저에서 읽고, 복사하거나 TXT 또는 SRT로 다운로드. 내보내기 전에 잘못된 이름이나 기술 용어를 인라인으로 수정.' },
+    <UseCaseLayout
+      locale="ko"
+      badge="Teams · OneDrive / SharePoint · M365 · 무료"
+      h1First="Teams 회의 전사"
+      h1Second="OneDrive 또는 SharePoint MP4에서 텍스트로"
+      subtitle="접근할 수 있는 Teams 녹화를 다운로드한 후 MP4를 업로드하여 타임스탬프가 있는 전사본, AI 요약 및 내보내기를 받으세요. 녹화 가능성은 Microsoft 365 라이선스 및 조직 정책에 따라 다릅니다."
+      currentHref="/ko/teams-meeting-transcription"
+
+      platforms={[
+        { name: 'OneDrive',    iconKey: 'videoCameraFill', brandBg: '#0364B8' },
+        { name: 'SharePoint',  iconKey: 'videoCameraFill', brandBg: '#036C70' },
+        { name: 'Channel MP4', iconKey: 'videoCameraFill', brandBg: '#4B53BC' },
+        { name: 'Zoom',        iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/ko/zoom-transcription' },
+        { name: 'Google Meet', iconKey: 'videoCameraFill', brandBg: '#00832D', href: '/ko/google-meet-transcription' },
+        { name: 'Meeting hub', iconKey: 'videoCameraFill', brandBg: '#0F1F35', href: '/ko/meeting-transcription' },
       ]}
-      whyUse={{ title: 'Teams 회의에 Mictoo를 사용하는 이유', bullets: [
-        { title: '받아쓰기용 특정 Microsoft 365 라이선스 항목 없이 작동', desc: '녹화 파일이 있으면 여기서 받아쓰기 가능. Teams Premium이나 특정 Office 계획 필요 없음.' },
-        { title: '더 강한 비영어와 억양 커버리지', desc: 'Microsoft Teams 받아쓰기는 영어와 주요 서유럽 언어에서 잘 작동. Whisper large-v3는 50개 이상의 언어를 다루고 억양과 이중 언어 대화에서 더 강한 처리.' },
-        { title: '무료, 분 카운터 없음', desc: 'Teams 받아쓰기는 라이선스에 내장되어 있지만 기능 게이트에 의해 제한. Mictoo는 회의 한도나 월별 분 제한이 없습니다.' },
-        { title: '비디오 에디터용 SRT 내보내기', desc: 'Teams 받아쓰기는 Teams 앱에 살거나 VTT로 다운로드. 우리는 둘 다 내보냅니다, TXT와 깨끗한 SRT, Premiere, DaVinci, CapCut, YouTube Studio와 드롭인 호환.' },
-        { title: '기본 프라이버시', desc: '파일은 받아쓰기 제공업체로 스트리밍되고 처리되고 폐기. 회의 오디오를 보관하지 않습니다.' },
-      ]}}
-      useCases={{ title: '사람들이 Teams 회의를 받아쓰는 용도', items: [
-        { title: '프로젝트 회의 의사록', desc: 'Confluence, Notion 또는 SharePoint 페이지에 받아쓰기 붙여넣기. 회의를 놓친 사람은 60분 비디오 시청 대신 5분에 텍스트를 읽습니다.' },
-        { title: '계정 팀을 위한 클라이언트 통화 검토', desc: 'Salesforce, Dynamics, HubSpot의 거래 옆에 받아쓰기 저장. 후속 이메일을 위한 인용 검색이 몇 초.' },
-        { title: '교차 기능 결정 로그', desc: 'Teams 통화의 큰 결정이 받아쓰기에 요약. 거버넌스와 감사 추적에 유용.' },
-        { title: '벤더와 계약자 통화', desc: '프로젝트가 외부 당사자를 포함할 때, 받아쓰기는 동의된 내용의 명확한 기록.' },
-        { title: '규정 준수와 규제 산업', desc: '일부 산업은 특정 대화의 기록이 필요. 받아쓰기는 오디오 녹음을 검색 가능하고 인덱싱 가능하게 합니다.' },
-      ]}}
-      proTips={{ title: 'Teams 받아쓰기 팁', tips: [
-        { title: '업로드 전에 MP4에서 오디오 추출', desc: 'Teams MP4는 720p 또는 1080p 비디오로, 받아쓰기와 무관. 오디오만 가져오기: ffmpeg -i teams.mp4 -vn -ac 1 -b:a 64k teams.mp3. 1.5 GB MP4가 30 MB 이하로 축소.' },
-        { title: 'OneDrive 또는 SharePoint에서 다운로드, 스트리밍 안 함', desc: 'OneDrive는 가끔 브라우저에서 MP4를 재생. 여기에 업로드하기 전에 실제로 파일을 다운로드했는지 확인. SharePoint 공유 링크는 파일 자체와 같지 않습니다.' },
-        { title: '60분 초과 회의는 업로드 전에 분할', desc: '30분 또는 45분 청크로 자르세요. 받아쓰기는 재결합 가능. 긴 Teams 통화는 일반적이고 신중하게 다룰 가치가 있습니다.' },
-        { title: '가능하면 회의 중 백그라운드 알림 음소거', desc: '통화 중 Outlook 데스크톱 알림과 Teams 채팅 소리는 오디오에 도착하고 가끔 받아쓰기에도. Windows의 Focus Assist나 Mac의 "방해 금지"를 사용.' },
-        { title: '회의실 마이크는 정리 필요', desc: '천장 마이크가 있는 Teams Rooms는 오디오 품질이 가변적. 에코와 원거리 녹음은 정확도를 손상시킴. Adobe Podcast Enhance(무료 웹)가 이 녹음에 업로드 전 도움이 됩니다.' },
-        { title: '기밀 회의는 외부에 업로드하지 마세요', desc: '우리에게도. HR, 법적 또는 이사회 대화에는 온프레미스 받아쓰기를 선호. 우리 서비스는 클라우드 AI 처리가 허용되는 비기밀 회의용.' },
-      ]}}
+
+      howItWorksTitle="Teams 회의 전사가 작동하는 방식"
+      steps={[
+        {
+          icon: 'folder',
+          title: '녹화 찾기',
+          desc: '개인 회의: OneDrive › 내 파일 › 녹화. 채널 회의: 채널의 SharePoint 사이트.',
+        },
+        {
+          icon: 'upload',
+          title: '여기에 MP4 드롭',
+          desc: 'OneDrive 또는 SharePoint에서 다운로드하고 드래그하세요. 60 MB를 초과하는 경우 오디오를 추출하거나 자동 분할을 위해 로그인하세요.',
+        },
+        {
+          icon: 'editPen',
+          title: '전사본, 요약, 내보내기',
+          desc: '타임스탬프가 있는 전사본, AI 요약, TXT/SRT/VTT/DOCX. 30분 Teams 통화는 약 1분 만에 완료됩니다.',
+        },
+      ]}
+
+      exampleTitle="예시 Teams 회의 전사"
+      exampleFileName="teams-channel-meeting.mp4"
+      exampleDurationLabel="41:08"
+      exampleLines={[
+        { t: '0:00',  line: '좋습니다, 스프린트 리뷰에 오신 것을 환영합니다. 우리는 무엇이 출시되었고, 무엇이 출시되지 않았으며, 그 이유를 살펴볼 것입니다.' },
+        { t: '0:11',  line: '결제 팀은 화요일에 새로운 환불 흐름을 출시했습니다. 채택률은 예상보다 높으며, 적격 티켓의 약 40%입니다.' },
+        { t: '0:24',  line: '검색 팀은 예상보다 긴 인덱싱 파이프라인에 직면했습니다. 출시가 다음 스프린트로 미뤄졌습니다.' },
+        { t: '0:35',  line: '괜찮지만, 고객 성공 팀에 지연을 전달해야 합니다. 그래야 그들이 기대치를 관리할 수 있습니다.' },
+        { t: '0:47',  line: '오늘 공유 채널에 수정된 일정과 이유를 담은 메모를 보낼 것입니다.' },
+        { t: '0:58',  line: '셋째, 모바일 충돌률이 약간 증가했습니다. 여전히 SLA 내에 있지만 이번 스프린트를 지켜볼 가치가 있습니다.' },
+        { t: '1:09',  line: '장치 팀은 이미 작업 중입니다. 수요일까지 근본 원인을 파악하고 스프린트 종료 시 수정할 수 있을 것입니다.' },
+      ]}
+      summaryPoints={[
+        '환불 흐름이 화요일에 출시되었고, 40% 채택률.',
+        '검색 팀이 한 스프린트 지연됨 (인덱싱 파이프라인).',
+        '모바일 충돌률이 증가했지만 SLA 내에 있음.',
+        '모바일 충돌의 근본 원인은 수요일까지 파악됨.',
+      ]}
+      actionItems={[
+        '고객 성공 채널에 지연 메모 보내기',
+        '모바일 충돌 근본 원인 조사 (수요일)',
+        '검색 팀의 새로운 출시 날짜 확인',
+      ]}
+
+      whyTitle="Teams 녹화를 위한 Mictoo의 이유"
+      whyCards={[
+        {
+          icon: 'folder',
+          title: '다운로드된 녹화와 호환',
+          desc: 'OneDrive 또는 채널 SharePoint 사이트에서 다운로드할 권한이 있는 MP4를 사용하세요.',
+        },
+        {
+          icon: 'target',
+          title: '이름 및 용어 검토',
+          desc: '타임스탬프가 있는 출력은 제품 이름, 약어 및 전문 용어를 찾고 수정하기 쉽게 만듭니다.',
+        },
+        {
+          icon: 'sparkles',
+          title: '전사본 옆에 요약',
+          desc: '요약 초안을 생성하고 전체 텍스트 옆에 두어 공유 전에 검토하세요.',
+        },
+        {
+          icon: 'globe',
+          title: '다국어 녹화 번역',
+          desc: '한 언어로 녹화하고 다른 언어로 요약이 필요합니다. 한 번의 클릭으로 50개 이상의 언어.',
+        },
+      ]}
+
+      scenariosTitle="일반적인 Teams 시나리오"
+      scenarios={[
+        { icon: 'chat',      title: '스프린트 리뷰' },
+        { icon: 'briefcase', title: '이사회 동기화' },
+        { icon: 'users',     title: '스탠드업' },
+        { icon: 'target',    title: 'OKR 리뷰' },
+        { icon: 'headset',   title: '지원 에스컬레이션' },
+        { icon: 'globe',     title: '국제 통화' },
+      ]}
+
+      tipsTitle="Teams 녹화를 위한 팁"
+      tips={[
+        '개인 회의는 OneDrive (주최자의 계정)에 저장됩니다.',
+        '채널 회의는 채널의 SharePoint 사이트에 저장됩니다.',
+        'GCC / 기업 테넌트는 다운로드를 제한할 수 있습니다: IT에 문의하세요.',
+        '긴 회의의 경우, ffmpeg로 오디오를 추출하여 파일 크기를 줄이세요.',
+      ]}
+
+      guidesTitle="기타 회의 플랫폼"
+      guides={[
+        { href: '/ko/zoom-transcription',        icon: 'video', title: 'Zoom',        desc: '클라우드 + 로컬 + M4A' },
+        { href: '/ko/google-meet-transcription', icon: 'video', title: 'Google Meet', desc: '워크스페이스 + 무료' },
+        { href: '/ko/meeting-transcription',     icon: 'video', title: '회의 허브', desc: '모든 플랫폼, 한 번의 업로드' },
+        { href: '/ko/business-transcription',    icon: 'briefcase', title: '비즈니스', desc: '허가된 내부 녹화' },
+      ]}
+
       faq={[
-        { q: 'Mictoo가 Microsoft Teams 녹화에서 작동합니까?', a: '네. OneDrive(채널 외 회의의 주최자 OneDrive) 또는 채널 SharePoint 사이트에서 MP4를 다운로드. 여기에 업로드. 오디오 추출을 먼저 하면 긴 회의가 빨라집니다.' },
-        { q: 'Teams Premium이나 특정 Microsoft 365 계획이 필요합니까?', a: '회의를 녹화하게 하는 계획이 필요. 녹화가 OneDrive나 SharePoint에 있으면 라이선스에 관계없이 여기서 받아쓰기가 무료.' },
-        { q: '내 녹화가 Microsoft로 돌아갑니까?', a: '아니요. 파일은 받아쓰기 제공업체(Groq, 백업으로 OpenAI)로 가서 처리 후 폐기. Microsoft, Outlook 또는 Microsoft 서비스로 아무것도 돌아가지 않습니다.' },
-        { q: 'Teams 내장 받아쓰기와 비교하면?', a: 'Teams 받아쓰기는 라이선스에 포함되어 있다면 영어 회의에 괜찮. 우리 것은 무료이고, 더 많은 언어와 억양에서 작동하며, 비디오 에디터용 깨끗한 SRT를 내보냄. 회의에 맞는 것을 사용하세요.' },
-        { q: '내 Teams 녹화가 60 MB를 초과합니다. 이제 어떻게?', a: 'ffmpeg나 오디오 도구로 오디오만 추출. 1.5 GB Teams MP4는 오디오로 30 MB 미만. 오디오가 여전히 60 MB 초과면 청크로 분할.' },
-        { q: '스피커 레이블을 받을 수 있습니까?', a: '자동으로는 안 됩니다. 구별 가능한 목소리가 있는 회의는 대화에 따라 수동으로 레이블을 추가할 수 있습니다. 스피커당 별도 오디오 트랙으로 녹화된 회의(Teams에서 드물음)는 깨끗한 귀속을 위해 각 트랙을 별도로 업로드.' },
-        { q: 'Teams 채팅 메시지에서 작동합니까?', a: '아니요. 채팅 메시지는 Teams에 남음. 오디오만 받아쓰기. 둘 다 필요하면 직접 결합.' },
-        { q: 'Teams 받아쓰기 정확도는?', a: '좋은 마이크의 회의(USB 헤드셋의 노트북): 90-95%. 천장 마이크의 회의실 회의: 80-90%. 이름, 기술 용어, 약어는 보통 정리 필요.' },
-        { q: 'Teams 회의를 실시간으로 받아쓸 수 있습니까?', a: '아니요. 녹화된 파일로 작동. 회의 중 실시간에는 Teams 자체 라이브 자막이나 Transcript 기능 사용.' },
-        { q: '어떤 언어를 지원합니까?', a: '자동 감지로 50개 이상의 언어. 5분 미만 회의나 비음성 인트로(대기실 음악, 홀드 톤)가 있는 파일은 언어를 수동으로 선택.' },
-        { q: '받아쓰기를 Word 문서나 OneDrive로 내보낼 수 있습니까?', a: '일반 텍스트(TXT)와 SRT를 내보냅니다. Word에 복사 붙여넣기, 또는 TXT를 직접 OneDrive에 업로드. Microsoft 365 통합은 아직 없습니다.' },
-        { q: '유럽의 Teams 회의에 GDPR 준수입니까?', a: '사이트를 떠난 후 서버에 오디오나 받아쓰기를 보관하지 않습니다. 우리는 유럽에 있고 제공업체(Groq US, OpenAI US)는 DPA에 서명. 특정 규정 준수 질문에 대해서는 개인정보 보호 정책을 참조하거나 info@mictoo.com에 쓰세요.' },
+        {
+          q: 'Teams 녹화는 어디에 저장되나요?',
+          a: '개인 회의: 주최자의 OneDrive에 내 파일 › 녹화 아래에 저장됩니다. 채널 회의: 해당 채널을 지원하는 SharePoint 사이트의 문서 내 채널 폴더에 저장됩니다.',
+        },
+        {
+          q: '녹화를 업로드하려면 Teams Premium이 필요합니까?',
+          a: 'Mictoo는 Teams 계정에 연결하는 대신 다운로드한 미디어 파일을 처리합니다. Teams 내에서 녹화, 전사 또는 다운로드할 수 있는 능력은 여전히 Microsoft 365 라이선스, 회의 역할 및 조직 정책에 따라 다릅니다.',
+        },
+        {
+          q: 'Teams 전사본을 사용해야 하나요, 아니면 녹화를 업로드해야 하나요?',
+          a: '전사본이 사용 가능하고 필요에 맞는 경우 Teams 전사본을 사용하세요. Mictoo 내보내기, 번역 또는 검토할 추가 전사본이 필요할 때 녹화를 업로드하는 것이 유용합니다. 정확도는 녹화에 따라 다릅니다.',
+        },
+        {
+          q: '내 Teams MP4가 60 MB를 초과합니다. 이제 어떻게 하나요?',
+          a: '오디오 추출: ffmpeg -i teams.mp4 -vn -ac 1 -ar 16000 audio.m4a. 또는 로그인하여 약 3시간까지 파일 자동 분할을 하세요.',
+        },
+        {
+          q: 'GCC / 기업 테넌트에서 Mictoo를 사용할 수 있나요?',
+          a: '일부 기업 및 정부 테넌트는 다운로드 또는 외부 처리를 제한합니다. 다운로드하거나 회의 미디어를 업로드하기 전에 조직 정책을 따르고 IT 또는 녹화 소유자에게 확인하세요.',
+        },
+        {
+          q: 'Mictoo는 Teams 화자를 식별하나요?',
+          a: '아니요. 현재 전사본은 줄별 타임스탬프가 있는 연속 텍스트이며 자동 화자 레이블이 없습니다.',
+        },
+        {
+          q: 'Teams 녹화가 귀하의 서버에 저장되나요?',
+          a: '아니요. 파일은 전사 제공업체로 스트리밍되고 한 번 처리된 후 삭제됩니다. 전사본만 로그인한 계정에 남습니다.',
+        },
       ]}
+
+      ctaHeadline="Teams 회의를 깔끔한 텍스트로 변환"
+      ctaSubtitle="허가된 OneDrive 또는 SharePoint 녹화를 업로드하고 텍스트, 요약 및 내보내기를 받으세요."
+      ctaButton="Teams 녹화 업로드"
+
       relatedLinks={[
-        { href: '/ko/zoom-transcription', label: 'Zoom 받아쓰기', desc: 'Zoom Cloud 또는 로컬 녹화용.' },
-        { href: '/ko/google-meet-transcription', label: 'Google Meet 받아쓰기', desc: 'Google Meet 녹화용.' },
-        { href: '/ko/meeting-transcription', label: '회의 받아쓰기', desc: '다른 플랫폼 녹화용.' },
-        { href: '/ko/business-transcription', label: '비즈니스 받아쓰기', desc: '영업 통화, 인터뷰, 기타 비즈니스 오디오용.' },
+        { href: '/ko/meeting-transcription',       label: '회의 전사' },
+        { href: '/ko/zoom-transcription',          label: 'Zoom 전사' },
+        { href: '/ko/google-meet-transcription',   label: 'Google Meet 전사' },
+        { href: '/ko/business-transcription',      label: '비즈니스 전사' },
+        { href: '/ko/webinar-transcription',       label: '웨비나 전사' },
       ]}
     />
   )

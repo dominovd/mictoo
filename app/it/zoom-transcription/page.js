@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/zoom-transcription',
@@ -15,79 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Trascrizione Zoom — trascrivi le registrazioni Zoom gratis | Mictoo',
-  description: 'Trascrizione Zoom gratis. Carica la tua Cloud Recording (MP4) o registrazione locale (M4A) e ottieni una trascrizione IA precisa in pochi secondi. Senza registrazione, senza tariffa al minuto.',
-  alternates: { canonical: 'https://mictoo.com/it/zoom-transcription', languages: LANGS },
-
+  title: 'Trascrizione Zoom per registrazioni cloud e locali | Mictoo',
+  description:
+    'Carica una registrazione MP4/M4A cloud o locale di Zoom e ottieni una trascrizione con timestamp, un riepilogo AI e file di esportazione.',
+  alternates: {
+    canonical: 'https://mictoo.com/it/zoom-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Trascrizione Zoom — trascrivi le registrazioni Zoom gratis | Mictoo",
-    description: "Trascrizione Zoom gratis. Carica la tua Cloud Recording (MP4) o registrazione locale (M4A) e ottieni una trascrizione IA precisa in pochi secondi. Senza registrazione, senza tariffa al minuto.",
-    url: "https://mictoo.com/it/zoom-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Trascrizione registrazione Zoom | Mictoo',
+    description: 'Carica un MP4/M4A cloud o locale di Zoom e ottieni una trascrizione, un riepilogo e esportazioni.',
+    url: 'https://mictoo.com/it/zoom-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Trascrizione Zoom — trascrivi le registrazioni Zoom gratis | Mictoo",
-    description: "Trascrizione Zoom gratis. Carica la tua Cloud Recording (MP4) o registrazione locale (M4A) e ottieni una trascrizione IA precisa in pochi secondi. Senza registrazione, senza tariffa al minuto.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Trascrizione Zoom: Gratuita',
+    description: 'Carica una registrazione Zoom e ottieni una trascrizione con timestamp.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function ItZoomPage() {
+export default function ItZoomTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="it"
-      badge="ZOOM · MP4 · M4A · GRATIS"
-      h1={<>Trascrizione Zoom<br /><span className="text-brand-600">Trasforma le registrazioni Zoom in testo</span></>}
-      subtitle="Trasforma la tua registrazione Zoom in testo pulito. Cloud Recording MP4 o M4A locale, entrambi vanno bene. Rilascia il file, ottieni la trascrizione in pochi secondi."
-      howItWorks={[
-        { icon: '🎬', title: 'Esporta la registrazione Zoom', desc: 'Le cloud recording si scaricano come MP4 (video più audio) o M4A (solo audio). Le registrazioni locali sono salvate sulla tua macchina come MP4 più M4A. Entrambi i formati funzionano qui.' },
-        { icon: '⚡', title: 'Rilascia il file', desc: 'Trascinalo. Estraiamo l\'audio (se è video) e lo mandiamo a Whisper large-v3. Una riunione di 30 minuti finisce di solito in meno di un minuto.' },
-        { icon: '📋', title: 'Ottieni la trascrizione', desc: 'Leggi, copia o scarica come TXT o SRT. Sistema nomi o gergo sbagliati nell\'editor prima dell\'export.' },
+    <UseCaseLayout
+      locale="it"
+      badge="Zoom · Cloud / Locale / Audio M4A · Gratuito"
+      h1First="Trascrizione Zoom"
+      h1Second="Registrazioni cloud e locali in testo"
+      subtitle="Carica una registrazione MP4 di Zoom Cloud, un M4A solo audio o una registrazione locale. Ottieni una trascrizione con timestamp, un riepilogo AI, traduzione e file di esportazione in un unico flusso di lavoro."
+      currentHref="/it/zoom-transcription"
+
+      platforms={[
+        { name: 'Cloud MP4',    iconKey: 'videoCameraFill', brandBg: '#2D8CFF' },
+        { name: 'Audio M4A',    iconKey: 'mic',             brandBg: '#0EA5A4' },
+        { name: 'Local MP4',    iconKey: 'videoCameraFill', brandBg: '#4B53BC' },
+        { name: 'Google Meet',  iconKey: 'videoCameraFill', brandBg: '#00832D', href: '/it/google-meet-transcription' },
+        { name: 'MS Teams',     iconKey: 'videoCameraFill', brandBg: '#4B53BC', href: '/it/teams-meeting-transcription' },
+        { name: 'Meeting hub',  iconKey: 'videoCameraFill', brandBg: '#0F1F35', href: '/it/meeting-transcription' },
       ]}
-      whyUse={{ title: 'Perché Mictoo per le registrazioni Zoom', bullets: [
-        { title: 'Funziona su ogni piano Zoom, anche gratuito', desc: 'La trascrizione di Zoom è limitata a certi piani a pagamento. La nostra non ha requisiti di piano Zoom. Registra, scarica, carica, fatto.' },
-        { title: 'Migliore con inglese non nativo e code-switching', desc: 'Whisper large-v3 gestisce accenti e riunioni bilingui meglio della trascrizione nativa di Zoom, che storicamente è english-first.' },
-        { title: 'L\'M4A solo audio è abbastanza piccolo per caricamento diretto', desc: 'La maggior parte delle riunioni Zoom da 30 minuti finisce tra 15 e 25 MB come M4A. Sta comodamente nel nostro tier gratuito senza compressione.' },
-        { title: 'Nessuna preoccupazione di retention 14 giorni', desc: 'Le Zoom Cloud Recording possono sparire dopo 14-30 giorni a seconda del piano. Una volta scaricato e trascritto qui, è tuo per sempre.' },
-        { title: 'Privacy', desc: 'Il file va al provider di trascrizione ed è scartato. Non scriviamo la registrazione Zoom nel nostro database o archivio.' },
-      ]}}
-      useCases={{ title: 'Per cosa la gente trascrive registrazioni Zoom', items: [
-        { title: 'Verbali di riunioni interne', desc: 'Passa la registrazione, ottieni il testo, incolla in Notion o Confluence. Chi si è perso la riunione recupera in cinque minuti di lettura invece di un\'ora di video.' },
-        { title: 'Chiamate client e vendita', desc: 'Salva la trascrizione nel CRM accanto al deal. Il te futuro, sei mesi dopo, ti ringrazierà.' },
-        { title: 'Standup asincroni per team distribuiti', desc: 'Alcuni team registrano standup asincroni invece di fare riunioni live. Le trascrizioni li rendono cercabili e scorribili.' },
-        { title: 'Interviste di ricerca', desc: 'Ricerca qualitativa, user interview, call di screening candidati. Quello che codifichi e tagghi è il testo, non il video.' },
-        { title: 'Trascrizioni di webinar e panel', desc: 'Pubblica la trascrizione accanto alla registrazione per accessibilità e SEO. I motori di ricerca indicizzano il testo, non il video.' },
-      ]}}
-      proTips={{ title: 'Consigli per trascrivere Zoom', tips: [
-        { title: 'Scarica l\'M4A solo audio, non l\'MP4', desc: 'Zoom Cloud Recording offre entrambi. L\'M4A è un decimo della dimensione dell\'MP4 con qualità audio identica. Upload più veloce, ben sotto il cap di 60 MB per la maggior parte delle riunioni.' },
-        { title: 'Attiva "Record a separate audio file for each participant" per riunioni multi-parlante', desc: 'In Impostazioni Zoom, Recording. Ti dà un M4A per parlante. Trascrivi ognuno separatamente per attribuzione pulita, senza diarizzazione necessaria.' },
-        { title: 'Silenzia i partecipanti che non parlano', desc: 'Il rumore di fondo dai microfoni aperti durante una presentazione produce parole fantasma nella trascrizione. Vale la pena imporlo nelle call grandi.' },
-        { title: 'Registrazione locale e cloud hanno la stessa qualità', desc: 'Entrambe registrano con le stesse impostazioni audio di default. Locale è più veloce (niente upload a Zoom prima) ma occupa spazio disco.' },
-        { title: 'Per contenuti sensibili, usa registrazione locale', desc: 'La cloud salva la riunione sui server Zoom. La locale resta sulla tua macchina finché non scegli dove inviarla. Per conversazioni confidenziali con client o HR, locale e poi direttamente da noi è il percorso che preserva la privacy.' },
-        { title: 'Riunioni Zoom lunghe (oltre 60 minuti) vanno divise', desc: 'Il nostro cap per file è 60 minuti con login. Per una call di 90 minuti dividi in due pezzi da 45. Facile in Audacity (File, Export, Multiple) o con ffmpeg.' },
-      ]}}
+
+      howItWorksTitle="Come funziona la trascrizione di Zoom"
+      steps={[
+        {
+          icon: 'folder',
+          title: 'Scarica da Zoom',
+          desc: 'Cloud: zoom.us → Registrazioni → scarica MP4 o la versione "Audio Only (M4A)". Locale: ~/Documents/Zoom/.',
+        },
+        {
+          icon: 'upload',
+          title: 'Trascina il file qui',
+          desc: 'L\'M4A solo audio è solitamente molto più piccolo dell\'MP4 ed evita di caricare la traccia video. Gratuito fino a 25 MB in modo anonimo, 60 MB se registrato.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Rivedi ed esporta',
+          desc: 'Il tempo di elaborazione dipende dalla durata, dalla dimensione del file e dalla domanda. Quando è completo, rivedi la trascrizione ed esporta un riepilogo, sottotitoli o un riepilogo DOCX.',
+        },
+      ]}
+
+      exampleTitle="Esempio di trascrizione di una riunione Zoom"
+      exampleFileName="registrazione-cloud-zoom.m4a"
+      exampleDurationLabel="34:12"
+      exampleLines={[
+        { t: '0:00',  line: 'Va bene, scusate per il ritardo a tutti. Zoom si è rifiutato di farmi entrare fino a quando non ho aggiornato. Iniziamo.' },
+        { t: '0:10',  line: 'Oggi stiamo rivedendo il feedback sul prototipo della settimana scorsa e decidendo cosa dare priorità per lo sprint.' },
+        { t: '0:22',  line: 'In generale, il feedback è stato positivo. Dodici su quindici partecipanti hanno capito il flusso senza aiuto.' },
+        { t: '0:33',  line: 'I tre che si sono bloccati hanno tutti riscontrato lo stesso problema nella schermata delle impostazioni. Dobbiamo risolverlo per primo.' },
+        { t: '0:45',  line: 'D\'accordo. Ho già una revisione del design in lavorazione. Dovrebbe essere pronta per la revisione entro giovedì.' },
+        { t: '0:56',  line: 'In secondo luogo, a tutti è piaciuto il nuovo stato vuoto, ma nessuno ha trovato il pulsante di importazione. È sepolto troppo in profondità.' },
+        { t: '1:08',  line: 'Spostiamo l\'importazione all\'azione principale nello stato vuoto. È una modifica di una riga per l\'ingegneria.' },
+      ]}
+      summaryPoints={[
+        'Feedback sul prototipo: 12/15 hanno completato il flusso senza aiuto.',
+        'Blocco: la schermata delle impostazioni ha confuso 3/15 partecipanti.',
+        'Lo stato vuoto è stato ben accolto, ma il pulsante di importazione è difficile da trovare.',
+        'Revisione del design entro giovedì.',
+      ]}
+      actionItems={[
+        'Correggi la schermata delle impostazioni (revisione del design giovedì)',
+        'Promuovi l\'importazione ad azione principale nello stato vuoto',
+        'Condividi il prototipo rivisto nella riunione di venerdì',
+      ]}
+
+      whyTitle="Perché usare Mictoo con una registrazione Zoom"
+      whyCards={[
+        {
+          icon: 'target',
+          title: 'Una seconda trascrizione da rivedere',
+          desc: 'Usa Mictoo quando desideri una trascrizione aggiuntiva e testo con timestamp per controllare nomi, terminologia e citazioni chiave.',
+        },
+        {
+          icon: 'lock',
+          title: 'Elabora file scaricati',
+          desc: 'Mictoo non si connette al tuo account Zoom. Carica una registrazione cloud o locale per cui hai già il permesso di utilizzare.',
+        },
+        {
+          icon: 'gear',
+          title: 'Funziona anche con registrazioni locali',
+          desc: 'La trascrizione integrata di Zoom è solo per il cloud. La registrazione locale non ottiene nulla. Mictoo funziona con entrambi.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Riepilogo + Traduzione inclusi',
+          desc: 'Il riepilogo AI appare automaticamente accanto alla trascrizione. Traduci in oltre 50 lingue con un clic.',
+        },
+      ]}
+
+      scenariosTitle="Scenari comuni di Zoom"
+      scenarios={[
+        { icon: 'chat',      title: 'Chiamata con il cliente' },
+        { icon: 'users',     title: 'Standup del team' },
+        { icon: 'briefcase', title: 'Demo di vendita' },
+        { icon: 'search',    title: 'Intervista con l\'utente' },
+        { icon: 'book',      title: 'Webinar' },
+        { icon: 'globe',     title: 'Chiamata multilingue' },
+      ]}
+
+      tipsTitle="Suggerimenti per le registrazioni Zoom"
+      tips={[
+        'Scarica la versione M4A "Audio Only". Stessa precisione, 10 volte più piccola.',
+        'Il limite di registrazione cloud non viene speso per la nostra trascrizione (funzioniamo esternamente).',
+        'La registrazione locale funziona anche. Cerca sotto ~/Documents/Zoom/.',
+        'Per chiamate lunghe oltre 60 MB, accedi per la suddivisione automatica.',
+      ]}
+
+      guidesTitle="Piattaforme di riunione con guide proprie"
+      guides={[
+        { href: '/it/google-meet-transcription',   icon: 'video', title: 'Google Meet', desc: 'Workspace + soluzione gratuita' },
+        { href: '/it/teams-meeting-transcription', icon: 'video', title: 'MS Teams',    desc: 'Percorsi OneDrive + SharePoint' },
+        { href: '/it/meeting-transcription',       icon: 'video', title: 'Meeting hub', desc: 'Qualsiasi piattaforma, un caricamento' },
+        { href: '/it/webinar-transcription',       icon: 'monitor', title: 'Webinar',  desc: 'Zoom Webinars, Demio, ON24' },
+      ]}
+
       faq={[
-        { q: 'Mictoo funziona con Zoom Cloud Recording?', a: 'Sì. Scarica l\'MP4 o M4A dalla tua libreria di registrazioni Zoom, poi carica su Mictoo. L\'export M4A solo audio è più veloce e più piccolo.' },
-        { q: 'Funziona con le registrazioni Zoom Phone?', a: 'Sì. Zoom Phone registra come MP3 o M4A. Entrambi funzionano. L\'audio qualità telefonica (8 kHz mono) si trascrive leggermente meno preciso dell\'audio video riunione, ma il risultato è comunque leggibile.' },
-        { q: 'E le registrazioni Zoom locali?', a: 'Stessa storia. Zoom le salva come MP4 più M4A nella tua cartella Zoom di default. Rilascia l\'M4A qui.' },
-        { q: 'Avrò etichette dei parlanti?', a: 'Non automaticamente. Se hai attivato "Record a separate audio file for each participant" nelle impostazioni Zoom, puoi trascrivere il file di ogni parlante separatamente. Altrimenti dovrai aggiungere le etichette manualmente in base al flusso conversazione.' },
-        { q: 'La mia registrazione Zoom supera i 60 MB. Cosa faccio?', a: 'Usa il download solo audio M4A invece dell\'MP4. Se è ancora troppo grande, dividi in pezzi o ri-codifica a bitrate più basso.' },
-        { q: 'Come si confronta Mictoo con la trascrizione nativa di Zoom?', a: 'Siamo migliori sulla precisione per inglese non nativo, migliori sugli accenti, e con copertura linguistica più ampia (50+). La trascrizione nativa Zoom è più comoda se paghi già il piano Zoom giusto. La nostra è gratis e funziona indipendentemente dal tier Zoom.' },
-        { q: 'La mia registrazione Zoom è conservata sui vostri server?', a: 'No. Il file va al provider di trascrizione (Groq, con OpenAI come backup), viene trascritto, poi scartato. Non scriviamo la registrazione su disco.' },
-        { q: 'Posso trascrivere una riunione Zoom in tempo reale?', a: 'No. Lavoriamo solo con file registrati. Per real-time durante la riunione, lo strumento integrato di Zoom o un assistente riunione dedicato sarebbe la scelta giusta.' },
-        { q: 'E i webinar Zoom e le riunioni grandi?', a: 'Stesso workflow. Scarica la registrazione, carica, trascrivi. Per webinar molto lunghi (oltre 60 minuti) dividi prima.' },
-        { q: 'Trascriverà i messaggi chat della riunione?', a: 'No. I messaggi chat sono salvati separatamente da Zoom (come TXT nella tua cartella Zoom). Trascriviamo solo l\'audio. Combina i due tu se ti servono entrambi.' },
-        { q: 'Quanto è precisa la trascrizione audio Zoom?', a: 'Per audio riunione pulito con buoni microfoni, aspettati 90-95% di precisione. Per riunioni con cattivo audio (microfono laptop, stanza rumorosa, Wi-Fi debole), la precisione cala un po\'. Nomi e termini tecnici spesso richiedono pulizia.' },
-        { q: 'Funziona anche per registrazioni Microsoft Teams o Google Meet?', a: 'Sì, stesso motore. Abbiamo pagine dedicate per Google Meet e Microsoft Teams.' },
+        {
+          q: 'Quali tipi di registrazione Zoom funzionano?',
+          a: 'Registrazione cloud MP4 (video), registrazione cloud M4A (solo audio) e registrazione locale MP4. Anche l\'esportazione chat.txt se desideri il registro della chat, anche se non trascriviamo la chat.',
+        },
+        {
+          q: 'Ho bisogno di Zoom Pro o superiore?',
+          a: 'No. Qualsiasi registrazione Zoom funziona, anche da registrazione locale gratuita. La registrazione cloud di Zoom richiede Pro+, ma se hai già il file, a Mictoo non importa il tuo livello Zoom.',
+        },
+        {
+          q: 'La mia registrazione cloud MP4 è superiore a 60 MB. E adesso?',
+          a: 'Se la tua registrazione include un download Audio Only (M4A), usalo per evitare di caricare la traccia video. Disponibilità e dimensione del file dipendono dalle impostazioni di registrazione e dalla durata.',
+        },
+        {
+          q: 'Dovrei usare la trascrizione audio di Zoom o Mictoo?',
+          a: 'La trascrizione audio di Zoom è comoda quando la registrazione cloud e la trascrizione sono abilitate sul tuo account. Mictoo è utile per file locali, formati di esportazione aggiuntivi, traduzione o per produrre un\'altra trascrizione da rivedere. L\'accuratezza varia con la registrazione.',
+        },
+        {
+          q: 'Mictoo identifica gli oratori di Zoom?',
+          a: 'No. L\'attuale trascrizione è testo continuo con timestamp per riga e senza etichette automatiche "Oratore 1 / Oratore 2".',
+        },
+        {
+          q: 'Dove salva la registrazione locale?',
+          a: 'Per impostazione predefinita, ~/Documents/Zoom/ su Mac e %USERPROFILE%\\Documents\\Zoom\\ su Windows. Ogni riunione ottiene la propria cartella con l\'MP4 e l\'audio.m4a separato.',
+        },
+        {
+          q: 'La mia registrazione Zoom è memorizzata sui vostri server?',
+          a: 'No. Il file viene trasmesso al fornitore di trascrizione, elaborato una volta e rimosso dalla memoria. Solo la trascrizione persiste se accedi.',
+        },
       ]}
+
+      ctaHeadline="Trasforma le registrazioni Zoom in testo pulito"
+      ctaSubtitle="Cloud MP4 o M4A, registrazione locale, qualsiasi livello Zoom. Gratuito per file."
+      ctaButton="Carica registrazione Zoom"
+
       relatedLinks={[
-        { href: '/it/google-meet-transcription', label: 'Trascrizione Google Meet', desc: 'Stesso workflow per registrazioni Google Meet.' },
-        { href: '/it/teams-meeting-transcription', label: 'Trascrizione Teams', desc: 'Per registrazioni Microsoft Teams.' },
-        { href: '/it/meeting-transcription', label: 'Trascrizione riunioni', desc: 'Pagina generica se la registrazione viene da un\'altra piattaforma.' },
-        { href: '/it/interview-transcription', label: 'Trascrizione intervista', desc: 'Per call uno a uno e interviste qualitative.' },
+        { href: '/it/meeting-transcription',       label: 'Trascrizione Riunioni' },
+        { href: '/it/google-meet-transcription',   label: 'Trascrizione Google Meet' },
+        { href: '/it/teams-meeting-transcription', label: 'Trascrizione Teams' },
+        { href: '/it/webinar-transcription',       label: 'Trascrizione Webinar' },
+        { href: '/it/interview-transcription',     label: 'Trascrizione Intervista' },
       ]}
     />
   )

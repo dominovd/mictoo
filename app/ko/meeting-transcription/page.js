@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/meeting-transcription',
@@ -15,80 +15,198 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: '회의 받아쓰기 — 통화와 회의용 무료 AI 받아쓰기 | Mictoo',
+  title: '모든 녹화 플랫폼을 위한 회의 전사 | Mictoo',
   description:
-    '무료 AI 회의 받아쓰기. 모든 플랫폼의 회의 녹화를 업로드하여 몇 초 만에 깨끗한 텍스트. 가입 불필요, 분당 과금 없음, 50개 이상의 언어.',
-  alternates: { canonical: 'https://mictoo.com/ko/meeting-transcription', languages: LANGS },
-
+    'Zoom, Teams, Meet, Webex, Loom 또는 Riverside에서 승인된 회의 녹음을 업로드하여 텍스트, 요약 및 내보내기를 받으세요.',
+  alternates: {
+    canonical: 'https://mictoo.com/ko/meeting-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "회의 받아쓰기 — 통화와 회의용 무료 AI 받아쓰기 | Mictoo",
-    description: "무료 AI 회의 받아쓰기. 모든 플랫폼의 회의 녹화를 업로드하여 몇 초 만에 깨끗한 텍스트. 가입 불필요, 분당 과금 없음, 50개 이상의 언어.",
-    url: "https://mictoo.com/ko/meeting-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: '회의 전사: 모든 플랫폼, 모든 녹음 | Mictoo',
+    description: '회의 녹음을 드롭하면 전사를 받을 수 있습니다. 무료입니다.',
+    url: 'https://mictoo.com/ko/meeting-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "회의 받아쓰기 — 통화와 회의용 무료 AI 받아쓰기 | Mictoo",
-    description: "무료 AI 회의 받아쓰기. 모든 플랫폼의 회의 녹화를 업로드하여 몇 초 만에 깨끗한 텍스트. 가입 불필요, 분당 과금 없음, 50개 이상의 언어.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: '회의 전사: 모든 플랫폼',
+    description: '회의 녹음을 드롭하면 전사를 받을 수 있습니다.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function KoMeetingPage() {
+export default function KoMeetingTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="ko"
-      badge="모든 플랫폼 · 무료 · 50개 이상의 언어"
-      h1={<>회의 받아쓰기<br /><span className="text-brand-600">무료 AI 회의 받아쓰기</span></>}
-      subtitle="모든 회의 녹화를 깨끗한 텍스트로 변환. Zoom, Meet, Teams, Webex, Discord, Skype, 음성 레코더, 무엇이든 작동. 계정 불필요, 분당 과금 없음."
-      howItWorks={[
-        { icon: '🎙️', title: '회의 녹화 가져오기', desc: '어떤 플랫폼을 사용했든(Zoom, Meet, Teams, Webex, Discord, GoToMeeting, 대면 음성 레코더), 녹화를 MP4, MP3, M4A, WAV, FLAC 또는 OGG로 내보내세요.' },
-        { icon: '⚡', title: '파일 드롭', desc: '필요하면 오디오를 추출하여 Whisper large-v3로 보냅니다. 30분 회의는 약 1분에 완료.' },
-        { icon: '📋', title: '받아쓰기 받기', desc: '읽고, 복사하거나 TXT 또는 SRT로 다운로드. 내보내기 전에 잘못된 단어나 기술 용어를 인라인으로 수정.' },
+    <UseCaseLayout
+      locale="ko"
+      badge="모든 플랫폼 · 무료 · 가입 필요 없음"
+      h1First="회의 전사"
+      h1Second="모든 플랫폼을 위한 하나의 업로드 페이지"
+      subtitle="Zoom, Teams, Google Meet, Webex, Loom 또는 기타 화면 캡처에서 녹음을 업로드하세요. 타임스탬프가 있는 깨끗한 전사와 AI 요약 및 내보내기를 받으세요."
+      currentHref="/ko/meeting-transcription"
+
+      platforms={[
+        { name: 'Zoom',        iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/ko/zoom-transcription' },
+        { name: 'Google Meet', iconKey: 'videoCameraFill', brandBg: '#00832D', href: '/ko/google-meet-transcription' },
+        { name: 'MS Teams',    iconKey: 'videoCameraFill', brandBg: '#4B53BC', href: '/ko/teams-meeting-transcription' },
+        { name: 'Webex',       iconKey: 'videoCameraFill', brandBg: '#0F1F35' },
+        { name: 'Loom',        iconKey: 'loomPlay',        brandBg: '#625DF5' },
+        { name: 'Riverside',   iconKey: 'waveMic',         brandBg: '#4B2AF7' },
       ]}
-      whyUse={{ title: '회의에 Mictoo를 사용하는 이유', bullets: [
-        { title: '소스 플랫폼은 중요하지 않음', desc: 'Zoom, Meet, Teams, Webex, Discord, GoToMeeting, BlueJeans, 대면 레코더. 파일이 있으면 우리가 받아씁니다.' },
-        { title: '모든 회의에 하나의 모델', desc: 'Zoom에서 녹화한 영업 통화와 Teams에서 캡처한 팀 회고에 같은 Whisper large-v3. 일관된 정확도, 일관된 출력 포맷.' },
-        { title: '무료, 분 카운터 없음', desc: '대부분의 회의 도구 받아쓰기는 자체 비용이 있는 라이선스 계층에 내장. 우리 것은 진정으로 무료, 월별 한도 없음.' },
-        { title: '50개 이상의 언어', desc: '국경 간 회의, 이중 언어 대화, 국제 팀. Whisper는 자동 감지나 수동 언어 선택으로 모두 처리.' },
-        { title: '아무것도 저장되지 않음', desc: '파일은 받아쓰기 제공업체로 스트리밍되고 폐기. 회의 오디오를 서버에 기록하지 않습니다.' },
-      ]}}
-      useCases={{ title: '사람들이 받아쓰는 일반적인 회의 유형', items: [
-        { title: '팀 스탠드업과 회고', desc: '비동기 팀은 다른 시간대 사람들이 따라잡을 수 있도록 스탠드업을 받아씁니다. 회고는 후속 조치를 위한 서면 기록에서 혜택을 받습니다.' },
-        { title: '클라이언트와 고객 통화', desc: '영업 통화, 계정 체크인, 고객 인터뷰. CRM의 거래나 연락처 옆에 받아쓰기 저장.' },
-        { title: '내부 교육과 온보딩 세션', desc: '신규 직원은 비디오를 보면서 받아쓰기를 읽습니다. 더 나은 유지, 단계를 잊어버렸을 때 나중에 검색 가능.' },
-        { title: '이사회 회의, 리더십 오프사이트, 전체 회의', desc: '받아쓰기는 기업 커뮤니케이션을 더 접근 가능하게 합니다. 참석할 수 없었던 직원과 문서화에 유용.' },
-        { title: '인터뷰와 질적 연구', desc: '후보자 스크리닝, 사용자 인터뷰, 저널리즘이든, 받아쓰기가 실제 작업 결과물.' },
-      ]}}
-      proTips={{ title: '회의 받아쓰기 팁', tips: [
-        { title: '소스가 비디오일 때 오디오 추출', desc: '회의 플랫폼은 오디오와 비디오로 MP4를 내보냄. 오디오만 필요. ffmpeg -i meeting.mp4 -vn -ac 1 -b:a 64k meeting.mp3가 1 GB MP4를 25 MB 이하로. 더 빠른 업로드, 같은 받아쓰기.' },
-        { title: '모두가 실제 마이크를 가지고 있는지 확인', desc: 'WiFi 통화의 내장 노트북 마이크는 시끄럽고 에코가 있는 오디오를 생성. 참가자당 20달러 유선 USB 헤드셋은 받아쓰기 정확도에서 보상받습니다.' },
-        { title: '말하지 않는 참가자 음소거', desc: '프레젠테이션 중 열린 마이크는 키보드 타이핑, 방의 배경 소음, 사이드바 대화를 포착. Whisper는 가끔 이를 의미 없는 단어로 받아씁니다.' },
-        { title: '비원어민 영어 화자가 있는 회의에서는 불필요하게 분할하지 마세요', desc: 'Whisper는 더 드문 구문에 대한 더 긴 컨텍스트에서 혜택을 받음. 선택이 있다면 연속된 30분 파일이 세 개의 10분 청크보다 더 잘 받아쓰여집니다.' },
-        { title: '긴 회의는 자연스러운 휴식에서 더 잘 분할', desc: '90분 회의를 청크로 분할해야 한다면, 자연스러운 휴식(커피 휴식, 의제 전환)을 찾아 거기서 분할. 문장 중간을 자를 위험 감소.' },
-        { title: '짧거나 비정상적인 회의에는 언어를 수동으로 선택', desc: '자동 감지는 첫 오디오 청크를 샘플링. 대기실 음악, 짧은 인사 또는 무음으로 시작하는 회의는 수동 언어 선택이 더 신뢰할 수 있습니다.' },
-      ]}}
+
+      howItWorksTitle="회의 전사가 작동하는 방식"
+      steps={[
+        {
+          icon: 'folder',
+          title: '회의 녹음 찾기',
+          desc: '모든 플랫폼에서 녹음을 내보내거나 다운로드하세요.',
+        },
+        {
+          icon: 'upload',
+          title: '파일을 여기로 드롭하세요',
+          desc: 'MP3, MP4, WAV 또는 기타 지원되는 형식으로 파일을 업로드하세요.',
+        },
+        {
+          icon: 'editPen',
+          title: '전사, 요약, 내보내기',
+          desc: '타임스탬프가 있는 전사, AI 요약 및 내보내기 파일을 받으세요.',
+        },
+      ]}
+
+      exampleTitle="예시 전사 및 요약"
+      exampleFileName="meeting-recording.mp4"
+      exampleDurationLabel="30분 15초"
+      exampleLines={[
+        { t: '0:00',  line: '모두 참석해 주셔서 감사합니다. 오늘의 의제로 넘어가기 전에 지난 주 진행 상황을 간단히 요약하겠습니다.' },
+        { t: '0:12',  line: '온보딩 흐름을 출시했으며 이전 기준선에 비해 12% 증가했습니다.' },
+        { t: '0:28',  line: '좋습니다. 다음으로, 더 많은 유료 고객에게 영향을 미치기 전에 모바일 체크아웃 버그를 수정해야 합니다.' },
+        { t: '0:36',  line: '티켓을 생성하고 팀에 오늘 중으로 할당하겠습니다. 스프린트 내에 해결될 것입니다.' },
+        { t: '0:44',  line: '가격 페이지 업데이트에 대해서도 논의해야 합니다. 현재 버전은 우리가 예상한 대로 전환되지 않고 있습니다.' },
+        { t: '0:55',  line: '오늘 중으로 초안을 공유하겠습니다. 내일 스탠드업 전에 함께 검토할 수 있습니다.' },
+      ]}
+      summaryPoints={[
+        '온보딩 흐름이 출시되었고 활성화가 12% 증가했습니다.',
+        '모바일 체크아웃 버그를 수정해야 합니다.',
+        '가격 페이지 업데이트를 논의해야 합니다.',
+        '오늘 중으로 초안을 공유하고 내일 검토합니다.',
+      ]}
+      actionItems={[
+        '모바일 체크아웃 버그에 대한 티켓 생성',
+        '가격 페이지 초안 공유',
+        '내일 초안 검토',
+      ]}
+
+      whyTitle="플랫폼에 구애받지 않는 업로드의 장점"
+      whyCards={[
+        {
+          icon: 'globe',
+          title: '모든 회의 플랫폼에서 작동',
+          desc: 'Zoom, Teams, Google Meet, Webex, Loom 등에서 업로드하세요.',
+        },
+        {
+          icon: 'target',
+          title: '하나의 검토 워크플로우',
+          desc: '어떤 플랫폼에서 녹음이 생성되었든 동일한 타임스탬프 레이아웃과 내보내기 옵션을 사용하세요.',
+        },
+        {
+          icon: 'lock',
+          title: '승인된 파일에서 작동',
+          desc: 'Mictoo는 이미 사용 권한이 있는 녹음을 처리합니다. 접근 및 다운로드 정책은 여전히 원본 플랫폼에 속합니다.',
+        },
+        {
+          icon: 'sparkles',
+          title: '요약 및 번역 포함',
+          desc: 'AI 요약을 받고 50개 이상의 언어로 전사를 번역하세요.',
+        },
+      ]}
+
+      scenariosTitle="일반적인 회의 전사 시나리오"
+      scenarios={[
+        { icon: 'chat',      title: '고객 요약 이메일' },
+        { icon: 'search',    title: '사용자 연구 노트' },
+        { icon: 'users',     title: '채용 담당자 스크리닝' },
+        { icon: 'briefcase', title: '팀 회의 아카이브' },
+        { icon: 'headset',   title: '지원 에스컬레이션' },
+        { icon: 'globe',     title: '다국어 회의' },
+      ]}
+
+      practicalTitle="회의 녹음을 찾는 방법"
+      practicalIntro="정확한 위치는 플랫폼과 회의 역할에 따라 다릅니다. 접근 권한이 있는 녹음만 다운로드하고, 업로드하기 전에 참가자 동의 및 조직 정책을 따르세요."
+      practicalItems={[
+        {
+          title: 'Zoom 클라우드 또는 로컬 녹음',
+          desc: '클라우드 녹음은 적격 유료 계정의 Zoom 웹 포털에서 사용할 수 있습니다. 컴퓨터 녹음은 일반적으로 로컬 Zoom 폴더에 저장됩니다.',
+        },
+        {
+          title: 'Google Meet 녹음',
+          desc: '적격 Meet 녹음은 주최자의 내 드라이브 › Meet 녹음 폴더에 저장됩니다. 가용성은 에디션 및 관리자 설정에 따라 다릅니다.',
+        },
+        {
+          title: 'Microsoft Teams 녹음',
+          desc: '회의 채팅, OneDrive 또는 채널 SharePoint 사이트에서 녹음을 찾으세요. 다운로드 권한은 정책에 의해 제한될 수 있습니다.',
+        },
+        {
+          title: 'Webex, Loom 및 Riverside',
+          desc: '플랫폼 내보내기 또는 다운로드 컨트롤을 사용하여 오디오 또는 비디오 파일을 얻고, 업로드 전에 파일이 올바르게 재생되는지 확인하세요.',
+        },
+      ]}
+
+      tipsTitle="더 나은 회의 전사를 위한 팁"
+      tips={[
+        '더 작은 업로드를 원할 때는 오디오 전용 내보내기를 선호하세요.',
+        '조용한 공간에서 녹음하고 배경 소음을 줄이세요.',
+        '다국어 또는 혼합 언어 통화에는 자동 감지를 사용하세요.',
+        '전사 후 이름과 용어를 검토하세요.',
+      ]}
+
+      guidesTitle="올바른 플랫폼 가이드 선택"
+      guides={[
+        { href: '/ko/zoom-transcription',          icon: 'video', title: 'Zoom 회의',    desc: '단계별 다운로드 가이드' },
+        { href: '/ko/google-meet-transcription',   icon: 'video', title: 'Google Meet',      desc: '단계별 다운로드 가이드' },
+        { href: '/ko/teams-meeting-transcription', icon: 'video', title: 'Microsoft Teams',  desc: '단계별 다운로드 가이드' },
+        { href: '/ko/meeting-transcription#tool',  icon: 'file',  title: '기타 플랫폼',  desc: '모든 가이드 및 팁 보기' },
+      ]}
+
       faq={[
-        { q: '어떤 회의 플랫폼을 지원합니까?', a: '모두. 플랫폼이 아닌 녹화 파일로 작동. Zoom, Microsoft Teams, Google Meet, Webex, Discord, Skype, GoToMeeting, BlueJeans, 대면 음성 레코더. 파일이 MP4, MP3, M4A, WAV, FLAC, OGG 또는 WEBM이면 받아씁니다.' },
-        { q: '내 회의가 Zoom(또는 Meet, 또는 Teams)이었습니다. 이 페이지나 플랫폼별 페이지를 사용해야 하나요?', a: '같은 엔진, 같은 정확도. 플랫폼별 페이지는 더 표적화된 팁을 제공. 더 쉬운 것을 사용하세요.' },
-        { q: '스피커 레이블을 받을 수 있습니까?', a: '자동으로는 안 됩니다. Whisper는 기본적으로 분리를 하지 않습니다. 구별 가능한 목소리가 있는 회의는 대화에 따라 수동으로 레이블 추가. 스피커당 별도 오디오 트랙이 있는 회의(Riverside, SquadCast, 때때로 Zoom)는 각 트랙을 별도로 받아쓰기.' },
-        { q: '내 회의 녹화가 60 MB를 초과합니다. 이제 어떻게?', a: '두 가지 옵션. 비디오에서 오디오만 추출(ffmpeg 명령 하나), 또는 회의를 청크로 분할.' },
-        { q: '회의 받아쓰기 정확도는?', a: '깨끗한 오디오(좋은 마이크, 배경 소음 없음): 90-95%. 회의실 마이크나 스피커폰: 80-90%. 이름과 기술 용어는 보통 정리 필요.' },
-        { q: '내 회의가 서버에 저장됩니까?', a: '아니요. 파일은 받아쓰기 제공업체로 스트리밍되고 처리 후 폐기. 회의 오디오나 받아쓰기를 데이터베이스에 기록하지 않습니다.' },
-        { q: 'Mictoo의 회의 받아쓰기는 GDPR 준수입니까?', a: '사이트를 떠난 후 오디오나 받아쓰기를 보관하지 않습니다. 우리는 유럽에 있고 제공업체(Groq US, OpenAI US)는 DPA가 있습니다. 특정 규정 준수 질문에 대해서는 개인정보 보호 정책을 참조.' },
-        { q: '받아쓰기뿐만 아니라 회의 요약을 받을 수 있습니까?', a: '현재는 완전한 받아쓰기를 제공. 요약을 위해서는 "이 회의 받아쓰기를 핵심 결정과 액션 아이템으로 요약하세요" 같은 프롬프트로 ChatGPT나 Claude에 받아쓰기를 붙여넣기.' },
-        { q: '어떤 언어가 지원됩니까?', a: '50개 이상, 자동 감지 포함. 5분 미만 회의나 비음성 인트로가 있는 파일은 더 신뢰할 수 있는 결과를 위해 언어를 수동으로 선택.' },
-        { q: '회의를 실시간으로 받아쓸 수 있습니까?', a: '아니요. 녹화된 파일로 작동. 실시간에는 회의 플랫폼 자체의 라이브 받아쓰기나 전용 미팅 어시스턴트 사용.' },
-        { q: '내 회의 비디오와 정렬된 SRT 파일은 어떻게 받습니까?', a: '받아쓰기 후 SRT 다운로드. 대부분의 비디오 에디터(Premiere, DaVinci, CapCut, Final Cut)는 비디오의 오디오가 받아쓴 것과 일치하는 한 자동 정렬하는 SRT를 가져옵니다.' },
-        { q: '기밀 회의를 받아쓸 수 있습니까?', a: '기밀 회의(HR, 법적, M&A, 이사회)에는 우리 것을 포함한 모든 클라우드 받아쓰기 서비스에 주의. 우리 파일은 저장되지 않지만 처리를 위해 제3자 음성 제공업체를 통과. 최대 프라이버시를 위해 대신 로컬 Whisper 설치를 사용하세요.' },
+        {
+          q: 'Zoom, Meet 또는 Teams 녹음을 전사할 수 있나요?',
+          a: '네. 모든 회의 플랫폼의 오디오 또는 비디오 파일이 작동합니다. 녹음을 다운로드하고 여기로 드롭하세요. MP3, MP4, WAV, M4A, WEBM, FLAC 등을 지원합니다.',
+        },
+        {
+          q: '회의 전사는 무료인가요?',
+          a: '네. 25 MB까지는 익명으로, 로그인 시 60 MB까지 가능합니다. 더 긴 회의는 로그인한 사용자에게 자동으로 분할될 수 있습니다. 신용 카드가 필요하지 않습니다.',
+        },
+        {
+          q: 'Mictoo는 다른 화자를 식별하나요?',
+          a: '아니요. 현재 전사는 각 줄에 타임스탬프가 있는 연속 텍스트이며 자동 "화자 1 / 화자 2" 레이블이 없습니다.',
+        },
+        {
+          q: '회의 녹음은 저장되나요?',
+          a: '아니요. 파일은 전사 제공업체로 스트리밍되고, 한 번 처리된 후 메모리에서 삭제됩니다. 전사는 로그인하고 기록에 추가해야만 저장됩니다.',
+        },
+        {
+          q: '어떤 내보내기 형식이 가능한가요?',
+          a: 'TXT (일반 텍스트), SRT 및 VTT (녹음에 맞춘 타임스탬프가 있는 자막), DOCX (Word 문서)입니다. 로그인한 사용자에게는 PDF 및 JSON도 제공됩니다.',
+        },
+        {
+          q: '전사를 번역할 수 있나요?',
+          a: '네. 전사 후 목표 언어를 선택하고 번역을 클릭하세요. 참가자에게 선호하는 언어로 요약 이메일을 보내거나, 다국어 회의를 단일 작업 언어로 아카이브하는 데 유용합니다.',
+        },
       ]}
+
+      ctaHeadline="다음 회의를 명확한 노트로 바꾸세요"
+      ctaSubtitle="모든 플랫폼에서 녹음을 드롭하고 몇 초 안에 전사, 요약 및 내보내기를 받으세요."
+      ctaButton="회의 녹음 업로드"
+
       relatedLinks={[
-        { href: '/ko/zoom-transcription', label: 'Zoom 받아쓰기', desc: 'Zoom 관련 팁과 내보내기 워크플로우.' },
-        { href: '/ko/google-meet-transcription', label: 'Google Meet 받아쓰기', desc: 'Google Meet 녹화용.' },
-        { href: '/ko/teams-meeting-transcription', label: 'Teams 받아쓰기', desc: 'Microsoft Teams 녹화용.' },
-        { href: '/ko/business-transcription', label: '비즈니스 받아쓰기', desc: '클라이언트 통화, 회의, 영업 통화용.' },
+        { href: '/ko/interview-transcription',  label: '인터뷰 전사' },
+        { href: '/ko/podcast-transcription',    label: '팟캐스트 전사' },
+        { href: '/ko/lecture-transcription',    label: '강의 전사' },
+        { href: '/ko/business-transcription',   label: '비즈니스 전사' },
+        { href: '/ko/voice-memo-to-text',       label: '음성 메모를 텍스트로' },
       ]}
     />
   )

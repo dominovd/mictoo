@@ -1,3 +1,5 @@
+import ConverterPageLayout from '@/components/ConverterPageLayout'
+
 const LANGS = {
   'en': 'https://mictoo.com/aac-to-mp3',
   'fr': 'https://mictoo.com/fr/aac-to-mp3',
@@ -13,115 +15,94 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Come convertire AAC in MP3 — metodi gratuiti (2026) | Mictoo',
-  description: "Converti gratis file audio AAC in MP3. Tre modi rapidi — convertitore online, QuickTime/VLC o ffmpeg da riga di comando. Inoltre: Mictoo trascrive la maggior parte dei file AAC direttamente, senza conversione.",
-  alternates: { canonical: 'https://mictoo.com/it/aac-to-mp3', languages: LANGS },
-
+  title: 'AAC a MP3: Convertitore Online Gratuito | Mictoo',
+  description:
+    'Converti AAC in MP3 gratuitamente, in pochi secondi, con una chiara spiegazione di quando la conversione è utile e quando compromette la qualità.',
+  alternates: {
+    canonical: 'https://mictoo.com/it/aac-to-mp3',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Come convertire AAC in MP3 — metodi gratuiti (2026) | Mictoo",
-    description: "Converti gratis file audio AAC in MP3. Tre modi rapidi — convertitore online, QuickTime/VLC o ffmpeg da riga di comando. Inoltre: Mictoo trascrive la maggior parte dei file AAC direttamente, senza conversione.",
-    url: "https://mictoo.com/it/aac-to-mp3",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'AAC a MP3: Convertitore Online Gratuito | Mictoo',
+    description: 'Converti AAC in MP3 gratuitamente, in pochi secondi.',
+    url: 'https://mictoo.com/it/aac-to-mp3',
+    siteName: 'Mictoo', type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Come convertire AAC in MP3 — metodi gratuiti (2026) | Mictoo",
-    description: "Converti gratis file audio AAC in MP3. Tre modi rapidi — convertitore online, QuickTime/VLC o ffmpeg da riga di comando. Inoltre: Mictoo trascrive la maggior parte dei file AAC direttamente, senza conversione.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'AAC a MP3: Convertitore Online Gratuito',
+    description: 'Converti AAC in MP3 in pochi secondi. Gratuito, senza registrazione.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function ItAacToMp3Page() {
   return (
-    <section className="max-w-2xl mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold text-slate-900 mb-3">Come convertire AAC in MP3</h1>
-      <p className="text-slate-500 mb-10 leading-relaxed">
-        AAC (Advanced Audio Coding) è il formato predefinito per i memo vocali iPhone, i registratori Android e l'audio dentro i video MP4. MP3 è più universale e funziona con qualsiasi lettore, editor e strumento di trascrizione. Sotto — tre modi gratuiti più una nota su quando serve davvero convertire.
-      </p>
-
-      <div className="bg-brand-50 border border-brand-100 rounded-2xl p-5 mb-10">
-        <p className="text-sm text-slate-700 mb-2">
-          <strong>Prima di convertire:</strong> se l'obiettivo è la trascrizione, Mictoo accetta la maggior parte dei file AAC direttamente — compresi i file <code className="font-mono text-xs bg-white px-1.5 py-0.5 rounded border border-slate-200">.aac</code> dentro contenitori MP4 (memo vocali iPhone, export dal menu condividi, quasi tutti i registratori Android). Prova prima; converti solo se il file viene rifiutato.
-        </p>
-        <a href="/it" className="inline-flex items-center gap-2 text-sm text-brand-600 hover:underline">
-          ↑ Trascrivi il .aac direttamente
-        </a>
-      </div>
-
-      <div className="space-y-12 text-slate-600 text-sm leading-relaxed">
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">Metodo 1 — Convertitore online (senza installazione)</h2>
-
-          <img
-            src="/svg/online-converter-3step.svg"
-            alt="Tre passi: rilascia il file AAC, scegli MP3 come formato di output, scarica il risultato."
-            className="w-full rounded-2xl border border-slate-100 mb-5"
-            width={640}
-            height={240}
-          />
-
-          <p className="mb-4">
-            Il più veloce per file sotto ~200 MB. Trascina nel browser, ottieni l'MP3 in pochi secondi. Tutti senza registrazione:
-          </p>
-          <p className="text-xs text-slate-500 mt-3">
-            Privacy: i convertitori online caricano il file sui loro server. Per registrazioni sensibili (medico, legale, chiamate di lavoro) usa un metodo desktop sotto.
-          </p>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">Metodo 2 — App desktop (offline)</h2>
-
-          <h3 className="font-semibold text-slate-700 mt-4 mb-2">macOS — QuickTime + iMovie</h3>
-          <p className="mb-2">
-            QuickTime apre i file AAC. Usa <strong>File → Esporta come → Solo audio</strong> e scegli MP3 nella finestra. Incluso in ogni Mac.
-          </p>
-
-          <h3 className="font-semibold text-slate-700 mt-4 mb-2">Windows / macOS / Linux — Audacity (gratis)</h3>
-          <p>
-            Apri il file AAC in <a href="https://www.audacityteam.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Audacity</a>, poi <strong>File → Esporta → Esporta come MP3</strong>. Scegli mono e 64–96 kbps se l'audio è voce.
-          </p>
-
-          <h3 className="font-semibold text-slate-700 mt-4 mb-2">Multipiattaforma — VLC</h3>
-          <p>
-            VLC converte tramite <strong>Media → Converti / Salva</strong>. Aggiungi il .aac, scegli il profilo <code className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded mx-1">Audio - MP3</code>, scegli destinazione, clicca Avvia.
-          </p>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">Metodo 3 — Riga di comando (ffmpeg)</h2>
-          <p className="mb-4">
-            Una riga con <a href="https://ffmpeg.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">ffmpeg</a> installato:
-          </p>
-          <pre className="bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto text-xs"><code>{`ffmpeg -i input.aac -acodec libmp3lame -ab 128k output.mp3`}</code></pre>
-          <p className="text-xs text-slate-500 mt-2">
-            Per voce/trascrizione scendi a <code className="font-mono">-ab 64k -ac 1</code> — file 2–3× più piccolo senza perdita di precisione.
-          </p>
-        </div>
-
-        <div className="border-t border-slate-100 pt-8">
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">MP3 pronto?</h2>
-          <p className="mb-4">
-            Trascinalo in Mictoo per una trascrizione gratis con timestamp, sottotitoli SRT e riassunto IA. Senza registrazione.
-          </p>
-          <a href="/it" className="inline-flex items-center gap-2 btn-primary text-base px-6 py-3">
-            ↑ Trascrivi MP3 in testo gratis
-          </a>
-        </div>
-
-      </div>
-
-      <div className="border-t border-slate-100 mt-12 pt-8">
-        <p className="text-sm text-slate-400 mb-4 text-center">Guide correlate</p>
-        <div className="flex flex-wrap justify-center gap-3">
-          <a href="/it/wma-to-mp3" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">WMA in MP3</a>
-          <a href="/it/m4a-to-mp3" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">M4A in MP3</a>
-          <a href="/it/aac-to-text" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">AAC in testo</a>
-          <a href="/it/how-to-compress-audio" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">Comprimere audio</a>
-        </div>
-      </div>
-    </section>
+    <ConverterPageLayout
+      locale="it"
+      mode="converter" from="aac" to="mp3" currentHref="/it/aac-to-mp3"
+      badge="AAC → MP3 · Gratuito · Nessuna registrazione"
+      h1First="AAC a MP3"
+      h1Second="Convertitore online gratuito"
+      subtitle="Carica un file .aac grezzo (stream ADTS, dump di trasmissione o audio estratto da iPhone) e ottieni un MP3 portatile in pochi secondi."
+      outputFormat="MP3" outputQuality="128 kbps" outputAudio="Stereo"
+      stepsTitle="Come funziona la conversione da AAC a MP3"
+      steps={[
+        { icon: 'upload',   title: 'Carica l’AAC',        desc: 'Framing ADTS o ADIF, fino a 25 MB in modo anonimo.' },
+        { icon: 'waveform', title: 'Decodifichiamo e codifichiamo', desc: 'ffmpeg legge il bitstream AAC e lo ricodifica in MP3 stereo a 128 kbps.' },
+        { icon: 'download', title: 'Scarica l’MP3',    desc: 'Ottieni il tuo MP3 pulito in pochi secondi, pronto per qualsiasi lettore.' },
+      ]}
+      previewInputName="broadcast-clip.aac"
+      previewInputSize="8.4 MB · 00:07:22 · 128 kbps AAC"
+      previewOutputName="broadcast-clip.mp3"
+      previewOutputSize="00:07:22 · 128 kbps MP3 · 6.8 MB"
+      whyTitle="Perché usare Mictoo per AAC a MP3?"
+      whyCards={[
+        { icon: 'target',   title: 'AAC grezzo gestito',        desc: 'Entrambi i framing ADTS e ADIF funzionano direttamente, senza ripackaging manuale.' },
+        { icon: 'fileAudio',title: 'MP3 riproducibile ovunque',   desc: 'Dispositivi più vecchi e host di podcast legacy a volte preferiscono MP3 rispetto ad AAC.' },
+        { icon: 'lock',     title: 'File eliminati dopo',    desc: 'L’AAC caricato viene eliminato dopo la conversione; l’MP3 viene rimosso entro un’ora.' },
+        { icon: 'shield',   title: 'Nessuna filigrana o tag',    desc: 'Solo l’audio, ricodificato. Nessuna introduzione o metadata brandizzata.' },
+      ]}
+      scenariosTitle="Quando la conversione da AAC a MP3 è utile"
+      scenarios={[
+        { icon: 'video',      title: 'Dump di trasmissione HLS' },
+        { icon: 'headphones', title: 'L’host del podcast richiede MP3' },
+        { icon: 'mail',       title: 'Compatibilità con lettori legacy' },
+        { icon: 'editPen',    title: 'Importazione DAW (strumenti più vecchi)' },
+        { icon: 'archive',    title: 'Formato di archivio coerente' },
+        { icon: 'waveform',   title: 'AAC estratto da iPhone' },
+      ]}
+      tipsTitle="Consigli per una conversione pulita da AAC a MP3"
+      tips={[
+        'Se il tuo dispositivo riproduce AAC nativamente, potresti non aver bisogno di convertire.',
+        'Sia AAC che MP3 sono lossy; la ricodifica aggiunge una piccola perdita di qualità.',
+        'Mantieni il file sorgente sotto l’attuale limite di caricamento di 25 MB.',
+        'Per la trascrizione, carica direttamente l’AAC su /it/aac-to-text invece.',
+      ]}
+      processTitle="Cosa succede durante la conversione"
+      processSteps={['Frame AAC ADTS', 'Decodifica', 'Codifica MP3']}
+      compareTitle="AAC vs MP3"
+      compareRows={[
+        { fmt: 'AAC', contains: 'No', size: 'Piccolo (efficiente)', best: 'Dispositivi moderni, streaming, iPhone' },
+        { fmt: 'MP3', contains: 'No', size: 'Piccolo',             best: 'Compatibilità universale, lettori legacy' },
+      ]}
+      faq={[
+        { q: 'Ho davvero bisogno di convertire AAC in MP3?', a: 'Raramente. La maggior parte dei dispositivi moderni riproduce AAC nativamente. Converti solo se uno strumento o un host specifico richiede esplicitamente MP3.' },
+        { q: 'Il convertitore è gratuito?', a: 'Sì. I file fino a 25 MB possono essere convertiti senza un account e l’output non ha filigrana.' },
+        { q: 'Qual è la perdita di qualità?', a: 'AAC e MP3 sono entrambi lossy. La ricodifica aggiunge una piccola perdita extra ma è inaudibile per l’ascolto tipico a 128 kbps.' },
+        { q: 'Quali framing AAC funzionano?', a: 'ADTS (il più comune), ADIF e LATM si decodificano tutti. AAC all’interno di MP4/M4A funziona anche ma è un percorso di ingresso diverso.' },
+        { q: 'I file vengono memorizzati?', a: 'No. L’AAC caricato viene eliminato dopo la conversione; l’MP3 viene rimosso entro un’ora.' },
+      ]}
+      ctaHeadline="Converti il tuo AAC in MP3 ora"
+      ctaSubtitle="Carica il tuo AAC e ottieni un MP3 pulito in pochi secondi. Nessuna registrazione. Nessuna filigrana."
+      ctaButton="Scegli un file AAC"
+      moreTools={[
+        { href: '/it/m4a-to-mp3',  label: 'M4A a MP3' },
+        { href: '/it/mp4-to-mp3',  label: 'MP4 a MP3' },
+        { href: '/it/wav-to-mp3',  label: 'WAV a MP3' },
+        { href: '/it/aac-to-text', label: 'AAC a Testo' },
+      ]}
+    />
   )
 }

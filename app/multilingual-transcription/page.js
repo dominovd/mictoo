@@ -1,9 +1,9 @@
 import LanguagePageLayout from '@/components/LanguagePageLayout'
 
 export const metadata = {
-  title: 'Multilingual Transcription: Free AI Tool for 50+ Languages | Mictoo',
+  title: 'Multilingual Transcription in 36 Languages | Mictoo',
   description:
-    'Free multilingual transcription. Auto-detect across 50+ languages. Code-switching, bilingual interviews, mid-recording language changes all handled. No signup.',
+    'Transcribe audio in 36 selectable languages or use automatic detection. Review bilingual recordings, timestamps, summaries, translations, and exports.',
   alternates: {
     canonical: 'https://mictoo.com/multilingual-transcription',
     languages: {
@@ -21,16 +21,16 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'Multilingual Transcription: 50+ Languages | Mictoo',
-    description: 'Auto-detect across 50+ languages. Bilingual interviews, code-switching supported.',
+    title: 'Multilingual Transcription in 36 Languages | Mictoo',
+    description: 'Choose from 36 languages or use automatic detection for multilingual recordings.',
     url: 'https://mictoo.com/multilingual-transcription',
     siteName: 'Mictoo', type: 'website',
     images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Multilingual Transcription: 50+ Languages',
-    description: 'Auto-detect and transcribe across 50+ languages.',
+    title: 'Multilingual Transcription in 36 Languages',
+    description: 'Choose a language or use automatic detection for multilingual audio.',
     images: ['https://mictoo.com/opengraph-image'],
   },
 }
@@ -38,16 +38,16 @@ export const metadata = {
 export default function MultilingualTranscriptionPage() {
   return (
     <LanguagePageLayout
-      badge="50+ Languages · Auto-detect · Free"
+      badge="36 Languages · Auto-detect · Free"
       h1First="Multilingual Transcription"
-      h1Second="One platform for 50+ languages and code-switching"
-      subtitle="Auto-detect across 50+ languages, transcribe bilingual interviews with mid-sentence switches, or pick a specific language for a cleaner first pass. All in one upload."
+      h1Second="One platform for 36 languages and mixed-language audio"
+      subtitle="Choose one of 36 languages or use Auto-detect for bilingual interviews and recordings that switch languages. Review short switches and proper nouns after transcription."
       currentHref="/multilingual-transcription"
 
       chips={[
         { label: 'Free',            icon: 'gift' },
-        { label: 'Private',         icon: 'shield' },
-        { label: '50+ languages',   icon: 'globe' },
+        { label: 'Auto-deleted',    icon: 'shield' },
+        { label: '36 languages',    icon: 'globe' },
         { label: 'AI summary',      icon: 'sparkles' },
       ]}
 
@@ -56,13 +56,13 @@ export default function MultilingualTranscriptionPage() {
         { flag: '🇫🇷', label: 'French' },
         { flag: '🇪🇸', label: 'Spanish' },
         { flag: '🇩🇪', label: 'German' },
-        { flag: '🌐', label: '50+ more' },
+        { flag: '🌐', label: '32 more' },
       ]}
 
       stepsTitle="How multilingual transcription works"
       steps={[
-        { icon: 'upload',   title: 'Upload audio in any language',    desc: 'Any MP3, MP4, WAV, M4A. Auto-detect handles the language for you.' },
-        { icon: 'sparkles', title: 'Whisper detects and transcribes',  desc: 'Whisper large-v3 recognises 50+ languages and follows mid-sentence switches.' },
+        { icon: 'upload',   title: 'Upload supported audio',           desc: 'Use MP3, MP4, WAV, M4A, and other common formats, then choose a language or Auto-detect.' },
+        { icon: 'sparkles', title: 'Whisper detects and transcribes',  desc: 'Whisper large-v3 can follow many language changes, but short switches and names may need review.' },
         { icon: 'editPen',  title: 'Translate to your working language', desc: 'One-click translation between any of the supported languages after transcription.' },
       ]}
 
@@ -88,10 +88,10 @@ export default function MultilingualTranscriptionPage() {
 
       whyTitle="Why use Mictoo for multilingual audio?"
       whyCards={[
-        { icon: 'globe',    title: '50+ languages, one tool',        desc: 'Whisper large-v3 covers major world languages with strong accuracy across scripts and phonologies.' },
-        { icon: 'translate',title: 'Code-switching handled',         desc: 'Mid-sentence language switches (Spanglish, Franglais, mixed teams) are transcribed in their original languages.' },
+        { icon: 'globe',    title: '36 selectable languages',        desc: 'Choose from the languages in the upload widget or use automatic detection for a first pass.' },
+        { icon: 'translate',title: 'Mixed-language support',          desc: 'Many Spanglish, Franglais, and international-team recordings can be transcribed with Auto-detect.' },
         { icon: 'search',   title: 'Auto-detect or explicit choice', desc: 'Let Whisper detect the language for short clips, or pin the language for cleaner first-pass results.' },
-        { icon: 'sparkles', title: 'Translate any pair',             desc: 'After transcription, translate the transcript into any of 50+ target languages in one click.' },
+        { icon: 'sparkles', title: 'Translate between 36 languages', desc: 'After transcription, choose any supported target language from the same 36-language list.' },
       ]}
 
       worksWellTitle="Multilingual audio that works well"
@@ -113,32 +113,32 @@ export default function MultilingualTranscriptionPage() {
       ]}
       challengesTitle="What makes multilingual recognition difficult"
       challenges={[
-        { title: 'Language ID on short clips',    desc: 'Under about 5 seconds Whisper may misidentify the language.',        example: 'Auto-detect',   ipa: 'pin language for short audio' },
-        { title: 'Code-switching mid-sentence',    desc: 'Mixed languages within one sentence stay in their original languages.', example: 'Vamos a la meeting', ipa: 'ES → EN' },
+        { title: 'Language ID on short clips',    desc: 'Very short clips may be assigned the wrong language.', example: 'Choose the primary language', ipa: '' },
+        { title: 'Code-switching mid-sentence',   desc: 'Short switches can be missed or normalised, so bilingual output should be reviewed.', example: 'Vamos a la meeting', ipa: '' },
         { title: 'Named entities',                 desc: 'Proper nouns can look like foreign words. Review them post-transcription.', example: 'Björk / San José',  ipa: '' },
-        { title: 'Non-Latin scripts',              desc: 'Japanese, Chinese, Korean, Arabic, Cyrillic all work — check punctuation.', example: '昨日 / вчера', ipa: '' },
+        { title: 'Non-Latin scripts',              desc: 'Japanese, Chinese, Korean, Arabic, and Cyrillic scripts are supported; review punctuation and names.', example: '昨日 / вчера', ipa: '' },
       ]}
 
       varietiesTitle="Language families supported"
       varieties={[
         { flag: '🌍', name: 'European (Romance + Germanic)', differences: 'FR, ES, IT, PT, DE, EN, NL, SV, DA, NO...' },
-        { flag: '🌏', name: 'East Asian',                    differences: 'JA, ZH-CN, ZH-TW, KO' },
-        { flag: '🌏', name: 'Slavic and Baltic',              differences: 'RU, UK, PL, CS, SK, BG, LT, LV' },
-        { flag: '🌍', name: 'Middle Eastern and African',    differences: 'AR, HE, TR, FA, SW, HA' },
-        { flag: '🌏', name: 'South and Southeast Asian',     differences: 'HI, TA, TE, ID, TH, VI, MS' },
+        { flag: '🌏', name: 'East Asian',                    differences: 'JA, ZH, KO' },
+        { flag: '🌏', name: 'Slavic',                        differences: 'RU, UK, PL, CS, SK, BG' },
+        { flag: '🌍', name: 'Middle Eastern',                differences: 'AR, HE, TR, FA' },
+        { flag: '🌏', name: 'South and Southeast Asian',     differences: 'HI, BN, TA, UR, ID, TH, VI, MS' },
       ]}
 
       faq={[
-        { q: 'Which 50+ languages exactly?',           a: 'Every major world language Whisper large-v3 supports, including English, French, Spanish, German, Portuguese, Italian, Dutch, Polish, Russian, Ukrainian, Japanese, Chinese (Mandarin), Korean, Arabic, Hebrew, Hindi, Turkish, Swedish, Norwegian, and many more. See the language picker in the upload widget for the full list.' },
-        { q: 'Does it handle code-switching?',          a: 'Yes. Mid-sentence language switches are transcribed in their original languages. Use Auto-detect for bilingual conversations rather than pinning a single language.' },
+        { q: 'Which languages are available?',          a: 'The upload and translation controls currently offer 36 languages, including English, French, Spanish, German, Portuguese, Italian, Dutch, Polish, Russian, Ukrainian, Japanese, Chinese, Korean, Arabic, Hebrew, Hindi, Turkish, and others. See the language picker for the full list.' },
+        { q: 'Does it handle code-switching?',          a: 'It can transcribe many recordings that switch languages. Use Auto-detect for bilingual conversations and review short switches, proper nouns, and ambiguous phrases.' },
         { q: 'Can I translate the transcript?',         a: 'Yes. After transcription, pick any target language and click Translate. GPT-4o-mini handles the translation and it appears alongside the original.' },
-        { q: 'How accurate is auto-detect?',            a: 'Very accurate for clips over 5-10 seconds. For very short audio, pin the primary language explicitly for cleaner first-pass detection.' },
-        { q: 'Is multilingual transcription free?',     a: 'Yes. Up to 25 MB anonymously, 60 MB signed in. No watermark, no per-minute fee.' },
+        { q: 'How accurate is auto-detect?',            a: 'It works best when the recording contains enough clear speech. For short or noisy audio, choose the primary language explicitly and review the first draft.' },
+        { q: 'Is multilingual transcription free?',     a: 'Yes. Files up to 25 MB can be transcribed anonymously or up to 180 MB when signed in. No watermark and no per-minute fee.' },
         { q: 'Are my audio files stored?',              a: 'No. Audio streams to the transcription provider, gets processed once, and is dropped. Transcripts persist only on signed-in accounts.' },
       ]}
 
       ctaHeadline="Transcribe audio in any language"
-      ctaSubtitle="One upload page for 50+ languages. Auto-detect, code-switching, and one-click translation."
+      ctaSubtitle="One upload page for 36 languages, automatic detection, mixed-language audio, and translation."
       ctaButton="Upload audio in any language"
 
       exploreCards={[

@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/business-transcription',
@@ -15,191 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Trascrizione business — strumento gratuito per meeting e call | Mictoo',
+  title: 'Trascrizione di Riunioni Aziendali e Riepilogo AI | Mictoo',
   description:
-    'Trascrizione business gratuita. Call vendita, customer interview, focus group, riunioni del consiglio, conferenze. Carica e ottieni una trascrizione IA pulita in pochi secondi. Senza registrazione.',
-  alternates: { canonical: 'https://mictoo.com/it/business-transcription', languages: LANGS },
-
+    'Trasforma le registrazioni autorizzate delle riunioni interne in trascrizioni con timestamp, riepiloghi AI e documenti di riepilogo esportabili.',
+  alternates: {
+    canonical: 'https://mictoo.com/it/business-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Trascrizione business — strumento gratuito per meeting e call | Mictoo",
-    description: "Trascrizione business gratuita. Call vendita, customer interview, focus group, riunioni del consiglio, conferenze. Carica e ottieni una trascrizione IA pulita in pochi secondi. Senza registrazione.",
-    url: "https://mictoo.com/it/business-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Trascrizione Aziendale: Riunioni Interne in Testo | Mictoo',
+    description: 'Trascrivi le riunioni interne dell’azienda senza configurazione IT.',
+    url: 'https://mictoo.com/it/business-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Trascrizione business — strumento gratuito per meeting e call | Mictoo",
-    description: "Trascrizione business gratuita. Call vendita, customer interview, focus group, riunioni del consiglio, conferenze. Carica e ottieni una trascrizione IA pulita in pochi secondi. Senza registrazione.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Trascrizione Aziendale',
+    description: 'Riunioni 1:1 tra fondatori, riunioni generali, briefing esecutivi.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function ItBusinessPage() {
+export default function ItBusinessTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="it"
-      badge="Vendite · Ricerca · Compliance · Gratis"
-      h1={
-        <>
-          Trascrizione business
-          <br />
-          <span className="text-brand-600">Audio business in testo, gratis</span>
-        </>
-      }
-      subtitle="Trasforma qualsiasi audio business in testo pulito. Call vendita, customer interview, focus group, conferenze, riunioni del consiglio. Senza registrazione, senza tariffa al minuto."
-      howItWorks={[
+    <UseCaseLayout
+      locale="it"
+      badge="Fondatori · Esecutivi · Piccole squadre · Gratuito"
+      h1First="Trascrizione Aziendale"
+      h1Second="Riunioni 1:1 tra fondatori, riunioni generali, briefing esecutivi"
+      subtitle="Uno strumento pratico di trascrizione per riunioni interne autorizzate. Carica la registrazione, rivedi la trascrizione e il riepilogo AI, quindi esporta un riepilogo per il tuo team."
+      currentHref="/it/business-transcription"
+
+      platforms={[
+        { name: 'Zoom',        iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/it/zoom-transcription' },
+        { name: 'MS Teams',    iconKey: 'videoCameraFill', brandBg: '#4B53BC', href: '/it/teams-meeting-transcription' },
+        { name: 'Google Meet', iconKey: 'videoCameraFill', brandBg: '#00832D', href: '/it/google-meet-transcription' },
+        { name: 'Webex',       iconKey: 'videoCameraFill', brandBg: '#0F1F35' },
+        { name: 'BlueJeans',   iconKey: 'videoCameraFill', brandBg: '#005EB8' },
+        { name: 'GoToMeeting', iconKey: 'videoCameraFill', brandBg: '#F68B1F' },
+      ]}
+
+      howItWorksTitle="Come funziona la trascrizione aziendale"
+      steps={[
         {
-          icon: '🎙️',
-          title: 'Rilascia l\'audio o il video',
-          desc: 'MP3 da un registratore di chiamate, M4A da un telefono, MP4 da una videoconferenza, WAV da un registratore da campo. Call vendita da Gong, registrazione Zoom di customer interview, M4A di riunione consiglio. Tutto va bene.',
+          icon: 'folder',
+          title: 'Esporta la registrazione',
+          desc: 'Da Zoom, Teams, Meet, Webex, o qualsiasi cosa utilizzi la tua azienda. MP4 o M4A audio solo funzionano entrambi.',
         },
         {
-          icon: '⚡',
-          title: 'L\'IA trascrive',
-          desc: 'Whisper large-v3 processa l\'audio. Una call di 30 minuti finisce in circa un minuto. Un meeting di 60 minuti in poco meno di due.',
+          icon: 'upload',
+          title: 'Trascina il file qui',
+          desc: 'Carica una registrazione che la tua organizzazione ti consente di elaborare. Non è necessaria alcuna installazione software o integrazione di directory.',
         },
         {
-          icon: '📋',
-          title: 'Prendi la trascrizione',
-          desc: 'Leggi, copia o scarica come TXT o SRT. Incolla nel tuo CRM, research repository, doc di progetto o archivio compliance.',
+          icon: 'editPen',
+          title: 'Trascrizione, riepilogo, azioni',
+          desc: 'Trascrizione con timestamp, riepilogo AI, esportazione DOCX pronta per l’email di riepilogo.',
         },
       ]}
-      whyUse={{
-        title: 'Perché Mictoo per audio business',
-        bullets: [
-          {
-            title: 'Stessa precisione delle opzioni costose',
-            desc: 'Whisper large-v3 è il modello dietro molti strumenti enterprise di trascrizione a pagamento. Lo facciamo girare senza il costo della licenza per seat.',
-          },
-          {
-            title: 'Funziona per uso sporadico',
-            desc: 'Se trascrivi una call vendita a settimana, è uno spreco pagare il seat mensile di un tool enterprise. Gratis senza contatore al minuto si adatta al pattern di uso sporadico.',
-          },
-          {
-            title: 'Oltre 50 lingue, utile per business internazionale',
-            desc: 'Customer interview multilingue, call vendita cross-border, panel con speaker non madrelingua inglesi. Tutti coperti.',
-          },
-          {
-            title: 'Nessun file conservato',
-            desc: 'La registrazione va al provider di trascrizione ed è scartata. Per audio business che non vuoi vedere parcheggiato su un server di terze parti, conta.',
-          },
-          {
-            title: 'Export SRT per video editor',
-            desc: 'Se il tuo audio business viene da un video (panel di conferenza, town hall), l\'SRT entra direttamente in Premiere, DaVinci o YouTube Studio per il lavoro sui sottotitoli.',
-          },
-        ],
-      }}
-      useCases={{
-        title: 'Casi d\'uso comuni di trascrizione business',
-        items: [
-          {
-            title: 'Riepiloghi di call vendita',
-            desc: 'Gli Account Executive mettono le registrazioni delle call nel CRM accanto al deal. Handoff più rapidi, ricerca citazioni migliore per email di follow-up, coaching più facile per i sales manager.',
-          },
-          {
-            title: 'Customer interview per ricerca prodotto',
-            desc: 'Product manager e UX researcher trascrivono conversazioni con clienti per codificare pattern, scrivere user story e costruire research repository.',
-          },
-          {
-            title: 'Trascrizioni focus group',
-            desc: 'Le agenzie di ricerca di mercato trascrivono sessioni focus group per analisi. Quello che si codifica è la trascrizione, non il video.',
-          },
-          {
-            title: 'Riunioni del consiglio e leadership offsite',
-            desc: 'Le trascrizioni rendono le decisioni aziendali ricercabili e riducono ambiguità mesi dopo. Utile per governance, comunicazione dipendenti e audit trail.',
-          },
-          {
-            title: 'Registrazioni panel da conferenze',
-            desc: 'I team marketing e PR trascrivono panel di discussione dove i loro executive hanno parlato. Blog post, grafiche citazioni per social, contenuto sales enablement. Tutto parte dalla trascrizione.',
-          },
-        ],
-      }}
-      proTips={{
-        title: 'Consigli per la trascrizione business',
-        tips: [
-          {
-            title: 'Per registrazioni di call vendita usa uno strumento tipo Gong o Chorus se puoi',
-            desc: 'Questi tool fanno registrazione, trascrizione e logging CRM insieme. Mictoo è la scelta giusta per trascrizione occasionale, non per un\'operazione vendite ad alto volume.',
-          },
-          {
-            title: 'Nelle customer interview ottieni il consenso e spiega come sarà usato l\'audio',
-            desc: '"Sto registrando questa conversazione così non devo prendere appunti. L\'audio sarà trascritto e resta nel nostro research repository." In molte giurisdizioni è anche un requisito legale per qualsiasi registrazione di call.',
-          },
-          {
-            title: 'Usa un microfono decente, specialmente per il cliente',
-            desc: 'Le voci dei clienti catturate via linea telefonica si trascrivono il 5-10% meno precise delle call dial-in con USB headset lato cliente. Per interview di valore, spedisci un headset prima della call.',
-          },
-          {
-            title: 'Taglia lo small talk prima di caricare per risparmiare budget di dimensione file',
-            desc: 'La maggior parte delle call business iniziano con 2-5 minuti di meteo e convenevoli. Taglialo via in Audacity prima di caricare se il file è vicino al limite.',
-          },
-          {
-            title: 'Scegli la lingua manualmente per call internazionali',
-            desc: 'Se una call vendita apre in inglese ma passa al francese, il rilevamento automatico può confondersi. Scegli la lingua dominante manualmente.',
-          },
-          {
-            title: 'Per audio business confidenziale non usare trascrizione cloud, nemmeno la nostra',
-            desc: 'Conversazioni HR, discussioni M&A, call legali, qualsiasi cosa coperta da privilegio. Usa un\'installazione locale di Whisper. Stesso modello, gira offline, nessuna elaborazione di terze parti.',
-          },
-        ],
-      }}
+
+      exampleTitle="Esempio di trascrizione di una riunione aziendale"
+      exampleFileName="q3-strategy-session.mp4"
+      exampleDurationLabel="58:42"
+      exampleLines={[
+        { t: '0:00',  line: 'Grazie a tutti per aver trovato il tempo. Questo è il nostro check-in strategico Q3, e abbiamo circa un’ora bloccata.' },
+        { t: '0:10',  line: 'Iniziamo con l’aggiornamento generale. I ricavi sono superiori dell’otto percento rispetto al piano, principalmente grazie all’espansione nel mercato medio.' },
+        { t: '0:22',  line: 'Il nuovo movimento enterprise è più lento di quanto avevamo previsto. Due affari sono slittati dal Q2 al Q3.' },
+        { t: '0:35',  line: 'Dobbiamo discutere se raddoppiare gli sforzi sul mercato medio o spingere di più sulla prontezza enterprise questo trimestre.' },
+        { t: '0:48',  line: 'La mia opinione: il mercato medio sta funzionando, e non dovremmo distrarre il team inseguendo ancora il segmento enterprise.' },
+        { t: '1:02',  line: 'D’accordo. Fissiamo un obiettivo di trenta nuovi account nel mercato medio entro la fine del Q3 e rivalutiamo l’enterprise nella pianificazione del Q4.' },
+        { t: '1:14',  line: 'Un altro argomento prima di concludere. La roadmap ingegneristica per lo stesso trimestre, che colleghiamo a questi impegni dei clienti.' },
+      ]}
+      summaryPoints={[
+        'Ricavi superiori dell’8% rispetto al piano, guidati dal mercato medio.',
+        'Movimento enterprise in calo (2 affari spostati dal Q2 al Q3).',
+        'Decisione: raddoppiare gli sforzi sul mercato medio questo trimestre.',
+        'Obiettivo: 30 nuovi account nel mercato medio entro la fine del Q3.',
+      ]}
+      actionItems={[
+        'Fissare obiettivo di 30 account nel mercato medio',
+        'Rivalutare il movimento enterprise nella pianificazione del Q4',
+        'Allineare la roadmap ingegneristica agli impegni dei clienti',
+      ]}
+
+      whyTitle="Perché Mictoo per la trascrizione aziendale"
+      whyCards={[
+        {
+          icon: 'lock',
+          title: 'Nessuna installazione software',
+          desc: 'Il flusso di lavoro del browser non richiede un client desktop o integrazione di directory. Le politiche della tua organizzazione si applicano comunque.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Riepilogo pronto per l’email',
+          desc: 'Il riepilogo AI fornisce la bozza del riepilogo in pochi secondi. Riduci ciò a cui ti sei già impegnato, mantieni ciò che necessita di escalation.',
+        },
+        {
+          icon: 'shield',
+          title: 'Registrazioni non memorizzate',
+          desc: 'I flussi audio vengono inviati al fornitore di trascrizione e vengono eliminati dopo l’elaborazione. Solo la trascrizione persiste sugli account con accesso effettuato.',
+        },
+        {
+          icon: 'globe',
+          title: 'Traduci per team internazionali',
+          desc: 'Riunione in inglese ma il riepilogo deve andare a una filiale tedesca? Un clic.',
+        },
+      ]}
+
+      scenariosTitle="Scenari aziendali comuni"
+      scenarios={[
+        { icon: 'briefcase', title: 'Briefing esecutivo' },
+        { icon: 'users',     title: 'Riunioni generali' },
+        { icon: 'chat',      title: 'Riunioni 1:1 tra fondatori' },
+        { icon: 'target',    title: 'Strategia fuori sede' },
+        { icon: 'search',    title: 'Aggiornamento del consiglio' },
+        { icon: 'headset',   title: 'Escalation cliente' },
+      ]}
+
+      tipsTitle="Suggerimenti per registrazioni interne"
+      tips={[
+        'Preferisci esportazioni audio solo quando la tua piattaforma le offre.',
+        'Per video riunioni MP4 oltre 60 MB, estrai prima l’audio con ffmpeg.',
+        'Usa il rilevamento automatico per chiamate di leadership multilingue.',
+        'Salva la trascrizione nella cronologia per costruire un archivio ricercabile.',
+      ]}
+
+      guidesTitle="Guida per scegliere la piattaforma giusta"
+      guides={[
+        { href: '/it/zoom-transcription',          icon: 'video', title: 'Zoom',        desc: 'Registrazione Cloud, audio M4A solo' },
+        { href: '/it/teams-meeting-transcription', icon: 'video', title: 'MS Teams',    desc: 'Percorso OneDrive o SharePoint' },
+        { href: '/it/google-meet-transcription',   icon: 'video', title: 'Google Meet', desc: 'Registrazione Drive, soluzione gratuita' },
+        { href: '/it/meeting-transcription#tool',  icon: 'file',  title: 'Altro',       desc: 'Webex, BlueJeans, GoToMeeting' },
+      ]}
+
       faq={[
         {
-          q: 'Mictoo è adatto per uso business?',
-          a: 'Per trascrizione occasionale (call vendita, interview, panel) sì. Per operazioni ad alto volume (un team vendite che trascrive 50 call al giorno), uno strumento dedicato come Gong o Chorus calza meglio perché impacchetta integrazione CRM, workflow di coaching e analytics di team.',
+          q: 'La registrazione della mia azienda viene inviata ai vostri server?',
+          a: 'I flussi audio vengono inviati al fornitore di trascrizione (Groq/Replicate/Deepgram/OpenAI a seconda del routing), vengono elaborati una sola volta e vengono eliminati dalla memoria. Non scriviamo mai l’audio su disco. Solo la trascrizione di testo persiste, e solo se accedi e la salvi.',
         },
         {
-          q: 'Il mio audio business viene conservato sui vostri server?',
-          a: 'No. Il file va al nostro provider di trascrizione (Groq, con OpenAI come backup) ed è scartato dopo l\'elaborazione. Non conserviamo né l\'audio né la trascrizione.',
+          q: 'Ho bisogno di approvazione per caricare una registrazione aziendale?',
+          a: 'Dipende dalle politiche della tua organizzazione e dalle informazioni nella registrazione. Mictoo non richiede installazione software, ma dovresti ottenere qualsiasi autorizzazione necessaria prima di inviare media aziendali a un fornitore di trascrizione esterno.',
         },
         {
-          q: 'È conforme al GDPR?',
-          a: 'Non conserviamo audio o trascrizione dopo che lasci la pagina. Siamo in Europa, e i nostri provider (Groq US, OpenAI US) hanno firmato DPA. Per la tua situazione GDPR specifica (obblighi del titolare, base giuridica per le registrazioni), consulta la nostra privacy policy e il tuo responsabile della protezione dati.',
+          q: 'Posso usare Mictoo per settori regolamentati?',
+          a: 'Controlla i tuoi requisiti specifici di conformità. Non offriamo un BAA firmato o un rapporto SOC 2. Per ambienti rigorosamente regolamentati, usa uno strumento di trascrizione completamente auto-ospitato.',
         },
         {
-          q: 'Posso usarlo per registrare call con clienti UE o California?',
-          a: 'Puoi usare la trascrizione. La registrazione in sé richiede in molte giurisdizioni il consenso dell\'altra parte (two-party consent in California e parti UE). Ottieni il consenso prima di registrare.',
+          q: 'Posso ottenere un riepilogo AI per l’email di riepilogo?',
+          a: 'Sì. Il riepilogo AI appare automaticamente insieme alla trascrizione. Una solida prima bozza per l’email di follow-up o il documento Notion.',
         },
         {
-          q: 'Quanto è precisa la trascrizione per nomi propri e nomi aziendali?',
-          a: 'Meno precisa delle parole comuni. Whisper non sa il nome del tuo cliente, il nome del prodotto o la terminologia specifica della tua azienda. Aspettati di sistemarlo manualmente. Il resto della trascrizione sarà solido.',
+          q: 'Cosa succede se la riunione supera i 60 MB?',
+          a: 'Accedi per abilitare l’auto-split (fino a circa 3 ore). Oppure estrai l’audio dal video con ffmpeg -i meeting.mp4 -vn -ac 1 -ar 16000 audio.m4a, riduce la dimensione del file di 5-15 volte.',
         },
         {
-          q: 'Avrò etichette dei parlanti (Venditore vs. Cliente)?',
-          a: 'Non automaticamente. Per call a 2 parlanti aggiungi etichette manualmente in base alla conversazione. Per call multi-party con tracce audio separate per parlante, trascrivi ogni traccia separatamente.',
+          q: 'Posso tradurre la trascrizione per un team internazionale?',
+          a: 'Sì. Dopo la trascrizione, scegli una lingua di destinazione e fai clic su Traduci. Utile per filiali in lingue diverse.',
         },
         {
-          q: 'Come si confronta con Gong, Chorus o Fireflies?',
-          a: 'Quelle sono piattaforme complete per call vendita con integrazione CRM, coaching automatico, tagging deal stage e analytics chiamate. Noi siamo pura trascrizione, nessuna integrazione, nessuno strato coaching. Più economico (gratis), molto più stretto in scope. Usa quelli se ti serve la piattaforma completa. Usa noi se ti serve solo il testo.',
-        },
-        {
-          q: 'Posso trascrivere una call business confidenziale?',
-          a: 'Per call business non sensibili sì. Per quelle confidenziali (HR, legali, M&A, qualsiasi cosa privilegiata) evita qualsiasi trascrizione cloud, inclusa la nostra. Usa invece un\'installazione locale di Whisper.',
-        },
-        {
-          q: 'Quanto ci mette a trascrivere una call business?',
-          a: 'Circa l\'1-2% della durata audio. Una call di 30 minuti finisce in circa 30-60 secondi.',
-        },
-        {
-          q: 'Quali formati di output ci sono?',
-          a: 'Testo semplice (TXT) e SRT (file sottotitoli con timecode). Copia negli appunti funziona anche per incollare direttamente in un CRM o documento.',
-        },
-        {
-          q: 'Posso caricare più call vendita in batch?',
-          a: 'Non ancora con un click. Adesso carichi un file alla volta. Il batch è in roadmap per il futuro piano Pro.',
-        },
-        {
-          q: 'E se il mio audio business supera i 60 minuti?',
-          a: 'Dividilo in pezzi sotto i 60 minuti. Le trascrizioni si possono ricomporre dopo.',
+          q: 'Quali formati di esportazione funzionano per un’email di riepilogo?',
+          a: 'TXT per incollare nel corpo dell’email, DOCX per un allegato appropriato, PDF (accesso effettuato) per archiviare. Il riepilogo è disponibile separatamente.',
         },
       ]}
+
+      ctaHeadline="Trasforma le riunioni interne in documenti di riepilogo"
+      ctaSubtitle="Riunioni 1:1 tra fondatori, riunioni generali e briefing esecutivi. Carica media autorizzati per una trascrizione e un riepilogo."
+      ctaButton="Carica una riunione aziendale"
+
       relatedLinks={[
-        { href: '/it/interview-transcription', label: 'Trascrizione intervista', desc: 'Per conversazioni uno-a-uno e ricerca qualitativa.' },
-        { href: '/it/meeting-transcription', label: 'Trascrizione meeting', desc: 'Per qualsiasi registrazione di meeting, qualsiasi piattaforma.' },
-        { href: '/it/zoom-transcription', label: 'Trascrizione Zoom', desc: 'Per call registrate con Zoom.' },
-        { href: '/it/teams-meeting-transcription', label: 'Trascrizione Teams', desc: 'Per call Microsoft Teams.' },
+        { href: '/it/meeting-transcription',       label: 'Trascrizione di Riunioni' },
+        { href: '/it/zoom-transcription',          label: 'Trascrizione Zoom' },
+        { href: '/it/teams-meeting-transcription', label: 'Trascrizione Teams' },
+        { href: '/it/google-meet-transcription',   label: 'Trascrizione Google Meet' },
+        { href: '/it/interview-transcription',     label: 'Trascrizione di Interviste' },
       ]}
     />
   )

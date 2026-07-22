@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/webinar-transcription',
@@ -15,86 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Webinar-Transkription — Kostenloses Transkript für Webinar-Aufzeichnungen | Mictoo',
-  description: 'Transkribieren Sie Webinar-Aufzeichnungen kostenlos in Text und SRT-Untertitel. Funktioniert mit Zoom, Webex, GoToWebinar und allen MP4/MP3-Exporten. Ohne Anmeldung.',
-  alternates: { canonical: 'https://mictoo.com/de/webinar-transcription', languages: LANGS },
-
+  title: 'Webinar-Transkription mit Zusammenfassung und Untertiteln | Mictoo',
+  description:
+    'Laden Sie eine Webinar-Aufzeichnung hoch und erhalten Sie zeitgestempelten Text, eine KI-Zusammenfassung und SRT/VTT-Untertitel für die Wiederholung.',
+  alternates: {
+    canonical: 'https://mictoo.com/de/webinar-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Webinar-Transkription — Kostenloses Transkript für Webinar-Aufzeichnungen | Mictoo",
-    description: "Transkribieren Sie Webinar-Aufzeichnungen kostenlos in Text und SRT-Untertitel. Funktioniert mit Zoom, Webex, GoToWebinar und allen MP4/MP3-Exporten. Ohne Anmeldung.",
-    url: "https://mictoo.com/de/webinar-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Webinar-Transkription: Kostenlos | Mictoo',
+    description: 'Laden Sie Ihre Webinar-Aufzeichnung hoch und erhalten Sie ein sauberes Transkript.',
+    url: 'https://mictoo.com/de/webinar-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Webinar-Transkription — Kostenloses Transkript für Webinar-Aufzeichnungen | Mictoo",
-    description: "Transkribieren Sie Webinar-Aufzeichnungen kostenlos in Text und SRT-Untertitel. Funktioniert mit Zoom, Webex, GoToWebinar und allen MP4/MP3-Exporten. Ohne Anmeldung.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Webinar-Transkription',
+    description: 'Kostenloses Transkript für jede Webinar-Plattform.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function DeWebinarPage() {
+export default function DeWebinarTranscriptionPage() {
   return (
-    <LandingLayout
-      badge="Webinare · MP4 · Kostenlos"
-      h1={<>Webinar-Transkription<br /><span className="text-brand-600">Kostenloser Transkript-Generator</span></>}
-      subtitle="Verwandeln Sie Ihre Webinar-Aufzeichnung in eine durchsuchbare Texttranskription oder SRT-Untertiteldatei. Funktioniert mit Zoom, Webex, GoToWebinar und jedem MP4/MP3-Export."
-      defaultLanguage="de"
-      valueBlock={
-        <>
-          <p>
-            Ein Webinar enthält oft mehr als nur ein Replay: Kundenfragen, Einwände, Produktdemos, Content-Ideen und Trainingsmaterial. Als Transkript wird all das durchsuchbar und wiederverwendbar.
-          </p>
-          <p>
-            Mictoo wandelt Webinar-Aufzeichnungen in Text, Untertitel und Arbeitsnotizen für Marketing, Support, Sales oder interne Dokumentation um.
-          </p>
-        </>
-      }
-      howItWorks={[
-        { title: 'Replay exportieren', desc: 'Laden Sie die Aufnahme aus Zoom, Webex, Teams, Meet oder Ihrer Webinar-Plattform herunter.' },
-        { title: 'In Mictoo hochladen', desc: 'Importieren Sie Audio oder Video und lassen Sie die Transkription erstellen.' },
-        { title: 'Inhalte wiederverwenden', desc: 'Nutzen Sie den Text für Artikel, Knowledge Base, Zusammenfassungen oder Untertitel.' },
+    <UseCaseLayout
+      locale="de"
+      badge="Webinare · Langform · Kostenlos"
+      h1First="Webinar-Transkription"
+      h1Second="Kostenloses Transkript für jede Webinar-Aufzeichnung"
+      subtitle="Laden Sie von Zoom Webinars, StreamYard, Demio, ON24, GoToWebinar oder Restream hoch. Erhalten Sie ein vollständiges Transkript, eine KI-Zusammenfassung und Untertitel, die bereit für die On-Demand-Wiederholungsseite sind."
+      currentHref="/de/webinar-transcription"
+
+      platforms={[
+        { name: 'Zoom Webinar', iconKey: 'broadcast',       brandBg: '#2D8CFF', href: '/de/zoom-transcription' },
+        { name: 'StreamYard',   iconKey: 'broadcast',       brandBg: '#6B21A8' },
+        { name: 'Restream',     iconKey: 'broadcast',       brandBg: '#EC1E62' },
+        { name: 'ON24',         iconKey: 'videoCameraFill', brandBg: '#3B82F6' },
+        { name: 'Demio',        iconKey: 'videoCameraFill', brandBg: '#F97316' },
+        { name: 'Livestorm',    iconKey: 'videoCameraFill', brandBg: '#DA1F5C' },
       ]}
-      whyUse={{
-        title: 'Warum Webinare transkribieren',
-        bullets: [
-          'Fragen, Einwände und Antworten finden, ohne das ganze Video anzusehen.',
-          'Post-Event-Inhalte schneller erstellen: Blogposts, Follow-up-Mails, FAQ und Clips.',
-          'Untertitel verbessern die Zugänglichkeit des Replays.',
-          'Teams aus Sales, Produkt und Support erhalten eine verwertbare Zusammenfassung.',
-        ],
-      }}
-      useCases={{
-        title: 'Webinar-Anwendungsfälle',
-        items: [
-          { title: 'Marketing-Webinare', desc: 'Aus einer Session werden Artikel, LinkedIn-Posts oder E-Mail-Sequenzen.' },
-          { title: 'Kundentraining', desc: 'Dokumentation aus Demos und Erklärungen erzeugen.' },
-          { title: 'Q&A-Auswertung', desc: 'Häufige Fragen für FAQ und Produktseiten herausziehen.' },
-          { title: 'Interne Demos', desc: 'Entscheidungen und Feedback dauerhaft auffindbar machen.' },
-        ],
-      }}
-      proTips={{
-        title: 'Tipps für Webinare',
-        tips: [
-          'Bei großen MP4-Dateien vor dem Upload die Audiospur extrahieren.',
-          'Lange Sessions in Präsentation und Q&A aufteilen, damit die Korrektur schneller geht.',
-          'Markennamen, Produktfeatures und Sprecher vor Veröffentlichung prüfen.',
-        ],
-      }}
+
+      howItWorksTitle="So funktioniert die Webinar-Transkription"
+      steps={[
+        {
+          icon: 'folder',
+          title: 'Exportieren Sie die Webinar-Aufzeichnung',
+          desc: 'Die meisten Plattformen bieten einen MP4-Download nach der Veranstaltung an. Einige bieten auch nur Audio in M4A an.',
+        },
+        {
+          icon: 'upload',
+          title: 'Legen Sie die Datei hier ab',
+          desc: 'Lange Webinare (über 60 Minuten) profitieren von der automatischen Aufteilung bei Anmeldung. Kostenlos bis zu 25 MB anonym, 60 MB angemeldet.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Transkript, Zusammenfassung, Untertitel',
+          desc: 'Zeitgestempeltes Transkript für die Wiederholungsseite, KI-Zusammenfassung als Blog-Rückblick, SRT für Untertitel im On-Demand-Video.',
+        },
+      ]}
+
+      exampleTitle="Beispiel für ein Webinar-Transkript"
+      exampleFileName="product-launch-webinar.mp4"
+      exampleDurationLabel="1:04:22"
+      exampleLines={[
+        { t: '0:00',  line: 'Willkommen alle zusammen und danke, dass Sie dabei sind. Mein Name ist Sam und ich leite das Produktmarketing im Unternehmen.' },
+        { t: '0:12',  line: 'Heute starten wir offiziell die Version fünf der Plattform, und ich möchte Sie durch die Neuheiten führen.' },
+        { t: '0:25',  line: 'Drei Hauptänderungen: überarbeitete Berichterstattung, native Integrationen mit den zehn besten CRMs und ein neues Preismodell.' },
+        { t: '0:40',  line: 'Lassen Sie mich mit der Berichterstattung beginnen, denn das ist die Änderung, nach der die meisten von Ihnen seit zwei Jahren fragen.' },
+        { t: '0:52',  line: 'Die alten Berichte waren langsam, sie brachen bei großen Datensätzen und waren schwer anzupassen. Alle drei Probleme sind behoben.' },
+        { t: '1:07',  line: 'Hier ist eine Live-Demo des neuen Berichtsbauers. Während ich durchklicke, achten Sie darauf, wie schnell die Vorschauen aktualisiert werden.' },
+        { t: '1:22',  line: 'Jedes Feld ist per Drag-and-Drop, Filter sind stapelbar, und Sie können jeden Bericht als gemeinsame Vorlage speichern.' },
+      ]}
+      summaryPoints={[
+        'Version 5 mit 3 Hauptänderungen.',
+        'Überarbeitete Berichterstattung (verbessert Geschwindigkeit, Datensatzgröße, Anpassung).',
+        'Native Integrationen mit den 10 besten CRMs.',
+        'Neues Preismodell.',
+      ]}
+      actionItems={[
+        'Entwurf des Blog-Rückblicks aus dem Transkript',
+        'Demo-Clip für soziale Medien schneiden',
+        'Untertitelte Wiederholung auf On-Demand veröffentlichen',
+      ]}
+
+      whyTitle="Warum Mictoo für Webinar-Transkription"
+      whyCards={[
+        {
+          icon: 'clip',
+          title: 'SRT-Untertitel für die Wiederholung',
+          desc: 'Zeitstempel stimmen mit dem Originalvideo überein. Fügen Sie SRT in Ihren On-Demand-Wiederholungsplayer oder YouTube-Upload ein.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'KI-Zusammenfassung für den Blog-Rückblick',
+          desc: 'Verwandelt ein 60-minütiges Webinar in eine 200-Wörter-Zusammenfassung. Solider erster Entwurf für die Nachfass-E-Mail oder den Blogbeitrag.',
+        },
+        {
+          icon: 'search',
+          title: 'Durchsuchbares Transkript auf der Landingpage',
+          desc: 'Veröffentlichen Sie das Transkript auf der On-Demand-Landingpage. Teilnehmer können überfliegen, SEO-Rankings verbessern, niemand muss 60 Minuten ansehen.',
+        },
+        {
+          icon: 'globe',
+          title: 'Übersetzen für internationale Teilnehmer',
+          desc: 'Ein-Klick-Übersetzung in über 50 Sprachen für Nachfass-E-Mails und nicht-englische Wiederholungsseiten.',
+        },
+      ]}
+
+      scenariosTitle="Häufige Webinar-Szenarien"
+      scenarios={[
+        { icon: 'broadcast', title: 'Produkteinführung' },
+        { icon: 'book',      title: 'Schulung / Akademie' },
+        { icon: 'briefcase', title: 'Vertriebshilfe' },
+        { icon: 'target',    title: 'Kundenschulung' },
+        { icon: 'users',     title: 'Analystenbriefing' },
+        { icon: 'globe',     title: 'Mehrsprachige Veranstaltung' },
+      ]}
+
+      tipsTitle="Tipps für Webinar-Aufzeichnungen"
+      tips={[
+        'Bevorzugen Sie den Export nur für Audio, wenn Ihre Plattform dies anbietet.',
+        'Für Webinare über 60 Minuten, melden Sie sich an für die automatische Aufteilung bis zu 3 Stunden.',
+        'Fügen Sie den Namen des Moderators in die Datei ein, damit der Transkriptkopf den Kontext behält.',
+        'Ziehen Sie wichtige Zitate aus dem Transkript für soziale Clips.',
+      ]}
+
+      guidesTitle="Verwandte Tools"
+      guides={[
+        { href: '/de/zoom-transcription',        icon: 'video', title: 'Zoom Webinar',      desc: 'Cloud Recording MP4 / M4A' },
+        { href: '/de/free-srt-generator',        icon: 'file',  title: 'SRT-Generator',     desc: 'Untertitel für On-Demand-Videos' },
+        { href: '/de/podcast-transcription',     icon: 'headset', title: 'Podcast',         desc: 'Webinar-Audio wiederverwenden' },
+        { href: '/de/timestamped-transcription', icon: 'file',  title: 'Zeitgestempelt',       desc: 'Leserfreundlicher Export' },
+      ]}
+
       faq={[
-        { q: 'Wie lade ich meine Zoom- oder Webex-Webinar-Aufzeichnung herunter?', a: 'In Zoom: Web-Portal öffnen → Aufzeichnungen → das Webinar anklicken → Herunterladen. In Webex: Aufzeichnung in "Meine Aufzeichnungen" öffnen → Herunterladen. Beide exportieren standardmäßig als MP4.' },
-        { q: 'Kann ich ein Transkript erhalten, während das Webinar läuft?', a: 'Mictoo arbeitet auf aufgezeichneten Dateien, nicht auf Live-Audio-Streams. Für Echtzeit-Untertitel nutzen Sie die Live-Captions-Funktion Ihrer Webinar-Plattform und laden danach die Aufzeichnung für ein sauberes Transkript hoch.' },
-        { q: 'Was ist mit mehreren Sprechern und Q&A-Segmenten?', a: 'Mictoo erzeugt eine einzelne Transkription mit allem Gesprochenen. Sprecher-Labels (Host, Panelist 1, Publikum) können manuell im Browser-Editor vor dem Download hinzugefügt werden.' },
-        { q: 'Was ist die maximale Webinar-Länge?', a: 'Bis zu 25 MB pro Datei. Ein 60-minütiges Webinar in 64 kbps Mono passt locker; exportieren Sie mit niedrigerer Bitrate oder extrahieren Sie das M4A-Audio für längere Sitzungen.' },
-        { q: 'Ist die Transkription für Fach- oder Branchenbegriffe genau?', a: 'Die Genauigkeit ist hoch bei klarem Audio. Markennamen, Akronyme und ungewöhnliche Terminologie werden gelegentlich falsch geschrieben — schnell im Browser-Editor vor dem Export korrigierbar.' },
+        {
+          q: 'Mit welchen Webinar-Plattformen funktioniert Mictoo?',
+          a: 'Mit allen. Wir akzeptieren jede Audio- oder Videodatei, unabhängig von der Plattform. Zoom Webinars, StreamYard, Demio, Livestorm, ON24, GoToWebinar, Restream, Riverside Studio und mehr.',
+        },
+        {
+          q: 'Meine Webinar-Aufzeichnung ist über 60 MB. Was nun?',
+          a: 'Melden Sie sich für die automatische Aufteilung an (bis zu etwa 3 Stunden). Oder exportieren Sie nur Audio von der Plattform oder extrahieren Sie Audio: ffmpeg -i webinar.mp4 -vn -ac 1 -ar 16000 audio.m4a.',
+        },
+        {
+          q: 'Kann ich das Transkript auf der On-Demand-Wiederholungsseite veröffentlichen?',
+          a: 'Ja. Kopieren Sie das Transkript in den HTML-Code Ihrer On-Demand-Landingpage. Fügt durchsuchbaren Inhalt hinzu, verbessert SEO, gibt Teilnehmern, die nicht zuschauen können, eine Möglichkeit zum Überfliegen.',
+        },
+        {
+          q: 'Kann ich Untertitel für das aufgezeichnete Webinar-Video erhalten?',
+          a: 'Ja. Laden Sie SRT oder VTT nach der Transkription herunter. Beide funktionieren mit YouTube, Vimeo, Wistia, Descript und jedem modernen Video-Player.',
+        },
+        {
+          q: 'Identifiziert Mictoo Präsentatoren vs. Q&A-Sprecher?',
+          a: 'Nein. Das aktuelle Transkript ist fortlaufender Text mit zeitgestempelten Zeilen und ohne automatische Sprechernamen.',
+        },
+        {
+          q: 'Kann ich das Webinar-Transkript übersetzen?',
+          a: 'Ja. Wählen Sie eine Zielsprache und klicken Sie auf Übersetzen. Nützlich für internationale Teilnehmer oder nicht-englische Wiederholungsseiten.',
+        },
+        {
+          q: 'Werden Webinar-Aufzeichnungen auf Ihren Servern gespeichert?',
+          a: 'Nein. Die Datei wird an den Transkriptionsanbieter gestreamt, einmal verarbeitet und dann gelöscht. Nur das Transkript bleibt auf angemeldeten Konten bestehen.',
+        },
       ]}
+
+      ctaHeadline="Verwandeln Sie Ihr Webinar in ein wiederverwendbares Asset"
+      ctaSubtitle="Vollständiges Transkript, SRT-Untertitel, KI-Zusammenfassung und durchsuchbarer Landing-Page-Text."
+      ctaButton="Laden Sie eine Webinar-Aufzeichnung hoch"
+
       relatedLinks={[
-        { href: '/de/meeting-transcription', label: 'Meeting Transkription' },
-        { href: '/de/zoom-transcription', label: 'Zoom Transkription' },
-        { href: '/de/free-srt-generator', label: 'SRT-Generator' },
-        { href: '/de', label: 'Alle Formate' },
+        { href: '/de/meeting-transcription',   label: 'Meeting-Transkription' },
+        { href: '/de/zoom-transcription',      label: 'Zoom-Transkription' },
+        { href: '/de/podcast-transcription',   label: 'Podcast-Transkription' },
+        { href: '/de/lecture-transcription',   label: 'Vorlesungs-Transkription' },
+        { href: '/de/free-srt-generator',      label: 'Kostenloser SRT-Generator' },
       ]}
     />
   )

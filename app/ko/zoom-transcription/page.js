@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/zoom-transcription',
@@ -15,80 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Zoom 받아쓰기 — Zoom 녹화를 무료로 받아쓰기 | Mictoo',
+  title: 'Zoom 전사 서비스 | Mictoo',
   description:
-    '무료 Zoom 받아쓰기. Cloud Recording(MP4) 또는 로컬 녹화(M4A)를 업로드하여 정확한 AI 받아쓰기를 몇 초 만에 받으세요. 가입 불필요, 분당 과금 없음.',
-  alternates: { canonical: 'https://mictoo.com/ko/zoom-transcription', languages: LANGS },
-
+    'Zoom 클라우드 또는 로컬 MP4/M4A 녹음을 업로드하고 타임스탬프가 포함된 전사본, AI 요약 및 내보내기 파일을 받으세요.',
+  alternates: {
+    canonical: 'https://mictoo.com/ko/zoom-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Zoom 받아쓰기 — Zoom 녹화를 무료로 받아쓰기 | Mictoo",
-    description: "무료 Zoom 받아쓰기. Cloud Recording(MP4) 또는 로컬 녹화(M4A)를 업로드하여 정확한 AI 받아쓰기를 몇 초 만에 받으세요. 가입 불필요, 분당 과금 없음.",
-    url: "https://mictoo.com/ko/zoom-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Zoom 녹음 전사 | Mictoo',
+    description: 'Zoom 클라우드 또는 로컬 MP4/M4A를 업로드하고 전사본, 요약 및 내보내기를 받으세요.',
+    url: 'https://mictoo.com/ko/zoom-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Zoom 받아쓰기 — Zoom 녹화를 무료로 받아쓰기 | Mictoo",
-    description: "무료 Zoom 받아쓰기. Cloud Recording(MP4) 또는 로컬 녹화(M4A)를 업로드하여 정확한 AI 받아쓰기를 몇 초 만에 받으세요. 가입 불필요, 분당 과금 없음.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Zoom 전사: 무료',
+    description: 'Zoom 녹음을 업로드하고 타임스탬프가 포함된 전사본을 받으세요.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function KoZoomPage() {
+export default function KoZoomTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="ko"
-      badge="ZOOM · MP4 · M4A · 무료"
-      h1={<>Zoom 받아쓰기<br /><span className="text-brand-600">Zoom 녹화를 텍스트로 변환</span></>}
-      subtitle="Zoom 녹화를 깨끗한 텍스트로 변환. Cloud Recording MP4 또는 로컬 M4A, 둘 다 작동. 파일을 드롭하고 몇 초 만에 받아쓰기 받기."
-      howItWorks={[
-        { icon: '🎬', title: 'Zoom 녹화 내보내기', desc: 'Cloud Recordings는 MP4(비디오 + 오디오) 또는 M4A(오디오만)로 다운로드. Local Recordings는 장치에 MP4와 M4A로 저장. 두 포맷 모두 여기서 작동.' },
-        { icon: '⚡', title: '파일 드롭', desc: '드래그만. 비디오면 오디오를 꺼내 Whisper large-v3로 보냅니다. 30분 회의는 보통 1분 미만에 완료.' },
-        { icon: '📋', title: '받아쓰기 받기', desc: '읽고, 복사하거나 TXT 또는 SRT로 다운로드. 내보내기 전에 잘못된 이름이나 기술 용어를 인라인으로 수정.' },
+    <UseCaseLayout
+      locale="ko"
+      badge="Zoom · 클라우드 / 로컬 / M4A 오디오 · 무료"
+      h1First="Zoom 전사"
+      h1Second="클라우드 및 로컬 녹음을 텍스트로"
+      subtitle="Zoom 클라우드 녹음 MP4, 오디오 전용 M4A 또는 로컬 녹음을 업로드하세요. 타임스탬프가 포함된 전사본, AI 요약, 번역 및 내보내기 파일을 하나의 워크플로우에서 받으세요."
+      currentHref="/ko/zoom-transcription"
+
+      platforms={[
+        { name: '클라우드 MP4',    iconKey: 'videoCameraFill', brandBg: '#2D8CFF' },
+        { name: 'M4A 오디오',    iconKey: 'mic',             brandBg: '#0EA5A4' },
+        { name: '로컬 MP4',    iconKey: 'videoCameraFill', brandBg: '#4B53BC' },
+        { name: 'Google Meet',  iconKey: 'videoCameraFill', brandBg: '#00832D', href: '/ko/google-meet-transcription' },
+        { name: 'MS Teams',     iconKey: 'videoCameraFill', brandBg: '#4B53BC', href: '/ko/teams-meeting-transcription' },
+        { name: '회의 허브',  iconKey: 'videoCameraFill', brandBg: '#0F1F35', href: '/ko/meeting-transcription' },
       ]}
-      whyUse={{ title: 'Zoom 녹화에 Mictoo를 사용하는 이유', bullets: [
-        { title: '무료 계획을 포함한 모든 Zoom 계획에서 작동', desc: 'Zoom의 받아쓰기는 특정 유료 계획에 제한. 우리는 Zoom 계획 요구 사항이 없습니다. 녹화, 다운로드, 업로드, 완료.' },
-        { title: '비원어민 영어와 코드 스위칭에 더 좋음', desc: 'Whisper large-v3는 역사적으로 영어 우선이었던 Zoom 내장 받아쓰기보다 억양과 이중 언어 회의를 더 잘 처리합니다.' },
-        { title: '오디오만 M4A는 직접 업로드에 충분히 작음', desc: '대부분의 30분 Zoom 회의는 M4A로 15-25 MB에 도달. 압축 없이 무료 계층에 편안하게 맞습니다.' },
-        { title: '14일 보존 걱정 없음', desc: 'Zoom Cloud Recordings는 계획에 따라 14-30일 후 사라질 수 있습니다. 파일을 다운로드하여 여기서 받아쓰기하면 영원히 당신의 것.' },
-        { title: '프라이버시', desc: '파일은 받아쓰기 제공업체로 스트리밍되고 폐기됩니다. Zoom 녹화를 데이터베이스나 스토리지에 기록하지 않습니다.' },
-      ]}}
-      useCases={{ title: '사람들이 Zoom 녹화를 받아쓰는 용도', items: [
-        { title: '내부 회의 의사록', desc: '녹화를 통과시키고, 텍스트를 받고, Notion이나 Confluence에 붙여넣기. 회의를 놓친 사람들은 60분 비디오 대신 5분 읽기로 따라잡습니다.' },
-        { title: '클라이언트와 영업 통화', desc: 'CRM의 거래 옆에 받아쓰기 저장. 6개월 후 미래의 당신이 감사할 것입니다.' },
-        { title: '분산 팀을 위한 비동기 스탠드업', desc: '일부 팀은 라이브 회의 대신 비동기 스탠드업을 녹화합니다. 받아쓰기가 검색 가능하고 훑어볼 수 있게 만듭니다.' },
-        { title: '연구 인터뷰', desc: '질적 연구, 사용자 인터뷰, 후보자 스크리닝 통화. 코딩하고 태그를 다는 것은 비디오가 아닌 텍스트.' },
-        { title: '웨비나와 패널 받아쓰기', desc: '접근성과 발견 가능성을 위해 녹화와 함께 받아쓰기 게시. 검색 엔진은 비디오가 아닌 텍스트를 인덱싱.' },
-      ]}}
-      proTips={{ title: 'Zoom 받아쓰기 팁', tips: [
-        { title: 'MP4 대신 오디오만 M4A 다운로드', desc: 'Zoom Cloud Recording은 둘 다 제공. M4A는 동일한 오디오 품질에 MP4의 10분의 1 크기. 더 빠른 업로드, 대부분의 회의에서 60 MB 한도 훨씬 아래.' },
-        { title: '멀티스피커 회의에는 "Record a separate audio file for each participant" 활성화', desc: 'Zoom 설정, 녹화 아래. 스피커당 하나의 M4A를 제공. 각각을 별도로 받아쓰기하면 분리 없이 깨끗한 스피커 귀속.' },
-        { title: '말하지 않는 참가자 음소거', desc: '프레젠테이션 중 열린 마이크의 배경 소음은 받아쓰기에 유령 단어를 생성. 큰 통화에서는 강제할 가치가 있습니다.' },
-        { title: '로컬과 클라우드 녹화는 같은 품질', desc: '둘 다 기본적으로 같은 오디오 설정으로 녹화. 로컬은 더 빠름(먼저 Zoom에 업로드 안 함), 디스크 공간 필요.' },
-        { title: '민감한 콘텐츠에는 로컬 녹화 사용', desc: 'Cloud Recording은 회의를 Zoom 서버에 저장. 로컬 녹화는 어디로 가는지 선택할 때까지 장치에 머무름. 기밀 클라이언트나 HR 대화에는 로컬 → 직접 우리에게가 프라이버시를 보존하는 방법.' },
-        { title: '긴 Zoom 회의(60분 초과)는 분할 필요', desc: '우리 파일 한도는 가입으로 60분. 90분 통화는 45분 청크 2개로 분할. Audacity에서 쉽게(File, Export, Multiple) 또는 ffmpeg로.' },
-      ]}}
+
+      howItWorksTitle="Zoom 전사가 작동하는 방식"
+      steps={[
+        {
+          icon: 'folder',
+          title: 'Zoom에서 다운로드',
+          desc: '클라우드: zoom.us → 녹화 → MP4 또는 "오디오 전용 (M4A)" 버전 다운로드. 로컬: ~/Documents/Zoom/.',
+        },
+        {
+          icon: 'upload',
+          title: '파일을 여기에 드롭',
+          desc: '오디오 전용 M4A는 일반적으로 MP4보다 훨씬 작고 비디오 트랙을 업로드하지 않습니다. 익명으로 최대 25 MB, 로그인 시 60 MB까지 무료입니다.',
+        },
+        {
+          icon: 'editPen',
+          title: '검토 및 내보내기',
+          desc: '처리 시간은 길이, 파일 크기 및 수요에 따라 다릅니다. 완료되면 전사본을 검토하고 요약, 자막 또는 DOCX 요약을 내보내세요.',
+        },
+      ]}
+
+      exampleTitle="예시 Zoom 회의 전사"
+      exampleFileName="zoom-cloud-recording.m4a"
+      exampleDurationLabel="34:12"
+      exampleLines={[
+        { t: '0:00',  line: '좋습니다, 지연에 대해 사과드립니다. Zoom이 업데이트할 때까지 저를 들어오게 하지 않았습니다. 시작합시다.' },
+        { t: '0:10',  line: '오늘은 지난주 프로토타입 피드백을 검토하고 스프린트에서 우선 순위를 정할 것입니다.' },
+        { t: '0:22',  line: '전반적으로 피드백은 긍정적이었습니다. 15명의 참가자 중 12명이 도움 없이 흐름을 이해했습니다.' },
+        { t: '0:33',  line: '막힌 세 명은 모두 설정 화면에서 동일한 문제를 겪었습니다. 먼저 그 문제를 해결해야 합니다.' },
+        { t: '0:45',  line: '동의합니다. 이미 디자인 수정 작업 중입니다. 목요일까지 검토할 수 있을 것입니다.' },
+        { t: '0:56',  line: '둘째, 모두가 새로운 빈 상태를 좋아했지만 아무도 가져오기 버튼을 찾지 못했습니다. 너무 깊이 묻혀 있습니다.' },
+        { t: '1:08',  line: '가져오기를 빈 상태의 기본 작업으로 이동합시다. 엔지니어링에 대한 한 줄 변경입니다.' },
+      ]}
+      summaryPoints={[
+        '프로토타입 피드백: 12/15가 도움 없이 흐름을 완료했습니다.',
+        '차단 요소: 설정 화면이 3/15 참가자를 혼란스럽게 했습니다.',
+        '빈 상태는 잘 받아들여졌지만 가져오기 버튼을 찾기 어렵습니다.',
+        '목요일까지 디자인 수정이 있습니다.',
+      ]}
+      actionItems={[
+        '설정 화면 수정 (목요일 디자인 수정)',
+        '빈 상태에서 기본 작업으로 가져오기 홍보',
+        '금요일 스탠드업에서 수정된 프로토타입 공유',
+      ]}
+
+      whyTitle="Zoom 녹음과 함께 Mictoo를 사용하는 이유"
+      whyCards={[
+        {
+          icon: 'target',
+          title: '검토할 추가 전사본',
+          desc: '이름, 용어 및 주요 인용을 확인하기 위해 추가 전사본과 타임스탬프가 포함된 텍스트가 필요할 때 Mictoo를 사용하세요.',
+        },
+        {
+          icon: 'lock',
+          title: '다운로드한 파일 처리',
+          desc: 'Mictoo는 귀하의 Zoom 계정에 연결되지 않습니다. 이미 사용 권한이 있는 클라우드 또는 로컬 녹음을 업로드하세요.',
+        },
+        {
+          icon: 'gear',
+          title: '로컬 녹음도 지원',
+          desc: 'Zoom 내장 전사는 클라우드 전용입니다. 로컬 녹음은 아무것도 없습니다. Mictoo는 둘 다 작동합니다.',
+        },
+        {
+          icon: 'sparkles',
+          title: '요약 + 번역 포함',
+          desc: 'AI 요약이 전사본과 함께 자동으로 나타납니다. 한 번의 클릭으로 50개 이상의 언어로 번역하세요.',
+        },
+      ]}
+
+      scenariosTitle="일반적인 Zoom 시나리오"
+      scenarios={[
+        { icon: 'chat',      title: '클라이언트 통화' },
+        { icon: 'users',     title: '팀 스탠드업' },
+        { icon: 'briefcase', title: '판매 데모' },
+        { icon: 'search',    title: '사용자 인터뷰' },
+        { icon: 'book',      title: '웨비나' },
+        { icon: 'globe',     title: '다국어 통화' },
+      ]}
+
+      tipsTitle="Zoom 녹음 팁"
+      tips={[
+        'M4A "오디오 전용" 버전을 다운로드하세요. 동일한 정확도, 10배 작습니다.',
+        '클라우드 녹음 할당량은 우리의 전사에 소모되지 않습니다 (우리는 외부에서 실행됩니다).',
+        '로컬 녹음도 작동합니다. ~/Documents/Zoom/에서 확인하세요.',
+        '60 MB를 초과하는 긴 통화의 경우, 자동 분할을 위해 로그인하세요.',
+      ]}
+
+      guidesTitle="자체 가이드가 있는 회의 플랫폼"
+      guides={[
+        { href: '/ko/google-meet-transcription',   icon: 'video', title: 'Google Meet', desc: 'Workspace + 무료 우회 방법' },
+        { href: '/ko/teams-meeting-transcription', icon: 'video', title: 'MS Teams',    desc: 'OneDrive + SharePoint 경로' },
+        { href: '/ko/meeting-transcription',       icon: 'video', title: '회의 허브', desc: '모든 플랫폼, 하나의 업로드' },
+        { href: '/ko/webinar-transcription',       icon: 'monitor', title: '웨비나',  desc: 'Zoom 웨비나, Demio, ON24' },
+      ]}
+
       faq={[
-        { q: 'Mictoo가 Zoom Cloud Recordings에서 작동합니까?', a: '네. Zoom 녹화 라이브러리에서 MP4 또는 M4A를 다운로드한 다음 여기에 업로드. M4A 오디오 전용 내보내기가 빠르고 작습니다.' },
-        { q: 'Zoom Phone 통화 녹화에서 작동합니까?', a: '네. Zoom Phone은 MP3 또는 M4A로 녹화. 둘 다 작동. 전화 품질 오디오(8 kHz 모노)는 비디오 회의 오디오보다 약간 정확도가 낮지만 결과는 여전히 읽을 수 있습니다.' },
-        { q: '로컬 Zoom 녹화는 어떻습니까?', a: '같은 이야기. Zoom은 기본 Zoom 폴더에 MP4와 M4A로 저장. M4A를 여기에 드롭.' },
-        { q: '스피커 레이블을 받을 수 있습니까?', a: '자동으로는 안 됩니다. Zoom 설정에서 "Record a separate audio file for each participant"를 활성화했다면 각 스피커의 파일을 별도로 받아쓸 수 있습니다. 그렇지 않으면 대화 흐름에 따라 수동으로 스피커 레이블을 추가해야 합니다.' },
-        { q: 'Zoom 녹화가 60 MB를 초과합니다. 이제 어떻게?', a: 'MP4 대신 오디오 전용 M4A 다운로드 사용. 여전히 너무 크면 청크로 분할하거나 더 낮은 비트레이트로 재인코딩. 압축과 분할 가이드 참조.' },
-        { q: 'Zoom 내장 받아쓰기와 비교하면?', a: '우리는 비원어민 영어, 억양에서 더 좋고 언어 지원이 더 넓습니다(50개 이상). Zoom 내장 받아쓰기는 이미 적절한 Zoom 계획을 지불하고 있다면 더 편리. 우리 것은 무료이고 Zoom 계층에 관계없이 작동합니다.' },
-        { q: '내 Zoom 녹화가 서버에 저장됩니까?', a: '아니요. 파일은 받아쓰기 제공업체(Groq, 백업으로 OpenAI)로 스트리밍되고, 받아쓰기되고, 폐기됩니다. 녹화를 디스크에 기록하지 않습니다.' },
-        { q: 'Zoom 회의를 실시간으로 받아쓸 수 있습니까?', a: '아니요. 녹화된 파일로만 작동. 회의 중 실시간에는 Zoom 내장 도구나 전용 미팅 어시스턴트가 올바른 선택.' },
-        { q: 'Zoom 웨비나와 대규모 회의는?', a: '같은 워크플로우. 녹화 다운로드, 업로드, 받아쓰기. 매우 긴 웨비나(60분 초과)는 먼저 분할.' },
-        { q: '회의의 채팅 메시지가 받아쓰여집니까?', a: '아니요. 채팅 메시지는 Zoom에 의해 별도로 저장(Zoom 폴더 내 TXT로). 오디오만 받아쓰기. 둘 다 필요하면 직접 결합.' },
-        { q: 'Zoom 오디오 받아쓰기의 정확도는?', a: '좋은 마이크의 깨끗한 회의 오디오: 90-95%. 나쁜 오디오의 회의(노트북 마이크, 시끄러운 방, 약한 WiFi)는 정확도가 약간 떨어집니다. 이름과 기술 용어는 보통 정리가 필요합니다.' },
-        { q: 'Microsoft Teams나 Google Meet 녹화에서도 작동합니까?', a: '네, 같은 엔진. Google Meet과 Microsoft Teams용 전용 페이지가 있습니다.' },
+        {
+          q: '어떤 Zoom 녹음 유형이 작동하나요?',
+          a: '클라우드 녹음 MP4 (비디오), 클라우드 녹음 M4A (오디오 전용), 로컬 녹음 MP4. 채팅 로그가 필요한 경우 chat.txt 내보내기도 가능합니다. 하지만 우리는 채팅을 전사하지 않습니다.',
+        },
+        {
+          q: 'Zoom Pro 이상이 필요하나요?',
+          a: '아니요. 무료 계층 로컬 녹음을 포함하여 모든 Zoom 녹음이 작동합니다. Zoom 클라우드 녹음 자체는 Pro+가 필요하지만, 이미 파일이 있다면 Mictoo는 귀하의 Zoom 계층에 신경 쓰지 않습니다.',
+        },
+        {
+          q: '내 클라우드 녹음 MP4가 60 MB를 초과합니다. 이제 어떻게 하나요?',
+          a: '녹음에 오디오 전용 (M4A) 다운로드가 포함되어 있다면, 비디오 트랙을 업로드하지 않도록 그것을 사용하세요. 가용성 및 파일 크기는 녹음 설정 및 길이에 따라 다릅니다.',
+        },
+        {
+          q: 'Zoom 오디오 전사를 사용할까요, Mictoo를 사용할까요?',
+          a: 'Zoom 오디오 전사는 클라우드 녹음 및 전사가 귀하의 계정에서 활성화된 경우 편리합니다. Mictoo는 로컬 파일, 추가 내보내기 형식, 번역 또는 검토할 다른 전사본을 생성하는 데 유용합니다. 정확도는 녹음에 따라 다릅니다.',
+        },
+        {
+          q: 'Mictoo는 Zoom 화자를 식별하나요?',
+          a: '아니요. 현재 전사본은 각 줄의 타임스탬프가 포함된 연속 텍스트이며 자동 "화자 1 / 화자 2" 레이블이 없습니다.',
+        },
+        {
+          q: '로컬 녹음은 어디에 저장되나요?',
+          a: '기본적으로 Mac의 ~/Documents/Zoom/ 및 Windows의 %USERPROFILE%\\Documents\\Zoom\\에 저장됩니다. 각 회의는 MP4와 별도의 audio.m4a가 있는 자체 폴더를 가집니다.',
+        },
+        {
+          q: '내 Zoom 녹음이 귀하의 서버에 저장되나요?',
+          a: '아니요. 파일은 전사 제공업체로 스트리밍되고 한 번 처리된 후 메모리에서 삭제됩니다. 로그인하면 전사본만 지속됩니다.',
+        },
       ]}
+
+      ctaHeadline="Zoom 녹음을 깔끔한 텍스트로 변환하세요"
+      ctaSubtitle="클라우드 MP4 또는 M4A, 로컬 녹음, 모든 Zoom 계층. 파일당 무료입니다."
+      ctaButton="Zoom 녹음 업로드"
+
       relatedLinks={[
-        { href: '/ko/google-meet-transcription', label: 'Google Meet 받아쓰기', desc: 'Google Meet 녹화용 같은 워크플로우.' },
-        { href: '/ko/teams-meeting-transcription', label: 'Teams 받아쓰기', desc: 'Microsoft Teams 녹화용.' },
-        { href: '/ko/meeting-transcription', label: '회의 받아쓰기', desc: '다른 플랫폼 녹화용 일반 페이지.' },
-        { href: '/ko/interview-transcription', label: '인터뷰 받아쓰기', desc: '1대1 대화와 질적 인터뷰용.' },
+        { href: '/ko/meeting-transcription',       label: '회의 전사' },
+        { href: '/ko/google-meet-transcription',   label: 'Google Meet 전사' },
+        { href: '/ko/teams-meeting-transcription', label: 'Teams 전사' },
+        { href: '/ko/webinar-transcription',       label: '웨비나 전사' },
+        { href: '/ko/interview-transcription',     label: '인터뷰 전사' },
       ]}
     />
   )

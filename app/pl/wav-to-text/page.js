@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import FormatPageLayout from '@/components/FormatPageLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/wav-to-text',
@@ -15,13 +15,17 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'WAV na tekst — Darmowa transkrypcja WAV online | Mictoo',
-  description: 'Konwertuj pliki WAV na tekst online za darmo. Prześlij dowolny plik audio WAV i otrzymaj precyzyjną transkrypcję w kilka sekund. Bez rejestracji.',
-  alternates: { canonical: 'https://mictoo.com/pl/wav-to-text', languages: LANGS },
+  title: 'WAV na tekst: Darmowa transkrypcja online WAV | Mictoo',
+  description:
+    'Prześlij plik WAV, otrzymaj edytowalny transkrypt z znacznikami czasowymi w sekundach. Stworzony dla nagrań studyjnych, nagrań terenowych, eksportów DAW. Obsługuje PCM i Broadcast Wave (BWF). Darmowe, bez rejestracji.',
+  alternates: {
+    canonical: 'https://mictoo.com/pl/wav-to-text',
+    languages: LANGS,
+  },
 
   openGraph: {
-    title: "WAV na tekst — Darmowa transkrypcja WAV online | Mictoo",
-    description: "Konwertuj pliki WAV na tekst online za darmo. Prześlij dowolny plik audio WAV i otrzymaj precyzyjną transkrypcję w kilka sekund. Bez rejestracji.",
+    title: "WAV na tekst: Darmowa transkrypcja online WAV | Mictoo",
+    description: "Prześlij plik WAV, otrzymaj edytowalny transkrypt z znacznikami czasowymi w sekundach. Nagrania studyjne, nagrania terenowe, eksporty DAW. Obsługiwane PCM i BWF.",
     url: "https://mictoo.com/pl/wav-to-text",
     siteName: "Mictoo",
     type: "website",
@@ -29,68 +33,159 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "WAV na tekst — Darmowa transkrypcja WAV online | Mictoo",
-    description: "Konwertuj pliki WAV na tekst online za darmo. Prześlij dowolny plik audio WAV i otrzymaj precyzyjną transkrypcję w kilka sekund. Bez rejestracji.",
+    title: "WAV na tekst: Darmowa transkrypcja online WAV",
+    description: "Prześlij WAV, otrzymaj edytowalny transkrypt z znacznikami czasowymi w sekundach. Nagrania studyjne, nagrania terenowe, eksporty DAW.",
     images: ["https://mictoo.com/opengraph-image"],
   },
 }
 
 export default function PlWavToTextPage() {
   return (
-    <LandingLayout
-      badge="WAV · Za darmo · Natychmiast"
-      h1={<>WAV na tekst<br /><span className="text-brand-600">Darmowa transkrypcja WAV online</span></>}
-      subtitle="Prześlij dowolny plik audio WAV i otrzymaj precyzyjną transkrypcję tekstową w kilka sekund. Obsługa wszystkich nagrań WAV — wywiady, rozmowy, wykłady, notatki głosowe. Bez konta."
-      defaultLanguage="pl"
-      valueBlock={
-        <>
-          <p>WAV to często nieskompresowane audio ze studia, rejestratora, DAW, wywiadów i archiwów. Jakość jest wysoka, ale pliki bywają duże.</p>
-          <p>Mictoo zamienia WAV w edytowalną transkrypcję i pozwala eksportować tekst lub napisy bez ręcznego przepisywania nagrania.</p>
-        </>
-      }
-      howItWorks={[
-        { title: 'Prześlij WAV', desc: 'Dodaj wywiad, lekcję, podcast, bounce z DAW albo nagranie terenowe.' },
-        { title: 'AI transkrybuje mowę', desc: 'Mictoo przetwarza audio i tworzy tekst z timestampami.' },
-        { title: 'Edytuj i eksportuj', desc: 'Skopiuj tekst albo pobierz przydatne formaty, takie jak TXT lub SRT.' },
+    <FormatPageLayout
+      locale="pl"
+      badge="WAV · PCM · BWF · Darmowe"
+      h1First="WAV na tekst"
+      h1Second="Nagrania studyjne, nagrania terenowe, eksporty DAW"
+      subtitle="WAV to format, w którym twoja DAW wykonuje eksporty, twój rejestrator terenowy zapisuje na karcie, a studia nadawców standardyzują. Prześlij PCM lub BWF WAV i otrzymaj transkrypt z znacznikami czasowymi w sekundach. Darmowe, bez rejestracji."
+      highlightFormat="wav"
+      previewFileName="field-recording.wav"
+      previewWordCount={166}
+      previewDurationLabel="14:22"
+      previewLines={[
+        { t: '0:00',  line: 'Scout lokalizacji, trzeci dzień. Jesteśmy ustawieni po wschodniej stronie grzbietu na wysokości około sześciu tysięcy stóp.' },
+        { t: '0:09',  line: 'Wiatr wieje w podmuchach z zachodu, więc mam na sobie osłonę i wyłączyłem przy osiemdziesięciu hercach.' },
+        { t: '0:18',  line: 'Poziomy osiągają szczyty wokół minus dwunastu na mikrofonie wywiadowczym, co wydaje się odpowiednie dla tej atmosfery.' },
+        { t: '0:28',  line: 'Obok mnie stoi ranger, który pracował w tej części parku przez dwadzieścia dwa lata.' },
+        { t: '0:37',  line: 'Kiedy ludzie pytają, co się najbardziej zmieniło, zawsze zaczynam od pożarów latem 2020 roku.' },
+        { t: '0:47',  line: 'Las nigdy nie wyglądał tak samo po tym, a wzorce dzikiej przyrody potrzebowały lat, aby się ustabilizować.' },
+        { t: '0:57',  line: 'Czy możesz opisać, jak wyglądały te pierwsze tygodnie po pożarach na ziemi?' },
+        { t: '1:05',  line: 'Pewnie. Dym utrzymywał się przez około sześć tygodni, a widoczność nigdy nie przekraczała pół mili.' },
       ]}
-      whyUse={{
-        title: 'Dlaczego Mictoo do WAV',
-        bullets: [
-          { title: 'Bezpośrednie przesyłanie WAV', desc: 'Unikasz konwersji nagrań studyjnych lub z rejestratora, gdy plik mieści się w limicie.' },
-          { title: 'Przydatne dla źródeł profesjonalnych', desc: 'Działa przy wywiadach, podcastach, lekcjach, archiwach i DAW.' },
-          { title: 'Timestampy do korekty', desc: 'Wróć do oryginalnego audio przy poprawianiu cytatów lub nazwisk.' },
-          { title: 'Wskazówki dla dużych plików', desc: 'Możesz stworzyć lżejszą kopię mono, jeśli pełny WAV jest za ciężki.' },
-        ],
-      }}
-      useCases={{
-        title: 'Kiedy transkrybować WAV',
-        items: [
-          { title: 'Wywiady', desc: 'Wyciągaj cytaty i pytania z czystych nagrań.' },
-          { title: 'Podcasty', desc: 'Twórz show notes, captions i treści do ponownego użycia.' },
-          { title: 'Lekcje i wykłady', desc: 'Zamieniaj długie sesje w notatki do przeszukania.' },
-          { title: 'Archiwa', desc: 'Uczyń stare lub instytucjonalne nagrania łatwiejszymi do znalezienia.' },
-        ],
-      }}
-      proTips={{
-        title: 'Wskazówki dla WAV',
-        tips: [
-          { title: 'Użyj kopii 16 kHz mono, jeśli plik jest ciężki', desc: 'Dla mowy lżejsza kopia robocza często wystarcza.' },
-          { title: 'Przytnij ciszę', desc: 'Zmniejsz rozmiar i czas przeglądu bez usuwania treści mówionej.' },
-          { title: 'Zachowaj oryginalny WAV', desc: 'Trzymaj master i używaj wersji skompresowanej tylko, gdy chcesz szybciej przesłać plik.' },
-        ],
-      }}
+      whyTitle="Dlaczego Mictoo do transkrypcji WAV"
+      whyCards={[
+        {
+          icon: 'waveform',
+          title: 'PCM i BWF, bez konwersji',
+          desc: 'Standardowe 16/24/32-bitowe PCM WAV i Broadcast Wave (BWF) z metadanymi. Akceptujemy plik w oryginalnej formie bez wymaganej konwersji.',
+        },
+        {
+          icon: 'target',
+          title: 'Brak artefaktów kodeków stratnych',
+          desc: 'Niekompresowane PCM nie dodaje artefaktów kompresji stratnej. Czyste nagranie może być mocnym źródłem, ale hałas otoczenia i umiejscowienie mikrofonu nadal mają znaczenie.',
+        },
+        {
+          icon: 'gear',
+          title: 'Dowolna częstotliwość próbkowania, dowolna głębokość bitowa',
+          desc: '44.1 kHz, 48 kHz, 96 kHz, 192 kHz. Whisper przetwarza wewnętrznie do 16 kHz mono, więc twoja źródłowa częstotliwość nie wpływa na jakość.',
+        },
+        {
+          icon: 'clip',
+          title: 'Metadane BWF są zachowane po twojej stronie',
+          desc: 'Ignorujemy bloki metadanych iXML/bext podczas transkrypcji. Twój oryginalny plik WAV (i jego metadane) nigdy nie są modyfikowane.',
+        },
+      ]}
+      scenariosTitle="Kiedy WAV na tekst jest odpowiedni"
+      scenarios={[
+        {
+          icon: 'mic',
+          title: 'Nagranie z rejestratora terenowego',
+          desc: 'Zoom H4n, H5, H6, Tascam DR-40, Sound Devices MixPre. Cokolwiek zapisuje zestaw terenowy na karcie, prześlij WAV dla czystego transkryptu.',
+        },
+        {
+          icon: 'waveform',
+          title: 'Eksport DAW do odniesienia',
+          desc: 'Szkic lub tylko wokal z Logic, Pro Tools lub Ableton. Otrzymaj tekstową wersję tekstu piosenki lub dialogu do odniesienia.',
+        },
+        {
+          icon: 'briefcase',
+          title: 'Wywiad radiowy',
+          desc: 'Nagranie BWF z wywiadu radiowego lub studia podcastowego. Transkrypt zasila notatki, cytaty i dokumentację archiwalną.',
+        },
+        {
+          icon: 'book',
+          title: 'Archiwum historii ustnej',
+          desc: 'Długie nagranie historii ustnej zapisane w WAV dla zachowania. Transkrypt sprawia, że archiwum jest przeszukiwalne i cytowalne.',
+        },
+        {
+          icon: 'users',
+          title: 'Nagranie depozycji i prawne',
+          desc: 'Nagrywane postępowania zarejestrowane jako niekompresowane WAV dla jakości dowodowej. Transkrypt do przeglądu i cytowania.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Praca głosowa',
+          desc: 'Nagranie ADR, narracja lub sesja głosowa zrealizowana w WAV. Transkrypt potwierdza, że odczyt odpowiada scenariuszowi.',
+        },
+      ]}
+      technicalTitle="Co znajduje się w pliku WAV"
+      technicalIntro="WAV to kontener powszechnie używany do niekompresowanego dźwięku PCM. Jego dodatkowa rozdzielczość jest przydatna do produkcji i archiwizacji, podczas gdy warunki nagrywania wciąż decydują o tym, jak zrozumiała jest mowa."
+      technicalFacts={[
+        {
+          icon: 'waveform',
+          title: 'PCM i Broadcast Wave',
+          desc: 'Standardowe nagrania PCM WAV i BWF mogą przenosić ten sam mówiony dźwięk; BWF dodaje metadane produkcyjne wokół niego.',
+        },
+        {
+          icon: 'gear',
+          title: 'Częstotliwość próbkowania i głębokość bitowa',
+          desc: 'Wysokie częstotliwości próbkowania i głębokości bitowe zachowują zapas produkcyjny, ale nie mogą naprawić hałasu, przesterowania ani dalekiego mikrofonu.',
+        },
+        {
+          icon: 'cloud',
+          title: 'Duże z natury',
+          desc: 'Niekompresowane WAV szybko rośnie. Przy długich wywiadach podziel nagranie lub stwórz mniejszą mono kopię mowy, jeśli to konieczne.',
+        },
+        {
+          icon: 'clip',
+          title: 'Metadane pozostają na zewnątrz',
+          desc: 'BWF, iXML i metadane cue nie są dodawane do transkryptu, a oryginalny plik źródłowy nie jest modyfikowany.',
+        },
+      ]}
       faq={[
-        { q: 'Jak skonwertować plik WAV na tekst?', a: 'Prześlij plik WAV narzędziem powyżej. Mictoo transkrybuje go automatycznie przez AI i pokazuje tekst w kilka sekund.' },
-        { q: 'Czy konwersja WAV na tekst jest darmowa?', a: 'Tak, całkowicie darmowa. Bez konta. Prześlij swoje WAVy — bez miesięcznej kwoty minut, bez rejestracji.' },
-        { q: 'Jaki jest maksymalny rozmiar WAV?', a: 'Do 25 MB. Dla większych nagrań skonwertuj najpierw na MP3 lub podziel nagranie na segmenty.' },
-        { q: 'Czy mogę otrzymać transkrypcję z timestampami z WAV?', a: 'Tak. Po transkrypcji kliknij przycisk .srt, aby pobrać plik napisów z dokładnymi timestampami dla każdego segmentu.' },
-        { q: 'Jakie inne formaty audio są obsługiwane?', a: 'Mictoo obsługuje również MP3, MP4, M4A, OGG, WEBM i FLAC oprócz WAV.' },
+        {
+          q: 'Jakie rodzaje plików WAV akceptuje Mictoo?',
+          a: 'Standardowe PCM WAV w 16-bitach, 24-bitach lub 32-bitach float, dowolna częstotliwość próbkowania (od 44.1 kHz do 192 kHz), mono lub stereo. Broadcast Wave (BWF) jest również w pełni obsługiwany z zachowaniem metadanych iXML/bext w twoim oryginalnym pliku.',
+        },
+        {
+          q: 'Czy wyższa głębokość bitowa lub częstotliwość próbkowania poprawia transkrypt?',
+          a: 'Nie. Whisper przetwarza wszystkie dźwięki do 16 kHz mono wewnętrznie przed transkrypcją, więc głębokość bitowa i częstotliwość próbkowania powyżej tego poziomu nie wpływają na dokładność. Jakość nagrania (wybór mikrofonu, pokój, poziom hałasu) ma znacznie większe znaczenie niż specyfikacja kontenera.',
+        },
+        {
+          q: 'Mój plik WAV ze studia ma ponad 60 MB. Co teraz?',
+          a: 'Stereo 24-bitowe 48 kHz WAV to około 17 MB na minutę, więc każde nagranie trwające ponad 3 minuty osiąga limit. Przekonwertuj na 16 kHz mono WAV (lub 128 kbps MP3) za pomocą ffmpeg -i in.wav -ar 16000 -ac 1 out.wav. Jakość transkrypcji jest identyczna.',
+        },
+        {
+          q: 'Czy przechowujecie mój plik WAV?',
+          a: 'Nie. Plik jest przesyłany do dostawcy transkrypcji, przetwarzany raz i usuwany z pamięci. Nigdy nie zapisujemy go na dysku. Transkrypt jest przechowywany tylko wtedy, gdy się zalogujesz i dodasz go do swojej historii.',
+        },
+        {
+          q: 'Czy mogę zachować oryginalne znaczniki czasowe BWF w transkrypcie?',
+          a: 'Transkrypt używa względnych znaczników czasowych od początku pliku (0:00 jako punkt odniesienia). Metadane BWF z absolutnym czasem nie są przenoszone do tekstowego wyjścia. Dopasuj je po swojej stronie, jeśli potrzebujesz dopasowania do kodu czasowego sceny.',
+        },
+        {
+          q: 'Czy Mictoo transkrybuje WAV w innych językach?',
+          a: 'Tak. Whisper large-v3 obsługuje ponad 50 języków z automatycznym wykrywaniem. W przypadku krótkich nagrań lub nietypowych akcentów, ustaw język wyraźnie w rozwijanym menu dla lepszego wykrywania przy pierwszym podejściu.',
+        },
+        {
+          q: 'Czy mogę uzyskać napisy SRT dla nagrania WAV?',
+          a: 'Tak. Pobierz SRT lub VTT po transkrypcji. Oba formaty zawierają znaczniki czasowe dostosowane do oryginalnej osi czasu WAV do użycia w edytorach wideo lub narzędziach dostępności.',
+        },
+        {
+          q: 'Jak długo trwa transkrypcja WAV?',
+          a: '15-minutowe WAV zazwyczaj kończy się w 20-40 sekund. Większe pliki bliskie limitu przesyłania zajmują 40-80 sekund. Prędkość przesyłania często jest dłuższym krokiem, ponieważ pliki WAV są duże.',
+        },
+        {
+          q: 'Czy obsługujecie nagrania 32-bitowe float z Sound Devices?',
+          a: 'Tak. Pliki WAV 32-bitowe float z MixPre, serii F lub rejestratorów Zoom F są akceptowane i transkrybowane w ten sam sposób, co standardowe PCM.',
+        },
+        {
+          q: 'Czy mogę przetłumaczyć transkrypt na inny język?',
+          a: 'Tak. Po transkrypcji wybierz docelowy język i kliknij Tłumacz. Tłumaczenie działa na GPT-4o-mini i pojawia się obok oryginalnego transkryptu.',
+        },
       ]}
-      relatedLinks={[
-        { href: '/pl/transcribe-mp3-to-text', label: 'MP3 na tekst' },
-        { href: '/pl/transcribe-audio-to-text', label: 'Audio na tekst' },
-        { href: '/pl', label: 'Wszystkie formaty' },
-      ]}
+      ctaHeadline="Prześlij swój WAV, otrzymaj czysty transkrypt"
+      ctaSubtitle="PCM, BWF, dowolna częstotliwość próbkowania. Nagrania studyjne, nagrania terenowe, eksporty DAW."
+      ctaButton="Prześlij WAV do transkrypcji"
     />
   )
 }

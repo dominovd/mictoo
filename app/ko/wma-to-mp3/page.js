@@ -1,3 +1,5 @@
+import ConverterPageLayout from '@/components/ConverterPageLayout'
+
 const LANGS = {
   'en': 'https://mictoo.com/wma-to-mp3',
   'fr': 'https://mictoo.com/fr/wma-to-mp3',
@@ -13,119 +15,94 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'WMA를 MP3로 변환하는 방법 — 무료 방법 (2026) | Mictoo',
-  description: "WMA(Windows Media Audio)를 MP3로 무료로 변환하세요. 온라인 컨버터, VLC, Audacity, ffmpeg 중에서 맞는 것을 선택. 그 다음 Mictoo로 MP3를 텍스트로 전사.",
-  alternates: { canonical: 'https://mictoo.com/ko/wma-to-mp3', languages: LANGS },
-
+  title: 'WMA에서 MP3로: 레거시 Windows Media 오디오를 위한 무료 변환기 | Mictoo',
+  description:
+    '오래된 WMA 파일을 범용 MP3로 변환합니다. 레거시 Windows Media 아카이브, 음성 메일 내보내기 및 현대적인 프로그램이 열 수 없는 리핑된 CD를 구출하기 위해 제작되었습니다.',
+  alternates: {
+    canonical: 'https://mictoo.com/ko/wma-to-mp3',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "WMA를 MP3로 변환하는 방법 — 무료 방법 (2026) | Mictoo",
-    description: "WMA(Windows Media Audio)를 MP3로 무료로 변환하세요. 온라인 컨버터, VLC, Audacity, ffmpeg 중에서 맞는 것을 선택. 그 다음 Mictoo로 MP3를 텍스트로 전사.",
-    url: "https://mictoo.com/ko/wma-to-mp3",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'WMA에서 MP3로: 레거시 Windows Media 변환기 | Mictoo',
+    description: '레거시 WMA 아카이브, 음성 메일 내보내기, 리핑된 CD를 구출합니다.',
+    url: 'https://mictoo.com/ko/wma-to-mp3',
+    siteName: 'Mictoo', type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "WMA를 MP3로 변환하는 방법 — 무료 방법 (2026) | Mictoo",
-    description: "WMA(Windows Media Audio)를 MP3로 무료로 변환하세요. 온라인 컨버터, VLC, Audacity, ffmpeg 중에서 맞는 것을 선택. 그 다음 Mictoo로 MP3를 텍스트로 전사.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'WMA에서 MP3로: 무료 변환기',
+    description: '레거시 WMA 파일을 구출합니다. 무료입니다.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function KoWmaToMp3Page() {
   return (
-    <section className="max-w-2xl mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold text-slate-900 mb-3">WMA를 MP3로 변환하는 방법</h1>
-      <p className="text-slate-500 mb-10 leading-relaxed">
-        WMA(Windows Media Audio)는 2000년대 Microsoft가 Windows 녹음기와 Windows Media Player 추출에 사용한 기본 형식입니다. Windows에서는 작동하지만, 다른 거의 모든 곳 — 최신 휴대폰, 웹 도구, 전사 엔진 — 에서는 보통 받아들이지 않습니다. MP3가 보편적 대체재입니다. 아래에 네 가지 무료 변환 방법을 소개합니다.
-      </p>
-
-      <div className="bg-amber-50 border border-amber-100 rounded-2xl p-5 mb-10">
-        <p className="text-sm text-slate-700">
-          <strong>왜 변환할까:</strong> Mictoo(및 대부분의 최신 전사 도구)는 WMA를 직접 읽지 못합니다 — 독점 코덱을 사용하기 때문입니다. 먼저 MP3, M4A 또는 WAV로 변환해야 합니다. MP3 결과는 약간 더 작고 어디서나 재생됩니다.
-        </p>
-      </div>
-
-      <div className="space-y-12 text-slate-600 text-sm leading-relaxed">
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">방법 1 — 온라인 컨버터 (설치 불필요)</h2>
-          <p className="mb-4">
-            파일이 ~200 MB 이하이고 녹음이 민감하지 않다면 가장 쉬운 길. 드래그, 드롭, 다운로드 — 보통 5–15초:
-          </p>
-          <p className="text-xs text-slate-500 mt-3">
-            개인정보: 민감한 녹음(인터뷰, 업무 통화, 의료)에는 아래 데스크톱 방법을 사용 — 오디오가 컴퓨터를 떠나지 않습니다.
-          </p>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">방법 2 — VLC (Windows / macOS / Linux)</h2>
-
-          <img
-            src="/svg/vlc-convert-dialog.svg"
-            alt="VLC 변환 대화상자: 소스 recording.wma, 프로필 Audio – MP3, 대상 파일 .mp3, 시작 버튼."
-            className="w-full rounded-2xl border border-slate-100 mb-5"
-            width={640}
-            height={300}
-          />
-
-          <p className="mb-3">
-            <a href="https://www.videolan.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">VLC</a> 는 무료이며 모든 시스템에서 WMA를 기본적으로 읽습니다. 네 번의 클릭으로 변환:
-          </p>
-          <ol className="list-decimal pl-5 space-y-1">
-            <li>VLC를 엽니다. 클릭: <strong>미디어 → 변환 / 저장</strong>.</li>
-            <li>파일 <code className="font-mono">.wma</code> 을 추가하고 다시 클릭: <strong>변환 / 저장</strong>.</li>
-            <li><strong>프로필</strong> 에서 <code className="font-mono">Audio - MP3</code> 를 선택.</li>
-            <li>대상 파일명을 <code className="font-mono">.mp3</code> 로 끝나게 정한 뒤 <strong>시작</strong> 를 클릭.</li>
-          </ol>
-          <p className="mt-3">완료. VLC 하단의 진행 표시줄이 변환 미터로 바뀝니다.</p>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">방법 3 — Audacity (무료, 모든 플랫폼)</h2>
-          <p className="mb-3">
-            <a href="https://www.audacityteam.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">Audacity</a> 는 전사 전에 오디오 정리(무음 자르기, 작은 목소리 증폭, 배경 잡음 제거)도 하고 싶을 때 유용합니다.
-          </p>
-          <ol className="list-decimal pl-5 space-y-1">
-            <li><strong>파일 → 가져오기 → 오디오</strong> → <code className="font-mono">.wma</code></li>
-            <li>(선택) 편집, 정규화, 잡음 제거.</li>
-            <li><strong>파일 → 내보내기 → MP3로 내보내기</strong>. 음성이면 모노 및 64–96 kbps 선택.</li>
-          </ol>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">방법 4 — 명령줄 (ffmpeg)</h2>
-          <p className="mb-4">
-            <a href="https://ffmpeg.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">ffmpeg</a> 로 한 줄:
-          </p>
-          <pre className="bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto text-xs"><code>{`ffmpeg -i input.wma -acodec libmp3lame -ab 128k output.mp3`}</code></pre>
-          <p className="text-xs text-slate-500 mt-2">
-            음성/전사용은 <code className="font-mono">-ab 64k -ac 1</code> (모노, 64 kbps)로 — 정확도 동일, 파일은 2~3배 작음.
-          </p>
-        </div>
-
-        <div className="border-t border-slate-100 pt-8">
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">MP3 준비됐나요?</h2>
-          <p className="mb-4">
-            Mictoo에 드롭하면 무료 전사를 받을 수 있습니다 — 50개 이상의 언어 지원, 타임스탬프, SRT 자막, AI 요약 반환. 가입 불필요.
-          </p>
-          <a href="/ko" className="inline-flex items-center gap-2 btn-primary text-base px-6 py-3">
-            ↑ MP3를 무료로 텍스트로 변환
-          </a>
-        </div>
-
-      </div>
-
-      <div className="border-t border-slate-100 mt-12 pt-8">
-        <p className="text-sm text-slate-400 mb-4 text-center">관련 가이드</p>
-        <div className="flex flex-wrap justify-center gap-3">
-          <a href="/ko/aac-to-mp3" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">AAC를 MP3로</a>
-          <a href="/ko/m4a-to-mp3" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">M4A를 MP3로</a>
-          <a href="/ko/transcribe-audio-to-text" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">오디오 전사</a>
-          <a href="/ko/how-to-compress-audio" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">오디오 압축</a>
-        </div>
-      </div>
-    </section>
+    <ConverterPageLayout
+      locale="ko"
+      mode="converter" from="wma" to="mp3" currentHref="/ko/wma-to-mp3"
+      badge="WMA → MP3 · 무료 · 레거시 구출"
+      h1First="WMA에서 MP3로"
+      h1Second="무료 레거시 Windows Media 변환기"
+      subtitle="오래된 WMA 파일(음성 메일 내보내기, 리핑된 CD, 레거시 Windows Media 아카이브)을 드롭하면 모든 현대 장치나 플레이어가 열 수 있는 범용 MP3를 받을 수 있습니다."
+      outputFormat="MP3" outputQuality="128 kbps" outputAudio="스테레오"
+      stepsTitle="WMA에서 MP3 변환이 작동하는 방식"
+      steps={[
+        { icon: 'upload',   title: 'WMA 드롭하기',        desc: '익명으로 최대 25 MB의 모든 Windows Media Audio 버전.' },
+        { icon: 'waveform', title: '디코딩 및 인코딩', desc: 'ffmpeg가 WMA를 읽고 44.1 kHz에서 128 kbps 스테레오 MP3로 재인코딩합니다.' },
+        { icon: 'download', title: 'MP3 다운로드',    desc: '대부분의 현재 플레이어, 전화 및 오디오 편집기와 호환되는 MP3를 받습니다.' },
+      ]}
+      previewInputName="voicemail-2011.wma"
+      previewInputSize="1.2 MB · 00:02:34"
+      previewOutputName="voicemail-2011.mp3"
+      previewOutputSize="00:02:34 · 128 kbps · 2.4 MB"
+      whyTitle="왜 Mictoo를 WMA에서 MP3로 사용해야 할까요?"
+      whyCards={[
+        { icon: 'target',   title: '레거시 파일 처리',    desc: 'iTunes, Apple Music 및 현대 플레이어가 열 수 없는 오래된 Windows Media Audio 파일.' },
+        { icon: 'fileAudio',title: '광범위한 MP3 호환성', desc: 'MP3는 macOS, Linux, iPhone, Android 및 일반 음악 플레이어에서 널리 지원됩니다.' },
+        { icon: 'lock',     title: '변환 후 파일 삭제',     desc: '업로드된 WMA는 변환 후 삭제됩니다. MP3는 한 시간 이내에 삭제됩니다.' },
+        { icon: 'shield',   title: '워터마크나 태그 없음',     desc: '오디오만 재인코딩됩니다. 브랜드 소개나 메타데이터가 삽입되지 않습니다.' },
+      ]}
+      scenariosTitle="WMA에서 MP3로 변환이 유용한 경우"
+      scenarios={[
+        { icon: 'archive',    title: '레거시 CD 리핑' },
+        { icon: 'headphones', title: '오래된 음성 메일 내보내기' },
+        { icon: 'editPen',    title: 'Windows Movie Maker 출력' },
+        { icon: 'mail',       title: '비 Windows 장치에서 공유' },
+        { icon: 'video',      title: '현대 편집기로 가져오기' },
+        { icon: 'waveform',   title: '테이프 아카이브 구출' },
+      ]}
+      tipsTitle="WMA에서 MP3로 변환을 위한 팁"
+      tips={[
+        'DRM 보호된 WMA(오래된 Windows Media Player 대여)는 디코딩할 수 없습니다.',
+        '비트레이트가 매우 낮은 WMA(음성 메일)는 소스와 동일하게 들립니다.',
+        '오래된 WMV 비디오는 여기서 지원되지 않습니다. 대신 MP4에서 MP3로 변환하세요.',
+        '25 MB를 초과하는 녹음의 경우, 업로드하기 전에 소스를 자르거나 나누세요.',
+      ]}
+      processTitle="변환 중에 발생하는 일"
+      processSteps={['WMA (ASF)', 'Windows Media 디코딩', 'MP3 인코딩']}
+      compareTitle="WMA vs MP3"
+      compareRows={[
+        { fmt: 'WMA', contains: '아니오', size: '작음', best: '레거시 Windows 워크플로우(사용 중단됨)' },
+        { fmt: 'MP3', contains: '아니오', size: '작음', best: '범용 호환성, 현대 장치' },
+      ]}
+      faq={[
+        { q: 'WMA에서 MP3로 변환기가 무료인가요?', a: '네. 25 MB까지의 파일은 계정 없이 변환할 수 있으며, 출력에는 워터마크가 없습니다.' },
+        { q: '왜 현대 플레이어가 WMA를 열지 않나요?', a: 'Apple은 WMA를 지원하지 않았습니다. 일부 Android 플레이어는 이를 중단했습니다. WMA는 Windows 자체가 점점 멀어지고 있는 레거시 Microsoft 형식입니다.' },
+        { q: 'DRM 보호된 WMA를 변환할 수 있나요?', a: '아니요. 오래된 Windows Media Player 대여는 ffmpeg가 디코딩할 수 없는 DRM을 사용했습니다. 우리는 저작권 보호를 우회하지 않습니다.' },
+        { q: '파일이 저장되나요?', a: '아니요. 업로드된 WMA는 변환 후 삭제됩니다. MP3는 한 시간 이내에 삭제됩니다.' },
+        { q: 'WMA 무손실은 어떻게 되나요?', a: '변환기는 WMA 무손실도 읽지만, 출력은 여전히 128 kbps MP3(손실)입니다. 무손실 출력을 원하시면 WAV로 변환하세요.' },
+      ]}
+      ctaHeadline="지금 WMA를 MP3로 변환하세요"
+      ctaSubtitle="레거시 Windows Media Audio를 구출하세요. 몇 초 안에 휴대 가능한 MP3를 받으세요."
+      ctaButton="WMA 파일 선택"
+      moreTools={[
+        { href: '/ko/mp4-to-mp3',  label: 'MP4에서 MP3로' },
+        { href: '/ko/wav-to-mp3',  label: 'WAV에서 MP3로' },
+        { href: '/ko/flac-to-mp3', label: 'FLAC에서 MP3로' },
+        { href: '/ko/aac-to-mp3',  label: 'AAC에서 MP3로' },
+      ]}
+    />
   )
 }

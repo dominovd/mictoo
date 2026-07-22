@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/youtube-to-text',
@@ -15,82 +15,187 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'YouTube em texto — transcreva vídeos do YouTube grátis | Mictoo',
+  title: 'YouTube para Texto: Transcrição, Resumo e SRT | Mictoo',
   description:
-    'Transcrição grátis YouTube em texto. Baixe o vídeo, solte o arquivo, receba uma transcrição IA precisa. Melhor que as legendas automáticas do YouTube, com timecode e export SRT.',
-  alternates: { canonical: 'https://mictoo.com/pt/youtube-to-text', languages: LANGS },
-
+    'Cole uma URL do YouTube para usar as legendas disponíveis ou faça upload de áudio para uma nova transcrição com marcas de tempo, resumo e exportação SRT.',
+  alternates: {
+    canonical: 'https://mictoo.com/pt/youtube-to-text',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "YouTube em texto — transcreva vídeos do YouTube grátis | Mictoo",
-    description: "Transcrição grátis YouTube em texto. Baixe o vídeo, solte o arquivo, receba uma transcrição IA precisa. Melhor que as legendas automáticas do YouTube, com timecode e export SRT.",
-    url: "https://mictoo.com/pt/youtube-to-text",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'YouTube para Texto: Transcrição Gratuita de Vídeos do YouTube | Mictoo',
+    description: 'Cole uma URL do YouTube, obtenha uma transcrição limpa com marcas de tempo, resumo e legendas SRT.',
+    url: 'https://mictoo.com/pt/youtube-to-text',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "YouTube em texto — transcreva vídeos do YouTube grátis | Mictoo",
-    description: "Transcrição grátis YouTube em texto. Baixe o vídeo, solte o arquivo, receba uma transcrição IA precisa. Melhor que as legendas automáticas do YouTube, com timecode e export SRT.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'YouTube para Texto: Transcrição Gratuita do YouTube',
+    description: 'Cole uma URL do YouTube ou faça upload de áudio, obtenha uma transcrição.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function PtYouTubeToTextPage() {
   return (
-    <LandingLayout
-      defaultLanguage="pt"
+    <UseCaseLayout
+      locale="pt"
+      badge="URL do YouTube ou upload · Gratuito · Sem registro"
+      h1First="YouTube para Texto"
+      h1Second="Cole uma URL, obtenha uma transcrição limpa"
+      subtitle="Cole um link do YouTube para usar legendas que já estão disponíveis ou faça upload de áudio para criar uma nova transcrição do Whisper. Revise o texto, gere um resumo e exporte legendas SRT."
+      currentHref="/pt/youtube-to-text"
       enableYouTubeUrl
-      badge="YouTube · SRT · GRÁTIS"
-      h1={<>YouTube em texto<br /><span className="text-brand-600">Ferramenta grátis de transcrição do YouTube</span></>}
-      subtitle="Pegue uma transcrição limpa e precisa de qualquer vídeo do YouTube. Baixe o arquivo, solte aqui, a IA faz o resto. Melhor que as legendas automáticas do YouTube, com pontuação adequada e timecode."
-      howItWorks={[
-        { icon: '🔗', title: 'Cole um link do YouTube', desc: 'Solte qualquer URL do YouTube no campo acima. Puxamos as legendas existentes em alguns segundos, sem download e sem esperar o Whisper retranscrever. Funciona com a maioria dos vídeos públicos com legendas automáticas ou enviadas pelo criador.' },
-        { icon: '📂', title: 'Ou envie um arquivo', desc: 'O vídeo não tem legendas, é um upload privado ou você quer a qualidade do Whisper? Baixe o áudio com um app desktop grátis (veja nosso guia abaixo), solte na mesma página e passamos pelo Whisper large-v3.' },
-        { icon: '📋', title: 'Pegue a transcrição', desc: 'Leia no navegador, copie para a área de transferência ou exporte como TXT, SRT, VTT ou DOCX. Traduza para 28 idiomas em um clique. Resumo IA grátis no topo.' },
+
+      platforms={[
+        { name: 'YouTube',      iconKey: 'videoCameraFill', brandBg: '#FF0000' },
+        { name: 'YouTube Live', iconKey: 'broadcast',       brandBg: '#B91C1C' },
+        { name: 'YT Shorts',    iconKey: 'videoCameraFill', brandBg: '#DC2626' },
+        { name: 'YT Music',     iconKey: 'soundwave',       brandBg: '#7F1D1D' },
+        { name: 'YT Premium',   iconKey: 'videoCameraFill', brandBg: '#0F172A' },
+        { name: 'Video hub',    iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/pt/transcribe-video-to-text' },
       ]}
-      whyUse={{ title: 'O que você recebe no Mictoo', bullets: [
-        { title: 'Sem passo de download', desc: 'Cole uma URL do YouTube e a transcrição volta em segundos. Sem app desktop, sem gerenciar arquivos, sem esperar um vídeo longo subir.' },
-        { title: 'Transcrição fresca do Whisper como fallback', desc: 'Se o vídeo não tem legendas, envie o áudio. O Whisper large-v3 lida com sotaques, música e nomes próprios melhor que as legendas automáticas do YouTube, com menos palavras inventadas e pontuação completa.' },
-        { title: 'SRT limpo, pronto para edição', desc: 'Formato SRT padrão que importa direto no Premiere, DaVinci Resolve, Final Cut, CapCut. Sem XML, sem timecodes estranhos, sem limpeza manual.' },
-        { title: 'Resumo IA grátis em toda transcrição', desc: 'Pontos-chave e itens de ação no topo de cada resultado, sem um clique extra. Os concorrentes geralmente cobram 15–20 US$/mês por isso.' },
-        { title: 'Traduza para 28 idiomas', desc: 'Um clique depois da transcrição. Os timecodes originais são preservados, então o SRT traduzido continua sincronizado com o áudio.' },
-        { title: 'Sem cadastro, sem marca d\'água, sem limites de tempo', desc: 'Uso anônimo até 25 MB. Cadastre-se grátis para arquivos de 60 MB e histórico privado das suas transcrições.' },
-      ]}}
-      useCases={{ title: 'Para que as pessoas usam transcrições do YouTube', items: [
-        { title: 'Estudar aulas e tutoriais longos', desc: 'Uma aula do MIT de 90 minutos é mais fácil de estudar com a versão em texto. Escaneia a parte que você quer, pula para o timecode no vídeo para a explicação ao vivo.' },
-        { title: 'Citações em trabalho acadêmico ou jornalístico', desc: 'Quando você referencia algo que alguém disse num vídeo, a transcrição com timecode deixa citar o momento exato. Muito mais rápido que rever para procurar a citação.' },
-        { title: 'Reciclar seu próprio conteúdo do YouTube', desc: 'Transforme um vídeo do YouTube em post de blog, newsletter, thread no X, artigo no LinkedIn. A transcrição é o primeiro rascunho.' },
-        { title: 'Traduzir vídeos para uso pessoal', desc: 'Pegue a transcrição no idioma original, jogue no DeepL ou ChatGPT, receba uma tradução. Útil para tutoriais ou entrevistas em outras línguas.' },
-        { title: 'Substituir legendas automáticas ruins no próprio canal', desc: 'Gere um SRT limpo aqui, suba no YouTube Studio como faixa oficial. Experiência melhor para o espectador, SEO melhor.' },
-      ]}}
-      proTips={{ title: 'Dicas para transcrição do YouTube', tips: [
-        { title: 'No downloader sempre escolha "Só áudio"', desc: 'Você não precisa do vídeo para a transcrição. Um M4A só de áudio tem um décimo do tamanho e baixa em segundos. Tanto 4K Video Downloader quanto ClipGrab têm a opção "Só áudio" no menu de formato. O M4A normalmente fica abaixo de 25 MB, mesmo em vídeos de 30 minutos.' },
-        { title: 'Para vídeos acima de 30 minutos, só-áudio cabe sem dividir na maioria das vezes', desc: 'Só-áudio contorna o limite de tamanho na maioria dos vídeos. Se uma palestra de 90 minutos ainda passa de 60 MB, divida em três pedaços de 30 minutos. Nosso guia de divisão tem o passo a passo no Audacity, sem linha de comando.' },
-        { title: 'Pule música de intro e outro', desc: 'Tutoriais do YouTube costumam ter 15 segundos de música tema no começo e no fim. Corte no Audacity antes do upload. O Whisper às vezes inventa palavras em trechos só musicais.' },
-        { title: 'Para canais de tutorial com código na tela, você ainda precisa da versão em áudio', desc: 'Reconhecimento de texto na tela é outra categoria (OCR). Se o tutorial depende de mostrar código, você precisa tirar screenshots separados para a parte visual. A transcrição captura tudo que o apresentador fala.' },
-        { title: 'Use as legendas ao vivo do YouTube como sanity-check', desc: 'Se o vídeo tem legendas automáticas, você pode comparar com a transcrição do Whisper para achar divergências. Geralmente o Whisper ganha, mas em gírias raras ou nomes próprios o YouTube às vezes pega algo que o Whisper perdeu.' },
-        { title: 'Use um downloader que mantém o título do vídeo como nome do arquivo', desc: 'Tanto 4K Video Downloader quanto ClipGrab podem usar o título do YouTube como nome padrão. Isso mantém suas transcrições organizadas em vez de acabar com uma pasta cheia de "video.mp4", "video (1).mp4", "video (2).mp4".' },
-      ]}}
+
+      howItWorksTitle="Como funciona a transcrição do YouTube"
+      steps={[
+        {
+          icon: 'folder',
+          title: 'Cole uma URL ou faça upload de áudio',
+          desc: 'Caminho rápido: cole o link do YouTube, nós buscamos as legendas existentes. Caminho do Whisper: faça upload do áudio para uma nova transcrição.',
+        },
+        {
+          icon: 'upload',
+          title: 'Legendas ou nova transcrição',
+          desc: 'O caminho da URL retorna as legendas disponíveis. O caminho de upload executa o Whisper large-v3; o tempo de processamento depende da duração e tamanho do media.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Resumo, SRT, tradução',
+          desc: 'Resumo de IA ao lado da transcrição. Baixe SRT para o vídeo, traduza para mais de 50 idiomas, exporte como DOCX ou PDF.',
+        },
+      ]}
+
+      exampleTitle="Exemplo de transcrição do YouTube"
+      exampleFileName="youtube-video.mp4"
+      exampleDurationLabel="12:34"
+      exampleLines={[
+        { t: '0:00',  line: 'Bem-vindo de volta ao canal. Hoje estamos analisando as três maiores mudanças na análise de produtos em 2026.' },
+        { t: '0:12',  line: 'Mudança um, a reprodução de sessões é basicamente um requisito agora. Todas as ferramentas sérias a incluem no nível básico.' },
+        { t: '0:24',  line: 'Mudança dois, a transição de painéis SQL personalizados para consultas em linguagem natural está acontecendo rapidamente.' },
+        { t: '0:37',  line: 'Mudança três, ferramentas nativas de armazém estão substituindo a antiga pilha de análises baseadas em eventos.' },
+        { t: '0:50',  line: 'Deixe-me explicar o que cada mudança realmente significa para as ferramentas que você deve avaliar este ano.' },
+        { t: '1:02',  line: 'Reprodução de sessões primeiro. Se sua ferramenta atual cobra a mais por isso, isso é um sinal para pesquisar.' },
+        { t: '1:14',  line: 'Ferramentas modernas agrupam reprodução com eventos, funis e coortes como um único produto, não um complemento pago.' },
+      ]}
+      summaryPoints={[
+        '3 maiores mudanças na análise de produtos em 2026.',
+        'A reprodução de sessões agora é um requisito em ferramentas sérias.',
+        'Mudança de painéis SQL para consultas em linguagem natural.',
+        'Ferramentas nativas de armazém substituindo pilhas baseadas em eventos.',
+      ]}
+      actionItems={[
+        'Avalie a ferramenta atual para reprodução agrupada',
+        'Experimente 1 ferramenta de análise nativa de armazém neste trimestre',
+        'Escreva um resumo em blog das 3 mudanças',
+      ]}
+
+      whyTitle="Por que escolher a Mictoo para transcrição do YouTube"
+      whyCards={[
+        {
+          icon: 'target',
+          title: 'Escolha o caminho certo para a transcrição',
+          desc: 'Use legendas existentes para velocidade ou faça upload de áudio quando quiser uma nova transcrição para revisar nomes, pontuação e termos especializados.',
+        },
+        {
+          icon: 'clip',
+          title: 'SRT para a descrição do vídeo',
+          desc: 'Baixe SRT e reenvie para o YouTube Studio para legendas editadas ou use em outro lugar no seu fluxo de trabalho.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Resumo de IA para notas de episódios',
+          desc: 'Rascunho sólido para a descrição do vídeo, resumo do blog e títulos de capítulos. Transforme um podcast de 60 minutos em 200 palavras.',
+        },
+        {
+          icon: 'globe',
+          title: 'Traduza legendas para mais de 50 idiomas',
+          desc: 'Público internacional? Traduza a transcrição e reenvie como SRT traduzido para o seu vídeo.',
+        },
+      ]}
+
+      scenariosTitle="Cenários comuns do YouTube"
+      scenarios={[
+        { icon: 'search',    title: 'Pesquisar um vídeo' },
+        { icon: 'editPen',   title: 'Resumo do blog' },
+        { icon: 'clip',      title: 'Legendas SRT' },
+        { icon: 'chat',      title: 'Citação' },
+        { icon: 'globe',     title: 'Traduzir legendas' },
+        { icon: 'headset',   title: 'Podcast no YT' },
+      ]}
+
+      tipsTitle="Dicas para transcrições do YouTube"
+      tips={[
+        'O caminho mais rápido é a URL quando o vídeo já tem legendas.',
+        'Para vídeos técnicos ou não em inglês, prefira o caminho de upload de áudio.',
+        'Streams muito longas: baixe o áudio e divida antes do upload.',
+        'Para seus próprios vídeos, faça upload do áudio original para melhor precisão.',
+      ]}
+
+      guidesTitle="Ferramentas relacionadas"
+      guides={[
+        { href: '/pt/transcribe-video-to-text',      icon: 'video', title: 'Vídeo para Texto',       desc: 'MP4, MOV, WebM não do YouTube' },
+        { href: '/pt/transcribe-audio-to-text',      icon: 'file',  title: 'Áudio para Texto',       desc: 'Qualquer formato de áudio' },
+        { href: '/pt/free-srt-generator',            icon: 'file',  title: 'Gerador de SRT',       desc: 'Exportação focada em legendas' },
+        { href: '/pt/how-to-download-youtube-video', icon: 'video', title: 'Baixar do YT',    desc: 'Guia: como obter o áudio' },
+      ]}
+
       faq={[
-        { q: 'Posso colar um link do YouTube direto no Mictoo?', a: 'Por enquanto não. O YouTube bloqueia ativamente servidores de terceiros que buscam vídeos. Você precisa baixar o vídeo ou áudio primeiro (um app desktop grátis como 4K Video Downloader ou ClipGrab faz isso em dois cliques), depois subir o arquivo no Mictoo. Suporte a URL exigiria rodar infraestrutura de download server-side que o YouTube quebra periodicamente.' },
-        { q: 'É legal transcrever vídeos do YouTube?', a: 'Para estudo pessoal, pesquisa, jornalismo, acessibilidade e fair use, em geral sim na maioria das jurisdições. Para publicação comercial da transcrição, normalmente precisa da permissão do criador. Os termos do YouTube proíbem download de conteúdo a menos que o YouTube permita explicitamente (botão de download) ou você tenha permissão do criador. Cheque os termos para o seu caso. Isto não é aconselhamento jurídico.' },
-        { q: 'Minha transcrição vai bater com as legendas automáticas do YouTube?', a: 'Não, a nossa vai ser melhor. As legendas automáticas não têm pontuação e têm precisão menor. O Whisper large-v3 produz frases completas com pontuação, capitalização e melhor precisão em música, sotaques e nomes próprios.' },
-        { q: 'Qual o melhor downloader do YouTube?', a: 'Para a maioria: 4K Video Downloader ou ClipGrab. Os dois são grátis, têm app desktop limpo para Mac, Windows e Linux, e deixam pegar só áudio com um clique. Evite os sites "youtube downloader online" que aparecem no Google, a maioria está enterrada em anúncios de malware e quebra a cada poucos meses. Se você se vira na linha de comando, yt-dlp é a opção mais confiável (é o motor por baixo de muitos apps GUI).' },
-        { q: 'Como baixo só o áudio?', a: 'No 4K Video Downloader: cole o link do YouTube, quando abrir a janela de formato, escolha "Extract Audio" e pegue M4A ou MP3. No ClipGrab: cole o link, no menu "Format" escolha MP3 ou "Original audio". Os dois produzem um arquivo de áudio único, pronto para subir aqui.' },
-        { q: 'E se meu vídeo do YouTube está num idioma que eu não falo?', a: 'O Whisper detecta o idioma automaticamente e transcreve no idioma original. Depois você pode colar o resultado no DeepL ou ChatGPT para traduzir. Dois passos, mas o resultado costuma ser melhor que as legendas auto-traduzidas do YouTube.' },
-        { q: 'Quanto demora para transcrever um vídeo do YouTube?', a: 'Só o passo de transcrição leva cerca de 1-2% da duração do áudio. Uma palestra de 30 minutos fica pronta em cerca de um minuto. O tempo de download depende da sua conexão e da velocidade do yt-dlp.' },
-        { q: 'Recebo etiquetas de orador para vídeos do YouTube com vários oradores?', a: 'Não, o Whisper não faz diarização de orador por padrão. Para entrevistas e painéis com vários oradores, você precisa adicionar etiquetas manualmente em base ao fluxo da conversa.' },
-        { q: 'Posso gerar legendas prontas para o YouTube?', a: 'Sim. Após a transcrição, baixe como SRT, depois suba o SRT no YouTube Studio em Legendas. Substitui as legendas automáticas por uma versão limpa.' },
-        { q: 'O Mictoo guarda o vídeo do YouTube que eu envio?', a: 'Não. O arquivo vai ao nosso provedor de transcrição, é processado e descartado. Não guardamos vídeo nem áudio.' },
-        { q: 'Meu vídeo do YouTube tem capítulos. A transcrição reflete isso?', a: 'Não extraímos metadados de capítulo do YouTube. A transcrição vem como um documento contínuo. Se você quer transcrições por capítulo, divida o arquivo de áudio antes do upload nos timecodes dos capítulos.' },
-        { q: 'Posso transcrever um livestream do YouTube depois que termina?', a: 'Sim, enquanto o livestream estiver arquivado como vídeo regular. Baixe como qualquer outro (yt-dlp), depois suba. Transcrição ao vivo durante o stream em si não é suportada.' },
+        {
+          q: 'Posso apenas colar uma URL do YouTube?',
+          a: 'Sim. Quando o vídeo tem legendas (carregadas pelo criador ou geradas automaticamente), nós as buscamos em segundos. Se não houver legendas, faça upload do arquivo de áudio para uma transcrição completa do Whisper.',
+        },
+        {
+          q: 'Como o caminho de upload difere das legendas do YouTube?',
+          a: 'O caminho da URL retorna legendas já disponíveis para o vídeo. O caminho de upload cria uma transcrição separada do Whisper a partir do áudio. Qualquer versão pode conter erros, então revise nomes, números e tempos antes de publicar.',
+        },
+        {
+          q: 'Como posso extrair o áudio de um vídeo do YouTube?',
+          a: 'Use uma ferramenta de navegador ou extrator de desktop de sua escolha, depois faça upload do MP3 ou M4A. Não hospedamos uma ferramenta de download por razões de direitos autorais, mas veja nosso guia "Como baixar um vídeo do YouTube" para opções comuns.',
+        },
+        {
+          q: 'A Mictoo transcreve vídeos do YouTube em idiomas não ingleses?',
+          a: 'Sim. O Whisper large-v3 suporta mais de 50 idiomas com detecção automática. Para clipes curtos ou sotaques incomuns, defina o idioma explicitamente no menu suspenso.',
+        },
+        {
+          q: 'Posso obter um resumo de IA do vídeo?',
+          a: 'Sim. O resumo de IA aparece automaticamente ao lado da transcrição. Rascunho sólido para uma descrição de vídeo, resumo de blog ou notas de episódios.',
+        },
+        {
+          q: 'Posso baixar SRT para adicionar legendas de volta ao meu vídeo?',
+          a: 'Sim. Baixe SRT ou VTT após a transcrição. Ambos os formatos funcionam com YouTube Studio, Premiere, DaVinci, Final Cut, CapCut e a maioria dos players modernos.',
+        },
+        {
+          q: 'Posso traduzir uma transcrição do YouTube?',
+          a: 'Sim. Escolha um idioma-alvo e clique em Traduzir. Útil para públicos internacionais ou páginas de reprodução não em inglês.',
+        },
+        {
+          q: 'Os meus dados do YouTube são mantidos nos seus servidores?',
+          a: 'Não. As legendas buscadas e o áudio carregado são processados uma vez e descartados. Apenas a transcrição persiste se você fizer login e salvá-la no histórico.',
+        },
       ]}
+
+      ctaHeadline="Transforme qualquer vídeo do YouTube em texto"
+      ctaSubtitle="Cole uma URL para o caminho rápido, faça upload de áudio para o caminho completo do Whisper. Gratuito por vídeo."
+      ctaButton="Cole uma URL do YouTube ou faça upload"
+
       relatedLinks={[
-        { href: '/pt/transcribe-video-to-text', label: 'Vídeo em texto', desc: 'Para arquivos de vídeo não-YouTube (Zoom, screencasts, vlogs).' },
-        { href: '/pt/free-srt-generator', label: 'Gerador SRT', desc: 'Para subir legendas limpas de volta ao YouTube Studio.' },
-        { href: '/pt/podcast-transcription', label: 'Transcrição de podcast', desc: 'Para áudio tipo podcast subido no YouTube.' },
-        { href: '/pt/how-to-split-audio', label: 'Dividir áudio', desc: 'Para vídeos longos que passam do nosso limite de 60 minutos.' },
+        { href: '/pt/transcribe-video-to-text', label: 'Vídeo para Texto' },
+        { href: '/pt/podcast-transcription',    label: 'Transcrição de Podcast' },
+        { href: '/pt/lecture-transcription',    label: 'Transcrição de Aula' },
+        { href: '/pt/free-srt-generator',       label: 'Gerador de SRT Gratuito' },
+        { href: '/pt/webinar-transcription',    label: 'Transcrição de Webinar' },
       ]}
     />
   )

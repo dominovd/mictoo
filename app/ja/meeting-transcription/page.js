@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/meeting-transcription',
@@ -15,80 +15,198 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: '会議文字起こし — 通話と会議用の無料AI文字起こし | Mictoo',
+  title: 'あらゆるプラットフォームの会議の文字起こし | Mictoo',
   description:
-    '無料AI会議文字起こし。任意のプラットフォームからの会議録画をアップロードして、数秒でクリーンなテキストを取得。登録不要、分単位課金なし、50以上の言語。',
-  alternates: { canonical: 'https://mictoo.com/ja/meeting-transcription', languages: LANGS },
-
+    'Zoom、Teams、Meet、Webex、Loom、またはRiversideからの承認された会議録音をアップロードして、テキスト、要約、およびエクスポートを取得します。',
+  alternates: {
+    canonical: 'https://mictoo.com/ja/meeting-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "会議文字起こし — 通話と会議用の無料AI文字起こし | Mictoo",
-    description: "無料AI会議文字起こし。任意のプラットフォームからの会議録画をアップロードして、数秒でクリーンなテキストを取得。登録不要、分単位課金なし、50以上の言語。",
-    url: "https://mictoo.com/ja/meeting-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: '会議の文字起こし：あらゆるプラットフォーム、あらゆる録音 | Mictoo',
+    description: '任意の会議録音をドロップして、文字起こしを取得します。無料です。',
+    url: 'https://mictoo.com/ja/meeting-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "会議文字起こし — 通話と会議用の無料AI文字起こし | Mictoo",
-    description: "無料AI会議文字起こし。任意のプラットフォームからの会議録画をアップロードして、数秒でクリーンなテキストを取得。登録不要、分単位課金なし、50以上の言語。",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: '会議の文字起こし：あらゆるプラットフォーム',
+    description: '任意の会議録音をドロップして、文字起こしを取得します。',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function JaMeetingPage() {
+export default function JaMeetingTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="ja"
-      badge="どのプラットフォームも · 無料 · 50以上の言語"
-      h1={<>会議文字起こし<br /><span className="text-brand-600">無料AI会議文字起こし</span></>}
-      subtitle="あらゆる会議録画をクリーンなテキストに変換。Zoom、Meet、Teams、Webex、Discord、Skype、ボイスレコーダー、何でも動作。アカウント不要、分単位課金なし。"
-      howItWorks={[
-        { icon: '🎙️', title: '会議録画を取得', desc: '使ったプラットフォーム(Zoom、Meet、Teams、Webex、Discord、GoToMeeting、対面ボイスレコーダー)に関係なく、MP4、MP3、M4A、WAV、FLAC、OGGとしてエクスポート。' },
-        { icon: '⚡', title: 'ファイルをドロップ', desc: '必要なら音声を抽出してWhisper large-v3に送信。30分の会議は約1分で完了。' },
-        { icon: '📋', title: '文字起こし取得', desc: '読む、コピー、またはTXTかSRTでダウンロード。エクスポート前に誤った単語や専門用語をインラインで修正。' },
+    <UseCaseLayout
+      locale="ja"
+      badge="あらゆるプラットフォーム · 無料 · サインアップ不要"
+      h1First="会議の文字起こし"
+      h1Second="あらゆるプラットフォームのための1つのアップロードページ"
+      subtitle="Zoom、Teams、Google Meet、Webex、Loom、または任意の画面キャプチャから録音をアップロードします。タイムスタンプ付きのクリーンな文字起こし、AI要約、およびエクスポートを取得します。"
+      currentHref="/ja/meeting-transcription"
+
+      platforms={[
+        { name: 'Zoom',        iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/ja/zoom-transcription' },
+        { name: 'Google Meet', iconKey: 'videoCameraFill', brandBg: '#00832D', href: '/ja/google-meet-transcription' },
+        { name: 'MS Teams',    iconKey: 'videoCameraFill', brandBg: '#4B53BC', href: '/ja/teams-meeting-transcription' },
+        { name: 'Webex',       iconKey: 'videoCameraFill', brandBg: '#0F1F35' },
+        { name: 'Loom',        iconKey: 'loomPlay',        brandBg: '#625DF5' },
+        { name: 'Riverside',   iconKey: 'waveMic',         brandBg: '#4B2AF7' },
       ]}
-      whyUse={{ title: '会議にMictooを使う理由', bullets: [
-        { title: 'ソースプラットフォームは関係ない', desc: 'Zoom、Meet、Teams、Webex、Discord、GoToMeeting、BlueJeans、対面レコーダー。ファイルがあれば、私たちは文字起こしします。' },
-        { title: 'すべての会議に1つのモデル', desc: 'Zoomで録画した営業通話とTeamsでキャプチャしたチームレトロに同じWhisper large-v3。一貫した精度、一貫した出力フォーマット。' },
-        { title: '無料、分カウンターなし', desc: 'ほとんどの会議ツール文字起こしは独自のコストを持つライセンスティアに組み込み。私たちのは本当に無料、月間制限なし。' },
-        { title: '50以上の言語', desc: 'クロスボーダー会議、バイリンガル会話、国際チーム。Whisperはすべてに対応、自動検出または手動言語選択で。' },
-        { title: '何も保存されない', desc: 'ファイルは文字起こしプロバイダにストリーミングされて破棄。会議音声をサーバーに書き込みません。' },
-      ]}}
-      useCases={{ title: '人々が文字起こしする一般的な会議タイプ', items: [
-        { title: 'チームスタンドアップとレトロ', desc: '非同期チームは他のタイムゾーンの人がキャッチアップできるようスタンドアップを文字起こし。レトロはフォローアップアクションのための書面記録から恩恵を受ける。' },
-        { title: 'クライアントと顧客通話', desc: '営業通話、アカウントチェックイン、顧客インタビュー。CRMでディールや連絡先の横に文字起こしを保存。' },
-        { title: '社内トレーニングとオンボーディングセッション', desc: '新入社員は動画を見ながら文字起こしを読む。より良い保持、ステップを忘れた時に後で検索可能。' },
-        { title: '取締役会議、リーダーシップオフサイト、全員会議', desc: '文字起こしは企業コミュニケーションをよりアクセス可能にする。参加できなかった従業員とドキュメント用に便利。' },
-        { title: 'インタビューと質的研究', desc: '候補者スクリーニング、ユーザーインタビュー、ジャーナリズム、文字起こしが実際の作業出力。' },
-      ]}}
-      proTips={{ title: '会議文字起こしのコツ', tips: [
-        { title: 'ソースが動画なら音声を抽出', desc: '会議プラットフォームは音声と動画でMP4をエクスポート。私たちには音声だけ必要。ffmpeg -i meeting.mp4 -vn -ac 1 -b:a 64k meeting.mp3で1 GB MP4が25 MB以下に。より速いアップロード、同じ文字起こし。' },
-        { title: '全員が実物のマイクを持つことを確認', desc: 'WiFi通話のノートPC内蔵マイクはノイズの多いエコーの音声を生成。参加者ごとに1000円の有線USBヘッドセットは文字起こし精度で報われる。' },
-        { title: '話さない参加者をミュート', desc: 'プレゼン中の開いたマイクはキーボード入力、部屋の背景ノイズ、サイドバーの会話を拾う。Whisperは時々これを意味不明な単語として文字起こし。' },
-        { title: '非ネイティブ英語話者の会議では不必要に分割しない', desc: 'Whisperはより稀なフレーズに対してより長いコンテキストから恩恵を受ける。30分の連続ファイルは選択肢があれば3つの10分チャンクよりよく文字起こしされる。' },
-        { title: '長い会議は自然な休憩でよりよく分割', desc: '90分会議をチャンクに分ける必要がある場合、自然な休憩(コーヒー休憩、議題遷移)を探してそこで分割。文の途中で切るリスクが減る。' },
-        { title: '短いまたは異例な会議には言語を手動で選択', desc: '自動検出は最初の音声チャンクをサンプリング。待機室の音楽、短い挨拶、または無音で始まる会議には、手動言語選択がより信頼できる。' },
-      ]}}
+
+      howItWorksTitle="会議の文字起こしの仕組み"
+      steps={[
+        {
+          icon: 'folder',
+          title: '会議録音を見つける',
+          desc: '任意のプラットフォームから録音をエクスポートまたはダウンロードします。',
+        },
+        {
+          icon: 'upload',
+          title: 'ここにファイルをドロップ',
+          desc: 'MP3、MP4、WAV、またはその他のサポートされている形式でファイルをアップロードします。',
+        },
+        {
+          icon: 'editPen',
+          title: '文字起こし、要約、エクスポート',
+          desc: 'タイムスタンプ付きの文字起こし、AI要約、およびエクスポートファイルを取得します。',
+        },
+      ]}
+
+      exampleTitle="例の文字起こしと要約"
+      exampleFileName="meeting-recording.mp4"
+      exampleDurationLabel="30分15秒"
+      exampleLines={[
+        { t: '0:00',  line: '参加してくれた皆さん、ありがとうございます。今日の議題に入る前に、先週の進捗を簡単に振り返りましょう。' },
+        { t: '0:12',  line: 'オンボーディングフローを出荷し、前回のベースラインに対して12％のアクティベーションの増加を見ました。' },
+        { t: '0:28',  line: '素晴らしい。次に、モバイルでのチェックアウトバグを修正する必要があります。これ以上の支払い顧客に影響を与えないように。' },
+        { t: '0:36',  line: 'チケットを作成し、今日中にチームに割り当てます。スプリント内で解決されるはずです。' },
+        { t: '0:44',  line: '価格ページの更新についても話し合う必要があります。現在のバージョンは期待通りにコンバージョンされていません。' },
+        { t: '0:55',  line: '今日中にドラフトを共有し、明日のスタンドアップ前に一緒にレビューしましょう。' },
+      ]}
+      summaryPoints={[
+        'オンボーディングフローが出荷され、アクティベーションが12％増加しました。',
+        'モバイルのチェックアウトバグを修正する必要があります。',
+        '価格ページの更新について話し合います。',
+        'EODまでにドラフトを共有し、明日レビューします。',
+      ]}
+      actionItems={[
+        'モバイルチェックアウトバグのチケットを作成',
+        '価格ページのドラフトを共有',
+        '明日ドラフトをレビュー',
+      ]}
+
+      whyTitle="プラットフォームに依存しないアップロードが役立つ理由"
+      whyCards={[
+        {
+          icon: 'globe',
+          title: 'すべての会議プラットフォームで機能',
+          desc: 'Zoom、Teams、Google Meet、Webex、Loomなどからアップロードします。',
+        },
+        {
+          icon: 'target',
+          title: '1つのレビューワークフロー',
+          desc: 'どのプラットフォームが録音を作成したかに関係なく、同じタイムスタンプ付きのレイアウトとエクスポートオプションを使用します。',
+        },
+        {
+          icon: 'lock',
+          title: '承認されたファイルから機能',
+          desc: 'Mictooは、すでに使用許可を持っている録音を処理します。アクセスおよびダウンロードポリシーは、ソースプラットフォームに属します。',
+        },
+        {
+          icon: 'sparkles',
+          title: '要約と翻訳が含まれています',
+          desc: 'AI要約を取得し、50以上の言語に文字起こしを翻訳します。',
+        },
+      ]}
+
+      scenariosTitle="一般的な会議の文字起こしシナリオ"
+      scenarios={[
+        { icon: 'chat',      title: 'クライアントの振り返りメール' },
+        { icon: 'search',    title: 'ユーザーリサーチノート' },
+        { icon: 'users',     title: 'リクルーターのスクリーニング' },
+        { icon: 'briefcase', title: 'チーム会議のアーカイブ' },
+        { icon: 'headset',   title: 'サポートのエスカレーション' },
+        { icon: 'globe',     title: '多言語会議' },
+      ]}
+
+      practicalTitle="会議録音を見つける場所"
+      practicalIntro="正確な場所はプラットフォームとあなたの会議の役割によって異なります。アクセスを許可されている録音のみをダウンロードし、アップロードする前に参加者の同意と組織のポリシーに従ってください。"
+      practicalItems={[
+        {
+          title: 'Zoomクラウドまたはローカル録音',
+          desc: 'クラウド録音は、対象の有料アカウントのZoomウェブポータルから利用できます。コンピュータ録音は通常、ローカルZoomフォルダに保存されます。',
+        },
+        {
+          title: 'Google Meet録音',
+          desc: '対象のMeet録音は、主催者のマイドライブ›Meet録音フォルダに保存されます。利用可能性はエディションと管理者設定によって異なります。',
+        },
+        {
+          title: 'Microsoft Teams録音',
+          desc: '会議チャット、OneDrive、またはチャンネルのSharePointサイトから録音を見つけます。ダウンロード権限はポリシーによって制限される場合があります。',
+        },
+        {
+          title: 'Webex、Loom、およびRiverside',
+          desc: 'プラットフォームのエクスポートまたはダウンロードコントロールを使用して音声またはビデオファイルを取得し、アップロード前にファイルが正しく再生されることを確認します。',
+        },
+      ]}
+
+      tipsTitle="より良い会議の文字起こしのためのヒント"
+      tips={[
+        '小さなアップロードを希望する場合は、音声のみのエクスポートを優先してください。',
+        '静かな場所で録音し、バックグラウンドノイズを減らしてください。',
+        '多言語または混合言語の通話には自動検出を使用してください。',
+        '文字起こし後に名前や用語を確認してください。',
+      ]}
+
+      guidesTitle="適切なプラットフォームガイドを選択"
+      guides={[
+        { href: '/ja/zoom-transcription',          icon: 'video', title: 'Zoomミーティング',    desc: 'ステップバイステップのダウンロードガイド' },
+        { href: '/ja/google-meet-transcription',   icon: 'video', title: 'Google Meet',      desc: 'ステップバイステップのダウンロードガイド' },
+        { href: '/ja/teams-meeting-transcription', icon: 'video', title: 'Microsoft Teams',  desc: 'ステップバイステップのダウンロードガイド' },
+        { href: '/ja/meeting-transcription#tool',  icon: 'file',  title: 'その他のプラットフォーム',  desc: 'すべてのガイドとヒントを参照' },
+      ]}
+
       faq={[
-        { q: 'どの会議プラットフォームをサポートしていますか?', a: 'すべて。プラットフォームではなく録画ファイルで動作。Zoom、Microsoft Teams、Google Meet、Webex、Discord、Skype、GoToMeeting、BlueJeans、対面ボイスレコーダー。ファイルがMP4、MP3、M4A、WAV、FLAC、OGG、WEBMなら文字起こしします。' },
-        { q: '会議がZoom(またはMeet、またはTeams)でした。このページを使うべきか、プラットフォーム固有のものを使うべきか?', a: '同じエンジン、同じ精度。プラットフォーム固有のページはより的を絞ったコツを与えます。どちらが簡単か使ってください。' },
-        { q: 'スピーカーラベルは取得できますか?', a: '自動的にはありません。Whisperはデフォルトでダイアライゼーションを行いません。区別できる声の会議では、会話に基づいて手動でラベルを追加。スピーカーごとに別々の音声トラックの会議(Riverside、SquadCast、時々Zoom)では、各トラックを別々に文字起こし。' },
-        { q: '会議録画が60 MBを超えています。どうすれば?', a: '2つのオプション。動画から音声のみ抽出(ffmpegコマンド1つ)、または会議をチャンクに分割。' },
-        { q: '会議文字起こしはどれくらい正確?', a: 'クリーンな音声(良いマイク、背景ノイズなし): 90〜95%。会議室マイクまたはスピーカーフォン: 80〜90%。名前と専門用語は通常クリーンアップが必要。' },
-        { q: '会議はサーバーに保存されますか?', a: 'いいえ。ファイルは文字起こしプロバイダにストリーミングされ、処理後に破棄。会議音声も文字起こしもデータベースに書き込みません。' },
-        { q: 'Mictooの会議文字起こしはGDPR準拠ですか?', a: 'サイトを離れた後、音声や文字起こしを保持しません。私たちはヨーロッパにあり、プロバイダ(Groq US、OpenAI US)はDPAを持っています。特定のコンプライアンス質問にはプライバシーポリシーを参照。' },
-        { q: '文字起こしだけでなく会議の要約を取得できますか?', a: '現在は完全な文字起こしを提供。要約には「この会議文字起こしをキー決定とアクションアイテムに要約して」のようなプロンプトでChatGPTやClaudeに文字起こしを貼り付け。' },
-        { q: 'どの言語がサポートされていますか?', a: '50以上、自動検出付き。5分未満の会議や非音声のイントロがあるファイルには、より信頼できる結果のために言語を手動で選択。' },
-        { q: '会議をリアルタイムで文字起こしできますか?', a: 'いいえ。録画されたファイルで動作。リアルタイムには会議プラットフォーム自体のライブ文字起こしまたは専用ミーティングアシスタントを使用。' },
-        { q: '会議動画に合うSRTファイルはどうやって取得しますか?', a: '文字起こし後にSRTをダウンロード。ほとんどの動画エディタ(Premiere、DaVinci、CapCut、Final Cut)は、動画の音声が文字起こししたものと一致する限り、自動的に整列するSRTをインポート。' },
-        { q: '機密会議を文字起こしできますか?', a: '機密会議(HR、法的、M&A、取締役会)には、私たちのを含むあらゆるクラウド文字起こしサービスに注意。ファイルは保存されませんが、処理のために第三者音声プロバイダを通ります。最大プライバシーには代わりにローカルWhisperインストールを使用。' },
+        {
+          q: 'Zoom、Meet、またはTeamsの録音を文字起こしできますか？',
+          a: 'はい。任意の会議プラットフォームからの音声またはビデオファイルが機能します。録音をダウンロードして、ここにドロップしてください。MP3、MP4、WAV、M4A、WEBM、FLACなどを受け付けています。',
+        },
+        {
+          q: '会議の文字起こしは無料ですか？',
+          a: 'はい。25 MBまでのファイルは匿名で、サインインすると60 MBまで利用できます。長時間の会議は、サインインしたユーザーのために自動的に分割されることがあります。クレジットカードは必要ありません。',
+        },
+        {
+          q: 'Mictooは異なる話者を識別しますか？',
+          a: 'いいえ。現在の文字起こしは、行ごとのタイムスタンプ付きの連続したテキストであり、自動的な「話者1 / 話者2」ラベルはありません。',
+        },
+        {
+          q: '会議録音は保存されますか？',
+          a: 'いいえ。ファイルは文字起こしプロバイダーにストリーミングされ、一度処理され、メモリから削除されます。文字起こしは、サインインして履歴に追加した場合のみ保存されます。',
+        },
+        {
+          q: '利用可能なエクスポート形式は何ですか？',
+          a: 'TXT（プレーンテキスト）、SRTおよびVTT（録音に合わせたタイムスタンプ付きのキャプション）、DOCX（Word文書）です。サインインしたユーザーはPDFとJSONも利用できます。',
+        },
+        {
+          q: '文字起こしを翻訳できますか？',
+          a: 'はい。文字起こし後にターゲット言語を選択し、翻訳をクリックしてください。参加者に好みの言語で振り返りメールを送信したり、異なる言語の会議を単一の作業言語にアーカイブするのに便利です。',
+        },
       ]}
+
+      ctaHeadline="次の会議を明確なノートに変えましょう"
+      ctaSubtitle="任意のプラットフォームから録音をドロップし、数秒で文字起こし、要約、およびエクスポートを取得します。"
+      ctaButton="会議録音をアップロード"
+
       relatedLinks={[
-        { href: '/ja/zoom-transcription', label: 'Zoom文字起こし', desc: 'Zoom固有のコツとエクスポートワークフロー。' },
-        { href: '/ja/google-meet-transcription', label: 'Google Meet文字起こし', desc: 'Google Meet録画用。' },
-        { href: '/ja/teams-meeting-transcription', label: 'Teams文字起こし', desc: 'Microsoft Teams録画用。' },
-        { href: '/ja/business-transcription', label: 'ビジネス文字起こし', desc: 'クライアント通話、会議、営業通話用。' },
+        { href: '/ja/interview-transcription',  label: 'インタビューの文字起こし' },
+        { href: '/ja/podcast-transcription',    label: 'ポッドキャストの文字起こし' },
+        { href: '/ja/lecture-transcription',    label: '講義の文字起こし' },
+        { href: '/ja/business-transcription',   label: 'ビジネスの文字起こし' },
+        { href: '/ja/voice-memo-to-text',       label: 'ボイスメモからテキストへ' },
       ]}
     />
   )

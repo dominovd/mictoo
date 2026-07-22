@@ -1,9 +1,9 @@
 import UseCaseLayout from '@/components/UseCaseLayout'
 
 export const metadata = {
-  title: 'Podcast Transcription: Free AI Podcast Transcript Generator | Mictoo',
+  title: 'Podcast Transcription with Summary and SRT | Mictoo',
   description:
-    'Free podcast transcription with AI. Upload your episode (MP3, MP4, M4A, WAV) and get a clean, timestamped transcript in seconds. No signup, no per-minute fee.',
+    'Upload a podcast episode and get timestamped text, an AI summary, and exports for show notes, captions, and your archive.',
   alternates: {
     canonical: 'https://mictoo.com/podcast-transcription',
     languages: {
@@ -69,7 +69,7 @@ export default function PodcastTranscriptionPage() {
         {
           icon: 'editPen',
           title: 'Show notes, captions, exports',
-          desc: 'Transcript, AI summary, SRT for the YouTube video version, DOCX for the blog. Ready in under a minute.',
+          desc: 'Transcript, AI summary, SRT for the YouTube video version, and DOCX for the blog. Processing time depends on episode length and file size.',
         },
       ]}
 
@@ -174,7 +174,7 @@ export default function PodcastTranscriptionPage() {
         },
         {
           q: 'Can I identify who is speaking (host vs guest)?',
-          a: 'Not yet. The transcript is continuous text with timestamps but no speaker labels. Diarisation is on the Pro tier roadmap.',
+          a: 'No. The current transcript is continuous text with timestamps and no automatic speaker labels.',
         },
       ]}
 

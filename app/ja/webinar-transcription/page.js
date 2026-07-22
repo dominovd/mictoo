@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/webinar-transcription',
@@ -15,82 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'ウェビナー文字起こし — 録画の無料トランスクリプト | Mictoo',
-  description: 'ウェビナー録画をテキストとSRT字幕に無料で文字起こし。Zoom、Webex、GoToWebinarおよび任意のMP4・MP3エクスポートで動作。登録不要。',
-  alternates: { canonical: 'https://mictoo.com/ja/webinar-transcription', languages: LANGS },
-
+  title: 'ウェビナーの文字起こしと要約、キャプション | Mictoo',
+  description:
+    'ウェビナーの録画をアップロードし、タイムスタンプ付きのテキスト、AIによる要約、リプレイ用のSRT/VTTキャプションを取得します。',
+  alternates: {
+    canonical: 'https://mictoo.com/ja/webinar-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "ウェビナー文字起こし — 録画の無料トランスクリプト | Mictoo",
-    description: "ウェビナー録画をテキストとSRT字幕に無料で文字起こし。Zoom、Webex、GoToWebinarおよび任意のMP4・MP3エクスポートで動作。登録不要。",
-    url: "https://mictoo.com/ja/webinar-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'ウェビナーの文字起こし: 無料 | Mictoo',
+    description: 'ウェビナーの録画をアップロードし、クリーンな文字起こしを取得します。',
+    url: 'https://mictoo.com/ja/webinar-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "ウェビナー文字起こし — 録画の無料トランスクリプト | Mictoo",
-    description: "ウェビナー録画をテキストとSRT字幕に無料で文字起こし。Zoom、Webex、GoToWebinarおよび任意のMP4・MP3エクスポートで動作。登録不要。",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'ウェビナーの文字起こし',
+    description: 'どのウェビナープラットフォームでも無料の文字起こし。',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function JaWebinarPage() {
+export default function JaWebinarTranscriptionPage() {
   return (
-    <LandingLayout
-      badge="ウェビナー · MP4 · 無料"
-      h1={<>ウェビナー文字起こし<br /><span className="text-brand-600">無料トランスクリプトジェネレーター</span></>}
-      subtitle="ウェビナー録画を検索可能なテキスト文字起こしまたはSRT字幕ファイルに変換。Zoom、Webex、GoToWebinarおよび任意のMP4/MP3エクスポートで動作します。"
-      defaultLanguage="ja"
-      valueBlock={
-        <article className="prose-content">
-          <p>ウェビナー録画は、イベント後に記事、ナレッジベース、FAQ、フォローアップメールへ再利用できます。まず文字にすると、使える部分を探しやすくなります。</p>
-          <p>MictooはMP4や音声だけの録音をアップロードして、Q&A、説明パート、製品名を後から整えられるテキストにします。</p>
-        </article>
-      }
-      howItWorks={[
-        { icon: '⬆️', title: 'ファイルをアップロード', desc: 'ウェビナーの録音または動画を選びます。変換してから入れる必要はありません。' },
-        { icon: '🎧', title: '音声を読み取る', desc: 'Mictooが内部の音声トラックを取り出し、文字起こししやすい形にデコードします。' },
-        { icon: '📝', title: '編集して保存', desc: '結果を確認し、名前や専門用語を直して、TXT、SRT、VTT、DOCXで保存できます。' },
+    <UseCaseLayout
+      locale="ja"
+      badge="ウェビナー · 長文 · 無料"
+      h1First="ウェビナーの文字起こし"
+      h1Second="どのウェビナーの録画でも無料の文字起こし"
+      subtitle="Zoom Webinars、StreamYard、Demio、ON24、GoToWebinar、またはRestreamからアップロードします。完全な文字起こし、AIによる要約、オンデマンドリプレイページ用のキャプションを取得します。"
+      currentHref="/ja/webinar-transcription"
+
+      platforms={[
+        { name: 'Zoom Webinar', iconKey: 'broadcast',       brandBg: '#2D8CFF', href: '/ja/zoom-transcription' },
+        { name: 'StreamYard',   iconKey: 'broadcast',       brandBg: '#6B21A8' },
+        { name: 'Restream',     iconKey: 'broadcast',       brandBg: '#EC1E62' },
+        { name: 'ON24',         iconKey: 'videoCameraFill', brandBg: '#3B82F6' },
+        { name: 'Demio',        iconKey: 'videoCameraFill', brandBg: '#F97316' },
+        { name: 'Livestorm',    iconKey: 'videoCameraFill', brandBg: '#DA1F5C' },
       ]}
-      whyUse={{
-        title: 'ウェビナーにMictooを使う理由',
-        bullets: [
-          { title: '変換ステップを減らせる', desc: '別の形式へ変換してからアップロードすると時間がかかり、管理するファイルも増えます。元ファイルを直接使えます。' },
-          { title: '字幕にもメモにも使える', desc: 'テキストだけでなく、タイムスタンプ付きのSRTやVTTも作れるため、動画公開やレビューに使えます。' },
-          { title: '長い録音を後から探せる', desc: '文字にしておくと、重要な発言、引用、質問、章立てを検索しやすくなります。' },
-          { title: '登録なしで試せる', desc: '短い確認や一度だけの作業でも、アカウント作成なしで始められます。' },
-        ],
-      }}
-      useCases={{
-        title: 'ウェビナー文字起こしの使い道',
-        items: [
-          { title: '会議やインタビューの記録', desc: '録音を文章にして、要約、引用、共有用メモへつなげられます。' },
-          { title: '字幕の下書き', desc: '動画や音声公開前に、SRT/VTTの土台を作れます。' },
-          { title: '教育・研究メモ', desc: '講義、調査、フィールドノートを検索できるテキストにできます。' },
-          { title: '社内ナレッジ化', desc: 'デモ、説明会、トレーニングをあとで読める資料に変換できます。' },
-        ],
-      }}
-      proTips={{
-        title: 'ウェビナー文字起こしのコツ',
-        tips: [
-          { title: '音声だけ必要なら抽出する', desc: '動画が大きすぎる場合は音声だけを書き出すとアップロードが速くなります。' },
-          { title: '専門用語は最後に確認する', desc: '人名、商品名、聖書箇所、ブランド名などは手で見直すと品質が上がります。' },
-          { title: '長い録音は分割する', desc: '長時間ファイルは章やセッションごとに分けると、確認と修正が楽になります。' },
-        ],
-      }}
+
+      howItWorksTitle="ウェビナーの文字起こしの仕組み"
+      steps={[
+        {
+          icon: 'folder',
+          title: 'ウェビナーの録画をエクスポート',
+          desc: 'ほとんどのプラットフォームは、イベント後にMP4のダウンロードを提供します。一部は音声のみのM4Aも提供します。',
+        },
+        {
+          icon: 'upload',
+          title: 'ここにファイルをドロップ',
+          desc: '長いウェビナー（60分以上）は、サインインした状態で自動分割の恩恵を受けます。匿名で最大25 MB、サインインした状態で60 MBまで無料です。',
+        },
+        {
+          icon: 'editPen',
+          title: '文字起こし、要約、キャプション',
+          desc: 'リプレイページ用のタイムスタンプ付き文字起こし、ブログの要約としてのAI要約、オンデマンドビデオ用のキャプション用SRT。',
+        },
+      ]}
+
+      exampleTitle="ウェビナーの文字起こしの例"
+      exampleFileName="product-launch-webinar.mp4"
+      exampleDurationLabel="1:04:22"
+      exampleLines={[
+        { t: '0:00',  line: '皆さん、ようこそ。ご参加いただきありがとうございます。私の名前はサムで、会社のプロダクトマーケティングを担当しています。' },
+        { t: '0:12',  line: '今日は、プラットフォームのバージョン5を公式に発表します。新しい機能についてご紹介したいと思います。' },
+        { t: '0:25',  line: '3つの主要な変更点: 再構築されたレポート、トップ10のCRMとのネイティブ統合、新しい価格モデルです。' },
+        { t: '0:40',  line: 'レポートについてお話しします。これは、皆さんが2年間求めていた変更です。' },
+        { t: '0:52',  line: '旧レポートは遅く、大規模なデータセットでは壊れ、カスタマイズが難しかったです。これらの3つはすべて修正されました。' },
+        { t: '1:07',  line: '新しいレポートビルダーのライブデモをご覧ください。クリックするたびに、プレビューがどれだけ速く更新されるかに注目してください。' },
+        { t: '1:22',  line: 'すべてのフィールドはドラッグアンドドロップ可能で、フィルターはスタッカブルです。任意のレポートを共有テンプレートとして保存できます。' },
+      ]}
+      summaryPoints={[
+        'バージョン5の発表と3つの主要な変更点。',
+        '再構築されたレポート（速度、データセットサイズ、カスタマイズの修正）。',
+        'トップ10のCRMとのネイティブ統合。',
+        '新しい価格モデル。',
+      ]}
+      actionItems={[
+        '文字起こしからブログの要約を作成',
+        'ソーシャル用のデモクリップを作成',
+        'キャプション付きリプレイをオンデマンドで公開',
+      ]}
+
+      whyTitle="ウェビナーの文字起こしにMictooを選ぶ理由"
+      whyCards={[
+        {
+          icon: 'clip',
+          title: 'リプレイ用のSRTキャプション',
+          desc: 'タイムスタンプは元のビデオに合わせて調整されます。SRTをオンデマンドリプレイプレーヤーやYouTubeアップロードにドロップします。',
+        },
+        {
+          icon: 'sparkles',
+          title: 'ブログの要約用AI',
+          desc: '60分のウェビナーを200語の要約に変換します。フォローアップメールやブログ投稿のためのしっかりとした初稿です。',
+        },
+        {
+          icon: 'search',
+          title: 'ランディングページで検索可能な文字起こし',
+          desc: 'オンデマンドランディングページに文字起こしを公開します。参加者はスキミングでき、SEOが向上し、60分見る必要がありません。',
+        },
+        {
+          icon: 'globe',
+          title: '国際的な参加者のための翻訳',
+          desc: 'フォローアップメールや非英語のリプレイページのために50以上の言語にワンクリックで翻訳します。',
+        },
+      ]}
+
+      scenariosTitle="一般的なウェビナーシナリオ"
+      scenarios={[
+        { icon: 'broadcast', title: '製品発表' },
+        { icon: 'book',      title: 'トレーニング / アカデミー' },
+        { icon: 'briefcase', title: '営業支援' },
+        { icon: 'target',    title: '顧客教育' },
+        { icon: 'users',     title: 'アナリストブリーフィング' },
+        { icon: 'globe',     title: '多言語イベント' },
+      ]}
+
+      tipsTitle="ウェビナー録画のためのヒント"
+      tips={[
+        'プラットフォームが提供する場合は、音声のみのエクスポートを優先してください。',
+        '60分以上のウェビナーの場合、サインインして自動分割を最大3時間まで利用してください。',
+        '文字起こしのヘッダーがコンテキストを保持できるように、ファイルにホスト名を含めてください。',
+        'ソーシャルクリップ用に文字起こしから重要な引用を抜き出してください。',
+      ]}
+
+      guidesTitle="関連ツール"
+      guides={[
+        { href: '/ja/zoom-transcription',        icon: 'video', title: 'Zoom Webinar',      desc: 'クラウド録画MP4 / M4A' },
+        { href: '/ja/free-srt-generator',        icon: 'file',  title: 'SRTジェネレーター',     desc: 'オンデマンドビデオキャプション' },
+        { href: '/ja/podcast-transcription',     icon: 'headset', title: 'ポッドキャスト',         desc: 'ウェビナー音声を再利用' },
+        { href: '/ja/timestamped-transcription', icon: 'file',  title: 'タイムスタンプ付き',       desc: '読みやすいエクスポート' },
+      ]}
+
       faq={[
-        { q: 'ZoomまたはWebexのウェビナー録画をダウンロードするには?', a: 'Zoom: ウェブポータル → 録画 → ウェビナーをクリック → ダウンロード。Webex: マイ録画で録画を開く → ダウンロード。どちらもデフォルトでMP4でエクスポートします。' },
-        { q: 'ウェビナーがライブ中に文字起こしを取得できますか?', a: 'Mictooは録画ファイルで動作し、ライブストリームでは動作しません。リアルタイム字幕にはウェビナープラットフォームのライブキャプション機能を使用し、終了後に録画をアップロードして洗練された文字起こしを取得してください。' },
-        { q: '複数のスピーカーとQ&Aセッションについては?', a: 'Mictooはすべての発言を含む単一の文字起こしを生成します。スピーカーラベル(ホスト、パネリスト1、聴衆)は、ダウンロード前にブラウザエディターで手動で追加できます。' },
-        { q: 'ウェビナーの最大長さは?', a: '1ファイルあたり最大25 MB。64 kbpsモノラルの60分ウェビナーは余裕で収まります。長いセッションの場合は、低いビットレートでエクスポートするか、M4A音声を抽出してください。' },
-        { q: '技術用語の文字起こしは正確ですか?', a: 'クリアな音声では精度が高いです。ブランド名、頭字語、珍しい用語は時々誤記されます — エクスポート前にブラウザエディターで簡単に修正できます。' },
+        {
+          q: 'Mictooはどのウェビナープラットフォームに対応していますか？',
+          a: 'すべてのプラットフォームに対応しています。プラットフォームに関係なく、任意の音声またはビデオファイルを受け付けます。Zoom Webinars、StreamYard、Demio、Livestorm、ON24、GoToWebinar、Restream、Riverside Studioなど。',
+        },
+        {
+          q: '私のウェビナー録画は60 MBを超えています。どうすればいいですか？',
+          a: 'サインインして自動分割を利用してください（約3時間まで）。または、プラットフォームから音声のみをエクスポートするか、音声を抽出してください: ffmpeg -i webinar.mp4 -vn -ac 1 -ar 16000 audio.m4a。',
+        },
+        {
+          q: 'オンデマンドリプレイページに文字起こしを公開できますか？',
+          a: 'はい。文字起こしをオンデマンドランディングページのHTMLにコピーしてください。検索可能なコンテンツが追加され、SEOが向上し、視聴できない参加者がスキミングできるようになります。',
+        },
+        {
+          q: '録画されたウェビナー動画にキャプションを追加できますか？',
+          a: 'はい。文字起こし後にSRTまたはVTTをダウンロードできます。どちらもYouTube、Vimeo、Wistia、Descript、すべての最新のビデオプレーヤーで動作します。',
+        },
+        {
+          q: 'MictooはプレゼンターとQ&Aスピーカーを識別しますか？',
+          a: 'いいえ。現在の文字起こしは、行ごとのタイムスタンプを持つ連続したテキストであり、自動スピーカーラベルはありません。',
+        },
+        {
+          q: 'ウェビナーの文字起こしを翻訳できますか？',
+          a: 'はい。ターゲット言語を選択し、翻訳をクリックしてください。国際的な参加者や非英語のリプレイページに便利です。',
+        },
+        {
+          q: 'ウェビナー録画はサーバーに保存されますか？',
+          a: 'いいえ。ファイルは文字起こしプロバイダーにストリーミングされ、一度処理されて削除されます。文字起こしのみがサインインしたアカウントに残ります。',
+        },
       ]}
+
+      ctaHeadline="ウェビナーをリプレイ用の資産に変えましょう"
+      ctaSubtitle="完全な文字起こし、SRTキャプション、AI要約、検索可能なランディングページコピー。"
+      ctaButton="ウェビナー録画をアップロード"
+
       relatedLinks={[
-        { href: '/ja/meeting-transcription', label: '会議の文字起こし' },
-        { href: '/ja/zoom-transcription', label: 'Zoom文字起こし' },
-        { href: '/ja/free-srt-generator', label: 'SRTジェネレーター' },
-        { href: '/ja', label: 'すべてのフォーマット' },
+        { href: '/ja/meeting-transcription',   label: 'ミーティングの文字起こし' },
+        { href: '/ja/zoom-transcription',      label: 'Zoomの文字起こし' },
+        { href: '/ja/podcast-transcription',   label: 'ポッドキャストの文字起こし' },
+        { href: '/ja/lecture-transcription',   label: '講義の文字起こし' },
+        { href: '/ja/free-srt-generator',      label: '無料SRTジェネレーター' },
       ]}
     />
   )

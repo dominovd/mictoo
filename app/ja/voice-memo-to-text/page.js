@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/voice-memo-to-text',
@@ -15,82 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'ボイスメモをテキストに — iPhone Voice Memosを無料で文字起こし | Mictoo',
+  title: 'iPhoneとAndroidのボイスメモをテキストに | Mictoo',
   description:
-    '無料ボイスメモ文字起こし。iPhoneボイスメモまたはAndroid録音(M4A、MP3)をドロップしてクリーンなテキストを数秒で取得。登録不要。',
-  alternates: { canonical: 'https://mictoo.com/ja/voice-memo-to-text', languages: LANGS },
-
+    'iPhoneまたはAndroidの音声録音をアップロードし、タイムスタンプ付きのテキスト、AI要約、編集可能なエクスポートを取得します。',
+  alternates: {
+    canonical: 'https://mictoo.com/ja/voice-memo-to-text',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "ボイスメモをテキストに — iPhone Voice Memosを無料で文字起こし | Mictoo",
-    description: "無料ボイスメモ文字起こし。iPhoneボイスメモまたはAndroid録音(M4A、MP3)をドロップしてクリーンなテキストを数秒で取得。登録不要。",
-    url: "https://mictoo.com/ja/voice-memo-to-text",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'ボイスメモをテキストに: 無料 | Mictoo',
+    description: 'iPhoneまたはAndroidの音声録音をアップロードし、クリーンなテキストを取得します。',
+    url: 'https://mictoo.com/ja/voice-memo-to-text',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "ボイスメモをテキストに — iPhone Voice Memosを無料で文字起こし | Mictoo",
-    description: "無料ボイスメモ文字起こし。iPhoneボイスメモまたはAndroid録音(M4A、MP3)をドロップしてクリーンなテキストを数秒で取得。登録不要。",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'ボイスメモをテキストに',
+    description: '電話の音声録音の無料転写。',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function JaVoiceMemoPage() {
+export default function JaVoiceMemoToTextPage() {
   return (
-    <LandingLayout
-      defaultLanguage="ja"
+    <UseCaseLayout
+      locale="ja"
       badge="iPhone · Android · 無料"
-      h1={<>ボイスメモをテキストに<br /><span className="text-brand-600">無料ボイスメモ文字起こし</span></>}
-      subtitle="ボイスメモをクリーンなテキストに変換。iPhone、Android、専用レコーダー、あらゆる音声ファイル。ドロップして数秒で文字起こし取得。アカウント不要、分単位課金なし。"
-      howItWorks={[
-        { icon: '📱', title: 'メモをPCに転送(またはスマホからアップロード)', desc: 'iPhone: ボイスメモを開く、共有をタップ、AirDropまたは自分にメール。Android: ファイルやレコーダーアプリのフォルダで録音を見つける。またはモバイルブラウザでスマホから直接アップロード。' },
-        { icon: '📂', title: 'ファイルをドロップ', desc: 'iPhoneのM4A、AndroidのM4AまたはMP3、一部のレコーダーのWAV。すべて動作。' },
-        { icon: '📋', title: '文字起こし取得', desc: 'ブラウザで読む、クリップボードにコピー、またはTXTでダウンロード。Notion、Apple Notes、Google Docs、ノートが住んでいる場所に貼り付け。' },
+      h1First="ボイスメモをテキストに"
+      h1Second="電話の音声録音の無料転写"
+      subtitle="iPhoneのボイスメモ、Androidの音声録音、WhatsAppの音声ノート、またはTelegramの音声メッセージをアップロードしてください。数秒でクリーンなトランスクリプトを取得できます。サインアップ不要、分単位の料金もありません。"
+      currentHref="/ja/voice-memo-to-text"
+
+      platforms={[
+        { name: 'iPhone',       iconKey: 'mic',       brandBg: '#0F172A' },
+        { name: 'Google Rec',   iconKey: 'mic',       brandBg: '#4285F4' },
+        { name: 'Samsung',      iconKey: 'mic',       brandBg: '#1428A0' },
+        { name: 'WhatsApp',     iconKey: 'phone',     brandBg: '#25D366' },
+        { name: 'Telegram',     iconKey: 'phone',     brandBg: '#0088CC' },
+        { name: 'Audacity',     iconKey: 'soundwave', brandBg: '#0B60D6' },
       ]}
-      whyUse={{ title: 'ボイスメモにMictooを使う理由', bullets: [
-        { title: 'ネイティブM4Aサポート', desc: 'iPhoneボイスメモはM4Aとして保存。M4Aを直接受け付け。変換不要。' },
-        { title: '無料、分カウンターなし', desc: 'ボイスメモは「一度に1つ」フォーマット。2分のアイデアに分単位で支払うのは馬鹿げている。キャップなしの無料がユースケースに合う。' },
-        { title: '短いファイルに速い', desc: '2分のボイスメモは約5秒で文字起こし。アイデア自体を入力するより速い。' },
-        { title: 'プライバシー', desc: 'ボイスメモは個人的なことが多い。あなたの音声は文字起こしプロバイダに行き、処理されて破棄。保持しません。' },
-        { title: 'モバイルフレンドリー', desc: 'ブラウザでスマホから直接アップロード。iOSとAndroidの両方が動作。' },
-        { title: '自動検出があなたの言語を扱う', desc: '50以上の言語のいずれかでのボイスメモ。2つの言語で考えてメモが切り替わるなら便利。' },
-      ]}}
-      useCases={{ title: '人々がボイスメモ文字起こしを使う用途', items: [
-        { title: '移動中のアイデアキャプチャ', desc: '散歩中に思いついたことをスマホに口述。今それを行動に移したい。文字起こし、タスクマネージャーまたはノートアプリに貼り付け。' },
-        { title: '長いテキストの口述', desc: 'エッセイ、ブログ投稿、メールを話してドラフトする人もいます。ボイスメモを文字起こし、テキストを編集、送信。' },
-        { title: '会議後のアクションアイテム', desc: '会議室から戻る途中で自分に要約を口述。文字起こし、プロジェクト文書に貼り付け。' },
-        { title: 'ジャーナリストと研究者のためのフィールドノート', desc: '現場で観察と引用をキャプチャ。後で文字起こしして整理されたノート。' },
-        { title: 'リマインダーリスト(買い物、荷造り、プロジェクト計画)', desc: 'ボイスメモはスマホで入力するより速い。検索可能で編集可能なテキストバージョンのために文字起こし。' },
-      ]}}
-      proTips={{ title: 'ボイスメモ文字起こしのコツ', tips: [
-        { title: 'スマホは近くに、ただし近すぎないように', desc: '口から10〜15 cmがスイートスポット。近いとマイクが破裂音と息をキャッチ。遠いと騒がしい環境で明瞭度を失う。' },
-        { title: '風は敵', desc: '風の強い通りでの10秒のボイスメモは使えないかもしれません。可能なら止まって、風に背を向けてから録音。または風に強いマイク付きヘッドフォンを使用。' },
-        { title: 'キーワードの前に一時停止', desc: '名前、住所、専門用語を口述する時は、前に短く一時停止。Whisperは固有名詞には早口より孤立した単語をうまく扱います。' },
-        { title: 'iPhone Voice Memosはデフォルトでロスレスm4a、ただしロッシーに切り替え可能', desc: '設定、ボイスメモ、音声品質。ロスレスは文字起こしには過剰。ロッシーは精度の違いなしで3分の1のサイズ。' },
-        { title: 'アップロード前に最初と最後の無音をトリム', desc: 'ボイスメモは時々3〜5秒の死んだ空気をキャッチ。共有前にボイスメモアプリでトリム(編集をタップ)。より小さいファイル、より速い文字起こし。' },
-        { title: '長い口述(声でドラフトを書く)には5〜10分のチャンクに分割', desc: '編集しやすい。1つのチャンクがうまくいかない場合に再録音しやすい。' },
-        { title: 'Whisperはスマホ内蔵口述機能よりあなたのアクセントをうまく扱う', desc: 'iOSには内蔵口述がありますが、英語ファーストでアクセントに弱い。Whisperはより良い精度で50以上の言語をカバー。' },
-      ]}}
+
+      howItWorksTitle="ボイスメモの転写の仕組み"
+      steps={[
+        {
+          icon: 'folder',
+          title: '録音を共有する',
+          desc: 'iPhone: ボイスメモから共有シート。Android: ファイルアプリからファイル。WhatsApp: ファイルとして転送。',
+        },
+        {
+          icon: 'upload',
+          title: 'ここにファイルをアップロード',
+          desc: 'M4A（iPhone）、MP3（Android）、OPUS/OGG（WhatsApp、Telegram）はすべて直接動作します。',
+        },
+        {
+          icon: 'editPen',
+          title: '数秒でトランスクリプト',
+          desc: '5分のメモは約10秒で完了します。AI要約は、長々としたアイデアを簡潔なアクションリストに変えます。',
+        },
+      ]}
+
+      exampleTitle="ボイスメモのトランスクリプトの例"
+      exampleFileName="voice-memo.m4a"
+      exampleDurationLabel="3:22"
+      exampleLines={[
+        { t: '0:00',  line: 'さて、全体のアイデアを忘れないうちに、簡単なボイスメモを録音します。' },
+        { t: '0:04',  line: 'ピッチは、チェックアウトフローを一つの長いフォームではなく、二つの明確なステップに分けることです。' },
+        { t: '0:13',  line: 'ステップ1は、メールとカード。ステップ2は、確認番号を見た後の配送詳細です。' },
+        { t: '0:22',  line: 'これが重要な理由は、現在のシングルページフォームでのドロップオフが約38パーセントだからです。' },
+        { t: '0:32',  line: 'そのドロップオフのほとんどは、カード入力ではなく、配送セクションで発生します。これは直感に反します。' },
+        { t: '0:42',  line: 'もし配送を購入後に移すことができれば、そのトラフィックの12〜15パーセントを回復できるでしょう。' },
+        { t: '0:52',  line: 'タイムライン的には、フロントエンドに2週間、バックエンドに1週間、テストに1週間かかると思います。' },
+      ]}
+      summaryPoints={[
+        'アイデア: チェックアウトフローを二つのステップに分ける。',
+        'ステップ1: メール + カード。ステップ2: 確認後の配送。',
+        '現在のドロップオフ: 38%、主に配送セクションで。',
+        '推定回復: トラフィックの12-15%。',
+      ]}
+      actionItems={[
+        '二段階チェックアウトのモックアップを作成する',
+        '分析で38%のドロップオフを確認する',
+        'エンジニアリングの範囲を決定する（合計約4週間）',
+      ]}
+
+      whyTitle="ボイスメモにMictooを選ぶ理由"
+      whyCards={[
+        {
+          icon: 'sparkles',
+          title: '長々としたメモのためのAI要約',
+          desc: 'ボイスメモは本質的に散らかっています。要約は5分間の考えの流れを2行の要点に変えます。',
+        },
+        {
+          icon: 'mic',
+          title: 'iPhone .m4aネイティブ',
+          desc: 'Appleのボイスメモは.m4a（MP4のAAC）を書き込みます。変換なしで直接受け入れます。',
+        },
+        {
+          icon: 'chat',
+          title: 'Telegram .ogaネイティブ',
+          desc: 'チャットからTelegramの音声メッセージを保存し、.ogaファイルをアップロードしてください。OpusはOGGでネイティブに処理されます。',
+        },
+        {
+          icon: 'globe',
+          title: '言語を超えたメモの翻訳',
+          desc: '母国語のメモ、チームのための英語のノート。一クリックで。',
+        },
+      ]}
+
+      scenariosTitle="一般的なボイスメモのシナリオ"
+      scenarios={[
+        { icon: 'sparkles', title: 'アイデアのキャプチャ' },
+        { icon: 'chat',     title: '会議のメモ' },
+        { icon: 'editPen',  title: 'ドラフト作成' },
+        { icon: 'book',     title: '日記' },
+        { icon: 'phone',    title: '音声メッセージ' },
+        { icon: 'globe',    title: '多言語' },
+      ]}
+
+      tipsTitle="クリーンなボイスメモのためのヒント"
+      tips={[
+        '部屋のノイズを減らすために、電話を近くに持ってください。',
+        '60 MBを超える長いメモの場合は、サインインして自動分割を利用してください。',
+        'クリーンな検出のために、メモごとに一つの言語で話してください。',
+        'トランスクリプトをそこで区切りたい場合は、「新しい段落」と言ってください。',
+      ]}
+
+      guidesTitle="関連ツール"
+      guides={[
+        { href: '/ja/m4a-to-text',        icon: 'file',  title: 'M4Aフォーマット',       desc: 'iPhone / GarageBandの深堀り' },
+        { href: '/ja/ogg-to-text',        icon: 'file',  title: 'OGG / .oga',       desc: 'Telegramの音声の深堀り' },
+        { href: '/ja/dictation-to-text',  icon: 'editPen', title: 'ディクテーション',      desc: '音声優先のライティングワークフロー' },
+        { href: '/ja/interview-transcription', icon: 'chat', title: 'インタビュー',    desc: '電話または対面インタビュー' },
+      ]}
+
       faq={[
-        { q: 'MictooはiPhoneボイスメモをサポートしますか?', a: 'はい。iPhoneボイスメモはM4Aとして保存(時にはALACとしてロスレス)。M4Aは直接動作。ALACにはまずWAVまたはM4A AACに変換。' },
-        { q: 'iPhoneからボイスメモをMictooに持ってくるには?', a: '3つのオプション。ボイスメモでメモを開き、共有をタップ、Macに対するAirDrop(最速)または自分にメール。またはiPhoneでSafariを使ってmictoo.comを開き、ファイルアプリから直接アップロード。' },
-        { q: 'Androidボイス録音はどうですか?', a: 'Androidボイスレコーダーは通常M4AまたはMP3として保存。両方とも動作。ファイルアプリでファイルを見つけて、PCに共有またはモバイルブラウザからアップロード。' },
-        { q: 'スマホから直接アップロードできますか?', a: 'はい。サイトはモバイルフレンドリー。アップロードエリアをタップ、スマホのファイルアプリまたは録音フォルダからファイルを選択。' },
-        { q: 'ボイスメモはどれくらい長くできますか?', a: '無料で1ファイルあたり最大30分、登録で60分。ほとんどのボイスメモは5分未満で、どの制限内にも快適。' },
-        { q: 'ボイスメモ文字起こしはどれくらい正確?', a: '静かな環境でのクリアなスピーチには: 90〜95%。もぐもぐ言うスピーチ、背景ノイズ(通り、カフェ、車)では精度が落ちる。固有名詞はしばしばクリーンアップが必要。' },
-        { q: '文字起こしには句読点が含まれますか?', a: 'はい。Whisperは句読点を自動的に追加。口述スピーチ(より自然でない文境界を持つ)には常に完璧ではないが、そのまま使用可能。' },
-        { q: '非英語で口述するのに動作しますか?', a: 'はい、50以上の言語。短いメモにはドロップダウンから手動で言語を選択(自動検出は信頼できるためにより多くの音声が必要)。' },
-        { q: 'ボイスメモは保存されますか?', a: 'いいえ。ファイルは文字起こしプロバイダに行き、処理されて、その後破棄。' },
-        { q: 'ダウンロード前に文字起こしを編集できますか?', a: 'はい。エクスポート前にブラウザで誤った単語を修正。' },
-        { q: '電話通話の録音に動作しますか?', a: 'アップロードするファイルを、どう録音されたかに関係なく文字起こし。通話録音自体はほとんどの管轄で同意が必要。録音前に同意を得てください。' },
-        { q: 'iOS内蔵口述機能との違いは?', a: 'iOS口述は話しながらのリアルタイム、特定の言語に限定、アクセントに弱い。Mictooは録音後に文字起こし、50以上の言語をサポート、より精密なモデル(Whisper large-v3)を使用。' },
+        {
+          q: 'iPhoneのボイスメモを直接転写できますか？',
+          a: 'はい。ボイスメモアプリからメモを共有し（共有シート → ファイルに保存または自分に送信）、.m4aをMictooにアップロードしてください。変換は不要です。',
+        },
+        {
+          q: 'MictooはWhatsAppやTelegramの音声メッセージを転写しますか？',
+          a: 'はい。チャットから音声メッセージを保存し（転送 → ファイルとして保存）、アップロードしてください。WhatsAppの音声ノートは.opus、Telegramの音声ノートは.oga（どちらもOGGコンテナ）です。どちらも直接動作します。',
+        },
+        {
+          q: 'ファイルサイズの制限は何ですか？',
+          a: '匿名で25 MB、サインイン時に60 MBです。典型的なビットレートでの60分のボイスメモは約20-30 MBなので、ほとんどが無料の制限内に収まります。',
+        },
+        {
+          q: 'Mictooは非英語のボイスメモを転写しますか？',
+          a: 'はい。Whisper large-v3は50以上の言語をサポートしています。短いメモや非英語のコンテンツの場合は、クリーンな初回検出のために言語を明示的に設定してください。',
+        },
+        {
+          q: '長々としたブレインストームメモの要約を取得できますか？',
+          a: 'はい。AI要約はトランスクリプトと一緒に自動的に表示されます。流れるようなメモを緊密なアクションリストに変えるのに最適です。',
+        },
+        {
+          q: 'ボイスメモはサーバーに保存されますか？',
+          a: 'いいえ。音声は転写プロバイダーにストリーミングされ、一度処理されて削除されます。サインインして保存した場合のみ、トランスクリプトが残ります。',
+        },
+        {
+          q: 'ボイスメモを別の言語に翻訳できますか？',
+          a: 'はい。ターゲット言語を選択し、転写後に翻訳をクリックしてください。GPT-4o-miniが翻訳を処理し、元のメモと一緒に表示されます。',
+        },
       ]}
+
+      ctaHeadline="ボイスメモをテキストとアクションアイテムに変換"
+      ctaSubtitle="iPhone、Android、WhatsApp、Telegramの音声ノート。すべてのフォーマット、一回のアップロード。"
+      ctaButton="ボイスメモをアップロード"
+
       relatedLinks={[
-        { href: '/ja/m4a-to-text', label: 'M4Aをテキストに', desc: 'M4Aファイル専用。' },
-        { href: '/ja/dictation-to-text', label: '口述をテキストに', desc: '口述されたテキストドラフトとロングフォーム音声執筆用。' },
-        { href: '/ja/interview-transcription', label: 'インタビュー文字起こし', desc: 'スマホで録音したインタビュー用。' },
-        { href: '/ja/transcribe-audio-to-text', label: '音声をテキストに', desc: '他の音声フォーマット用。' },
+        { href: '/ja/dictation-to-text',       label: 'ディクテーションからテキストへ' },
+        { href: '/ja/interview-transcription', label: 'インタビュー転写' },
+        { href: '/ja/m4a-to-text',             label: 'M4Aからテキストへ' },
+        { href: '/ja/ogg-to-text',             label: 'OGGからテキストへ' },
+        { href: '/ja/meeting-transcription',   label: '会議転写' },
       ]}
     />
   )

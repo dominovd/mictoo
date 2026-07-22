@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import ConverterPageLayout from '@/components/ConverterPageLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/free-srt-generator',
@@ -15,83 +15,84 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Generator SRT — twórz pliki napisów SRT online | Mictoo',
+  title: 'Darmowy generator SRT: Twórz pliki napisów SRT online z audio lub wideo | Mictoo',
   description:
-    'Darmowy generator napisów SRT. Prześlij swój plik audio lub wideo i otrzymaj czysty .srt z timecode w kilka sekund. Działa z YouTube, Premiere, DaVinci, CapCut.',
-  alternates: { canonical: 'https://mictoo.com/pl/free-srt-generator', languages: LANGS },
-
+    'Generuj czyste pliki napisów SRT z dowolnego audio lub wideo. Czasówki w jakości Whisper, gotowe do YouTube, Premiere, Final Cut, DaVinci Resolve, CapCut. Darmowe, bez rejestracji.',
+  alternates: {
+    canonical: 'https://mictoo.com/pl/free-srt-generator',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Generator SRT — twórz pliki napisów SRT online | Mictoo",
-    description: "Darmowy generator napisów SRT. Prześlij swój plik audio lub wideo i otrzymaj czysty .srt z timecode w kilka sekund. Działa z YouTube, Premiere, DaVinci, CapCut.",
-    url: "https://mictoo.com/pl/free-srt-generator",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Darmowy generator SRT | Mictoo',
+    description: 'Generuj pliki napisów SRT z audio lub wideo. Gotowe do YouTube, Premiere, Final Cut.',
+    url: 'https://mictoo.com/pl/free-srt-generator',
+    siteName: 'Mictoo', type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Generator SRT — twórz pliki napisów SRT online | Mictoo",
-    description: "Darmowy generator napisów SRT. Prześlij swój plik audio lub wideo i otrzymaj czysty .srt z timecode w kilka sekund. Działa z YouTube, Premiere, DaVinci, CapCut.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Darmowy generator SRT',
+    description: 'Napisy SRT w jakości Whisper z audio lub wideo.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function PlSrtPage() {
+export default function PlFreeSrtGeneratorPage() {
   return (
-    <LandingLayout
-      defaultLanguage="pl"
-      enableYouTubeUrl
-      badge="SRT · Napisy · Za darmo"
-      h1={<>Generator SRT<br /><span className="text-brand-600">Napisy AI z dowolnego audio lub wideo</span></>}
-      subtitle="Generuj pliki napisów z dowolnego audio lub wideo. Otrzymaj czysty .srt z precyzyjnymi timecodes w kilka sekund. Drop-in dla YouTube, Premiere, DaVinci Resolve, CapCut, Final Cut."
-      howItWorks={[
-        { icon: '📂', title: 'Upuść audio lub wideo', desc: 'MP3, M4A, MP4, MOV, WAV, FLAC, OGG, WEBM, AAC. Wyciągamy audio z wideo automatycznie.' },
-        { icon: '⚡', title: 'AI transkrybuje i wyrównuje', desc: 'Whisper large-v3 transkrybuje audio i generuje timecodes dla każdej linii. Wideo 10-minutowe zwykle zajmuje 15 sekund. 30-minutowe, około minutę.' },
-        { icon: '💾', title: 'Pobierz .srt', desc: 'Kliknij "Pobierz jako SRT". Plik jest formatem standardowym, drop-in kompatybilny z każdym dużym edytorem wideo i YouTube Studio.' },
+    <ConverterPageLayout
+      locale="pl"
+      mode="upload" currentHref="/pl/free-srt-generator"
+      badge="SRT · Audio lub wideo · Darmowe"
+      h1First="Darmowy generator SRT"
+      h1Second="Napisy w jakości Whisper z dowolnego audio lub wideo"
+      subtitle="Prześlij audio lub wideo, uzyskaj plik napisów SRT gotowy do YouTube, Premiere, Final Cut, DaVinci Resolve lub CapCut. Bez rejestracji, bez opłat za minutę."
+      stepsTitle="Jak działa generowanie SRT"
+      steps={[
+        { icon: 'upload',   title: 'Przeciągnij audio lub wideo', desc: 'MP3, MP4, WAV, M4A, WEBM, FLAC i inne. Do 25 MB anonimowo, 180 MB po zalogowaniu.' },
+        { icon: 'waveform', title: 'Whisper transkrybuje', desc: 'Whisper large-v3 produkuje czasówki segmentów zgodne z oryginalnym audio.' },
+        { icon: 'download', title: 'Pobierz SRT',        desc: 'Eksporty SRT i VTT w zestawie. Wstaw do swojego edytora wideo lub przesyłaj na YouTube.' },
       ]}
-      whyUse={{ title: 'Dlaczego ten generator SRT', bullets: [
-        { title: 'Timecodes Whisper large-v3 są frame-accurate', desc: 'Timecodes są w milisekundach, bardziej precyzyjne niż dowolny popularny framerate wideo. Pasują poprawnie przy 24, 25, 29.97, 30, 50 i 60 fps bez dostosowania offsetu.' },
-        { title: 'Za darmo, bez licznika minut', desc: 'Transkrybuj 10 minut lub 60. Ta sama cena (darmowa). Bez gate "przejdź na Pro" po pierwszym pliku.' },
-        { title: 'Ponad 50 języków', desc: 'Generuj napisy dla treści w dowolnym dużym języku. Przydatne dla międzynarodowych kanałów YouTube i tłumaczonych ścieżek napisów.' },
-        { title: 'Standardowy format .srt', desc: 'Bez rozszerzeń własnościowych, bez dziwnego kodowania. Działa w Premiere Pro, DaVinci Resolve, Final Cut, CapCut, Kapwing, Descript, YouTube Studio, VLC, MPV.' },
-        { title: 'Żaden plik nie jest zapisywany', desc: 'Audio idzie do dostawcy transkrypcji i jest odrzucane po przetworzeniu. Nie przechowujemy twojego wideo.' },
-      ]}}
-      useCases={{ title: 'Do czego ludzie generują pliki SRT', items: [
-        { title: 'Uploads YouTube', desc: 'Zamień auto-napisy YouTube na czysty .srt. Lepsza interpunkcja, mniej błędów, lepsza dostępność dla niedosłyszących widzów. Bonus: wyszukiwarka YouTube indeksuje wgrane napisy bardziej niezawodnie niż auto-generowane.' },
-        { title: 'Napisy do wideo z mediów społecznościowych (TikTok, Reels, Shorts)', desc: 'Wygeneruj .srt tutaj, zaimportuj do CapCut lub Premiere, stylizuj napisy do gustu, wpal w wideo. Większość widzów ogląda bez dźwięku, więc napisy nie są już opcjonalne.' },
-        { title: 'Napisy dla dostępności', desc: 'Nagrania talków konferencyjnych, wewnętrzne wideo szkoleniowe, kursy online. Napisy czynią je użytecznymi dla niesłyszących i niedosłyszących widzów oraz dla każdego w głośnych środowiskach.' },
-        { title: 'Pipeline tłumaczenia', desc: 'Wygeneruj .srt w języku źródłowym, wklej do DeepL lub ChatGPT do tłumaczenia, zapisz jako .srt w języku docelowym. Wynik: napisy jakości dubbingowej w innym języku bez płacenia ludzkiemu tłumaczowi.' },
-        { title: 'Edycja wideo pod deadline', desc: 'Gdy potrzebujesz napisów na wczoraj i nie możesz czekać na ludzkiego transkryptora, napisy AI są wystarczająco dobre dla pierwszego cięcia. Dopracuj później.' },
-      ]}}
-      proTips={{ title: 'Wskazówki do generowania SRT', tips: [
-        { title: 'Dla długich filmów wygeneruj .srt w kawałkach po 10 minut i połącz', desc: 'Łatwiej poprawić błędne timecodes w środku, jeśli pojawi się drift. Większość edytorów pozwala importować wiele .srt i łączyć.' },
-        { title: 'Upload tylko-audio jest szybszy niż upload wideo dla tej samej treści', desc: 'Wyciągnij audio wcześniej: ffmpeg -i video.mp4 -vn -ac 1 -b:a 64k audio.mp3. .srt, który dostaniesz, działa przeciwko oryginalnemu wideo, bo timecodes to timecodes.' },
-        { title: 'Wpal napisy dopiero po skończeniu montażu', desc: 'Jeśli wpalisz napisy w wideo przed cięciami, musisz przerobić napisy, gdy tniesz. Wpal na końcu, gdy wideo jest locked.' },
-        { title: 'Utrzymuj długość linii .srt zarządzalną', desc: 'Whisper czasem produkuje długie napisy jednoliniowe dla długich zdań. Większość edytorów pozwala dzielić długie linie automatycznie, lub możesz dzielić ręcznie dla lepszej czytelności.' },
-        { title: 'Dla filmów wielojęzycznych generuj .srt jeden język na raz', desc: 'Jeśli twoje wideo ma sekcje angielskie i hiszpańskie, wygeneruj .srt dla każdej sekcji osobno (ustaw język ręcznie za każdym razem), potem złącz w jeden .srt.' },
-        { title: 'Edytuj .srt w edytorze tekstu, nie w edytorze wideo', desc: '.srt to tylko tekst z timecodes. Otwórz w VS Code, Notepad++ lub BBEdit, aby szybko poprawić literówki. Reimportuj do edytora wideo, gdy gotowe.' },
-        { title: 'Dla TikTok i Reels ręcznie skróć napisy do krótkiej linii na napis', desc: 'Naturalne zdania Whispera są dłuższe niż punchy styl napisów TikToka. Edytuj .srt, aby pasować do stylu platformy.' },
-      ]}}
+      whyTitle="Dlaczego warto używać Mictoo do generowania SRT?"
+      whyCards={[
+        { icon: 'target',   title: 'Dokładne napisy w wielu językach', desc: 'Whisper large-v3 dodaje interpunkcję i obsługuje wiele języków, akcentów i typów nagrań.' },
+        { icon: 'captions', title: 'SRT + VTT w zestawie',                desc: 'Oba formaty napisów generowane automatycznie. VTT dla odtwarzaczy internetowych, SRT dla edytorów.' },
+        { icon: 'lock',     title: 'Pliki usuwane po',               desc: 'Przesłane audio jest usuwane po transkrypcji; transkrypt utrzymuje się tylko na kontach zalogowanych.' },
+        { icon: 'shield',   title: 'Bez znaku wodnego lub tagu',               desc: 'Czyste SRT bez markowego wprowadzenia lub tagu "Stworzone z X".' },
+      ]}
+      scenariosTitle="Kiedy generowanie SRT jest przydatne"
+      scenarios={[
+        { icon: 'video',      title: 'Napisy do przesyłania na YouTube' },
+        { icon: 'editPen',    title: 'Import do Premiere / DaVinci' },
+        { icon: 'headphones', title: 'Wersja wideo podcastu' },
+        { icon: 'mail',       title: 'Kopia do przeglądu przez klienta' },
+        { icon: 'archive',    title: 'Archiwum dostępności' },
+        { icon: 'target',     title: 'Napisy w obcym języku' },
+      ]}
+      tipsTitle="Wskazówki dotyczące czystszych napisów"
+      tips={[
+        'Dla plików powyżej 25 MB, zaloguj się, aby automatycznie dzielić przesyłki do 180 MB.',
+        'Ustaw język explicite dla treści nieanglojęzycznych lub technicznych.',
+        'Przejrzyj nazwy i nietypowe terminy w trybie edytora przed eksportem.',
+        'Najpierw przetłumacz transkrypt, a następnie eksportuj SRT dla obcych napisów.',
+      ]}
+      processTitle="Co się dzieje podczas generowania"
+      processSteps={['Audio / wideo', 'Transkrypcja Whisper', 'Eksport SRT + VTT']}
       faq={[
-        { q: 'Czym jest plik SRT?', a: 'SRT (SubRip Subtitle) to najczęstszy format napisów. Czysty tekst z timecodes i tekstem napisu. Każdy duży player i edytor wideo czyta pliki .srt.' },
-        { q: 'Jak wygenerować plik SRT z wideo?', a: 'Wgraj wideo tutaj. Wyciągamy audio, transkrybujemy i generujemy .srt. Kliknij "Pobierz jako SRT", gdy gotowe.' },
-        { q: 'Jak dodać napisy SRT do wideo YouTube?', a: 'W YouTube Studio otwórz swoje wideo, przejdź do Napisów, kliknij Dodaj język, wgraj plik .srt. YouTube użyje go jako oficjalnych napisów dla tego języka.' },
-        { q: 'Czy plik SRT działa w Premiere Pro i DaVinci Resolve?', a: 'Tak. W Premiere: Plik, Importuj, wybierz .srt. W DaVinci: przeciągnij .srt do project bin. Oba traktują jako ścieżkę napisów, którą można dalej edytować na timeline.' },
-        { q: 'Czy działa w CapCut i Final Cut?', a: 'Tak. CapCut: tap Captions, Import SRT. Final Cut: Plik, Importuj, Captions, wybierz .srt. Oba pozycjonują napisy w odpowiednich czasach na timeline.' },
-        { q: 'Czy generator SRT jest naprawdę darmowy?', a: 'Tak. Bez opłaty za plik, bez licznika minut, bez emaila wymaganego dla plików poniżej 25 MB. Pliki między 25 MB a 60 MB wymagają darmowego konta.' },
-        { q: 'Jaki jest maksymalny rozmiar pliku?', a: '25 MB bez konta, 60 MB z darmowym kontem.' },
-        { q: 'Czy mogę generować SRT z plików audio (MP3, WAV)?', a: 'Tak. Upuść plik audio bezpośrednio. Generujemy .srt z timecodes, jakby to było audio wideo. Przydatne do dodawania napisów, gdy zsynchronizujesz audio z obrazami lub slajdami później.' },
-        { q: 'Czy timecodes będą driftować w długim wideo?', a: 'Timecodes Whispera są wyrównane do prawdziwego audio, więc drift jest rzadki. Dla bardzo długich plików (60 minut) może pojawić się sub-sekundowy drift w ostatnich napisach. Jeśli zauważysz, poprawić ręcznie dotknięte napisy.' },
-        { q: 'Czy mogę edytować napisy przed pobraniem?', a: 'Tak. Po transkrypcji popraw błędne słowa w widoku wyniku, potem pobierz .srt z twoimi zmianami.' },
-        { q: 'Jakie języki obsługuje generator SRT?', a: 'Ponad 50 języków z auto-wykrywaniem. Dla krótszych filmów lub treści nieangielskich wybierz język ręcznie dla bardziej niezawodnych wyników.' },
-        { q: 'Czy audio jest zapisywane?', a: 'Nie. Plik idzie do naszego dostawcy transkrypcji, jest przetwarzany i odrzucany. Nie przechowujemy ani audio, ani wygenerowanego .srt.' },
-        { q: 'Czy mogę wygenerować SRT w innym języku niż język audio?', a: 'Nie bezpośrednio. Wygeneruj SRT w języku źródłowym, potem przetłumacz tekst .srt z DeepL lub ChatGPT. Timecodes pozostają takie same, zmienia się tylko tekst.' },
+        { q: 'Czy generator SRT jest darmowy?', a: 'Tak. Do 25 MB anonimowo lub 180 MB po zalogowaniu. Brak znaku wodnego na SRT i brak opłat za minutę.' },
+        { q: 'Jakie formaty napisów otrzymam?', a: 'SRT i VTT są w zestawie. TXT (czysty tekst) i DOCX są również dostępne. Użytkownicy zalogowani dodatkowo otrzymują PDF i JSON.' },
+        { q: 'Jak dokładne są czasówki?', a: 'Whisper large-v3 dostarcza czasówki segmentów zgodne z oryginalnym audio. Wystarczająco dokładne dla napisów YouTube i większości przypadków edycji wideo.' },
+        { q: 'Czy identyfikujecie mówców (diaryzacja)?', a: 'Jeszcze nie. Ciągłe napisy z czasówkami, ale bez etykiet mówców. Diaryzacja jest na liście planów Pro.' },
+        { q: 'Czy Mictoo transkrybuje audio w obcych językach?', a: 'Tak. Whisper large-v3 obsługuje ponad 50 języków z automatycznym wykrywaniem. Ustaw język explicite dla lepszych wyników.' },
+        { q: 'Czy nagrania są przechowywane na waszych serwerach?', a: 'Nie. Audio przesyłane jest do dostawcy transkrypcji, przetwarzane raz i usuwane. Transkrypty utrzymują się tylko na kontach zalogowanych.' },
       ]}
-      relatedLinks={[
-        { href: '/pl/transcribe-video-to-text', label: 'Wideo na tekst', desc: 'Ten sam silnik, ukierunkowany na output czystego tekstu.' },
-        { href: '/pl/timestamped-transcription', label: 'Transkrypcja ze znacznikami czasu', desc: 'Dla timecode na zdanie lub słowo w innych formatach.' },
-        { href: '/pl/youtube-to-text', label: 'YouTube na tekst', desc: 'Aby zastąpić auto-napisy YouTube.' },
-        { href: '/pl/transcribe-audio-to-text', label: 'Audio na tekst', desc: 'Dla czystej transkrypcji audio.' },
+      ctaHeadline="Generuj napisy SRT z dowolnego nagrania"
+      ctaSubtitle="YouTube, Premiere, Final Cut, DaVinci, CapCut. Czasówki w jakości Whisper."
+      ctaButton="Prześlij audio lub wideo"
+      moreTools={[
+        { href: '/pl/timestamped-transcription', label: 'Transkrypcja z czasówkami' },
+        { href: '/pl/youtube-to-text',           label: 'YouTube na tekst' },
+        { href: '/pl/transcribe-video-to-text',  label: 'Wideo na tekst' },
+        { href: '/pl/transcribe-audio-to-text',  label: 'Audio na tekst' },
       ]}
     />
   )

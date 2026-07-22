@@ -45,13 +45,13 @@ export default function FreeSrtGeneratorPage() {
       subtitle="Upload audio or video, get an SRT subtitle file ready for YouTube, Premiere, Final Cut, DaVinci Resolve, or CapCut. No signup, no per-minute fee."
       stepsTitle="How SRT generation works"
       steps={[
-        { icon: 'upload',   title: 'Drop audio or video', desc: 'MP3, MP4, WAV, M4A, WEBM, FLAC and more. Up to 25 MB anonymously, 60 MB signed in.' },
+        { icon: 'upload',   title: 'Drop audio or video', desc: 'MP3, MP4, WAV, M4A, WEBM, FLAC and more. Up to 25 MB anonymously, 180 MB signed in.' },
         { icon: 'waveform', title: 'Whisper transcribes', desc: 'Whisper large-v3 produces per-segment timestamps aligned to the original audio.' },
         { icon: 'download', title: 'Download SRT',        desc: 'SRT and VTT exports included. Drop into your video editor or YouTube upload.' },
       ]}
       whyTitle="Why use Mictoo for SRT generation?"
       whyCards={[
-        { icon: 'target',   title: 'Higher accuracy than YouTube auto', desc: 'Whisper large-v3 outperforms YouTube auto-captions on proper nouns, punctuation, and accents.' },
+        { icon: 'target',   title: 'Accurate multilingual captions', desc: 'Whisper large-v3 adds punctuation and handles many languages, accents, and recording types.' },
         { icon: 'captions', title: 'SRT + VTT included',                desc: 'Both subtitle formats generated automatically. VTT for web players, SRT for editors.' },
         { icon: 'lock',     title: 'Files deleted after',               desc: 'Uploaded audio is dropped after transcription; transcript persists only on signed-in accounts.' },
         { icon: 'shield',   title: 'No watermark or tag',               desc: 'Clean SRT with no branded intro or "Made with X" tag.' },
@@ -67,7 +67,7 @@ export default function FreeSrtGeneratorPage() {
       ]}
       tipsTitle="Tips for cleaner subtitles"
       tips={[
-        'For long recordings over 60 MB, sign in for auto-split.',
+        'For files over 25 MB, sign in for auto-split uploads up to 180 MB.',
         'Set the language explicitly for non-English or technical content.',
         'Review names and unusual terms in Editor mode before export.',
         'Translate the transcript first, then export SRT for foreign captions.',
@@ -75,7 +75,7 @@ export default function FreeSrtGeneratorPage() {
       processTitle="What happens during generation"
       processSteps={['Audio / video', 'Whisper transcription', 'SRT + VTT export']}
       faq={[
-        { q: 'Is the SRT generator free?', a: 'Yes. Up to 25 MB anonymously, 60 MB signed in. No watermark on the SRT, no per-minute fee.' },
+        { q: 'Is the SRT generator free?', a: 'Yes. Up to 25 MB anonymously or 180 MB when signed in. No watermark on the SRT and no per-minute fee.' },
         { q: 'Which subtitle formats do I get?', a: 'SRT and VTT are both included. TXT (plain text) and DOCX are also available. Signed-in users additionally get PDF and JSON.' },
         { q: 'How accurate are the timestamps?', a: 'Whisper large-v3 provides per-segment timestamps aligned to the original audio. Accurate enough for YouTube captions and most video editing use cases.' },
         { q: 'Do you identify speakers (diarisation)?', a: 'Not yet. Continuous captions with timestamps but no speaker labels. Diarisation is on the Pro roadmap.' },

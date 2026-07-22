@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/interview-transcription',
@@ -15,81 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'インタビュー文字起こし — 無料AIジェネレーター | Mictoo',
+  title: '音声とビデオのインタビュー文字起こし | Mictoo',
   description:
-    '無料AIインタビュー文字起こし。インタビュー録画(MP3、M4A、MP4、WAV)をアップロードしてタイムコード付きクリーン文字起こしを数秒で取得。ジャーナリストと研究者向け。',
-  alternates: { canonical: 'https://mictoo.com/ja/interview-transcription', languages: LANGS },
-
+    'インタビューの録音をアップロードし、タイムスタンプ付きのテキスト、AIによる要約、報告、研究、またはレビュー用のエクスポートを取得します。',
+  alternates: {
+    canonical: 'https://mictoo.com/ja/interview-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "インタビュー文字起こし — 無料AIジェネレーター | Mictoo",
-    description: "無料AIインタビュー文字起こし。インタビュー録画(MP3、M4A、MP4、WAV)をアップロードしてタイムコード付きクリーン文字起こしを数秒で取得。ジャーナリストと研究者向け。",
-    url: "https://mictoo.com/ja/interview-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: '無料インタビュー文字起こしツール | Mictoo',
+    description: '無料のインタビュー文字起こしをAIで。音声またはビデオをアップロードし、数分でクリーンな文字起こしを取得します。',
+    url: 'https://mictoo.com/ja/interview-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "インタビュー文字起こし — 無料AIジェネレーター | Mictoo",
-    description: "無料AIインタビュー文字起こし。インタビュー録画(MP3、M4A、MP4、WAV)をアップロードしてタイムコード付きクリーン文字起こしを数秒で取得。ジャーナリストと研究者向け。",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: '無料インタビュー文字起こし',
+    description: '音声またはビデオをアップロードし、数分でクリーンな文字起こしを取得します。',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function JaInterviewPage() {
+export default function JaInterviewTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="ja"
-      badge="ジャーナリズム · 研究 · 無料"
-      h1={<>インタビュー文字起こし<br /><span className="text-brand-600">無料インタビュー文字起こし</span></>}
-      subtitle="あらゆるインタビュー録画をクリーンで引用可能なテキストに変換。ジャーナリスト、研究者、ポッドキャスター、採用チーム向け。アカウント不要、分単位課金なし、メール不要。"
-      howItWorks={[
-        { icon: '🎙️', title: 'インタビュー音声をドロップ', desc: 'ボイスレコーダーのMP3、スマホのM4A、ビデオ通話のMP4、フィールドレコーダーのWAV。すべて動作。' },
-        { icon: '⚡', title: 'AIが文字起こし', desc: 'Whisper large-v3が音声を読みます。30分のインタビューは通常約1分で完了。' },
-        { icon: '📋', title: '読む、編集する、エクスポート', desc: 'タイムコード付き文字起こしをめくる。誤った名前や専門用語をインラインで修正。メモ用にTXT、動画用にSRTでダウンロード、またはコーディングソフトウェアにコピー。' },
+    <UseCaseLayout
+      locale="ja"
+      badge="ジャーナリスト · 研究者 · UX · 無料"
+      h1First="インタビュー文字起こし"
+      h1Second="ジャーナリスト、研究者、UXチームのための無料ツール"
+      subtitle="任意のレコーダーや会議アプリから1対1またはパネルインタビューをアップロードします。クリーンでタイムスタンプ付きの文字起こしとAI要約、記事、論文、または研究リポジトリ用のエクスポートを取得します。"
+      currentHref="/ja/interview-transcription"
+
+      platforms={[
+        { name: 'Zoom',        iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/ja/zoom-transcription' },
+        { name: 'Google Meet', iconKey: 'videoCameraFill', brandBg: '#00832D', href: '/ja/google-meet-transcription' },
+        { name: 'MS Teams',    iconKey: 'videoCameraFill', brandBg: '#4B53BC', href: '/ja/teams-meeting-transcription' },
+        { name: 'Riverside',   iconKey: 'waveMic',         brandBg: '#4B2AF7' },
+        { name: 'Voice Memo',  iconKey: 'mic',             brandBg: '#F97316', href: '/ja/voice-memo-to-text' },
+        { name: 'Phone call',  iconKey: 'phone',           brandBg: '#0EA5A4' },
       ]}
-      whyUse={{ title: 'インタビュー文字起こしにMictooを使う理由', bullets: [
-        { title: 'Whisperはインタビューでうまく動作', desc: '2声と明確なやり取りの単一録音は音声認識で最もクリーンなケース。ほとんどのインタビューは初回パスで90〜95%の精度。' },
-        { title: '引用とソース検索用のタイムコード', desc: 'SRTエクスポートの各行にはタイムコードがあります。引用を確認したり録画の特定の瞬間に戻りたい時、タイムコードがどこか正確に教えてくれます。' },
-        { title: 'インタビューあたりのコストなし', desc: '一部の文字起こしサービスは分単位またはインタビュー単位で課金。私たちはしません。1つでも50でも文字起こし、価格は同じ(無料)。' },
-        { title: '50以上の言語、バイリンガルインタビューも', desc: 'クロスリンガルインタビューは研究とジャーナリズムで一般的。Whisperはほとんどのサービスよりコードスイッチングをうまく扱います。' },
-        { title: 'プライバシーとソース保護', desc: 'ファイルは文字起こしプロバイダにストリーミングされて破棄。音声を保持しません。機密ソース素材には重要。' },
-      ]}}
-      useCases={{ title: 'インタビュー文字起こしを使う人々', items: [
-        { title: 'ジャーナリズムと特集記事執筆', desc: '記者はインタビューを文字起こしして正確に引用し、長い会話を最も有用な素材を求めてスキャン。60分のインタビューは公開された記事で3〜5のキー引用になることが多い。' },
-        { title: '質的研究と学術研究', desc: '研究者はNVivo、Atlas.ti、MAXQDAのようなツールでコード化と分析のために半構造化インタビューを文字起こし。文字起こしはデータセット。' },
-        { title: 'ポッドキャストインタビュー', desc: 'ショーホストはショーノート、エピソードブログ投稿、ソーシャル用引用グラフィック用にゲストインタビューを文字起こし。音声は1つのオーディエンス、テキストは検索を通じて別のオーディエンスに届く。' },
-        { title: '採用と候補者スクリーニング', desc: 'リクルーターと採用マネージャーはチームと共有するためにインタビューを文字起こし。異なるタイムゾーンのレビュアーには動画より簡単。全員が同じテキストを持つとメモを比較するのが簡単。' },
-        { title: 'ユーザー研究とカスタマーインタビュー', desc: '製品チームはパターンを見つけるために顧客との会話を文字起こし。文字起こしは研究リポジトリ(Dovetail、Marvin、または共有Notion)に行く。' },
-      ]}}
-      proTips={{ title: 'インタビュー文字起こしのコツ', tips: [
-        { title: '電話インタビューでも実物のマイクを使う', desc: '対面の人にはラベリアまたはUSBマイク、電話のインタビュアーには適切なヘッドセット。録音の品質は文字起こし精度の最大の単一要因。' },
-        { title: '静かな環境で録音', desc: 'カフェのインタビューはカメラ前では素晴らしく見えますが、文字起こしが悪い。背景音楽とおしゃべりは人々が考えるより精度を傷つけます。' },
-        { title: '2声インタビューでは、全録画を文字起こししてからスピーカーラベルを手動で追加', desc: 'Whisperはダイアライゼーションをしません。クリーンな質疑応答インタビューでは、「インタビュアー:」と「ソース:」を追加するのに30分インタビューあたり約5分かかります。' },
-        { title: '別々の音声トラックがあれば(Riverside、SquadCast)、各々を別々に文字起こし', desc: '推測なしでクリーンな帰属を得る。一部の研究レコーダーはステレオファイルの2チャンネルで2つのマイクをキャプチャ。先に2つのモノファイルに分割できます。' },
-        { title: '日付とソース名で文字起こしを保存', desc: '2026-05-25-jane-smith.txtという名前の文字起こしファイルは、transcript-final-v2.txtより6ヶ月後に見つけやすい。' },
-        { title: '精度のために最初の50行を編集、残りは放置', desc: '人々は文字起こしをスキャン。最初の部分が最も重要。それを超えては、使うと思う引用だけ修正。' },
-        { title: 'インタビューが英語でない場合は言語を手動で設定', desc: '自動検出はほとんどのファイルで動作しますが、最初の5秒のフォールススタートが誤誘導することがあります。明示的に言語を選ぶ方が信頼できる。' },
-      ]}}
+
+      howItWorksTitle="インタビュー文字起こしの仕組み"
+      steps={[
+        {
+          icon: 'folder',
+          title: 'インタビューをエクスポート',
+          desc: 'どんな録音でも大丈夫です。ボイスメモ、Zoomクラウド録音、Riverside音声トラック、電話通話のエクスポート。',
+        },
+        {
+          icon: 'upload',
+          title: 'ファイルをここにドロップ',
+          desc: 'MP3、MP4、M4A、WAV、MOV、または60 MBまでの一般的な音声およびビデオ形式をアップロードします。',
+        },
+        {
+          icon: 'editPen',
+          title: '文字起こし、引用、エクスポート',
+          desc: 'タイムスタンプ付きの文字起こし、AI要約、TXT / SRT / VTT / DOCXエクスポート。記事や研究論文の準備が整っています。',
+        },
+      ]}
+
+      exampleTitle="インタビュー文字起こしの例"
+      exampleFileName="researcher-interview.m4a"
+      exampleDurationLabel="42:18"
+      exampleLines={[
+        { t: '0:00',  line: 'お時間をいただきありがとうございます。まず、あなたの役割とその役割にどれくらいの期間いるかを説明していただけますか。' },
+        { t: '0:08',  line: 'もちろんです。私は中規模のフィンテックで分析チームをリードしており、この役割には2年以上います。' },
+        { t: '0:20',  line: 'その前は大手銀行にいて、主に顧客維持とライフタイムバリューのモデリングに取り組んでいました。' },
+        { t: '0:32',  line: '大手銀行からフィンテックへの移行は、主にペースと新しいことを試す自由に関するものでした。' },
+        { t: '0:44',  line: 'ツールも大きく進化しました。以前は1週間かかっていたことが、今では午後の数時間で済みます。' },
+        { t: '0:56',  line: 'そのような変化の具体例を教えていただけますか？以前は試みなかった具体的な何かです。' },
+        { t: '1:04',  line: '明らかな例はリアルタイムのコホート実験です。私たちは朝にアイデアを出し、その日の夕方には意味のあるデータを得ます。' },
+      ]}
+      summaryPoints={[
+        'フィンテックの分析リーダー、役割に2年以上。',
+        '大手銀行での前職は維持モデリングに焦点を当てていました。',
+        'フィンテックへの移行はペースと実験の自由によって推進されました。',
+        '現代のツールを使ったリアルタイムのコホート実験が可能です。',
+      ]}
+      actionItems={[
+        '維持モデリングの比較についてフォローアップする',
+        'リアルタイムのコホート実験の例を尋ねる',
+        '前の雇用主の連絡先を紹介してもらう',
+      ]}
+
+      whyTitle="インタビュー文字起こしにMictooを選ぶ理由"
+      whyCards={[
+        {
+          icon: 'target',
+          title: '名前や固有名詞を確認',
+          desc: 'タイムスタンプを使用して、名前、都市、組織、専門用語を元のインタビュー録音と照合します。',
+        },
+        {
+          icon: 'sparkles',
+          title: 'AI要約と引用抽出',
+          desc: 'AI要約は、プルクオートリスト、研究メモ、または記事のイントロのためのしっかりとした初稿です。',
+        },
+        {
+          icon: 'lock',
+          title: '明確な処理モデル',
+          desc: '録音は処理のために文字起こしプロバイダーに送信され、作業が完了した後はMictooに保持されません。',
+        },
+        {
+          icon: 'globe',
+          title: '多言語作業のために翻訳',
+          desc: 'スペイン語、ドイツ語、日本語で行われたインタビュー。ワンクリックで作業言語に翻訳します。',
+        },
+      ]}
+
+      scenariosTitle="一般的なインタビューシナリオ"
+      scenarios={[
+        { icon: 'chat',      title: 'ジャーナリズム' },
+        { icon: 'search',    title: 'UXリサーチ' },
+        { icon: 'users',     title: '採用' },
+        { icon: 'book',      title: '口述歴史' },
+        { icon: 'briefcase', title: '法的証言' },
+        { icon: 'globe',     title: '多言語' },
+      ]}
+
+      tipsTitle="クリーンなインタビュー文字起こしのためのヒント"
+      tips={[
+        '被写体の近くでラペルまたはハンドヘルドマイクで録音します。',
+        '長い回答の間に被写体に短く一時停止するように頼みます。',
+        '非英語または重いアクセントの場合は言語を明示的に設定します。',
+        '文字起こし後に名前や珍しい用語を確認します。',
+      ]}
+
+      guidesTitle="適切なレコーダーガイドを選ぶ"
+      guides={[
+        { href: '/ja/zoom-transcription',        icon: 'video', title: 'Zoomインタビュー',    desc: 'クラウド録音MP4またはM4A' },
+        { href: '/ja/google-meet-transcription', icon: 'video', title: 'Meetインタビュー',    desc: 'ドライブ録音ダウンロード' },
+        { href: '/ja/voice-memo-to-text',        icon: 'mic',   title: 'iPhoneボイスメモ', desc: '任意のM4A音声録音' },
+        { href: '/ja/podcast-transcription',     icon: 'headset', title: 'ポッドキャストスタイル',   desc: 'Riverside、Zencastr、Cleanfeed' },
+      ]}
+
       faq={[
-        { q: 'ジャーナリズム引用に十分正確?', a: '逐語引用には常に音声に対して確認すべき。Whisperはクリーンなインタビュー音声で単語の90〜95%を正しく取得。逃す5〜10%は名前、専門用語、重なるスピーチを含むことが多い。公開する引用には録画に戻るためにSRTタイムコードを使用。' },
-        { q: 'スピーカーラベルは取得できますか?', a: '自動的にはありません。会話の流れに基づいて追加します。2話者インタビューには速い。パネルやフォーカスグループには、より多くの時間を計画するか、ある場合は各話者のトラックを別々にアップロード。' },
-        { q: '別の言語のインタビューを文字起こしできますか?', a: 'はい、自動検出で50以上の言語。5分未満のインタビューや英語の世間話で始まる非英語インタビューには、言語を手動で選択。' },
-        { q: 'インタビューが90分です。どうすれば?', a: '60分制限以下のチャンクに分割。自然な休憩は会話が止まる場所(インタビュー中盤のコーヒー、トピック変更)。' },
-        { q: '専門用語と固有名詞はどれくらい正確?', a: '一般的な語彙より精度が低い。Whisperはソースの会社名、使った医療用語、参照した特定のソフトウェアを知りません。手動で修正することを予想。残りの文字起こしはしっかりしています。' },
-        { q: '音声は保存されますか?', a: 'いいえ。ファイルは文字起こしプロバイダ(Groq、バックアップとしてOpenAI)にストリーミングされ、処理されて破棄。サーバーに音声を保持しません。' },
-        { q: '研究倫理ポリシーに準拠していますか?', a: 'ほとんどのIRB承認研究プロトコルは音声がどこで処理されるかを知る必要があります。プロバイダはUSで処理。私たちは保持しません。特定のIRBコンプライアンスにはワークフローを文書化してIRBで確認。' },
-        { q: '文字起こしをNVivo、Atlas.ti、Dedooseにインポートできますか?', a: 'はい。TXTでダウンロードして質的分析ツールにインポート。文字起こしはプレーンテキスト、特別なフォーマット不要。' },
-        { q: '文字起こしにはどれくらい時間がかかりますか?', a: '音声の長さの約1〜2%。30分のインタビューは約60秒で完了。' },
-        { q: 'インタビューの音声品質が悪い場合は?', a: '先にデノイズツール(Audacity Noise ReductionまたはAdobe Podcast Enhance)に通す。それからクリーンなバージョンをアップロード。良いインプットは顕著により良いアウトプット。' },
-        { q: 'スマホで録音したインタビューを文字起こしできますか?', a: 'はい。iPhone Voice MemosはM4Aで保存、Androidボイスレコーダーは通常M4AまたはMP3。両方動作。AirDropまたはメールでコンピュータにファイルを送り、ここにアップロード。' },
-        { q: 'SRTのタイムコードは元の録画と正確に一致しますか?', a: 'はい、ミリ秒まで。SRTタイムコードは音声ファイルの実時間を反映。任意のオーディオやビデオプレーヤーで特定の瞬間に戻るのに動作。' },
+        {
+          q: 'Mictooがインタビューに受け入れるファイル形式は何ですか？',
+          a: 'MP3、MP4、M4A、WAV、MOV、WEBM、FLAC、OGG、AACおよびその他の一般的な音声およびビデオ形式。ビデオファイルはサーバー側で自動的にデマルクスされます。',
+        },
+        {
+          q: 'Mictooは誰が話しているかを特定しますか？',
+          a: 'いいえ。現在の文字起こしは、行ごとのタイムスタンプ付きの連続テキストであり、自動的な「インタビュアー / 被験者」ラベルはありません。',
+        },
+        {
+          q: 'インタビュー文字起こしは無料ですか？',
+          a: 'はい。匿名で25 MBまでのファイルは無料、サインインした場合は60 MBまでです。長いインタビューはサインインしたユーザーのために自動的に分割されることがあります。',
+        },
+        {
+          q: '公開前に名前を削除できますか？',
+          a: 'はい。文字起こし後にエディターモードに切り替えて、任意の単語や行を編集します。編集したバージョンを保存してエクスポートします。',
+        },
+        {
+          q: '録音はサーバーに保存されますか？',
+          a: 'いいえ。音声は文字起こしプロバイダーにストリーミングされ、一度処理されて削除されます。文字起こしは、サインインした場合のみ保存されます。',
+        },
+        {
+          q: 'インタビュー文字起こしを翻訳できますか？',
+          a: 'はい。ターゲット言語を選択し、翻訳をクリックします。多言語のフィールドリサーチや多言語報告に便利です。',
+        },
+        {
+          q: 'どのエクスポート形式が利用可能ですか？',
+          a: 'TXT、SRT、VTT、DOCX。サインインしたユーザーはPDFとJSONも取得できます。SRTおよびVTTのタイムスタンプは元の録音に合わせて調整されます。',
+        },
       ]}
+
+      ctaHeadline="インタビューを公開可能なテキストに変換"
+      ctaSubtitle="録音をドロップして、文字起こし、要約、記事や研究リポジトリ用のエクスポートを取得します。"
+      ctaButton="インタビューをアップロード"
+
       relatedLinks={[
-        { href: '/ja/podcast-transcription', label: 'ポッドキャスト文字起こし', desc: 'ポッドキャストインタビューとホスト会話用。' },
-        { href: '/ja/timestamped-transcription', label: 'タイムコード付き文字起こし', desc: '単語または文レベルのタイムコード用。' },
-        { href: '/ja/voice-memo-to-text', label: 'ボイスメモをテキストに', desc: 'スマホで録音したインタビュー用。' },
-        { href: '/ja/business-transcription', label: 'ビジネス文字起こし', desc: '営業通話、カスタマー通話、フォーカスグループ用。' },
+        { href: '/ja/meeting-transcription',      label: '会議の文字起こし' },
+        { href: '/ja/podcast-transcription',      label: 'ポッドキャストの文字起こし' },
+        { href: '/ja/voice-memo-to-text',         label: 'ボイスメモからテキストへ' },
+        { href: '/ja/business-transcription',     label: 'ビジネスの文字起こし' },
+        { href: '/ja/lecture-transcription',      label: '講義の文字起こし' },
       ]}
     />
   )

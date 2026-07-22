@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/lecture-transcription',
@@ -15,81 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: '講義文字起こし — 無料AIジェネレーター | Mictoo',
+  title: '授業やセミナーの講義文字起こし | Mictoo',
   description:
-    '無料講義文字起こし。講義、コース、セミナーの録音(MP3、M4A、MP4)をアップロードしてクリーンなテキストを数秒で取得。学生向け。',
-  alternates: { canonical: 'https://mictoo.com/ja/lecture-transcription', languages: LANGS },
-
+    '録音した授業、講義、またはセミナーをアップロードして、検索可能なテキスト、タイムスタンプ、AI要約、エクスポートファイルを取得します。',
+  alternates: {
+    canonical: 'https://mictoo.com/ja/lecture-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "講義文字起こし — 無料AIジェネレーター | Mictoo",
-    description: "無料講義文字起こし。講義、コース、セミナーの録音(MP3、M4A、MP4)をアップロードしてクリーンなテキストを数秒で取得。学生向け。",
-    url: "https://mictoo.com/ja/lecture-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: '講義文字起こし: 無料の文字起こし生成器 | Mictoo',
+    description: '録音した授業やセミナーをアップロードして、数秒でクリーンなテキストを取得します。',
+    url: 'https://mictoo.com/ja/lecture-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "講義文字起こし — 無料AIジェネレーター | Mictoo",
-    description: "無料講義文字起こし。講義、コース、セミナーの録音(MP3、M4A、MP4)をアップロードしてクリーンなテキストを数秒で取得。学生向け。",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: '講義文字起こし: 無料の生成器',
+    description: '授業やセミナーの録音をアップロードします。',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function JaLecturePage() {
+export default function JaLectureTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="ja"
-      badge="学生 · 学術 · 無料"
-      h1={<>講義文字起こし<br /><span className="text-brand-600">無料講義文字起こしツール</span></>}
-      subtitle="あらゆる録音講義を勉強用のクリーンなテキストに変換。大学、オンラインコース、カンファレンストーク、専門研修。アカウント不要、分単位課金なし。"
-      howItWorks={[
-        { icon: '🎓', title: '講義音声または動画をドロップ', desc: 'ボイスレコーダーのMP3、スマホのM4A、Zoom講義またはオンライン講義の画面録画のMP4、フィールドレコーダーのWAV。すべて動作。' },
-        { icon: '⚡', title: 'AIが文字起こし', desc: 'Whisper large-v3が音声を読む。60分の講義は約1分で完了。' },
-        { icon: '📋', title: '文字起こし取得', desc: '読む、ノートにコピー、またはTXTかSRTでダウンロード。エクスポート前に誤った専門用語をインラインで修正。' },
+    <UseCaseLayout
+      locale="ja"
+      badge="学生 · 学者 · 無料"
+      h1First="講義文字起こし"
+      h1Second="授業やセミナーの無料文字起こし"
+      subtitle="Zoom、Panopto、YouTube、Kaltura、または電話から録音した講義をアップロードします。学習ノート、復習、引用のためにタイムスタンプ付きの検索可能な文字起こしを取得します。"
+      currentHref="/ja/lecture-transcription"
+
+      platforms={[
+        { name: 'Zoom',      iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/ja/zoom-transcription' },
+        { name: 'YouTube',   iconKey: 'videoCameraFill', brandBg: '#FF0000' },
+        { name: 'Panopto',   iconKey: 'cap',             brandBg: '#014A96' },
+        { name: 'Kaltura',   iconKey: 'cap',             brandBg: '#FA6425' },
+        { name: 'Camtasia',  iconKey: 'videoCameraFill', brandBg: '#00A651' },
+        { name: 'Voice Memo',iconKey: 'mic',             brandBg: '#F97316', href: '/ja/voice-memo-to-text' },
       ]}
-      whyUse={{ title: '講義にMictooを使う理由', bullets: [
-        { title: 'ロングフォームOK', desc: '無料登録後、1ファイルあたり最大60分。90分講義には45分のチャンク2つに分割。文字起こしは再構成可能。' },
-        { title: '専門語彙をほとんどよりうまく扱う', desc: 'Whisperは学術講義を含む膨大な多様性の音声でトレーニングされました。ラテン語、専門用語、数学用語、コードスニペットは期待よりクリーンに出ることが多い。' },
-        { title: '講義あたりのコストなし', desc: '学生にとって、コースごとに文字起こし料金を払うのは無駄。分カウンターなしで無料は、学期中の全講義を文字起こしできることを意味します。' },
-        { title: 'プライバシーと著作権', desc: 'ファイルは文字起こしプロバイダにストリーミングされて破棄。音声を保持しません。あなたのもの(あなたの録音)を文字起こしするが第三者ストレージサービスにアップロードしたくない時に便利。' },
-        { title: '50以上の言語', desc: '留学生と英語以外のオンラインコースはすべて動作。自動検出がほとんどのケースをカバー。' },
-      ]}}
-      useCases={{ title: '学生と学術者が講義文字起こしを使う用途', items: [
-        { title: '検索可能な学習ノート', desc: '文字起こしをNotion、Obsidian、Word文書にドロップ。教授が言及した用語にCtrl+F。90分の音声をスクラブするより良い。' },
-        { title: '試験準備', desc: '手書きノートをレビューしながら文字起こしをスキャン。ライブ講義中に見逃したものをキャッチ。' },
-        { title: '非ネイティブのための講義翻訳', desc: 'ソース言語で文字起こしし、DeepLやChatGPTで翻訳。第二言語でコースを受講する学生に便利。' },
-        { title: '聴覚障害学生のためのアクセシビリティ', desc: '文字起こしまたはSRTファイルは別のモダリティで同じコンテンツを提供。一部の大学は録画されたコース内容にこれを要求。' },
-        { title: 'フラッシュカードと学習資料の作成', desc: '文字起こしはAnkiカード、要約文書、AI支援学習ツールに供給。' },
-      ]}}
-      proTips={{ title: '講義文字起こしのコツ', tips: [
-        { title: '対面講義では教授の近くに座る', desc: '後ろの列から部屋のノイズを通して録音すると多くのギャップのある文字起こしになる。前列、画面を下、スマホはクリーンな声をキャプチャ。' },
-        { title: '長い講義には専用ボイスレコーダーを使う', desc: 'スマホ録音は積極的な自動レベリングとノイズ軽減があり、文字起こしを傷つける。Zoom H1nや同様のエントリーレベルレコーダーは80ドルで顕著にクリーンな音声を提供。' },
-        { title: 'オンライン講義はシステム音声を直接録音', desc: 'WindowsまたはMacのOBS Studioはシステムから直接講義音声を録音できます。ノートPCマイクで録音するよりクリーン。' },
-        { title: '言語を手動で設定', desc: '自動検出は通常正しいですが、別の言語での教授のウォームアップに混乱することがあります。ドロップダウンから明示的に講義言語を選択。' },
-        { title: '管理アナウンスメントなら最初の5分をカット', desc: '「宿題はしましたか?第3章を読みましたか?」は文字起こしに役立ちません。ファイルサイズ予算を節約するためにアップロード前にAudacityで切り取り。' },
-        { title: '方程式のあるSTEM講義では、文字起こしは話された数学をキャプチャ、方程式ではない', desc: 'ボード上の数式は音声にないので文字起こしにもない。視覚部分(ボードの写真、スライドのスクリーンショット)を別途キャプチャする必要があります。' },
-        { title: '最初のレビューで文字起こしを読みながら録音を聞き直す', desc: '教授固有の用語と方程式の参照を修正する最良の方法。一度クリーンアップされたら文字起こしは独立して立ちます。' },
-      ]}}
+
+      howItWorksTitle="講義文字起こしの仕組み"
+      steps={[
+        {
+          icon: 'folder',
+          title: '講義をエクスポート',
+          desc: 'Panopto/Kalturaからダウンロード、Zoomクラウドから保存、または授業中に電話で録音します。',
+        },
+        {
+          icon: 'upload',
+          title: 'ファイルをここにドロップ',
+          desc: 'MP3、MP4、M4A、WAV、MOVがすべて動作します。長い講義はサインイン時に自動分割されます。',
+        },
+        {
+          icon: 'editPen',
+          title: 'ノート、要約、引用',
+          desc: '検索可能なタイムスタンプ付きの文字起こし、AI要約、学習ノート用のDOCX。試験準備のために文字起こしとチャットします。',
+        },
+      ]}
+
+      exampleTitle="講義文字起こしの例"
+      exampleFileName="intro-microeconomics-lecture-08.mp4"
+      exampleDurationLabel="47:32"
+      exampleLines={[
+        { t: '0:00',  line: 'さて、先週は消費者余剰の概念について終わりました。今日はそれを基に生産者余剰について説明します。' },
+        { t: '0:11',  line: '生産者余剰は、生産者が商品に対して受け入れる金額と、実際に受け取る金額の差です。' },
+        { t: '0:23',  line: '消費者余剰と生産者余剰を合わせると、税金や価格規制を導入する前の市場の総福祉が得られます。' },
+        { t: '0:35',  line: 'では、なぜこの概念が実際に重要なのでしょうか？政策が市場を良くするか悪くするかを評価できるからです。' },
+        { t: '0:47',  line: '単位あたりの税金を考えてみましょう。それは供給曲線を税額分だけ上にシフトさせ、両方の余剰が縮小します。' },
+        { t: '0:58',  line: '買い手が支払う金額と売り手が受け取る金額の間に現れるギャップを、我々は死重損失と呼びます。' },
+        { t: '1:08',  line: 'ワークブックの31ページを開いて、一緒に数値例を解いていきましょう。' },
+      ]}
+      summaryPoints={[
+        '要約: 前回の講義からの消費者余剰。',
+        '新しい概念: 生産者余剰と総福祉。',
+        '税金分析に適用。',
+        '死重損失を数値で示す。',
+      ]}
+      actionItems={[
+        'ワークブックの31ページを確認',
+        '死重損失の計算を練習',
+        '木曜日までに第4章を読む',
+      ]}
+
+      whyTitle="講義文字起こしにMictooを選ぶ理由"
+      whyCards={[
+        {
+          icon: 'search',
+          title: '文字起こし内で検索可能',
+          desc: '45分の講義全体から任意の概念を一瞬でCtrl-Fできます。ビデオをスクラブするよりも優れています。',
+        },
+        {
+          icon: 'sparkles',
+          title: '復習ノート用のAI要約',
+          desc: '要約はしっかりとした復習の出発点です。既に知っていることを削り、見逃したことを保持します。',
+        },
+        {
+          icon: 'chat',
+          title: '講義とチャット',
+          desc: '試験準備のために資料について質問できます。RAGスタイルの回答は正確なタイムスタンプを引用します。',
+        },
+        {
+          icon: 'globe',
+          title: '非ネイティブ学生のための翻訳',
+          desc: '英語の講義ですが、ポルトガル語で学習しますか？50以上の言語へのワンクリック翻訳。',
+        },
+      ]}
+
+      scenariosTitle="一般的な講義シナリオ"
+      scenarios={[
+        { icon: 'book',      title: '大学の授業' },
+        { icon: 'cap' ,      title: 'オンラインコース' },
+        { icon: 'search',    title: '試験復習' },
+        { icon: 'editPen',   title: '学習ノート' },
+        { icon: 'globe',     title: '非ネイティブ学生' },
+        { icon: 'headset',   title: '録音されたセミナー' },
+      ]}
+
+      tipsTitle="クリーンな講義文字起こしのためのヒント"
+      tips={[
+        '前の方に座り、電話をバックアップマイクとして使用します。',
+        '60 MBを超える長い講義は、サインイン時に自動分割されます。',
+        '技術的または非英語のコンテンツに対して言語を明示的に設定します。',
+        '文字起こし後にフォローアップの質問をするためにチャットを使用します。',
+      ]}
+
+      guidesTitle="関連する学習ツール"
+      guides={[
+        { href: '/ja/zoom-transcription',        icon: 'video', title: 'Zoom講義',      desc: 'クラウド録音のダウンロード' },
+        { href: '/ja/youtube-to-text',           icon: 'video', title: 'YouTube講義',   desc: 'URLを貼り付けるかアップロード' },
+        { href: '/ja/voice-memo-to-text',        icon: 'mic',   title: '電話録音',   desc: '授業中のiPhoneボイスメモ' },
+        { href: '/ja/timestamped-transcription', icon: 'file',  title: 'タイムスタンプ付きノート', desc: '時間に合わせたエクスポート' },
+      ]}
+
       faq={[
-        { q: '大学のクラス課題に十分正確?', a: 'ほとんどの講義コンテンツには、はい。Whisper large-v3はクリーンな講義音声で90〜95%の精度を生成。専門用語と固有名詞はしばしばクリーンアップが必要。文字起こしを学習ノートとして使用、引用の標準的なソースとしてではない。' },
-        { q: '私の講義は英語ではありません。動作しますか?', a: 'はい。Whisperは主要言語で良い精度、多くの他言語で基本サポートで50以上の言語をサポート。最良の結果のためにドロップダウンから手動で言語を選択。' },
-        { q: '私の講義は90分です。どうすれば?', a: '分割。私たちのキャップは1ファイルあたり60分。自然な休憩ポイント(ランチ休憩またはトピック遷移)で45分のチャンク2つに切る。' },
-        { q: '講義を文字起こしするのは合法?', a: '個人学習用途には、録音への合法的アクセスがある限り、ほとんどの管轄で一般的にはい。再配布(オンラインで文字起こしを公開、学習資料を販売)には講師または機関の許可が必要。一部の大学には講義録音と文字起こしに関する明示的なポリシーがあります。あなたのものを確認。' },
-        { q: 'Coursera、edX、Khan Academyのビデオ講義を文字起こしできますか?', a: 'はい、動画ファイルをダウンロードできるなら。一部のプラットフォームはオフライン視聴のためにダウンロードを許可(MP4を取得)。ここにアップロード。ダウンロードを許可しないプラットフォームには、スクレイピング前に規約を確認。' },
-        { q: '文字起こしにはスライドコンテンツが含まれますか?', a: 'いいえ。音声のみを文字起こし。教授がスライドを声に出して読む場合、そのテキストは文字起こしにあります。スライドに教授が読まなかった画面上のテキストがある場合、文字起こしにはありません。完全なノートにはスライドのスクリーンショットと組み合わせ。' },
-        { q: '専門用語と専門用語はどれくらい正確?', a: '一般的な語彙より精度が低い。ラテン語の医学用語、高度な数学記号、ニッチな頭字語については、手動で修正することを予想。講義の一般的な流れはしっかりしています。' },
-        { q: '文字起こしをノートアプリにエクスポートできますか?', a: 'はい。TXTでダウンロードして、Notion、Obsidian、OneNote、Bear、または任意のテキストフレンドリーなツールに貼り付け。録画と並んで字幕が欲しい場合は、動画プレーヤーでSRTが動作。' },
-        { q: '講義音声は保存されますか?', a: 'いいえ。ファイルは文字起こしプロバイダに行き、処理され、その後破棄。音声を保持しません。' },
-        { q: '講義の文字起こしにはどれくらい時間がかかりますか?', a: '音声長さの約1〜2%。60分講義は約60秒で完了。アップロードが通常一番長い待ち時間。' },
-        { q: '特定の瞬間にジャンプするためのタイムコードは取得できますか?', a: 'はい。SRTでダウンロード。各行に元の音声と整列されたタイムコードがあります。試験準備中に特定のポイントに戻るのに便利。' },
-        { q: '講義の最後にQ&Aがある場合は?', a: 'Q&Aはメイン講義と同じように文字起こしされます。聴衆の質問は時々あまりクリアでない(聴衆メンバーは通常マイクから遠い)が、教授の答えはクリーンであるべき。ノートに「Q&A」セクションを追加。' },
+        {
+          q: 'Zoomの授業録音を文字起こしできますか？',
+          a: 'はい。Cloud RecordingのMP4またはM4Aをダウンロードして、ここにドロップします。正確なダウンロードパスについてはZoomガイドを参照してください。',
+        },
+        {
+          q: '私の講義は60 MBを超えています。どうすればいいですか？',
+          a: 'サインインして自動分割を有効にします（約3時間まで）。または、ffmpegを使用して64 kbpsモノMP3にダウンサンプルして、サイズを5倍に削減します。',
+        },
+        {
+          q: 'Mictooは非英語の講義を文字起こししますか？',
+          a: 'はい。Whisper large-v3は50以上の言語をサポートしています。技術的な語彙や重いアクセントに対して言語を明示的に設定します。',
+        },
+        {
+          q: '文字起こし内で検索できますか？',
+          a: 'はい。リーダービューには、マッチ数とハイライト付きの検索ボックスが含まれています。Ctrl-Fで用語を検索し、ヒット間をジャンプします。',
+        },
+        {
+          q: '講義資料について質問できますか？',
+          a: 'はい。文字起こしとチャットを使って「死重損失を説明して」や「教授が言及したページはどれですか？」と質問できます。回答はタイムスタンプを引用します。',
+        },
+        {
+          q: '講義ノートをDOCXまたはPDFとしてエクスポートできますか？',
+          a: 'はい。DOCXは誰でも、PDFとJSONはサインインしたユーザーのために提供されます。TXTは常に利用可能です。',
+        },
+        {
+          q: '講義録音はサーバーに保存されますか？',
+          a: 'いいえ。音声は文字起こしプロバイダーにストリーミングされ、一度処理されて削除されます。文字起こしは、サインインした場合のみ保存されます。',
+        },
       ]}
+
+      ctaHeadline="講義を学習ノートに変えましょう"
+      ctaSubtitle="検索可能な文字起こし、AI要約、資料とのチャット。講義ごとに無料です。"
+      ctaButton="講義をアップロード"
+
       relatedLinks={[
-        { href: '/ja/transcribe-audio-to-text', label: '音声をテキストに', desc: '一般音声ファイル用。' },
-        { href: '/ja/transcribe-video-to-text', label: '動画をテキストに', desc: 'ビデオ講義(MP4、MOV)用。' },
-        { href: '/ja/timestamped-transcription', label: 'タイムコード付き文字起こし', desc: '特定の瞬間にジャンプするため。' },
-        { href: '/ja/how-to-split-audio', label: '音声を分割', desc: '60分超の講義用。' },
+        { href: '/ja/webinar-transcription',     label: 'ウェビナー文字起こし' },
+        { href: '/ja/sermon-transcription',      label: '説教文字起こし' },
+        { href: '/ja/voice-memo-to-text',        label: 'ボイスメモからテキストへ' },
+        { href: '/ja/interview-transcription',   label: 'インタビュー文字起こし' },
+        { href: '/ja/meeting-transcription',     label: '会議文字起こし' },
       ]}
     />
   )

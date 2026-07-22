@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/google-meet-transcription',
@@ -15,80 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Google Meet 받아쓰기 — Meet 녹화를 무료로 받아쓰기 | Mictoo',
+  title: '구글 미트 녹화 전사 텍스트 | Mictoo',
   description:
-    '무료 Google Meet 받아쓰기. Drive에서 녹화(MP4 또는 M4A)를 업로드하여 깨끗한 AI 받아쓰기를 몇 초 만에 받으세요. 무료 Google Workspace에서 작동.',
-  alternates: { canonical: 'https://mictoo.com/ko/google-meet-transcription', languages: LANGS },
-
+    'Drive 또는 로컬 화면 캡처에서 승인된 구글 미트 녹화를 업로드하고 전사, AI 요약 및 내보내기를 받으세요.',
+  alternates: {
+    canonical: 'https://mictoo.com/ko/google-meet-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Google Meet 받아쓰기 — Meet 녹화를 무료로 받아쓰기 | Mictoo",
-    description: "무료 Google Meet 받아쓰기. Drive에서 녹화(MP4 또는 M4A)를 업로드하여 깨끗한 AI 받아쓰기를 몇 초 만에 받으세요. 무료 Google Workspace에서 작동.",
-    url: "https://mictoo.com/ko/google-meet-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: '구글 미트 전사: 워크스페이스 또는 무료 계정 | Mictoo',
+    description: 'Drive에서 녹화하거나 무료 미트에서 화면 캡처. 둘 다 가능합니다.',
+    url: 'https://mictoo.com/ko/google-meet-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Google Meet 받아쓰기 — Meet 녹화를 무료로 받아쓰기 | Mictoo",
-    description: "무료 Google Meet 받아쓰기. Drive에서 녹화(MP4 또는 M4A)를 업로드하여 깨끗한 AI 받아쓰기를 몇 초 만에 받으세요. 무료 Google Workspace에서 작동.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: '구글 미트 전사',
+    description: '모든 계정 등급, 하나의 업로드 페이지.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function KoGoogleMeetPage() {
+export default function KoGoogleMeetTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="ko"
-      badge="GOOGLE MEET · MP4 · 무료"
-      h1={<>Google Meet 받아쓰기<br /><span className="text-brand-600">Meet 녹화 받아쓰기</span></>}
-      subtitle="Google Meet 녹화를 깨끗한 텍스트로 변환. Drive의 MP4를 드롭하면 몇 초 만에 받아쓰기. 계정 불필요, 분당 과금 없음."
-      howItWorks={[
-        { icon: '☁️', title: 'Google Drive에서 다운로드', desc: 'Google Meet 녹화는 Drive의 "Meet Recordings" 폴더에 저장. MP4로 다운로드(오른쪽 클릭, 다운로드). 긴 회의는 업로드 시간 절약을 위해 먼저 오디오 추출.' },
-        { icon: '⚡', title: '파일 드롭', desc: 'MP4에서 오디오를 추출하여 Whisper large-v3로 보냅니다. 30분 회의는 약 1분에 완료.' },
-        { icon: '📋', title: '받아쓰기 받기', desc: '브라우저에서 읽고, 복사하거나 TXT 또는 SRT로 다운로드. 내보내기 전에 잘못된 단어를 인라인으로 수정.' },
+    <UseCaseLayout
+      locale="ko"
+      badge="구글 미트 · Drive 또는 로컬 캡처 · 무료"
+      h1First="구글 미트 전사"
+      h1Second="Drive 녹화 및 로컬 캡처를 텍스트로"
+      subtitle="Drive에서 승인된 구글 미트 녹화 또는 로컬 캡처를 업로드하세요. 녹화 가능 여부는 호스트의 워크스페이스 에디션, 권한 및 관리자 설정에 따라 다릅니다."
+      currentHref="/ko/google-meet-transcription"
+
+      platforms={[
+        { name: 'Meet MP4',    iconKey: 'videoCameraFill', brandBg: '#00832D' },
+        { name: 'QuickTime',   iconKey: 'videoCameraFill', brandBg: '#0F172A' },
+        { name: 'OBS',         iconKey: 'videoCameraFill', brandBg: '#302E31' },
+        { name: 'Zoom',        iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/ko/zoom-transcription' },
+        { name: 'MS Teams',    iconKey: 'videoCameraFill', brandBg: '#4B53BC', href: '/ko/teams-meeting-transcription' },
+        { name: 'Meeting hub', iconKey: 'videoCameraFill', brandBg: '#0F1F35', href: '/ko/meeting-transcription' },
       ]}
-      whyUse={{ title: 'Google Meet에 Mictoo를 사용하는 이유', bullets: [
-        { title: '무료를 포함한 모든 Workspace 계층에서 작동', desc: 'Meet 녹화 자체는 유료 계층이 필요하지만 파일이 있으면 Workspace 계층에 관계없이 받아쓰기가 무료입니다.' },
-        { title: '비영어 지원이 더 좋음', desc: 'Google의 받아쓰기는 역사적으로 영어에서 가장 강합니다. Whisper large-v3는 자동 감지로 50개 이상의 언어를 다루고, 억양, 이중 언어 대화, 코드 스위칭에서 눈에 띄게 더 좋습니다.' },
-        { title: 'Google로 데이터가 돌아가지 않음', desc: '민감한 회의에 의식적으로 Google 생태계 락인을 피한다면, 여기서 받아쓰기하면 텍스트가 Google Workspace 밖에 유지됩니다.' },
-        { title: 'SRT 내보내기는 모든 비디오 에디터에서 작동', desc: 'Google의 받아쓰기는 텍스트를 Docs에 제공. 우리 것은 Premiere, DaVinci 또는 YouTube Studio용 깨끗한 SRT를 내보냅니다.' },
-        { title: '프라이버시', desc: '파일은 받아쓰기 제공업체로 스트리밍되고 처리 후 폐기됩니다. 서버에 아무것도 기록되지 않습니다.' },
-      ]}}
-      useCases={{ title: '사람들이 Google Meet 녹화를 받아쓰는 용도', items: [
-        { title: '모두가 검색할 수 있는 회의 메모', desc: 'Google Docs나 Notion에 받아쓰기 붙여넣기. 미래의 당신은 프로젝트의 14주차에 무엇이 결정되었는지 기억하지 못합니다. 검색 가능한 텍스트가 도움이 됩니다.' },
-        { title: '분산 팀을 위한 비동기 캐치업', desc: '라이브 회의를 놓친 다른 시간대의 사람들은 60분 녹화를 1.5배속으로 보는 대신 몇 분 만에 받아쓰기를 읽습니다.' },
-        { title: '클라이언트 통화 검토', desc: '계정 관리자는 중요한 클라이언트 통화를 받아쓰고 텍스트를 CRM에 저장. 더 빠른 회상, 더 나은 핸드오프.' },
-        { title: '웨비나와 타운홀 받아쓰기', desc: 'Meet에서 녹화된 더 큰 이벤트의 경우, 받아쓰기가 접근성과 발견 가능성을 위해 (녹화와 함께) 게시하는 것입니다.' },
-        { title: '1:1과 성과 대화(관리자용)', desc: '일부 관리자는 후속 조치를 위한 메모를 위해 1:1을 받아씁니다. 유용하지만 직원에게 이유에 대해 투명하게 하세요.' },
-      ]}}
-      proTips={{ title: 'Google Meet 받아쓰기 팁', tips: [
-        { title: '업로드 전에 MP4에서 오디오 추출', desc: 'Meet 녹화는 720p 비디오로, 받아쓰기에는 낭비되는 바이트. 오디오만 가져오기: ffmpeg -i meet.mp4 -vn -ac 1 -b:a 64k meet.mp3. 1 GB MP4가 25 MB 이하로 축소.' },
-        { title: 'MP4 다운로드, 스트리밍 안 함', desc: 'Drive는 가끔 브라우저 뷰어에서 MP4를 재생. 여기에 업로드하기 전에 실제로 파일을 다운로드했는지 확인. Drive 공유 링크는 파일 업로드가 아닙니다.' },
-        { title: '60분 초과 회의는 업로드 전에 분할', desc: '우리 한도는 가입으로 파일당 60분. 먼저 오디오를 청크로 자르세요. 받아쓰기는 나중에 재결합 가능.' },
-        { title: '가능하면 회의 중 백그라운드 탭과 앱 음소거', desc: '회의의 목소리 아래 재생되는 Spotify 트랙은 받아쓰기에 무작위 단어로 도착. 알림 소리도 마찬가지. 녹화 후에 항상 수정 가능한 것은 아닙니다.' },
-        { title: '실제 마이크 사용, 저렴한 헤드셋도', desc: '내장 노트북 마이크는 키보드 타이핑, 팬 소음, 방 에코를 캡처. 20달러 유선 USB 헤드셋이 눈에 띄게 깨끗하게 받아쓰기됩니다.' },
-        { title: '공유 녹화에서는 다른 곳에 재업로드 전에 Drive 공유 설정 확인', desc: '누군가 Meet 녹화를 공유했다면, 외부 사용을 위해 받아쓰기하기 전에 그것으로 무엇을 할 수 있는지 두 번 확인.' },
-      ]}}
+
+      howItWorksTitle="구글 미트 전사가 작동하는 방식"
+      steps={[
+        {
+          icon: 'folder',
+          title: '녹화 가져오기',
+          desc: '적격 워크스페이스 녹화: Drive › 내 드라이브 › 미트 녹화. 그렇지 않으면, 참가자 동의 규칙을 따르는 승인된 로컬 캡처를 사용하세요.',
+        },
+        {
+          icon: 'upload',
+          title: '파일을 여기로 드롭하세요',
+          desc: 'MP4 또는 M4A 모두 가능합니다. 큰 MP4의 경우, 먼저 ffmpeg로 오디오를 추출하거나 로그인하여 자동 분할을 요청하세요.',
+        },
+        {
+          icon: 'editPen',
+          title: '전사, 요약, 내보내기',
+          desc: '타임스탬프가 있는 전사, AI 요약 및 TXT/SRT/VTT/DOCX 내보내기를 받으세요. 처리 시간은 길이와 파일 크기에 따라 다릅니다.',
+        },
+      ]}
+
+      exampleTitle="구글 미트 전사 예시"
+      exampleFileName="meet-recording.mp4"
+      exampleDurationLabel="27분 45초"
+      exampleLines={[
+        { t: '0:00',  line: '안녕하세요 팀, 참여해 주셔서 감사합니다. 다음 주 오프사이트에 들어가기 전에 Q3 출시 계획에 대한 간단한 동기화입니다.' },
+        { t: '0:10',  line: '마케팅이 랜딩 페이지 복사본을 최종 확정했습니다. 엔지니어링은 금요일 기능 동결을 위해 순조롭게 진행되고 있습니다.' },
+        { t: '0:22',  line: '지원 문서가 위험 항목입니다. 우리는 약 3일 뒤쳐져 있으며 출시 전에 따라잡아야 합니다.' },
+        { t: '0:33',  line: '이번 주에 Anna를 온보딩 문서에서 이 도움으로 이동할 수 있습니다. 그게 간격을 회복할 것입니다.' },
+        { t: '0:44',  line: '좋습니다. 두 번째 주제는 우리가 논의한 가격 페이지 변경 사항입니다. 배포하기 전에 우려 사항이 있습니까?' },
+        { t: '0:56',  line: '내가 주의해야 할 한 가지는 기업 등급 프레이밍입니다. 가격대에 비해 조금 얇게 느껴집니다.' },
+        { t: '1:08',  line: '공정한 지적입니다. 이번 주에 그 섹션을 다시 검토하고 금요일에 수정된 버전을 공유하겠습니다.' },
+      ]}
+      summaryPoints={[
+        'Q3 출시가 잘 진행되고 있으며, 금요일에 기능 동결.',
+        '지원 문서가 3일 뒤쳐져 있습니다 (위험).',
+        'Anna가 문서 간격을 메우기 위해 재배치되었습니다.',
+        '기업 등급 프레이밍이 수정이 필요합니다.',
+      ]}
+      actionItems={[
+        '이번 주에 Anna를 지원 문서로 재배치',
+        '금요일까지 기업 등급 프레이밍 수정',
+        '금요일 스탠드업에서 기능 동결 확인',
+      ]}
+
+      whyTitle="구글 미트 전사를 위한 Mictoo의 이유"
+      whyCards={[
+        {
+          icon: 'lock',
+          title: '미디어 파일로 작동',
+          desc: '구글 계정에 Mictoo를 연결하지 않고 Drive 녹화 또는 승인된 로컬 캡처를 업로드하세요.',
+        },
+        {
+          icon: 'target',
+          title: '검토를 위한 타임스탬프 텍스트',
+          desc: '녹화에 대해 이름과 기술 용어를 검토한 후, 필요한 형식으로 수정된 전사를 내보내세요.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'AI 요약 항상 포함',
+          desc: '워크스페이스 AI 전사 요약은 별도의 유료 기능입니다. 우리의 것은 모든 전사와 함께 제공됩니다.',
+        },
+        {
+          icon: 'globe',
+          title: '50개 이상의 언어로 번역',
+          desc: '번역 공급자 없이 다국어 회의 요약.',
+        },
+      ]}
+
+      scenariosTitle="일반적인 미트 시나리오"
+      scenarios={[
+        { icon: 'chat',      title: '스탠드업 / 동기화' },
+        { icon: 'briefcase', title: '클라이언트 리뷰' },
+        { icon: 'search',    title: '사용자 인터뷰' },
+        { icon: 'users',     title: '전체 회의' },
+        { icon: 'headset',   title: '지원 전화' },
+        { icon: 'globe',     title: '다국어' },
+      ]}
+
+      tipsTitle="구글 미트 녹화를 위한 팁"
+      tips={[
+        '워크스페이스 미트 녹화는 Drive › 미트 녹화에 저장됩니다.',
+        '무료 등급: QuickTime (Mac) 또는 OBS (Win/Linux)가 잘 작동합니다.',
+        '큰 MP4? 오디오 추출: ffmpeg -i meet.mp4 -vn -ac 1 -ar 16000 audio.m4a.',
+        '긴 회의의 경우 자동 분할을 위해 로그인하세요.',
+      ]}
+
+      guidesTitle="기타 회의 플랫폼"
+      guides={[
+        { href: '/ko/zoom-transcription',          icon: 'video', title: 'Zoom',           desc: '클라우드 + 로컬 + M4A' },
+        { href: '/ko/teams-meeting-transcription', icon: 'video', title: 'MS Teams',       desc: 'OneDrive + SharePoint 경로' },
+        { href: '/ko/meeting-transcription',       icon: 'video', title: '회의 허브',    desc: '모든 플랫폼, 하나의 업로드' },
+        { href: '/ko/webinar-transcription',       icon: 'monitor', title: '웨비나',     desc: 'ON24, Demio, StreamYard' },
+      ]}
+
       faq={[
-        { q: 'Mictoo가 Google Meet 녹화에서 작동합니까?', a: '네. Drive의 Meet Recordings 폴더에서 MP4를 다운로드한 다음 여기에 업로드. 오디오 추출(ffmpeg나 오디오 도구로)이 긴 회의에 이를 빠르게 합니다.' },
-        { q: '유료 Google Workspace 계획이 필요합니까?', a: 'Meet를 녹화하려면 유료 Workspace 계획이 필요. 녹화가 Drive에 있으면 계층에 관계없이 여기서 받아쓰기가 무료입니다.' },
-        { q: '내 녹화가 Google로 돌아갑니까?', a: '아니요. 파일은 받아쓰기 제공업체(Groq, 백업으로 OpenAI)로 가서 처리 후 폐기됩니다. Google이나 Google 서비스로 아무것도 돌아가지 않습니다.' },
-        { q: 'Google 내장 받아쓰기와 비교하면?', a: '우리 것은 무료이고 모든 Workspace 계층에서 작동. Google 것은 계획에 포함되어 있고 회의가 영어라면 더 편리. 비영어, 억양 또는 이중 언어 회의에는 우리 것이 더 정확합니다.' },
-        { q: '내 Meet 녹화가 60 MB를 초과합니다. 이제 어떻게?', a: 'ffmpeg나 오디오 도구로 오디오만 추출. 1 GB 비디오는 보통 30 MB 미만의 오디오로. 오디오 자체가 60 MB 초과면 청크로 분할.' },
-        { q: '스피커 레이블을 받을 수 있습니까?', a: '자동으로는 안 됩니다. Whisper는 기본적으로 분리를 하지 않습니다. 수동으로 레이블을 추가해야 합니다. 구별 가능한 목소리가 있는 4인 회의의 경우 보통 5분 소요.' },
-        { q: 'Meet 채팅 메시지에서 작동합니까?', a: '아니요. 채팅 메시지는 Google에 의해 Meet Recordings 폴더에 별도로 저장. 오디오만 받아쓰기. 둘 다 필요하면 직접 결합.' },
-        { q: 'Google Meet 받아쓰기의 정확도는?', a: '깨끗한 오디오(좋은 마이크, 배경 소음 없음): 90-95%. 여러 마이크나 스피커폰의 회의실 녹음은 80-90%로 떨어짐. 이름과 기술 용어는 보통 정리 필요.' },
-        { q: 'Google Meet 라이브스트림을 받아쓸 수 있습니까?', a: '아니요. 녹화된 파일로만 작동, 라이브 스트림은 아님. 스트림이 끝나고 녹화가 Drive에 저장되면 다운로드하여 받아쓸 수 있습니다.' },
-        { q: '어떤 언어를 지원합니까?', a: '자동 감지로 50개 이상의 언어. 5분 미만 회의나 비음성 인트로가 있는 파일은 더 나은 결과를 위해 언어를 수동으로 선택.' },
-        { q: 'Google Doc으로 내보낼 수 있습니까?', a: '일반 텍스트(TXT)와 SRT를 내보냅니다. Google Docs에 복사하여 붙여넣기. 직접적인 Drive 통합은 아직 없습니다.' },
-        { q: '다른 Workspace 조직의 Meet 녹화에서 작동합니까?', a: 'Drive에서 파일을 다운로드할 액세스가 있다면, 네. 파일을 단순히 MP4로 처리. 출처를 확인하거나 신경 쓰지 않습니다.' },
+        {
+          q: '구글 워크스페이스가 필요합니까?',
+          a: '구글 녹화 가능 여부는 호스트 계정 에디션, 회의 역할, 관리자 설정 및 권한에 따라 다릅니다. 적격 녹화는 Drive에 저장됩니다. 로컬 캡처를 대신하는 경우, 필요한 참가자 동의를 얻고 적용 가능한 정책을 따르세요.',
+        },
+        {
+          q: '워크스페이스 미트 녹화는 어디에 저장됩니까?',
+          a: '회의 주최자의 Drive: 내 드라이브 › 미트 녹화에 저장됩니다. MP4는 일반적으로 회의 종료 몇 분 이내에 나타납니다. 준비되면 이메일 알림이 전송됩니다.',
+        },
+        {
+          q: '미트 전사를 사용할까요, 녹화를 업로드할까요?',
+          a: '미트 전사가 사용 가능하고 필요에 맞는 경우 사용하세요. 미디어를 업로드하는 것은 Mictoo 내보내기, 번역 또는 검토할 추가 전사가 필요할 때 유용합니다. 정확도는 오디오에 따라 다릅니다.',
+        },
+        {
+          q: '내 미트 녹화가 60 MB를 초과합니다. 이제 어떻게 해야 하나요?',
+          a: 'ffmpeg -i meet.mp4 -vn -ac 1 -ar 16000 audio.m4a로 오디오만 추출하세요. 또는 약 3시간까지 긴 파일의 자동 분할을 위해 로그인하세요.',
+        },
+        {
+          q: '미트 통화의 AI 요약을 받을 수 있습니까?',
+          a: '네. AI 요약은 전사와 함께 자동으로 나타납니다. 요약 이메일이나 후속 문서의 훌륭한 초안입니다.',
+        },
+        {
+          q: 'Mictoo가 미트에서 누가 말하는지 식별합니까?',
+          a: '아니요. 현재 전사는 라인별 타임스탬프가 있는 연속 텍스트이며 자동 스피커 레이블이 없습니다.',
+        },
+        {
+          q: '미트 녹화가 귀하의 서버에 보관됩니까?',
+          a: '아니요. 오디오가 전사 제공업체로 스트리밍되고 한 번 처리된 후 삭제됩니다. 서명된 계정에서는 전사만 지속됩니다.',
+        },
       ]}
+
+      ctaHeadline="미트 통화를 깔끔한 텍스트로 변환"
+      ctaSubtitle="텍스트, 요약 및 내보내기를 위해 승인된 Drive 녹화 또는 로컬 캡처를 업로드하세요."
+      ctaButton="미트 녹화 업로드"
+
       relatedLinks={[
-        { href: '/ko/zoom-transcription', label: 'Zoom 받아쓰기', desc: 'Zoom Cloud 또는 로컬 녹화용.' },
-        { href: '/ko/teams-meeting-transcription', label: 'Teams 받아쓰기', desc: 'Microsoft Teams 녹화용.' },
-        { href: '/ko/meeting-transcription', label: '회의 받아쓰기', desc: '다른 플랫폼 녹화용.' },
-        { href: '/ko/transcribe-video-to-text', label: '비디오를 텍스트로', desc: '일반 비디오 텍스트 페이지.' },
+        { href: '/ko/meeting-transcription',       label: '회의 전사' },
+        { href: '/ko/zoom-transcription',          label: '줌 전사' },
+        { href: '/ko/teams-meeting-transcription', label: '팀 전사' },
+        { href: '/ko/webinar-transcription',       label: '웨비나 전사' },
+        { href: '/ko/business-transcription',      label: '비즈니스 전사' },
       ]}
     />
   )

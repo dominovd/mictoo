@@ -1,9 +1,9 @@
 import UseCaseLayout from '@/components/UseCaseLayout'
 
 export const metadata = {
-  title: 'Zoom Transcription: Cloud Recording & Local MP4 to Text (Better than Zoom Pro Transcripts) | Mictoo',
+  title: 'Zoom Transcription for Cloud and Local Recordings | Mictoo',
   description:
-    'Drop a Zoom Cloud Recording MP4 or M4A audio-only download and get cleaner text than Zoom built-in transcripts. No Pro+ tier required, no AI Companion license.',
+    'Upload a Zoom cloud or local MP4/M4A recording and get a timestamped transcript, AI summary, and export files.',
   alternates: {
     canonical: 'https://mictoo.com/zoom-transcription',
     languages: {
@@ -21,8 +21,8 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'Zoom Transcription: Better than Zoom Built-In | Mictoo',
-    description: 'Drop Zoom Cloud Recording MP4 or M4A. No Pro tier required.',
+    title: 'Zoom Recording Transcription | Mictoo',
+    description: 'Upload a Zoom cloud or local MP4/M4A and get a transcript, summary, and exports.',
     url: 'https://mictoo.com/zoom-transcription',
     siteName: 'Mictoo',
     type: 'website',
@@ -31,7 +31,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Zoom Transcription: Free',
-    description: 'Better than Zoom built-in transcripts.',
+    description: 'Upload a Zoom recording and get a timestamped transcript.',
     images: ['https://mictoo.com/opengraph-image'],
   },
 }
@@ -41,8 +41,8 @@ export default function ZoomTranscriptionPage() {
     <UseCaseLayout
       badge="Zoom · Cloud / Local / M4A audio · Free"
       h1First="Zoom Transcription"
-      h1Second="Better than Zoom built-in transcripts"
-      subtitle="Drop a Zoom Cloud Recording MP4 or the M4A audio-only download and get a cleaner transcript than Zoom's own transcript feature. No Pro+ license, no AI Companion add-on, no cloud quota burned on transcription."
+      h1Second="Cloud and local recordings to text"
+      subtitle="Upload a Zoom Cloud Recording MP4, an audio-only M4A, or a local recording. Get a timestamped transcript, AI summary, translation, and export files in one workflow."
       currentHref="/zoom-transcription"
 
       platforms={[
@@ -64,12 +64,12 @@ export default function ZoomTranscriptionPage() {
         {
           icon: 'upload',
           title: 'Drop the file here',
-          desc: 'M4A audio-only is 10-15x smaller than the MP4 and transcribes identically. Free up to 25 MB anonymously, 60 MB signed in.',
+          desc: 'Audio-only M4A is usually much smaller than MP4 and avoids uploading the video track. Free up to 25 MB anonymously, 60 MB signed in.',
         },
         {
           icon: 'editPen',
-          title: 'Transcript in under a minute',
-          desc: 'Whisper large-v3 finishes a 30-minute Zoom call in 30-50 seconds. AI summary, SRT for a YouTube video version, DOCX for the recap.',
+          title: 'Review and export',
+          desc: 'Processing time depends on duration, file size, and demand. When complete, review the transcript and export a summary, captions, or DOCX recap.',
         },
       ]}
 
@@ -97,17 +97,17 @@ export default function ZoomTranscriptionPage() {
         'Share revised prototype in Friday standup',
       ]}
 
-      whyTitle="Why not just use Zoom built-in transcript"
+      whyTitle="Why use Mictoo with a Zoom recording"
       whyCards={[
         {
           icon: 'target',
-          title: 'Higher accuracy',
-          desc: 'Whisper large-v3 is more accurate than Zoom Audio Transcript ASR, especially on names, technical terms, and accents.',
+          title: 'A second transcript to review',
+          desc: 'Use Mictoo when you want an additional transcript and timestamped text for checking names, terminology, and key quotes.',
         },
         {
           icon: 'lock',
-          title: 'No Pro+ tier or AI Companion',
-          desc: 'Zoom Audio Transcript requires Pro+. AI Companion transcripts require the AI add-on. Mictoo is free per file.',
+          title: 'Processes downloaded files',
+          desc: 'Mictoo does not connect to your Zoom account. Upload a cloud or local recording you already have permission to use.',
         },
         {
           icon: 'gear',
@@ -158,15 +158,15 @@ export default function ZoomTranscriptionPage() {
         },
         {
           q: 'My Cloud Recording MP4 is over 60 MB. What now?',
-          a: 'Download the "Audio Only (M4A)" version instead. Zoom provides both for every Cloud Recording. The M4A is typically 5-10 MB for a 60-minute call and transcribes identically.',
+          a: 'If your recording includes an Audio Only (M4A) download, use it to avoid uploading the video track. Availability and file size depend on the recording settings and duration.',
         },
         {
-          q: 'Is Mictoo transcription better than Zoom built-in?',
-          a: 'For most content, yes. Whisper large-v3 outperforms Zoom Audio Transcript on names, technical terms, and non-native accents. Zoom built-in is faster to access but less accurate.',
+          q: 'Should I use Zoom audio transcription or Mictoo?',
+          a: 'Zoom audio transcription is convenient when cloud recording and transcription are enabled on your account. Mictoo is useful for local files, additional export formats, translation, or producing another transcript to review. Accuracy varies with the recording.',
         },
         {
           q: 'Does Mictoo identify Zoom speakers?',
-          a: 'Not yet. The transcript is continuous text with per-line timestamps, no "Speaker 1 / Speaker 2" labels. Diarisation is on the Pro roadmap.',
+          a: 'No. The current transcript is continuous text with per-line timestamps and no automatic "Speaker 1 / Speaker 2" labels.',
         },
         {
           q: 'Where does Local Recording save?',

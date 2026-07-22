@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import FormatPageLayout from '@/components/FormatPageLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/aac-to-text',
@@ -15,86 +15,176 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'AAC zu Text — Kostenlose AAC-Audio-Transkription online | Mictoo',
-  description: 'AAC-Audiodateien kostenlos in Text transkribieren. Ziehen Sie Ihre .aac, .m4a oder andere AAC-codierte Datei hierher und erhalten Sie in Sekunden eine genaue Transkription.',
-  alternates: { canonical: 'https://mictoo.com/de/aac-to-text', languages: LANGS },
-
+  title: 'AAC zu Text: Roh-AAC- und ADTS-Audio-Transkription | Mictoo',
+  description:
+    'Laden Sie rohe .aac-Dateien (ADTS-Stream oder ADIF) hoch und erhalten Sie in Sekunden ein bearbeitbares Transkript. Häufig bei Podcast-Downloads, Rundfunkarchiven, geripptem iPhone-Audio.',
+  alternates: {
+    canonical: 'https://mictoo.com/de/aac-to-text',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "AAC zu Text — Kostenlose AAC-Audio-Transkription online | Mictoo",
-    description: "AAC-Audiodateien kostenlos in Text transkribieren. Ziehen Sie Ihre .aac, .m4a oder andere AAC-codierte Datei hierher und erhalten Sie in Sekunden eine genaue Transkription.",
-    url: "https://mictoo.com/de/aac-to-text",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'AAC zu Text: Roh-AAC- und ADTS-Audio-Transkription | Mictoo',
+    description: 'Laden Sie rohe .aac-Dateien (ADTS-Stream oder ADIF) hoch. Bearbeitbares Transkript in Sekunden.',
+    url: 'https://mictoo.com/de/aac-to-text',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "AAC zu Text — Kostenlose AAC-Audio-Transkription online | Mictoo",
-    description: "AAC-Audiodateien kostenlos in Text transkribieren. Ziehen Sie Ihre .aac, .m4a oder andere AAC-codierte Datei hierher und erhalten Sie in Sekunden eine genaue Transkription.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'AAC zu Text: Roh-AAC-Stream-Transkription',
+    description: 'Laden Sie rohe .aac (ADTS oder ADIF) hoch. Bearbeitbares Transkript in Sekunden.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function DeAacToTextPage() {
   return (
-    <LandingLayout
-      badge="AAC · M4A · Kostenlos"
-      h1={<>AAC zu Text<br /><span className="text-brand-600">Kostenlose AAC-Transkription online</span></>}
-      subtitle="Legen Sie Ihre AAC-Audiodatei ab und erhalten Sie in Sekunden eine genaue Texttranskription. Funktioniert mit .aac und .m4a (AAC in einem MP4-Container). Ohne Anmeldung."
-      defaultLanguage="de"
-      valueBlock={
-        <>
-          <p>
-            AAC ist ein Audio-Codec, nicht immer ein einzelnes Dateiformat. Er steckt in rohen <code className="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">.aac</code>-Streams, M4A-Dateien, MP4-Videos und vielen mobilen App-Exporten.
-          </p>
-          <p>
-            Mictoo liest diese Varianten direkt, damit Sie die Aufnahme nicht erst in MP3 umwandeln und dabei unnötig Qualität verlieren.
-          </p>
-        </>
-      }
-      howItWorks={[
-        { title: 'AAC-Datei hochladen', desc: 'Legen Sie eine rohe .aac-Datei, M4A oder MP4 mit AAC-Audiospur ab.' },
-        { title: 'Container erkennen', desc: 'Mictoo identifiziert den Audiostream, dekodiert ihn und bereitet die Sprache für die Transkription vor.' },
-        { title: 'Text exportieren', desc: 'Prüfen Sie Namen und Fachbegriffe, dann als TXT oder SRT mit Zeitstempeln herunterladen.' },
+    <FormatPageLayout
+      locale="de"
+      badge="AAC · ADTS · Roh-Codec-Stream"
+      h1First="AAC zu Text"
+      h1Second="Roh-ADTS-Streams, Rundfunkarchive, geripptes Audio"
+      subtitle="Rohe .aac-Dateien stammen häufig aus Rundfunkstreams, Radioaufnahmen und extrahierten Medientracks. Legen Sie die Datei ab und Mictoo prüft ihre Struktur, bevor es das gesprochene Audio mit Whisper large-v3 transkribiert."
+      highlightFormat="aac"
+      previewFileName="broadcast-audio.aac"
+      previewWordCount={142}
+      previewDurationLabel="9:44"
+      previewLines={[
+        { t: '0:00',  line: 'Sie hören die Morgenshow. Es ist sieben Uhr fünfzehn und wir sind zurück mit unserer Hauptgeschichte.' },
+        { t: '0:08',  line: 'Über Nacht hat der Stadtrat die neue Verkehrserweiterung nach fast drei Jahren Debatte verabschiedet.' },
+        { t: '0:17',  line: 'Der Plan wird zwei neue Straßenbahnlinien hinzufügen und die bestehende um ungefähr acht Meilen verlängern.' },
+        { t: '0:27',  line: 'Um zu erklären, was das für die täglichen Pendler bedeutet, haben wir unseren Verkehrsreporter im Studio.' },
+        { t: '0:37',  line: 'Danke, dass ich hier sein darf. Die Schlagzeile ist, dass der ostwärts gerichtete Korridor nach zwanzig Jahren endlich eine Schienenoption erhält.' },
+        { t: '0:47',  line: 'Für alle, die diesen Abschnitt während der Hauptverkehrszeit fahren, ist das wirklich transformativ.' },
+        { t: '0:56',  line: 'Der Bau beginnt nächsten Frühling und die erste neue Linie soll im Jahr zweitausendneunundzwanzig eröffnet werden.' },
+        { t: '1:06',  line: 'Der Rat schätzt, dass ungefähr vierzigtausend tägliche Fahrgäste die neuen Abschnitte nutzen werden, sobald sie eröffnet sind.' },
       ]}
-      whyUse={{
-        title: 'Warum AAC direkt transkribieren',
-        bullets: [
-          'Keine zusätzliche MP3-Kompression, die leise Stimmen oder schwierige Aufnahmen verschlechtern kann.',
-          'Funktioniert mit rohen AAC-Streams und M4A/MP4-Dateien von iPhone, Podcasts oder Videoplattformen.',
-          'Zeitstempel bleiben nützlich, um die passende Stelle im Originalaudio oder Video zu finden.',
-          'Weniger Vorarbeit: Für lesbare AAC-Dateien brauchen Sie weder Audacity noch ffmpeg.',
-        ],
-      }}
-      useCases={{
-        title: 'Typische AAC-Anwendungsfälle',
-        items: [
-          { title: 'Podcast-Exporte', desc: 'Transkribieren Sie Episoden, Rohschnitte oder CDN-Audio im AAC-Format.' },
-          { title: 'Videoarchive', desc: 'Machen Sie die AAC-Tonspur aus MP4-Dateien als Text durchsuchbar.' },
-          { title: 'App- und Game-Audio', desc: 'Verarbeiten Sie Sprachaufnahmen aus mobilen Apps oder Export-Tools.' },
-          { title: 'Kurse und Interviews', desc: 'Erstellen Sie Notizen, ohne jede Datei zuerst in MP3 umzuwandeln.' },
-        ],
-      }}
-      proTips={{
-        title: 'Tipps für bessere AAC-Transkripte',
-        tips: [
-          'Wenn ein roher .aac-Stream in anderen Tools Probleme macht, in M4A verpacken statt neu kodieren.',
-          'Bitrate nicht künstlich erhöhen: Das macht Dateien größer, verbessert aber die Erkennung nicht.',
-          'Bei sehr kurzen Clips die Sprache manuell wählen, damit die automatische Erkennung nicht danebenliegt.',
-        ],
-      }}
+      whyTitle="Warum Mictoo für AAC-Transkription"
+      whyCards={[
+        {
+          icon: 'waveform',
+          title: 'Roh-ADTS nativ verarbeitet',
+          desc: 'Die meisten rohen .aac-Dateien sind ADTS-rahmen (Audio Data Transport Stream). Wir erkennen das Synchronisationswort 0xFFF und übergeben den Stream an Whisper.',
+        },
+        {
+          icon: 'gear',
+          title: 'ADIF und LATM ebenfalls unterstützt',
+          desc: 'Weniger verbreitete ADIF (Audio Data Interchange Format) und LATM-Rahmungen funktionieren ebenfalls. Kein manuelles Repackaging oder ffmpeg-Schritt erforderlich.',
+        },
+        {
+          icon: 'clip',
+          title: 'Kein Container erforderlich',
+          desc: 'AAC befindet sich normalerweise in M4A oder MP4, aber manchmal landet der rohe Stream auf Ihrer Festplatte. Mictoo akzeptiert beides, ohne zu fragen.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'KI-Zusammenfassung für Archivsegmente',
+          desc: 'Broadcast-Segment, Radioarchivclip oder Streaming-Dump. Die KI-Zusammenfassung ermöglicht es Ihnen, Archive schneller zu sichten.',
+        },
+      ]}
+      scenariosTitle="Wann AAC zu Text die richtige Wahl ist"
+      scenarios={[
+        {
+          icon: 'briefcase',
+          title: 'Broadcast-Radioarchiv',
+          desc: 'Segment, das von einem HLS- oder Icecast-Stream aufgenommen wurde und als rohes AAC versendet wird. Das Transkript macht das Archiv durchsuchbar.',
+        },
+        {
+          icon: 'video',
+          title: 'HLS-Livestream-Aufnahme',
+          desc: 'YouTube Live, Twitch oder Radio-HLS-Stream, der als .aac-Chunk-Sequenz erfasst wurde. Legen Sie die Datei ab, erhalten Sie den Text.',
+        },
+        {
+          icon: 'mic',
+          title: 'Geripptes iPhone-Audio',
+          desc: 'Audio, das aus einer iPhone-Aufnahme oder einer freigegebenen Datei extrahiert wurde, die ihren M4A-Container verloren hat und als rohes AAC herauskam.',
+        },
+        {
+          icon: 'gear',
+          title: 'Streaming-Service-Export',
+          desc: 'Podcast-Plattform oder Streaming-App, die rohe AAC-Downloads bereitstellt. Überspringen Sie die Konvertierung und legen Sie die Datei direkt ab.',
+        },
+        {
+          icon: 'users',
+          title: 'Broadcast-Interview',
+          desc: 'Radio-Interview, das als rohes AAC archiviert wurde. Das Transkript ist die zitierfähige Kopie für Artikel oder Shows.',
+        },
+        {
+          icon: 'editPen',
+          title: 'FFmpeg-Zwischenausgabe',
+          desc: 'Sie haben die Audiospur mit ffmpeg -c:a copy extrahiert und eine .aac erhalten. Legen Sie sie hier ab, anstatt sie zuerst nach M4A umzuwandeln.',
+        },
+      ]}
+      technicalTitle="Roh-AAC im Vergleich zu M4A"
+      technicalIntro="AAC ist ein Audio-Codec. Eine Datei, die auf .aac endet, ist oft ein roh gerahmter Stream, während M4A normalerweise AAC-Audio in einem MP4-Container mit Suche und Metadaten umschließt."
+      technicalFacts={[
+        {
+          icon: 'waveform',
+          title: 'ADTS ist verbreitet',
+          desc: 'Roh-AAC wird häufig als ADTS-Rahmen gespeichert, insbesondere wenn Audio aus einem Stream oder Rundfunkworkflow extrahiert wurde.',
+        },
+        {
+          icon: 'layers',
+          title: 'M4A fügt einen Container hinzu',
+          desc: 'M4A kann denselben AAC-Codec mit Timing, Indizierung und Metadaten, die von einem MP4-basierten Container bereitgestellt werden, tragen.',
+        },
+        {
+          icon: 'search',
+          title: 'Erweiterung ist nur ein Hinweis',
+          desc: 'Die Dateistruktur wird während der Verarbeitung geprüft, sodass eine irreführende Erweiterung nicht zu Transkripttext wird.',
+        },
+        {
+          icon: 'briefcase',
+          title: 'Broadcast-Workflows',
+          desc: 'Roh-AAC erscheint häufig nach HLS-Aufnahme oder Audioextraktion. Behalten Sie den ursprünglichen Quellenverweis für den Archivkontext.',
+        },
+      ]}
       faq={[
-        { q: 'Was ist eine AAC-Datei?', a: 'AAC (Advanced Audio Coding) ist ein verlustbehaftetes Audio-Kompressionsformat, das von iTunes, Apple Music, YouTube und den meisten Podcast-Apps verwendet wird. Dateien haben die Endungen .aac oder .m4a. AAC bietet bei gleicher Bitrate bessere Qualität als MP3.' },
-        { q: 'Was ist der Unterschied zwischen .aac und .m4a?', a: 'Beide enthalten AAC-codierte Audiodaten. .aac ist der rohe Audio-Stream; .m4a verpackt ihn in einen MP4-Container (so speichern es iTunes und iPhone-Sprachmemos). Mictoo unterstützt beide direkt.' },
-        { q: 'Wie wandle ich AAC kostenlos in Text um?', a: 'Ziehen Sie Ihre AAC-Datei in den Upload-Bereich oben. Mictoo transkribiert sie automatisch per KI und zeigt den Text in Sekunden. Kopieren oder als .txt herunterladen.' },
-        { q: 'Wie groß darf die AAC-Datei sein?', a: 'Bis 25 MB pro Upload. AAC bei 128 kbps liefert ca. 25 Minuten Audio pro 25 MB; bei 64 kbps fast eine Stunde. Für längere Dateien Bitrate senken oder in Segmente aufteilen.' },
-        { q: 'Kann ich Zeitstempel für ein AAC-Transkript erhalten?', a: 'Ja. Nach der Transkription können Sie eine .srt-Untertiteldatei mit präzisen Zeitstempeln herunterladen — nützlich, um das Transkript mit dem Original-Audio oder -Video zu synchronisieren.' },
+        {
+          q: 'Welche Art von AAC-Dateien akzeptiert Mictoo?',
+          a: 'Roh-AAC in ADTS-Rahmung (am häufigsten), ADIF und LATM-Rahmungen. Wir erkennen das Synchronisationswort serverseitig und übergeben den Stream an Whisper. AAC in M4A (siehe die M4A-Seite) funktioniert ebenfalls, ist aber ein anderer Aufnahmeweg.',
+        },
+        {
+          q: 'Was ist der Unterschied zwischen .aac und .m4a?',
+          a: '.aac ist typischerweise ein rohes ADTS-Bitstream: AAC-Rahmen mit kleinen 7-Byte-Headern, kein Container. .m4a ist AAC-Audio, das in einem MP4-Container mit Metadaten und Suchindizierung verpackt ist. Beide verwenden den AAC-Codec, aber die Dateistruktur unterscheidet sich.',
+        },
+        {
+          q: 'Meine AAC-Datei ist über 60 MB. Was nun?',
+          a: 'AAC bei typischen Rundfunk-Bitraten (128 kbps) liegt bei etwa 1 MB pro Minute, sodass 60 MB ungefähr eine einstündige Aufnahme sind. Wenn Sie angemeldet sind, teilen wir automatisch bis zu etwa 3 Stunden auf. Andernfalls reduzieren Sie die Abtastrate: ffmpeg -i in.aac -b:a 64k -ac 1 out.aac.',
+        },
+        {
+          q: 'Produziert rohes AAC schlechtere Transkripte als M4A?',
+          a: 'Nein. Der Audio-Stream ist identisch; nur der Container unterscheidet sich. Whisper resampelt intern entweder way auf 16 kHz mono. Die Genauigkeit hängt von der Qualität der zugrunde liegenden Aufnahme ab, nicht davon, ob sie ADTS-gerahmt oder MP4-verpackt ist.',
+        },
+        {
+          q: 'Transkribiert Mictoo nicht-englisches AAC?',
+          a: 'Ja. Whisper large-v3 unterstützt über 50 Sprachen mit automatischer Erkennung. Für ungewöhnliche Akzente oder kurze Rundfunkclips stellen Sie die Sprache ausdrücklich ein, um sauberere Ergebnisse beim ersten Durchlauf zu erzielen.',
+        },
+        {
+          q: 'Kann ich SRT-Untertitel für den Broadcast-Clip erhalten?',
+          a: 'Ja. Laden Sie SRT oder VTT nach der Transkription herunter. Die Zeitstempel stimmen mit dem ursprünglichen AAC-Stream-Zeitplan überein, um in Video-Editoren, Barrierefreiheitsüberlagerungen oder Archivindizes verwendet zu werden.',
+        },
+        {
+          q: 'Wird meine AAC-Datei auf Ihren Servern gespeichert?',
+          a: 'Nein. Der Audio-Stream wird an den Transkriptionsanbieter gesendet, einmal verarbeitet und aus dem Speicher gelöscht. Wir schreiben es niemals auf die Festplatte. Transkripte werden nur gespeichert, wenn Sie sich anmelden und in der Historie speichern.',
+        },
+        {
+          q: 'Kann ich das Transkript in eine andere Sprache übersetzen?',
+          a: 'Ja. Wählen Sie nach der Transkription eine Zielsprache aus und klicken Sie auf Übersetzen. Die Übersetzung erfolgt mit GPT-4o-mini und erscheint neben dem Original.',
+        },
+        {
+          q: 'Was ist, wenn die Datei eine .aac-Erweiterung hat, aber tatsächlich M4A ist?',
+          a: 'Wir prüfen die magischen Bytes, nicht die Erweiterung. Wenn die Datei mit ftyp (M4A/MP4-Signatur) beginnt, behandeln wir sie als M4A. Wenn sie mit ADTS-Synchronisationsbytes beginnt, behandeln wir sie als rohes AAC. In jedem Fall funktioniert die Transkription.',
+        },
+        {
+          q: 'Wie lange dauert eine AAC-Transkription?',
+          a: 'Eine 10-minütige AAC dauert typischerweise 15-30 Sekunden von Anfang bis Ende. Größere Dateien, die nahe am Upload-Limit liegen, benötigen 45-80 Sekunden. Die Upload-Geschwindigkeit ist oft der längere Schritt.',
+        },
       ]}
-      relatedLinks={[
-        { href: '/de/m4a-to-text', label: 'M4A zu Text' },
-        { href: '/de/transcribe-mp3-to-text', label: 'MP3 zu Text' },
-        { href: '/de', label: 'Alle Formate' },
-      ]}
+      ctaHeadline="Laden Sie Ihr rohes AAC hoch und erhalten Sie das Transkript"
+      ctaSubtitle="ADTS-, ADIF- und LATM-Rahmungen. Rundfunkarchive, HLS-Aufnahmen, geripptes Audio."
+      ctaButton="AAC hochladen zur Transkription"
     />
   )
 }

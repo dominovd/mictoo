@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import ConverterPageLayout from '@/components/ConverterPageLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/timestamped-transcription',
@@ -15,199 +15,84 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Trascrizione con timecode — generatore gratuito | Mictoo',
+  title: 'Trascrizione Timestamped: Generatore di Trascrizioni con Codici Temporali Gratuiti | Mictoo',
   description:
-    'Trascrizione gratuita con timecode. Ottieni timecode a livello di parola o frase per qualsiasi audio o video. Perfetto per giornalismo, ricerca, podcasting, video editing.',
-  alternates: { canonical: 'https://mictoo.com/it/timestamped-transcription', languages: LANGS },
-
+    'Trascrizione timestamped gratuita con codici temporali a livello di segmento per audio o video. Utile per giornalismo, ricerca, podcasting e montaggio video.',
+  alternates: {
+    canonical: 'https://mictoo.com/it/timestamped-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Trascrizione con timecode — generatore gratuito | Mictoo",
-    description: "Trascrizione gratuita con timecode. Ottieni timecode a livello di parola o frase per qualsiasi audio o video. Perfetto per giornalismo, ricerca, podcasting, video editing.",
-    url: "https://mictoo.com/it/timestamped-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Trascrizione Timestamped: Generatore di Trascrizioni con Codici Temporali Gratuiti | Mictoo',
+    description: 'Timestamp a livello di frase per qualsiasi audio o video.',
+    url: 'https://mictoo.com/it/timestamped-transcription',
+    siteName: 'Mictoo', type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Trascrizione con timecode — generatore gratuito | Mictoo",
-    description: "Trascrizione gratuita con timecode. Ottieni timecode a livello di parola o frase per qualsiasi audio o video. Perfetto per giornalismo, ricerca, podcasting, video editing.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Trascrizione Timestamped: Gratuita',
+    description: 'Trascrizioni con codici temporali per giornalismo, ricerca, montaggio.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function ItTimestampedPage() {
+export default function ItTimestampedTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="it"
-      badge="Timecode · Citazioni · Gratis"
-      h1={
-        <>
-          Trascrizione con timecode
-          <br />
-          <span className="text-brand-600">Trascrizioni time-coded gratuite</span>
-        </>
-      }
-      subtitle="Timecode precisi per ogni riga o parola nel tuo audio. Torna a momenti esatti, cita passaggi specifici, costruisci capitoli. Gratis, senza registrazione."
-      howItWorks={[
-        {
-          icon: '📂',
-          title: 'Rilascia il file',
-          desc: 'MP3, M4A, MP4, WAV, FLAC, OGG, WEBM, AAC. Lavoriamo con formati audio e video.',
-        },
-        {
-          icon: '⚡',
-          title: 'L\'IA trascrive e mette i timecode',
-          desc: 'Whisper large-v3 genera la trascrizione con timecode al millisecondo per ogni segmento (e opzionalmente ogni parola).',
-        },
-        {
-          icon: '💾',
-          title: 'Scegli granularità e scarica',
-          desc: 'Scegli timecode a frase (il più comune) o timecode a parola (per lavoro di allineamento preciso). Scarica come TXT con timecode inline, come SRT per workflow sottotitoli, o copia negli appunti.',
-        },
+    <ConverterPageLayout
+      locale="it"
+      mode="upload" currentHref="/it/timestamped-transcription"
+      badge="Timestamped · Audio o video · Gratuito"
+      h1First="Trascrizione Timestamped"
+      h1Second="Trascrizioni con codici temporali per giornalismo, ricerca, montaggio"
+      subtitle="Carica audio o video e ottieni una trascrizione con timestamp per segmento. Clicca su qualsiasi timestamp per saltare a quel momento nel lettore audio. Gratuito, senza registrazione."
+      stepsTitle="Come funziona la trascrizione timestamped"
+      steps={[
+        { icon: 'upload',   title: 'Carica audio o video',       desc: 'MP3, MP4, WAV, M4A, WEBM, FLAC e altro. Fino a 25 MB in modo anonimo o 180 MB con accesso.' },
+        { icon: 'waveform', title: 'Whisper timestamp segmenti', desc: 'Whisper large-v3 fornisce timestamp per segmento allineati all’audio originale.' },
+        { icon: 'download', title: 'Esporta con timestamp',      desc: 'TXT con timestamp in linea, SRT / VTT per sottotitoli, DOCX per revisione.' },
       ]}
-      whyUse={{
-        title: 'Perché Mictoo per la trascrizione con timecode',
-        bullets: [
-          {
-            title: 'Timecode al millisecondo',
-            desc: 'Whisper produce timecode con precisione al millisecondo. Più preciso di qualsiasi framerate video comune, più che sufficiente per lavoro di citazione.',
-          },
-          {
-            title: 'A livello di frase di default, a livello di parola quando serve',
-            desc: 'Livello frase tiene le trascrizioni leggibili. Livello parola è eccessivo per appunti, ma essenziale per video editing e allineamento musicale.',
-          },
-          {
-            title: 'Gratis',
-            desc: 'Nessun contatore al minuto. Nessun tier "i timecode costano extra". Stesso prezzo della trascrizione semplice (gratis).',
-          },
-          {
-            title: 'Export SRT per workflow video',
-            desc: 'I timecode in formato SRT funzionano direttamente in Premiere, DaVinci, CapCut e YouTube Studio come tracce sottotitoli.',
-          },
-          {
-            title: 'Timecode inline nel TXT per citazioni',
-            desc: 'Testo semplice con marcatori [00:01:23] all\'inizio di ogni segmento. Facile da incollare in appunti di ricerca, post di blog o bozze giornalistiche.',
-          },
-          {
-            title: 'Nessun file conservato',
-            desc: 'L\'audio va al provider di trascrizione ed è scartato. Niente resta sui nostri server.',
-          },
-        ],
-      }}
-      useCases={{
-        title: 'A cosa serve la gente le trascrizioni con timecode',
-        items: [
-          {
-            title: 'Giornalismo e citazioni',
-            desc: 'Citi una fonte da un\'intervista? Metti il timecode accanto alla citazione nei tuoi appunti. Quando la redazione o il fact-checker chiede "dove esattamente l\'ha detto", hai la risposta in due secondi.',
-          },
-          {
-            title: 'Capitoli per podcast',
-            desc: 'Genera la trascrizione, scansiona per transizioni di sezione naturali, copia quei timecode nella funzione capitoli del tuo hoster podcast. I player moderni mostrano i capitoli nella barra di riproduzione.',
-          },
-          {
-            title: 'Rough cut di video editing',
-            desc: 'Prendi la trascrizione, marca le righe che vuoi tenere, trovale in timeline tramite il timecode. Il "paper editing" è molto più veloce dello scrubbing.',
-          },
-          {
-            title: 'Ricerca accademica e coding qualitativo',
-            desc: 'I ricercatori in NVivo, Atlas.ti o MAXQDA taggano segmenti di trascrizione con codici. I timecode ti lasciano tornare all\'audio per il momento esatto quando codifichi passaggi ambigui.',
-          },
-          {
-            title: 'Allineamento musicale per video sing-along',
-            desc: 'Timecode a parola per progetti tipo karaoke o lyric video. Ogni parola si illumina nel momento esatto in cui viene cantata.',
-          },
-        ],
-      }}
-      proTips={{
-        title: 'Consigli per la trascrizione con timecode',
-        tips: [
-          {
-            title: 'I timecode a frase funzionano per il 95% dei casi',
-            desc: 'A meno che tu non stia facendo allineamento musicale o sottotitolazione video parola-per-parola, il livello frase è quello che vuoi. Più leggibile, più facile da modificare.',
-          },
-          {
-            title: 'I timecode a parola gonfiano dimensione file e complessità',
-            desc: 'Un SRT a parola per una conferenza di 30 minuti ha migliaia di entry. Usalo solo quando ti serve davvero precisione a parola.',
-          },
-          {
-            title: 'Per i podcast, genera capitoli dalle pause naturali',
-            desc: 'Cerca nella trascrizione transizioni di argomento, cambi agenda o introduzioni ospiti. Copia quei timecode nel tuo hoster podcast come marcatori di capitolo.',
-          },
-          {
-            title: 'Per il giornalismo, salva il timecode con ogni citazione che potresti usare',
-            desc: 'Il te del futuro, 3 settimane dopo, non si ricorderà da quale intervista è venuta una citazione, men che meno dove nell\'intervista. Il timecode risolve.',
-          },
-          {
-            title: 'I timecode SRT sono zero-padded, quelli TXT no',
-            desc: 'SRT usa 00:01:23,456. TXT di solito usa [1:23]. Se incolli in un CMS che si aspetta un formato, converti prima di incollare.',
-          },
-          {
-            title: 'Per il video editing, il timecode nel nostro SRT si allinea all\'audio nel file originale',
-            desc: 'Se ri-esporti il tuo video a una framerate diversa, i timecode calzano comunque, perché sono in tempo assoluto (millisecondi), non in frame.',
-          },
-          {
-            title: 'I timecode driftano con audio scadente',
-            desc: 'Se Whisper allucina parole durante musica o silenzio, i timecode di quelle parole fantasma sono stime. I timecode del parlato reale restano precisi. Fidati solo delle sezioni parlato, ignora le sezioni musicali.',
-          },
-        ],
-      }}
+      whyTitle="Perché usare Mictoo per trascrizioni timestamped?"
+      whyCards={[
+        { icon: 'clock',    title: 'Timestamp cliccabili',   desc: 'Ogni timestamp è cliccabile nella vista Lettore. Salta a qualsiasi momento nel lettore audio.' },
+        { icon: 'target',   title: 'Trascrizione di qualità Whisper', desc: 'Whisper large-v3 aggiunge punteggiatura e gestisce molte lingue, accenti e tipi di registrazione.' },
+        { icon: 'captions', title: 'SRT + VTT inclusi',         desc: 'I timestamp vengono trasferiti agli export SRT e VTT per la sottotitolazione video.' },
+        { icon: 'lock',     title: 'File eliminati dopo',        desc: 'L’audio caricato viene eliminato dopo la trascrizione; la trascrizione persiste solo sugli account registrati.' },
+      ]}
+      scenariosTitle="Quando le trascrizioni timestamped sono utili"
+      scenarios={[
+        { icon: 'editPen',    title: 'Ricerca citazioni giornalistiche' },
+        { icon: 'target',     title: 'Citazione ricerca UX' },
+        { icon: 'video',      title: 'Lista di cue per montaggio video' },
+        { icon: 'headphones', title: 'Note di programma podcast' },
+        { icon: 'archive',    title: 'Legale / scoperta' },
+        { icon: 'waveform',   title: 'Bookmarking audio' },
+      ]}
+      tipsTitle="Suggerimenti per un output timestamped più pulito"
+      tips={[
+        'La vista Lettore è la migliore per la navigazione clicca-per-saltare.',
+        'Per l’export SRT / VTT, i timestamp si allineano alla timeline del file originale.',
+        'Per registrazioni lunghe, accedi per la suddivisione automatica fino a circa 3 ore.',
+        'La barra di ricerca evidenzia le corrispondenze e mostra il loro timestamp istantaneamente.',
+      ]}
+      processTitle="Cosa succede durante la trascrizione"
+      processSteps={['Audio / video', 'Whisper large-v3', 'Testo timestamped']}
       faq={[
-        {
-          q: 'Qual è la differenza tra timecode a frase e a parola?',
-          a: 'Livello frase: un timecode per riga di testo (di solito una frase). Livello parola: un timecode per parola. Livello frase è leggibile e va bene per citazioni, podcasting e la maggior parte del lavoro video. Livello parola è per allineamento musicale, video karaoke e animazioni sottotitoli parola-per-parola.',
-        },
-        {
-          q: 'Quanto sono precisi i timecode?',
-          a: 'Whisper produce timecode al millisecondo. Calzano correttamente a qualsiasi framerate video comune (24, 25, 29.97, 30, 50, 60 fps) senza offset.',
-        },
-        {
-          q: 'I timecode driftano in un file lungo?',
-          a: 'Raramente. Whisper allinea i timecode all\'audio reale, quindi restano precisi anche su file di 60 minuti. Drift sotto il secondo può comparire negli ultimi segmenti di file molto lunghi. Se lo noti, sistema manualmente.',
-        },
-        {
-          q: 'Posso ottenere un TXT con timecode inline, tipo [00:01:23] prima di ogni riga?',
-          a: 'Sì. Scarica come TXT e inseriamo timecode a frase inline. Formato: [00:01:23] testo della frase qui.',
-        },
-        {
-          q: 'L\'SRT contiene timecode?',
-          a: 'Sì, è tutto il senso del formato SRT. Ogni entry sottotitolo ha un timecode di inizio e fine.',
-        },
-        {
-          q: 'Come si confronta con i sottotitoli automatici di YouTube con timecode?',
-          a: 'I sottotitoli automatici di YouTube hanno timecode, ma niente punteggiatura e precisione più bassa. I nostri hanno punteggiatura completa, precisione migliore e output SRT standard che funziona in qualsiasi video editor.',
-        },
-        {
-          q: 'Posso saltare dalla trascrizione a un timecode specifico nell\'audio?',
-          a: 'Nel nostro view risultato clicca un timecode qualsiasi per posizionare il player audio su quel momento. Dopo il download ti serve un player audio separato per farlo.',
-        },
-        {
-          q: 'I timecode funzioneranno in Premiere o DaVinci Resolve?',
-          a: 'Sì. Importa l\'SRT nella timeline. I sottotitoli appariranno automaticamente ai momenti giusti.',
-        },
-        {
-          q: 'Quali lingue sono supportate per la trascrizione con timecode?',
-          a: 'Le stesse oltre 50 lingue della trascrizione semplice. I timecode arrivano automaticamente con ogni trascrizione, indipendentemente dalla lingua.',
-        },
-        {
-          q: 'L\'audio viene conservato?',
-          a: 'No. Il file va al provider di trascrizione ed è scartato dopo l\'elaborazione.',
-        },
-        {
-          q: 'Posso usare i timecode a parola per fare un video karaoke?',
-          a: 'Sì, ma ti serve software video che possa renderizzare highlight parola-per-parola da un formato JSON o SRT. Alcuni strumenti (Premiere, After Effects, software karaoke specializzato) lo supportano direttamente.',
-        },
-        {
-          q: 'Quanto ci mette a generare trascrizioni con timecode?',
-          a: 'Uguale alla trascrizione semplice, circa l\'1-2% della durata audio. I timecode arrivano automaticamente, nessun tempo di elaborazione extra.',
-        },
+        { q: 'Qual è la granularità dei timestamp?', a: 'Per segmento (approssimativamente per frase). Whisper produce nativamente timestamp a livello di segmento allineati all’audio.' },
+        { q: 'Posso cliccare su un timestamp per saltare nell’audio?', a: 'Sì. Nella vista Lettore, ogni timestamp è cliccabile e sposta il lettore audio a quel momento.' },
+        { q: 'Lo strumento è gratuito?', a: 'Sì. Fino a 25 MB in modo anonimo o 180 MB quando registrato. Nessun watermark e nessun costo per minuto.' },
+        { q: 'Quali formati di export sono supportati?', a: 'TXT (con timestamp in linea), SRT, VTT, DOCX. Gli utenti registrati ottengono anche PDF e JSON con dati di timestamp strutturati.' },
+        { q: 'Identificate i relatori?', a: 'Non ancora. Testo timestamped continuo senza etichette per i relatori. La diarizzazione è nella roadmap Pro.' },
+        { q: 'Le registrazioni vengono conservate sui vostri server?', a: 'No. L’audio viene inviato al fornitore di trascrizione, elaborato una sola volta e viene eliminato. Le trascrizioni persistono solo sugli account registrati.' },
       ]}
-      relatedLinks={[
-        { href: '/it/free-srt-generator', label: 'Generatore SRT', desc: 'Stessi timecode, mirato a workflow sottotitoli.' },
-        { href: '/it/podcast-transcription', label: 'Trascrizione podcast', desc: 'Timecode per show notes e marcatori capitolo.' },
-        { href: '/it/interview-transcription', label: 'Trascrizione intervista', desc: 'Timecode per citazioni e ricerca fonti.' },
-        { href: '/it/transcribe-audio-to-text', label: 'Audio in testo', desc: 'Per output solo testo senza timecode.' },
+      ctaHeadline="Ottieni una trascrizione timestamped clicca-per-saltare"
+      ctaSubtitle="Giornalismo, ricerca UX, montaggio video, note di programma podcast. Gratuito per file."
+      ctaButton="Carica audio o video"
+      moreTools={[
+        { href: '/it/free-srt-generator',       label: 'Generatore SRT' },
+        { href: '/it/youtube-to-text',          label: 'YouTube a Testo' },
+        { href: '/it/transcribe-audio-to-text', label: 'Audio a Testo' },
+        { href: '/it/transcribe-video-to-text', label: 'Video a Testo' },
       ]}
     />
   )

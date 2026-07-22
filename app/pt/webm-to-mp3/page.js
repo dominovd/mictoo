@@ -1,5 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
-import ConverterZone from '@/components/ConverterZone'
+import ConverterPageLayout from '@/components/ConverterPageLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/webm-to-mp3',
@@ -16,81 +15,90 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'WEBM para MP3 — conversor online gratuito | Mictoo',
+  title: 'WEBM para MP3, conversor online gratuito | Mictoo',
   description:
-    'Converta WEBM para MP3 online grátis. Extraia áudio MP3 de qualquer arquivo WEBM de vídeo ou áudio em segundos. Sem cadastro, sem marca d\'água. Até 25 MB.',
+    'Converta WEBM para MP3 gratuitamente online. Extraia áudio MP3 de qualquer vídeo ou arquivo de áudio WEBM em segundos. Sem registro, sem marca d’água. Até 25 MB.',
   alternates: { canonical: 'https://mictoo.com/pt/webm-to-mp3', languages: LANGS },
-
   openGraph: {
-    title: "WEBM para MP3 — conversor online gratuito | Mictoo",
-    description: "Converta WEBM para MP3 online grátis. Extraia áudio MP3 de qualquer arquivo WEBM de vídeo ou áudio em segundos. Sem cadastro, sem marca d\\'água. Até 25 MB.",
-    url: "https://mictoo.com/pt/webm-to-mp3",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'WEBM para MP3, conversor online gratuito | Mictoo',
+    description: 'Extraia MP3 de qualquer WEBM. Sem registro, sem marca d’água.',
+    url: 'https://mictoo.com/pt/webm-to-mp3',
+    siteName: 'Mictoo', type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "WEBM para MP3 — conversor online gratuito | Mictoo",
-    description: "Converta WEBM para MP3 online grátis. Extraia áudio MP3 de qualquer arquivo WEBM de vídeo ou áudio em segundos. Sem cadastro, sem marca d\\'água. Até 25 MB.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'WEBM para MP3, conversor online gratuito',
+    description: 'Extraia MP3 de qualquer WEBM.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function PtWebmToMp3Page() {
   return (
-    <LandingLayout
-      defaultLanguage="pt"
-      badge="WEBM → MP3 · Grátis · Sem cadastro"
-      h1={<>WEBM para MP3<br /><span className="text-brand-600">Conversor online gratuito</span></>}
-      subtitle="Solte um arquivo WEBM (o formato que gravadores de navegador, baixadores de YouTube e ferramentas de captura de tela adoram salvar). Receba um MP3 limpo. Sem marca d&apos;água, sem email."
-      tool={<ConverterZone from="webm" to="mp3" />}
-      howItWorks={[
-        { icon: '📂', title: 'Solte o WEBM', desc: 'Só áudio ou vídeo WEBM, ambos funcionam. Até 25 MB anonimamente, 60 MB depois do cadastro.' },
-        { icon: '⚡', title: 'Extraímos e re-codificamos', desc: 'ffmpeg puxa o fluxo de áudio (Opus ou Vorbis) para fora do contêiner WEBM e re-codifica para MP3 a 128 kbps a 44.1 kHz. Tipicamente 3-10 segundos.' },
-        { icon: '⬇️', title: 'Baixe o MP3', desc: 'A saída mantém o nome original com .mp3. Os arquivos são apagados dos nossos servidores em até uma hora.' },
+    <ConverterPageLayout
+      locale="pt"
+      mode="converter" from="webm" to="mp3" currentHref="/pt/webm-to-mp3"
+      badge="WEBM → MP3 · Gratuito · Sem registro"
+      h1First="WEBM para MP3"
+      h1Second="Conversor online gratuito"
+      subtitle="Coloque um WEBM (do Loom, OBS, gravação do Firefox, ou um downloader do YouTube) e obtenha um MP3 limpo em segundos. Sem marca d’água, sem e-mail."
+      outputFormat="MP3" outputQuality="128 kbps" outputAudio="Estéreo"
+      stepsTitle="Como funciona a conversão de WEBM para MP3"
+      steps={[
+        { icon: 'upload',   title: 'Coloque o WEBM',   desc: 'Vídeo ou áudio apenas WEBM, ambos funcionam. Até 25 MB anonimamente.' },
+        { icon: 'waveform', title: 'Nós demuxamos e codificamos', desc: 'ffmpeg remove a faixa de vídeo (se houver) e re-codifica o áudio Opus ou Vorbis para MP3 a 128 kbps.' },
+        { icon: 'download', title: 'Baixe o MP3', desc: 'Obtenha seu MP3 limpo em segundos. Nome de arquivo original com extensão .mp3.' },
       ]}
-      whyUse={{ title: 'Por que converter WEBM para MP3', bullets: [
-        { title: 'WEBM é ótimo para o navegador, horrível para todo o resto', desc: 'iPhones não tocam WEBM. A maioria dos estéreos de carro não. Muitos alto-falantes Bluetooth antigos não. MP3 toca em tudo que você puder pensar.' },
-        { title: 'Apps de notas de voz e gravadores de navegador salvam em WEBM', desc: 'Ferramentas de gravação baseadas na web (Loom, a API MediaRecorder do MDN, gravadores de áudio de navegador) saem em WEBM por padrão porque Chrome e Firefox suportam nativamente. Se você quer mandar a gravação para algum lugar, MP3 é o formato mais seguro.' },
-        { title: 'Baixadores de YouTube te dão WEBM por padrão', desc: 'Quando você escolhe "só áudio" no 4K Video Downloader ou yt-dlp sem especificar um formato, frequentemente você recebe um arquivo WEBM Opus. Converter para MP3 o torna reproduzível no iOS e em apps de edição de áudio.' },
-        { title: 'Opus é tecnicamente melhor, mas compatibilidade vence', desc: 'O codec Opus dentro de um contêiner WEBM é melhor que MP3 byte por byte. Mas se sua audiência não consegue tocar, isso não importa. MP3 é a língua franca.' },
-        { title: 'Sem marca d\'água, sem upsell', desc: 'O MP3 é só o áudio re-codificado. Não adicionamos uma intro, uma tag ou um overlay "compre Pro" na página de resultado.' },
-      ]}}
-      useCases={{ title: 'Quando você converteria WEBM para MP3', items: [
-        { title: 'Gravação de áudio no navegador → arquivo portátil', desc: 'Você usou um gravador baseado na web (ferramenta de microfone embutida, gravador de voz online, etc.) e recebeu um WEBM. Converta para MP3 para arrastar para seu editor de podcast ou mandar para um transcritor.' },
-        { title: 'Download do Loom ou Vidyard → clipe só com áudio', desc: 'Downloads do Loom podem ser WEBM. Se você só precisa do áudio da gravação, converta e salve o arquivo menor.' },
-        { title: 'Download de áudio do YouTube → formato universal', desc: 'Quando você baixa só áudio do YouTube com um baixador que sai em Opus/WEBM por padrão, a conversão para MP3 torna o arquivo reproduzível em todo lugar.' },
-        { title: 'Gravação de tela → só a narração', desc: 'OBS, o gravador de tela embutido do Chrome e ferramentas similares frequentemente saem em WEBM. Se você só quer a narração para transcrição ou um podcast, converta.' },
-        { title: 'Gravações de chamada WebRTC', desc: 'Algumas ferramentas de videoconferência gravam em WEBM. Converta antes de mandar para clientes ou guardar num CRM que espera MP3.' },
-      ]}}
-      proTips={{ title: 'Dicas para conversão WEBM para MP3 limpa', tips: [
-        { title: 'WEBM com vídeo VP9 está ok, ignoramos o fluxo de vídeo', desc: 'Você pode soltar um WEBM de vídeo (VP9 + Opus) no conversor. Retiramos o vídeo e mantemos só o áudio. O resultado é do mesmo tamanho que se você tivesse nos dado só áudio.' },
-        { title: 'Opus decodifica sem perdas dentro do ffmpeg', desc: 'Não há problema de segunda perda indo Opus → MP3. A codificação perceptual do MP3 a 128 kbps é a única coisa que afeta o resultado, não o fato de a entrada ser um formato com perdas.' },
-        { title: 'Para voz, mono basta mas mantemos estéreo', desc: 'Nosso conversor preserva o layout de canais da fonte. Se seu WEBM é mono (típico para gravações de voz), o MP3 é mono. Não fazemos upmix.' },
-        { title: 'Se a conversão falhar, o WEBM provavelmente está parcial', desc: 'Fluxos WEBM às vezes são cortados no meio da gravação, deixando o contêiner meio quebrado. Abra no VLC e re-exporte como novo WEBM, ou em um editor de vídeo, depois tente de novo.' },
-        { title: 'Para downloads do YouTube, prefira M4A direto se seu baixador suporta', desc: 'Se você controla o download, escolher M4A (AAC dentro de um contêiner MP4) pula todo esse passo, M4A toca em todo lugar que MP3 toca. Use a opção "M4A" do 4K Video Downloader.' },
-        { title: 'WEBMs encriptados com DRM vão falhar', desc: 'Alguns serviços de streaming usam WEBM com DRM. ffmpeg não pode descriptografar isso, e nem nós. O WEBM original tem que estar desprotegido.' },
-      ]}}
+      previewInputName="loom-walkthrough.webm"
+      previewInputSize="72 MB · 00:08:12"
+      previewOutputName="loom-walkthrough.mp3"
+      previewOutputSize="00:08:12 · 128 kbps · 7.5 MB"
+      whyTitle="Por que usar Mictoo para WEBM para MP3?"
+      whyCards={[
+        { icon: 'target',   title: 'Suporta Opus e Vorbis', desc: 'Ambos os codecs de áudio WEBM funcionam diretamente, sem reempacotamento manual.' },
+        { icon: 'video',    title: 'Vídeo em WEBM tratado',   desc: 'Nós demuxamos a faixa de vídeo no servidor. Você nunca precisa extrair o áudio você mesmo.' },
+        { icon: 'lock',     title: 'Arquivos excluídos após',     desc: 'WEBM enviado é removido após a conversão; o MP3 é eliminado dentro de uma hora.' },
+        { icon: 'shield',   title: 'Sem marca d’água ou tag',     desc: 'O MP3 de saída não tem emenda de introdução, nem metadados com marca.' },
+      ]}
+      scenariosTitle="Quando WEBM para MP3 é útil"
+      scenarios={[
+        { icon: 'video',      title: 'Tutorial do Loom' },
+        { icon: 'headphones', title: 'Saída de downloader do YouTube' },
+        { icon: 'mail',       title: 'Enviar um arquivo menor por e-mail' },
+        { icon: 'editPen',    title: 'Preparar para transcrição' },
+        { icon: 'waveform',   title: 'Gravação no navegador' },
+        { icon: 'archive',    title: 'Arquivar apenas áudio' },
+      ]}
+      tipsTitle="Dicas para uma conversão limpa de WEBM para MP3"
+      tips={[
+        'WEBM de vídeo é auto-demuxado, não há necessidade de remover primeiro.',
+        'Para gravações acima de 25 MB, corte ou divida a fonte antes de enviar.',
+        'A faixa de áudio padrão é usada se múltiplas existirem.',
+        'Para transcrição do Whisper, envie o WEBM diretamente para /webm-to-text.',
+      ]}
+      processTitle="O que acontece durante a conversão"
+      processSteps={['Container WEBM', 'Extração da faixa de áudio', 'Codificação MP3']}
+      compareTitle="WEBM vs MP3"
+      compareRows={[
+        { fmt: 'WEBM', contains: 'Frequentemente sim', size: 'Médio-grande', best: 'Gravação na web, vídeo do navegador' },
+        { fmt: 'MP3',  contains: 'Não',        size: 'Pequeno',        best: 'Compartilhamento, reprodução, em todo o lado' },
+      ]}
       faq={[
-        { q: 'A conversão WEBM para MP3 é realmente grátis?', a: 'Sim. Sem conta até 25 MB, sem marca d\'água, sem "trial" com tempo limitado. Display ads nas páginas editoriais cobrem o custo do servidor.' },
-        { q: 'Qual o tamanho máximo do arquivo?', a: '25 MB anonimamente, 60 MB com conta gratuita. WEBM é eficiente, 25 MB geralmente representa 20-40 minutos de áudio.' },
-        { q: 'Posso converter vídeo WEBM para MP3?', a: 'Sim. Retiramos o fluxo de vídeo e geramos só o áudio. O MP3 tem o mesmo tamanho se a fonte foi vídeo ou WEBM só de áudio.' },
-        { q: 'O MP3 soa pior que o WEBM?', a: 'Teoricamente, ligeiramente. Opus na mesma taxa é melhor que MP3. A 128 kbps a diferença é inaudível para quase todos os ouvintes em quase todo material.' },
-        { q: 'Quanto tempo leva?', a: 'Segundos. Um arquivo WEBM de 25 MB converte em 3-10 segundos. Velocidade de upload é o gargalo.' },
-        { q: 'Quais configurações de MP3 vocês usam?', a: '128 kbps em taxa constante, 44.1 kHz, preserva o layout de canais da fonte (mono in → mono out, estéreo in → estéreo out).' },
-        { q: 'Vocês guardam meus arquivos?', a: 'Não. O upload é deletado após a conversão. A saída é eliminada em até uma hora. Salve localmente.' },
-        { q: 'Meu WEBM do Loom falhou. Por quê?', a: 'Alguns downloads do Loom usam MP4 fragmentado dentro de um contêiner WEBM ou têm cabeçalhos não padronizados. Tente abrir no VLC, exportar de novo, depois tentar. Ou baixe do Loom como MP4 direto se a opção estiver lá.' },
-        { q: 'Funciona para arquivos Opus especificamente?', a: 'Se seu arquivo termina em .opus em vez de .webm, renomeie para .webm primeiro. O contêiner é funcionalmente o mesmo e ffmpeg os lê de forma idêntica.' },
-        { q: 'Posso baixar vídeos do YouTube com isso?', a: 'Não. Não buscamos URLs. Use um app baixador (4K Video Downloader, yt-dlp, ClipGrab) para salvar o WEBM localmente primeiro, depois solte aqui.' },
-        { q: 'iPhone ou iTunes vão tocar a saída?', a: 'Sim. MP3 toca em todo lugar, incluindo todos os dispositivos e softwares Apple.' },
-        { q: 'Por que converter em vez de só ficar com WEBM?', a: 'WEBM vai bem no Chrome e Firefox, mas iOS, muitos estéreos de carro, alto-falantes Bluetooth antigos e muito software de áudio profissional não lidam com ele. MP3 é universal.' },
+        { q: 'O conversor de WEBM para MP3 é gratuito?', a: 'Sim. Arquivos até 25 MB podem ser convertidos sem uma conta, e a saída não tem marca d’água.' },
+        { q: 'E se meu WEBM tiver vídeo?', a: 'Nós demuxamos a faixa de vídeo no servidor e apenas codificamos o áudio. Você não precisa remover nada previamente.' },
+        { q: 'Quais codecs de áudio WEBM funcionam?', a: 'Opus (moderno, mais comum) e Vorbis (mais antigo). Ambos são suportados diretamente.' },
+        { q: 'Os arquivos enviados são armazenados?', a: 'Não. O WEBM é removido após a conversão; o MP3 é eliminado dentro de uma hora.' },
+        { q: 'Meu WEBM tem mais de 25 MB. E agora?', a: 'Corte a fonte antes de enviar, ou extraia um WEBM apenas de áudio primeiro para reduzir o tamanho do arquivo.' },
       ]}
-      relatedLinks={[
-        { href: '/pt/mp4-to-mp3', label: 'MP4 para MP3', desc: 'Mesma ideia, fonte MP4 em vez de WEBM.' },
-        { href: '/pt/wav-to-mp3', label: 'WAV para MP3', desc: 'WAV sem perdas para MP3 portátil.' },
-        { href: '/pt/webm-to-text', label: 'WEBM para texto', desc: 'Pule o MP3, vá direto para uma transcrição.' },
-        { href: '/pt/how-to-compress-audio', label: 'Comprimir áudio', desc: 'Se o MP3 ainda está grande demais para compartilhar.' },
+      ctaHeadline="Converta seu WEBM para MP3 agora"
+      ctaSubtitle="Coloque seu WEBM e obtenha um MP3 limpo em segundos. Sem registro. Sem marca d’água."
+      ctaButton="Escolha um arquivo WEBM"
+      moreTools={[
+        { href: '/pt/mp4-to-mp3',  label: 'MP4 para MP3' },
+        { href: '/pt/wav-to-mp3',  label: 'WAV para MP3' },
+        { href: '/pt/flac-to-mp3', label: 'FLAC para MP3' },
+        { href: '/pt/webm-to-text', label: 'WEBM para Texto' },
       ]}
     />
   )

@@ -1,5 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
-import ConverterZone from '@/components/ConverterZone'
+import ConverterPageLayout from '@/components/ConverterPageLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/mp3-to-m4a',
@@ -16,81 +15,90 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'MP3 in M4A — convertitore online gratuito | Mictoo',
+  title: 'MP3 in M4A, convertitore online gratuito | Mictoo',
   description:
-    'Converti MP3 in M4A online gratis. Ri-codifica MP3 in AAC dentro un contenitore M4A per iPhone, iTunes e l\'ecosistema Apple. Senza registrazione, senza filigrana.',
+    'Converti MP3 in M4A gratuitamente online. Ricodifica MP3 in AAC all’interno di un contenitore M4A per iPhone, iTunes e l’ecosistema Apple. Nessuna registrazione, nessun watermark.',
   alternates: { canonical: 'https://mictoo.com/it/mp3-to-m4a', languages: LANGS },
-
   openGraph: {
-    title: "MP3 in M4A — convertitore online gratuito | Mictoo",
-    description: "Converti MP3 in M4A online gratis. Ri-codifica MP3 in AAC dentro un contenitore M4A per iPhone, iTunes e l\\'ecosistema Apple. Senza registrazione, senza filigrana.",
-    url: "https://mictoo.com/it/mp3-to-m4a",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'MP3 in M4A, convertitore online gratuito | Mictoo',
+    description: 'MP3 in AAC all’interno di M4A. Compatibile con iPhone. Nessuna registrazione.',
+    url: 'https://mictoo.com/it/mp3-to-m4a',
+    siteName: 'Mictoo', type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "MP3 in M4A — convertitore online gratuito | Mictoo",
-    description: "Converti MP3 in M4A online gratis. Ri-codifica MP3 in AAC dentro un contenitore M4A per iPhone, iTunes e l\\'ecosistema Apple. Senza registrazione, senza filigrana.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'MP3 in M4A, convertitore online gratuito',
+    description: 'AAC in MP4 compatibile con iPhone.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function ItMp3ToM4aPage() {
   return (
-    <LandingLayout
-      defaultLanguage="it"
-      badge="MP3 → M4A · Gratis · Senza registrazione"
-      h1={<>MP3 in M4A<br /><span className="text-brand-600">Convertitore online gratuito</span></>}
-      subtitle="Trascina un MP3. Ottieni un M4A, audio AAC dentro un contenitore MP4. Si riproduce nativamente in iTunes, Apple Music e su ogni iPhone. Senza filigrana, senza email."
-      tool={<ConverterZone from="mp3" to="m4a" />}
-      howItWorks={[
-        { icon: '📂', title: 'Trascina il MP3', desc: 'Trascina qualsiasi MP3 nel riquadro. Fino a 25 MB in anonimo, 60 MB dopo la registrazione.' },
-        { icon: '⚡', title: 'ffmpeg ri-codifica in AAC', desc: 'AAC a 128 kbps dentro un contenitore M4A, con il flag faststart così si riproduce subito quando trasmesso in streaming. Finisce in 3-10 secondi.' },
-        { icon: '⬇️', title: 'Scarica il M4A', desc: 'Il risultato ha il nome originale con .m4a. I file vengono rimossi dai nostri server entro un\'ora.' },
+    <ConverterPageLayout
+      locale="it"
+      mode="converter" from="mp3" to="m4a" currentHref="/it/mp3-to-m4a"
+      badge="MP3 → M4A · Gratuito · Compatibile con iPhone"
+      h1First="MP3 in M4A"
+      h1Second="Convertitore online gratuito"
+      subtitle="Trascina un MP3 e ottieni un M4A (AAC in contenitore MP4) per Note Vocali iPhone, iTunes, GarageBand e l’ecosistema Apple. Nessun watermark, nessun email."
+      outputFormat="M4A" outputQuality="128 kbps AAC" outputAudio="Stereo"
+      stepsTitle="Come funziona la conversione da MP3 a M4A"
+      steps={[
+        { icon: 'upload',   title: 'Trascina l’MP3',        desc: 'Qualsiasi MP3 con bitrate, fino a 25 MB in modo anonimo.' },
+        { icon: 'waveform', title: 'Ricodifichiamo in AAC', desc: 'ffmpeg decodifica l’MP3 e ricodifica come 128 kbps AAC all’interno di un contenitore .m4a.' },
+        { icon: 'download', title: 'Scarica l’M4A',   desc: 'File compatibile con iPhone con il nome originale più estensione .m4a.' },
       ]}
-      whyUse={{ title: 'Perché convertire MP3 in M4A', bullets: [
-        { title: "L'ecosistema Apple preferisce M4A", desc: 'iTunes, Apple Music, iCloud Music Library, GarageBand, tutti gestiscono M4A come formato di prima classe. Anche MP3 funziona, ma M4A è quello che parlano nativamente.' },
-        { title: 'AAC suona leggermente meglio di MP3 allo stesso bitrate', desc: 'A 128 kbps la differenza è piccola ma reale, soprattutto nelle alte frequenze. Se il tuo MP3 sorgente è già con perdita, questa ri-codifica non lo rende peggio.' },
-        { title: 'M4A supporta marker di capitolo e metadati più ricchi', desc: 'Se stai facendo audiolibri, file preview podcast o qualsiasi cosa per l\'ecosistema Apple, M4A gestisce i capitoli in modo pulito. Il supporto capitoli di MP3 è ballerino.' },
-        { title: 'Le suonerie iPhone devono essere M4A', desc: 'Le suonerie iPhone personalizzate usano l\'estensione M4R, stesso formato AAC-in-MP4 di M4A. Converti e rinomina in .m4r per uso suoneria.' },
-        { title: 'Senza filigrana, senza upsell', desc: 'Il tuo audio ri-codificato, niente altro.' },
-      ]}}
-      useCases={{ title: 'Quando convertire MP3 in M4A', items: [
-        { title: 'Importare una collezione musicale in Apple Music', desc: 'M4A si importa pulito e si integra con iCloud Music Library. I MP3 possono occasionalmente avere problemi di metadati durante la sincronizzazione.' },
-        { title: 'Fare una suoneria iPhone', desc: 'Converti MP3 → M4A, taglia sotto i 40 secondi, rinomina in .m4r, trascina nel Finder mentre l\'iPhone è connesso.' },
-        { title: 'Audiolibro con marker di capitolo', desc: 'M4A supporta i capitoli; il supporto MP3 è inaffidabile. Per audiolibri lunghi dove gli ascoltatori vogliono saltare tra i capitoli, M4A è il formato giusto.' },
-        { title: 'Pulizia di voice memo per iCloud', desc: 'Se hai una cartella di voice memo MP3 e li vuoi in iCloud o Apple Voice Memos, M4A è più nativo e si sincronizza in modo più affidabile.' },
-        { title: 'Progetto GarageBand o Logic', desc: 'Quando importi audio di riferimento nel software musicale di Apple, M4A entra più liscio di MP3 in alcuni workflow.' },
-      ]}}
-      proTips={{ title: 'Consigli per la conversione MP3 in M4A', tips: [
-        { title: 'La ri-codifica aggiunge una piccola perdita', desc: 'Stai andando da un formato con perdita a un altro. A 128 kbps AAC da un MP3 a 128 kbps, la perdita è reale ma inudibile per quasi tutti su quasi tutto. Per uso critico, trova una sorgente senza perdita.' },
-        { title: 'Per le suonerie, taglia prima di convertire', desc: 'Le suonerie iPhone si fermano a 40 secondi. Taglia il MP3 in Audacity o QuickTime prima, poi converti.' },
-        { title: 'AAC a 96 kbps di solito batte MP3 a 128 kbps', desc: 'Il nostro convertitore esce a 128 kbps per compatibilità, ma se hai pieno controllo potresti andare più basso con AAC e ancora pareggiare la qualità MP3. Non offriamo il selettore per tenere lo strumento semplice.' },
-        { title: 'M4A vs MP4, stesso contenitore, convenzione diversa', desc: 'I file M4A contengono solo audio. I file MP4 possono contenere video, audio o entrambi. iTunes usa l\'estensione .m4a per rendere la distinzione ovvia. Alcuni player accettano entrambe le estensioni.' },
-        { title: 'I marker di capitolo non vengono aggiunti da noi', desc: 'Ri-codifichiamo solo l\'audio. Per aggiungere marker di capitolo, usa Apple Books per audiolibri o uno strumento dedicato come Chapter and Verse.' },
-        { title: 'Per MP3 protetti da DRM, la conversione fallirà', desc: 'Il DRM è estremamente raro per MP3 nel 2026, ma se ne hai uno in qualche modo, non si decodificherà.' },
-      ]}}
+      previewInputName="episodio.mp3"
+      previewInputSize="8.4 MB · 00:09:22"
+      previewOutputName="episodio.m4a"
+      previewOutputSize="00:09:22 · 128 kbps AAC · 7.6 MB"
+      whyTitle="Perché usare Mictoo per MP3 in M4A?"
+      whyCards={[
+        { icon: 'target',    title: 'Output compatibile con Apple',    desc: 'M4A funziona nativamente con i comuni flussi di lavoro multimediali di iPhone, iTunes, GarageBand e Apple.' },
+        { icon: 'fileAudio', title: 'Output prevedibile',       desc: 'Il file è ricodificato come 128 kbps AAC. La sua dimensione finale dipende principalmente dalla durata della registrazione.' },
+        { icon: 'lock',      title: 'File eliminati dopo',      desc: 'L’MP3 caricato viene eliminato dopo la conversione; l’M4A viene rimosso entro un’ora.' },
+        { icon: 'shield',    title: 'Nessun watermark o tag',      desc: 'Solo l’audio, ricodificato. Nessuna introduzione brandizzata, nessun metadato iniettato.' },
+      ]}
+      scenariosTitle="Quando MP3 in M4A è utile"
+      scenarios={[
+        { icon: 'headphones', title: 'Importazione in libreria iTunes' },
+        { icon: 'waveform',   title: 'Progetto GarageBand' },
+        { icon: 'video',      title: 'Colonna sonora iMovie' },
+        { icon: 'mail',       title: 'Compatibilità AirDrop' },
+        { icon: 'archive',    title: 'Archivio ecosistema Apple' },
+        { icon: 'editPen',    title: 'Importazione in Logic Pro' },
+      ]}
+      tipsTitle="Consigli per una conversione pulita da MP3 a M4A"
+      tips={[
+        'MP3 e AAC sono entrambi lossy; la ricodifica aggiunge una piccola perdita di qualità.',
+        'Per lossless, converti in WAV invece.',
+        'I tag ID3 non vengono trasferiti nell’M4A.',
+        'Mantieni il file sorgente sotto l’attuale limite di upload di 25 MB.',
+      ]}
+      processTitle="Cosa succede durante la conversione"
+      processSteps={['Stream MP3', 'Decodifica', 'Codifica AAC / M4A']}
+      compareTitle="MP3 vs M4A"
+      compareRows={[
+        { fmt: 'MP3', contains: 'No', size: 'Piccolo', best: 'Universale, lettori legacy' },
+        { fmt: 'M4A', contains: 'No', size: 'Leggermente più piccolo', best: 'iPhone, iTunes, GarageBand, app Apple' },
+      ]}
       faq={[
-        { q: 'La conversione MP3 in M4A è davvero gratis?', a: 'Sì. Nessun account fino a 25 MB, nessuna filigrana, nessun limite di tempo.' },
-        { q: 'Qual è la dimensione massima del file?', a: '25 MB anonimo, 60 MB con un account gratuito.' },
-        { q: 'Il M4A suonerà peggio del MP3?', a: 'Teoricamente sì, ri-codificare qualsiasi formato con perdita aggiunge una piccola perdita. In pratica, a 128 kbps AAC da un MP3 a 128 kbps, nessun essere umano può sentire la differenza su riproduzione consumer.' },
-        { q: 'Qual è la differenza tra M4A e MP4?', a: 'M4A e MP4 sono lo stesso formato contenitore. L\'estensione .m4a segnala solo "solo audio" così iTunes sa cosa farne. Alcuni player accettano entrambe le estensioni.' },
-        { q: 'Quanto tempo richiede?', a: 'Pochi secondi. Un MP3 da 25 MB si converte in 3-10 secondi.' },
-        { q: 'Che qualità producete?', a: '128 kbps AAC dentro un contenitore M4A, 44.1 kHz, layout dei canali sorgente preservato.' },
-        { q: 'Tenete i miei file?', a: 'No. Il caricamento è cancellato dopo la conversione. L\'output è rimosso entro un\'ora.' },
-        { q: 'Posso fare una suoneria iPhone con questo?', a: 'Indirettamente. Converti MP3 in M4A, taglia sotto i 40 secondi in QuickTime, rinomina il .m4a in .m4r, trascina nel Finder con l\'iPhone connesso.' },
-        { q: 'iTunes accetterà il risultato?', a: "Sì. M4A è il formato nativo di iTunes." },
-        { q: 'Il mio MP3 è già a 320 kbps. Dovrei convertire?', a: 'Solo se ti serve specificamente M4A per compatibilità. Il risultato sarà AAC a 128 kbps, tecnicamente un calo di qualità dal MP3 a 320 kbps, ma praticamente inudibile sulla maggior parte delle riproduzioni. Per preservare la qualità a 320 kbps ti servirebbe un convertitore diverso che ti permetta di impostare bitrate più alti.' },
-        { q: 'I tag si trasferiscono?', a: 'I tag di base (titolo, artista, album) di solito sì. La cover art e i commenti dettagliati sono ballerini tra MP3 ID3 e metadati iTunes M4A. Ri-tagga in iTunes o Mp3tag dopo la conversione.' },
-        { q: 'Posso fare conversione batch?', a: 'Non ancora nel piano gratis. Apri più tab del browser per convertire diversi file in parallelo.' },
+        { q: 'Il convertitore da MP3 a M4A è gratuito?', a: 'Sì. I file fino a 25 MB possono essere convertiti senza un account, e l’output non ha watermark.' },
+        { q: 'Convertire MP3 in M4A migliora la qualità?', a: 'No. La ricodifica da un formato lossy a un altro può solo comportare una leggera perdita di qualità. Fallo solo per compatibilità con l’ecosistema Apple.' },
+        { q: 'L’M4A funzionerà in iTunes e Apple Music?', a: 'Sì. L’AAC standard all’interno del contenitore MP4 è esattamente il formato utilizzato da iTunes.' },
+        { q: 'I file vengono memorizzati?', a: 'No. L’MP3 caricato viene eliminato dopo la conversione; l’M4A viene rimosso entro un’ora.' },
+        { q: 'Posso convertire in M4A lossless (ALAC)?', a: 'Non da questa pagina. L’output è lossy AAC. Per lossless, converti prima MP3 in WAV, poi in ALAC nel tuo DAW.' },
       ]}
-      relatedLinks={[
-        { href: '/it/m4a-to-mp3', label: 'M4A in MP3', desc: 'La direzione inversa.' },
-        { href: '/it/wav-to-mp3', label: 'WAV in MP3', desc: 'Riduci WAV in MP3 portatile.' },
-        { href: '/it/m4a-to-text', label: 'M4A in testo', desc: 'Trascrivi audio M4A direttamente.' },
-        { href: '/it/how-to-compress-audio', label: 'Comprimere audio', desc: 'Per file che devono essere ancora più piccoli.' },
+      ctaHeadline="Converti il tuo MP3 in M4A ora"
+      ctaSubtitle="Trascina il tuo MP3 e ottieni un M4A compatibile con iPhone in pochi secondi."
+      ctaButton="Scegli un file MP3"
+      moreTools={[
+        { href: '/it/m4a-to-mp3',  label: 'M4A in MP3' },
+        { href: '/it/mp3-to-wav',  label: 'MP3 in WAV' },
+        { href: '/it/mp4-to-mp3',  label: 'MP4 in MP3' },
+        { href: '/it/m4a-to-text', label: 'M4A in Testo' },
       ]}
     />
   )

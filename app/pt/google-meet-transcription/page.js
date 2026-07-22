@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/google-meet-transcription',
@@ -15,80 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Transcrição do Google Meet — transcreva gravações Meet grátis | Mictoo',
+  title: 'Transcrição de Gravações do Google Meet para Texto | Mictoo',
   description:
-    'Transcrição Google Meet grátis. Envie sua gravação do Drive (MP4 ou M4A) e receba uma transcrição IA limpa em segundos. Funciona com Google Workspace grátis.',
-  alternates: { canonical: 'https://mictoo.com/pt/google-meet-transcription', languages: LANGS },
-
+    'Carregue uma gravação autorizada do Google Meet do Drive ou uma captura de tela local e obtenha uma transcrição, resumo de IA e exportações.',
+  alternates: {
+    canonical: 'https://mictoo.com/pt/google-meet-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Transcrição do Google Meet — transcreva gravações Meet grátis | Mictoo",
-    description: "Transcrição Google Meet grátis. Envie sua gravação do Drive (MP4 ou M4A) e receba uma transcrição IA limpa em segundos. Funciona com Google Workspace grátis.",
-    url: "https://mictoo.com/pt/google-meet-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Transcrição do Google Meet: Conta Workspace ou Gratuita | Mictoo',
+    description: 'Gravação do Drive ou captura de tela do Meet gratuito. Qualquer uma funciona.',
+    url: 'https://mictoo.com/pt/google-meet-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Transcrição do Google Meet — transcreva gravações Meet grátis | Mictoo",
-    description: "Transcrição Google Meet grátis. Envie sua gravação do Drive (MP4 ou M4A) e receba uma transcrição IA limpa em segundos. Funciona com Google Workspace grátis.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Transcrição do Google Meet',
+    description: 'Qualquer nível de conta, uma página de upload.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function PtGoogleMeetPage() {
+export default function PtGoogleMeetTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="pt"
-      badge="GOOGLE MEET · MP4 · GRÁTIS"
-      h1={<>Transcrição do Google Meet<br /><span className="text-brand-600">Transcrever gravações Meet</span></>}
-      subtitle="Transforme sua gravação Google Meet em texto limpo. Solte o MP4 do seu Drive, em segundos você tem a transcrição. Sem cadastro, sem cobrança por minuto."
-      howItWorks={[
-        { icon: '☁️', title: 'Baixe do Google Drive', desc: 'As gravações do Google Meet são salvas no seu Drive na pasta "Meet Recordings". Baixe como MP4 (clique direito, Baixar). Para reuniões longas, extraia o áudio antes para economizar tempo de upload.' },
-        { icon: '⚡', title: 'Solte o arquivo', desc: 'Pegamos o áudio do MP4 e mandamos para o Whisper large-v3. Uma reunião de 30 minutos termina em cerca de um minuto.' },
-        { icon: '📋', title: 'Pegue a transcrição', desc: 'Leia no navegador, copie ou baixe como TXT ou SRT. Corrija palavras erradas inline antes de exportar.' },
+    <UseCaseLayout
+      locale="pt"
+      badge="Google Meet · Captura do Drive ou local · Gratuito"
+      h1First="Transcrição do Google Meet"
+      h1Second="Gravações do Drive e capturas locais para texto"
+      subtitle="Carregue uma gravação do Google Meet do Drive ou uma captura local que você está autorizado a fazer. A disponibilidade da gravação depende da edição do Workspace do anfitrião, permissões e configurações do administrador."
+      currentHref="/pt/google-meet-transcription"
+
+      platforms={[
+        { name: 'Meet MP4',    iconKey: 'videoCameraFill', brandBg: '#00832D' },
+        { name: 'QuickTime',   iconKey: 'videoCameraFill', brandBg: '#0F172A' },
+        { name: 'OBS',         iconKey: 'videoCameraFill', brandBg: '#302E31' },
+        { name: 'Zoom',        iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/pt/zoom-transcription' },
+        { name: 'MS Teams',    iconKey: 'videoCameraFill', brandBg: '#4B53BC', href: '/pt/teams-meeting-transcription' },
+        { name: 'Meeting hub', iconKey: 'videoCameraFill', brandBg: '#0F1F35', href: '/pt/meeting-transcription' },
       ]}
-      whyUse={{ title: 'Por que Mictoo para Google Meet', bullets: [
-        { title: 'Funciona em qualquer tier Workspace, inclusive o grátis', desc: 'Gravar um Meet em si exige um tier pago, mas uma vez que você tem o arquivo, nossa transcrição é grátis independente do seu tier Workspace.' },
-        { title: 'Melhor suporte a idiomas não-ingleses', desc: 'A transcrição do Google é historicamente mais forte em inglês. O Whisper large-v3 cobre mais de 50 idiomas com detecção automática e é notavelmente melhor em sotaques, conversas bilíngues e code-switching.' },
-        { title: 'Nenhum dado volta para o Google', desc: 'Se você está conscientemente evitando lock-in no ecossistema Google para reuniões sensíveis, transcrever aqui mantém o texto fora do Google Workspace.' },
-        { title: 'Export SRT funciona em qualquer editor de vídeo', desc: 'A transcrição do Google entrega o texto em Docs. A nossa exporta SRT limpo, pronto para Premiere, DaVinci ou YouTube Studio.' },
-        { title: 'Privacidade', desc: 'O arquivo é enviado ao provedor de transcrição e descartado após o processamento. Nada é gravado em nossos servidores.' },
-      ]}}
-      useCases={{ title: 'Para que as pessoas transcrevem gravações Google Meet', items: [
-        { title: 'Notas de reunião que todo mundo pode pesquisar', desc: 'Cole a transcrição em Google Docs ou Notion. O você do futuro não vai lembrar o que foi decidido na semana 14 do projeto. Texto pesquisável ajuda.' },
-        { title: 'Catch-up assíncrono para times distribuídos', desc: 'Pessoas em outros fusos que perderam a reunião ao vivo leem a transcrição em minutos em vez de assistir uma gravação de 60 minutos em 1,5x.' },
-        { title: 'Revisão de calls com clientes', desc: 'Account managers transcrevem calls importantes com clientes e salvam o texto no CRM. Lembrança mais rápida, handoffs melhores.' },
-        { title: 'Transcrições de webinar e town hall', desc: 'Para eventos maiores gravados no Meet, a transcrição é o que você publica (junto com a gravação) para acessibilidade e descoberta.' },
-        { title: 'Conversas 1:1 e de performance (para o gestor)', desc: 'Alguns managers transcrevem seus 1:1s para ter notas para follow-up. Útil, mas seja transparente com o colaborador sobre por quê.' },
-      ]}}
-      proTips={{ title: 'Dicas para transcrição Google Meet', tips: [
-        { title: 'Extraia o áudio do MP4 antes do upload', desc: 'Gravações Meet são vídeo 720p, que é byte desperdiçado para transcrição. Pegue só o áudio: ffmpeg -i meet.mp4 -vn -ac 1 -b:a 64k meet.mp3. Um MP4 de 1 GB encolhe para 25 MB ou menos.' },
-        { title: 'Baixe o MP4, não faça stream', desc: 'O Drive às vezes abre MP4s no visualizador do navegador. Garanta que você realmente baixou o arquivo antes de tentar enviar aqui. Links de compartilhamento do Drive não são upload de arquivo.' },
-        { title: 'Para reuniões acima de 60 minutos, divida antes do upload', desc: 'Nosso cap é 60 minutos por arquivo com cadastro. Corte o áudio em pedaços antes. As transcrições podem ser recombinadas depois.' },
-        { title: 'Silencie tabs e apps de fundo durante a reunião se possível', desc: 'Uma música do Spotify rodando sob a sua voz na reunião acaba na transcrição como palavras aleatórias. Mesma coisa com sons de notificação. Nem sempre dá para consertar depois da gravação.' },
-        { title: 'Use um microfone de verdade, mesmo um headset barato', desc: 'Microfones embutidos de laptop pegam digitação, ruído de fan e eco de sala. Um USB headset com fio de 100 reais transcreve notavelmente mais limpo.' },
-        { title: 'Em gravações compartilhadas, cheque as configurações de compartilhamento do Drive antes de subir em outro lugar', desc: 'Se alguém te compartilhou uma gravação Meet, confirme o que você pode fazer com ela antes de transcrever para uso externo.' },
-      ]}}
+
+      howItWorksTitle="Como funciona a transcrição do Google Meet"
+      steps={[
+        {
+          icon: 'folder',
+          title: 'Obtenha a gravação',
+          desc: 'Gravação elegível do Workspace: Drive › Meu Drive › Gravações do Meet. Caso contrário, use uma captura local autorizada que siga as regras de consentimento dos participantes.',
+        },
+        {
+          icon: 'upload',
+          title: 'Coloque o arquivo aqui',
+          desc: 'MP4 ou M4A funcionam. Para MP4s grandes, extraia o áudio com ffmpeg primeiro ou faça login para divisão automática.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Transcrição, resumo, exportações',
+          desc: 'Obtenha uma transcrição com carimbo de data/hora, resumo de IA e exportações em TXT/SRT/VTT/DOCX. O tempo de processamento depende da duração e do tamanho do arquivo.',
+        },
+      ]}
+
+      exampleTitle="Exemplo de transcrição do Google Meet"
+      exampleFileName="meet-recording.mp4"
+      exampleDurationLabel="27:45"
+      exampleLines={[
+        { t: '0:00',  line: 'Olá equipe, obrigado por se juntarem. Sincronização rápida sobre o plano de lançamento do Q3 antes de eu ir para o offsite na próxima semana.' },
+        { t: '0:10',  line: 'O marketing finalizou o texto da página de destino. A engenharia está no caminho certo para o congelamento de funcionalidades na sexta-feira.' },
+        { t: '0:22',  line: 'Os documentos de suporte são o item de risco. Estamos atrasados em cerca de três dias e precisamos recuperar antes do lançamento.' },
+        { t: '0:33',  line: 'Posso transferir a Anna dos documentos de integração para ajudar esta semana. Isso deve recuperar a lacuna.' },
+        { t: '0:44',  line: 'Ótimo. Segundo tópico, as mudanças na página de preços que discutimos. Alguém tem preocupações antes de as enviarmos.' },
+        { t: '0:56',  line: 'A única coisa que eu destacaria é a estrutura do nível empresarial. Parece um pouco frágil para o ponto de preço.' },
+        { t: '1:08',  line: 'Ponto justo. Deixe-me revisar essa seção esta semana e compartilhar uma versão revisada na sexta-feira.' },
+      ]}
+      summaryPoints={[
+        'Lançamento do Q3 a caminho, congelamento de funcionalidades na sexta-feira.',
+        'Documentos de suporte atrasados em 3 dias (risco).',
+        'Anna reatribuída para fechar a lacuna dos documentos.',
+        'Estrutura do nível empresarial precisa de revisão.',
+      ]}
+      actionItems={[
+        'Reatribuir Anna para documentos de suporte esta semana',
+        'Revisar a estrutura do nível empresarial até sexta-feira',
+        'Confirmar o congelamento de funcionalidades na reunião de sexta-feira',
+      ]}
+
+      whyTitle="Por que escolher a Mictoo para transcrição do Google Meet"
+      whyCards={[
+        {
+          icon: 'lock',
+          title: 'Funciona com um arquivo de mídia',
+          desc: 'Carregue uma gravação do Drive ou uma captura local autorizada sem conectar a Mictoo à sua conta do Google.',
+        },
+        {
+          icon: 'target',
+          title: 'Texto com carimbo de data/hora para revisão',
+          desc: 'Revise nomes e termos técnicos em relação à gravação e, em seguida, exporte a transcrição corrigida no formato que você precisa.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Resumo de IA sempre incluído',
+          desc: 'O resumo da transcrição de IA do Workspace é um recurso pago separado. O nosso está incluído em todas as transcrições.',
+        },
+        {
+          icon: 'globe',
+          title: 'Traduza para mais de 50 idiomas',
+          desc: 'Recapitulação de reuniões em várias línguas sem um fornecedor de tradução.',
+        },
+      ]}
+
+      scenariosTitle="Cenários comuns do Meet"
+      scenarios={[
+        { icon: 'chat',      title: 'Reunião / sincronização' },
+        { icon: 'briefcase', title: 'Revisão do cliente' },
+        { icon: 'search',    title: 'Entrevista com usuário' },
+        { icon: 'users',     title: 'Reunião geral' },
+        { icon: 'headset',   title: 'Chamada de suporte' },
+        { icon: 'globe',     title: 'Multilíngue' },
+      ]}
+
+      tipsTitle="Dicas para gravações do Google Meet"
+      tips={[
+        'As gravações do Meet do Workspace são salvas no Drive › Gravações do Meet.',
+        'Nível gratuito: QuickTime (Mac) ou OBS (Win/Linux) funcionam bem.',
+        'MP4 grande? Extraia o áudio: ffmpeg -i meet.mp4 -vn -ac 1 -ar 16000 audio.m4a.',
+        'Faça login para divisão automática de reuniões longas.',
+      ]}
+
+      guidesTitle="Outras plataformas de reunião"
+      guides={[
+        { href: '/pt/zoom-transcription',          icon: 'video', title: 'Zoom',           desc: 'Nuvem + Local + M4A' },
+        { href: '/pt/teams-meeting-transcription', icon: 'video', title: 'MS Teams',       desc: 'Caminhos do OneDrive + SharePoint' },
+        { href: '/pt/meeting-transcription',       icon: 'video', title: 'Meeting hub',    desc: 'Qualquer plataforma, um upload' },
+        { href: '/pt/webinar-transcription',       icon: 'monitor', title: 'Webinars',     desc: 'ON24, Demio, StreamYard' },
+      ]}
+
       faq={[
-        { q: 'O Mictoo funciona com gravações Google Meet?', a: 'Sim. Baixe o MP4 da sua pasta Meet Recordings no Drive, depois envie aqui. Extrair o áudio (com ffmpeg ou qualquer ferramenta de áudio) acelera isso para reuniões longas.' },
-        { q: 'Preciso de um plano Google Workspace pago?', a: 'Você precisa de um plano Workspace pago para gravar um Meet, ponto. Uma vez que a gravação está no Drive, transcrever aqui é grátis independente do seu tier.' },
-        { q: 'Minha gravação volta para o Google?', a: 'Não. O arquivo vai para nosso provedor de transcrição (Groq, com OpenAI como backup) e é descartado após o processamento. Nada volta para o Google ou qualquer serviço Google.' },
-        { q: 'Como se compara com a transcrição nativa do Google?', a: 'A nossa é grátis e funciona em qualquer tier Workspace. A do Google é mais conveniente se seu plano inclui e suas reuniões são em inglês. Para não-inglês, sotaques ou reuniões bilíngues, a nossa é mais precisa.' },
-        { q: 'Minha gravação Meet passa de 60 MB. E agora?', a: 'Extraia só o áudio com ffmpeg ou uma ferramenta de áudio. Um vídeo de 1 GB normalmente cai para menos de 30 MB como áudio. Se o próprio áudio passa de 60 MB, divida em pedaços.' },
-        { q: 'Recebo etiquetas de orador?', a: 'Não automaticamente. O Whisper não faz diarização por padrão. Você precisa adicionar etiquetas manualmente. Para uma reunião de 4 pessoas com vozes distinguíveis, isso costuma levar 5 minutos.' },
-        { q: 'Funciona com mensagens de chat do Meet?', a: 'Não. Mensagens de chat são salvas separadamente pelo Google na pasta Meet Recordings. Só transcrevemos o áudio. Combine os dois você mesmo se precisa dos dois.' },
-        { q: 'Quão precisa é a transcrição Google Meet?', a: 'Para áudio limpo (bons microfones, sem ruído de fundo): 90-95%. Gravações de sala de conferência com múltiplos microfones ou speakerphones caem para 80-90%. Nomes e termos técnicos costumam precisar de cleanup.' },
-        { q: 'Posso transcrever um livestream Google Meet?', a: 'Não. Trabalhamos só com arquivos gravados, não com streams ao vivo. Quando o stream termina e a gravação fica salva no Drive, dá para baixar e transcrever.' },
-        { q: 'Quais idiomas vocês suportam?', a: 'Mais de 50 idiomas com detecção automática. Para reuniões abaixo de 5 minutos ou arquivos com intros não-falados, escolha o idioma manualmente para um resultado melhor.' },
-        { q: 'Posso exportar para um Google Doc?', a: 'Exportamos texto puro (TXT) e SRT. Copie e cole no Google Docs. Integração direta com Drive ainda não temos.' },
-        { q: 'Funciona com gravações Meet de outras orgs Workspace?', a: 'Se você tem acesso para baixar o arquivo do seu Drive, sim. Tratamos o arquivo simplesmente como MP4. Não verificamos nem nos importamos com a origem.' },
+        {
+          q: 'Preciso do Google Workspace para gravar uma chamada do Meet?',
+          a: 'A disponibilidade da gravação do Google depende da edição da conta do anfitrião, função na reunião, configurações do administrador e permissões. As gravações elegíveis são salvas no Drive. Se você fizer uma captura local em vez disso, obtenha o consentimento necessário dos participantes e siga a política aplicável.',
+        },
+        {
+          q: 'Onde as gravações do Meet do Workspace são salvas?',
+          a: 'No Drive do organizador da reunião: Meu Drive › Gravações do Meet. O MP4 geralmente aparece dentro de alguns minutos após o término da reunião. Uma notificação por e-mail é enviada quando está pronto.',
+        },
+        {
+          q: 'Devo usar a transcrição do Meet ou carregar a gravação?',
+          a: 'Use a transcrição do Meet quando estiver disponível e atender às suas necessidades. Carregar a mídia é útil quando você deseja exportações da Mictoo, tradução ou uma transcrição adicional para revisar. A precisão varia com o áudio.',
+        },
+        {
+          q: 'Minha gravação do Meet tem mais de 60 MB. E agora?',
+          a: 'Extraia apenas o áudio com ffmpeg -i meet.mp4 -vn -ac 1 -ar 16000 audio.m4a. Ou faça login para divisão automática de arquivos longos de até cerca de 3 horas.',
+        },
+        {
+          q: 'Posso obter um resumo de IA da chamada do Meet?',
+          a: 'Sim. O resumo de IA aparece automaticamente ao lado da transcrição. Um bom primeiro rascunho para o e-mail de recapitulação ou documento de acompanhamento.',
+        },
+        {
+          q: 'A Mictoo identifica quem está falando no Meet?',
+          a: 'Não. A transcrição atual é texto contínuo com carimbos de data/hora por linha e sem rótulos automáticos de falante.',
+        },
+        {
+          q: 'As gravações do Meet são mantidas em seus servidores?',
+          a: 'Não. O áudio é transmitido para o fornecedor de transcrição, processado uma vez e descartado. Apenas a transcrição persiste em contas com login.',
+        },
       ]}
+
+      ctaHeadline="Transforme chamadas do Meet em texto limpo"
+      ctaSubtitle="Carregue uma gravação autorizada do Drive ou uma captura local para texto, resumo e exportações."
+      ctaButton="Carregar gravação do Meet"
+
       relatedLinks={[
-        { href: '/pt/zoom-transcription', label: 'Transcrição Zoom', desc: 'Para gravações Zoom Cloud ou locais.' },
-        { href: '/pt/teams-meeting-transcription', label: 'Transcrição Teams', desc: 'Para gravações Microsoft Teams.' },
-        { href: '/pt/meeting-transcription', label: 'Transcrição de reuniões', desc: 'Para gravações de outras plataformas.' },
-        { href: '/pt/transcribe-video-to-text', label: 'Vídeo em texto', desc: 'Página genérica de vídeo em texto.' },
+        { href: '/pt/meeting-transcription',       label: 'Transcrição de Reuniões' },
+        { href: '/pt/zoom-transcription',          label: 'Transcrição do Zoom' },
+        { href: '/pt/teams-meeting-transcription', label: 'Transcrição do Teams' },
+        { href: '/pt/webinar-transcription',       label: 'Transcrição de Webinars' },
+        { href: '/pt/business-transcription',      label: 'Transcrição Empresarial' },
       ]}
     />
   )

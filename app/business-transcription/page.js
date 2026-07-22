@@ -1,9 +1,9 @@
 import UseCaseLayout from '@/components/UseCaseLayout'
 
 export const metadata = {
-  title: 'Business Transcription: Internal Meetings, All-Hands, Exec Briefings | Mictoo',
+  title: 'Business Meeting Transcription and AI Summary | Mictoo',
   description:
-    'Transcribe internal company meetings without IT bureaucracy. Founder 1:1s, all-hands, strategy sessions, exec briefings. Upload the recording, get a transcript and summary.',
+    'Turn authorized internal meeting recordings into timestamped transcripts, AI summaries, and exportable recap documents.',
   alternates: {
     canonical: 'https://mictoo.com/business-transcription',
     languages: {
@@ -42,7 +42,7 @@ export default function BusinessTranscriptionPage() {
       badge="Founders · Execs · Small teams · Free"
       h1First="Business Transcription"
       h1Second="Founder 1:1s, all-hands, exec briefings"
-      subtitle="A practical transcription tool for internal company meetings. Upload the recording, get a transcript and AI summary. No IT ticket to file, no per-seat license to provision."
+      subtitle="A practical transcription tool for authorized internal meetings. Upload the recording, review the transcript and AI summary, then export a recap for your team."
       currentHref="/business-transcription"
 
       platforms={[
@@ -64,7 +64,7 @@ export default function BusinessTranscriptionPage() {
         {
           icon: 'upload',
           title: 'Drop the file here',
-          desc: 'No IT approval needed. Runs entirely on your side, no admin console, no per-seat license.',
+          desc: 'Upload a recording that your organization allows you to process. No software installation or directory integration is required.',
         },
         {
           icon: 'editPen',
@@ -101,8 +101,8 @@ export default function BusinessTranscriptionPage() {
       whyCards={[
         {
           icon: 'lock',
-          title: 'No IT approval loop',
-          desc: 'Runs on your side. No admin dashboard, no per-seat license, no compliance review to schedule.',
+          title: 'No software installation',
+          desc: 'The browser workflow does not require a desktop client or directory integration. Your organization policies still apply.',
         },
         {
           icon: 'sparkles',
@@ -153,8 +153,8 @@ export default function BusinessTranscriptionPage() {
           a: 'The audio streams to the transcription provider (Groq/Replicate/Deepgram/OpenAI depending on routing), gets processed once, and is dropped from memory. We never write the audio to disk. Only the text transcript persists, and only if you sign in and save it.',
         },
         {
-          q: 'Do I need IT to approve this?',
-          a: 'No. Mictoo is a browser tool. Nothing gets installed, no admin console, no directory integration, no admin enablement. If your company allows browsing SaaS websites, you can use it.',
+          q: 'Do I need approval to upload a company recording?',
+          a: 'That depends on your organization policies and the information in the recording. Mictoo requires no software installation, but you should obtain any required authorization before sending company media to an external transcription provider.',
         },
         {
           q: 'Can I use Mictoo for regulated industries?',
@@ -179,7 +179,7 @@ export default function BusinessTranscriptionPage() {
       ]}
 
       ctaHeadline="Turn internal meetings into recap docs"
-      ctaSubtitle="Founder 1:1s, all-hands, exec briefings. Transcript and summary without an IT ticket."
+      ctaSubtitle="Founder 1:1s, all-hands, and exec briefings. Upload authorized media for a transcript and summary."
       ctaButton="Upload a business meeting"
 
       relatedLinks={[

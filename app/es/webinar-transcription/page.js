@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/webinar-transcription',
@@ -15,82 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Transcripción de webinars — Transcript gratis para grabaciones | Mictoo',
-  description: 'Transcribe grabaciones de webinars a texto y subtítulos SRT gratis. Funciona con Zoom, Webex, GoToWebinar y cualquier export MP4 o MP3. Sin registro.',
-  alternates: { canonical: 'https://mictoo.com/es/webinar-transcription', languages: LANGS },
-
+  title: 'Transcripción de Webinar con Resumen y Subtítulos | Mictoo',
+  description:
+    'Sube una grabación de webinar y obtén texto con marcas de tiempo, un resumen de IA y subtítulos SRT/VTT para la repetición.',
+  alternates: {
+    canonical: 'https://mictoo.com/es/webinar-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Transcripción de webinars — Transcript gratis para grabaciones | Mictoo",
-    description: "Transcribe grabaciones de webinars a texto y subtítulos SRT gratis. Funciona con Zoom, Webex, GoToWebinar y cualquier export MP4 o MP3. Sin registro.",
-    url: "https://mictoo.com/es/webinar-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Transcripción de Webinar: Gratis | Mictoo',
+    description: 'Sube tu grabación de webinar, obtén una transcripción limpia.',
+    url: 'https://mictoo.com/es/webinar-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Transcripción de webinars — Transcript gratis para grabaciones | Mictoo",
-    description: "Transcribe grabaciones de webinars a texto y subtítulos SRT gratis. Funciona con Zoom, Webex, GoToWebinar y cualquier export MP4 o MP3. Sin registro.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Transcripción de Webinar',
+    description: 'Transcripción gratuita para cualquier plataforma de webinar.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function EsWebinarPage() {
+export default function EsWebinarTranscriptionPage() {
   return (
-    <LandingLayout
-      badge="Webinars · MP4 · Gratis"
-      h1={<>Transcripción de webinars<br /><span className="text-brand-600">Generador gratis de transcript</span></>}
-      subtitle="Convierte la grabación de tu webinar en una transcripción de texto buscable o en un archivo de subtítulos SRT. Funciona con Zoom, Webex, GoToWebinar y cualquier export MP4/MP3."
-      defaultLanguage="es"
-      valueBlock={
-        <>
-          <p>Un webinar no termina cuando se cierra la sala. La grabación puede alimentar artículos, documentación, follow-up comercial, base de conocimiento y subtítulos.</p>
-          <p>Mictoo convierte el audio o vídeo del webinar en texto editable para reutilizarlo después del evento.</p>
-        </>
-      }
-      howItWorks={[
-        { title: 'Descarga la grabación', desc: 'Exporta el webinar desde Zoom, Teams, Meet u otra plataforma.' },
-        { title: 'Sube el archivo', desc: 'Mictoo transcribe la presentación, el demo y la sección de preguntas.' },
-        { title: 'Reutiliza el contenido', desc: 'Crea notas, clips, artículos, subtítulos o documentación interna.' },
+    <UseCaseLayout
+      locale="es"
+      badge="Webinars · Formato largo · Gratis"
+      h1First="Transcripción de Webinar"
+      h1Second="Transcripción gratuita para cualquier grabación de webinar"
+      subtitle="Sube desde Zoom Webinars, StreamYard, Demio, ON24, GoToWebinar o Restream. Obtén una transcripción completa, resumen de IA y subtítulos listos para la página de repetición bajo demanda."
+      currentHref="/es/webinar-transcription"
+
+      platforms={[
+        { name: 'Zoom Webinar', iconKey: 'broadcast',       brandBg: '#2D8CFF', href: '/es/zoom-transcription' },
+        { name: 'StreamYard',   iconKey: 'broadcast',       brandBg: '#6B21A8' },
+        { name: 'Restream',     iconKey: 'broadcast',       brandBg: '#EC1E62' },
+        { name: 'ON24',         iconKey: 'videoCameraFill', brandBg: '#3B82F6' },
+        { name: 'Demio',        iconKey: 'videoCameraFill', brandBg: '#F97316' },
+        { name: 'Livestorm',    iconKey: 'videoCameraFill', brandBg: '#DA1F5C' },
       ]}
-      whyUse={{
-        title: 'Por qué transcribir webinars',
-        bullets: [
-          { title: 'Búsqueda rápida', desc: 'Encuentra preguntas, objeciones y temas sin ver todo el vídeo.' },
-          { title: 'Contenido post-evento', desc: 'Convierte la sesión en resumen, blog post o email de seguimiento.' },
-          { title: 'Subtítulos', desc: 'Usa la transcripción como base para captions y accesibilidad.' },
-          { title: 'Documentación interna', desc: 'Guarda demos, entrenamientos y lanzamientos en texto consultable.' },
-        ],
-      }}
-      useCases={{
-        title: 'Usos de una transcripción de webinar',
-        items: [
-          { title: 'Marketing', desc: 'Extrae mensajes, preguntas y clips para campañas.' },
-          { title: 'Customer training', desc: 'Convierte sesiones educativas en guías paso a paso.' },
-          { title: 'Q&A', desc: 'Reutiliza respuestas frecuentes para soporte y ventas.' },
-          { title: 'Demos internas', desc: 'Documenta procesos y decisiones de producto.' },
-        ],
-      }}
-      proTips={{
-        title: 'Consejos para webinars',
-        tips: [
-          { title: 'Separa sesiones largas', desc: 'Divide keynote, demo y Q&A para revisar más rápido.' },
-          { title: 'Revisa términos de marca', desc: 'Productos, nombres de clientes y siglas suelen necesitar ajustes.' },
-          { title: 'Extrae audio de MP4 grandes', desc: 'Una pista M4A o MP3 puede ahorrar tiempo de subida.' },
-        ],
-      }}
+
+      howItWorksTitle="Cómo funciona la transcripción de webinars"
+      steps={[
+        {
+          icon: 'folder',
+          title: 'Exporta la grabación del webinar',
+          desc: 'La mayoría de las plataformas ofrecen una descarga en MP4 después del evento. Algunas también proporcionan audio en M4A.',
+        },
+        {
+          icon: 'upload',
+          title: 'Suelta el archivo aquí',
+          desc: 'Los webinars largos (más de 60 minutos) se benefician del auto-split al iniciar sesión. Gratis hasta 25 MB anónimamente, 60 MB al iniciar sesión.',
+        },
+        {
+          icon: 'editPen',
+          title: 'Transcripción, resumen, subtítulos',
+          desc: 'Transcripción con marcas de tiempo para la página de repetición, resumen de IA como resumen del blog, SRT para subtítulos en el video bajo demanda.',
+        },
+      ]}
+
+      exampleTitle="Ejemplo de transcripción de webinar"
+      exampleFileName="product-launch-webinar.mp4"
+      exampleDurationLabel="1:04:22"
+      exampleLines={[
+        { t: '0:00',  line: 'Bienvenidos a todos, y gracias por unirse. Mi nombre es Sam y dirijo el marketing de producto en la empresa.' },
+        { t: '0:12',  line: 'Hoy estamos lanzando oficialmente la versión cinco de la plataforma, y quiero mostrarles lo que hay de nuevo.' },
+        { t: '0:25',  line: 'Tres cambios principales: informes reconstruidos, integraciones nativas con los diez principales CRM, y un nuevo modelo de precios.' },
+        { t: '0:40',  line: 'Déjenme comenzar con los informes porque ese es el cambio que la mayoría de ustedes ha estado pidiendo durante dos años.' },
+        { t: '0:52',  line: 'Los informes antiguos eran lentos, se rompían con grandes conjuntos de datos y eran difíciles de personalizar. Los tres problemas están solucionados.' },
+        { t: '1:07',  line: 'Aquí hay una demostración en vivo del nuevo generador de informes. Mientras hago clic, presten atención a la rapidez con que se actualizan las vistas previas.' },
+        { t: '1:22',  line: 'Cada campo es arrastrable, los filtros son apilables y puedes guardar cualquier informe como una plantilla compartida.' },
+      ]}
+      summaryPoints={[
+        'Lanzamiento de la versión 5 con 3 cambios principales.',
+        'Informes reconstruidos (soluciona velocidad, tamaño del conjunto de datos, personalización).',
+        'Integraciones nativas con los 10 principales CRM.',
+        'Nuevo modelo de precios.',
+      ]}
+      actionItems={[
+        'Borrador de resumen del blog a partir de la transcripción',
+        'Cortar clip de demostración para redes sociales',
+        'Publicar repetición subtitulada en demanda',
+      ]}
+
+      whyTitle="Por qué elegir Mictoo para la transcripción de webinars"
+      whyCards={[
+        {
+          icon: 'clip',
+          title: 'Subtítulos SRT para la repetición',
+          desc: 'Las marcas de tiempo se alinean con el video original. Suelta el SRT en tu reproductor de repetición bajo demanda o carga en YouTube.',
+        },
+        {
+          icon: 'sparkles',
+          title: 'Resumen de IA para el resumen del blog',
+          desc: 'Convierte un webinar de 60 minutos en un resumen de 200 palabras. Un sólido primer borrador para el correo electrónico de seguimiento o publicación en el blog.',
+        },
+        {
+          icon: 'search',
+          title: 'Transcripción buscable en la página de destino',
+          desc: 'Publica la transcripción en la página de destino bajo demanda. Los asistentes pueden escanear, mejora el SEO, nadie tiene que ver 60 minutos.',
+        },
+        {
+          icon: 'globe',
+          title: 'Traducción para asistentes internacionales',
+          desc: 'Traducción con un clic a más de 50 idiomas para correos electrónicos de seguimiento y páginas de repetición no en inglés.',
+        },
+      ]}
+
+      scenariosTitle="Escenarios comunes de webinars"
+      scenarios={[
+        { icon: 'broadcast', title: 'Lanzamiento de producto' },
+        { icon: 'book',      title: 'Entrenamiento / academia' },
+        { icon: 'briefcase', title: 'Habilitación de ventas' },
+        { icon: 'target',    title: 'Educación del cliente' },
+        { icon: 'users',     title: 'Sesión informativa para analistas' },
+        { icon: 'globe',     title: 'Evento multilingüe' },
+      ]}
+
+      tipsTitle="Consejos para grabaciones de webinars"
+      tips={[
+        'Preferir exportación solo de audio cuando tu plataforma lo ofrezca.',
+        'Para webinars de más de 60 minutos, inicia sesión para auto-split hasta 3 horas.',
+        'Incluye el nombre del anfitrión en el archivo para que el encabezado de la transcripción mantenga el contexto.',
+        'Extrae citas clave de la transcripción para clips sociales.',
+      ]}
+
+      guidesTitle="Herramientas relacionadas"
+      guides={[
+        { href: '/es/zoom-transcription',        icon: 'video', title: 'Zoom Webinar',      desc: 'Grabación en la nube MP4 / M4A' },
+        { href: '/es/free-srt-generator',        icon: 'file',  title: 'Generador de SRT',     desc: 'Subtítulos de video bajo demanda' },
+        { href: '/es/podcast-transcription',     icon: 'headset', title: 'Podcast',         desc: 'Reutiliza el audio del webinar' },
+        { href: '/es/timestamped-transcription', icon: 'file',  title: 'Con marcas de tiempo',       desc: 'Exportación amigable para el lector' },
+      ]}
+
       faq={[
-        { q: '¿Cómo descargo la grabación de mi webinar en Zoom o Webex?', a: 'En Zoom: portal web → Grabaciones → clic en el webinar → Descargar. En Webex: abre la grabación en Mis Grabaciones → Descargar. Ambos exportan en MP4 por defecto.' },
-        { q: '¿Puedo obtener una transcripción mientras el webinar está en directo?', a: 'Mictoo trabaja sobre archivos grabados, no sobre streams en vivo. Para subtítulos en tiempo real usa la función de live captions de tu plataforma de webinar y luego sube la grabación para una transcripción pulida.' },
-        { q: '¿Qué pasa con varios oradores y sesiones de preguntas?', a: 'Mictoo genera una única transcripción con todo lo hablado. Las etiquetas de orador (Anfitrión, Panelista 1, Audiencia) pueden añadirse manualmente en el editor del navegador antes de descargar.' },
-        { q: '¿Cuál es la duración máxima del webinar?', a: 'Hasta 25 MB por archivo. Un webinar de 60 minutos en audio mono a 64 kbps cabe sin problema; exporta a menor bitrate o extrae el audio M4A para sesiones más largas.' },
-        { q: '¿La transcripción es precisa con términos técnicos o de sector?', a: 'La precisión es alta con audio claro. Marcas, siglas y terminología inusual a veces se escriben mal — rápido de corregir en el editor del navegador antes de exportar.' },
+        {
+          q: '¿Con qué plataformas de webinar funciona Mictoo?',
+          a: 'Con todas. Aceptamos cualquier archivo de audio o video independientemente de la plataforma. Zoom Webinars, StreamYard, Demio, Livestorm, ON24, GoToWebinar, Restream, Riverside Studio y más.',
+        },
+        {
+          q: 'Mi grabación de webinar supera los 60 MB. ¿Qué hago?',
+          a: 'Inicia sesión para auto-split (hasta aproximadamente 3 horas). O exporta solo audio desde la plataforma, o extrae audio: ffmpeg -i webinar.mp4 -vn -ac 1 -ar 16000 audio.m4a.',
+        },
+        {
+          q: '¿Puedo publicar la transcripción en la página de repetición bajo demanda?',
+          a: 'Sí. Copia la transcripción en el HTML de tu página de destino bajo demanda. Agrega contenido buscable, mejora el SEO, da a los asistentes que no pueden ver una forma de escanear.',
+        },
+        {
+          q: '¿Puedo obtener subtítulos para el video grabado del webinar?',
+          a: 'Sí. Descarga SRT o VTT después de la transcripción. Ambos funcionan con YouTube, Vimeo, Wistia, Descript y todos los reproductores de video modernos.',
+        },
+        {
+          q: '¿Mictoo identifica a los presentadores frente a los oradores de preguntas y respuestas?',
+          a: 'No. La transcripción actual es texto continuo con marcas de tiempo por línea y sin etiquetas automáticas de oradores.',
+        },
+        {
+          q: '¿Puedo traducir la transcripción del webinar?',
+          a: 'Sí. Elige un idioma de destino y haz clic en Traducir. Útil para asistentes internacionales o páginas de repetición no en inglés.',
+        },
+        {
+          q: '¿Se mantienen las grabaciones de webinars en sus servidores?',
+          a: 'No. El archivo se transmite al proveedor de transcripción, se procesa una vez y se elimina. Solo la transcripción persiste en cuentas con sesión iniciada.',
+        },
       ]}
+
+      ctaHeadline="Convierte tu webinar en un activo listo para la repetición"
+      ctaSubtitle="Transcripción completa, subtítulos SRT, resumen de IA y contenido buscable en la página de destino."
+      ctaButton="Sube una grabación de webinar"
+
       relatedLinks={[
-        { href: '/es/meeting-transcription', label: 'Transcripción de reuniones' },
-        { href: '/es/zoom-transcription', label: 'Transcripción de Zoom' },
-        { href: '/es/free-srt-generator', label: 'Generador SRT' },
-        { href: '/es', label: 'Todos los formatos' },
+        { href: '/es/meeting-transcription',   label: 'Transcripción de Reuniones' },
+        { href: '/es/zoom-transcription',      label: 'Transcripción de Zoom' },
+        { href: '/es/podcast-transcription',   label: 'Transcripción de Podcast' },
+        { href: '/es/lecture-transcription',   label: 'Transcripción de Conferencias' },
+        { href: '/es/free-srt-generator',      label: 'Generador de SRT Gratuito' },
       ]}
     />
   )

@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/lecture-transcription',
@@ -15,81 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: '강의 받아쓰기 — 무료 AI 생성기 | Mictoo',
+  title: '강의 전사 서비스 | Mictoo',
   description:
-    '무료 강의 받아쓰기. 강의, 코스 또는 세미나 녹화(MP3, M4A, MP4)를 업로드하여 깨끗한 텍스트를 몇 초 만에 받으세요. 학생용.',
-  alternates: { canonical: 'https://mictoo.com/ko/lecture-transcription', languages: LANGS },
-
+    '녹음된 수업, 강의 또는 세미나를 업로드하고 검색 가능한 텍스트, 타임스탬프, AI 요약 및 파일을 내보내세요.',
+  alternates: {
+    canonical: 'https://mictoo.com/ko/lecture-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "강의 받아쓰기 — 무료 AI 생성기 | Mictoo",
-    description: "무료 강의 받아쓰기. 강의, 코스 또는 세미나 녹화(MP3, M4A, MP4)를 업로드하여 깨끗한 텍스트를 몇 초 만에 받으세요. 학생용.",
-    url: "https://mictoo.com/ko/lecture-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: '강의 전사: 무료 전사 생성기 | Mictoo',
+    description: '녹음된 수업이나 세미나를 업로드하고 몇 초 안에 깔끔한 텍스트를 얻으세요.',
+    url: 'https://mictoo.com/ko/lecture-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "강의 받아쓰기 — 무료 AI 생성기 | Mictoo",
-    description: "무료 강의 받아쓰기. 강의, 코스 또는 세미나 녹화(MP3, M4A, MP4)를 업로드하여 깨끗한 텍스트를 몇 초 만에 받으세요. 학생용.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: '강의 전사: 무료 생성기',
+    description: '수업이나 세미나 녹음을 업로드하세요.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function KoLecturePage() {
+export default function KoLectureTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="ko"
-      badge="학생 · 학술 · 무료"
-      h1={<>강의 받아쓰기<br /><span className="text-brand-600">무료 강의 받아쓰기 도구</span></>}
-      subtitle="모든 녹화된 강의를 공부용 깨끗한 텍스트로 변환. 대학, 온라인 코스, 컨퍼런스 톡, 전문 교육. 계정 불필요, 분당 과금 없음."
-      howItWorks={[
-        { icon: '🎓', title: '강의 오디오 또는 비디오 드롭', desc: '음성 레코더의 MP3, 휴대폰의 M4A, Zoom 강의 또는 온라인 강의의 화면 녹화 MP4, 필드 레코더의 WAV. 모두 작동.' },
-        { icon: '⚡', title: 'AI가 받아쓰기', desc: 'Whisper large-v3가 오디오를 읽습니다. 60분 강의는 약 1분에 완료.' },
-        { icon: '📋', title: '받아쓰기 받기', desc: '읽고, 노트에 복사하거나 TXT 또는 SRT로 다운로드. 내보내기 전에 잘못된 전문 용어를 인라인으로 수정.' },
+    <UseCaseLayout
+      locale="ko"
+      badge="학생 · 학계 · 무료"
+      h1First="강의 전사"
+      h1Second="수업 및 세미나를 위한 무료 전사"
+      subtitle="Zoom, Panopto, YouTube, Kaltura 또는 휴대폰에서 녹음한 강의를 업로드하세요. 학습 노트, 복습 및 인용을 위한 타임스탬프가 포함된 검색 가능한 전사를 얻으세요."
+      currentHref="/ko/lecture-transcription"
+
+      platforms={[
+        { name: 'Zoom',      iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/ko/zoom-transcription' },
+        { name: 'YouTube',   iconKey: 'videoCameraFill', brandBg: '#FF0000' },
+        { name: 'Panopto',   iconKey: 'cap',             brandBg: '#014A96' },
+        { name: 'Kaltura',   iconKey: 'cap',             brandBg: '#FA6425' },
+        { name: 'Camtasia',  iconKey: 'videoCameraFill', brandBg: '#00A651' },
+        { name: 'Voice Memo',iconKey: 'mic',             brandBg: '#F97316', href: '/ko/voice-memo-to-text' },
       ]}
-      whyUse={{ title: '강의에 Mictoo를 사용하는 이유', bullets: [
-        { title: '롱폼 OK', desc: '무료 가입 후 파일당 최대 60분. 90분 강의는 45분 청크 2개로 분할. 받아쓰기는 재조립 가능.' },
-        { title: '전문 어휘를 대부분보다 잘 처리', desc: 'Whisper는 학술 강의를 포함한 방대한 다양성의 오디오에서 훈련되었습니다. 라틴어, 전문 용어, 수학 용어, 코드 스니펫이 종종 예상보다 깨끗하게 나옵니다.' },
-        { title: '강의당 비용 없음', desc: '학생에게는 코스당 받아쓰기 비용을 지불하는 것이 낭비. 분 카운터 없는 무료는 학기의 모든 강의를 받아쓸 수 있음을 의미.' },
-        { title: '프라이버시와 저작권', desc: '파일은 받아쓰기 제공업체로 스트리밍되고 폐기. 오디오를 보관하지 않습니다. 당신의 것(당신의 녹화)을 받아쓰지만 제3자 스토리지 서비스에 업로드하고 싶지 않을 때 유용.' },
-        { title: '50개 이상의 언어', desc: '국제 학생과 비영어 온라인 코스가 모두 작동. 자동 감지가 대부분의 케이스를 커버.' },
-      ]}}
-      useCases={{ title: '학생과 학자가 강의 받아쓰기를 사용하는 용도', items: [
-        { title: '검색 가능한 학습 노트', desc: '받아쓰기를 Notion, Obsidian 또는 Word 문서에 드롭. 교수가 언급한 모든 용어에 Ctrl+F. 90분 오디오를 스크럽하는 것보다 좋음.' },
-        { title: '시험 준비', desc: '손글씨 노트를 검토하면서 받아쓰기를 훑어보기. 라이브 강의 중 놓친 것을 잡습니다.' },
-        { title: '비원어민용 강의 번역', desc: '원본 언어로 받아쓰고 DeepL이나 ChatGPT로 번역. 제2언어로 코스를 듣는 학생에게 유용.' },
-        { title: '청각 장애와 난청 학생의 접근성', desc: '받아쓰기나 SRT 파일은 다른 양식으로 같은 콘텐츠를 제공. 일부 대학에서는 녹화된 코스 콘텐츠에 이를 요구.' },
-        { title: '플래시카드와 학습 자료 만들기', desc: '받아쓰기는 Anki 카드, 요약 문서 또는 AI 지원 학습 도구에 공급.' },
-      ]}}
-      proTips={{ title: '강의 받아쓰기 팁', tips: [
-        { title: '대면 강의에서는 교수 가까이 앉기', desc: '뒷줄에서 방 소음을 통해 녹음하면 많은 갭이 있는 받아쓰기를 생성. 앞줄의 휴대폰, 화면 아래로 향하면 깨끗한 음성을 캡처.' },
-        { title: '긴 강의에는 전용 음성 레코더 사용', desc: '휴대폰 녹음은 공격적인 자동 레벨링과 노이즈 감소가 있어 받아쓰기를 손상. Zoom H1n이나 유사한 입문 레코더가 80달러에 눈에 띄게 깨끗한 오디오 제공.' },
-        { title: '온라인 강의에는 시스템 오디오를 직접 녹음', desc: 'Windows나 Mac의 OBS Studio는 시스템에서 직접 강의 오디오를 녹음 가능. 노트북 마이크로 녹음하는 것보다 깨끗합니다.' },
-        { title: '언어를 수동으로 설정', desc: '자동 감지는 보통 맞지만 다른 언어의 교수 워밍업에 혼란될 수 있습니다. 드롭다운에서 명시적으로 강의 언어 선택.' },
-        { title: '관리 공지사항이면 처음 5분 잘라내기', desc: '"숙제 했나요? 3장을 읽었나요?"는 받아쓰기에 유용하지 않습니다. 파일 크기 예산을 절약하기 위해 업로드 전에 Audacity에서 잘라내기.' },
-        { title: '방정식이 있는 STEM 강의에서는 받아쓰기가 말한 수학을 캡처, 방정식이 아님', desc: '칠판의 수학 표현은 오디오에 없으므로 받아쓰기에도 없음. 시각적 부분을 위해 별도로 캡처해야 합니다(칠판 사진, 슬라이드 스크린샷).' },
-        { title: '첫 검토 시 받아쓰기를 읽으면서 녹화를 다시 듣기', desc: '교수 특정 용어와 방정식 참조를 수정하는 최고의 방법. 한 번 정리되면 받아쓰기가 독립적으로 섭니다.' },
-      ]}}
+
+      howItWorksTitle="강의 전사 작동 방식"
+      steps={[
+        {
+          icon: 'folder',
+          title: '강의 내보내기',
+          desc: 'Panopto/Kaltura에서 다운로드하거나, Zoom 클라우드에서 저장하거나, 수업 중에 휴대폰으로 녹음하세요.',
+        },
+        {
+          icon: 'upload',
+          title: '파일을 여기로 드롭하세요',
+          desc: 'MP3, MP4, M4A, WAV, MOV 모두 작동합니다. 긴 강의는 로그인 시 자동으로 분할됩니다.',
+        },
+        {
+          icon: 'editPen',
+          title: '노트, 요약, 인용',
+          desc: '검색 가능한 타임스탬프 전사, AI 요약, 학습 노트를 위한 DOCX. 시험 준비를 위해 전사와 대화하세요.',
+        },
+      ]}
+
+      exampleTitle="예시 강의 전사"
+      exampleFileName="intro-microeconomics-lecture-08.mp4"
+      exampleDurationLabel="47분 32초"
+      exampleLines={[
+        { t: '0:00',  line: '좋습니다. 지난 주에 소비자 잉여 개념을 마쳤습니다. 오늘은 생산자 잉여로 그 개념을 확장합니다.' },
+        { t: '0:11',  line: '생산자 잉여는 생산자가 상품에 대해 수용할 의사가 있는 금액과 실제로 받는 금액의 차이입니다.' },
+        { t: '0:23',  line: '소비자 잉여와 생산자 잉여를 합치면 세금이나 가격 통제를 도입하기 전의 시장에서의 총 복지를 제공합니다.' },
+        { t: '0:35',  line: '그렇다면 이 개념이 실제로 왜 중요할까요? 정책이 시장을 개선하는지 악화시키는지 평가할 수 있게 해주기 때문입니다.' },
+        { t: '0:47',  line: '단위 세금을 고려해보세요. 세금 금액만큼 공급 곡선이 위로 이동하고, 두 잉여 모두 줄어듭니다.' },
+        { t: '0:58',  line: '구매자가 지불하는 금액과 판매자가 받는 금액 사이에 나타나는 간극을 우리는 사중손실이라고 부릅니다.' },
+        { t: '1:08',  line: '워크북을 31페이지로 열어보세요. 함께 수치 예제를 풀어봅시다.' },
+      ]}
+      summaryPoints={[
+        '요약: 이전 강의에서의 소비자 잉여.',
+        '새로운 개념: 생산자 잉여와 총 복지.',
+        '세금 분석에 적용됨.',
+        '사중손실을 수치적으로 설명함.',
+      ]}
+      actionItems={[
+        '워크북 31페이지 검토',
+        '사중손실 계산 연습',
+        '목요일 전에 4장 읽기',
+      ]}
+
+      whyTitle="강의 전사에 Mictoo를 선택하는 이유"
+      whyCards={[
+        {
+          icon: 'search',
+          title: '전사 내에서 검색 가능',
+          desc: '45분 강의 전체에서 Ctrl-F로 어떤 개념이든 1초 안에 찾을 수 있습니다. 비디오를 스크럽하는 것보다 낫습니다.',
+        },
+        {
+          icon: 'sparkles',
+          title: '복습 노트를 위한 AI 요약',
+          desc: '요약은 훌륭한 복습 시작점입니다. 이미 아는 것은 줄이고, 놓친 것은 유지하세요.',
+        },
+        {
+          icon: 'chat',
+          title: '강의와 대화하기',
+          desc: '시험 준비를 위해 자료에 대한 질문을 하세요. RAG 스타일의 답변은 정확한 타임스탬프를 인용합니다.',
+        },
+        {
+          icon: 'globe',
+          title: '비원어민 학생을 위한 번역',
+          desc: '영어로 강의하지만 포르투갈어로 공부하나요? 50개 이상의 언어로 원클릭 번역.',
+        },
+      ]}
+
+      scenariosTitle="일반적인 강의 시나리오"
+      scenarios={[
+        { icon: 'book',      title: '대학 수업' },
+        { icon: 'cap' ,      title: '온라인 코스' },
+        { icon: 'search',    title: '시험 복습' },
+        { icon: 'editPen',   title: '학습 노트' },
+        { icon: 'globe',     title: '비원어민 학생' },
+        { icon: 'headset',   title: '녹음된 세미나' },
+      ]}
+
+      tipsTitle="더 깔끔한 강의 전사를 위한 팁"
+      tips={[
+        '앞쪽에 앉고 휴대폰을 백업 마이크로 사용하세요.',
+        '60 MB를 초과하는 긴 강의는 로그인 시 자동으로 분할됩니다.',
+        '기술적이거나 비영어 콘텐츠에 대해 언어를 명시적으로 설정하세요.',
+        '전사 후에 후속 질문을 하려면 채팅을 사용하세요.',
+      ]}
+
+      guidesTitle="관련 학습 도구"
+      guides={[
+        { href: '/ko/zoom-transcription',        icon: 'video', title: 'Zoom 강의',      desc: '클라우드 녹음 다운로드' },
+        { href: '/ko/youtube-to-text',           icon: 'video', title: 'YouTube 강의',   desc: 'URL 붙여넣기 또는 업로드' },
+        { href: '/ko/voice-memo-to-text',        icon: 'mic',   title: '휴대폰 녹음',   desc: '수업 중 iPhone 음성 메모' },
+        { href: '/ko/timestamped-transcription', icon: 'file',  title: '타임스탬프 노트', desc: '시간 정렬된 내보내기' },
+      ]}
+
       faq={[
-        { q: '대학 수업 과제에 충분히 정확한가요?', a: '대부분의 강의 콘텐츠에는 네. Whisper large-v3는 깨끗한 강의 오디오에서 90-95% 정확도를 생성. 전문 용어와 고유 명사는 종종 정리가 필요. 받아쓰기를 학습 노트로 사용, 인용을 위한 표준 소스로는 아님.' },
-        { q: '내 강의가 영어가 아닙니다. 작동합니까?', a: '네. Whisper는 주요 언어에서 좋은 정확도, 많은 다른 언어에 기본 지원으로 50개 이상의 언어를 지원. 최상의 결과를 위해 드롭다운에서 수동으로 언어 선택.' },
-        { q: '내 강의가 90분입니다. 어떻게 해야?', a: '분할. 우리 한도는 파일당 60분. 자연스러운 휴식 지점(점심 휴식이나 주제 전환)에서 45분 청크 2개로 자르세요.' },
-        { q: '강의를 받아쓰는 것이 합법적입니까?', a: '대부분의 관할권에서 녹음에 합법적 액세스가 있는 한 개인 학습 사용에는 일반적으로 네. 재배포(받아쓰기를 온라인 게시, 학습 자료 판매)에는 강사나 기관의 허가가 필요. 일부 대학은 강의 녹음과 받아쓰기에 명시적 정책이 있습니다. 본인 것을 확인하세요.' },
-        { q: 'Coursera, edX 또는 Khan Academy의 비디오 강의를 받아쓸 수 있습니까?', a: '비디오 파일을 다운로드할 수 있다면, 네. 일부 플랫폼은 오프라인 보기를 위한 다운로드를 허용(MP4를 받음). 여기에 업로드. 다운로드를 허용하지 않는 플랫폼에는 스크래핑 전에 약관을 확인.' },
-        { q: '받아쓰기에 슬라이드 콘텐츠가 포함됩니까?', a: '아니요. 오디오만 받아쓰기. 교수가 슬라이드를 소리내어 읽으면 그 텍스트가 받아쓰기에 있습니다. 슬라이드에 교수가 읽지 않은 화면 텍스트가 있으면 받아쓰기에 없습니다. 완전한 노트를 위해 슬라이드 스크린샷과 결합.' },
-        { q: '전문 용어와 전문 용어는 얼마나 정확합니까?', a: '일반 어휘보다 덜 정확. 라틴어 의학 용어, 고급 수학 기호, 틈새 약어는 수동으로 수정할 것으로 예상. 강의의 일반적 흐름은 단단할 것입니다.' },
-        { q: '받아쓰기를 노트 앱으로 내보낼 수 있습니까?', a: '네. TXT로 다운로드하여 Notion, Obsidian, OneNote, Bear 또는 모든 텍스트 친화 도구에 붙여넣기. 녹화 옆에 자막이 원하면 비디오 플레이어에서 SRT가 작동.' },
-        { q: '내 강의 오디오가 저장됩니까?', a: '아니요. 파일은 받아쓰기 제공업체로 가서 처리되고 폐기됩니다. 오디오를 보관하지 않습니다.' },
-        { q: '강의 받아쓰기는 얼마나 걸립니까?', a: '오디오 길이의 약 1-2%. 60분 강의는 약 60초에 완료. 업로드가 보통 더 긴 대기.' },
-        { q: '특정 순간으로 점프하기 위한 타임코드를 받을 수 있습니까?', a: '네. SRT로 다운로드. 각 줄에 원본 오디오와 정렬된 타임코드가 있습니다. 시험 준비 중 특정 지점으로 돌아가는 데 유용.' },
-        { q: '강의 끝에 Q&A가 있다면?', a: 'Q&A는 메인 강의와 같이 받아쓰여집니다. 청중 질문은 가끔 덜 명확하게 옵니다(청중은 보통 마이크에서 더 멀리 있음), 하지만 교수의 답변은 깨끗해야 합니다. 노트에 "Q&A" 섹션을 추가.' },
+        {
+          q: 'Zoom 수업 녹음을 전사할 수 있나요?',
+          a: '네. 클라우드 녹음 MP4 또는 M4A를 다운로드하고 여기로 드롭하세요. 정확한 다운로드 경로는 Zoom 가이드를 참조하세요.',
+        },
+        {
+          q: '제 강의가 60 MB를 초과합니다. 어떻게 하나요?',
+          a: '로그인하여 자동 분할을 활성화하세요 (약 3시간까지). 또는 ffmpeg로 64 kbps 모노 MP3로 다운샘플링하여 5배 크기를 줄이세요.',
+        },
+        {
+          q: 'Mictoo는 비영어 강의를 전사하나요?',
+          a: '네. Whisper large-v3는 50개 이상의 언어를 지원합니다. 기술 용어나 강한 억양에 대해 언어를 명시적으로 설정하세요.',
+        },
+        {
+          q: '전사 내에서 검색할 수 있나요?',
+          a: '네. 리더 보기에는 일치 수와 하이라이트가 있는 검색 상자가 포함됩니다. Ctrl-F로 용어를 입력하고 일치 항목 간에 이동하세요.',
+        },
+        {
+          q: '강의 자료에 대해 질문할 수 있나요?',
+          a: '네. 전사와 대화하면 "사중손실 설명해줘" 또는 "교수님이 언급한 페이지는 무엇인가요"라고 질문할 수 있습니다. 답변은 타임스탬프를 인용합니다.',
+        },
+        {
+          q: '강의 노트를 DOCX 또는 PDF로 내보낼 수 있나요?',
+          a: '네. 누구나 사용할 수 있는 DOCX, 로그인한 사용자에게는 PDF 및 JSON이 제공됩니다. TXT는 항상 사용할 수 있습니다.',
+        },
+        {
+          q: '강의 녹음이 서버에 보관되나요?',
+          a: '아니요. 오디오가 전사 제공업체로 스트리밍되고, 한 번 처리된 후 삭제됩니다. 전사는 로그인한 경우에만 저장됩니다.',
+        },
       ]}
+
+      ctaHeadline="강의를 학습 노트로 변환하세요"
+      ctaSubtitle="검색 가능한 전사, AI 요약, 자료와 대화하세요. 강의당 무료입니다."
+      ctaButton="강의 업로드"
+
       relatedLinks={[
-        { href: '/ko/transcribe-audio-to-text', label: '오디오를 텍스트로', desc: '일반 오디오 파일용.' },
-        { href: '/ko/transcribe-video-to-text', label: '비디오를 텍스트로', desc: '비디오 강의(MP4, MOV)용.' },
-        { href: '/ko/timestamped-transcription', label: '타임코드 받아쓰기', desc: '특정 순간으로 점프하기 위해.' },
-        { href: '/ko/how-to-split-audio', label: '오디오 분할', desc: '60분 초과 강의용.' },
+        { href: '/ko/webinar-transcription',     label: '웨비나 전사' },
+        { href: '/ko/sermon-transcription',      label: '설교 전사' },
+        { href: '/ko/voice-memo-to-text',        label: '음성 메모를 텍스트로' },
+        { href: '/ko/interview-transcription',   label: '인터뷰 전사' },
+        { href: '/ko/meeting-transcription',     label: '회의 전사' },
       ]}
     />
   )

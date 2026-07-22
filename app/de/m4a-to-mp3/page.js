@@ -1,3 +1,5 @@
+import ConverterPageLayout from '@/components/ConverterPageLayout'
+
 const LANGS = {
   'en': 'https://mictoo.com/m4a-to-mp3',
   'fr': 'https://mictoo.com/fr/m4a-to-mp3',
@@ -13,131 +15,94 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'M4A in MP3 umwandeln — kostenlose Methoden (oder überspringen) | Mictoo',
-  description: "M4A in Sekunden in MP3 umwandeln mit kostenlosen Online-Tools, QuickTime, VLC oder ffmpeg. Hinweis: Die meisten Apps (auch Mictoo) akzeptieren M4A direkt — Sie müssen womöglich gar nicht umwandeln.",
-  alternates: { canonical: 'https://mictoo.com/de/m4a-to-mp3', languages: LANGS },
-
+  title: 'M4A zu MP3: Kostenloser Konverter für Apple-Audio | Mictoo',
+  description:
+    'Konvertieren Sie iPhone-Sprachmemos, GarageBand-Bounces und M4A-Dateien aus dem Apple-Ökosystem in universelle MP3 für Podcast-Hosts, ältere Android-Telefone und Legacy-Player.',
+  alternates: {
+    canonical: 'https://mictoo.com/de/m4a-to-mp3',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "M4A in MP3 umwandeln — kostenlose Methoden (oder überspringen) | Mictoo",
-    description: "M4A in Sekunden in MP3 umwandeln mit kostenlosen Online-Tools, QuickTime, VLC oder ffmpeg. Hinweis: Die meisten Apps (auch Mictoo) akzeptieren M4A direkt — Sie müssen womöglich gar nicht umwandeln.",
-    url: "https://mictoo.com/de/m4a-to-mp3",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'M4A zu MP3: Kostenloser Konverter für Apple-Audio | Mictoo',
+    description: 'iPhone-Sprachmemos und GarageBand-Bounces in universelle MP3.',
+    url: 'https://mictoo.com/de/m4a-to-mp3',
+    siteName: 'Mictoo', type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "M4A in MP3 umwandeln — kostenlose Methoden (oder überspringen) | Mictoo",
-    description: "M4A in Sekunden in MP3 umwandeln mit kostenlosen Online-Tools, QuickTime, VLC oder ffmpeg. Hinweis: Die meisten Apps (auch Mictoo) akzeptieren M4A direkt — Sie müssen womöglich gar nicht umwandeln.",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'M4A zu MP3: Kostenloser Konverter',
+    description: 'iPhone-Sprachmemos in universelle MP3.',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
 export default function DeM4aToMp3Page() {
   return (
-    <section className="max-w-2xl mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold text-slate-900 mb-3">M4A in MP3 umwandeln</h1>
-      <p className="text-slate-500 mb-10 leading-relaxed">
-        M4A ist das Standard-Audioformat für iPhone-Sprachmemos, Apple Podcasts-Downloads und die meisten macOS-Aufnahme-Apps. MP3 ist universeller, aber 2026 akzeptieren überraschend viele Tools M4A direkt — die meisten Browser, Audio-Editoren, Podcast-Apps und Transkriptionsdienste. Hier, wann Sie wirklich umwandeln müssen, und die schnellsten kostenlosen Wege.
-      </p>
-
-      <div className="bg-brand-50 border border-brand-100 rounded-2xl p-5 mb-10">
-        <p className="text-sm text-slate-700 mb-2">
-          <strong>Sie müssen wahrscheinlich nicht umwandeln.</strong> M4A und MP3 haben sehr ähnliche Audioqualität. Moderne Apps, die MP3 lesen, lesen fast immer auch M4A. Konkret:
-        </p>
-        <ul className="text-sm text-slate-700 list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Transkription:</strong> Mictoo akzeptiert <code className="font-mono text-xs bg-white px-1.5 py-0.5 rounded border border-slate-200">.m4a</code> direkt — Datei ablegen, Text bekommen. Keine Umwandlung nötig.</li>
-          <li><strong>Audio-Bearbeitung:</strong> Audacity, GarageBand, Logic, Premiere, DaVinci Resolve lesen alle M4A.</li>
-          <li><strong>Streaming/Wiedergabe:</strong> Spotify, Apple Music, YouTube Music, jeder moderne Browser und OS spielt M4A.</li>
-        </ul>
-        <p className="text-sm text-slate-700 mt-3">
-          MP3 brauchen Sie wirklich nur, wenn die Ziel-App ausdrücklich nur MP3 verlangt — manche älteren Autoradios, Fitnessgeräte, einfache Voice-Recorder oder Legacy-Software.
-        </p>
-        <a href="/de" className="inline-flex items-center gap-2 text-sm text-brand-600 hover:underline mt-3">
-          ↑ .m4a direkt mit Mictoo transkribieren
-        </a>
-      </div>
-
-      <div className="space-y-12 text-slate-600 text-sm leading-relaxed">
-
-        <p className="-mb-6 text-slate-700">
-          <strong>Trotzdem MP3 nötig?</strong> Wählen Sie die Methode unten, die zu Ihrem Setup passt. Alle kostenlos.
-        </p>
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">Methode 1 — Online-Konverter</h2>
-          <p className="mb-4">
-            Ziehen, ablegen, herunterladen — meist unter 10 Sekunden für ein typisches Sprachmemo:
-          </p>
-          <p className="text-xs text-slate-500 mt-3">
-            Datenschutz: Online-Tools laden Ihre Datei hoch. Überspringen Sie sie bei vertraulichen Aufnahmen — nutzen Sie eine Desktop-Methode.
-          </p>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">Methode 2 — macOS (ohne Installation)</h2>
-
-          <img
-            src="/svg/macos-music-convert.svg"
-            alt="macOS Musik-App: in der Menüleiste auf Datei klicken, im Dropdown auf Konvertieren zeigen, dann MP3-Version erstellen wählen."
-            className="w-full rounded-2xl border border-slate-100 mb-5"
-            width={640}
-            height={280}
-          />
-
-          <p className="mb-3">
-            <strong>Musik-App:</strong> Ziehen Sie die <code className="font-mono">.m4a</code> in Musik, markieren Sie sie, dann <strong>Datei → Konvertieren → MP3-Version erstellen</strong>. Das MP3 erscheint neben dem Original.
-          </p>
-          <p className="mb-3">
-            <strong>QuickTime Player:</strong> Datei öffnen → <strong>Datei → Exportieren als → Nur Audio</strong>. QuickTime exportiert standardmäßig als M4A; kombinieren Sie es mit VLC oder Audacity unten, wenn Sie speziell MP3 brauchen.
-          </p>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">Methode 3 — VLC (plattformübergreifend)</h2>
-          <p className="mb-3">
-            <a href="https://www.videolan.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">VLC</a> auf Windows/macOS/Linux:
-          </p>
-          <ol className="list-decimal pl-5 space-y-1">
-            <li>VLC öffnen → <strong>Medien → Konvertieren / Speichern</strong>.</li>
-            <li>Die <code className="font-mono">.m4a</code>-Datei hinzufügen, <strong>Konvertieren / Speichern</strong> klicken.</li>
-            <li>Profil <code className="font-mono">Audio - MP3</code> wählen.</li>
-            <li>Zieldatei mit <code className="font-mono">.mp3</code> wählen, <strong>Start</strong> klicken.</li>
-          </ol>
-        </div>
-
-        <div>
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">Methode 4 — Kommandozeile (ffmpeg)</h2>
-          <p className="mb-4">
-            Eine Zeile mit <a href="https://ffmpeg.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-brand-600 hover:underline">ffmpeg</a>:
-          </p>
-          <pre className="bg-slate-900 text-slate-100 rounded-lg p-4 overflow-x-auto text-xs"><code>{`ffmpeg -i input.m4a -acodec libmp3lame -ab 128k output.mp3`}</code></pre>
-          <p className="text-xs text-slate-500 mt-2">
-            Für Sprache/Transkription nutzen Sie <code className="font-mono">-ab 64k -ac 1</code> — 2–3× kleinere Datei ohne Qualitätsverlust bei Sprache.
-          </p>
-        </div>
-
-        <div className="border-t border-slate-100 pt-8">
-          <h2 className="text-xl font-semibold text-slate-800 mb-3">Transkript nötig?</h2>
-          <p className="mb-4">
-            Sowohl M4A als auch MP3 funktionieren direkt in Mictoo. Datei ablegen, Text mit Zeitstempeln, SRT-Untertiteln und KI-Zusammenfassung bekommen — kostenlos, keine Registrierung.
-          </p>
-          <a href="/de" className="inline-flex items-center gap-2 btn-primary text-base px-6 py-3">
-            ↑ Audio kostenlos in Text umwandeln
-          </a>
-        </div>
-
-      </div>
-
-      <div className="border-t border-slate-100 mt-12 pt-8">
-        <p className="text-sm text-slate-400 mb-4 text-center">Verwandte Anleitungen</p>
-        <div className="flex flex-wrap justify-center gap-3">
-          <a href="/de/aac-to-mp3" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">AAC zu MP3</a>
-          <a href="/de/wma-to-mp3" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">WMA zu MP3</a>
-          <a href="/de/m4a-to-text" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">M4A zu Text</a>
-          <a href="/de/how-to-compress-audio" className="text-sm px-4 py-2 bg-white border border-slate-200 rounded-xl text-slate-600 hover:border-brand-400 hover:text-brand-600 transition-colors">Audio komprimieren</a>
-        </div>
-      </div>
-    </section>
+    <ConverterPageLayout
+      locale="de"
+      mode="converter" from="m4a" to="mp3" currentHref="/de/m4a-to-mp3"
+      badge="M4A → MP3 · Kostenlos · Apple-Audio"
+      h1First="M4A zu MP3"
+      h1Second="Kostenloser Konverter für Apple-Audio"
+      subtitle="Laden Sie ein iPhone-Sprachmemo, GarageBand-Bounce oder Apple Podcasts-Export hoch und erhalten Sie eine universelle MP3 für Podcast-Hosts, ältere Android-Telefone und Legacy-Player."
+      outputFormat="MP3" outputQuality="128 kbps" outputAudio="Stereo"
+      stepsTitle="So funktioniert die M4A zu MP3-Konvertierung"
+      steps={[
+        { icon: 'upload',   title: 'Laden Sie die M4A hoch',        desc: 'Von Sprachmemos, GarageBand, Apple Podcasts. Bis zu 25 MB anonym.' },
+        { icon: 'waveform', title: 'Wir dekodieren und kodieren', desc: 'ffmpeg dekodiert das AAC im M4A-Container und kodiert es neu in 128 kbps MP3.' },
+        { icon: 'download', title: 'Laden Sie die MP3 herunter',    desc: 'Erhalten Sie eine MP3, die mit den meisten aktuellen Playern und Audio-Editoren kompatibel ist.' },
+      ]}
+      previewInputName="voice-memo.m4a"
+      previewInputSize="6,2 MB · 00:12:04"
+      previewOutputName="voice-memo.mp3"
+      previewOutputSize="00:12:04 · 128 kbps · 11,5 MB"
+      whyTitle="Warum Mictoo für M4A zu MP3 verwenden?"
+      whyCards={[
+        { icon: 'target',   title: 'iPhone-freundlich',        desc: 'iPhone-Sprachmemos im nativen .m4a-Format werden direkt akzeptiert, keine Umbenennung erforderlich.' },
+        { icon: 'fileAudio',title: 'MP3 für Legacy-Hosts',   desc: 'Einige Podcast-Hosts und ältere Android-Geräte bevorzugen immer noch MP3 gegenüber M4A.' },
+        { icon: 'lock',     title: 'Dateien werden nachher gelöscht',    desc: 'Hochgeladene M4A wird nach der Konvertierung gelöscht; die MP3 wird innerhalb einer Stunde entfernt.' },
+        { icon: 'shield',   title: 'Kein Wasserzeichen oder Tag',    desc: 'Nur die Audio, neu kodiert. Kein gebrandeter Intro, keine Metadaten eingefügt.' },
+      ]}
+      scenariosTitle="Wann M4A zu MP3 nützlich ist"
+      scenarios={[
+        { icon: 'headphones', title: 'iPhone-Sprachmemo' },
+        { icon: 'waveform',   title: 'GarageBand-Bounce' },
+        { icon: 'mail',       title: 'Legacy-Podcast-Host' },
+        { icon: 'archive',    title: 'Konsistentes Bibliotheksformat' },
+        { icon: 'editPen',    title: 'Ältere DAW-Import' },
+        { icon: 'video',      title: 'Nicht-Apple-Video-Editor' },
+      ]}
+      tipsTitle="Tipps für eine saubere M4A zu MP3-Konvertierung"
+      tips={[
+        'Wenn Ihre Plattform M4A akzeptiert, müssen Sie möglicherweise nicht konvertieren.',
+        'Beide Formate sind verlustbehaftet; das erneute Kodieren führt zu einem kleinen Qualitätsverlust.',
+        'ID3- und iTunes-Metadaten werden nicht übertragen.',
+        'Für Transkriptionen laden Sie die M4A direkt zu /de/m4a-to-text hoch.',
+      ]}
+      processTitle="Was während der Konvertierung passiert"
+      processSteps={['M4A (MP4-Container)', 'AAC-Dekodierung', 'MP3-Kodierung']}
+      compareTitle="M4A vs MP3"
+      compareRows={[
+        { fmt: 'M4A', contains: 'Nein', size: 'Klein (effizient)', best: 'Apple-Ökosystem, moderne Geräte' },
+        { fmt: 'MP3', contains: 'Nein', size: 'Klein',             best: 'Universell, Legacy-Player, ältere Hosts' },
+      ]}
+      faq={[
+        { q: 'Muss ich M4A in MP3 konvertieren?', a: 'Nur wenn ein bestimmtes Tool oder ein Host MP3 erfordert. Die meisten modernen Geräte (einschließlich aller Android- und Windows-Geräte im Jahr 2026) spielen M4A nativ ab.' },
+        { q: 'Ist der Konverter kostenlos?', a: 'Ja. Dateien bis zu 25 MB können ohne ein Konto konvertiert werden, und die Ausgabe hat kein Wasserzeichen.' },
+        { q: 'Werde ich Qualität verlieren?', a: 'M4A und MP3 sind beide verlustbehaftet. Das erneute Kodieren führt zu einem kleinen Verlust, der jedoch für typisches Hören nicht hörbar ist.' },
+        { q: 'Funktioniert das native Format von iPhone-Sprachmemos?', a: 'Ja. iPhone-Sprachmemos schreiben standardmäßige .m4a, die direkt akzeptiert wird.' },
+        { q: 'Werden Dateien gespeichert?', a: 'Nein. Hochgeladene M4A wird nach der Konvertierung gelöscht; die MP3 wird innerhalb einer Stunde entfernt.' },
+      ]}
+      ctaHeadline="Konvertieren Sie jetzt Ihr M4A in MP3"
+      ctaSubtitle="Laden Sie Ihr iPhone-Sprachmemo oder Apple-Audio hoch und erhalten Sie eine tragbare MP3."
+      ctaButton="Wählen Sie eine M4A-Datei"
+      moreTools={[
+        { href: '/de/aac-to-mp3',  label: 'AAC zu MP3' },
+        { href: '/de/mp4-to-mp3',  label: 'MP4 zu MP3' },
+        { href: '/de/mp3-to-m4a',  label: 'MP3 zu M4A' },
+        { href: '/de/m4a-to-text', label: 'M4A zu Text' },
+      ]}
+    />
   )
 }

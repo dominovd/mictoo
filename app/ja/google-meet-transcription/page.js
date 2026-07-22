@@ -1,4 +1,4 @@
-import LandingLayout from '@/components/LandingLayout'
+import UseCaseLayout from '@/components/UseCaseLayout'
 
 const LANGS = {
   'en': 'https://mictoo.com/google-meet-transcription',
@@ -15,80 +15,182 @@ const LANGS = {
 }
 
 export const metadata = {
-  title: 'Google Meet 文字起こし — Meet録画を無料で文字起こし | Mictoo',
+  title: 'Google Meetの録音をテキストに変換 | Mictoo',
   description:
-    '無料Google Meet文字起こし。Driveからの録画(MP4またはM4A)をアップロードして、クリーンなAI文字起こしを数秒で取得。無料Google Workspaceで動作。',
-  alternates: { canonical: 'https://mictoo.com/ja/google-meet-transcription', languages: LANGS },
-
+    'Driveまたはローカルのスクリーンキャプチャから認可されたGoogle Meetの録音をアップロードし、トランスクリプト、AI要約、エクスポートを取得します。',
+  alternates: {
+    canonical: 'https://mictoo.com/ja/google-meet-transcription',
+    languages: LANGS,
+  },
   openGraph: {
-    title: "Google Meet 文字起こし — Meet録画を無料で文字起こし | Mictoo",
-    description: "無料Google Meet文字起こし。Driveからの録画(MP4またはM4A)をアップロードして、クリーンなAI文字起こしを数秒で取得。無料Google Workspaceで動作。",
-    url: "https://mictoo.com/ja/google-meet-transcription",
-    siteName: "Mictoo",
-    type: "website",
-    images: [{ url: "https://mictoo.com/opengraph-image", width: 1200, height: 630 }],
+    title: 'Google Meetのトランスクリプション: ワークスペースまたは無料アカウント | Mictoo',
+    description: 'Driveからの録音または無料Meetのスクリーンキャプチャ。どちらでも動作します。',
+    url: 'https://mictoo.com/ja/google-meet-transcription',
+    siteName: 'Mictoo',
+    type: 'website',
+    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Google Meet 文字起こし — Meet録画を無料で文字起こし | Mictoo",
-    description: "無料Google Meet文字起こし。Driveからの録画(MP4またはM4A)をアップロードして、クリーンなAI文字起こしを数秒で取得。無料Google Workspaceで動作。",
-    images: ["https://mictoo.com/opengraph-image"],
+    card: 'summary_large_image',
+    title: 'Google Meetのトランスクリプション',
+    description: 'どのアカウントティアでも、1つのアップロードページ。',
+    images: ['https://mictoo.com/opengraph-image'],
   },
 }
 
-export default function JaGoogleMeetPage() {
+export default function JaGoogleMeetTranscriptionPage() {
   return (
-    <LandingLayout
-      defaultLanguage="ja"
-      badge="GOOGLE MEET · MP4 · 無料"
-      h1={<>Google Meet 文字起こし<br /><span className="text-brand-600">Meet録画を文字起こし</span></>}
-      subtitle="Google Meet録画をクリーンなテキストに変換。DriveのMP4をドロップして数秒で文字起こし。アカウント不要、分単位課金なし。"
-      howItWorks={[
-        { icon: '☁️', title: 'Google Driveからダウンロード', desc: 'Google Meet録画はDriveの「Meet Recordings」フォルダに保存。MP4としてダウンロード(右クリック、ダウンロード)。長い会議には先に音声を抽出してアップロード時間節約。' },
-        { icon: '⚡', title: 'ファイルをドロップ', desc: 'MP4から音声を抽出してWhisper large-v3に送信。30分の会議は約1分で完了。' },
-        { icon: '📋', title: '文字起こし取得', desc: 'ブラウザで読む、コピー、またはTXTかSRTでダウンロード。エクスポート前に誤った単語をインラインで修正。' },
+    <UseCaseLayout
+      locale="ja"
+      badge="Google Meet · Driveまたはローカルキャプチャ · 無料"
+      h1First="Google Meetのトランスクリプション"
+      h1Second="Driveの録音とローカルキャプチャをテキストに変換"
+      subtitle="DriveからのGoogle Meetの録音または認可されたローカルキャプチャをアップロードします。録音の可用性はホストのワークスペースエディション、権限、および管理者設定に依存します。"
+      currentHref="/ja/google-meet-transcription"
+
+      platforms={[
+        { name: 'Meet MP4',    iconKey: 'videoCameraFill', brandBg: '#00832D' },
+        { name: 'QuickTime',   iconKey: 'videoCameraFill', brandBg: '#0F172A' },
+        { name: 'OBS',         iconKey: 'videoCameraFill', brandBg: '#302E31' },
+        { name: 'Zoom',        iconKey: 'videoCameraFill', brandBg: '#2D8CFF', href: '/ja/zoom-transcription' },
+        { name: 'MS Teams',    iconKey: 'videoCameraFill', brandBg: '#4B53BC', href: '/ja/teams-meeting-transcription' },
+        { name: 'Meeting hub', iconKey: 'videoCameraFill', brandBg: '#0F1F35', href: '/ja/meeting-transcription' },
       ]}
-      whyUse={{ title: 'Google MeetにMictooを使う理由', bullets: [
-        { title: '無料を含むあらゆるWorkspaceティアで動作', desc: 'Meet録画自体には有料ティアが必要ですが、ファイルがあれば、Workspaceティアに関係なく文字起こしは無料。' },
-        { title: '非英語サポートがより良い', desc: 'Googleの文字起こしは歴史的に英語に最も強い。Whisper large-v3は自動検出で50以上の言語をカバーし、アクセント、バイリンガル会話、コードスイッチングで顕著に良い。' },
-        { title: 'データはGoogleに戻らない', desc: '機密会議のために意識的にGoogleエコシステムロックインを避けているなら、ここで文字起こしすればテキストはGoogle Workspaceの外に保たれます。' },
-        { title: 'SRTエクスポートはあらゆる動画エディタで動作', desc: 'Googleの文字起こしはテキストをDocsに提供。私たちのはPremiere、DaVinci、YouTube Studio用の準備済みクリーンなSRTをエクスポート。' },
-        { title: 'プライバシー', desc: 'ファイルは文字起こしプロバイダにストリーミングされ、処理後に破棄。サーバーには何も書き込まれません。' },
-      ]}}
-      useCases={{ title: '人々がGoogle Meet録画を文字起こしする用途', items: [
-        { title: '誰でも検索できる会議メモ', desc: 'Google DocsまたはNotionに文字起こしを貼り付け。未来のあなたはプロジェクトの14週目に何が決定されたかを覚えていません。検索可能なテキストが助けます。' },
-        { title: '分散チームの非同期キャッチアップ', desc: 'ライブ会議を逃した他のタイムゾーンの人は、60分の録画を1.5倍速で見る代わりに数分で文字起こしを読みます。' },
-        { title: 'クライアント通話のレビュー', desc: 'アカウントマネージャーは重要なクライアント通話を文字起こしし、CRMにテキストを保存。より速い思い出し、より良いハンドオフ。' },
-        { title: 'ウェビナーとタウンホール文字起こし', desc: 'Meetで録画された大きなイベントでは、文字起こしがアクセシビリティと発見可能性のために(録画と一緒に)公開するものです。' },
-        { title: '1対1とパフォーマンス会話(マネージャー向け)', desc: '一部のマネージャーはフォローアップ用のメモのために1対1を文字起こし。便利ですが、なぜかについて従業員に透明にしてください。' },
-      ]}}
-      proTips={{ title: 'Google Meet文字起こしのコツ', tips: [
-        { title: 'アップロード前にMP4から音声を抽出', desc: 'Meet録画は720p動画で、文字起こしには無駄なバイト。音声のみ取得: ffmpeg -i meet.mp4 -vn -ac 1 -b:a 64k meet.mp3。1 GB MP4が25 MB以下に縮小。' },
-        { title: 'MP4をダウンロード、ストリームしない', desc: 'Driveは時々ブラウザビューアでMP4を再生。ここにアップロードしようとする前に、実際にファイルをダウンロードしたことを確認。Drive共有リンクはファイルアップロードではありません。' },
-        { title: '60分超の会議はアップロード前に分割', desc: '私たちの制限は登録で1ファイルあたり60分。最初に音声をチャンクに切る。文字起こしは後で再結合できます。' },
-        { title: '可能なら会議中にバックグラウンドタブとアプリをミュート', desc: '会議で声の下で再生されるSpotifyトラックは、ランダムな単語として文字起こしに着地。通知音も同じ。録画後に修正できないこともあります。' },
-        { title: '実物のマイクを使う、安いヘッドセットでも', desc: 'ノートPCの内蔵マイクはキーボードタイピング、ファンノイズ、部屋のエコーを拾う。1000円の有線USBヘッドセットは顕著にクリーンに文字起こしされる。' },
-        { title: '共有録画では他の場所に再アップロードする前にDrive共有設定を確認', desc: '誰かがMeet録画を共有してくれた場合、外部使用のために文字起こしする前に、それで何ができるか二重チェック。' },
-      ]}}
+
+      howItWorksTitle="Google Meetのトランスクリプションの仕組み"
+      steps={[
+        {
+          icon: 'folder',
+          title: '録音を取得',
+          desc: '対象のワークスペース録音: Drive › マイドライブ › Meetの録音。そうでない場合は、参加者の同意ルールに従った認可されたローカルキャプチャを使用してください。',
+        },
+        {
+          icon: 'upload',
+          title: 'ここにファイルをドロップ',
+          desc: 'MP4またはM4Aの両方が動作します。大きなMP4の場合は、最初にffmpegで音声を抽出するか、サインインして自動分割を行ってください。',
+        },
+        {
+          icon: 'editPen',
+          title: 'トランスクリプト、要約、エクスポート',
+          desc: 'タイムスタンプ付きのトランスクリプト、AI要約、およびTXT/SRT/VTT/DOCXエクスポートを取得します。処理時間は、長さとファイルサイズに依存します。',
+        },
+      ]}
+
+      exampleTitle="Google Meetのトランスクリプトの例"
+      exampleFileName="meet-recording.mp4"
+      exampleDurationLabel="27分45秒"
+      exampleLines={[
+        { t: '0:00',  line: '皆さん、参加してくれてありがとう。来週のオフサイトに入る前に、Q3のローンチプランについて簡単に同期しましょう。' },
+        { t: '0:10',  line: 'マーケティングはランディングページのコピーを最終決定しました。エンジニアリングは金曜日の機能凍結に向けて順調です。' },
+        { t: '0:22',  line: 'サポートドキュメントがリスク項目です。私たちは約3日遅れており、ローンチ前に追いつく必要があります。' },
+        { t: '0:33',  line: '今週、アナをオンボーディングドキュメントからシフトさせることができます。それでギャップを回復できるはずです。' },
+        { t: '0:44',  line: '素晴らしい。次のトピックは、私たちが話し合った価格ページの変更です。出荷する前に懸念がある人はいますか。' },
+        { t: '0:56',  line: '私が指摘したいのは、エンタープライズティアのフレーミングです。価格帯に対して少し薄いと感じます。' },
+        { t: '1:08',  line: '公平なポイントです。そのセクションを今週再訪し、金曜日に改訂版を共有します。' },
+      ]}
+      summaryPoints={[
+        'Q3のローンチは順調、金曜日に機能凍結。',
+        'サポートドキュメントは3日遅れ（リスク）。',
+        'アナがドキュメントのギャップを埋めるために再割り当て。',
+        'エンタープライズティアのフレーミングは改訂が必要。',
+      ]}
+      actionItems={[
+        '今週アナをサポートドキュメントに再割り当て',
+        '金曜日までにエンタープライズティアのフレーミングを改訂',
+        '金曜日のスタンドアップで機能凍結を確認',
+      ]}
+
+      whyTitle="Google MeetのトランスクリプションにMictooを選ぶ理由"
+      whyCards={[
+        {
+          icon: 'lock',
+          title: 'メディアファイルで動作',
+          desc: 'GoogleアカウントにMictooを接続せずに、Driveの録音または認可されたローカルキャプチャをアップロードできます。',
+        },
+        {
+          icon: 'target',
+          title: 'レビュー用のタイムスタンプ付きテキスト',
+          desc: '録音に対して名前や技術用語を確認し、必要な形式で修正されたトランスクリプトをエクスポートします。',
+        },
+        {
+          icon: 'sparkles',
+          title: 'AI要約が常に含まれます',
+          desc: 'ワークスペースのAIトランスクリプト要約は別途有料機能です。私たちのものはすべてのトランスクリプトにバンドルされています。',
+        },
+        {
+          icon: 'globe',
+          title: '50以上の言語に翻訳',
+          desc: '翻訳ベンダーなしでの多言語会議の要約。',
+        },
+      ]}
+
+      scenariosTitle="一般的なMeetのシナリオ"
+      scenarios={[
+        { icon: 'chat',      title: 'スタンドアップ / 同期' },
+        { icon: 'briefcase', title: 'クライアントレビュー' },
+        { icon: 'search',    title: 'ユーザーインタビュー' },
+        { icon: 'users',     title: '全体会議' },
+        { icon: 'headset',   title: 'サポートコール' },
+        { icon: 'globe',     title: '多言語' },
+      ]}
+
+      tipsTitle="Google Meetの録音のヒント"
+      tips={[
+        'ワークスペースのMeet録音はDrive › Meetの録音に保存されます。',
+        '無料ティア: QuickTime（Mac）またはOBS（Win/Linux）が適しています。',
+        '大きなMP4? 音声を抽出: ffmpeg -i meet.mp4 -vn -ac 1 -ar 16000 audio.m4a。',
+        '長い会議の自動分割のためにサインインしてください。',
+      ]}
+
+      guidesTitle="他の会議プラットフォーム"
+      guides={[
+        { href: '/ja/zoom-transcription',          icon: 'video', title: 'Zoom',           desc: 'クラウド + ローカル + M4A' },
+        { href: '/ja/teams-meeting-transcription', icon: 'video', title: 'MS Teams',       desc: 'OneDrive + SharePointパス' },
+        { href: '/ja/meeting-transcription',       icon: 'video', title: 'Meeting hub',    desc: 'どのプラットフォームでも、1つのアップロード' },
+        { href: '/ja/webinar-transcription',       icon: 'monitor', title: 'ウェビナー',     desc: 'ON24, Demio, StreamYard' },
+      ]}
+
       faq={[
-        { q: 'MictooはGoogle Meet録画で動作しますか?', a: 'はい。DriveのMeet RecordingsフォルダからMP4をダウンロードし、ここにアップロード。音声抽出(ffmpegまたは任意の音声ツールで)は長い会議でこれを高速化。' },
-        { q: 'Google Workspaceの有料プランが必要ですか?', a: 'Meetを録画するために有料Workspaceプランが必要です。録画がDriveにあれば、ティアに関係なくここでの文字起こしは無料。' },
-        { q: '録画はGoogleに戻りますか?', a: 'いいえ。ファイルは私たちの文字起こしプロバイダ(Groq、バックアップとしてOpenAI)に行き、処理後に破棄。Google、Googleサービスには何も戻りません。' },
-        { q: 'Google内蔵文字起こしと比較してどうですか?', a: '私たちのは無料で、あらゆるWorkspaceティアで動作。Googleのはプランに含まれていて会議が英語なら便利。非英語、アクセント、バイリンガル会議には私たちのほうが正確。' },
-        { q: 'Meet録画が60 MBを超えています。どうすれば?', a: 'ffmpegや音声ツールで音声のみ抽出。1 GB動画は通常30 MB未満の音声に。音声自体が60 MB超なら、チャンクに分割。' },
-        { q: 'スピーカーラベルは取得できますか?', a: '自動的にはありません。Whisperはデフォルトでダイアライゼーションをしません。手動でラベルを追加する必要があります。4人会議で区別できる声があれば通常5分。' },
-        { q: 'Meetチャットメッセージで動作しますか?', a: 'いいえ。チャットメッセージはGoogleによってMeet録画フォルダに別々に保存。音声のみを文字起こし。両方が必要なら自分で組み合わせ。' },
-        { q: 'Google Meet文字起こしはどれくらい正確?', a: 'クリーンな音声(良いマイク、背景ノイズなし): 90〜95%。複数マイクまたはスピーカーフォンの会議室録音は80〜90%に低下。名前と専門用語は通常クリーンアップが必要。' },
-        { q: 'Google Meetライブストリームを文字起こしできますか?', a: 'いいえ。録画されたファイルでのみ動作、ライブストリームではありません。ストリームが終了して録画がDriveに保存されたら、ダウンロードして文字起こしできます。' },
-        { q: 'どの言語をサポートしていますか?', a: '自動検出で50以上の言語。5分未満の会議や非音声のイントロがあるファイルでは、より良い結果のために言語を手動で選択。' },
-        { q: 'Google Docにエクスポートできますか?', a: 'プレーンテキスト(TXT)とSRTをエクスポート。コピーしてGoogle Docsに貼り付け。直接のDrive統合はまだありません。' },
-        { q: '他のWorkspace組織からのMeet録画で動作しますか?', a: 'Driveからファイルをダウンロードするアクセスがあれば、はい。ファイルを単にMP4として扱います。起源を確認したり気にしたりしません。' },
+        {
+          q: 'Meetコールを録音するためにGoogle Workspaceは必要ですか？',
+          a: 'Googleの録音の可用性はホストアカウントのエディション、会議の役割、管理者設定、および権限に依存します。対象の録音はDriveに保存されます。ローカルキャプチャを行う場合は、必要な参加者の同意を得て、適用されるポリシーに従ってください。',
+        },
+        {
+          q: 'WorkspaceのMeet録音はどこに保存されますか？',
+          a: '会議の主催者のDriveに: マイドライブ › Meetの録音。MP4は通常、会議終了後数分以内に表示されます。準備ができたら、メール通知が送信されます。',
+        },
+        {
+          q: 'Meetのトランスクリプトを使用するべきですか、それとも録音をアップロードするべきですか？',
+          a: 'Meetのトランスクリプトが利用可能でニーズを満たす場合は、それを使用してください。メディアをアップロードすることは、Mictooのエクスポート、翻訳、またはレビュー用の追加トランスクリプトを希望する場合に便利です。音声によって精度は異なります。',
+        },
+        {
+          q: '私のMeet録音は60 MBを超えています。どうすればいいですか？',
+          a: '音声のみを抽出: ffmpeg -i meet.mp4 -vn -ac 1 -ar 16000 audio.m4a。あるいは、約3時間までの長いファイルの自動分割のためにサインインしてください。',
+        },
+        {
+          q: 'MeetコールのAI要約を取得できますか？',
+          a: 'はい。AI要約はトランスクリプトと一緒に自動的に表示されます。要約メールやフォローアップドキュメントのためのしっかりした初稿です。',
+        },
+        {
+          q: 'MictooはMeetで誰が話しているかを特定しますか？',
+          a: 'いいえ。現在のトランスクリプトは、行ごとのタイムスタンプ付きの連続テキストであり、自動スピーカーレベルはありません。',
+        },
+        {
+          q: 'Meetの録音はあなたのサーバーに保存されますか？',
+          a: 'いいえ。音声はトランスクリプションプロバイダーにストリーミングされ、一度処理されて削除されます。サインインしたアカウントにはトランスクリプトのみが残ります。',
+        },
       ]}
+
+      ctaHeadline="Meetコールをクリーンなテキストに変換"
+      ctaSubtitle="認可されたDriveの録音またはローカルキャプチャをアップロードして、テキスト、要約、エクスポートを取得します。"
+      ctaButton="Meet録音をアップロード"
+
       relatedLinks={[
-        { href: '/ja/zoom-transcription', label: 'Zoom文字起こし', desc: 'Zoom CloudまたはLocal Recordings用。' },
-        { href: '/ja/teams-meeting-transcription', label: 'Teams文字起こし', desc: 'Microsoft Teams録画用。' },
-        { href: '/ja/meeting-transcription', label: '会議文字起こし', desc: '他のプラットフォームからの録画用。' },
-        { href: '/ja/transcribe-video-to-text', label: '動画をテキストに', desc: '一般動画テキストページ。' },
+        { href: '/ja/meeting-transcription',       label: 'ミーティングトランスクリプション' },
+        { href: '/ja/zoom-transcription',          label: 'Zoomトランスクリプション' },
+        { href: '/ja/teams-meeting-transcription', label: 'Teamsトランスクリプション' },
+        { href: '/ja/webinar-transcription',       label: 'ウェビナートランスクリプション' },
+        { href: '/ja/business-transcription',      label: 'ビジネストランスクリプション' },
       ]}
     />
   )

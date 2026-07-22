@@ -1,9 +1,9 @@
 import UseCaseLayout from '@/components/UseCaseLayout'
 
 export const metadata = {
-  title: 'Webinar Transcription: Free Transcript for Webinar Recordings | Mictoo',
+  title: 'Webinar Transcription with Summary and Captions | Mictoo',
   description:
-    'Free webinar transcription. Upload your recording from Zoom, Webex, GoToWebinar, Demio, StreamYard, or any platform. Clean AI transcript with timestamps in seconds.',
+    'Upload a webinar recording and get timestamped text, an AI summary, and SRT/VTT captions for the replay.',
   alternates: {
     canonical: 'https://mictoo.com/webinar-transcription',
     languages: {
@@ -166,7 +166,7 @@ export default function WebinarTranscriptionPage() {
         },
         {
           q: 'Does Mictoo identify presenters vs Q&A speakers?',
-          a: 'Not yet. Continuous text with per-line timestamps, no speaker labels. Diarisation is on the Pro roadmap.',
+          a: 'No. The current transcript is continuous text with per-line timestamps and no automatic speaker labels.',
         },
         {
           q: 'Can I translate the webinar transcript?',

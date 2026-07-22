@@ -1,9 +1,9 @@
 import UseCaseLayout from '@/components/UseCaseLayout'
 
 export const metadata = {
-  title: 'YouTube to Text: Free YouTube Video Transcription Online | Mictoo',
+  title: 'YouTube to Text: Transcript, Summary, and SRT | Mictoo',
   description:
-    'Paste a YouTube URL or upload an audio file and get a clean transcript with timestamps, AI summary, and SRT subtitles. Better than YouTube auto-captions for proper nouns and accents.',
+    'Paste a YouTube URL to use available captions, or upload audio for a new transcript with timestamps, summary, and SRT export.',
   alternates: {
     canonical: 'https://mictoo.com/youtube-to-text',
     languages: {
@@ -42,7 +42,7 @@ export default function YouTubeToTextPage() {
       badge="YouTube URL or upload · Free · No signup"
       h1First="YouTube to Text"
       h1Second="Paste a URL, get a clean transcript"
-      subtitle="Paste a YouTube link and the transcript appears in seconds. Or upload the audio file for full Whisper-quality transcription. Cleaner than YouTube auto-captions, with punctuation, AI summary, and SRT subtitles."
+      subtitle="Paste a YouTube link to use captions that are already available, or upload audio to create a new Whisper transcript. Review the text, generate a summary, and export SRT subtitles."
       currentHref="/youtube-to-text"
       enableYouTubeUrl
 
@@ -64,8 +64,8 @@ export default function YouTubeToTextPage() {
         },
         {
           icon: 'upload',
-          title: 'Instant transcript',
-          desc: 'URL path returns captions in a few seconds. Upload path runs Whisper large-v3 for the highest accuracy.',
+          title: 'Captions or fresh transcription',
+          desc: 'The URL path returns available captions. The upload path runs Whisper large-v3; processing time depends on the media length and size.',
         },
         {
           icon: 'editPen',
@@ -102,8 +102,8 @@ export default function YouTubeToTextPage() {
       whyCards={[
         {
           icon: 'target',
-          title: 'Cleaner than YouTube auto-captions',
-          desc: 'YouTube auto-captions miss proper nouns, punctuation, and accented speech. Whisper large-v3 handles all three better.',
+          title: 'Choose the right transcript path',
+          desc: 'Use existing captions for speed, or upload audio when you want a fresh transcript to review for names, punctuation, and specialist terms.',
         },
         {
           icon: 'clip',
@@ -154,8 +154,8 @@ export default function YouTubeToTextPage() {
           a: 'Yes. When the video has captions (creator-uploaded or auto-generated), we fetch them in seconds. If there are no captions, upload the audio file instead for full Whisper transcription.',
         },
         {
-          q: 'Is Mictoo better than YouTube auto-captions?',
-          a: 'The URL path returns what YouTube has, which is usually the auto-captions. The upload path runs Whisper large-v3, which is noticeably cleaner on proper nouns, punctuation, and accented speech.',
+          q: 'How does the upload path differ from YouTube captions?',
+          a: 'The URL path returns captions already available for the video. The upload path creates a separate Whisper transcript from the audio. Either version can contain errors, so review names, numbers, and timing before publishing.',
         },
         {
           q: 'How do I get the audio out of a YouTube video?',
