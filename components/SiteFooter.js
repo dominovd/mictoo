@@ -60,24 +60,25 @@ export default function SiteFooter() {
   const tools = [
     ['/free-srt-generator',        lab('srtGenerator'),          'captions'],
     ['/timestamped-transcription', lab('timestampedTranscript'), 'clock'],
-    // Wave 6 — functional converters (real ffmpeg backend, not just SEO).
+    // Wave 6 + follow-ups — functional ffmpeg-backed converters.
+    // All use <ConverterZone /> so they belong here, not in Guides.
     ['/mp4-to-mp3',                lab('mp4ToMp3'),              'refresh'],
     ['/wav-to-mp3',                lab('wavToMp3'),              'refresh'],
     ['/webm-to-mp3',               lab('webmToMp3'),             'refresh'],
     ['/flac-to-mp3',               lab('flacToMp3'),             'refresh'],
+    ['/aac-to-mp3',                lab('aacToMp3'),              'refresh'],
+    ['/wma-to-mp3',                lab('wmaToMp3'),              'refresh'],
+    ['/m4a-to-mp3',                lab('m4aToMp3'),              'refresh'],
     ['/mp3-to-m4a',                lab('mp3ToM4a'),              'refresh'],
     ['/mp3-to-wav',                lab('mp3ToWav'),              'refresh'],
   ]
   // Guides = informational how-to articles. No interactive widget;
   // they teach the visitor how to prepare a file before uploading.
-  // The first four how-to pages are EN-only at launch — only inject
-  // them when the current locale is English.
+  // The download-YouTube and transcribe-reels guides are EN-only at
+  // launch — only inject them when the current locale is English.
   const guides = [
     ['/how-to-compress-audio',     lab('howToCompress'),         'compress'],
     ['/how-to-split-audio',        lab('howToSplit'),            'scissors'],
-    ['/aac-to-mp3',                lab('aacToMp3'),              'refresh'],
-    ['/wma-to-mp3',                lab('wmaToMp3'),              'refresh'],
-    ['/m4a-to-mp3',                lab('m4aToMp3'),              'refresh'],
     ...(locale === 'en' ? [
       ['/how-to-download-youtube-video',     'Download YouTube video',     'play'],
       ['/how-to-transcribe-instagram-reels', 'Transcribe Instagram Reels', 'play'],
