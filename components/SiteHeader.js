@@ -25,8 +25,10 @@ export default function SiteHeader() {
   // LATEST_CHANGELOG_DATE (regenerated on every deploy by
   // scripts/gen-changelog-meta.mjs) against localStorage. Renders a
   // small red dot next to "What's new" until the user actually visits
-  // /whats-new (that page writes the latest date into localStorage
-  // before unmount). EN locale only — changelog is English-only for now.
+  // the localized /whats-new (which writes the latest date into
+  // localStorage before unmount). Runs for all 10 locales since
+  // /whats-new is now localized (entries have per-locale translations
+  // and the page chrome speaks the current locale).
   //
   // Was a fetch('/api/changelog-meta') call until 2026-06-05, which
   // ran on every page load and was hitting ~1.1k function-invocations/
@@ -34,13 +36,14 @@ export default function SiteHeader() {
   // into the bundle now: zero functions, zero fetches, zero cost.
   const [hasUnread, setHasUnread] = useState(false)
   useEffect(() => {
-    if (locale !== 'en') return
-    if (pathname.startsWith('/whats-new')) return
+    // Match /whats-new AND /<locale>/whats-new so the dot clears after
+    // the user visits whichever locale variant they landed on.
+    if (pathname === '/whats-new' || /^\/[a-z]{2}\/whats-new/.test(pathname)) return
     if (!LATEST_CHANGELOG_DATE) return
     let lastSeen = null
     try { lastSeen = localStorage.getItem('mictoo:changelog_lastSeen') } catch {}
     if (!lastSeen || LATEST_CHANGELOG_DATE > lastSeen) setHasUnread(true)
-  }, [locale, pathname])
+  }, [pathname])
 
   useEffect(() => {
     const supabase = createClient()
@@ -83,20 +86,19 @@ export default function SiteHeader() {
           <a href={`${localized('/', locale)}#how-it-works`} className="btn-ghost hidden md:inline-flex whitespace-nowrap">{t(locale, 'nav.howItWorks')}</a>
           <a href={localized('/about', locale)} className="btn-ghost hidden md:inline-flex whitespace-nowrap">{t(locale, 'nav.about')}</a>
           <a href={localized('/contact', locale)} className="btn-ghost hidden md:inline-flex whitespace-nowrap">{t(locale, 'nav.contact')}</a>
-          {/* EN-only — changelog content is English. Other locales get
-              this once we localize the entries. Red dot when there's an
-              entry newer than localStorage's last-seen marker. */}
-          {locale === 'en' && (
-            <a href="/whats-new" className="btn-ghost hidden md:inline-flex whitespace-nowrap relative">
-              What's new
-              {hasUnread && (
-                <span
-                  aria-label="New updates"
-                  className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-red-500"
-                />
-              )}
-            </a>
-          )}
+          {/* All 10 locales get the /whats-new link now that entries have
+              per-locale translations (data/changelog.json translations
+              block) and the page chrome is localized. Red dot when the
+              latest entry date is newer than the user's last-seen marker. */}
+          <a href={localized('/whats-new', locale)} className="btn-ghost hidden md:inline-flex whitespace-nowrap relative">
+            {t(locale, 'whatsNew.h1')}
+            {hasUnread && (
+              <span
+                aria-label={t(locale, 'whatsNew.h1')}
+                className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-red-500"
+              />
+            )}
+          </a>
           <LanguageSwitcher />
           <AuthMenu authLoaded={authLoaded} user={user} pathname={pathname} />
         </nav>
