@@ -1,8 +1,28 @@
-import LandingLayout from '@/components/LandingLayout'
+// Mictoo homepage (PT).
+//
+// Redesigned from a functional single-column layout into a modern SaaS
+// homepage with a tool grid, live result preview, audience segmentation,
+// comparison table, and a bottom CTA plate. Adapted from the provided
+// mockup with the following deliberate changes:
+//   - brand palette (brand-blue) instead of the mockup’s default blue
+//   - existing SiteHeader / SiteFooter / logo kept (rendered by layout.js)
+//   - existing UploadZone kept in full (no functionality simplified)
+//   - flat nav in the header (no mega-menu) ,  SiteHeader unchanged
+//   - long FAQ (10 questions) preserved for SEO / AI citation
+//   - "live preview" is static JSX with brand colors, not a live component
+//     (upgrade path: swap for a typing-animation later if needed)
+//
+// Locale coverage: PT only for now. fr/de/es/ru/it/pt/pl/ja/ko homes still
+// use the previous layout; they will be ported via scripts/translate-page.mjs
+// once we validate this one in prod.
 
+import Image from 'next/image'
+import UploadZone from '@/components/UploadZone'
+import HeroChips from '@/components/HeroChips'
+import HeroCounter from '@/components/HeroCounter'
+
+// ── Page-level metadata & canonical ─────────────────────────────────────────
 export const metadata = {
-  title: 'Transcrição IA de Áudio e Vídeo em Texto, Grátis — Mictoo',
-  description: "Transcreva arquivos de áudio e vídeo em texto grátis. Sem cadastro. Com OpenAI Whisper. MP3, MP4, WAV e mais de 50 idiomas.",
   alternates: {
     canonical: 'https://mictoo.com/pt',
     languages: {
@@ -19,109 +39,613 @@ export const metadata = {
       'x-default': 'https://mictoo.com',
     },
   },
-  openGraph: {
-    title: 'Mictoo — Transcrição IA de Áudio & Vídeo Grátis',
-    description: "Envie um arquivo de áudio ou vídeo e receba a transcrição em segundos.",
-    url: 'https://mictoo.com/pt',
-    siteName: 'Mictoo',
-    type: 'website',
-    images: [{ url: 'https://mictoo.com/opengraph-image', width: 1200, height: 630, alt: 'Mictoo — Transcrição de Áudio & Vídeo Grátis' }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Mictoo — Transcrição IA Grátis',
-    description: "Envie um arquivo de áudio ou vídeo e receba a transcrição em segundos.",
-    images: ['https://mictoo.com/opengraph-image'],
-  },
 }
 
-export default function PortuguesePage() {
+// ── FAQ data (shared between UI and JSON-LD) ─────────────────────────────────
+const FAQ = [
+  {
+    q: 'O Mictoo é realmente gratuito?',
+    a: 'Sim. O Mictoo é completamente gratuito para arquivos de até 25 MB. Sem conta, sem cartão de crédito, sem taxas ocultas. Usuários registrados têm um limite maior de 60 MB por arquivo e 7 transcrições gratuitas por dia, ainda sem pagamento necessário.',
+  },
+  {
+    q: 'Qual é a precisão da transcrição?',
+    a: 'O Mictoo usa o Whisper large-v3 da OpenAI, um dos modelos de reconhecimento de fala abertos mais precisos disponíveis. A precisão depende da qualidade do áudio e do sotaque, mas geralmente ultrapassa 95% para gravações claras.',
+  },
+  {
+    q: 'Quais idiomas são suportados?',
+    a: 'O Whisper suporta mais de 50 idiomas, incluindo inglês, espanhol, francês, alemão, português, russo, ucraniano, japonês, chinês, árabe e mais. O idioma é detectado automaticamente, ou você pode escolher um manualmente no formulário de upload.',
+  },
+  {
+    q: 'Meu arquivo é armazenado em seus servidores?',
+    a: 'Não. Os arquivos são transmitidos diretamente para a API Whisper da Groq (hospedada nos EUA) para transcrição, com a API Whisper da OpenAI mantida como uma alternativa automática, e não são armazenados nos servidores do Mictoo. Nenhum dos provedores usa áudio da API para treinamento de modelos; a OpenAI retém dados por no máximo 30 dias para monitoramento de abusos antes da exclusão.',
+  },
+  {
+    q: 'Qual é o tamanho máximo do arquivo?',
+    a: 'Até 25 MB anonimamente, 60 MB após um registro gratuito. Arquivos maiores de até 180 MB são automaticamente divididos em partes e mesclados em uma única transcrição para usuários registrados.',
+  },
+  {
+    q: 'Quais formatos de arquivo o Mictoo suporta?',
+    a: 'O Mictoo suporta MP3, MP4, WAV, M4A, OGG, WEBM, FLAC, AAC, MOV e MPEG. Tanto arquivos de áudio quanto de vídeo são aceitos; para vídeo, extraímos a faixa de áudio no lado do servidor.',
+  },
+  {
+    q: 'Quanto tempo leva para transcrever?',
+    a: 'A maioria dos arquivos termina em segundos. Um arquivo de áudio de 10 minutos geralmente leva de 15 a 30 segundos; um podcast de 60 minutos é concluído em cerca de um minuto.',
+  },
+  {
+    q: 'Posso editar a transcrição após ela ser gerada?',
+    a: 'Sim. A transcrição é totalmente editável no seu navegador antes de você copiá-la ou baixá-la. Nenhuma conta é necessária para salvar alterações na sua sessão local.',
+  },
+  {
+    q: 'Preciso criar uma conta?',
+    a: 'Não. Para arquivos de até 25 MB, você pode transcrever sem uma conta. Uma conta gratuita desbloqueia arquivos maiores (até 60 MB por arquivo, 180 MB via divisão automática), histórico, resumo de IA, tradução para 28 idiomas e chat com sua transcrição.',
+  },
+  {
+    q: 'Que tecnologia alimenta o Mictoo?',
+    a: 'O Mictoo é construído sobre o modelo Whisper large-v3 da OpenAI, servido pela Groq para velocidade com a OpenAI como alternativa. É o mesmo modelo de reconhecimento de fala que alimenta os recursos de voz do ChatGPT e muitos serviços profissionais de legendagem.',
+  },
+]
+
+// ── JSON-LD schemas ──────────────────────────────────────────────────────────
+const webAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Mictoo',
+  url: 'https://mictoo.com/pt',
+  description:
+    'Ferramenta gratuita de transcrição de áudio e vídeo online alimentada pelo OpenAI Whisper. Sem registro necessário. Suporta mais de 50 idiomas.',
+  applicationCategory: 'UtilityApplication',
+  operatingSystem: 'Web',
+  browserRequirements: 'Requer um navegador moderno com JavaScript habilitado.',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  featureList: [
+    'Transcrever áudio para texto',
+    'Transcrever vídeo para texto',
+    'Suporta mais de 50 idiomas',
+    'Sem conta necessária',
+    'Gratuito para usar',
+    'Resumo gerado por IA da transcrição',
+    'Traduzir a transcrição para 28 idiomas',
+    'Chat com a transcrição',
+    'Suporta MP3, MP4, WAV, M4A, OGG, WEBM, FLAC, AAC',
+  ],
+}
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+}
+
+// ── Small reusable pieces ────────────────────────────────────────────────────
+
+// Trust chip: icon + short label, sits in the hero under the H1.
+function TrustChip({ icon, label }) {
   return (
-    <LandingLayout
-      defaultLanguage="pt"
-      badge="IA · Grátis · Sem cadastro · 50+ idiomas"
-      h1={<>Transcrever Áudio e Vídeo em Texto<br /><span className="text-brand-600">com IA, Grátis Online</span></>}
-      subtitle="Envie qualquer arquivo de áudio ou vídeo e receba uma transcrição IA precisa em segundos. Nenhuma conta necessária."
-      howItWorks={[
-        { icon: '📂', title: 'Envie o arquivo', desc: "Arraste e solte ou clique para enviar. MP3, MP4, WAV, M4A, OGG, WEBM, FLAC. Até 25 MB sem cadastro, 60 MB após cadastro." },
-        { icon: '⚡', title: 'A IA transcreve', desc: "O Whisper da OpenAI converte o áudio em texto com alta precisão em mais de 50 idiomas. Um arquivo de 10 minutos costuma terminar em menos de 30 segundos." },
-        { icon: '📋', title: 'Copie ou baixe', desc: "Edite a transcrição direto no navegador. Copie para a área de transferência ou exporte em .txt, .srt, .pdf, .docx." },
-      ]}
-      whyUse={{ title: 'Por que o Mictoo', bullets: [
-        { title: '100% grátis', desc: "Sem assinatura, sem trial limitado. O Mictoo é gratuito, sem teto mensal nem contador de minutos." },
-        { title: 'Privacidade por padrão', desc: "Seus arquivos são enviados direto para a API do Whisper (Groq como principal, OpenAI como backup), processados e apagados em segundos. Não guardamos nada e não treinamos nenhum modelo com seus dados." },
-        { title: 'Mais de 50 idiomas', desc: "Detecção automática de idioma. Funciona com português, inglês, espanhol, francês, alemão, russo, japonês e muitos outros." },
-        { title: 'Alta precisão', desc: "Movido pelo Whisper da OpenAI, o mesmo modelo de reconhecimento de fala usado no ChatGPT e pelos principais serviços de transcrição." },
-        { title: 'Resultados rápidos', desc: "Um arquivo de 10 minutos é transcrito em menos de 30 segundos. Sem fila de espera, sem pop-up de 'aguarde 30 segundos'." },
-        { title: 'Saída editável', desc: "Releia e corrija a transcrição no navegador, depois copie para a área de transferência ou baixe em .txt, .srt ou .pdf." },
-        { title: "Resumo com IA incluso", desc: "Após cada transcrição, geramos um resumo grátis com os pontos-chave e as ações a tomar. Os concorrentes geralmente cobram US$15–20/mês por esta função. Sem clique extra, sem convite para upgrade." },
-        { title: "Tradução para 28 idiomas", desc: "Um clique traduz a transcrição completa para espanhol, francês, alemão, japonês e mais 24. Os timestamps originais ficam preservados, então o SRT traduzido continua sincronizado com o áudio." },
-        { title: "Converse com sua transcrição", desc: "Pergunte qualquer coisa sobre uma transcrição que você criou e receba respostas com marcas de tempo clicáveis. Grátis, basta entrar." },
-      ]}}
-      useCases={{ title: 'Quem usa o Mictoo', items: [
-        { title: 'Estudantes', desc: "Transcreva aulas, entrevistas e gravações de pesquisa. Texto pesquisável, mais fácil de revisar do que ficar varrendo o áudio." },
-        { title: 'Podcasters', desc: "Transforme episódios em artigos de blog, show notes ou legendas. Bônus de SEO e acessibilidade imediata." },
-        { title: 'Jornalistas', desc: "Converta entrevistas gravadas em texto em segundos. Citações precisas com timestamps para checagem." },
-        { title: 'Equipes corporativas', desc: "Transcreva reuniões, calls com clientes e apresentações. Depois você busca por palavra-chave em vez de reescutar tudo." },
-        { title: 'Criadores de conteúdo', desc: "Gere legendas para YouTube, TikTok ou Instagram Reels. Export em SRT pronto para subir no YouTube Studio." },
-        { title: 'Áreas jurídica e médica', desc: "Rascunhos rápidos de transcrições para anotações e documentação. Mantenha o arquivo original para a versão final." },
-      ]}}
-      proTips={{ title: 'Dicas para uma transcrição melhor', tips: [
-        { title: 'Áudio mono a 64 kbps já basta para fala', desc: "O Mictoo aceita até 25 MB. Para voz, mono a 64 kbps dá cerca de 28 MB por hora sem perda perceptível de precisão. Veja nosso guia para comprimir áudio." },
-        { title: 'Se o arquivo passar de 30 minutos, faça cadastro', desc: "Anônimo: máximo 30 minutos. Cadastro grátis: 60 minutos. Acima disso: divida o arquivo em partes e depois junte as transcrições." },
-        { title: 'Especifique o idioma se a detecção automática errar', desc: "O Whisper acerta em 99% dos casos. Em arquivos muito curtos (menos de 10 segundos) ou bem multilíngues, o seletor manual de idioma garante o resultado." },
-        { title: 'Para transcrever um vídeo, o áudio é suficiente', desc: "O Mictoo aceita MP4 direto, mas você também pode extrair o áudio (com nosso conversor MP4 para MP3) e enviar um arquivo 10 vezes menor." },
-        { title: 'Resumo IA incluso no resultado', desc: "Depois da transcrição, o Mictoo gera automaticamente um resumo do conteúdo, os pontos-chave e as ações. Útil para reuniões longas e podcasts." },
-        { title: 'Traduza a transcrição em 28 idiomas', desc: "Quando a transcrição estiver pronta, clique em Traduzir na visualização Leitor. O Whisper transcreve o idioma de origem, depois o GPT-4o-mini traduz para o idioma alvo." },
-      ]}}
-      faq={[
-        {
-          q: 'Como transcrever um arquivo de áudio em texto grátis?',
-          a: "Envie seu arquivo de áudio acima. O Mictoo transcreve automaticamente com o Whisper da OpenAI e mostra o texto em segundos. Sem cadastro para arquivos de até 25 MB.",
-        },
-        {
-          q: 'O Mictoo funciona bem para português brasileiro?',
-          a: "Sim. O Whisper, modelo da OpenAI no qual o Mictoo se baseia, foi treinado em muitas horas de áudio em português e oferece ótima precisão, incluindo sotaques regionais e vocabulário técnico.",
-        },
-        {
-          q: 'Meus arquivos ficam armazenados?',
-          a: "Não. Seus arquivos vão direto para a API de transcrição, são processados e apagados em segundos. Não guardamos nada em nossos servidores e não usamos seus dados para treinar modelos.",
-        },
-        {
-          q: 'Qual é o tamanho máximo de arquivo?',
-          a: "25 MB para usuários anônimos, 60 MB após um cadastro grátis. Um MP3 mono a 64 kbps equivale a cerca de uma hora de áudio em 25 MB.",
-        },
-        {
-          q: 'Quanto tempo leva a transcrição?',
-          a: "Um arquivo de 10 minutos costuma ser transcrito em menos de 30 segundos. Arquivos mais longos demoram proporcionalmente mais, mas continuam muito mais rápidos que o tempo real.",
-        },
-        {
-          q: 'Quais formatos de áudio e vídeo são aceitos?',
-          a: "MP3, MP4, WAV, M4A, OGG, WEBM, FLAC, MPEG. Para arquivos de vídeo, o Mictoo extrai a faixa de áudio automaticamente. Se o seu formato não estiver na lista, converta primeiro para MP3 ou WAV com nossos conversores integrados.",
-        },
-        {
-          q: 'Posso baixar as legendas em SRT?',
-          a: "Sim. Depois da transcrição, clique no botão .srt para baixar um arquivo de legendas com timestamps, pronto para subir no YouTube Studio, Premiere ou Final Cut.",
-        },
-        {
-          q: 'O Mictoo gera resumo do conteúdo?',
-          a: "Sim. Depois de cada transcrição, o Mictoo cria automaticamente um resumo IA com os pontos-chave e ações. Bem útil para podcasts longos, reuniões e aulas.",
-        },
-        {
-          q: 'Posso transcrever um vídeo do YouTube?',
-          a: "Direto pela URL, não. O YouTube bloqueia servidores de terceiros. Baixe o vídeo localmente primeiro com uma ferramenta como 4K Video Downloader, depois envie o arquivo MP4 aqui. Nosso guia de download do YouTube explica o passo a passo.",
-        },
-        {
-          q: 'O Mictoo tem app para celular?',
-          a: "Ainda não tem app nativo, mas o site funciona perfeitamente no iOS Safari e no Android Chrome. Envie da sua galeria ou de um gravador de voz direto pelo celular.",
-        },
-      ]}
-      relatedLinks={[
-        { href: '/pt/transcribe-mp3-to-text', label: 'MP3 em texto', desc: 'Transcreva especificamente arquivos MP3, podcasts, gravações de voz, chamadas.' },
-        { href: '/pt/transcribe-video-to-text', label: 'Vídeo em texto', desc: "Transcreva MP4, MOV, WEBM, para gravações do Zoom, vídeos do YouTube, screencasts." },
-        { href: '/pt/podcast-transcription', label: 'Transcrição de podcast', desc: 'Mesmo motor com dicas específicas para podcasts longos e edição.' },
-        { href: '/pt/free-srt-generator', label: 'Gerador SRT grátis', desc: 'Legendas com timestamps prontas para YouTube Studio, Premiere, DaVinci Resolve.' },
-      ]}
-    />
+    <div className="inline-flex items-center gap-1.5 text-slate-600 text-sm">
+      <span className="w-5 h-5 text-brand-600 flex-shrink-0">{icon}</span>
+      <span>{label}</span>
+    </div>
+  )
+}
+
+// SVG icon set used in Trust chips + tool grid + benefit cards + audience row.
+// All outline style, 24x24 viewBox, currentColor stroke ,  inherits color from
+// the parent `text-brand-*` class.
+const Icons = {
+  gift: (
+    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z" /></svg>
+  ),
+  shield: (
+    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M12 2l9 4v6c0 5-3.9 9.5-9 10-5.1-.5-9-5-9-10V6z" /></svg>
+  ),
+  globe: (
+    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2c2.5 3 4 6.5 4 10s-1.5 7-4 10c-2.5-3-4-6.5-4-10s1.5-7 4-10z" /></svg>
+  ),
+  sparkles: (
+    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5zM19 14l.8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8z" /></svg>
+  ),
+  trending: (
+    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8" /><path d="M17 7h4v4" /></svg>
+  ),
+  music: (
+    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M9 18V5l10-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="16" cy="16" r="3" /></svg>
+  ),
+  video: (
+    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><rect x="2" y="6" width="14" height="12" rx="2" /><path d="M22 8l-6 4 6 4z" /></svg>
+  ),
+  waveform: (
+    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M3 12h2M19 12h2M7 8v8M11 5v14M15 8v8" /></svg>
+  ),
+  users: (
+    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+  ),
+  mic: (
+    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3" /><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3M8 22h8" /></svg>
+  ),
+  editPen: (
+    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4z" /></svg>
+  ),
+  target: (
+    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg>
+  ),
+  bolt: (
+    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7z" /></svg>
+  ),
+  lock: (
+    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
+  ),
+  cap: (
+    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5L2 9z" /><path d="M6 11v4c0 1.5 2.7 3 6 3s6-1.5 6-3v-4M22 9v5" /></svg>
+  ),
+  newspaper: (
+    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M4 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4z" /><path d="M20 8h2v10a2 2 0 0 1-2 2" /><path d="M8 8h6M8 12h6M8 16h6" /></svg>
+  ),
+  briefcase: (
+    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2" /><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /><path d="M3 12h18" /></svg>
+  ),
+  check: (
+    <svg fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+  ),
+  upload: (
+    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M12 3v14m-5-5l5-5 5 5" /><path d="M4 21h16" /></svg>
+  ),
+  arrowRight: (
+    <svg fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path d="M5 12h14m-6-6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+  ),
+}
+
+// ── Page component ───────────────────────────────────────────────────────────
+export default function PtHome() {
+  return (
+    <>
+      {/* JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
+      {/* ────────────────── HERO + UPLOAD ──────────────────
+        Single continuous section so the subtle background gradient wraps
+        from the H1 all the way down through the Language selector and
+        drop zone. Before this change the Language selector was floating
+        on plain white with the gray background starting only below it , 
+        felt disconnected. Now everything sits inside one soft-slate
+        container and the white drop-zone card stands out cleanly against
+        the surrounding tone.
+      */}
+      <section className="bg-gradient-to-b from-brand-50/40 via-slate-100/60 to-slate-100 pt-16 pb-16 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <span className="inline-block bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1 rounded-full mb-5 uppercase tracking-wide">
+            Transcrição gratuita de IA · Sem registro
+          </span>
+          <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-5 leading-tight">
+            Transcrição gratuita de Áudio &amp; Vídeo<br />
+            <span className="text-brand-600">para Texto</span>
+          </h1>
+          <p className="text-lg text-slate-600 mb-7 max-w-2xl mx-auto">
+            Transcrições precisas em segundos. Faça upload de MP3, MP4, WAV e mais. Sem conta necessária.
+          </p>
+
+          {/* Trust chips ,  shared component so LandingLayout hero matches
+              this one exactly (single source of truth, updates propagate
+              site-wide). */}
+          <div className="mb-5">
+            <HeroChips locale="pt" />
+          </div>
+
+          {/* Live counter from /api/stats (Supabase transcripts table).
+              Rounded down to the nearest 500 with a + suffix, so it reads
+              as a milestone rather than an exact number. Hides itself if
+              the API is down or the count is below the visibility
+              threshold. See components/HeroCounter.js. */}
+          <HeroCounter locale="pt" />
+        </div>
+
+        {/* Upload tool sits inside the same section so the background
+            wraps the Language selector too. */}
+        <div id="tool" className="max-w-2xl mx-auto mt-10 scroll-mt-20">
+          <UploadZone defaultLanguage="pt" locale="pt" />
+        </div>
+      </section>
+
+      {/* ────────────────── TOOL GRID ──────────────────
+        Wrapped in the same slate-100 tint as the hero + upload section
+        above so the top of the page reads as one cohesive intro block
+        (hero + upload + "here are all the tools we have"). The seam
+        against the following "Como o Mictoo funciona" section (bg-white) é
+        onde a área de introdução termina e o conteúdo mais profundo começa.
+      */}
+      <section className="bg-slate-100 border-b border-slate-200 pb-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold text-slate-900 mb-8">Converta qualquer arquivo em texto</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            {[
+              { href: '/pt/transcribe-mp3-to-text',   label: 'MP3 para Texto',        icon: Icons.music },
+              { href: '/pt/transcribe-video-to-text', label: 'Vídeo para Texto',      icon: Icons.video },
+              { href: '/pt/wav-to-text',              label: 'WAV para Texto',        icon: Icons.waveform },
+              { href: '/pt/meeting-transcription',    label: 'Transcrição de Reunião', icon: Icons.users },
+              { href: '/pt/podcast-transcription',    label: 'Transcrição de Podcast', icon: Icons.mic },
+              { href: '/pt/voice-memo-to-text',       label: 'Gravação de Voz para Texto', icon: Icons.editPen },
+            ].map(({ href, label, icon }) => (
+              <a
+                key={href}
+                href={href}
+                className="bg-white border border-slate-200 rounded-2xl p-4 text-center hover:border-brand-400 hover:shadow-sm transition-all group"
+              >
+                <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-brand-50 text-brand-600 mb-3 group-hover:bg-brand-100 transition-colors">
+                  <span className="w-6 h-6">{icon}</span>
+                </div>
+                <div className="text-sm font-semibold text-slate-800 leading-tight">{label}</div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────── COMO O MICTOO FUNCIONA ────────────────── */}
+      <section id="how-it-works" className="bg-white border-y border-slate-100 py-16 px-4 scroll-mt-20">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold text-slate-900 mb-10">Como o Mictoo funciona</h2>
+
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] gap-10 items-start">
+            {/* 3 steps */}
+            <ol className="space-y-8">
+              {[
+                {
+                  step: 1,
+                  icon: Icons.upload,
+                  title: 'Faça upload do seu arquivo',
+                  desc: 'Arraste e solte ou escolha um arquivo de áudio ou vídeo. MP3, MP4, WAV, M4A e mais.',
+                },
+                {
+                  step: 2,
+                  icon: Icons.sparkles,
+                  title: 'IA transcreve',
+                  desc: 'O Whisper large-v3 converte fala em texto com alta precisão e pontuação automática.',
+                },
+                {
+                  step: 3,
+                  icon: Icons.editPen,
+                  title: 'Revise e exporte',
+                  desc: 'Edite, resuma, traduza e baixe sua transcrição como TXT, DOCX, PDF ou SRT.',
+                },
+              ].map(({ step, icon, title, desc }) => (
+                <li key={step} className="flex gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-600 text-white text-sm font-semibold flex items-center justify-center">
+                    {step}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="w-5 h-5 text-brand-600">{icon}</span>
+                      <h3 className="font-semibold text-slate-900">{title}</h3>
+                    </div>
+                    <p className="text-sm text-slate-600 leading-relaxed">{desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            {/* Product result preview */}
+            <Image
+              src="/how-mictoo-works-interview.webp"
+              alt="Espaço de trabalho do Mictoo mostrando uma transcrição em inglês com marcas de tempo e controles de tradução"
+              width={1127}
+              height={1395}
+              sizes="(max-width: 1024px) 100vw, 512px"
+              className="w-full max-w-lg h-auto justify-self-center lg:-mt-[72px] rounded-2xl border border-slate-200 shadow-sm"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────── POR QUE ESCOLHER O MICTOO? ────────────────── */}
+      <section className="max-w-6xl mx-auto px-4 py-16">
+        <h2 className="text-2xl font-bold text-slate-900 mb-8">Por que escolher o Mictoo?</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            {
+              icon: Icons.target,
+              title: 'Alta precisão',
+              desc: 'O Whisper large-v3 fornece transcrições precisas mesmo com sotaques e ruídos de fundo.',
+            },
+            {
+              icon: Icons.bolt,
+              title: 'Resultados rápidos',
+              desc: 'Obtenha transcrições em segundos, não em horas. Um arquivo de 30 minutos geralmente termina em cerca de um minuto.',
+            },
+            {
+              icon: Icons.lock,
+              title: 'Privado por design',
+              desc: 'Os arquivos são processados de forma segura e nunca são armazenados em nossos servidores. Sem treinamento com seu áudio.',
+            },
+            {
+              icon: Icons.globe,
+              title: 'Mais de 50 idiomas',
+              desc: 'Transcreva e traduza em mais de 50 idiomas. Detecção automática ou escolha seu idioma.',
+            },
+          ].map(({ icon, title, desc }) => (
+            <div key={title} className="bg-white border border-slate-200 rounded-2xl p-5">
+              <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-brand-50 text-brand-600 mb-4">
+                <span className="w-6 h-6">{icon}</span>
+              </div>
+              <h3 className="font-semibold text-slate-900 mb-2">{title}</h3>
+              <p className="text-sm text-slate-600 leading-relaxed">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ────────────────── FEITO PARA CADA VOZ ────────────────── */}
+      <section className="bg-white border-y border-slate-100 py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold text-slate-900 mb-8">Feito para cada voz</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {[
+              {
+                href: '/pt/lecture-transcription',
+                icon: Icons.cap,
+                label: 'Estudantes',
+                desc: 'Transcreva aulas e materiais de estudo. Foque na aprendizagem.',
+              },
+              {
+                href: '/pt/podcast-transcription',
+                icon: Icons.mic,
+                label: 'Podcasters',
+                desc: 'Transforme episódios em notas de show, blogs e conteúdo social.',
+              },
+              {
+                href: '/pt/interview-transcription',
+                icon: Icons.newspaper,
+                label: 'Jornalistas',
+                desc: 'Transcreva entrevistas rapidamente e verifique citações com facilidade.',
+              },
+              {
+                href: '/pt/meeting-transcription',
+                icon: Icons.briefcase,
+                label: 'Equipes',
+                desc: 'Documente reuniões e compartilhe transcrições acionáveis.',
+              },
+              {
+                href: '/pt/free-srt-generator',
+                icon: Icons.video,
+                label: 'Criadores de conteúdo',
+                desc: 'Reaproveite áudio e vídeo em legendas, artigos e mais.',
+              },
+            ].map(({ href, icon, label, desc }) => (
+              <a
+                key={href}
+                href={href}
+                className="bg-white border border-slate-200 rounded-2xl p-4 hover:border-brand-400 hover:shadow-sm transition-all group"
+              >
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-brand-50 text-brand-600 mb-3">
+                  <span className="w-5 h-5">{icon}</span>
+                </div>
+                <h3 className="font-semibold text-slate-900 mb-1 text-sm">{label}</h3>
+                <p className="text-xs text-slate-500 leading-relaxed flex items-start justify-between gap-2">
+                  <span>{desc}</span>
+                  <span className="w-3.5 h-3.5 text-slate-300 group-hover:text-brand-500 transition-colors flex-shrink-0 mt-0.5">{Icons.arrowRight}</span>
+                </p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────── TABELA DE COMPARAÇÃO UNIFICADA ──────────────────
+        Single table where every named competitor gets its own row and
+        the whole row is a link to that tool’s /X-alternative page.
+        Structure:
+          - 4 feature columns: Free / No signup / Summary / Translation
+          - Row 1: mictoo (brand-highlighted) with ✓ badges per cell
+          - Rows 2-6: Descript / Fireflies / TurboScribe / Otter / Notta
+                      each row is clickable → their alternative page
+                      Cells use compact honest labels; detailed pricing
+                      claims live on the per-tool comparison pages.
+        Cell copy stays deliberately conservative on specific numbers so
+        the table doesn’t go out of date every time a competitor changes
+        their free tier. Real numbers are on each linked page.
+      */}
+      <section className="max-w-6xl mx-auto px-4 py-16">
+        <h2 className="text-2xl font-bold text-slate-900 mb-3">Transcrição gratuita sem assinatura</h2>
+        <p className="text-slate-600 mb-8 max-w-2xl">
+          Como o Mictoo se compara às ferramentas que as pessoas costumam considerar. Clique em qualquer linha para uma comparação completa recurso por recurso.
+        </p>
+
+        <div className="bg-white border border-slate-200 rounded-2xl overflow-x-auto">
+          <table className="w-full text-sm min-w-[820px] border-collapse">
+            <thead>
+              <tr>
+                <th className="text-left px-5 py-4 w-56"></th>
+                <th className="text-center px-4 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">Gratuito</th>
+                <th className="text-center px-4 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">Sem registro</th>
+                <th className="text-center px-4 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">Resumo de IA</th>
+                <th className="text-center px-4 py-4 text-slate-500 font-semibold text-xs uppercase tracking-wide">Tradução</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* Mictoo row ,  brand-highlighted, not clickable (it’s the reference) */}
+              <tr className="bg-gradient-to-r from-brand-50 to-brand-50/40">
+                <td className="px-5 py-5 border-t border-slate-100 align-middle">
+                  <div className="inline-flex items-center gap-2.5">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <rect width="24" height="24" rx="6" fill="#0284c7" />
+                      <path d="M8 8v8M12 6v12M16 10v4" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                    <div>
+                      <div className="font-bold text-slate-900 leading-tight">mictoo</div>
+                      <div className="text-[11px] text-brand-700 font-medium">Gratuito para todos</div>
+                    </div>
+                  </div>
+                </td>
+                {[
+                  { yes: true, label: 'Gratuito para usar' },
+                  { yes: true, label: 'Sem conta' },
+                  { yes: true, label: 'Incluído' },
+                  { yes: true, label: 'Mais de 50 idiomas' },
+                ].map(({ label }, i) => (
+                  <td key={i} className="text-center px-4 py-5 border-t border-slate-100 align-middle">
+                    <div className="inline-flex flex-col items-center gap-1.5">
+                      <span className="w-6 h-6 rounded-full bg-brand-600 text-white flex items-center justify-center">
+                        <span className="w-3.5 h-3.5">{Icons.check}</span>
+                      </span>
+                      <span className="text-[11px] text-slate-600 leading-snug">{label}</span>
+                    </div>
+                  </td>
+                ))}
+              </tr>
+
+              {/* Competitor rows ,  one per tool, whole row is a link. */}
+              {[
+                {
+                  name: 'Descript',    href: '/pt/descript-alternative',    tag: 'Fluxo de trabalho focado no editor',
+                  cells: ['Tier limitado',    'Registro necessário', 'Add-on pago',   'Limitado'],
+                },
+                {
+                  name: 'Fireflies',   href: '/pt/fireflies-alternative',   tag: 'Gravador de reuniões',
+                  cells: ['Tier limitado',    'Registro necessário', 'Pro tier',      'Limitado'],
+                },
+                {
+                  name: 'TurboScribe', href: '/pt/turboscribe-alternative', tag: 'Transcrição casual',
+                  cells: ['Limite diário',        'Registro necessário', 'Não incluído',  'Limitado'],
+                },
+                {
+                  name: 'Otter',       href: '/pt/otter-alternative',       tag: 'Notas de reunião ao vivo',
+                  cells: ['Limite mensal',      'Registro necessário', 'Pro tier',      'Limitado'],
+                },
+                {
+                  name: 'Notta',       href: '/pt/notta-alternative',       tag: 'Foco em múltiplos idiomas',
+                  cells: ['Limite mensal',      'Registro necessário', 'Pro tier',      'Amplo'],
+                },
+              ].map(({ name, href, tag, cells }) => (
+                <tr key={href} className="group hover:bg-slate-50 transition-colors">
+                  <td className="border-t border-slate-100 align-middle p-0">
+                    <a href={href} className="flex items-center justify-between gap-3 px-5 py-4">
+                      <div>
+                        <div className="font-semibold text-slate-800">vs {name}</div>
+                        <div className="text-[11px] text-slate-500 mt-0.5">{tag}</div>
+                      </div>
+                      <span className="w-4 h-4 text-slate-300 group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all">
+                        {Icons.arrowRight}
+                      </span>
+                    </a>
+                  </td>
+                  {cells.map((label, i) => (
+                    <td key={i} className="border-t border-slate-100 align-middle p-0">
+                      <a
+                        href={href}
+                        className="block text-center px-4 py-4 text-xs text-slate-500"
+                        aria-hidden="true"
+                        tabIndex={-1}
+                      >
+                        {label}
+                      </a>
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p className="text-xs text-slate-400 text-center mt-4">
+          Apenas uma visão geral. As páginas de preços mudam; veja a comparação vinculada para números atuais.
+        </p>
+      </section>
+
+      {/* ────────────────── FAQ ────────────────── */}
+      <section id="faq" className="bg-white border-y border-slate-100 py-16 px-4">
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-2xl font-bold text-slate-900 mb-10 text-center">
+            Perguntas frequentes
+          </h2>
+          <div className="space-y-3">
+            {FAQ.map(({ q, a }, i) => (
+              <details
+                key={q}
+                className="group border border-slate-200 rounded-xl overflow-hidden bg-white open:shadow-sm"
+                {...(i === 0 ? { open: true } : {})}
+              >
+                <summary className="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-3 font-semibold text-slate-800 hover:bg-slate-50 transition-colors">
+                  <span>{q}</span>
+                  <svg
+                    className="w-4 h-4 flex-shrink-0 text-slate-400 transition-transform group-open:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-5 pb-5 text-sm text-slate-600 leading-relaxed">
+                  <p>{a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────── PLACA CTA INFERIOR ──────────────────
+        Redesigned: dropped the middle waveform badge (was a third
+        waveform on top of the two side accents ,  too repetitive),
+        replaced with an AI-sparkles badge, added a trust-chip row
+        under the tagline, and made the CTA button larger with a
+        right-arrow so it reads as an action, not a static link.
+        Softer side-waveform accents so the copy has more contrast.
+      */}
+      <section className="max-w-5xl mx-auto px-4 py-12">
+        <div className="relative bg-gradient-to-r from-brand-600 via-brand-500 to-brand-600 rounded-3xl overflow-hidden shadow-lg shadow-brand-500/20">
+          {/* Subtle radial glow behind the button ,  soft focus, no
+              waveform accents (removed per user request; the plate reads
+              cleaner without them and the sparkles badge alone carries
+              the "AI transcription" cue). */}
+          <div className="absolute right-24 top-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-white/10 blur-3xl pointer-events-none hidden md:block" />
+
+          <div className="relative flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 py-10 px-6 md:px-10 text-center md:text-left">
+            {/* AI badge ,  sparkles instead of a third waveform */}
+            <div className="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur border border-white/20 flex items-center justify-center text-white flex-shrink-0">
+              <span className="w-7 h-7">{Icons.sparkles}</span>
+            </div>
+
+            <div className="min-w-0 flex-1 max-w-lg">
+              <div className="font-bold text-white text-xl md:text-2xl leading-tight">
+                Transcreva seu arquivo, gratuitamente
+              </div>
+              <div className="text-sm text-white/85 mt-1.5">
+                Solte seu áudio ou vídeo e obtenha uma transcrição precisa em segundos.
+              </div>
+              {/* Trust chips ,  three reasons to trust the CTA */}
+              <div className="mt-3 flex flex-wrap items-center justify-center md:justify-start gap-x-4 gap-y-1 text-[11px] text-white/80">
+                <span className="inline-flex items-center gap-1">
+                  <span className="w-3 h-3">{Icons.check}</span> Sem registro
+                </span>
+                <span className="inline-flex items-center gap-1">
+                  <span className="w-3 h-3">{Icons.check}</span> Sem cartão de crédito
+                </span>
+                <span className="inline-flex items-center gap-1">
+                  <span className="w-3 h-3">{Icons.check}</span> Mais de 50 idiomas
+                </span>
+              </div>
+            </div>
+
+            <a
+              href="#tool"
+              className="inline-flex items-center gap-2 bg-white text-brand-700 font-bold text-sm md:text-base px-6 py-3.5 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex-shrink-0 group"
+            >
+              <span>Comece a Transcrever</span>
+              <span className="w-4 h-4 group-hover:translate-x-0.5 transition-transform">{Icons.arrowRight}</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </>
   )
 }

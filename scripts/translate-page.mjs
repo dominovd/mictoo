@@ -76,6 +76,70 @@ function camelCase(s) {
   return s.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join('')
 }
 
+function buildHomepageSystemPrompt(localeCode, localeName) {
+  return `You are translating the Mictoo homepage from English to ${localeName}.
+
+This file is app/page.js — it has NO layout wrapper, all sections are inlined.
+The output goes to app/${localeCode}/page.js.
+
+PRESERVE EXACTLY (do not translate, do not modify):
+- All import statements (Image, UploadZone, HeroChips, HeroCounter)
+- The Icons const with all SVG paths (SVG code stays byte-identical)
+- The webAppSchema and faqSchema JSON-LD structure and keys — translate only the string VALUES (name, description, featureList items) into ${localeName}
+- JSX tag names, attributes, classNames, className strings, event handlers
+- The FAQ constant structure (array of {q, a}) — translate the q and a string values
+- Function name (rename Home → ${camelCase(localeCode)}Home)
+
+TRANSLATE INTO ${localeName.toUpperCase()}:
+- metadata.title (add if missing — infer from EN homepage: "Free AI Audio & Video Transcription to Text — Mictoo")
+- metadata.description
+- openGraph.title, openGraph.description
+- twitter.title, twitter.description
+- webAppSchema.description, webAppSchema.featureList[] strings
+- faqSchema is auto-derived from FAQ — only FAQ needs translation
+- The Eyebrow badge text (e.g. "Free AI transcription · No signup")
+- The h1 first line and second line (span)
+- The subtitle <p>
+- Section h2 titles ("Convert any file to text", "How Mictoo works", "Why choose Mictoo?", "Built for every voice", "Free transcription without the subscription", "Frequently asked questions")
+- All tool grid labels ("MP3 to Text", "Video to Text", etc.)
+- All howItWorks step titles and descriptions
+- All whyChoose card titles and descriptions
+- All audience segment labels + desc ("Students", "Podcasters", etc.)
+- Comparison table headers ("Free", "No signup", "AI Summary", "Translation")
+- Comparison Mictoo row tag ("Free for everyone") and cell labels
+- Competitor tag descriptions ("Editor-first workflow", etc.)
+- Table caption below the comparison
+- Bottom CTA plate: headline, subtitle, trust chips (No signup / No credit card / 50+ languages), CTA button ("Start Transcribing")
+
+STYLE RULES (very important):
+- Conversational specialist voice. Short sentences. No corporate buzzwords ("synergy", "leverage", "robust", "cutting-edge", "seamless").
+- NO em-dashes (—) or en-dashes (–) anywhere. Use commas, parentheses, colons, or periods instead.
+- Keep brand names in original English: Mictoo, Whisper, OpenAI, Groq, Vercel, Descript, Fireflies, TurboScribe, Otter, Notta, GPT-4o, ChatGPT.
+- For German: 'Sie' formal address. For French: 'vous'. For Spanish: 'tú'. For Russian: 'вы' (formal). For Japanese: です/ます form. For Korean: 합니다 form.
+
+CRITICAL — APOSTROPHES:
+- For ANY language with apostrophes in normal words (French l'audio / d'un, Italian un'altra, Portuguese p'ra) you MUST use TYPOGRAPHIC ’ (U+2019), NOT ASCII '.
+- Correct: 'l’audio'  Wrong: 'l'audio' (breaks JS parsing)
+- In JSX text between tags, use ’ for typographic quality.
+
+URL REWRITING:
+- alternates.canonical: change 'https://mictoo.com' → 'https://mictoo.com/${localeCode}'
+- alternates.languages: KEEP the object as-is (all URLs stay pointing to original absolute paths for hreflang)
+- openGraph.url: same change as canonical (add /${localeCode})
+- webAppSchema.url: change to 'https://mictoo.com/${localeCode}'
+- All <a href="/SLUG"> in the tool grid, audience segments, and comparison table become <a href="/${localeCode}/SLUG">
+- Do NOT touch href="#tool" or href="#how-it-works" or href="#faq" (fragment anchors stay as-is)
+
+LOCALIZATION PROPS (required):
+- HeroChips receives locale="${localeCode}" (add if missing)
+- HeroCounter receives locale="${localeCode}" (add if missing)
+- UploadZone receives BOTH defaultLanguage="${localeCode}" AND locale="${localeCode}" (add if missing). Existing enableYouTubeUrl or other props stay.
+
+OUTPUT:
+- Return the COMPLETE translated page.js as raw code, no markdown fences, no explanation.
+- Must parse as valid JSX. Same imports, same overall structure. Only text content and hrefs change.`
+}
+
 function buildSystemPrompt(localeCode, localeName) {
   return `You are translating a Next.js page.js file from English to ${localeName}.
 
@@ -164,19 +228,30 @@ async function translateOne(slug, localeCode) {
     console.error(`✗ Unknown locale: ${localeCode}`)
     return false
   }
-  const srcPath = path.join(ROOT, 'app', slug, 'page.js')
+  // Special case: --homepage source is app/page.js, dst is app/<locale>/page.js
+  const isHomepage = slug === '__homepage__'
+  const srcPath = isHomepage
+    ? path.join(ROOT, 'app', 'page.js')
+    : path.join(ROOT, 'app', slug, 'page.js')
   if (!fs.existsSync(srcPath)) {
     console.error(`✗ Source not found: ${srcPath}`)
     return false
   }
-  const dstPath = path.join(ROOT, 'app', localeCode, slug, 'page.js')
+  const dstPath = isHomepage
+    ? path.join(ROOT, 'app', localeCode, 'page.js')
+    : path.join(ROOT, 'app', localeCode, slug, 'page.js')
   fs.mkdirSync(path.dirname(dstPath), { recursive: true })
 
   const src = fs.readFileSync(srcPath, 'utf8')
-  const sys = buildSystemPrompt(localeCode, localeName)
-  const user = `SLUG: ${slug}\n\nSOURCE FILE:\n\n${src}`
+  const sys = isHomepage
+    ? buildHomepageSystemPrompt(localeCode, localeName)
+    : buildSystemPrompt(localeCode, localeName)
+  const user = isHomepage
+    ? `HOMEPAGE (/) → /${localeCode}/\n\nSOURCE FILE:\n\n${src}`
+    : `SLUG: ${slug}\n\nSOURCE FILE:\n\n${src}`
 
-  console.log(`→ ${localeCode}/${slug} (${(src.length / 1024).toFixed(1)} KB in)`)
+  const displaySlug = isHomepage ? '(homepage)' : slug
+  console.log(`→ ${localeCode}/${displaySlug} (${(src.length / 1024).toFixed(1)} KB in)`)
   const t0 = Date.now()
   const resp = await openai.chat.completions.create({
     model: MODEL,
@@ -269,6 +344,7 @@ Examples:
   node scripts/translate-page.mjs wav-to-text fr de es
   node scripts/translate-page.mjs --wave=wave4 fr
   node scripts/translate-page.mjs --wave=generic fr de es ru it pt pl ja ko
+  node scripts/translate-page.mjs --homepage de es ru it pt pl ja ko
 
 Waves: ${Object.keys(WAVES).join(', ')}
 Locales: ${Object.keys(LOCALES).join(', ')}
@@ -278,7 +354,10 @@ Locales: ${Object.keys(LOCALES).join(', ')}
 
   let slugs
   let localeArgs
-  if (args[0].startsWith('--wave=')) {
+  if (args[0] === '--homepage') {
+    slugs = ['__homepage__']
+    localeArgs = args.slice(1)
+  } else if (args[0].startsWith('--wave=')) {
     const wave = args[0].slice(7)
     slugs = WAVES[wave]
     if (!slugs) {
