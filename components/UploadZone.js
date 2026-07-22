@@ -520,6 +520,24 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
     return () => document.removeEventListener('mousedown', onDown)
   }, [downloadMenuOpen])
 
+  // Translate dropdown open/close. Wave 3 moved the previous inline
+  // Translate row (language picker + Translate button + Showing/Show
+  // original toggle) into a compact Translate ▾ dropdown in the result
+  // header, mirroring the Download ▾ pattern. Click-outside closes.
+  const [translateMenuOpen, setTranslateMenuOpen] = useState(false)
+  const translateMenuRef = useRef(null)
+
+  useEffect(() => {
+    if (!translateMenuOpen) return
+    function onDown(e) {
+      if (translateMenuRef.current && !translateMenuRef.current.contains(e.target)) {
+        setTranslateMenuOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', onDown)
+    return () => document.removeEventListener('mousedown', onDown)
+  }, [translateMenuOpen])
+
   // ── Result persistence across sign-in round-trip ────────────────────────
   // When an anonymous user clicks an auth-gated export button (.docx, .pdf,
   // .vtt, .json), we redirect to /sign-in. Without this, after the auth flow
@@ -1437,24 +1455,42 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
             </button>
           </div>
         )}
-        <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
-          <div>
-            <h2 className="font-semibold text-slate-800">
-              {t(locale, 'result.title')}
-              {batchTotal > 1 && (
-                <span className="ml-2 text-xs font-normal text-slate-400">
-                  ({batchDoneCount + 1} of {batchTotal})
+        {/* Compact header — Wave 3 (matches the transcript block mockup):
+            file icon + filename + subtle stats on the left, action row
+            (Translate ▾ / Download ▾ / New file) on the right. */}
+        <div className="flex items-center justify-between mb-4 flex-wrap gap-3 pb-3 border-b border-slate-100">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-brand-50 text-brand-600 flex items-center justify-center">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <path d="M14 2v6h6" />
+              </svg>
+            </span>
+            <div className="min-w-0">
+              <div className="font-semibold text-slate-800 truncate">
+                {file?.name || t(locale, 'result.title')}
+                {batchTotal > 1 && (
+                  <span className="ml-2 text-xs font-normal text-slate-400">
+                    ({batchDoneCount + 1} of {batchTotal})
+                  </span>
+                )}
+              </div>
+              <div className="text-xs text-slate-400 mt-0.5 flex items-center gap-1.5">
+                <span className="inline-flex items-center gap-1 text-emerald-600 font-medium">
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                    <path d="M5 13l4 4L19 7" />
+                  </svg>
+                  {t(locale, 'result.completed')}
                 </span>
+                <span className="text-slate-300">·</span>
+                <span>{wordCount.toLocaleString()} words</span>
+              </div>
+              {batchQueue.length > 0 && (
+                <p className="text-xs text-brand-600 mt-1">
+                  Next file starts in ~10 seconds — {batchQueue.length} more to go.
+                </p>
               )}
-            </h2>
-            <p className="text-xs text-slate-400 mt-0.5">
-              {t(locale, 'result.stats', { words: wordCount, chars: charCount, name: file?.name })}
-            </p>
-            {batchQueue.length > 0 && (
-              <p className="text-xs text-brand-600 mt-1">
-                Next file starts in ~10 seconds — {batchQueue.length} more to go.
-              </p>
-            )}
+            </div>
           </div>
           {/*
             Wave 1: single Download dropdown replaces the previous horizontal
@@ -1465,6 +1501,89 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
             dismissal when the user clicks anywhere else on the page.
           */}
           <div className="flex items-center gap-2 flex-wrap">
+            {/* Translate ▾ dropdown — Wave 3. Replaces the previous inline
+                Translate row (language picker + Translate button + Showing
+                toggle) that lived below the Reader/Editor toggle. Only
+                shown when we have segments to translate. */}
+            {hasSRT && (
+              <div className="relative" ref={translateMenuRef}>
+                <button
+                  type="button"
+                  onClick={() => setTranslateMenuOpen((v) => !v)}
+                  className="inline-flex items-center gap-1.5 bg-white border border-slate-200 hover:border-slate-300 text-slate-700 text-sm font-medium px-3.5 py-2 rounded-lg transition-colors"
+                  aria-haspopup="menu"
+                  aria-expanded={translateMenuOpen}
+                  disabled={translateStatus === 'loading'}
+                >
+                  <svg className="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                    <path d="M5 8l6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6" />
+                  </svg>
+                  {translateStatus === 'loading'
+                    ? t(locale, 'result.translating')
+                    : (translatedSegments && translateLang)
+                      ? (DICT[locale]?.languages?.[translateLang] ?? DICT.en.languages[translateLang] ?? translateLang.toUpperCase())
+                      : t(locale, 'result.translate')}
+                  <svg className={`w-3.5 h-3.5 transition-transform ${translateMenuOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {translateMenuOpen && (
+                  <div
+                    role="menu"
+                    className="absolute right-0 top-full mt-2 w-64 bg-white border border-slate-200 rounded-xl shadow-xl overflow-hidden z-30 p-3"
+                  >
+                    <div className="text-[10px] font-semibold uppercase tracking-wide text-slate-400 mb-2">
+                      Translate transcript into
+                    </div>
+                    <select
+                      value={translateTarget}
+                      onChange={(e) => setTranslateTarget(e.target.value)}
+                      disabled={translateStatus === 'loading'}
+                      className="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500 mb-2"
+                    >
+                      {PICKER_LANG_CODES
+                        .filter(code => code !== (spokenLanguage || '').toLowerCase())
+                        .map(code => (
+                          <option key={code} value={code}>{DICT[locale]?.languages?.[code] ?? DICT.en.languages[code]}</option>
+                        ))}
+                    </select>
+                    <button
+                      type="button"
+                      onClick={() => { translateTo(translateTarget); setTranslateMenuOpen(false) }}
+                      disabled={translateStatus === 'loading'}
+                      className="w-full text-sm px-3 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors font-semibold"
+                    >
+                      {translateStatus === 'loading' ? t(locale, 'result.translating') : t(locale, 'result.translate')}
+                    </button>
+                    {translatedSegments && translateStatus === 'done' && (
+                      <>
+                        <div className="border-t border-slate-100 my-3" />
+                        <div className="text-xs text-slate-600 mb-2">
+                          Showing: <span className="font-semibold text-slate-800">{DICT[locale]?.languages?.[translateLang] ?? DICT.en.languages[translateLang] ?? translateLang.toUpperCase()}</span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setTranslatedSegments(null)
+                            setTranslatedTranscript('')
+                            setTranslateLang('')
+                            setTranslateStatus('idle')
+                            setTranslateMenuOpen(false)
+                          }}
+                          className="w-full text-xs text-brand-600 hover:text-brand-700 hover:underline"
+                        >
+                          {t(locale, 'result.showOriginal')}
+                        </button>
+                      </>
+                    )}
+                    {translateStatus === 'error' && (
+                      <div className="mt-2 text-xs text-red-600">{translateError}</div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
             <div className="relative" ref={downloadMenuRef}>
               <button
                 type="button"
@@ -1754,67 +1873,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
           </div>
         )}
 
-        {/* Translate row. Only visible alongside the Reader view (translation
-            doesn't apply to the Editor textarea). The picker mirrors the
-            language selector used at upload; we exclude the spoken-language
-            from the targets since translating into itself is a no-op. */}
-        {hasSRT && viewMode === 'reader' && (
-          <div className="flex items-center flex-wrap gap-2 mb-3">
-            <select
-              value={translateTarget}
-              onChange={(e) => setTranslateTarget(e.target.value)}
-              disabled={translateStatus === 'loading'}
-              className="text-sm border border-slate-200 rounded-lg px-3 py-1.5 bg-white text-slate-700 hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500"
-              aria-label="Translation target language"
-            >
-              {PICKER_LANG_CODES
-                .filter(code => code !== (spokenLanguage || '').toLowerCase())
-                .map(code => (
-                  <option key={code} value={code}>{DICT[locale]?.languages?.[code] ?? DICT.en.languages[code]}</option>
-                ))}
-            </select>
-            <button
-              type="button"
-              onClick={() => translateTo(translateTarget)}
-              disabled={translateStatus === 'loading'}
-              className="text-sm px-3 py-1.5 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors inline-flex items-center gap-1.5"
-            >
-              {translateStatus === 'loading' ? (
-                <>
-                  <svg className="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4z" />
-                  </svg>
-                  {t(locale, 'result.translating')}
-                </>
-              ) : (
-                t(locale, 'result.translate')
-              )}
-            </button>
-            {translatedSegments && translateStatus === 'done' && (
-              <>
-                <span className="text-xs text-slate-500 ml-1">
-                  {t(locale, 'result.showingTranslation', { lang: DICT[locale]?.languages?.[translateLang] ?? DICT.en.languages[translateLang] ?? translateLang.toUpperCase() })}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setTranslatedSegments(null)
-                    setTranslatedTranscript('')
-                    setTranslateLang('')
-                    setTranslateStatus('idle')
-                  }}
-                  className="text-xs text-brand-600 hover:underline"
-                >
-                  {t(locale, 'result.showOriginal')}
-                </button>
-              </>
-            )}
-            {translateStatus === 'error' && (
-              <span className="text-xs text-red-600">{translateError}</span>
-            )}
-          </div>
-        )}
+        {/* Translate row moved to header Translate ▾ dropdown in Wave 3. */}
 
         {/* Optional audio player. Only renders when we have a local object
             URL for the source File — i.e. the user uploaded in this session,
@@ -2162,9 +2221,20 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
         onDragOver={e => { e.preventDefault(); setState('dragging') }}
         onDragLeave={() => setState('idle')}
         onClick={() => fileRef.current?.click()}
+        onKeyDown={(e) => {
+          if (e.target !== e.currentTarget) return
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            fileRef.current?.click()
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        aria-label={`${t(locale, 'dropzone.primary')}. ${t(locale, 'dropzone.secondary')}`}
         className={`
           bg-white rounded-2xl border-2 border-dashed p-10 text-center cursor-pointer transition-all
           shadow-lg shadow-slate-400/15
+          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2
           ${state === 'dragging'
             ? 'border-brand-500 bg-brand-50 scale-[1.01] shadow-brand-500/20'
             : 'border-slate-200 hover:border-brand-400 hover:bg-brand-50/40 hover:shadow-xl hover:shadow-brand-500/15'}
@@ -2176,6 +2246,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
           accept=".mp3,.mp4,.m4a,.aac,.wav,.ogg,.opus,.webm,.mpeg,.flac,.mov,.qt,.3gp"
           multiple={!!authUser}
           className="hidden"
+          tabIndex={-1}
           onChange={handleFile}
         />
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-50 mb-5">
@@ -2187,15 +2258,6 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
         <p className="text-slate-500 text-sm mb-4">{t(locale, 'dropzone.secondary')}</p>
         <p className="text-xs text-slate-400">
           MP3 · MP4 · WAV · M4A · OGG · WEBM · FLAC &nbsp;·&nbsp; {t(locale, 'dropzone.maxSize')} &nbsp;·&nbsp; {t(locale, 'dropzone.maxDuration', { minutes: authUser ? 60 : 30 })}
-          {!authUser && (
-            <>
-              {' '}(
-              <a href="/sign-in" className="hover:text-brand-600 hover:underline transition-colors">
-                {t(locale, 'dropzone.signInForLonger')}
-              </a>
-              )
-            </>
-          )}
         </p>
         {authUser && (
           <p className="text-xs text-brand-600 mt-2">
@@ -2203,6 +2265,14 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
           </p>
         )}
       </div>
+
+      {!authUser && (
+        <p className="text-xs text-slate-400 text-center mt-2">
+          <a href="/sign-in" className="hover:text-brand-600 hover:underline transition-colors">
+            {t(locale, 'dropzone.signInForLonger')}
+          </a>
+        </p>
+      )}
 
       {/* Preventive hints about the 25 MB and duration limits — visible from the
           start so users with larger or longer files know what to do before they
