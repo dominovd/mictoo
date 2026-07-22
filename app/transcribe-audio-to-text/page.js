@@ -1,9 +1,43 @@
-import LandingLayout from '@/components/LandingLayout'
+// /transcribe-audio-to-text — umbrella "any audio format" landing.
+//
+// Rebuilt from LandingLayout into a custom long-form page following the
+// mockup provided by the user. Reuses shared HeroChips + HeroCounter +
+// UploadZone in the hero so the top of the page matches every other
+// landing on the site, then diverges into format-specific sections that
+// don't fit the generic LandingLayout template:
+//
+//   1. Hero + tinted upload (shared HeroChips + HeroCounter)
+//   2. "Every common audio format, one upload" — 7 format cards
+//   3. "How it works" — 3 steps + live transcript preview (same JSX
+//      mockup as the homepage)
+//   4. "Why one audio-to-text tool is better" — 4 benefit cards
+//   5. Flow diagram: Any audio file → mictoo → Clean transcript
+//   6. "When this page is the right fit" — 6 scenario cards
+//   7. "Audio quality matters more than file format" — 3 quality tiers
+//   8. "How Mictoo detects your format" — magic-bytes explanation
+//   9. "Supported audio formats" — 4-column table
+//  10. FAQ (1 column, per user request)
+//  11. Bottom CTA plate
+//  12. More transcription tools — 4 cards
+//
+// Adapted to real mictoo:
+//   - File caps: 25 MB anon / 60 MB signed-in / 180 MB auto-split
+//   - Whisper large-v3 via Groq (Replicate/Deepgram/OpenAI fallback)
+//   - 50+ languages, AI summary, Translate, Chat with transcript
+//
+// Localization: EN only for now. Other 9 locales still use the old
+// LandingLayout-based /transcribe-audio-to-text; port later.
 
+import Link from 'next/link'
+import UploadZone from '@/components/UploadZone'
+import HeroChips from '@/components/HeroChips'
+import HeroCounter from '@/components/HeroCounter'
+
+// ── Page-level metadata & canonical ─────────────────────────────────────────
 export const metadata = {
   title: 'Audio to Text: Free Online Transcription for Any Audio Format | Mictoo',
   description:
-    'A format-agnostic transcription tool. Drop any audio file (MP3, M4A, WAV, FLAC, OGG, AAC, WebM) and get an editable transcript with timestamps, AI summary, and exports.',
+    'One page for any audio format. Drop MP3, M4A, WAV, FLAC, OGG, AAC, WebM and more. Get a clean transcript with timestamps, AI summary, and exports for TXT, SRT, VTT, and DOCX.',
   alternates: {
     canonical: 'https://mictoo.com/transcribe-audio-to-text',
     languages: {
@@ -22,7 +56,7 @@ export const metadata = {
   },
   openGraph: {
     title: 'Audio to Text: Free Online Transcription | Mictoo',
-    description: 'Drop any audio file and get a transcript. MP3, M4A, WAV, FLAC, OGG, AAC. Free, no signup.',
+    description: 'Drop any audio file (MP3, M4A, WAV, FLAC, OGG, AAC, WebM) and get a transcript. Free, no signup.',
     url: 'https://mictoo.com/transcribe-audio-to-text',
     siteName: 'Mictoo',
     type: 'website',
@@ -36,262 +70,620 @@ export const metadata = {
   },
 }
 
+// ── FAQ data (drives both UI and JSON-LD schema) ─────────────────────────────
+const FAQ = [
+  {
+    q: 'What audio formats can I upload?',
+    a: 'MP3, M4A, WAV, FLAC, OGG, AAC, WebM, MP4, MOV, plus AIFF, AU, OPUS, and MPEG. If your file plays in a normal media player, Mictoo can transcribe it. Video files are accepted too, we extract the audio track server-side.',
+  },
+  {
+    q: 'How long does transcription take?',
+    a: 'Usually seconds. A 10-minute audio file finishes in around 15 to 30 seconds; a 60-minute podcast is done in about a minute. Longer files that get auto-split take slightly longer as chunks are transcribed in parallel and merged.',
+  },
+  {
+    q: 'Is audio transcription really free?',
+    a: 'Yes. Free transcription up to 25 MB per file with no signup. A free account raises the per-file limit to 60 MB, and files up to 180 MB are auto-split into chunks and merged into a single transcript. No credit card, no hidden fees.',
+  },
+  {
+    q: 'Are my audio files stored?',
+    a: 'No. Files are streamed directly to the speech recognition provider (Groq for speed, with Replicate, Deepgram, and OpenAI as fallback), processed, and then deleted. Mictoo does not retain audio and providers do not train on API data.',
+  },
+  {
+    q: 'Does file format affect accuracy?',
+    a: 'Audio quality matters far more than format. Clean speech in a compressed MP3 will transcribe better than noisy audio in an uncompressed WAV. Mictoo runs the same Whisper large-v3 model on every format so accuracy stays consistent across all supported types.',
+  },
+  {
+    q: 'Do I need to convert my audio to a specific format first?',
+    a: 'No. That is the whole point of this page. Upload whatever your recorder, DAW, phone, or download tool produced. We detect the format from the file header and route it to Whisper directly. No converter step, no quality loss.',
+  },
+  {
+    q: 'Can I edit the transcript before downloading?',
+    a: 'Yes. After transcription, switch to the Editor view to fix any wrong names or jargon. Both Reader (per-line timestamps) and Editor (plain text) modes are available. Exports use whichever version you last edited.',
+  },
+  {
+    q: 'How many languages does the transcription support?',
+    a: 'Over 50 languages including English, Spanish, French, German, Portuguese, Russian, Ukrainian, Japanese, Chinese, Arabic, and many more. Auto-detect works for most files, or you can pick the language manually in the upload form for short clips.',
+  },
+  {
+    q: 'Can I translate the transcript?',
+    a: 'Yes. After transcription, click Translate and pick from 28 target languages. The translation is available in the Reader view and in every export format. Timestamps are preserved so the translated SRT still matches the audio.',
+  },
+  {
+    q: 'What export formats are available?',
+    a: 'TXT (plain text), SRT (subtitles), timestamped TXT, and DOCX (Word document). Registered users also get PDF, VTT (web captions), and JSON. All exports available from the Download menu after transcription finishes.',
+  },
+]
+
+// ── JSON-LD schemas ──────────────────────────────────────────────────────────
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+}
+
+// ── Inline SVG icon set ──────────────────────────────────────────────────────
+const Icons = {
+  music:    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M9 18V5l10-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="16" cy="16" r="3" /></svg>,
+  file:     <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6" /></svg>,
+  upload:   <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M12 3v14m-5-5l5-5 5 5" /><path d="M4 21h16" /></svg>,
+  sparkles: <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5zM19 14l.8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8z" /></svg>,
+  editPen:  <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4z" /></svg>,
+  video:    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><rect x="2" y="6" width="14" height="12" rx="2" /><path d="M22 8l-6 4 6 4z" /></svg>,
+  check:    <svg fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>,
+  warn:     <svg fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path d="M12 3l10 18H2z" /><path d="M12 10v4M12 18h.01" /></svg>,
+  xCircle:  <svg fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M8 8l8 8M16 8l-8 8" /></svg>,
+  arrowRight: <svg fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-6-6l6 6-6 6" /></svg>,
+  bolt:     <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7z" /></svg>,
+  target:   <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg>,
+  gear:     <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" /><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" /></svg>,
+  cloud:    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M18 19a4 4 0 1 0-1-7.87A6 6 0 0 0 6 12a4 4 0 0 0 0 8z" /></svg>,
+  search:   <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="M21 21l-4.35-4.35" /></svg>,
+  layers:   <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M12 2L2 8l10 6 10-6zM2 16l10 6 10-6M2 12l10 6 10-6" /></svg>,
+  users:    <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /></svg>,
+  ear:      <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M6 8.5C6 5.5 8.5 3 12 3s6 2.5 6 5.5c0 2-1 3-2.5 4S13 14 12 15c-1 1-1 2-1 3 0 1.5-1 3-3 3s-3-1.5-3-3" /></svg>,
+  clip:     <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" /></svg>,
+  waveform: <svg fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path d="M3 12h2M19 12h2M7 8v8M11 5v14M15 8v8" /></svg>,
+}
+
+// Small waveform strip used inside the audio-quality cards. `pattern` controls
+// bar-height distribution: 'clean' = rolling voice-like, 'noisy' = spiky,
+// 'compressed' = mostly flat.
+function WaveStrip({ pattern = 'clean', colorClass = 'bg-emerald-400' }) {
+  const bars = Array.from({ length: 42 }).map((_, i) => {
+    if (pattern === 'clean') return 4 + Math.round(10 + 6 * Math.sin(i / 2) + 4 * Math.cos(i / 3.5))
+    if (pattern === 'noisy') return 3 + ((i * 13) % 20) + ((i * 7) % 6)
+    return 3 + ((i * 5) % 6) // compressed — flat
+  })
+  return (
+    <div className="flex items-center gap-0.5 h-8">
+      {bars.map((h, i) => (
+        <div key={i} className={'w-0.5 rounded-sm ' + colorClass} style={{ height: h + 'px' }} />
+      ))}
+    </div>
+  )
+}
+
+function Eyebrow({ children }) {
+  return (
+    <span className="inline-block bg-brand-50 text-brand-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide">
+      {children}
+    </span>
+  )
+}
+
+// ── Page component ──────────────────────────────────────────────────────────
 export default function TranscribeAudioToTextPage() {
   return (
-    <LandingLayout
-      badge="Any audio format · Free · No signup"
-      h1={<>Audio to Text<br /><span className="text-brand-600">One page for any audio format</span></>}
-      subtitle="The format-agnostic entry point. Drop an MP3, M4A, WAV, FLAC, OGG, AAC, WebM, or any other common audio file and get a clean transcript with timestamps, AI summary, and exports for TXT, SRT, VTT, and DOCX."
-      valueBlock={
-        <article className="prose-content">
-          <p>
-            Most transcription services nudge you to convert your audio
-            to one specific format first ("upload an MP3", "use WAV
-            only"). Mictoo does not. We accept whatever your recorder,
-            DAW, phone, or download tool produced and handle the format
-            details on our side.
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
+      {/* ────────────────── HERO + UPLOAD ────────────────── */}
+      <section className="bg-gradient-to-b from-brand-50/40 via-slate-100/60 to-slate-100 pt-16 pb-16 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <Eyebrow>Any audio format · Free · No signup</Eyebrow>
+          <h1 className="mt-5 text-4xl sm:text-5xl font-bold text-slate-900 leading-tight">
+            Audio to Text
+            <br />
+            <span className="text-brand-600">One page for any audio format</span>
+          </h1>
+          <p className="mt-5 text-lg text-slate-600 max-w-2xl mx-auto">
+            Drop MP3, M4A, WAV, FLAC, OGG, AAC, WebM and more. Get a clean transcript with timestamps, AI summary, and exports.
           </p>
-          <p>
-            Useful when you have a folder of mixed formats (Voice
-            Memos in M4A, GarageBand bounces in WAV, downloaded
-            podcasts in MP3) and just want to transcribe them without
-            running each through a converter first.
-          </p>
-          <p className="text-sm text-slate-500">
-            If you know your format and want format-specific guidance:
-            <a href="/wav-to-text" className="text-brand-600 hover:underline ml-1">WAV</a>,
-            <a href="/m4a-to-text" className="text-brand-600 hover:underline ml-1">M4A</a>,
-            <a href="/flac-to-text" className="text-brand-600 hover:underline ml-1">FLAC</a>,
-            <a href="/ogg-to-text" className="text-brand-600 hover:underline ml-1">OGG</a>,
-            <a href="/aac-to-text" className="text-brand-600 hover:underline ml-1">AAC</a>,
-            <a href="/webm-to-text" className="text-brand-600 hover:underline ml-1">WebM</a> pages cover the specifics.
-          </p>
-        </article>
-      }
-      howItWorks={[
-        {
-          icon: '📂',
-          title: 'Drop any audio file',
-          desc: 'MP3, M4A, WAV, FLAC, OGG, AAC, WebM, AIFF, AU, plus several rarer formats. We auto-detect what you uploaded from the file header, no manual format picker needed.',
-        },
-        {
-          icon: '⚡',
-          title: 'Whisper transcribes the audio',
-          desc: 'A 30-minute file usually finishes in 30-60 seconds. We route through Whisper large-v3 via Groq, with Replicate, Deepgram, and OpenAI as fallback providers for reliability.',
-        },
-        {
-          icon: '📝',
-          title: 'Edit, export, share',
-          desc: 'Inline editor for fixing wrong names. Download TXT, SRT, VTT, or DOCX. Translate to 50+ languages with one click. AI summary appears alongside automatically.',
-        },
-      ]}
-      whyUse={{
-        title: 'Why a format-agnostic transcription tool helps',
-        bullets: [
-          {
-            title: 'No "convert first" step in your workflow',
-            desc: 'You have an iPhone Voice Memo (M4A), a GarageBand bounce (WAV), and a podcast download (MP3). Three different formats, one upload page. No detour through a format converter, no decision about which input is "correct".',
-          },
-          {
-            title: 'Automatic format detection from file headers',
-            desc: 'We read the file header to determine the actual format, not just the extension. A file someone renamed .mp3 that is actually AAC inside still works. Files with no extension still work as long as the header is intact.',
-          },
-          {
-            title: 'Same accuracy regardless of source format',
-            desc: 'Whisper resamples everything to 16 kHz mono internally before transcription. WAV, MP3, M4A, FLAC, all produce the same transcript quality for clean audio. Format only matters for upload size and storage convenience, not for transcription accuracy.',
-          },
-          {
-            title: 'AI summary, translation, and exports built in',
-            desc: 'Once the transcript finishes, an AI summary appears alongside. Translate to another language with one click. Download as TXT, SRT, VTT, or DOCX. Everything in one workflow, no plan tier to unlock features.',
-          },
-          {
-            title: 'Free for files up to 60 MB',
-            desc: 'No signup, no watermark, no daily file counter. 60 MB covers most everyday recordings (60 minutes of mono speech, 30 minutes of typical stereo podcast, 15 minutes of high-quality WAV). For larger files, see the Pro tips section.',
-          },
-        ],
-      }}
-      useCases={{
-        title: 'When the format-agnostic page is the right fit',
-        items: [
-          {
-            title: 'Mixed-format archive cleanup',
-            desc: 'Inherited a folder of old recordings in mixed formats (.wav from one device, .m4a from another, .mp3 downloads). Process them through one page without sorting by format first.',
-          },
-          {
-            title: 'Quick transcription, format unknown',
-            desc: 'Someone sent you an audio file and you have not checked what format it is. Drop here, find out as it processes. Saves the "open in QuickTime, check Inspector" step.',
-          },
-          {
-            title: 'Cross-tool workflows',
-            desc: 'Recording in Audacity (WAV), exporting from GarageBand (M4A), downloading from Bandcamp (FLAC). Different tools produce different formats. One transcription page handles them all.',
-          },
-          {
-            title: 'First-time transcription users',
-            desc: 'New to transcription tools and unsure which "format-specific" page to use. The audio-to-text page is the safe default for any audio file.',
-          },
-          {
-            title: 'Quick test of an unknown audio quality',
-            desc: 'Got a recording from someone with no context about quality or format. Drop here for a fast transcript that tells you whether the audio is clean enough to be useful.',
-          },
-          {
-            title: 'Integration testing with multiple audio sources',
-            desc: 'Building a workflow that ingests audio from many sources (phone calls, recordings, downloads). Validate transcription works for each source format without setting up format-specific routes.',
-          },
-        ],
-      }}
-      proTips={{
-        title: 'Format-agnostic tips that save time',
-        tips: [
-          {
-            title: 'For very large files, prefer audio-only formats',
-            desc: 'Video files (MP4, MOV, WebM) work, but they are much bigger than audio-only equivalents. If your source is a video, extract just the audio first with ffmpeg -i video.mp4 -vn -ac 1 -ar 16000 audio.m4a. The audio is typically 10-20x smaller.',
-          },
-          {
-            title: 'Set the language manually for short files or non-English audio',
-            desc: 'Whisper auto-detects language but can mis-fire on clips under 30 seconds or files that open with music. For short clips or any non-English audio, pick the language explicitly in the dropdown before upload.',
-          },
-          {
-            title: 'For format-specific gotchas, check the dedicated page',
-            desc: 'This page is the universal entry point. For format-specific advice (WAV settings, FLAC compression, M4A iPhone Voice Memo specifics), the individual format pages have deeper guidance.',
-          },
-          {
-            title: 'Audio quality matters more than format choice',
-            desc: 'A clean MP3 at 64 kbps transcribes better than a noisy WAV at studio quality. Clean the audio (denoise, set mic close to speaker) before recording rather than picking a format and hoping it compensates.',
-          },
-        ],
-      }}
-      deepDive={
-        <article className="prose-content">
-          <h2>What "audio format" actually means here</h2>
-          <p>
-            An audio format is a combination of a container (the file
-            wrapper) and a codec (the algorithm that compresses or stores
-            the audio inside). Most people use "format" loosely to mean
-            both. WAV is a container with PCM codec (uncompressed). MP3
-            is a codec with no container (just the raw stream). M4A is
-            an MP4 container with AAC codec inside. FLAC is both a codec
-            and a container that share the same name. OGG is a container
-            that usually holds Opus or Vorbis.
-          </p>
-          <p>
-            For transcription, what matters is that the audio data
-            inside can be decoded to raw PCM samples that the Whisper
-            model reads. We handle the container and codec details on
-            our side, you just upload the file.
-          </p>
-          <h3>Why format choice almost never affects transcript quality</h3>
-          <p>
-            Whisper large-v3 resamples whatever audio it gets to 16 kHz
-            mono before the first inference step. A 192 kHz 24-bit
-            stereo studio recording gets crushed down to the same input
-            shape as a 16 kHz mono phone call. The model never sees the
-            "fancy" version of the audio.
-          </p>
-          <p>
-            What this means in practice: a 128 kbps MP3 of your podcast
-            transcribes essentially the same as the original 24-bit WAV
-            master. A 32 kbps Opus voice message from Telegram
-            transcribes essentially the same as if you had recorded the
-            same voice in WAV. The format only matters at the edges:
-            very low bitrate compressed audio (under 32 kbps) starts to
-            lose information Whisper needs.
-          </p>
-          <h3>When format actually does matter</h3>
-          <p>
-            For upload size and storage. A one-hour recording is around
-            14 MB as 32 kbps mono AAC, 30 MB as 64 kbps mono MP3, 300+
-            MB as CD-quality WAV. The transcript is the same; the upload
-            time and storage cost are very different. For everyday use,
-            small lossy formats (MP3, M4A, OGG) are the practical
-            choice. For archival or editing, keep the original lossless
-            format (WAV, FLAC, ALAC) on your drive.
-          </p>
-          <h3>How we handle format detection</h3>
-          <p>
-            On upload, we read the first few bytes of the file to
-            identify the container and codec. Most audio formats have
-            distinctive magic numbers in their headers: WAV starts with
-            "RIFF", MP3 starts with "ID3" or specific frame sync
-            patterns, M4A/MP4 starts with "ftyp", FLAC starts with
-            "fLaC", OGG starts with "OggS". We use the header rather
-            than the file extension because extensions can lie (a
-            renamed file, a system that stripped the extension).
-          </p>
-          <h3>What we do not currently accept</h3>
-          <p>
-            Proprietary or encrypted formats with DRM. Some old WMA
-            files from the Microsoft DRM era cannot be decoded by any
-            current open-source tool. Apple-Lossless ALAC files inside
-            DRM-protected M4P containers (legacy iTunes Store purchases
-            before 2009) similarly cannot be decoded. For these cases,
-            you need to find or generate an unprotected copy.
-          </p>
-        </article>
-      }
-      faq={[
-        {
-          q: 'What audio formats does Mictoo accept?',
-          a: 'MP3, M4A, WAV, FLAC, OGG (with Vorbis or Opus codec), AAC, WebM, AIFF, AU, and several rarer formats. For video files (MP4, MOV, WebM video), we strip the video and transcribe just the audio. Free for files up to 60 MB.',
-        },
-        {
-          q: 'Does the format affect transcript quality?',
-          a: 'Almost never. Whisper resamples to 16 kHz mono internally before transcription, so format choice (MP3 vs WAV vs M4A) makes essentially no difference for clean audio. Format matters at extremes: very low bitrate (under 32 kbps) lossy formats can lose audio information Whisper needs.',
-        },
-        {
-          q: 'Do I need to know my file format before uploading?',
-          a: 'No. We detect the format from the file header during upload, not from the extension. Even a file with a wrong extension or no extension works as long as the header bytes identify a supported format.',
-        },
-        {
-          q: 'What is the largest file I can upload?',
-          a: 'Free tier: 60 MB per file. That covers 60 minutes of mono speech at typical bitrates, 30 minutes of typical stereo podcast, or about 15 minutes of CD-quality WAV. For larger files, use format-specific compression tips on the individual format pages.',
-        },
-        {
-          q: 'Can I get the transcript in multiple formats?',
-          a: 'Yes. TXT for plain text, SRT or VTT for subtitle files with timestamps, DOCX for a Word document. Or copy directly to clipboard. The transcript itself is the same; the export format just affects how it lands in your destination.',
-        },
-        {
-          q: 'Does Mictoo transcribe non-English audio?',
-          a: 'Yes. Whisper large-v3 supports 50+ languages with auto-detection. For short files or files that open with non-speech audio, set the language explicitly in the dropdown for cleaner first-pass detection.',
-        },
-        {
-          q: 'Can I translate the transcript to another language?',
-          a: 'Yes. After transcription finishes, pick a target language from the dropdown and click Translate. The translation is generated by GPT-4o-mini and appears alongside the original transcript.',
-        },
-        {
-          q: 'Does my audio file get stored?',
-          a: 'No. The audio streams to the transcription provider, gets processed once, and is dropped from memory. We do not write the audio to disk. The text transcript is only stored if you sign in and choose to save it to your history.',
-        },
-        {
-          q: 'How long does transcription take?',
-          a: 'Upload time plus processing time. A 30-minute audio-only file typically finishes in 30-60 seconds end to end on a normal home connection. Larger files (near the 60 MB cap) take 1-2 minutes total.',
-        },
-        {
-          q: 'What if my file format is rejected?',
-          a: 'Most likely the file is either DRM-protected (rare for audio in 2026), corrupted (header missing or partial), or a format we do not yet support. Check the file plays in a normal media player first; if it does, contact us with the file details so we can add support.',
-        },
-      ]}
-      epilogueSection={
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-slate-900 mb-3">
-            Drop any audio file and get the text
-          </h2>
-          <p className="text-sm text-slate-500 mb-6 max-w-xl mx-auto">
-            MP3, M4A, WAV, FLAC, OGG, AAC, WebM. No format picker, no conversion step, no signup.
-          </p>
-          <a
-            href="#tool"
-            className="inline-block bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-6 py-3 rounded-xl transition-colors"
-          >
-            Upload audio to transcribe
-          </a>
+
+          <div className="mt-6 mb-5">
+            <HeroChips />
+          </div>
+
+          <HeroCounter />
         </div>
-      }
-      relatedLinks={[
-        { href: '/transcribe-mp3-to-text', label: 'MP3 to text', desc: 'MP3-specific guidance.' },
-        { href: '/transcribe-video-to-text', label: 'Video to text', desc: 'For MP4, MOV, WebM video files.' },
-        { href: '/youtube-to-text', label: 'YouTube to text', desc: 'Paste a YouTube URL instead of uploading.' },
-        { href: '/free-srt-generator', label: 'Free SRT generator', desc: 'When you need subtitles as the primary deliverable.' },
-      ]}
-    />
+
+        <div id="tool" className="max-w-2xl mx-auto mt-10 scroll-mt-20">
+          <UploadZone />
+        </div>
+      </section>
+
+      {/* ────────────────── FORMAT GRID ────────────────── */}
+      <section className="bg-white py-16 px-4 border-b border-slate-100">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold text-slate-900 mb-8">Every common audio format, one upload</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+            {[
+              { name: 'MP3',  ext: '.mp3',  href: '/transcribe-mp3-to-text' },
+              { name: 'M4A',  ext: '.m4a',  href: '/m4a-to-text' },
+              { name: 'WAV',  ext: '.wav',  href: '/wav-to-text' },
+              { name: 'FLAC', ext: '.flac', href: '/flac-to-text' },
+              { name: 'OGG',  ext: '.ogg',  href: '/ogg-to-text' },
+              { name: 'AAC',  ext: '.aac',  href: '/aac-to-text' },
+              { name: 'WebM', ext: '.webm', href: '/webm-to-text' },
+            ].map(({ name, ext, href }) => (
+              <Link
+                key={name}
+                href={href}
+                className="bg-white border border-slate-200 rounded-2xl p-4 text-center hover:border-brand-400 hover:shadow-sm transition-all group"
+              >
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-brand-50 text-brand-600 mb-3 group-hover:bg-brand-100 transition-colors">
+                  <span className="w-6 h-6">{Icons.file}</span>
+                </div>
+                <div className="text-sm font-bold text-slate-900 leading-tight">{name}</div>
+                <div className="text-[11px] text-slate-400 mt-0.5">{ext}</div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────── HOW IT WORKS + LIVE PREVIEW ────────────────── */}
+      <section className="bg-slate-50 py-16 px-4 border-b border-slate-100">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold text-slate-900 mb-10">How it works</h2>
+
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] gap-10 items-start">
+            <ol className="space-y-8">
+              {[
+                {
+                  step: 1, icon: Icons.upload,
+                  title: 'Drop any audio file',
+                  desc: 'Upload from your device or drag and drop. MP3, M4A, WAV, FLAC, OGG, AAC, WebM, and more.',
+                },
+                {
+                  step: 2, icon: Icons.waveform,
+                  title: 'Whisper transcribes the audio',
+                  desc: 'Whisper large-v3 runs on our backend with automatic punctuation, paragraph breaks, and per-segment timestamps.',
+                },
+                {
+                  step: 3, icon: Icons.editPen,
+                  title: 'Edit, export, share',
+                  desc: 'Review the transcript, summarize with AI, translate to 50+ languages, and export as TXT, DOCX, PDF, or SRT.',
+                },
+              ].map(({ step, icon, title, desc }) => (
+                <li key={step} className="flex gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-600 text-white text-sm font-semibold flex items-center justify-center">
+                    {step}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="w-5 h-5 text-brand-600">{icon}</span>
+                      <h3 className="font-semibold text-slate-900">{title}</h3>
+                    </div>
+                    <p className="text-sm text-slate-600 leading-relaxed">{desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            {/* Live preview mockup — mirrors the homepage version */}
+            <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+              <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100 bg-slate-50">
+                <div className="flex items-center gap-2 text-sm">
+                  <span className="w-4 h-4 text-brand-600">{Icons.file}</span>
+                  <span className="font-semibold text-slate-800">Interview.mp3</span>
+                  <span className="text-slate-400 text-xs">·</span>
+                  <span className="text-xs text-emerald-600 font-medium">Completed in 18s</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button className="text-xs bg-white border border-slate-200 rounded-lg px-2.5 py-1 text-slate-600 font-medium">Translate ▾</button>
+                  <button className="text-xs bg-brand-600 text-white rounded-lg px-2.5 py-1 font-medium">Download ↓</button>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 px-4 pt-3 text-xs border-b border-slate-100">
+                <button className="pb-2 font-semibold text-brand-700 border-b-2 border-brand-600">Transcript</button>
+                <button className="pb-2 text-slate-500">AI Summary</button>
+                <button className="pb-2 text-slate-500">Chat</button>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] divide-y md:divide-y-0 md:divide-x divide-slate-100">
+                <div className="p-4 space-y-3 text-sm">
+                  {[
+                    { t: '00:00:00', role: 'Interviewer', line: 'Can you tell us about your journey into filmmaking?' },
+                    { t: '00:00:07', role: 'Guest',       line: 'It started as a hobby in college. I loved storytelling and visual arts.' },
+                    { t: '00:00:15', role: 'Interviewer', line: 'What inspires your creative process?' },
+                    { t: '00:00:24', role: 'Guest',       line: 'People and real life moments. I observe and translate them into stories.' },
+                  ].map((row, i) => (
+                    <div key={i} className="grid grid-cols-[auto_auto_1fr] gap-3 items-start">
+                      <span className="font-mono text-[10px] text-slate-400 mt-1">{row.t}</span>
+                      <span className="text-[11px] font-semibold text-brand-700 mt-0.5">{row.role}:</span>
+                      <span className="text-slate-700 leading-snug">{row.line}</span>
+                    </div>
+                  ))}
+                  <div className="pt-3 mt-2 border-t border-slate-100">
+                    <div className="flex items-end gap-0.5 h-6">
+                      {Array.from({ length: 60 }).map((_, i) => {
+                        const h = 4 + ((i * 17) % 18)
+                        return <div key={i} className="w-0.5 rounded-sm bg-brand-300" style={{ height: h + 'px' }} />
+                      })}
+                    </div>
+                    <div className="flex justify-between text-[10px] font-mono text-slate-400 mt-1">
+                      <span>00:00:00</span>
+                      <span>12:45</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-4 bg-slate-50/50">
+                  <div className="flex items-center gap-1.5 mb-3">
+                    <span className="w-4 h-4 text-brand-600">{Icons.sparkles}</span>
+                    <div className="text-sm font-semibold text-slate-800">AI Summary</div>
+                  </div>
+                  <ul className="space-y-2 text-xs text-slate-600 leading-relaxed">
+                    <li className="flex gap-2"><span className="w-1 h-1 mt-1.5 rounded-full bg-brand-500 flex-shrink-0" />The guest discovered filmmaking in college as a hobby.</li>
+                    <li className="flex gap-2"><span className="w-1 h-1 mt-1.5 rounded-full bg-brand-500 flex-shrink-0" />Storytelling and visual arts sparked their passion.</li>
+                    <li className="flex gap-2"><span className="w-1 h-1 mt-1.5 rounded-full bg-brand-500 flex-shrink-0" />Real life moments and people inspire their creative process.</li>
+                  </ul>
+                  <div className="mt-4">
+                    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Export</div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {['TXT', 'SRT', 'VTT', 'DOCX'].map((f) => (
+                        <span key={f} className="text-[10px] font-semibold text-brand-700 bg-brand-50 px-2 py-0.5 rounded">{f}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────── WHY ONE AUDIO-TO-TEXT TOOL ────────────────── */}
+      <section className="bg-white py-16 px-4 border-b border-slate-100">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold text-slate-900 mb-8">Why one audio-to-text tool is better</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              {
+                icon: Icons.cloud,
+                title: 'No convert-first step',
+                desc: 'Upload any audio format directly. Save time and keep your original quality, no lossy round-trip through a converter.',
+              },
+              {
+                icon: Icons.gear,
+                title: 'Automatic format detection',
+                desc: 'Mictoo detects the format from the file header and applies the best transcription settings for that codec.',
+              },
+              {
+                icon: Icons.target,
+                title: 'Same accuracy across formats',
+                desc: 'Powered by Whisper large-v3 for consistent accuracy whether your file is MP3, WAV, FLAC, or WebM.',
+              },
+              {
+                icon: Icons.sparkles,
+                title: 'Summary and exports included',
+                desc: 'Get AI summaries, translate to 50+ languages, and export as TXT, SRT, VTT, or DOCX. No add-on plans.',
+              },
+            ].map(({ icon, title, desc }) => (
+              <div key={title} className="bg-white border border-slate-200 rounded-2xl p-5">
+                <div className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-brand-50 text-brand-600 mb-4">
+                  <span className="w-6 h-6">{icon}</span>
+                </div>
+                <h3 className="font-semibold text-slate-900 mb-2">{title}</h3>
+                <p className="text-sm text-slate-600 leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────── FLOW DIAGRAM ────────────────── */}
+      <section className="bg-slate-50 py-16 px-4 border-b border-slate-100">
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-white border border-slate-200 rounded-3xl p-6 md:p-10">
+            <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)] gap-6 md:gap-4 items-center">
+              {/* Left: format icons cluster */}
+              <div>
+                <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide text-center mb-3">Any audio file</div>
+                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+                  <div className="grid grid-cols-4 gap-2 text-[10px] font-bold text-brand-700">
+                    {['MP3', 'M4A', 'WAV', 'FLAC', 'OGG', 'AAC', 'WebM', '+'].map((label) => (
+                      <div key={label} className="bg-white border border-slate-200 rounded-md py-1.5 text-center">
+                        {label}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="text-[10px] text-slate-400 text-center mt-2">and more</div>
+                </div>
+              </div>
+
+              {/* Arrow */}
+              <div className="text-slate-300 flex justify-center rotate-90 md:rotate-0">
+                <span className="w-6 h-6">{Icons.arrowRight}</span>
+              </div>
+
+              {/* Middle: mictoo processing */}
+              <div>
+                <div className="text-xs font-semibold text-brand-700 uppercase tracking-wide text-center mb-3">Mictoo</div>
+                <div className="bg-gradient-to-br from-brand-50 to-brand-100/40 border border-brand-200 rounded-2xl p-4 text-center">
+                  <div className="inline-flex items-center gap-2 mb-2">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <rect width="24" height="24" rx="6" fill="#0284c7" />
+                      <path d="M8 8v8M12 6v12M16 10v4" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                    <span className="font-bold text-slate-900">mictoo</span>
+                  </div>
+                  <div className="flex items-end gap-0.5 h-6 justify-center">
+                    {Array.from({ length: 24 }).map((_, i) => {
+                      const h = 4 + ((i * 13) % 18)
+                      return <div key={i} className="w-0.5 rounded-sm bg-brand-500" style={{ height: h + 'px' }} />
+                    })}
+                  </div>
+                  <div className="text-[10px] text-brand-700 font-medium mt-2">AI processing</div>
+                </div>
+              </div>
+
+              {/* Arrow */}
+              <div className="text-slate-300 flex justify-center rotate-90 md:rotate-0">
+                <span className="w-6 h-6">{Icons.arrowRight}</span>
+              </div>
+
+              {/* Right: clean transcript */}
+              <div>
+                <div className="text-xs font-semibold text-emerald-700 uppercase tracking-wide text-center mb-3">Result</div>
+                <div className="bg-white border border-slate-200 rounded-2xl p-4 text-center">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 mb-2 relative">
+                    <span className="w-6 h-6">{Icons.file}</span>
+                    <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center">
+                      <span className="w-2.5 h-2.5">{Icons.check}</span>
+                    </span>
+                  </div>
+                  <div className="text-sm font-semibold text-slate-900">Clean transcript</div>
+                  <div className="space-y-1 mt-2">
+                    {[70, 90, 50].map((w, i) => (
+                      <div key={i} className="h-1 rounded-full bg-slate-100 mx-auto" style={{ width: w + '%' }} />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────── WHEN THIS PAGE IS THE RIGHT FIT ────────────────── */}
+      <section className="bg-white py-16 px-4 border-b border-slate-100">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl font-bold text-slate-900 mb-8">When this page is the right fit</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { icon: Icons.layers,  title: 'Mixed-format archives', desc: 'One upload for all your files, whatever they were recorded on.' },
+              { icon: Icons.search,  title: 'Unknown file format',   desc: 'Not sure what your recorder produced. We detect it and transcribe it.' },
+              { icon: Icons.bolt,    title: 'Quick transcription',   desc: 'Fast results without setup, converters, or manual format picking.' },
+              { icon: Icons.clip,    title: 'Cross-tool workflows',  desc: 'Drop files exported from Zoom, Descript, Audacity, GarageBand, or any DAW.' },
+              { icon: Icons.users,   title: 'First-time users',      desc: 'No signup, simple UI, free. A safe first try before committing to any tool.' },
+              { icon: Icons.ear,     title: 'Audio quality testing', desc: 'Check clarity and see how much usable text you can get from a rough recording.' },
+            ].map(({ icon, title, desc }) => (
+              <div key={title} className="bg-white border border-slate-200 rounded-2xl p-5 hover:border-brand-400 hover:shadow-sm transition-all">
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-brand-50 text-brand-600 mb-3">
+                  <span className="w-5 h-5">{icon}</span>
+                </div>
+                <h3 className="font-semibold text-slate-900 mb-1.5">{title}</h3>
+                <p className="text-sm text-slate-600 leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────── AUDIO QUALITY + FORMAT DETECTION ────────────────── */}
+      <section className="bg-slate-50 py-16 px-4 border-b border-slate-100">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
+          {/* Quality tiers */}
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900 mb-6">Audio quality matters more than file format</h2>
+            <div className="space-y-3">
+              {[
+                { icon: Icons.check,   iconClass: 'bg-emerald-100 text-emerald-600', title: 'Clear speech',      desc: 'Clean audio with minimal background noise delivers the most accurate transcripts.', waveClass: 'bg-emerald-400', pattern: 'clean' },
+                { icon: Icons.warn,    iconClass: 'bg-amber-100 text-amber-600',     title: 'Noisy audio',       desc: 'Background noise or overlap can reduce accuracy, no matter the format.',           waveClass: 'bg-amber-400',   pattern: 'noisy' },
+                { icon: Icons.xCircle, iconClass: 'bg-rose-100 text-rose-600',       title: 'Compressed audio',  desc: 'Very low bitrates or heavy compression may remove important details.',             waveClass: 'bg-rose-300',    pattern: 'compressed' },
+              ].map(({ icon, iconClass, title, desc, waveClass, pattern }) => (
+                <div key={title} className="bg-white border border-slate-200 rounded-2xl p-4 flex items-center gap-4">
+                  <div className={'flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ' + iconClass}>
+                    <span className="w-5 h-5">{icon}</span>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="font-semibold text-slate-900 text-sm">{title}</div>
+                    <div className="text-xs text-slate-500 leading-snug mt-0.5">{desc}</div>
+                  </div>
+                  <div className="hidden sm:block flex-shrink-0">
+                    <WaveStrip pattern={pattern} colorClass={waveClass} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Format detection */}
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900 mb-6">How Mictoo detects your format</h2>
+            <div className="bg-white border border-slate-200 rounded-2xl p-6">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-mono text-[10px] font-bold leading-tight text-center">
+                  1010<br />1010
+                </div>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  We read the file header (magic bytes) to identify your format instantly. This ensures the best settings for accurate transcription and means you never need to pick the format manually.
+                </p>
+              </div>
+
+              <div className="mt-6">
+                <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Examples</div>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    ['ID3',   'MP3'],
+                    ['ftyp',  'M4A'],
+                    ['RIFF',  'WAV'],
+                    ['fLaC',  'FLAC'],
+                    ['OggS',  'OGG'],
+                    ['ADTS',  'AAC'],
+                    ['EBML',  'WebM'],
+                  ].map(([bytes, fmt]) => (
+                    <div key={fmt} className="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs">
+                      <span className="font-mono text-brand-700 font-semibold">{bytes}</span>
+                      <span className="text-slate-400">·</span>
+                      <span className="text-slate-600 font-medium">{fmt}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────── SUPPORTED FORMATS TABLE ────────────────── */}
+      <section className="bg-white py-16 px-4 border-b border-slate-100">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl font-bold text-slate-900 mb-8">Supported audio formats</h2>
+          <div className="bg-white border border-slate-200 rounded-2xl overflow-x-auto">
+            <table className="w-full text-sm min-w-[720px]">
+              <thead>
+                <tr className="border-b border-slate-100 bg-slate-50">
+                  <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Format</th>
+                  <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Common source</th>
+                  <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Best for</th>
+                  <th className="text-center px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Direct upload</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {[
+                  ['MP3',  'Recorders, podcasts, downloads',  'General use, small files'],
+                  ['M4A',  'iPhone Voice Memos, Apple apps',  'High quality, efficient size'],
+                  ['WAV',  'Recordings, DAW exports',         'Uncompressed, pro audio'],
+                  ['FLAC', 'Music archives, high fidelity',   'Lossless quality'],
+                  ['OGG',  'Open source recordings, apps',    'Web and streaming'],
+                  ['AAC',  'Mobile recordings, streaming',    'Balanced quality and size'],
+                  ['WebM', 'Web recordings, browsers',        'Online video and audio'],
+                ].map(([fmt, source, best]) => (
+                  <tr key={fmt} className="hover:bg-slate-50">
+                    <td className="px-5 py-4 font-semibold text-slate-900">{fmt}</td>
+                    <td className="px-5 py-4 text-slate-600">{source}</td>
+                    <td className="px-5 py-4 text-slate-600">{best}</td>
+                    <td className="px-5 py-4 text-center">
+                      <span className="inline-flex items-center justify-center w-5 h-5 text-brand-600">
+                        {Icons.check}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────── FAQ (1 column) ────────────────── */}
+      <section id="faq" className="bg-slate-50 py-16 px-4 border-b border-slate-100">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl font-bold text-slate-900 mb-10 text-center">Frequently asked questions</h2>
+          <div className="space-y-3">
+            {FAQ.map(({ q, a }, i) => (
+              <details
+                key={q}
+                className="group bg-white border border-slate-200 rounded-xl overflow-hidden open:shadow-sm"
+                {...(i === 0 ? { open: true } : {})}
+              >
+                <summary className="cursor-pointer list-none px-5 py-4 flex items-center justify-between gap-3 font-semibold text-slate-800 hover:bg-slate-50 transition-colors">
+                  <span>{q}</span>
+                  <svg
+                    className="w-4 h-4 flex-shrink-0 text-slate-400 transition-transform group-open:rotate-180"
+                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-5 pb-5 text-sm text-slate-600 leading-relaxed">
+                  <p>{a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────── BOTTOM CTA PLATE ────────────────── */}
+      <section className="max-w-5xl mx-auto px-4 py-12">
+        <div className="relative bg-gradient-to-r from-brand-600 via-brand-500 to-brand-600 rounded-3xl overflow-hidden shadow-lg shadow-brand-500/20">
+          <div className="absolute right-24 top-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-white/10 blur-3xl pointer-events-none hidden md:block" />
+          <div className="relative flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 py-10 px-6 md:px-10 text-center md:text-left">
+            <div className="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur border border-white/20 flex items-center justify-center text-white flex-shrink-0">
+              <span className="w-7 h-7">{Icons.sparkles}</span>
+            </div>
+            <div className="min-w-0 flex-1 max-w-lg">
+              <div className="font-bold text-white text-xl md:text-2xl leading-tight">
+                Drop any audio file and get the text
+              </div>
+              <div className="text-sm text-white/85 mt-1.5">
+                Free. No signup. No limits on format.
+              </div>
+              <div className="mt-3 flex flex-wrap items-center justify-center md:justify-start gap-x-4 gap-y-1 text-[11px] text-white/80">
+                <span className="inline-flex items-center gap-1"><span className="w-3 h-3">{Icons.check}</span> Any format</span>
+                <span className="inline-flex items-center gap-1"><span className="w-3 h-3">{Icons.check}</span> No signup</span>
+                <span className="inline-flex items-center gap-1"><span className="w-3 h-3">{Icons.check}</span> 50+ languages</span>
+              </div>
+            </div>
+            <Link
+              href="#tool"
+              className="inline-flex items-center gap-2 bg-white text-brand-700 font-bold text-sm md:text-base px-6 py-3.5 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex-shrink-0 group"
+            >
+              <span>Upload audio to transcribe</span>
+              <span className="w-4 h-4 group-hover:translate-x-0.5 transition-transform">{Icons.arrowRight}</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────── MORE TRANSCRIPTION TOOLS ────────────────── */}
+      <section className="max-w-6xl mx-auto px-4 pb-16">
+        <h2 className="text-lg font-semibold text-slate-800 mb-4">More transcription tools</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {[
+            { href: '/transcribe-mp3-to-text',   icon: Icons.music, title: 'MP3 to Text',        desc: 'Transcribe MP3 files to text instantly.' },
+            { href: '/transcribe-video-to-text', icon: Icons.video, title: 'Video to Text',      desc: 'Extract text from any video.' },
+            { href: '/youtube-to-text',          icon: Icons.video, title: 'YouTube to Text',    desc: 'Transcribe YouTube videos.' },
+            { href: '/free-srt-generator',       icon: Icons.file,  title: 'Free SRT Generator', desc: 'Create accurate SRT subtitles online.' },
+          ].map(({ href, icon, title, desc }) => (
+            <Link
+              key={href}
+              href={href}
+              className="group bg-white border border-slate-200 rounded-2xl p-4 flex items-center gap-3 hover:border-brand-400 hover:shadow-sm transition-all"
+            >
+              <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex-shrink-0">
+                <span className="w-5 h-5">{icon}</span>
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="font-semibold text-slate-900 text-sm">{title}</div>
+                <div className="text-xs text-slate-500 leading-snug mt-0.5">{desc}</div>
+              </div>
+              <span className="w-4 h-4 text-slate-300 group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all flex-shrink-0">
+                {Icons.arrowRight}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+    </>
   )
 }
