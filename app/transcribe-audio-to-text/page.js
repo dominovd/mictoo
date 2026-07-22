@@ -299,15 +299,17 @@ export default function TranscribeAudioToTextPage() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] divide-y md:divide-y-0 md:divide-x divide-slate-100">
                 <div className="p-4 space-y-3 text-sm">
+                  {/* No speaker labels — Mictoo does not perform diarization
+                      yet, so the mockup shows the real per-line output:
+                      just timestamp + transcribed text. */}
                   {[
-                    { t: '00:00:00', role: 'Interviewer', line: 'Can you tell us about your journey into filmmaking?' },
-                    { t: '00:00:07', role: 'Guest',       line: 'It started as a hobby in college. I loved storytelling and visual arts.' },
-                    { t: '00:00:15', role: 'Interviewer', line: 'What inspires your creative process?' },
-                    { t: '00:00:24', role: 'Guest',       line: 'People and real life moments. I observe and translate them into stories.' },
+                    { t: '00:00:00', line: 'Can you tell us about your journey into filmmaking?' },
+                    { t: '00:00:07', line: 'It started as a hobby in college. I loved storytelling and visual arts.' },
+                    { t: '00:00:15', line: 'What inspires your creative process?' },
+                    { t: '00:00:24', line: 'People and real life moments. I observe and translate them into stories.' },
                   ].map((row, i) => (
-                    <div key={i} className="grid grid-cols-[auto_auto_1fr] gap-3 items-start">
-                      <span className="font-mono text-[10px] text-slate-400 mt-1">{row.t}</span>
-                      <span className="text-[11px] font-semibold text-brand-700 mt-0.5">{row.role}:</span>
+                    <div key={i} className="grid grid-cols-[auto_1fr] gap-3 items-start">
+                      <span className="font-mono text-[10px] text-brand-600 font-semibold mt-1 whitespace-nowrap">{row.t}</span>
                       <span className="text-slate-700 leading-snug">{row.line}</span>
                     </div>
                   ))}
