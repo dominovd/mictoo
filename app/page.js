@@ -228,7 +228,7 @@ export default function Home() {
           </span>
           <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-5 leading-tight">
             Free AI Audio &amp; Video<br />
-            Transcription to Text
+            <span className="text-brand-600">Transcription to Text</span>
           </h1>
           <p className="text-lg text-slate-600 mb-7 max-w-2xl mx-auto">
             Accurate transcripts in seconds. Upload MP3, MP4, WAV, and more. No account required.
