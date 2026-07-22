@@ -35,6 +35,7 @@
 
 import Link from 'next/link'
 import UploadZone from '@/components/UploadZone'
+import { t } from '@/lib/i18n'
 
 // ── Inline SVG icon set ─────────────────────────────────────────────────────
 const Icons = {
@@ -97,6 +98,10 @@ function FlagPill({ flag, label }) {
 
 // ── Component ───────────────────────────────────────────────────────────────
 export default function LanguagePageLayout({
+  // Locale for internal layout strings (sidebar labels, table headers,
+  // FAQ h2, etc.). Content strings still come from props. Defaults to 'en'
+  // and falls back to EN in i18n dict when a locale key is missing.
+  locale = 'en',
   // Hero
   badge,                    // 'FRENCH · WHISPER LARGE-V3 · FREE'
   h1First,                  // 'French Speech to Text'
@@ -123,9 +128,9 @@ export default function LanguagePageLayout({
   exampleFileName,
   exampleDurationLabel,
   exampleLines = [],        // [{t, line}]  target-language text
-  summaryTitle = 'AI Summary',
+  summaryTitle,             // defaults to layouts.common.aiSummary
   summaryPoints = [],       // string[] target-language bullets
-  translateLabel = 'Translate to English',
+  translateLabel,           // defaults to layouts.language.translateButton
 
   // Why cards
   whyTitle,
@@ -236,13 +241,13 @@ export default function LanguagePageLayout({
                 <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
                   {/* Tab bar */}
                   <div className="flex items-center justify-between border-b border-slate-100 px-4">
-                    <div className="flex items-center gap-4">
-                      <button className="pb-2.5 pt-3 font-semibold text-sm text-emerald-700 border-b-2 border-emerald-600">Transcript</button>
-                      <button className="pb-2.5 pt-3 font-medium text-sm text-slate-500">Notes</button>
+                    <div className="flex items-center gap-4" aria-label="Result preview tabs">
+                      <span className="pb-2.5 pt-3 font-semibold text-sm text-emerald-700 border-b-2 border-emerald-600">{t(locale, 'layouts.common.transcript')}</span>
+                      <span className="pb-2.5 pt-3 font-medium text-sm text-slate-500">{t(locale, 'layouts.common.notes')}</span>
                     </div>
                     <div className="relative">
                       <span className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400">{Icons.search}</span>
-                      <div className="text-xs text-slate-400 border border-slate-200 rounded-lg pl-7 pr-3 py-1.5 bg-white">Search</div>
+                      <div className="text-xs text-slate-400 border border-slate-200 rounded-lg pl-7 pr-3 py-1.5 bg-white">{t(locale, 'layouts.common.search')}</div>
                     </div>
                   </div>
 
@@ -263,7 +268,7 @@ export default function LanguagePageLayout({
                       <div>
                         <div className="text-sm font-semibold text-slate-800 mb-3 flex items-center gap-2">
                           <span className="w-4 h-4 text-emerald-600">{Icons.sparkles}</span>
-                          {summaryTitle}
+                          {summaryTitle || t(locale, 'layouts.common.aiSummary')}
                         </div>
                         {summaryPoints.length > 0 && (
                           <p className="text-sm text-slate-700 leading-relaxed">
@@ -273,20 +278,20 @@ export default function LanguagePageLayout({
                       </div>
 
                       <div>
-                        <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide mb-2">Translate to</div>
-                        <button className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg px-3 py-1.5 text-xs font-semibold">
+                        <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide mb-2">{t(locale, 'layouts.language.translateTo')}</div>
+                        <div className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-lg px-3 py-1.5 text-xs font-semibold">
                           <span className="w-3.5 h-3.5">{Icons.translate}</span>
-                          {translateLabel}
-                        </button>
+                          {translateLabel || t(locale, 'layouts.language.translateButton')}
+                        </div>
                       </div>
 
                       <div>
-                        <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide mb-2">Export</div>
+                        <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide mb-2">{t(locale, 'layouts.common.export')}</div>
                         <div className="flex flex-wrap gap-1.5">
                           {['TXT', 'SRT', 'VTT', 'DOCX'].map((f) => (
-                            <button key={f} className="text-xs bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 font-semibold text-emerald-700">
+                            <span key={f} className="text-xs bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 font-semibold text-emerald-700">
                               {f}
-                            </button>
+                            </span>
                           ))}
                         </div>
                       </div>
@@ -304,7 +309,7 @@ export default function LanguagePageLayout({
                   </div>
                 </div>
                 <p className="text-[11px] text-slate-400 mt-2">
-                  Illustration. Real transcripts show timestamps and text without speaker labels.
+                  Interface preview. Upload a file above to use the transcript, translation, and export controls.
                 </p>
               </div>
             )}
@@ -393,9 +398,9 @@ export default function LanguagePageLayout({
                   <table className="w-full text-sm min-w-[520px]">
                     <thead>
                       <tr className="border-b border-slate-100 bg-slate-50">
-                        <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Variety</th>
-                        <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Example differences</th>
-                        <th className="text-center px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Supported</th>
+                        <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">{t(locale, 'layouts.language.tableVariety')}</th>
+                        <th className="text-left px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">{t(locale, 'layouts.language.tableExamples')}</th>
+                        <th className="text-center px-5 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">{t(locale, 'layouts.language.tableSupported')}</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
@@ -422,7 +427,7 @@ export default function LanguagePageLayout({
             {/* ── FAQ 2-column via CSS columns ── */}
             {faq.length > 0 && (
               <div>
-                <h2 className="text-2xl font-bold text-slate-900 mb-6">Frequently asked questions</h2>
+                <h2 className="text-2xl font-bold text-slate-900 mb-6">{t(locale, 'layouts.common.faq')}</h2>
                 <div className="columns-1 lg:columns-2 gap-3 space-y-3">
                   {faq.map(({ q, a }, i) => (
                     <details
@@ -454,7 +459,7 @@ export default function LanguagePageLayout({
             <div className="sticky top-24">
               <div className="text-xs font-semibold text-emerald-700 uppercase tracking-wide mb-4 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                By language
+                {t(locale, 'layouts.language.sidebarLabel')}
               </div>
               <nav className="space-y-1">
                 {LANGUAGE_NAV.map((item) => {
@@ -480,7 +485,7 @@ export default function LanguagePageLayout({
               </nav>
               <div className="mt-4 pl-3">
                 <a href="#tool" className="text-sm font-semibold text-emerald-700 hover:text-emerald-800 inline-flex items-center gap-1">
-                  More languages
+                  {t(locale, 'layouts.language.moreLanguages')}
                   <span className="w-3.5 h-3.5">{Icons.arrowRight}</span>
                 </a>
               </div>
@@ -515,7 +520,7 @@ export default function LanguagePageLayout({
       {/* ────────────────── EXPLORE OTHER LANGUAGES ────────────────── */}
       {exploreCards.length > 0 && (
         <section className="max-w-6xl mx-auto px-4 pb-16">
-          <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-4">Explore other languages</h2>
+          <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-4">{t(locale, 'layouts.language.exploreTitle')}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {exploreCards.map(({ href, title, desc, flag }) => (
               <Link

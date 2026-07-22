@@ -26,6 +26,7 @@ import Link from 'next/link'
 import UploadZone from '@/components/UploadZone'
 import HeroChips from '@/components/HeroChips'
 import HeroCounter from '@/components/HeroCounter'
+import { t } from '@/lib/i18n'
 
 // ── Inline SVG icon set ──────────────────────────────────────────────────────
 const Icons = {
@@ -77,6 +78,9 @@ const FORMAT_CARDS = [
 
 // ── Component ───────────────────────────────────────────────────────────────
 export default function FormatPageLayout({
+  // Locale (drives internal chrome strings; content comes via props)
+  locale = 'en',
+
   // Hero
   badge,
   h1First,
@@ -179,7 +183,7 @@ export default function FormatPageLayout({
                     {name}
                   </div>
                   <div className={'text-[11px] mt-0.5 ' + (isCurrent ? 'text-brand-600 font-semibold' : 'text-slate-400')}>
-                    {isCurrent ? 'You are here' : ext}
+                    {isCurrent ? t(locale, 'layouts.format.youAreHere') : ext}
                   </div>
                 </>
               )
@@ -208,14 +212,14 @@ export default function FormatPageLayout({
       {/* ────────────────── HOW IT WORKS + LIVE PREVIEW ────────────────── */}
       <section className="bg-slate-50 py-16 px-4 border-b border-slate-100">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl font-bold text-slate-900 mb-10">How it works</h2>
+          <h2 className="text-2xl font-bold text-slate-900 mb-10">{t(locale, 'layouts.common.howItWorks')}</h2>
 
           <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] gap-10 items-start">
             <ol className="space-y-8">
               {[
-                { step: 1, icon: Icons.upload,   title: 'Drop your file',                    desc: 'Upload from your device or drag and drop. Any common audio or video format.' },
-                { step: 2, icon: Icons.waveform, title: 'Whisper transcribes the audio',     desc: 'Whisper large-v3 runs on our backend with automatic punctuation and per-segment timestamps.' },
-                { step: 3, icon: Icons.editPen,  title: 'Edit, export, share',               desc: 'Review the transcript, summarize with AI, translate to 50+ languages, and export as TXT, DOCX, PDF, or SRT.' },
+                { step: 1, icon: Icons.upload,   title: t(locale, 'layouts.format.stepDrop'),        desc: t(locale, 'layouts.format.stepDropDesc') },
+                { step: 2, icon: Icons.waveform, title: t(locale, 'layouts.format.stepTranscribe'),  desc: t(locale, 'layouts.format.stepTranscribeDesc') },
+                { step: 3, icon: Icons.editPen,  title: t(locale, 'layouts.format.stepExport'),      desc: t(locale, 'layouts.format.stepExportDesc') },
               ].map(({ step, icon, title, desc }) => (
                 <li key={step} className="flex gap-4">
                   <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-600 text-white text-sm font-semibold flex items-center justify-center">
@@ -246,10 +250,10 @@ export default function FormatPageLayout({
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                           <path d="M5 13l4 4L19 7" />
                         </svg>
-                        Completed
+                        {t(locale, 'layouts.common.completed')}
                       </span>
                       <span className="text-slate-300">·</span>
-                      <span>{previewWordCount} words</span>
+                      <span>{t(locale, 'layouts.common.words', { count: previewWordCount })}</span>
                     </div>
                   </div>
                 </div>
@@ -258,30 +262,30 @@ export default function FormatPageLayout({
                     <svg className="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
                       <path d="M5 8l6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6" />
                     </svg>
-                    Translate
+                    {t(locale, 'layouts.common.translate')}
                     <span className="text-slate-400">▾</span>
                   </button>
                   <button className="inline-flex items-center gap-1 text-xs bg-brand-600 text-white rounded-lg px-2.5 py-1.5 font-semibold">
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
                       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
                     </svg>
-                    Download
+                    {t(locale, 'layouts.common.download')}
                     <span>▾</span>
                   </button>
-                  <button className="text-xs text-slate-500 hover:text-slate-700 px-2 py-1.5">↑ New</button>
+                  <button className="text-xs text-slate-500 hover:text-slate-700 px-2 py-1.5">↑</button>
                 </div>
               </div>
 
               <div className="flex items-center gap-4 px-5 pt-3 text-xs border-b border-slate-100">
-                <button className="pb-2.5 font-semibold text-brand-700 border-b-2 border-brand-600">Transcript</button>
-                <button className="pb-2.5 text-slate-500">AI Summary</button>
+                <button className="pb-2.5 font-semibold text-brand-700 border-b-2 border-brand-600">{t(locale, 'layouts.common.transcript')}</button>
+                <button className="pb-2.5 text-slate-500">{t(locale, 'layouts.common.aiSummary')}</button>
                 <button className="pb-2.5 text-slate-500">Chat</button>
               </div>
 
               <div className="px-5 pt-4">
                 <div className="inline-flex items-center gap-0 bg-slate-100 rounded-lg p-0.5 text-xs">
-                  <button className="px-3 py-1 rounded-md bg-white text-slate-800 shadow-sm font-medium">Reader</button>
-                  <button className="px-3 py-1 rounded-md text-slate-500">Editor</button>
+                  <button className="px-3 py-1 rounded-md bg-white text-slate-800 shadow-sm font-medium">{t(locale, 'layouts.common.reader')}</button>
+                  <button className="px-3 py-1 rounded-md text-slate-500">{t(locale, 'layouts.common.editor')}</button>
                 </div>
               </div>
 
@@ -302,7 +306,7 @@ export default function FormatPageLayout({
                   <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                     <circle cx="11" cy="11" r="7" /><path d="M21 21l-4.35-4.35" />
                   </svg>
-                  <div className="text-xs text-slate-400 border border-slate-200 rounded-lg pl-8 pr-3 py-2 bg-white">Search transcript…</div>
+                  <div className="text-xs text-slate-400 border border-slate-200 rounded-lg pl-8 pr-3 py-2 bg-white">{t(locale, 'layouts.common.searchTranscript')}</div>
                 </div>
               </div>
 
@@ -318,7 +322,7 @@ export default function FormatPageLayout({
               </div>
 
               <p className="text-[11px] text-slate-400 px-5 py-3">
-                Cleaner per-line layout with timestamps. Best for reading.
+                {t(locale, 'layouts.format.readerFooter')}
               </p>
             </div>
           </div>
@@ -392,7 +396,7 @@ export default function FormatPageLayout({
       {faq.length > 0 && (
         <section id="faq" className="bg-slate-50 py-16 px-4 border-b border-slate-100">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-slate-900 mb-10 text-center">Frequently asked questions</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-10 text-center">{t(locale, 'layouts.common.faq')}</h2>
             <div className="space-y-3">
               {faq.map(({ q, a }, i) => (
                 <details
@@ -435,9 +439,9 @@ export default function FormatPageLayout({
                 {ctaSubtitle}
               </div>
               <div className="mt-3 flex flex-wrap items-center justify-center md:justify-start gap-x-4 gap-y-1 text-[11px] text-white/80">
-                <span className="inline-flex items-center gap-1"><span className="w-3 h-3">{Icons.check}</span> No signup</span>
-                <span className="inline-flex items-center gap-1"><span className="w-3 h-3">{Icons.check}</span> No credit card</span>
-                <span className="inline-flex items-center gap-1"><span className="w-3 h-3">{Icons.check}</span> 50+ languages</span>
+                <span className="inline-flex items-center gap-1"><span className="w-3 h-3">{Icons.check}</span> {t(locale, 'layouts.format.noSignup')}</span>
+                <span className="inline-flex items-center gap-1"><span className="w-3 h-3">{Icons.check}</span> {t(locale, 'layouts.format.noCreditCard')}</span>
+                <span className="inline-flex items-center gap-1"><span className="w-3 h-3">{Icons.check}</span> {t(locale, 'layouts.format.manyLanguages')}</span>
               </div>
             </div>
             <Link
@@ -453,14 +457,17 @@ export default function FormatPageLayout({
 
       {/* ────────────────── MORE TRANSCRIPTION TOOLS ────────────────── */}
       <section className="max-w-6xl mx-auto px-4 pb-16">
-        <h2 className="text-lg font-semibold text-slate-800 mb-4">More transcription tools</h2>
+        <h2 className="text-lg font-semibold text-slate-800 mb-4">{t(locale, 'layouts.format.moreToolsTitle')}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {[
-            { href: '/transcribe-audio-to-text',  icon: Icons.file,  title: 'Audio to Text',       desc: 'One page for every audio format.' },
-            { href: '/transcribe-video-to-text',  icon: Icons.video, title: 'Video to Text',       desc: 'Extract text from any video.' },
-            { href: '/youtube-to-text',           icon: Icons.video, title: 'YouTube to Text',     desc: 'Transcribe YouTube videos.' },
-            { href: '/free-srt-generator',        icon: Icons.file,  title: 'Free SRT Generator',  desc: 'Create accurate SRT subtitles online.' },
-          ].map(({ href, icon, title, desc }) => (
+          {(() => {
+            const prefix = locale === 'en' ? '' : `/${locale}`
+            return [
+              { href: `${prefix}/transcribe-audio-to-text`, icon: Icons.file,  title: t(locale, 'layouts.format.moreAudioTitle'),   desc: t(locale, 'layouts.format.moreAudioDesc') },
+              { href: `${prefix}/transcribe-video-to-text`, icon: Icons.video, title: t(locale, 'layouts.format.moreVideoTitle'),   desc: t(locale, 'layouts.format.moreVideoDesc') },
+              { href: `${prefix}/youtube-to-text`,          icon: Icons.video, title: t(locale, 'layouts.format.moreYoutubeTitle'), desc: t(locale, 'layouts.format.moreYoutubeDesc') },
+              { href: `${prefix}/free-srt-generator`,       icon: Icons.file,  title: t(locale, 'layouts.format.moreSrtTitle'),     desc: t(locale, 'layouts.format.moreSrtDesc') },
+            ]
+          })().map(({ href, icon, title, desc }) => (
             <Link
               key={href}
               href={href}

@@ -31,6 +31,7 @@ import Link from 'next/link'
 import UploadZone from '@/components/UploadZone'
 import HeroChips from '@/components/HeroChips'
 import HeroCounter from '@/components/HeroCounter'
+import { t } from '@/lib/i18n'
 
 // ── Inline SVG icon set ─────────────────────────────────────────────────────
 const Icons = {
@@ -174,6 +175,8 @@ function PlatformPill({ name, brandBg, iconKey, href }) {
 
 // ── Component ───────────────────────────────────────────────────────────────
 export default function UseCaseLayout({
+  // Locale for internal layout strings. Content still comes from props.
+  locale = 'en',
   // Hero
   badge,
   h1First,
@@ -319,12 +322,12 @@ export default function UseCaseLayout({
                   {/* Tab bar */}
                   <div className="flex items-center justify-between border-b border-slate-100 px-4">
                     <div className="flex items-center gap-4">
-                      <span className="pb-2.5 pt-3 font-semibold text-sm text-brand-700 border-b-2 border-brand-600">Transcript</span>
-                      <span className="pb-2.5 pt-3 font-medium text-sm text-slate-500">Notes</span>
+                      <span className="pb-2.5 pt-3 font-semibold text-sm text-brand-700 border-b-2 border-brand-600">{t(locale, 'layouts.common.transcript')}</span>
+                      <span className="pb-2.5 pt-3 font-medium text-sm text-slate-500">{t(locale, 'layouts.common.notes')}</span>
                     </div>
                     <div className="relative">
                       <span className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400">{Icons.search}</span>
-                      <div className="text-xs text-slate-400 border border-slate-200 rounded-lg pl-7 pr-3 py-1.5 bg-white">Search</div>
+                      <div className="text-xs text-slate-400 border border-slate-200 rounded-lg pl-7 pr-3 py-1.5 bg-white">{t(locale, 'layouts.common.search')}</div>
                     </div>
                   </div>
 
@@ -344,7 +347,7 @@ export default function UseCaseLayout({
                     <div className="p-5 bg-slate-50/40">
                       <div className="text-sm font-semibold text-slate-800 mb-3 flex items-center gap-2">
                         <span className="w-4 h-4 text-brand-600">{Icons.sparkles}</span>
-                        AI Summary
+                        {t(locale, 'layouts.common.aiSummary')}
                       </div>
                       {summaryPoints.length > 0 && (
                         <ul className="space-y-1.5 text-sm text-slate-700">
@@ -358,7 +361,7 @@ export default function UseCaseLayout({
                       )}
                       {actionItems.length > 0 && (
                         <>
-                          <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mt-5 mb-2">Action items</div>
+                          <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mt-5 mb-2">{t(locale, 'layouts.useCase.actionItems')}</div>
                           <ul className="space-y-1.5 text-sm text-slate-700">
                             {actionItems.map((it, i) => (
                               <li key={i} className="flex gap-2 items-start">
@@ -383,7 +386,7 @@ export default function UseCaseLayout({
                       <span className="text-slate-500">1x</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <span className="text-xs bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 font-medium text-slate-700">Translate</span>
+                      <span className="text-xs bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 font-medium text-slate-700">{t(locale, 'layouts.common.translate')}</span>
                       {['TXT', 'SRT', 'VTT', 'DOCX'].map((f) => (
                         <span
                           key={f}
@@ -396,7 +399,7 @@ export default function UseCaseLayout({
                   </div>
                 </div>
                 <p className="text-[11px] text-slate-400 mt-2">
-                  Illustration. Real transcripts show timestamps and text without speaker labels.
+                  {t(locale, 'layouts.common.illustrationDisclaimer')}
                 </p>
               </div>
             )}
@@ -509,7 +512,7 @@ export default function UseCaseLayout({
             */}
             {faq.length > 0 && (
               <div>
-                <h2 className="text-2xl font-bold text-slate-900 mb-6">Frequently asked questions</h2>
+                <h2 className="text-2xl font-bold text-slate-900 mb-6">{t(locale, 'layouts.common.faq')}</h2>
                 <div className="columns-1 lg:columns-2 gap-3 space-y-3">
                   {faq.map(({ q, a }, i) => (
                     <details
@@ -541,7 +544,7 @@ export default function UseCaseLayout({
             <div className="sticky top-24">
               <div className="text-xs font-semibold text-brand-700 uppercase tracking-wide mb-4 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-500" />
-                Use cases
+                {t(locale, 'layouts.useCase.sidebarLabel')}
               </div>
               <nav className="space-y-1">
                 {USE_CASE_NAV.map((item) => {
@@ -594,7 +597,7 @@ export default function UseCaseLayout({
       {/* ────────────────── RELATED USE CASES ────────────────── */}
       {relatedLinks.length > 0 && (
         <section className="max-w-6xl mx-auto px-4 pb-16">
-          <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-4">Related use cases</h2>
+          <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-4">{t(locale, 'layouts.useCase.relatedTitle')}</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
             {relatedLinks.map(({ href, label }) => (
               <Link

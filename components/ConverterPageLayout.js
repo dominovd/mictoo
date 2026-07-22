@@ -29,6 +29,7 @@ import UploadZone from '@/components/UploadZone'
 import ConverterZone from '@/components/ConverterZone'
 import HeroChips from '@/components/HeroChips'
 import HeroCounter from '@/components/HeroCounter'
+import { t } from '@/lib/i18n'
 
 // ── Inline SVG icon set (subset shared with UseCaseLayout) ──────────────────
 const Icons = {
@@ -99,6 +100,9 @@ function TrustChip({ icon, label }) {
 
 // ── Component ───────────────────────────────────────────────────────────────
 export default function ConverterPageLayout({
+  // Locale
+  locale = 'en',
+
   // Mode: 'converter' (default) or 'upload'
   mode = 'converter',
   from,          // converter: source ext (mp4, wav, ...)
@@ -120,7 +124,7 @@ export default function ConverterPageLayout({
   outputAudio,        // 'Stereo'
 
   // "How it works" — 3 steps
-  stepsTitle = 'How it works',
+  stepsTitle,
   steps = [],         // [{icon, title, desc}]
 
   // Conversion preview mock (converter only)
@@ -138,9 +142,9 @@ export default function ConverterPageLayout({
   scenarios = [],        // [{icon, title}]
 
   // Tips + What happens
-  tipsTitle = 'Tips for clean conversion',
+  tipsTitle,
   tips = [],             // string[]
-  processTitle = 'What happens during conversion',
+  processTitle,
   processSteps = [],     // string[] (3 short steps for the mini-diagram)
 
   // Comparison table (converter only) — X vs Y
@@ -209,21 +213,21 @@ export default function ConverterPageLayout({
             {outputFormat && (
               <div className="bg-white border border-slate-200 rounded-lg px-3 py-2 flex items-center gap-2 justify-center">
                 <span className="w-4 h-4 text-brand-600">{Icons.fileAudio}</span>
-                <span className="text-slate-500">Output:</span>
+                <span className="text-slate-500">{t(locale, 'layouts.converter.output')}</span>
                 <span className="font-semibold text-slate-800">{outputFormat}</span>
               </div>
             )}
             {outputQuality && (
               <div className="bg-white border border-slate-200 rounded-lg px-3 py-2 flex items-center gap-2 justify-center">
                 <span className="w-4 h-4 text-brand-600">{Icons.waveform}</span>
-                <span className="text-slate-500">Quality:</span>
+                <span className="text-slate-500">{t(locale, 'layouts.converter.quality')}</span>
                 <span className="font-semibold text-slate-800">{outputQuality}</span>
               </div>
             )}
             {outputAudio && (
               <div className="bg-white border border-slate-200 rounded-lg px-3 py-2 flex items-center gap-2 justify-center">
                 <span className="w-4 h-4 text-brand-600">{Icons.headphones}</span>
-                <span className="text-slate-500">Audio:</span>
+                <span className="text-slate-500">{t(locale, 'layouts.converter.audio')}</span>
                 <span className="font-semibold text-slate-800">{outputAudio}</span>
               </div>
             )}
@@ -240,7 +244,7 @@ export default function ConverterPageLayout({
             {/* ── How it works — 3 steps ── */}
             {steps.length > 0 && (
               <div>
-                <h2 className="text-2xl font-bold text-slate-900 mb-6">{stepsTitle}</h2>
+                <h2 className="text-2xl font-bold text-slate-900 mb-6">{stepsTitle || t(locale, 'layouts.common.howItWorks')}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {steps.map(({ icon, title, desc }, i) => (
                     <div key={title} className="bg-white border border-slate-200 rounded-2xl p-5">
@@ -261,7 +265,7 @@ export default function ConverterPageLayout({
             {/* ── Conversion preview mock ── */}
             {isConverter && previewInputName && (
               <div>
-                <h2 className="text-lg font-bold text-slate-900 mb-3">Conversion preview</h2>
+                <h2 className="text-lg font-bold text-slate-900 mb-3">{t(locale, 'layouts.converter.previewTitle')}</h2>
                 <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
                   <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr_auto] items-center gap-4">
                     {/* Input */}
@@ -270,7 +274,7 @@ export default function ConverterPageLayout({
                         <span className="w-5 h-5">{Icons.video}</span>
                       </span>
                       <div className="min-w-0">
-                        <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide">Input</div>
+                        <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide">{t(locale, 'layouts.converter.inputLabel')}</div>
                         <div className="font-medium text-slate-800 text-sm truncate">{previewInputName}</div>
                         {previewInputSize && <div className="text-xs text-slate-500 truncate">{previewInputSize}</div>}
                       </div>
@@ -281,7 +285,7 @@ export default function ConverterPageLayout({
                       <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-emerald-500 text-white">
                         <span className="w-2.5 h-2.5">{Icons.check}</span>
                       </span>
-                      Complete
+                      {t(locale, 'layouts.converter.complete')}
                     </div>
 
                     {/* Output */}
@@ -290,7 +294,7 @@ export default function ConverterPageLayout({
                         <span className="w-5 h-5">{Icons.fileAudio}</span>
                       </span>
                       <div className="min-w-0">
-                        <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide">Output</div>
+                        <div className="text-[11px] font-semibold text-slate-500 uppercase tracking-wide">{t(locale, 'layouts.converter.outputLabel')}</div>
                         <div className="font-medium text-slate-800 text-sm truncate">{previewOutputName}</div>
                         {previewOutputSize && <div className="text-xs text-slate-500 truncate">{previewOutputSize}</div>}
                       </div>
@@ -299,7 +303,7 @@ export default function ConverterPageLayout({
                     {/* Visual preview only — the real download appears after conversion. */}
                     <div className="inline-flex items-center gap-1.5 bg-brand-600 text-white rounded-lg px-3 py-2 text-xs font-semibold justify-self-end sm:justify-self-auto">
                       <span className="w-3.5 h-3.5">{Icons.download}</span>
-                      Download {to?.toUpperCase() || 'file'}
+                      {t(locale, 'layouts.common.download')} {to?.toUpperCase() || ''}
                     </div>
                   </div>
                 </div>
@@ -362,7 +366,7 @@ export default function ConverterPageLayout({
 
                 {processSteps.length > 0 && (
                   <div>
-                    <h2 className="text-lg font-bold text-slate-900 mb-4">{processTitle}</h2>
+                    <h2 className="text-lg font-bold text-slate-900 mb-4">{processTitle || t(locale, 'layouts.converter.whatHappensTitle')}</h2>
                     <div className="bg-white border border-slate-200 rounded-2xl p-5">
                       <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2">
                         {processSteps.slice(0, 3).flatMap((s, i) => {
@@ -428,7 +432,7 @@ export default function ConverterPageLayout({
             {/* ── FAQ 2-column via CSS columns ── */}
             {faq.length > 0 && (
               <div>
-                <h2 className="text-2xl font-bold text-slate-900 mb-6">Frequently asked questions</h2>
+                <h2 className="text-2xl font-bold text-slate-900 mb-6">{t(locale, 'layouts.common.faq')}</h2>
                 <div className="columns-1 lg:columns-2 gap-3 space-y-3">
                   {faq.map(({ q, a }, i) => (
                     <details
@@ -469,7 +473,7 @@ export default function ConverterPageLayout({
                     href="#tool"
                     className="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm px-5 py-3 rounded-xl transition-all flex-shrink-0"
                   >
-                    <span>{ctaButton || 'Choose a file'}</span>
+                    <span>{ctaButton || t(locale, 'layouts.converter.defaultCtaButton')}</span>
                   </Link>
                 </div>
               </div>
@@ -478,7 +482,7 @@ export default function ConverterPageLayout({
             {/* ── More conversion tools — inline links ── */}
             {moreTools.length > 0 && (
               <div>
-                <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-3">More conversion tools</h2>
+                <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-3">{t(locale, 'layouts.converter.moreToolsTitle')}</h2>
                 <div className="flex flex-wrap gap-x-5 gap-y-2">
                   {moreTools.map(({ href, label }) => (
                     <Link
@@ -500,7 +504,7 @@ export default function ConverterPageLayout({
             <div className="sticky top-24">
               <div className="text-xs font-semibold text-amber-700 uppercase tracking-wide mb-4 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                Tools
+                {t(locale, 'layouts.converter.sidebarLabel')}
               </div>
               <nav className="space-y-1">
                 {TOOLS_NAV.map((item) => {
