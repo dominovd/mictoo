@@ -7,6 +7,8 @@
 
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { t, localized } from '@/lib/i18n'
+import { serverLocale } from '@/lib/locale-server'
 import HistoryList from '@/components/HistoryList'
 
 export const dynamic = 'force-dynamic'
@@ -25,6 +27,7 @@ export default async function HistoryPage() {
   if (!user) {
     redirect('/sign-in?next=/history')
   }
+  const locale = serverLocale()
 
   const sinceIso = new Date(Date.now() - RETENTION_DAYS * 24 * 60 * 60 * 1000).toISOString()
 
@@ -42,32 +45,39 @@ export default async function HistoryPage() {
   return (
     <section className="max-w-3xl mx-auto px-4 py-12">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-slate-900 mb-2">Your history</h1>
+        <h1 className="text-3xl font-bold text-slate-900 mb-2">{t(locale, 'history.heading')}</h1>
         <p className="text-slate-500 text-sm">
-          Transcripts you created in the last {RETENTION_DAYS} days. After that they're deleted
-          automatically — Mictoo never keeps your audio long-term.
+          {t(locale, 'history.lead', { days: RETENTION_DAYS })}
         </p>
       </div>
 
       {(!transcripts || transcripts.length === 0) ? (
-        <EmptyState />
+        <EmptyState locale={locale} />
       ) : (
-        <HistoryList transcripts={transcripts} />
+        <HistoryList
+          transcripts={transcripts}
+          labels={{
+            view: t(locale, 'history.view'),
+            delete: t(locale, 'history.delete'),
+            words: t(locale, 'history.words'),
+            deleting: t(locale, 'history.deleting'),
+            deleteConfirm: t(locale, 'history.deleteConfirm'),
+            deleteError: t(locale, 'history.deleteError'),
+            networkError: t(locale, 'history.networkError'),
+          }}
+        />
       )}
     </section>
   )
 }
 
-function EmptyState() {
+function EmptyState({ locale }) {
   return (
     <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-10 text-center">
       <div className="text-4xl mb-4">📝</div>
-      <h2 className="text-lg font-semibold text-slate-800 mb-2">No transcripts yet</h2>
-      <p className="text-sm text-slate-500 mb-6">
-        Your transcribed audio will appear here. We keep them for 7 days, then they're
-        permanently deleted.
-      </p>
-      <a href="/" className="btn-primary inline-block">↑ Transcribe a file</a>
+      <h2 className="text-lg font-semibold text-slate-800 mb-2">{t(locale, 'history.emptyHeading')}</h2>
+      <p className="text-sm text-slate-500 mb-6">{t(locale, 'history.emptyBody')}</p>
+      <a href={localized('/', locale)} className="btn-primary inline-block">↑ {t(locale, 'history.emptyCta')}</a>
     </div>
   )
 }

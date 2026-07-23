@@ -9,9 +9,9 @@
 // saved exports (Phase C), etc.
 
 import { redirect } from 'next/navigation'
-import { headers } from 'next/headers'
 import { createClient } from '@/lib/supabase/server'
-import { detectLocaleFromPath, t, localized } from '@/lib/i18n'
+import { t, localized } from '@/lib/i18n'
+import { serverLocale } from '@/lib/locale-server'
 import AccountPreferences from '@/components/AccountPreferences'
 import AccountCredits from '@/components/AccountCredits'
 
@@ -23,22 +23,12 @@ export const metadata = {
   robots: { index: false, follow: false },
 }
 
-function pickLocale() {
-  // Locale comes from the page the user navigated from, if it had a /xx/ prefix.
-  try {
-    const ref = headers().get('referer') || ''
-    if (!ref) return 'en'
-    const url = new URL(ref)
-    return detectLocaleFromPath(url.pathname)
-  } catch {
-    return 'en'
-  }
-}
-
 export default async function AccountPage() {
   const supabase = createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  const locale = pickLocale()
+  // Prefers the mictoo_locale cookie (set by lib/locale-runtime.js on every
+  // localized page visit), falls back to the referer's URL prefix, then EN.
+  const locale = serverLocale()
 
   if (!user) {
     redirect(`/sign-in?next=${encodeURIComponent(localized('/account', locale))}`)

@@ -17,7 +17,19 @@ import { toJSON } from '@/lib/exports/json'
 //     .docx / .pdf (server-side via /api/export/*).
 //   - Delete the row.
 
-export default function HistoryList({ transcripts: initial }) {
+// `labels` carries locale-resolved strings from the /history server page.
+// Keeping them as a prop keeps this component client-only without dragging in
+// the whole i18n dictionary. Missing labels fall back to English so the file
+// stays usable if invoked from a context that hasn't been migrated yet.
+const DEFAULT_LABELS = {
+  view: 'View', delete: 'Delete', words: '{n} words',
+  deleting: 'Deleting…',
+  deleteConfirm: "Delete this transcript? This can't be undone.",
+  deleteError: 'Could not delete.', networkError: 'Network error while deleting.',
+}
+
+export default function HistoryList({ transcripts: initial, labels }) {
+  const L = { ...DEFAULT_LABELS, ...(labels || {}) }
   const [items, setItems] = useState(initial || [])
   const [expanded, setExpanded] = useState(() => new Set())
   const [pendingDelete, setPendingDelete] = useState(null)
@@ -39,10 +51,10 @@ export default function HistoryList({ transcripts: initial }) {
         setItems((prev) => prev.filter((t) => t.id !== id))
       } else {
         const data = await res.json().catch(() => ({}))
-        alert(data.error || 'Could not delete.')
+        alert(data.error || L.deleteError)
       }
     } catch {
-      alert('Network error while deleting.')
+      alert(L.networkError)
     } finally {
       setPendingDelete(null)
     }
@@ -62,6 +74,7 @@ export default function HistoryList({ transcripts: initial }) {
         <Row
           key={t.id}
           t={t}
+          labels={L}
           isExpanded={expanded.has(t.id)}
           isDeleting={pendingDelete === t.id}
           onToggle={() => toggleExpand(t.id)}
@@ -72,7 +85,7 @@ export default function HistoryList({ transcripts: initial }) {
   )
 }
 
-function Row({ t, isExpanded, isDeleting, onToggle, onDelete }) {
+function Row({ t, labels: L = DEFAULT_LABELS, isExpanded, isDeleting, onToggle, onDelete }) {
   // Three-state content selector — only relevant for rows that have an AI
   // summary attached. Drives both the in-card preview and the re-export
   // payload going to the server / generated client-side.
@@ -219,13 +232,13 @@ function Row({ t, isExpanded, isDeleting, onToggle, onDelete }) {
           <p className="text-xs text-slate-400 mt-1">
             {date}
             {t.language && <> · {t.language}</>}
-            {wordCount > 0 && <> · {wordCount} words</>}
+            {wordCount > 0 && <> · {L.words.replace('{n}', wordCount)}</>}
             {hasSummary && <> · <span className="text-brand-600">AI summary</span></>}
           </p>
         </div>
         <div className="flex items-center gap-2">
           <button onClick={onToggle} className="btn-ghost text-xs">
-            {isExpanded ? 'Hide' : 'View'}
+            {isExpanded ? 'Hide' : L.view}
           </button>
           <button
             onClick={onDelete}
@@ -233,7 +246,7 @@ function Row({ t, isExpanded, isDeleting, onToggle, onDelete }) {
             className="btn-ghost text-xs text-red-500 hover:text-red-600 disabled:opacity-50"
             title="Delete this transcript"
           >
-            {isDeleting ? 'Deleting…' : 'Delete'}
+            {isDeleting ? L.deleting : L.delete}
           </button>
         </div>
       </div>

@@ -154,11 +154,11 @@ function AuthMenu({ authLoaded, user, pathname, locale }) {
   return (
     <>
       <CreditsWidget />
-      <a href="/history" className="btn-ghost whitespace-nowrap hidden sm:inline-flex">History</a>
+      <a href="/history" className="btn-ghost whitespace-nowrap hidden sm:inline-flex">{t(locale || 'en', 'nav.history')}</a>
       <a
         href="/account"
-        title="Account"
-        aria-label="Account"
+        title={t(locale || 'en', 'account.heading')}
+        aria-label={t(locale || 'en', 'account.heading')}
         className="ml-1 inline-flex items-center justify-center w-8 h-8 rounded-full border border-slate-200 hover:border-brand-400 transition-colors overflow-hidden"
       >
         {avatarUrl ? (

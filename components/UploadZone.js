@@ -2261,7 +2261,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
         </p>
         {authUser && (
           <p className="text-xs text-brand-600 mt-2">
-            Signed in — drop up to 3 files at once, we'll process them in order.
+            {t(locale, 'uploadZone.signedInHint')}
           </p>
         )}
       </div>

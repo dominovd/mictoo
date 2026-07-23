@@ -1,7 +1,9 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { detectLocaleFromPath, localized, LOCALIZED_PATHS, t } from '@/lib/i18n'
+import { LOCALE_LESS_USER_PATHS, resolveRuntimeLocale, saveLocaleFromPath } from '@/lib/locale-runtime'
 import FooterIcon from '@/lib/footer-icons'
 import TranscriptionCounter from './TranscriptionCounter'
 
@@ -17,7 +19,17 @@ import TranscriptionCounter from './TranscriptionCounter'
 // breaks up the "wall of links" the footer used to be.
 export default function SiteFooter() {
   const pathname = usePathname() || '/'
-  const locale = detectLocaleFromPath(pathname)
+  // Same runtime-locale pattern as SiteHeader: on /sign-in /account /history
+  // /auth/callback (locale-less URLs) upgrade from the pathname-derived EN to
+  // the locale saved from the user's last localized visit. Keeps footer chrome
+  // in the user's language on authed pages.
+  const [runtimeLocale, setRuntimeLocale] = useState(null)
+  useEffect(() => {
+    saveLocaleFromPath(pathname)
+    if (!LOCALE_LESS_USER_PATHS.has(pathname)) { setRuntimeLocale(null); return }
+    setRuntimeLocale(resolveRuntimeLocale(pathname))
+  }, [pathname])
+  const locale = runtimeLocale || detectLocaleFromPath(pathname)
 
   // Resolves the right href for a link, preferring localized destinations when
   // they exist. Keeps the user inside their locale where possible.
