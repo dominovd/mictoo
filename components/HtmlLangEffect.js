@@ -13,42 +13,18 @@
 
 import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
-
-const LOCALES = new Set(['fr', 'de', 'es', 'ru', 'it', 'pt', 'pl', 'ja', 'ko'])
-
-// Locale-less pages that still need to render in the user's locale by
-// pulling the code from ?next=/<loc>/... (the sign-in flow carries the
-// origin page in that param so we can come back to it after auth). We
-// intentionally avoid useSearchParams() — it needs a Suspense boundary
-// during SSG and would otherwise flip pages into dynamic render.
-const LOCALE_FROM_NEXT_PATHS = new Set(['/sign-in'])
-
-function nextParamLocale() {
-  if (typeof window === 'undefined') return null
-  try {
-    const nxt = new URLSearchParams(window.location.search).get('next')
-    if (!nxt) return null
-    const seg = nxt.split('/').filter(Boolean)[0]
-    return LOCALES.has(seg) ? seg : null
-  } catch {
-    return null
-  }
-}
-
-function detectLocale(pathname) {
-  if (LOCALE_FROM_NEXT_PATHS.has(pathname)) {
-    const fromNext = nextParamLocale()
-    if (fromNext) return fromNext
-  }
-  const seg = (pathname || '/').split('/')[1] || ''
-  return LOCALES.has(seg) ? seg : 'en'
-}
+import { resolveRuntimeLocale, saveLocaleFromPath } from '@/lib/locale-runtime'
 
 export default function HtmlLangEffect() {
   const pathname = usePathname()
 
   useEffect(() => {
-    const locale = detectLocale(pathname)
+    // Persist locale from URL prefix so /sign-in, /account, /history and
+    // /auth/callback (all locale-less) can render in the user's locale on
+    // return visits.
+    saveLocaleFromPath(pathname)
+
+    const locale = resolveRuntimeLocale(pathname)
     if (document.documentElement.lang !== locale) {
       document.documentElement.lang = locale
     }

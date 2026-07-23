@@ -5,48 +5,28 @@ import { usePathname } from 'next/navigation'
 import { detectLocaleFromPath, localized, t } from '@/lib/i18n'
 import { createClient } from '@/lib/supabase/client'
 import { LATEST_CHANGELOG_DATE } from '@/lib/changelog-meta-gen'
+import { LOCALE_LESS_USER_PATHS, resolveRuntimeLocale, saveLocaleFromPath } from '@/lib/locale-runtime'
 import LanguageSwitcher from './LanguageSwitcher'
 import CreditsWidget from './CreditsWidget'
-
-// Locale-less pages that carry origin locale in ?next=/<loc>/... (sign-in
-// flow). Without this fallback the header would flip to EN on /sign-in
-// even when the user came from a localized page. We deliberately avoid
-// useSearchParams() here because it needs a Suspense boundary and
-// wrapping the header would demote every page from static to dynamic;
-// reading window.location.search in an effect keeps rendering static.
-const LOCALE_FROM_NEXT_PATHS = new Set(['/sign-in'])
-
-function getLocaleFromNextQuery() {
-  if (typeof window === 'undefined') return null
-  try {
-    const q = new URLSearchParams(window.location.search)
-    const nxt = q.get('next')
-    if (!nxt) return null
-    const seg = nxt.split('/').filter(Boolean)[0]
-    return seg || null
-  } catch {
-    return null
-  }
-}
 
 export default function SiteHeader() {
   const pathname = usePathname() || '/'
 
-  // Start with the pathname-derived locale so SSR + first paint match.
-  // If we're on a /sign-in-like page, upgrade to the ?next-derived locale
-  // after mount so header nav, /whats-new link, and Sign in button
-  // switch back to the user's origin locale.
-  const [nextLocale, setNextLocale] = useState(null)
+  // SSR + first paint use pathname-derived locale so hydration matches. On the
+  // authed set of locale-less pages (/sign-in, /account, /history, /auth/callback)
+  // we upgrade after mount to the locale carried in ?next=/<loc>/... or the one
+  // we persisted from the user's last localized visit. See lib/locale-runtime.js.
+  const [runtimeLocale, setRuntimeLocale] = useState(null)
   useEffect(() => {
-    if (!LOCALE_FROM_NEXT_PATHS.has(pathname)) {
-      setNextLocale(null)
+    saveLocaleFromPath(pathname)
+    if (!LOCALE_LESS_USER_PATHS.has(pathname)) {
+      setRuntimeLocale(null)
       return
     }
-    const seg = getLocaleFromNextQuery()
-    setNextLocale(seg ? detectLocaleFromPath('/' + seg) : null)
+    setRuntimeLocale(resolveRuntimeLocale(pathname))
   }, [pathname])
 
-  const locale = nextLocale || detectLocaleFromPath(pathname)
+  const locale = runtimeLocale || detectLocaleFromPath(pathname)
 
   // Home link stays at the locale's own root: /  /fr  /de  /es  /ru
   const homeHref = localized('/', locale)
@@ -135,15 +115,15 @@ export default function SiteHeader() {
               />
             )}
           </a>
-          <LanguageSwitcher />
-          <AuthMenu authLoaded={authLoaded} user={user} pathname={pathname} />
+          <LanguageSwitcher localeOverride={locale} />
+          <AuthMenu authLoaded={authLoaded} user={user} pathname={pathname} locale={locale} />
         </nav>
       </div>
     </header>
   )
 }
 
-function AuthMenu({ authLoaded, user, pathname }) {
+function AuthMenu({ authLoaded, user, pathname, locale }) {
   if (!authLoaded) {
     // Reserve space while loading to prevent layout shift.
     return <span className="w-8 h-8 inline-block" aria-hidden="true" />
@@ -157,7 +137,7 @@ function AuthMenu({ authLoaded, user, pathname }) {
         href={`/sign-in?next=${encodeURIComponent(pathname)}`}
         className="btn-ghost whitespace-nowrap text-slate-500 hover:text-brand-600"
       >
-        Sign in
+        {t(locale || 'en', 'nav.signIn')}
       </a>
     )
   }

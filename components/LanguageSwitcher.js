@@ -3,10 +3,22 @@
 import { useState, useRef, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 import { LOCALES, LOCALE_META, LOCALIZED_PATHS, detectLocaleFromPath, stripLocale, t } from '@/lib/i18n'
+import { LOCALE_LESS_USER_PATHS, resolveRuntimeLocale } from '@/lib/locale-runtime'
 
-export default function LanguageSwitcher() {
+// `localeOverride` lets SiteHeader pass down the runtime-resolved locale
+// (e.g. from ?next or localStorage on /sign-in, /account, /history) so the
+// dropdown chip renders in the user's language even on locale-less URLs.
+export default function LanguageSwitcher({ localeOverride } = {}) {
   const pathname = usePathname() || '/'
-  const locale = detectLocaleFromPath(pathname)
+  const [runtimeLocale, setRuntimeLocale] = useState(null)
+  useEffect(() => {
+    // If no override and we're on a locale-less user page, resolve ourselves.
+    if (localeOverride) { setRuntimeLocale(null); return }
+    if (!LOCALE_LESS_USER_PATHS.has(pathname)) { setRuntimeLocale(null); return }
+    setRuntimeLocale(resolveRuntimeLocale(pathname))
+  }, [pathname, localeOverride])
+
+  const locale = localeOverride || runtimeLocale || detectLocaleFromPath(pathname)
   const restOfPath = stripLocale(pathname)
   const [open, setOpen] = useState(false)
   const wrapperRef = useRef(null)
