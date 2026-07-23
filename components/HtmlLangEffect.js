@@ -12,19 +12,33 @@
 // "en" but rely on canonical + hreflang for locale assignment.
 
 import { useEffect } from 'react'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 const LOCALES = new Set(['fr', 'de', 'es', 'ru', 'it', 'pt', 'pl', 'ja', 'ko'])
 
 // Locale-less pages that still need to render in the user's locale by
 // pulling the code from ?next=/<loc>/... (the sign-in flow carries the
-// origin page in that param so we can come back to it after auth).
+// origin page in that param so we can come back to it after auth). We
+// intentionally avoid useSearchParams() — it needs a Suspense boundary
+// during SSG and would otherwise flip pages into dynamic render.
 const LOCALE_FROM_NEXT_PATHS = new Set(['/sign-in'])
 
-function detectLocale(pathname, nextParam) {
-  if (LOCALE_FROM_NEXT_PATHS.has(pathname) && nextParam) {
-    const seg = nextParam.split('/')[1] || ''
-    if (LOCALES.has(seg)) return seg
+function nextParamLocale() {
+  if (typeof window === 'undefined') return null
+  try {
+    const nxt = new URLSearchParams(window.location.search).get('next')
+    if (!nxt) return null
+    const seg = nxt.split('/').filter(Boolean)[0]
+    return LOCALES.has(seg) ? seg : null
+  } catch {
+    return null
+  }
+}
+
+function detectLocale(pathname) {
+  if (LOCALE_FROM_NEXT_PATHS.has(pathname)) {
+    const fromNext = nextParamLocale()
+    if (fromNext) return fromNext
   }
   const seg = (pathname || '/').split('/')[1] || ''
   return LOCALES.has(seg) ? seg : 'en'
@@ -32,15 +46,13 @@ function detectLocale(pathname, nextParam) {
 
 export default function HtmlLangEffect() {
   const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const nextParam = searchParams?.get('next')
 
   useEffect(() => {
-    const locale = detectLocale(pathname, nextParam)
+    const locale = detectLocale(pathname)
     if (document.documentElement.lang !== locale) {
       document.documentElement.lang = locale
     }
-  }, [pathname, nextParam])
+  }, [pathname])
 
   return null
 }
