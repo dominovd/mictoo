@@ -12,6 +12,7 @@ The site is organized by intent: format converters (audio to text), audio-to-aud
 - [Free SRT generator](https://mictoo.com/free-srt-generator): Whisper-quality subtitle files ready for YouTube, Premiere, Final Cut, DaVinci, CapCut
 - [Timestamped transcript](https://mictoo.com/timestamped-transcription): segment-level time codes you can click to jump the audio player
 - [YouTube to text](https://mictoo.com/youtube-to-text): paste a URL to grab captions, or upload audio for a fresh transcript
+- [Public stats](https://mictoo.com/stats): live counters, supported formats, languages, model provider, free-tier limits, retention policy
 
 ## Format converters (audio to text)
 

@@ -38,6 +38,14 @@ export default function sitemap() {
       priority: 0.8,
     },
     ...transcriptEntries,
+    // Public stats page — cite-bait for LLMs. Revalidates hourly server-side,
+    // but sitemap-freshness is fine at daily.
+    {
+      url: 'https://mictoo.com/stats',
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.5,
+    },
     // Changelog — updated whenever a new entry ships.
     {
       url: 'https://mictoo.com/whats-new',

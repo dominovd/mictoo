@@ -1,3 +1,5 @@
+import { howToSchema, jsonLdScript } from '@/lib/schema-org'
+
 export const metadata = {
   title: 'How to Compress Audio for Transcription — Free Methods | Mictoo',
   description: 'Three free ways to shrink an audio or video file under 25 MB for transcription: extract audio, lower bitrate, or split the file. No software install needed.',
@@ -34,9 +36,23 @@ export const metadata = {
   },
 }
 
+const HOWTO_SCHEMA = howToSchema({
+  name: 'How to compress audio for transcription',
+  description: 'Three free ways to shrink an audio or video file below the 25 MB upload limit for transcription: extract the audio track, lower the bitrate, or split the file into shorter pieces.',
+  url: '/how-to-compress-audio',
+  totalTime: 'PT5M',
+  tools: ['Web browser', 'Mictoo MP4 to MP3 converter', 'Mictoo audio splitter'],
+  steps: [
+    { name: 'Extract audio from video', text: 'If your source is a video (MP4, MOV, WEBM), pull out the audio track first. A 200 MB MP4 usually collapses to a ~20 MB MP3 with no quality loss for speech.' },
+    { name: 'Lower the bitrate', text: 'For pure audio files (WAV, FLAC, or high-bitrate MP3), re-encode to 64-96 kbps MP3. Speech stays perfectly intelligible for Whisper at these bitrates.' },
+    { name: 'Split long files', text: 'If the file is still too big after compression, split it into shorter chunks (10-15 minutes each), transcribe separately, then stitch the transcripts.' },
+  ],
+})
+
 export default function HowToCompressAudioPage() {
   return (
     <section className="max-w-2xl mx-auto px-4 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(HOWTO_SCHEMA)} />
       <h1 className="text-3xl font-bold text-slate-900 mb-3">How to compress audio for transcription</h1>
       <p className="text-slate-500 mb-10 leading-relaxed">
         Mictoo accepts files up to <strong>25 MB</strong> for free. If your file is larger, here are

@@ -147,6 +147,12 @@ export default function SiteFooter() {
             {locale === 'en' && (
               <a href="/transcripts"                className="hover:text-slate-600 transition-colors">Transcripts</a>
             )}
+            {/* Public stats — EN only for now (data itself is language-agnostic
+                but the page copy hasn't been translated yet). Localize when we
+                extend the GEO roadmap. */}
+            {locale === 'en' && (
+              <a href="/stats"                     className="hover:text-slate-600 transition-colors">Stats</a>
+            )}
             {/* Changelog — EN-only, matches header link */}
             {locale === 'en' && (
               <a href="/whats-new"                  className="hover:text-slate-600 transition-colors">What's new</a>

@@ -1,3 +1,5 @@
+import { howToSchema, jsonLdScript } from '@/lib/schema-org'
+
 export const metadata = {
   title: 'How to Download YouTube Videos for Transcription — Free Methods (2026) | Mictoo',
   description:
@@ -22,9 +24,24 @@ export const metadata = {
   },
 }
 
+const HOWTO_SCHEMA = howToSchema({
+  name: 'How to download a YouTube video for transcription',
+  description: 'Three free desktop tools to download a YouTube video as MP4 or MP3 in 2026: 4K Video Downloader, yt-dlp, ClipGrab. Includes a screen-recording fallback.',
+  url: '/how-to-download-youtube-video',
+  totalTime: 'PT10M',
+  tools: ['4K Video Downloader', 'yt-dlp (command line)', 'ClipGrab', 'Screen recorder (fallback)'],
+  steps: [
+    { name: 'Pick a tool', text: 'For non-technical users, 4K Video Downloader is the friendliest. For developers, yt-dlp is faster and scriptable. ClipGrab is the middle ground.' },
+    { name: 'Paste the URL', text: 'Copy the YouTube link, paste it into the tool, choose output format (MP4 for full video, MP3 for audio only). MP3 is enough for transcription and much smaller.' },
+    { name: 'Download the file', text: 'Save to your desktop. Files under 25 MB upload to Mictoo without an account; larger files need to be split or compressed first.' },
+    { name: 'Transcribe with Mictoo', text: 'Drop the downloaded file into mictoo.com. Get text in seconds, plus AI summary and translation.' },
+  ],
+})
+
 export default function HowToDownloadYouTubeVideoPage() {
   return (
     <section className="max-w-2xl mx-auto px-4 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(HOWTO_SCHEMA)} />
       <h1 className="text-3xl font-bold text-slate-900 mb-3">How to download a YouTube video for transcription</h1>
       <p className="text-slate-500 mb-10 leading-relaxed">
         You want to transcribe a YouTube video. Most people don&apos;t actually want the video file —

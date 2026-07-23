@@ -20,6 +20,7 @@ import Image from 'next/image'
 import UploadZone from '@/components/UploadZone'
 import HeroChips from '@/components/HeroChips'
 import HeroCounter from '@/components/HeroCounter'
+import { softwareApplicationSchema, breadcrumbSchema, jsonLdScript } from '@/lib/schema-org'
 
 // ── Page-level metadata & canonical ─────────────────────────────────────────
 export const metadata = {
@@ -86,29 +87,10 @@ const FAQ = [
 ]
 
 // ── JSON-LD schemas ──────────────────────────────────────────────────────────
-const webAppSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  name: 'Mictoo',
-  url: 'https://mictoo.com',
-  description:
-    'Free online audio and video transcription tool powered by OpenAI Whisper. No signup required. Supports 50+ languages.',
-  applicationCategory: 'UtilityApplication',
-  operatingSystem: 'Web',
-  browserRequirements: 'Requires a modern browser with JavaScript enabled.',
-  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-  featureList: [
-    'Transcribe audio to text',
-    'Transcribe video to text',
-    'Supports 50+ languages',
-    'No account required',
-    'Free to use',
-    'AI-generated summary of the transcript',
-    'Translate the transcript to 28 languages',
-    'Chat with the transcript',
-    'Supports MP3, MP4, WAV, M4A, OGG, WEBM, FLAC, AAC',
-  ],
-}
+// SoftwareApplication is the LLM-preferred type for tool-like products.
+// Extracted into lib/schema-org.js so every schema on the site references
+// the same Organization @id and stays consistent.
+const webAppSchema = softwareApplicationSchema()
 
 const faqSchema = {
   '@context': 'https://schema.org',

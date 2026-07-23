@@ -302,6 +302,46 @@ export default function ComparisonLayout({
     })),
   } : null
 
+  // ItemList of both products (Mictoo + the competitor) so LLMs answering
+  // "what's a good alternative to X" pick up the whole comparison as structured
+  // data. Also emits a Review sub-node on the competitor with our positioning
+  // sentence — LLMs surface that when asked "how does mictoo compare to X".
+  const alternativeSchema = competitorName ? {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `Mictoo vs ${competitorName}`,
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        item: {
+          '@type': 'SoftwareApplication',
+          name: 'Mictoo',
+          url: 'https://mictoo.com',
+          applicationCategory: 'UtilityApplication',
+          isAccessibleForFree: true,
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        },
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        item: {
+          '@type': 'SoftwareApplication',
+          name: competitorName,
+          applicationCategory: 'UtilityApplication',
+          ...(subtitle ? {
+            review: {
+              '@type': 'Review',
+              reviewBody: subtitle,
+              author: { '@type': 'Organization', name: 'Mictoo' },
+            },
+          } : {}),
+        },
+      },
+    ],
+  } : null
+
   return (
     <>
       {/* 1. Hero */}
@@ -544,6 +584,9 @@ export default function ComparisonLayout({
           </div>
           {faqSchema && (
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+          )}
+          {alternativeSchema && (
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(alternativeSchema) }} />
           )}
         </section>
       )}

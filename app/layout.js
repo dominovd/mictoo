@@ -4,6 +4,7 @@ import SiteHeader from '@/components/SiteHeader'
 import SiteFooter from '@/components/SiteFooter'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
 import HtmlLangEffect from '@/components/HtmlLangEffect'
+import { organizationSchema, jsonLdScript } from '@/lib/schema-org'
 
 export const metadata = {
   title: 'Mictoo — Free AI Audio & Video Transcription Online',
@@ -64,6 +65,12 @@ export default function RootLayout({ children }) {
             crossOrigin="anonymous"
           />
         )}
+        {/* Site-wide Organization schema — gives LLMs a stable entity node
+            every other schema on the site (@id: /#organization) can attach to. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={jsonLdScript(organizationSchema())}
+        />
       </head>
       <body className="min-h-screen flex flex-col">
         <HtmlLangEffect />

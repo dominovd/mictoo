@@ -1,3 +1,5 @@
+import { howToSchema, jsonLdScript } from '@/lib/schema-org'
+
 export const metadata = {
   title: 'How to Transcribe Instagram Reels — Free, in 3 Steps (2026) | Mictoo',
   description:
@@ -22,9 +24,24 @@ export const metadata = {
   },
 }
 
+const HOWTO_SCHEMA = howToSchema({
+  name: 'How to transcribe Instagram Reels',
+  description: 'Two free ways to get a text transcript of an Instagram Reel: screen-record on iPhone or Android, then upload to Mictoo. Includes when to use the built-in captions instead.',
+  url: '/how-to-transcribe-instagram-reels',
+  totalTime: 'PT3M',
+  tools: ['iPhone or Android screen recorder', 'Mictoo (free)'],
+  steps: [
+    { name: 'Start a screen recording', text: 'iPhone: Control Center > screen record button. Android: pull down > Screen Recorder tile. Record with audio on.' },
+    { name: 'Play the Reel', text: 'Open Instagram, play the Reel from the start with sound on. Wait until it finishes, then stop the recording.' },
+    { name: 'Save and upload to Mictoo', text: 'Save the video (MP4) to your device. Drop it into mictoo.com. Get the transcript in seconds.' },
+    { name: 'Skip steps 1-3 if there are baked-in captions', text: 'If the creator added captions on-screen, you can screenshot the video and OCR the text instead. Faster for short Reels.' },
+  ],
+})
+
 export default function HowToTranscribeInstagramReelsPage() {
   return (
     <section className="max-w-2xl mx-auto px-4 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(HOWTO_SCHEMA)} />
       <h1 className="text-3xl font-bold text-slate-900 mb-3">How to transcribe Instagram Reels</h1>
       <p className="text-slate-500 mb-10 leading-relaxed">
         Reels do not have a built-in transcript feature you can copy out. The captions Instagram

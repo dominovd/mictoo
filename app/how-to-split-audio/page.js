@@ -1,3 +1,5 @@
+import { howToSchema, jsonLdScript } from '@/lib/schema-org'
+
 export const metadata = {
   title: 'How to Split a Long Audio File for Transcription — Free Methods | Mictoo',
   description: 'Three free ways to split a long recording into shorter parts for transcription: online tools, Audacity, or ffmpeg. Works for MP3, M4A, WAV, MP4 and more.',
@@ -34,9 +36,25 @@ export const metadata = {
   },
 }
 
+const HOWTO_SCHEMA = howToSchema({
+  name: 'How to split a long audio file for transcription',
+  description: 'Three free ways to split an audio file into shorter parts so it fits under the transcription upload limit: browser-based tools, Audacity, or ffmpeg.',
+  url: '/how-to-split-audio',
+  totalTime: 'PT10M',
+  tools: ['Web browser', 'Audacity (optional)', 'ffmpeg (optional)'],
+  steps: [
+    { name: 'Pick a split point', text: 'Aim for splits at natural pauses (end of a section, silent gap). Avoid cutting mid-word so timestamps stay clean.' },
+    { name: 'Split with a browser tool', text: 'Use a free web-based audio editor to trim the file into 10-15 minute segments. No install needed.' },
+    { name: 'Or split with Audacity', text: 'Import the file, select the first segment, File > Export selected audio as MP3. Repeat for each part.' },
+    { name: 'Or split with ffmpeg', text: 'One command: ffmpeg -i input.mp3 -f segment -segment_time 600 -c copy out-%03d.mp3. Splits at every 10 minutes with zero re-encoding.' },
+    { name: 'Transcribe each part', text: 'Upload each segment to Mictoo separately. Concatenate the resulting transcripts.' },
+  ],
+})
+
 export default function HowToSplitAudioPage() {
   return (
     <section className="max-w-2xl mx-auto px-4 py-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(HOWTO_SCHEMA)} />
       <h1 className="text-3xl font-bold text-slate-900 mb-3">How to split a long audio file for transcription</h1>
       <p className="text-slate-500 mb-10 leading-relaxed">
         Mictoo transcribes files up to <strong>30 minutes</strong> for anonymous users and
