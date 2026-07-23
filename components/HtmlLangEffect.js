@@ -12,20 +12,35 @@
 // "en" but rely on canonical + hreflang for locale assignment.
 
 import { useEffect } from 'react'
-import { usePathname } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 
 const LOCALES = new Set(['fr', 'de', 'es', 'ru', 'it', 'pt', 'pl', 'ja', 'ko'])
 
+// Locale-less pages that still need to render in the user's locale by
+// pulling the code from ?next=/<loc>/... (the sign-in flow carries the
+// origin page in that param so we can come back to it after auth).
+const LOCALE_FROM_NEXT_PATHS = new Set(['/sign-in'])
+
+function detectLocale(pathname, nextParam) {
+  if (LOCALE_FROM_NEXT_PATHS.has(pathname) && nextParam) {
+    const seg = nextParam.split('/')[1] || ''
+    if (LOCALES.has(seg)) return seg
+  }
+  const seg = (pathname || '/').split('/')[1] || ''
+  return LOCALES.has(seg) ? seg : 'en'
+}
+
 export default function HtmlLangEffect() {
   const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const nextParam = searchParams?.get('next')
 
   useEffect(() => {
-    const seg = (pathname || '/').split('/')[1] || ''
-    const locale = LOCALES.has(seg) ? seg : 'en'
+    const locale = detectLocale(pathname, nextParam)
     if (document.documentElement.lang !== locale) {
       document.documentElement.lang = locale
     }
-  }, [pathname])
+  }, [pathname, nextParam])
 
   return null
 }

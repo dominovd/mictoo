@@ -1531,7 +1531,7 @@ export default function UploadZone({ defaultLanguage = '', locale: localeProp, e
                 {translateMenuOpen && (
                   <div
                     role="menu"
-                    className="absolute right-0 top-full mt-2 w-64 bg-white border border-slate-200 rounded-xl shadow-xl overflow-hidden z-30 p-3"
+                    className="absolute left-0 sm:left-auto sm:right-0 top-full mt-2 w-64 max-w-[calc(100vw-2rem)] bg-white border border-slate-200 rounded-xl shadow-xl overflow-hidden z-30 p-3"
                   >
                     <div className="text-[10px] font-semibold uppercase tracking-wide text-slate-400 mb-2">
                       {t(locale, 'result.dl.translateInto')}

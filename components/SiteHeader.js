@@ -1,16 +1,25 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { usePathname } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import { detectLocaleFromPath, localized, t } from '@/lib/i18n'
 import { createClient } from '@/lib/supabase/client'
 import { LATEST_CHANGELOG_DATE } from '@/lib/changelog-meta-gen'
 import LanguageSwitcher from './LanguageSwitcher'
 import CreditsWidget from './CreditsWidget'
 
+// Locale-less pages that carry origin locale in ?next=/<loc>/... (sign-in
+// flow). Without this fallback the header would flip to EN on /sign-in
+// even when the user came from a localized page.
+const LOCALE_FROM_NEXT_PATHS = new Set(['/sign-in'])
+
 export default function SiteHeader() {
   const pathname = usePathname() || '/'
-  const locale = detectLocaleFromPath(pathname)
+  const searchParams = useSearchParams()
+  const nextParam = searchParams?.get('next')
+  const locale = (LOCALE_FROM_NEXT_PATHS.has(pathname) && nextParam)
+    ? detectLocaleFromPath(nextParam)
+    : detectLocaleFromPath(pathname)
 
   // Home link stays at the locale's own root: /  /fr  /de  /es  /ru
   const homeHref = localized('/', locale)
