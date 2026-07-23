@@ -22,10 +22,32 @@ import { toJSON } from '@/lib/exports/json'
 // the whole i18n dictionary. Missing labels fall back to English so the file
 // stays usable if invoked from a context that hasn't been migrated yet.
 const DEFAULT_LABELS = {
+  // From the /history page shell.
   view: 'View', delete: 'Delete', words: '{n} words',
   deleting: 'Deleting…',
   deleteConfirm: "Delete this transcript? This can't be undone.",
   deleteError: 'Could not delete.', networkError: 'Network error while deleting.',
+  // From the expanded row body.
+  allDeleted: 'All history was deleted.',
+  allDeletedCta: 'Transcribe a file',
+  allDeletedTail: ' to start a new one.',
+  copyFailed: 'Copy failed, your browser blocked clipboard access.',
+  exportFailed: 'Could not generate the {format} file.',
+  untitled: 'untitled',
+  aiSummary: 'AI summary',
+  hide: 'Hide',
+  deleteTitle: 'Delete this transcript',
+  toggleBoth: 'Both', toggleSummary: 'Summary', toggleTranscript: 'Transcript',
+  copied: '✓ Copied', copy: '⧉ Copy',
+  keyPoints: 'Key Points', actionItems: 'Action Items',
+  noTranscriptText: 'No transcript text.',
+  summaryHeadingUpper: 'SUMMARY',
+  keyPointsHeadingUpper: 'KEY POINTS',
+  actionItemsHeadingUpper: 'ACTION ITEMS',
+  // BCP47 tag used for the row's date/time formatting (Intl).
+  dateLocale: 'en-US',
+  // Path used by the empty-state CTA link.
+  homeHref: '/',
 }
 
 export default function HistoryList({ transcripts: initial, labels }) {
@@ -63,7 +85,9 @@ export default function HistoryList({ transcripts: initial, labels }) {
   if (items.length === 0) {
     return (
       <div className="text-center py-12 text-slate-400 text-sm">
-        All history was deleted. <a href="/" className="text-brand-600 hover:underline">Transcribe a file</a> to start a new one.
+        {L.allDeleted}{' '}
+        <a href={L.homeHref} className="text-brand-600 hover:underline">{L.allDeletedCta}</a>
+        {L.allDeletedTail}
       </div>
     )
   }
@@ -99,12 +123,12 @@ function Row({ t, labels: L = DEFAULT_LABELS, isExpanded, isDeleting, onToggle, 
   const [copied, setCopied] = useState(false)
 
   const created = new Date(t.created_at)
-  const date = created.toLocaleString('en-US', {
+  const date = created.toLocaleString(L.dateLocale || 'en-US', {
     month: 'short', day: 'numeric',
     hour: '2-digit', minute: '2-digit',
   })
   const wordCount = (t.text || '').trim().split(/\s+/).filter(Boolean).length
-  const baseName = (t.file_name || 'transcript').replace(/\.[^.]+$/, '')
+  const baseName = (t.file_name || 'transcript').replace(/\.[^.]+$/, '') // filename base, not locale-sensitive
   const hasSegments = Array.isArray(t.segments) && t.segments.length > 0
 
   // Plain-text rendering of the AI summary block. Used for Copy and as part
@@ -113,13 +137,13 @@ function Row({ t, labels: L = DEFAULT_LABELS, isExpanded, isDeleting, onToggle, 
     if (!hasSummary) return ''
     const parts = []
     if (t.summary.summary) {
-      parts.push('SUMMARY', t.summary.summary)
+      parts.push(L.summaryHeadingUpper, t.summary.summary)
     }
     if (t.summary.keyPoints?.length) {
-      parts.push('', 'KEY POINTS', ...t.summary.keyPoints.map((p) => `• ${p}`))
+      parts.push('', L.keyPointsHeadingUpper, ...t.summary.keyPoints.map((p) => `• ${p}`))
     }
     if (t.summary.actionItems?.length) {
-      parts.push('', 'ACTION ITEMS', ...t.summary.actionItems.map((p) => `• ${p}`))
+      parts.push('', L.actionItemsHeadingUpper, ...t.summary.actionItems.map((p) => `• ${p}`))
     }
     return parts.join('\n')
   }
@@ -141,7 +165,7 @@ function Row({ t, labels: L = DEFAULT_LABELS, isExpanded, isDeleting, onToggle, 
       setCopied(true)
       setTimeout(() => setCopied(false), 1500)
     } catch {
-      alert('Copy failed — your browser blocked clipboard access.')
+      alert(L.copyFailed)
     }
   }
 
@@ -216,7 +240,7 @@ function Row({ t, labels: L = DEFAULT_LABELS, isExpanded, isDeleting, onToggle, 
     })
     if (!res.ok) {
       const data = await res.json().catch(() => ({}))
-      alert(data.error || `Could not generate the ${format.toUpperCase()} file.`)
+      alert(data.error || L.exportFailed.replace('{format}', format.toUpperCase()))
       return
     }
     const blob = await res.blob()
@@ -228,23 +252,23 @@ function Row({ t, labels: L = DEFAULT_LABELS, isExpanded, isDeleting, onToggle, 
       {/* Header row */}
       <div className="p-5 flex items-start justify-between gap-4 flex-wrap">
         <div className="min-w-0 flex-1">
-          <h3 className="font-semibold text-slate-800 truncate">{t.file_name || 'untitled'}</h3>
+          <h3 className="font-semibold text-slate-800 truncate">{t.file_name || L.untitled}</h3>
           <p className="text-xs text-slate-400 mt-1">
             {date}
             {t.language && <> · {t.language}</>}
             {wordCount > 0 && <> · {L.words.replace('{n}', wordCount)}</>}
-            {hasSummary && <> · <span className="text-brand-600">AI summary</span></>}
+            {hasSummary && <> · <span className="text-brand-600">{L.aiSummary}</span></>}
           </p>
         </div>
         <div className="flex items-center gap-2">
           <button onClick={onToggle} className="btn-ghost text-xs">
-            {isExpanded ? 'Hide' : L.view}
+            {isExpanded ? L.hide : L.view}
           </button>
           <button
             onClick={onDelete}
             disabled={isDeleting}
             className="btn-ghost text-xs text-red-500 hover:text-red-600 disabled:opacity-50"
-            title="Delete this transcript"
+            title={L.deleteTitle}
           >
             {isDeleting ? L.deleting : L.delete}
           </button>
@@ -257,14 +281,14 @@ function Row({ t, labels: L = DEFAULT_LABELS, isExpanded, isDeleting, onToggle, 
           <div className="flex flex-wrap items-center gap-2">
             {hasSummary && (
               <div className="inline-flex items-center gap-0 bg-slate-100 rounded-lg p-0.5 text-xs">
-                <ToggleBtn active={contentMode === 'both'}       onClick={() => setContentMode('both')}>Both</ToggleBtn>
-                <ToggleBtn active={contentMode === 'summary'}    onClick={() => setContentMode('summary')}>Summary</ToggleBtn>
-                <ToggleBtn active={contentMode === 'transcript'} onClick={() => setContentMode('transcript')}>Transcript</ToggleBtn>
+                <ToggleBtn active={contentMode === 'both'}       onClick={() => setContentMode('both')}>{L.toggleBoth}</ToggleBtn>
+                <ToggleBtn active={contentMode === 'summary'}    onClick={() => setContentMode('summary')}>{L.toggleSummary}</ToggleBtn>
+                <ToggleBtn active={contentMode === 'transcript'} onClick={() => setContentMode('transcript')}>{L.toggleTranscript}</ToggleBtn>
               </div>
             )}
 
             <button onClick={copyToClipboard} className="btn-ghost text-xs">
-              {copied ? '✓ Copied' : '⧉ Copy'}
+              {copied ? L.copied : L.copy}
             </button>
 
             <span className="text-slate-300 text-xs">·</span>
@@ -285,7 +309,7 @@ function Row({ t, labels: L = DEFAULT_LABELS, isExpanded, isDeleting, onToggle, 
               )}
               {t.summary.keyPoints?.length > 0 && (
                 <div>
-                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1.5">Key Points</p>
+                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1.5">{L.keyPoints}</p>
                   <ul className="list-disc pl-5 space-y-1 text-slate-700">
                     {t.summary.keyPoints.map((p, i) => (<li key={i}>{p}</li>))}
                   </ul>
@@ -293,7 +317,7 @@ function Row({ t, labels: L = DEFAULT_LABELS, isExpanded, isDeleting, onToggle, 
               )}
               {t.summary.actionItems?.length > 0 && (
                 <div>
-                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1.5">Action Items</p>
+                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1.5">{L.actionItems}</p>
                   <ul className="list-disc pl-5 space-y-1 text-slate-700">
                     {t.summary.actionItems.map((p, i) => (<li key={i}>{p}</li>))}
                   </ul>
@@ -305,7 +329,7 @@ function Row({ t, labels: L = DEFAULT_LABELS, isExpanded, isDeleting, onToggle, 
           {/* Transcript text — shown unless "summary only" */}
           {effectiveMode !== 'summary' && (
             <div className="bg-slate-50 border border-slate-100 rounded-xl p-4 text-sm text-slate-700 whitespace-pre-wrap max-h-96 overflow-y-auto">
-              {t.text || <span className="text-slate-400">No transcript text.</span>}
+              {t.text || <span className="text-slate-400">{L.noTranscriptText}</span>}
             </div>
           )}
         </div>

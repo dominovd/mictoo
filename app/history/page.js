@@ -57,6 +57,7 @@ export default async function HistoryPage() {
         <HistoryList
           transcripts={transcripts}
           labels={{
+            // Shell.
             view: t(locale, 'history.view'),
             delete: t(locale, 'history.delete'),
             words: t(locale, 'history.words'),
@@ -64,11 +65,42 @@ export default async function HistoryPage() {
             deleteConfirm: t(locale, 'history.deleteConfirm'),
             deleteError: t(locale, 'history.deleteError'),
             networkError: t(locale, 'history.networkError'),
+            // Expanded row body.
+            allDeleted: t(locale, 'history.allDeleted'),
+            allDeletedCta: t(locale, 'history.allDeletedCta'),
+            allDeletedTail: t(locale, 'history.allDeletedTail'),
+            copyFailed: t(locale, 'history.copyFailed'),
+            exportFailed: t(locale, 'history.exportFailed'),
+            untitled: t(locale, 'history.untitled'),
+            aiSummary: t(locale, 'history.aiSummary'),
+            hide: t(locale, 'history.hide'),
+            deleteTitle: t(locale, 'history.deleteTitle'),
+            toggleBoth: t(locale, 'history.toggleBoth'),
+            toggleSummary: t(locale, 'history.toggleSummary'),
+            toggleTranscript: t(locale, 'history.toggleTranscript'),
+            copied: t(locale, 'history.copied'),
+            copy: t(locale, 'history.copy'),
+            keyPoints: t(locale, 'history.keyPoints'),
+            actionItems: t(locale, 'history.actionItems'),
+            noTranscriptText: t(locale, 'history.noTranscriptText'),
+            summaryHeadingUpper: t(locale, 'history.summaryHeadingUpper'),
+            keyPointsHeadingUpper: t(locale, 'history.keyPointsHeadingUpper'),
+            actionItemsHeadingUpper: t(locale, 'history.actionItemsHeadingUpper'),
+            // Client-side wiring.
+            dateLocale: BCP47[locale] || 'en-US',
+            homeHref: localized('/', locale),
           }}
         />
       )}
     </section>
   )
+}
+
+// Same map used by /whats-new so Intl.DateTimeFormat renders the row date
+// in the user's language.
+const BCP47 = {
+  en: 'en-US', fr: 'fr-FR', de: 'de-DE', es: 'es-ES', ru: 'ru-RU',
+  it: 'it-IT', pt: 'pt-PT', pl: 'pl-PL', ja: 'ja-JP', ko: 'ko-KR',
 }
 
 function EmptyState({ locale }) {
