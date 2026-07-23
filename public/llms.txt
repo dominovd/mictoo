@@ -1,0 +1,92 @@
+# Mictoo
+
+> Free AI transcription tool. Turn audio and video into text in seconds. MP3, MP4, WAV, M4A, WEBM, FLAC, YouTube URLs. Whisper-quality output, 50+ languages, no signup, files auto-deleted after 24 hours.
+
+Mictoo is an indie project. Not venture-funded, not a free tier bolted onto a paid product. Free for files up to 25 MB anonymously, 60 MB with a free sign-in, 180 MB via auto-split. Powered by OpenAI Whisper large-v3 (served by Groq for speed, OpenAI as fallback). Files stream to the transcription provider, never stored on our servers.
+
+The site is organized by intent: format converters (audio to text), audio-to-audio converters (ffmpeg-powered), use cases (interview, podcast, lecture, meetings, etc.), by-language pages, how-to guides, and side-by-side comparisons with competitors like Descript, Fireflies, TurboScribe, Otter, and Notta. Canonical URLs below are English; localized copies exist for fr, de, es, ru, it, pt, pl, ja, ko and are discoverable via hreflang.
+
+## Core tools
+
+- [Homepage, free AI transcription](https://mictoo.com/): drop an audio or video file, get text in seconds
+- [Free SRT generator](https://mictoo.com/free-srt-generator): Whisper-quality subtitle files ready for YouTube, Premiere, Final Cut, DaVinci, CapCut
+- [Timestamped transcript](https://mictoo.com/timestamped-transcription): segment-level time codes you can click to jump the audio player
+- [YouTube to text](https://mictoo.com/youtube-to-text): paste a URL to grab captions, or upload audio for a fresh transcript
+
+## Format converters (audio to text)
+
+- [Audio to text (umbrella)](https://mictoo.com/transcribe-audio-to-text): one page for any audio format, drop MP3, M4A, WAV, FLAC, OGG, AAC, WEBM and more
+- [MP3 to text](https://mictoo.com/transcribe-mp3-to-text): podcasts, voice notes, downloaded audio, with timestamps, AI summary, and exports
+- [Video to text](https://mictoo.com/transcribe-video-to-text): MP4, MOV, WEBM, AVI, MKV. Screen recordings, tutorials, vlogs, webinars, with SRT
+- [WAV to text](https://mictoo.com/wav-to-text): studio bounces, field recordings, DAW exports. PCM and Broadcast Wave (BWF) supported
+- [M4A to text](https://mictoo.com/m4a-to-text): iPhone Voice Memos, GarageBand, Apple Podcasts, FaceTime. AAC inside MP4, no conversion needed
+- [WEBM to text](https://mictoo.com/webm-to-text): Loom, OBS, browser MediaRecorder API screen recordings. Video stripped, audio transcribed
+- [FLAC to text](https://mictoo.com/flac-to-text): oral-history interviews, field recordings, lossless preservation copies
+- [OGG to text](https://mictoo.com/ogg-to-text): OGG Vorbis and Opus, plus Telegram .oga voice messages
+- [AAC to text](https://mictoo.com/aac-to-text): raw .aac (ADTS stream or ADIF), podcast downloads, broadcast archives
+
+## Format converters (audio to audio, ffmpeg-powered)
+
+- [MP4 to MP3](https://mictoo.com/mp4-to-mp3): pull clean 128 kbps MP3 audio out of any video file
+- [WAV to MP3](https://mictoo.com/wav-to-mp3): shrink uncompressed WAV to portable MP3
+- [WEBM to MP3](https://mictoo.com/webm-to-mp3): extract MP3 audio from any WEBM video or audio file
+- [FLAC to MP3](https://mictoo.com/flac-to-mp3): compress lossless FLAC down to universal MP3
+- [AAC to MP3](https://mictoo.com/aac-to-mp3): AAC to MP3 with an honest note on when conversion actually helps
+- [WMA to MP3](https://mictoo.com/wma-to-mp3): rescue legacy Windows Media archives, voicemails, ripped CDs
+- [M4A to MP3](https://mictoo.com/m4a-to-mp3): Voice Memos and GarageBand M4A to MP3 for older Android and podcast hosts
+- [MP3 to M4A](https://mictoo.com/mp3-to-m4a): re-encode MP3 to AAC inside M4A for iPhone and Apple ecosystem
+- [MP3 to WAV](https://mictoo.com/mp3-to-wav): expand MP3 to uncompressed 16-bit/44.1 kHz WAV for audio editing
+
+## Use cases
+
+- [Interview transcription](https://mictoo.com/interview-transcription): 1:1 or panel interviews for journalists, researchers, UX teams
+- [Podcast transcription](https://mictoo.com/podcast-transcription): episodes to show notes, blog drafts, and archives
+- [Lecture transcription](https://mictoo.com/lecture-transcription): recorded classes and seminars, searchable, with summary
+- [Business transcription](https://mictoo.com/business-transcription): authorized internal meetings to timestamped transcripts and recap docs
+- [Meeting transcription](https://mictoo.com/meeting-transcription): authorized recordings from Zoom, Teams, Meet, Webex, Loom, Riverside
+- [Zoom transcription](https://mictoo.com/zoom-transcription): Zoom cloud or local MP4/M4A recordings
+- [Google Meet transcription](https://mictoo.com/google-meet-transcription): authorized Drive recordings or local screen captures
+- [Microsoft Teams transcription](https://mictoo.com/teams-meeting-transcription): Teams MP4 from OneDrive or SharePoint
+- [Voice memo to text](https://mictoo.com/voice-memo-to-text): iPhone or Android voice recordings to editable text
+- [Webinar transcription](https://mictoo.com/webinar-transcription): webinar recordings with SRT/VTT captions for the replay
+- [Sermon transcription](https://mictoo.com/sermon-transcription): sermons and services, searchable text with summary
+- [Dictation to text](https://mictoo.com/dictation-to-text): voice drafts to editable text for your writing workflow
+- [YouTube to text](https://mictoo.com/youtube-to-text): paste a URL for captions, or upload audio for a new transcript
+
+## By language
+
+- [French speech to text](https://mictoo.com/french-speech-to-text): France, Quebec, Belgium, Switzerland, Francophone Africa
+- [Spanish audio to text](https://mictoo.com/spanish-audio-to-text): Castilian, Mexican, Rioplatense, Caribbean, Andean, more
+- [German audio transcription](https://mictoo.com/german-audio-transcription): Germany, Austria, Switzerland, Liechtenstein, compound words handled
+- [Multilingual transcription](https://mictoo.com/multilingual-transcription): 36 selectable languages or auto-detect, bilingual recordings supported
+
+## Guides
+
+- [How to compress audio](https://mictoo.com/how-to-compress-audio): three free ways to shrink a file under 25 MB, extract, re-encode, or split
+- [How to split audio](https://mictoo.com/how-to-split-audio): split a long recording into shorter parts via online tools, Audacity, or ffmpeg
+- [How to download YouTube video](https://mictoo.com/how-to-download-youtube-video): 4K Video Downloader, yt-dlp, ClipGrab, and a screen-recording fallback
+- [How to transcribe Instagram Reels](https://mictoo.com/how-to-transcribe-instagram-reels): save the Reel, upload to Mictoo, copy the text
+
+## Blog
+
+- [Can ChatGPT transcribe audio?](https://mictoo.com/blog/can-chatgpt-transcribe-audio): honest 2026 answer, plus what actually works
+- [How to chat with your transcript](https://mictoo.com/blog/how-to-chat-with-transcripts): sample prompts, what the RAG pipeline does, honest limits
+- [MP3 vs M4A vs WAV vs FLAC for transcription](https://mictoo.com/blog/mp3-vs-m4a-vs-wav-vs-flac-for-transcription): which format actually matters and why usually none do
+
+## Compare
+
+- [Descript alternative](https://mictoo.com/descript-alternative): skip the 1 GB desktop editor when you just want the transcript
+- [Fireflies alternative](https://mictoo.com/fireflies-alternative): skip the CRM integration and per-seat call analytics
+- [TurboScribe alternative](https://mictoo.com/turboscribe-alternative): same Whisper large-v3, no daily cap, no signup
+- [Otter alternative](https://mictoo.com/otter-alternative): replace the meeting bot with self-recorded audio and no subscription
+- [Notta alternative](https://mictoo.com/notta-alternative): drop a file in the browser instead of installing a mobile recorder
+
+## Optional
+
+- [About](https://mictoo.com/about): who built Mictoo, what powers it, how we make money
+- [Contact](https://mictoo.com/contact): info@mictoo.com, response time, what we can help with
+- [Blog index](https://mictoo.com/blog): all posts about transcription, audio formats, and workflows
+- [Transcripts hub](https://mictoo.com/transcripts): free searchable transcripts of famous YouTube videos, TED talks, long-form podcasts
+- [What's new](https://mictoo.com/whats-new): changelog of new features and product changes
+- [Privacy](https://mictoo.com/privacy): we do not store your audio files or transcripts
+- [Terms](https://mictoo.com/terms): terms of service for the free transcription tool

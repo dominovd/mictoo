@@ -3,3 +3,7 @@ Allow: /
 Disallow: /api/
 
 Sitemap: https://mictoo.com/sitemap.xml
+
+# LLM-readable navigation (llmstxt.org)
+# https://mictoo.com/llms.txt      — curated site map with one-line descriptions
+# https://mictoo.com/llms-full.txt — inline body of the ~10 highest-value pages

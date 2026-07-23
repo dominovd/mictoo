@@ -1,0 +1,677 @@
+# Mictoo, full text of key pages
+
+> Free AI transcription tool. Turn audio and video into text in seconds. MP3, MP4, WAV, M4A, WEBM, FLAC, YouTube URLs. Whisper-quality output, 50+ languages, no signup, files auto-deleted after 24 hours.
+
+Full body content of the 10 highest-value pages on mictoo.com. Structured for language-model retrieval. See /llms.txt for the site map.
+
+---
+
+## Homepage
+URL: https://mictoo.com/
+
+Badge: Free AI transcription. No signup.
+
+H1: Free AI Audio and Video Transcription to Text
+
+Accurate transcripts in seconds. Upload MP3, MP4, WAV, and more. No account required.
+
+Trust chips shown under the hero: free forever, no signup for the basic tool, files auto-deleted after 24 hours, works in 50+ languages, includes AI summary, translation, and chat with your transcript. A live counter shows the total number of files transcribed to date.
+
+### Convert any file to text
+
+Tool grid links to the most-used pages: MP3 to Text, Video to Text, WAV to Text, Meeting Transcription, Podcast Transcription, Voice Memo to Text.
+
+### How Mictoo works
+
+1. Upload your file. Drag and drop or choose an audio or video file. MP3, MP4, WAV, M4A, and more.
+2. AI transcribes. Whisper large-v3 converts speech to text with high accuracy and automatic punctuation.
+3. Review and export. Edit, summarize, translate, and download your transcript as TXT, DOCX, PDF, or SRT.
+
+### Why choose Mictoo?
+
+- High accuracy. Whisper large-v3 delivers accurate transcripts even with accents and background noise.
+- Fast results. Get transcripts in seconds, not hours. A 30-minute file usually finishes in about a minute.
+- Private by design. Files are processed securely and are never stored on our servers. No training on your audio.
+- 50+ languages. Transcribe and translate in over 50 languages. Auto-detect or pick your language.
+
+### Built for every voice
+
+- Students: transcribe lectures and study materials. Focus on learning.
+- Podcasters: turn episodes into show notes, blogs, and social content.
+- Journalists: transcribe interviews quickly and verify quotes with ease.
+- Teams: document meetings and share actionable transcripts.
+- Content creators: repurpose audio and video into captions, articles, and more.
+
+### Free transcription without the subscription
+
+Comparison snapshot. Mictoo is free to use, requires no account, includes AI Summary, and translates in 50+ languages. Competitor rows link to per-tool comparison pages:
+
+- vs Descript (editor-first workflow): limited free tier, signup required, summary is a paid add-on, translation limited.
+- vs Fireflies (meeting bot recorder): limited free tier, signup required, summary on Pro tier, translation limited.
+- vs TurboScribe (casual transcription): daily cap on free tier, signup required, no summary, translation limited.
+- vs Otter (live meeting notes): monthly cap on free tier, signup required, summary on Pro tier, translation limited.
+- vs Notta (multi-language focus): monthly cap, signup required, summary on Pro tier, broad translation.
+
+Snapshot only. Pricing pages change; see each linked comparison for current numbers.
+
+### Frequently asked questions
+
+Q: Is Mictoo really free?
+A: Yes. Mictoo is completely free for files up to 25 MB. No account, no credit card, no hidden fees. Signed-in users get a higher 60 MB per-file limit and 7 free transcriptions per day, still with no payment required.
+
+Q: How accurate is the transcription?
+A: Mictoo uses OpenAI's Whisper large-v3, one of the most accurate open speech recognition models available. Accuracy depends on audio quality and accent, but typically exceeds 95% for clear recordings.
+
+Q: What languages are supported?
+A: Whisper supports over 50 languages including English, Spanish, French, German, Portuguese, Russian, Ukrainian, Japanese, Chinese, Arabic, and more. Language is detected automatically, or you can pick one manually in the upload form.
+
+Q: Is my file stored on your servers?
+A: No. Files are streamed directly to Groq's Whisper API (US-hosted) for transcription, with OpenAI's Whisper API kept as an automatic fallback, and are not stored on Mictoo's servers. Neither provider uses API audio for model training; OpenAI retains data for at most 30 days of abuse monitoring before deletion.
+
+Q: What is the maximum file size?
+A: Up to 25 MB anonymously, 60 MB after a free sign-in. Larger files up to 180 MB are auto-split into chunks and merged into a single transcript for registered users.
+
+Q: What file formats does Mictoo support?
+A: Mictoo supports MP3, MP4, WAV, M4A, OGG, WEBM, FLAC, AAC, MOV, and MPEG. Both audio and video files are accepted; for video we extract the audio track server-side.
+
+Q: How long does transcription take?
+A: Most files finish in seconds. A 10-minute audio file typically takes 15 to 30 seconds; a 60-minute podcast is done in about a minute.
+
+Q: Can I edit the transcript after it is generated?
+A: Yes. The transcript is fully editable in your browser before you copy or download it. No account is needed to save changes to your local session.
+
+Q: Do I need to create an account?
+A: No. For files up to 25 MB, you can transcribe without an account. A free account unlocks larger files (up to 60 MB per file, 180 MB via auto-split), history, AI summary, translation to 28 languages, and chat with your transcript.
+
+Q: What technology powers Mictoo?
+A: Mictoo is built on OpenAI's Whisper large-v3 model, served by Groq for speed with OpenAI as fallback. It is the same speech recognition model that powers ChatGPT's voice features and many professional caption services.
+
+Bottom CTA: Transcribe your file, free. Drop your audio or video and get an accurate transcript in seconds. No signup, no credit card, 50+ languages.
+
+---
+
+## About Mictoo
+URL: https://mictoo.com/about
+
+H1: About Mictoo
+
+Mictoo is a free, no-signup audio and video transcription tool built for anyone who needs to convert speech to text quickly and accurately.
+
+We built Mictoo because great transcription shouldn't require a subscription, an account, or technical skills. Drop your file, get your text. That's it.
+
+### Who built Mictoo
+
+Mictoo is an indie project, built and run by a small team that has worked on SEO, content, and developer tools for the past decade. We are not a venture-funded startup chasing a billion users. We are not a side project from a transcription giant trying to capture the free-tier market either. We are people who use transcription tools ourselves and got tired of every option being either gated, slow, or hostile to the user.
+
+If you want to reach the human behind the site directly, the email at the bottom of this page goes to a real inbox. Every message gets read.
+
+### What powers Mictoo
+
+Mictoo runs on OpenAI's Whisper, the same speech recognition model used inside ChatGPT. Whisper large-v3 was trained on 680,000 hours of multilingual audio. It supports over 50 languages with automatic detection and is widely regarded as the strongest open speech model available. We serve Whisper through Groq's US-hosted API (whisper-large-v3) for speed and cost efficiency, with OpenAI's Whisper API kept as an automatic fallback if Groq is unavailable. Files are streamed directly to the transcription provider and never stored on Mictoo's servers. Neither Groq nor OpenAI uses API audio for model training, and OpenAI retains API data only for a maximum of 30 days of abuse monitoring before deletion.
+
+### Security and what happens to your file
+
+Your audio or video file uploads to Vercel Blob storage, gets streamed to the transcription provider, gets transcribed, and is deleted. The whole round trip takes under a minute for most files, and at the end there is no copy of your file on our infrastructure.
+
+We do not save your transcript either. It lives in the browser tab. If you want to keep it, hit the download button. Once you close the tab, we have no record of what you transcribed. The only thing we log is an anonymous count of how many files were processed, used to track usage and bill our providers.
+
+If you are signed in (free, optional), we keep a small history of your past transcripts in your account so you can re-open them. Anonymous transcription keeps no history of any kind.
+
+### How we make money
+
+Mictoo is funded by display ads. We have applied to Google AdSense and plan to run ads on the marketing pages (not on the actual tool flow). Ads are how we cover our hosting and API bills.
+
+Beyond ads, we are building a small Pro tier for users who need longer files, batch uploads, or speaker diarization once we ship it. The free tier is not going away. The free tier exists because most people only need to transcribe a file every now and then, and they should not have to pay a monthly subscription for that.
+
+We do not sell your data. We do not have data to sell, because we do not store your files or transcripts. The only thing third parties see about you is standard ad targeting (location, broad interests), which AdSense handles on Google's end.
+
+### Our principles
+
+- Free. No hidden costs, no trial periods, no credit card required for the core tool.
+- Private. Your files are never stored. They are processed and immediately discarded.
+- Simple. One page, one tool, zero friction.
+- Accurate. We use the best available AI model for transcription quality.
+
+### What we will not do
+
+- No dark patterns. No fake countdown timers, no "your file expires in 60 seconds, pay to download", no email walls in the middle of the upload flow.
+- No bait-and-switch pricing. The free tier is genuinely free. We will not retroactively gate features that used to be free.
+- No transcript reselling. We do not store your transcripts. We do not have a "training data" license tucked into the terms.
+- No deceptive ad networks. We use Google AdSense, not networks that swap out your browser UI or hijack the back button.
+- No fake reviews. If you see Mictoo on a review site, it got there organically. We do not pay for placement or write our own reviews.
+
+### Get in touch
+
+Have feedback, a feature request, or a question? Contact us or email info@mictoo.com.
+
+---
+
+## Contact
+URL: https://mictoo.com/contact
+
+H1: Contact us
+
+Have a question, feedback, or feature request? We'd love to hear from you. We read every message and aim to reply within one business day. For privacy matters, see our Privacy Policy.
+
+### Response time
+
+info@mictoo.com goes to a real human inbox, not a ticketing system. We reply Monday to Friday, Central European Time, usually within one business day. If you write on a Friday evening, expect a reply by Monday. We are not a 24/7 support desk and we do not pretend to be one.
+
+### What we can help with
+
+- Bug reports. Something broken in the uploader, transcripts coming back garbled, the SRT not playing in your video editor. Include the file name and the time you uploaded if you can.
+- Feature requests. Tell us what you wish Mictoo did. We will not promise anything, but we genuinely read these and have shipped features users asked for.
+- Transcription quality questions. If a specific file came back with bad accuracy, send the file (or describe it) and we will help diagnose whether it is a recording issue or a model issue.
+- Account or billing. For the free tier, there is no billing. For the Pro tier (when it launches), billing questions go here too.
+- Partnerships and integrations. If you want to integrate Mictoo into your own product, or you are building something complementary, we are open to chat.
+
+### Faster than email
+
+If your question is one of the common ones, the FAQ on the matching landing page probably already has the answer. Quick links: pricing, file size and length limits, supported formats, and privacy questions are answered at the bottom of any landing page (for example, on the Audio to Text page).
+
+For anything else, email is the right channel.
+
+### Business and press inquiries
+
+Same email: info@mictoo.com. Use [Press] or [Business] in the subject line so we route the message correctly. We are open to interviews about the indie SEO and AI tools space, but we do not do paid placements or sponsored content.
+
+If you are a journalist writing about transcription tools or AI in productivity software, we will give you straight answers about how Mictoo works under the hood, what it costs to run, and what we think about the competitive landscape.
+
+### Languages
+
+We provide support in English. Russian and Spanish responses are best-effort. If you write in another language, we will reply in English unless we can find a fluent speaker on the team.
+
+---
+
+## Can ChatGPT Transcribe Audio? Honest Answer for 2026
+URL: https://mictoo.com/blog/can-chatgpt-transcribe-audio
+Published: 2026-05-27, 8 min read
+
+Short version: not really, and not well. ChatGPT was built for text and image input. The audio capability that does exist is a side feature, not a transcription tool. Here is what actually works, when ChatGPT is enough, and when you need a dedicated tool.
+
+The short answer: ChatGPT cannot transcribe a long audio file in the way you probably mean. You cannot upload a one-hour podcast MP3 to chat.openai.com and get back a clean timestamped transcript. The longer answer is more interesting, because it's also wrong to say ChatGPT has no audio capability at all. As of mid-2026, there are three distinct things that get called "ChatGPT transcription", and only one of them is what people actually want.
+
+### The three things people mean by "ChatGPT transcribe audio"
+
+1. Upload an MP3 to ChatGPT and get back a transcript. This is what most people are asking about. The honest answer: no, this does not work as a standard ChatGPT feature. If you upload an audio file to the chat input, ChatGPT will recognise it as an attachment but won't transcribe the contents into text. The Files tool, the Code Interpreter, and the various plugin attempts at workarounds all have severe length limits (typically 25 MB and a few minutes) and produce inconsistent results. OpenAI has not added an "upload audio, get transcript" flow to the consumer ChatGPT product. They did add it to the API (the Whisper endpoint), but that's a developer tool, not a chat feature.
+
+2. ChatGPT Voice Mode (the microphone button). The little microphone icon in the ChatGPT app does use audio. But the goal is conversation, not transcription. ChatGPT listens to what you say, transcribes it internally with Whisper, sends the text to the language model, and reads the answer back to you with TTS. The transcription is real but it's used as input to a conversation. You don't see the transcript as a deliverable. You can sort of trick it by saying "please write down exactly what I just said, word for word", but it caps at the maximum voice-input length (roughly a few minutes), and ChatGPT often paraphrases or cleans up filler words rather than giving a strict transcript.
+
+3. Audio inside a multimodal prompt (GPT-4o input). GPT-4o (the multimodal model behind ChatGPT) technically accepts audio input through the API. In the ChatGPT product, this is exposed only through voice mode. Through the API, a developer can send an audio file and ask the model to transcribe it. But again: 25 MB cap, a few minutes per request, and not the same accuracy guarantees as the dedicated Whisper endpoint.
+
+### What ChatGPT uses under the hood: Whisper
+
+Every time ChatGPT processes audio (voice mode, audio in GPT-4o), it runs the input through Whisper, OpenAI's dedicated speech recognition model. Whisper is also what powers almost every modern AI transcription tool, including Mictoo. So when people ask "can ChatGPT transcribe audio?", what they're really asking is whether the consumer ChatGPT app exposes Whisper directly. It does not. ChatGPT is a chat product. Whisper is a speech-to-text model. The interesting bit is that you can use Whisper without going through ChatGPT at all.
+
+### Three practical paths in 2026
+
+Path 1: Use a dedicated transcription tool. The simplest option, and the right one for almost everyone. Tools like Mictoo wrap Whisper (or fast equivalents like Deepgram, AssemblyAI) in a normal web interface. Drop an MP3, get text in seconds. Returns timestamps, SRT subtitles, AI summaries. No upload limits in the punishing range, Mictoo handles up to 25 MB anonymously, 60 MB after a free signup, and the underlying Whisper engine accepts files up to several gigabytes. Cost: zero on the free tier for the typical use case. You get the same Whisper model that ChatGPT's voice mode uses, just exposed as a transcription deliverable instead of a conversational input.
+
+Path 2: Use the OpenAI Whisper API directly. If you have OpenAI API credits and a few minutes to write code, you can call the Whisper endpoint directly. The pricing is $0.006 per minute as of 2026, about 36 cents an hour. For a developer transcribing one or two files, that's cheaper than any subscription. Trade-off: you do the file chunking, the language detection, the SRT formatting, the speaker labelling, the summarisation, and the error handling yourself. For a one-off script, that's a weekend. For ongoing use, it's a lot of maintenance.
+
+Path 3: Use ChatGPT voice mode for very short clips. If you have a 30-second voice memo and you specifically want ChatGPT to do something with the words (summarise, translate, rewrite), voice mode does the job in one step. Open the app, hit the microphone, ask: "Listen to this and give me a summary." This is the only case where ChatGPT's built-in audio handling is actually faster than using a dedicated tool, because you skip the "transcribe then paste then ask" loop. Hard limits: maximum a few minutes per recording, transcript is not stored separately from the conversation, no SRT output, no timestamps, no speaker labels.
+
+### Comparison: ChatGPT vs dedicated transcription
+
+| Capability | ChatGPT (consumer) | Whisper API | Mictoo (free) |
+|---|---|---|---|
+| Upload an audio file | No | Yes (via API) | Yes |
+| Get text deliverable | No (voice replies only) | Yes (JSON) | Yes (TXT, SRT, VTT, JSON) |
+| Timestamps | No | Yes (with verbose_json) | Yes, every line |
+| SRT subtitles | No | Yes (response_format: srt) | Yes, one click |
+| Long files (1 hour+) | No | Yes (with chunking) | Yes, with the queue |
+| AI summary | Yes (paste text first) | DIY | Built in, free |
+| Cost | $20/mo (Plus) | $0.006/min | Free |
+| Technical setup needed | No | Yes (write code) | No |
+
+### What about ChatGPT and video files?
+
+Same answer as audio, with one extra layer: ChatGPT doesn't accept video file uploads at all in the consumer product. The voice mode is voice-only. The GPT-4o API supports images frame by frame, but not full video streams. The practical path for video: extract the audio track first (MP4 to MP3, audio extraction guide, or an ffmpeg one-liner does it in seconds), then transcribe the audio. Same for YouTube videos: download the video first, extract audio, transcribe.
+
+### Specific common questions
+
+Why can't ChatGPT transcribe audio? It can, technically, with Whisper. But OpenAI hasn't exposed that capability as a first-class feature in the consumer app. The product team has chosen to keep ChatGPT focused on chat and to keep the audio APIs separate. They'd rather sell Whisper API access to developers than build a transcription product that competes with their own paid ChatGPT subscription value proposition.
+
+What is the file upload limit for ChatGPT? For text and code files, ChatGPT Plus accepts up to 512 MB and 2 million tokens per file, with a daily limit of around 80 files. For audio, the limit isn't officially documented because audio upload isn't officially supported. Workarounds typically cap around 25 MB before timing out.
+
+Can ChatGPT listen to audio in voice mode? Yes, voice mode listens to your microphone input in real time and transcribes it internally with Whisper. The transcription stays inside the conversation, you don't get it back as a separate text deliverable. Maximum recording length is roughly a few minutes per turn.
+
+Is the GPT-4o multimodal model better at transcription? For accuracy, no. GPT-4o uses the same Whisper model for speech-to-text. The multimodal part is about handling combined image plus text plus audio in a single context, not about transcription quality.
+
+What about plugins that claim to transcribe inside ChatGPT? A few exist. They typically work by sending the file to a third-party Whisper-wrapping service and returning the text into the chat. Two problems: the round-trip is slow compared to going directly to a transcription tool, and you're sharing audio with a third party of unknown privacy standards. For non-sensitive recordings, fine. For anything you care about, skip the plugin and use a dedicated tool with a clear privacy policy.
+
+### Bottom line
+
+If you want ChatGPT to transcribe an audio file the way Microsoft Word handles a paste, that feature doesn't exist. The model behind ChatGPT (Whisper) does transcription well, but OpenAI exposes it as a separate API endpoint, not as a chat feature. For practical use:
+
+- Have a recording, want a transcript: use a dedicated transcription tool. Mictoo does it free in seconds with the same engine ChatGPT voice mode uses.
+- Developer with API credits: Whisper API directly. Six tenths of a cent per minute. Bring your own code.
+- Short clip, want the model to do something else with it: ChatGPT voice mode. One step.
+
+ChatGPT is a great chat product. It's not a transcription product. Use the right tool for the job and the friction disappears.
+
+---
+
+## How to Chat with Your Transcript (and Why It Beats Reading 60 Minutes of Text)
+URL: https://mictoo.com/blog/how-to-chat-with-transcripts
+Published: 2026-06-04, 9 min read
+
+We just shipped Chat with transcript on Mictoo. You can now ask any transcript a question and get back an answer cited with clickable timestamps. Here's what it actually does, the prompts that work best, and the honest limits.
+
+### What Chat with transcript actually is
+
+It is a question-answering panel that sits between the AI summary and the transcript itself on every result page. You ask a plain-language question about the transcript you just made, "what did they decide about pricing?", "summarize the discussion of remote work", "list all the books they mentioned", and a model reads only the relevant pieces of the transcript and writes back an answer with timestamp citations.
+
+Click any [12:34] in the answer and the audio player jumps to that moment. So you can verify the citation, hear the tone of voice, or just play forward from there. Same Whisper-quality transcript you already have, now turned into something you can ask.
+
+Free. Sign-in required only to open the Chat panel, everything else on Mictoo stays anonymous as before.
+
+### How to use it
+
+1. Transcribe something. Drop a file or paste a YouTube URL on /transcribe-audio-to-text, /transcribe-video-to-text, or /youtube-to-text. Once the transcript appears, you have everything Chat needs.
+2. Sign in. The Chat panel under the AI summary shows a lock icon and a Sign in button. One Google click is enough, anonymous users see Chat exists but cannot use it.
+3. Open the panel. Click the chat header to expand. You will see three suggested prompts (Summarize, Action items, Memorable quote) and an input field. Pick a suggestion or type your own.
+4. Click timestamps. Any [HH:MM:SS] in the answer is a button. It seeks the audio player above the transcript to that moment.
+
+That is it. No model selection, no temperature slider, no parameters to tweak.
+
+### The prompts that actually work
+
+We tested a few hundred questions across podcasts, lectures, interviews, and meeting recordings. Here is what works well and what does not. Steal the templates.
+
+Summarization prompts that work: "Summarize the key points in 5 bullets." "What is the TL;DR of this episode?" "Give me the three biggest takeaways." "Summarize only the last 15 minutes." Summary-style prompts work the best. The model has the whole transcript in retrieval, so it can pull together themes that appear in multiple places.
+
+Fact-finding prompts: "Did they mention X? If yes, what did they say?" "What did Speaker A say about pricing?" "Find the part where they discuss the 2024 numbers." "Quote the exact line about the deadline." Fact-finding is where the timestamp citations earn their keep. Click through, hear the exact words, confirm.
+
+Action items prompts: "List every action item or decision with the timestamp where it was made." "What did they commit to follow up on?" "Pull out anything that sounds like a deadline or a date." Best on meetings and project-style podcasts. Less useful on lectures and interviews.
+
+Comparison prompts: "How does the host's view differ from the guest's view on remote work?" "Did anyone disagree with the main thesis?" Good if the transcript has enough back-and-forth to spot positions. The model is honest when there is no clear disagreement, it will say so.
+
+Translation requests: "Translate the quote at 22:15 into Spanish." "In one sentence in French, what is the main argument?" For full-transcript translation use the Translate button on the transcript view instead, it preserves all timestamps in a downloadable SRT.
+
+### How it works under the hood (RAG)
+
+Chat is not just "send the whole transcript to GPT and hope for the best." That approach burns tokens on every question, breaks on long transcripts, and gives the model no incentive to cite anything in particular. We use Retrieval-Augmented Generation instead. The flow:
+
+1. Chunk. The transcript gets split into roughly 500-token windows with a 100-token overlap so a single relevant fact never falls cleanly between two chunks. Each chunk keeps its starting timestamp.
+2. Embed. Each chunk and your question get turned into vectors by OpenAI's text-embedding-3-small model. Vectors are just lists of numbers that capture semantic meaning.
+3. Retrieve. We cosine-rank the chunks against the question vector and take the top 5. These are the pieces of the transcript most likely to contain the answer.
+4. Answer. The top 5 chunks plus the question plus a strict system prompt ("answer only from this context, cite timestamps as [HH:MM:SS]") go to GPT-4o-mini. You get back a few sentences with bracketed citations.
+
+The system prompt forbids the model from inventing details or pulling in outside knowledge. If the answer is not in the retrieved chunks, it says so directly. That is the difference between "ask Mictoo about this transcript" and "ask ChatGPT about this transcript", the model is forced to ground every answer in the actual source material.
+
+### What it can't do (yet)
+
+Honest limits. We'd rather you know upfront than be surprised.
+
+- Speaker diarization. Whisper does not label who said what. So "what did Speaker A say" only works if the speakers introduce each other. Diarization is on the roadmap as a Pro tier feature.
+- 4-hour-plus podcasts. Long content still works, but the chunking and retrieval get less reliable past about 100,000 tokens. Most transcripts (under 60 min) are well inside the sweet spot.
+- Cross-transcript search. Each chat conversation is scoped to one transcript. You cannot ask "in all my saved transcripts, who has mentioned Tesla?" yet. That is a planned Pro feature too.
+- Real-time fact-checking. If the speaker says something wrong, the model will faithfully report what they said. It is not Google. It does not know who is right.
+- Hallucinations on edge cases. The strict prompt minimizes this but does not eliminate it. Always verify quotes by clicking the timestamp.
+
+### Why sign-in (and why it is free anyway)
+
+Anonymous transcribing stays anonymous. Sign-in only opens the Chat panel. Two reasons: abuse protection (a loop that spams chat questions could rack up a noticeable OpenAI bill in a hurry, per-user rate limits of 10 per hour and 20 per day only work if there are user IDs to attach them to) and honest cost control (per question Chat costs us about $0.001, pennies even at heavy use, but the long tail of bots and aggressive scrapers would change the math). No upsell. No paid tier hiding behind sign-in.
+
+### Privacy
+
+We send the relevant transcript chunks plus your question to OpenAI. We do not send the entire transcript to anyone, only the 5 chunks our retrieval picks as most relevant. OpenAI does not train on API calls, per their stated policy. We do not store chat conversations anywhere. Close the tab and the conversation is gone.
+
+### FAQ
+
+Is it really free? Yes. We pay OpenAI for the calls. No paid tier for Chat.
+
+Why require sign-in if it is free? To attach rate limits to a user identity. Without sign-in we would need IP-based limits, which are blunt and break for shared networks.
+
+How accurate are the answers? The factual content is grounded in the actual transcript. The model still occasionally paraphrases something in a way that loses nuance, clicking the cited timestamp lets you check the original.
+
+Can I chat about YouTube videos? Yes. Paste a YouTube URL on /youtube-to-text or /transcribe-video-to-text, wait for the transcript, then sign in to chat.
+
+What about really long podcasts? Up to about 4 hours works well. Past that, retrieval starts missing things.
+
+Can I search across all my saved transcripts? Not yet. Each chat is scoped to one transcript. Cross-transcript search is on the roadmap.
+
+Does it work in languages other than English? Yes. The transcript can be in any language Whisper supports (50+) and the model can answer in any language you ask in.
+
+Does it remember past conversations? Only within the current page-load session. Refresh the page or close the tab and history is gone.
+
+What model is behind this? OpenAI text-embedding-3-small for retrieval embeddings, gpt-4o-mini for the answer generation.
+
+How is this different from pasting the transcript into ChatGPT? Three differences. Retrieval surfaces only the relevant chunks to the model, so even hour-long transcripts answer fast. Citations come back as clickable buttons that seek the audio player. The strict prompt forbids outside-knowledge guesses, so the model is more honest about what is and is not in the transcript.
+
+---
+
+## MP3 vs M4A vs WAV vs FLAC for Transcription: Which Format Should You Use?
+URL: https://mictoo.com/blog/mp3-vs-m4a-vs-wav-vs-flac-for-transcription
+Published: 2026-05-25, 9 min read
+
+A practical comparison of the four most common audio formats from the perspective of what actually matters for AI transcription. Quality, file size, accuracy, and when each one is worth using.
+
+Almost every transcription article online says "use the highest quality format you have." That advice is technically true and practically useless. What you actually want to know is whether you should bother re-encoding your iPhone voice memo to WAV before uploading (no), whether transcribing a 64 kbps phone-call MP3 will work (yes, mostly), and how much accuracy you lose by picking the smaller file (almost none, in most cases). This article answers those questions with specifics. We use OpenAI's Whisper large-v3 across the board on Mictoo, which is the strongest open speech model available right now.
+
+### TL;DR
+
+| Format | Best for | File size (10 min voice) | Transcription accuracy |
+|---|---|---|---|
+| MP3 | Default for podcasts, phone recordings, maximum compatibility | ~5 MB at 64 kbps mono | Same as lossless above 64 kbps |
+| M4A | iPhone Voice Memos, GarageBand, Apple ecosystem | ~5 MB at default voice quality | Same as lossless above 64 kbps |
+| WAV | Studio sessions, field recorders, need audio for editing | ~100 MB at 44.1 kHz stereo 16-bit | Marginally better only on extremely low-quality alternatives |
+| FLAC | Archival, lossless without WAV size, CD rips | ~50 MB at 44.1 kHz stereo 16-bit | Identical to WAV |
+
+The headline answer: for transcription alone, MP3 and M4A at typical quality settings give you the same transcript as WAV and FLAC, with a tenth of the file size. Lossless formats are worth using only if you also need the audio for editing, mastering, or archival.
+
+### Why format matters less than you think
+
+Whisper does not actually care about your file format. As soon as the audio reaches the model, it gets resampled to 16 kHz mono, regardless of what you uploaded. Your 24-bit 96 kHz studio WAV and your 32 kbps phone-call MP3 both get the same treatment internally.
+
+What matters is whether your file preserves the speech well enough that the resampled version is still intelligible. For voice, that is a much lower bar than people assume. Speech is mostly between 80 Hz and 8 kHz. A 16 kHz sample rate captures everything up to 8 kHz cleanly, which is more than enough. A 64 kbps mono MP3 preserves that range without audible artifacts on speech.
+
+So the practical question becomes: at what point does compression start to actively damage the speech? The answer for modern codecs is "much lower than you would think." We routinely see usable transcripts from 24 kbps phone-recorded MP3s. Below that, accuracy starts to drop noticeably.
+
+### MP3 deep dive
+
+MP3 is the universal format. Every player, every editor, every transcription tool accepts it. It is also the most likely format you already have, especially for podcast downloads and phone recordings.
+
+Bitrate recommendation for transcription: 64 kbps mono is the sweet spot. Higher bitrates do not improve transcript accuracy. Lower bitrates start losing intelligibility for the model around 32 kbps mono.
+
+Variable bitrate (VBR) vs constant bitrate (CBR): both work. CBR is slightly more predictable for transcription pipelines because it has consistent frame sizes. If you control the export and have a choice, pick CBR at 64 or 96 kbps mono.
+
+Where MP3 shines: when you want the smallest possible file that still transcribes well. A 60-minute interview at 64 kbps mono MP3 is around 28 MB. Fits comfortably in the 60 MB upload cap most free transcription services have.
+
+Where MP3 hurts: two cases. Very low bitrate (under 24 kbps) phone-recorded MP3s lose enough information that names, numbers, and rapid speech get garbled. And re-encoding from MP3 to MP3 (lossy to lossy) compounds quality loss. If you have the original WAV or M4A, do not save out as MP3 just to re-encode again.
+
+When to convert TO MP3: if your original file is over your transcription service's upload cap, re-encoding to 64 kbps mono MP3 usually solves the problem with no accuracy loss. A 500 MB stereo WAV becomes a 28 MB mono MP3 with the same transcribable content.
+
+### M4A deep dive
+
+M4A is the Apple ecosystem default. iPhone Voice Memos, GarageBand, QuickTime audio recording, AirDrop exports of audio. All M4A. Under the hood, M4A is AAC audio inside an MP4 container.
+
+AAC is a better codec than MP3, especially at low bitrates. A 64 kbps AAC sounds noticeably better than a 64 kbps MP3. For transcription, the difference is minimal at normal bitrates (around 64 kbps and up).
+
+iPhone Voice Memos quality settings: the default is "Compressed" which is lossy AAC at a reasonable bitrate for voice. There is also a "Lossless" setting that uses ALAC. For transcription, "Compressed" is the right choice. Lossless ALAC files are 5x larger with zero transcription benefit.
+
+Where M4A shines: the iPhone Voice Memos workflow. Open the app, record, AirDrop or email to your computer, upload to transcription, done. No format conversion. Most 30-minute interviews fit comfortably under 25 MB.
+
+Where M4A hurts: compatibility with older tools. Some legacy audio software does not handle M4A and asks for MP3 or WAV. For transcription specifically, this is not a real problem because all modern transcription services accept M4A directly.
+
+iPhone-specific tip: if your Voice Memos are stored as ALAC (lossless M4A) and the file is too big to upload, you can convert to lossy AAC in QuickTime: File, Export As, Audio Only, M4A Audio. The result is roughly one-fifth the size with identical transcription quality.
+
+### WAV deep dive
+
+WAV is uncompressed PCM audio. Every sample is stored exactly as recorded. No compression, no quality loss, no codec to argue about. The trade-off is file size: a 30-minute WAV at typical studio settings (44.1 kHz, 16-bit, stereo) is around 300 MB.
+
+Where WAV makes sense for transcription: when you already have the WAV and the file size fits. There is no reason to convert MP3 to WAV before uploading. There is also no reason to convert WAV to MP3 if the WAV is small enough to upload directly.
+
+Where WAV hurts: file size. A 60-minute lecture recording at 44.1 kHz stereo 16-bit is 600 MB or more. That blows past every free transcription service's upload cap. You either need to convert (re-encode to MP3 or AAC) or split the file.
+
+Bit depth and sample rate trivia: studio recordings often use 24-bit or 32-bit float for editing headroom. For transcription, Whisper resamples to 16-bit 16 kHz mono anyway. So a 32-bit 96 kHz stereo WAV gives you the exact same transcript as a 16-bit 16 kHz mono WAV. Pick the smaller one if you have a choice.
+
+### FLAC deep dive
+
+FLAC is lossless compressed audio. It is bit-for-bit identical to the original WAV when decoded, but the file is typically 50 to 60 percent of the WAV size. So FLAC gets you the same transcription accuracy as WAV with half the upload time.
+
+FLAC is uncommon in casual transcription workflows. Most people who use FLAC are in archival, audiophile, or CD-ripping contexts. If your audio is FLAC, you probably already know why and you do not need this article to tell you to use it.
+
+Where FLAC shines: archival projects, oral history transcription, library digitization, anything where you want to keep the master in lossless form forever. Transcribe from the FLAC directly so you do not have to maintain a parallel MP3 copy just for transcription.
+
+Where FLAC hurts: compatibility, marginally. Some older Windows audio software does not handle FLAC out of the box. For transcription specifically, Mictoo accepts FLAC directly.
+
+### Formats we did not cover
+
+OGG (Vorbis or Opus): common in WhatsApp voice notes (Opus), Telegram voice messages (Opus, with .oga extension), and Audacity exports (Vorbis). All work for transcription. OGG Opus is actually the most efficient codec for speech, narrowly beating AAC.
+
+WEBM: the web-native format. Discord call recordings, browser screen recorders, MediaRecorder API output all save as WEBM (usually with Opus audio inside). Same story: transcribes well, no conversion needed.
+
+AIFF: Apple's uncompressed format. Equivalent to WAV in audio terms. Some Apple-native tools default to AIFF. For transcription, most services accept it, but if not, converting to WAV or M4A is trivial.
+
+ALAC (Apple Lossless): lossless audio inside an M4A container. Same use case as FLAC. iPhone Voice Memos can save in ALAC if you flip the "Lossless" setting. For transcription, the lossy AAC version is genuinely better in terms of practical workflow (much smaller, identical transcript quality).
+
+### Practical decision rules
+
+Three rules cover 95 percent of cases.
+
+Rule 1: If you already have the file, use it. Do not re-encode just to standardize on one format. Re-encoding MP3 to MP3 makes things worse. Re-encoding WAV to WAV is pointless. Drop what you have into a transcription service that accepts it.
+
+Rule 2: If you are recording fresh and you only need a transcript, pick the lossy default. iPhone Voice Memos, default Android voice recorder, any podcast hosting service's default export. All produce M4A or MP3 at sensible quality for transcription. No need to crank up to lossless.
+
+Rule 3: If you are recording fresh and you also need to edit later, pick WAV or FLAC. Editing benefits from lossless headroom. Transcription does not. So the choice between lossy and lossless is really a choice between "transcript only" and "transcript plus edit-ready audio."
+
+### What actually affects transcription accuracy (besides format)
+
+Format is the most-talked-about variable and the least important one. Here is what actually moves the needle on transcript accuracy, ranked:
+
+1. Microphone quality and position. A laptop built-in mic at 50 cm gives much worse results than a 20-dollar USB headset at 10 cm. This is the single biggest factor.
+2. Background noise. Quiet room beats noisy room. HVAC hum, traffic, music in another room all hurt accuracy.
+3. Speaker accent and language coverage of the model. Whisper handles most major accents well. Heavy regional dialects lose a few percent.
+4. Speaking rate and clarity. Slower, clearer speech transcribes more accurately than rapid-fire delivery, mumbling, or overlapping voices.
+5. Domain vocabulary. Common words come through almost perfectly. Specialized terms (medical, legal, technical jargon, proper nouns) often need manual cleanup.
+6. Format and bitrate. Only matters at the extremes. Below 24 kbps starts to cost accuracy. Anything above 64 kbps mono is essentially identical.
+
+### Bottom line
+
+For pure transcription, use whatever format you have. MP3 and M4A at typical quality settings are indistinguishable from WAV and FLAC in transcript output. The only times format matters: when your file is too big to upload (re-encode to 64 kbps mono MP3 or AAC), when you also need the audio for editing (use WAV or FLAC), or when bitrate drops below 24 kbps (which is rare outside old phone recordings). Stop overthinking this. Drop your file into a good transcription tool and ship the text.
+
+---
+
+## What's new (changelog)
+URL: https://mictoo.com/whats-new
+
+Latest updates to Mictoo's free AI transcription tool. Newest first.
+
+### 2026-07-22, Full localization across all 10 languages
+Mictoo now speaks all 10 supported languages end to end, not just the marketing pages. Trust chips, sidebar navigation, the converter drop zone, and the transcript download menu are all localized. Homepage previews and metadata (og:locale, JSON-LD inLanguage, correct html lang) match each locale for better SEO and screen reader accuracy. Storage limit and translation language counts are updated site-wide (180 MB per file, 36 target languages).
+Tags: i18n
+
+### 2026-06-13, Bigger files via auto-split (registered users)
+Signed-in users can now upload files up to 180 MB. Files larger than 60 MB are auto-split into 2-3 chunks, transcribed in parallel, then stitched back into one transcript with continuous timestamps. Each chunk uses one of your daily transcript credits (visible as a coin counter in the header). A confirmation dialog shows the credit cost before the file uploads, so you decide before committing. Heads up: chunk boundaries today are hard time cuts, so a word or two may be lost at the seam; silence-aware splits are on the way. See your daily balance and limit rules on the account page.
+Tags: new, feature
+
+### 2026-06-04, Chat with your transcript (sign-in required)
+Ask questions about any transcript you've created and get answers cited with clickable timestamps that jump to that moment in the audio. Three suggested prompts get you started: "Summarize the key points", "Pull out action items", "Find a memorable quote". Or type your own. Sign in is required for Chat, anonymous transcribing still works exactly the same. 10 questions per hour, 20 per day. Free, like everything else.
+Tags: new, feature
+
+### 2026-06-04, Paste a YouTube link, get a transcript
+You no longer need to download the video first. Paste any YouTube URL on /youtube-to-text or /transcribe-video-to-text and the transcript comes back in a couple of seconds with timestamps, an AI summary, and copy/export to TXT, SRT, VTT, or DOCX. If the video has no captions, we'll send you to the download-and-upload guide so you can still get the text.
+Tags: new, youtube
+
+### 2026-06-04, 12 famous YouTube videos now have searchable transcripts
+Browse the new transcripts hub for full transcripts of TED talks like Ken Robinson on Do Schools Kill Creativity and Brene Brown on The Power of Vulnerability, classics like Steve Jobs' 2005 Stanford Commencement, plus long-form interviews from Andrew Huberman and Lex Fridman. Every page has timestamps, an AI summary, and links back to the original video. More coming as we curate. Want to transcribe your own video? Drop a file at /transcribe-video-to-text.
+Tags: seo, youtube
+
+---
+
+## Free SRT Generator
+URL: https://mictoo.com/free-srt-generator
+
+Badge: SRT, audio or video, free.
+
+H1: Free SRT Generator, Whisper-quality subtitles from any audio or video.
+
+Upload audio or video, get an SRT subtitle file ready for YouTube, Premiere, Final Cut, DaVinci Resolve, or CapCut. No signup, no per-minute fee.
+
+### How SRT generation works
+
+1. Drop audio or video. MP3, MP4, WAV, M4A, WEBM, FLAC and more. Up to 25 MB anonymously, 180 MB signed in.
+2. Whisper transcribes. Whisper large-v3 produces per-segment timestamps aligned to the original audio.
+3. Download SRT. SRT and VTT exports included. Drop into your video editor or YouTube upload.
+
+### Why use Mictoo for SRT generation?
+
+- Accurate multilingual captions. Whisper large-v3 adds punctuation and handles many languages, accents, and recording types.
+- SRT + VTT included. Both subtitle formats generated automatically. VTT for web players, SRT for editors.
+- Files deleted after. Uploaded audio is dropped after transcription; transcript persists only on signed-in accounts.
+- No watermark or tag. Clean SRT with no branded intro or "Made with X" tag.
+
+### When SRT generation is useful
+
+- YouTube upload captions
+- Premiere / DaVinci import
+- Podcast video version
+- Client review copy
+- Accessibility archive
+- Foreign-language captions
+
+### Tips for cleaner subtitles
+
+- For files over 25 MB, sign in for auto-split uploads up to 180 MB.
+- Set the language explicitly for non-English or technical content.
+- Review names and unusual terms in Editor mode before export.
+- Translate the transcript first, then export SRT for foreign captions.
+
+Pipeline: Audio / video, Whisper transcription, SRT + VTT export.
+
+### FAQ
+
+Is the SRT generator free? Yes. Up to 25 MB anonymously or 180 MB when signed in. No watermark on the SRT and no per-minute fee.
+
+Which subtitle formats do I get? SRT and VTT are both included. TXT (plain text) and DOCX are also available. Signed-in users additionally get PDF and JSON.
+
+How accurate are the timestamps? Whisper large-v3 provides per-segment timestamps aligned to the original audio. Accurate enough for YouTube captions and most video editing use cases.
+
+Do you identify speakers (diarisation)? Not yet. Continuous captions with timestamps but no speaker labels. Diarisation is on the Pro roadmap.
+
+Does Mictoo transcribe non-English audio? Yes. Whisper large-v3 supports 50+ languages with auto-detection. Set the language explicitly for cleaner results.
+
+Are recordings kept on your servers? No. Audio streams to the transcription provider, gets processed once, and is dropped. Transcripts persist only on signed-in accounts.
+
+CTA: Generate SRT captions from any recording. YouTube, Premiere, Final Cut, DaVinci, CapCut. Whisper-quality timestamps.
+
+Related tools: Timestamped Transcript, YouTube to Text, Video to Text, Audio to Text.
+
+---
+
+## Interview Transcription
+URL: https://mictoo.com/interview-transcription
+
+Badge: Journalists, researchers, UX, free.
+
+H1: Interview Transcription, free tool for journalists, researchers, and UX teams.
+
+Upload a 1:1 or panel interview from any recorder or meeting app. Get a clean, timestamped transcript with AI summary and exports ready for the article, paper, or research repo.
+
+Supported recorder platforms: Zoom, Google Meet, MS Teams, Riverside, Voice Memo, phone call.
+
+### How interview transcription works
+
+1. Export your interview. Any recording will do. Voice memo, Zoom cloud recording, Riverside audio track, phone call export.
+2. Drop the file here. Upload MP3, MP4, M4A, WAV, MOV, or any common audio and video format up to 60 MB.
+3. Transcript, quotes, exports. Timestamped transcript, AI summary, TXT / SRT / VTT / DOCX exports. Ready for the article or research paper.
+
+### Example interview transcript
+File: researcher-interview.m4a (42:18)
+
+- 0:00 Thanks for taking the time. Could you start by describing your role and how long you have been in it.
+- 0:08 Sure. I lead the analytics team at a mid-sized fintech, and I have been in this role for a little over two years.
+- 0:20 Before that I was at a larger bank, mostly working on customer retention and lifetime-value modelling.
+- 0:32 So the shift from a big bank to a fintech was mostly about the pace and the freedom to try new things.
+- 0:44 And the tooling has come a long way. What used to take a week in the old stack takes an afternoon now.
+- 0:56 Can you give me an example of that kind of shift? Something concrete you would not have attempted before.
+- 1:04 The obvious one is real-time cohort experiments. We ship an idea in the morning and see meaningful data by that evening.
+
+Summary bullets: analytics lead at fintech, 2+ years in role. Previous role at large bank focused on retention modelling. Fintech shift driven by pace and experiment freedom. Real-time cohort experiments possible with modern tooling.
+
+Action items suggested by the AI: follow up on retention-modelling comparison. Ask for real-time cohort experiment example. Get intro to previous employer contact.
+
+### Why Mictoo for interview transcription
+
+- Review names and proper nouns. Use timestamps to check names, cities, organizations, and specialist terms against the original interview recording.
+- AI summary and quote extraction. The AI summary is a solid first draft for the pull-quote list, the research memo, or the article intro.
+- Clear processing model. The recording is sent to a transcription provider for processing and is not retained by Mictoo after the job completes.
+- Translate for cross-language work. Interview conducted in Spanish, German, or Japanese. Translate to your working language in one click.
+
+### Common interview scenarios
+
+- Journalism
+- UX research
+- Recruiting
+- Oral history
+- Legal deposition
+- Multilingual
+
+### Tips for cleaner interview transcripts
+
+- Record with a lapel or handheld mic close to the subject.
+- Ask the subject to pause briefly between long answers.
+- Set the language explicitly for non-English or heavy accents.
+- Review names and unusual terms after transcription.
+
+### Pick the right recorder guide
+
+- Zoom interview, Cloud Recording MP4 or M4A
+- Meet interview, Drive recording download
+- iPhone Voice Memo, any M4A voice recording
+- Podcast-style, Riverside, Zencastr, Cleanfeed
+
+### FAQ
+
+What file formats does Mictoo accept for interviews? MP3, MP4, M4A, WAV, MOV, WEBM, FLAC, OGG, AAC and most other common audio and video formats. Video files are auto-demuxed server-side.
+
+Does Mictoo identify who is speaking? No. The current transcript is continuous text with per-line timestamps and no automatic "Interviewer / Subject" labels.
+
+Is interview transcription free? Yes. Free per file up to 25 MB anonymously, 60 MB signed in. Longer interviews can be split automatically for signed-in users.
+
+Can I redact names before publishing the transcript? Yes. Switch to Editor mode after transcription to edit any word or line. Save the edited version and export.
+
+Are recordings kept on your servers? No. Audio streams to the transcription provider, gets processed once, and is dropped. Transcripts are only stored if you sign in.
+
+Can I translate the interview transcript? Yes. Pick a target language and click Translate. Useful for cross-language field research or multilingual reporting.
+
+What export formats are available? TXT, SRT, VTT, DOCX. Signed-in users also get PDF and JSON. Timestamps in SRT and VTT align to the original recording.
+
+CTA: Turn interviews into publishable text. Drop your recording and get a transcript, summary, and exports ready for the article or research repo.
+
+Related: Meeting Transcription, Podcast Transcription, Voice Memo to Text, Business Transcription, Lecture Transcription.
+
+---
+
+## How to compress audio for transcription
+URL: https://mictoo.com/how-to-compress-audio
+
+H1: How to compress audio for transcription
+
+Mictoo accepts files up to 25 MB for free. If your file is larger, here are three quick ways to shrink it without losing transcription quality. Pick the one that fits your file and skills.
+
+### Method 1, Extract audio from a video file
+
+If you have a video file (MP4, WEBM, MOV) that's mostly speech, the audio track is usually 5 to 10x smaller than the video. Mictoo only needs the audio, the video doesn't help transcription. This is the fastest fix for most users.
+
+Online (no install): use our own browser converter. Drop the file, get MP3 back in a few seconds. Free, no signup, no watermark. Try MP4 to MP3 (pulls the audio out of any MP4 video), WEBM to MP3 (for YouTube downloads and screen recordings), or WAV to MP3 (shrinks an uncompressed WAV to a manageable MP3).
+
+Command line (ffmpeg):
+```
+ffmpeg -i input.mp4 -vn -acodec copy output.m4a
+```
+-vn strips video, -acodec copy keeps the audio quality intact. Fast, no re-encoding.
+
+### Method 2, Lower the audio bitrate
+
+Most podcasts and meetings are recorded at 128 to 192 kbps. For transcription, 64 kbps mono is more than enough, accuracy stays the same and the file becomes 2 to 3x smaller. This is the best method for long audio files.
+
+Online: we don't host a re-encode tool yet, so for bitrate reduction the easiest path is the ffmpeg one-liner below. If you prefer a GUI, Audacity (free, all platforms) handles it via File, Export, Export as MP3 with the quality slider set to 64 to 96 kbps.
+
+Command line (ffmpeg):
+```
+ffmpeg -i input.mp3 -ac 1 -b:a 64k output.mp3
+```
+-ac 1 converts to mono (speech is fine in mono), -b:a 64k sets audio bitrate to 64 kbps.
+
+Rough math: 64 kbps gives roughly 28 MB per hour. A 1-hour interview fits in around 28 MB, close to the limit. Drop to -b:a 48k for around 21 MB per hour without noticeable accuracy loss.
+
+### Method 3, Split into shorter parts
+
+If you need to keep the original quality (legal, medical, archival), split the file into chunks of 20 to 25 minutes and transcribe each separately. Then join the transcripts in any text editor.
+
+Online: splitting in the browser needs more horsepower than our serverless converter has today. For now the ffmpeg one-liner below is the cleanest route, or open the file in Audacity and export each region separately. See the dedicated how-to-split-audio guide for both methods step by step.
+
+Command line (ffmpeg):
+```
+ffmpeg -i input.mp3 -f segment -segment_time 1200 -c copy part_%03d.mp3
+```
+Splits the input into 20-minute (1200 seconds) parts named part_001.mp3, part_002.mp3, and so on. Then upload each to Mictoo.
+
+### All set?
+
+Once your file is under 25 MB, head back to the home page and drop it into the transcription tool.
+
+Related transcription tools: MP3 to Text, Video to Text, M4A to Text, All formats.
